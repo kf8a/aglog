@@ -1,0 +1,21 @@
+--- 
+studies_001: 
+  name: MAIN
+  id: "1"
+  description: 
+studies_002: 
+  name: Biodiversity
+  id: "2"
+  description: 
+studies_003: 
+  name: Fertility Gradient
+  id: "3"
+  description: 
+studies_004: 
+  name: Irrigated Fertility Gradient
+  id: "4"
+  description: 
+studies_005: 
+  name: Rotation Entry Point
+  id: "5"
+  description: 

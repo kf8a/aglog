@@ -1,0 +1,18 @@
+<h1>Editing equipment</h1>
+
+<%= error_messages_for 'equipment' %>
+
+<% form_for(:equipment, :url => equipment_path(@equipment), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>Name:</b>
+    <%= f.text_field :name %>
+    <b>&nbsp Use Material:</b><%= f.check_box :use_material %> 
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', equipment_path(@equipment) %> |
+<%= link_to 'Back', equipment_path %>

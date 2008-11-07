@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+<head>
+  <title>Aglog</title>
+  <%= stylesheet_link_tag "aglog" %>
+	<%= stylesheet_link_tag 'scaffold' %>
+<%= javascript_include_tag 'prototype' %>
+<%= javascript_include_tag 'lowpro' %>
+<%= javascript_include_tag 'effects' %>
+<%= javascript_include_tag 'application' %>
+</head>
+<body>
+
+<div class='header_bar'>
+<%= link_to 'observation', observations_path %>&nbsp;&nbsp;
+<%= link_to '(review)',   {:controller => 'observations', :action => 'index', :in_review => true} if logged_in? %>&nbsp;&nbsp;
+<%= link_to 'people', people_path %>&nbsp;&nbsp;
+<%= link_to 'material', materials_path %>&nbsp;&nbsp;
+<%= link_to 'equipment', {:controller => 'equipment'} %>&nbsp;&nbsp;
+<%= link_to 'units', units_path %>&nbsp;&nbsp;
+<%= link_to 'areas', areas_path %>
+</div>
+
+<p style="color: green"><%= flash[:notice] %></p>
+<p style="color: red"><%= flash[:error] %></p>
+
+<%= @content_for_layout %>
+
+<% if logged_in? %>
+
+<% else %>
+<%= link_to "login", new_sessions_path %>
+<% end %>
+</body>
+</html>

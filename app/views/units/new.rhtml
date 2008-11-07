@@ -1,0 +1,21 @@
+<h1>New Unit</h1>
+
+<% form_for(:unit, :url => units_path) do |f| %>
+	
+	<p>
+		<b>Name</b><br />
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<b>SI Unit id</b><br />
+		<%= f.text_field :si_unit_id %>
+	</p>
+	<p>
+		<b>Conversion Factor</b><br />
+		<%= f.text_field :conversion_factor %>
+	</p>
+  
+  <p>
+    <%= submit_tag "Create" %>
+  </p>
+<% end %>

@@ -1,0 +1,5914 @@
+--- 
+material_transactions_230: 
+  material_transaction_type_id: 
+  material_id: "34"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "312"
+  transaction_datetime: 
+  setup_id: "694"
+material_transactions_040: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "1"
+  unit_id: "11"
+  id: "56"
+  transaction_datetime: 
+  setup_id: "183"
+material_transactions_610: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "777"
+  transaction_datetime: 
+  setup_id: "1336"
+material_transactions_420: 
+  material_transaction_type_id: 
+  material_id: "30"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "566"
+  transaction_datetime: 
+  setup_id: "1006"
+material_transactions_231: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "3"
+  unit_id: "7"
+  id: "318"
+  transaction_datetime: 
+  setup_id: "700"
+material_transactions_041: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "57"
+  transaction_datetime: 
+  setup_id: "184"
+material_transactions_611: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "779"
+  transaction_datetime: 
+  setup_id: "1338"
+material_transactions_421: 
+  material_transaction_type_id: 
+  material_id: "80"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "567"
+  transaction_datetime: 
+  setup_id: "1007"
+material_transactions_232: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "320"
+  transaction_datetime: 
+  setup_id: "702"
+material_transactions_042: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "58"
+  transaction_datetime: 
+  setup_id: "185"
+material_transactions_612: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "780"
+  transaction_datetime: 
+  setup_id: "1339"
+material_transactions_470: 
+  material_transaction_type_id: 
+  material_id: "77"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "616"
+  transaction_datetime: 
+  setup_id: "1067"
+material_transactions_422: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "568"
+  transaction_datetime: 
+  setup_id: "1010"
+material_transactions_280: 
+  material_transaction_type_id: 
+  material_id: "49"
+  cents: 
+  rate: "25"
+  unit_id: "15"
+  id: "381"
+  transaction_datetime: 
+  setup_id: "794"
+material_transactions_090: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "12"
+  unit_id: "10"
+  id: "140"
+  transaction_datetime: 
+  setup_id: "393"
+material_transactions_043: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "0.75"
+  unit_id: 
+  id: "59"
+  transaction_datetime: 
+  setup_id: "186"
+material_transactions_613: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "781"
+  transaction_datetime: 
+  setup_id: "1340"
+material_transactions_471: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "617"
+  transaction_datetime: 
+  setup_id: "1068"
+material_transactions_423: 
+  material_transaction_type_id: 
+  material_id: "30"
+  cents: 
+  rate: "52"
+  unit_id: "6"
+  id: "569"
+  transaction_datetime: 
+  setup_id: "1010"
+material_transactions_281: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "110"
+  unit_id: "9"
+  id: "382"
+  transaction_datetime: 
+  setup_id: "795"
+material_transactions_091: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "12"
+  unit_id: "10"
+  id: "143"
+  transaction_datetime: 
+  setup_id: "396"
+material_transactions_233: 
+  material_transaction_type_id: 
+  material_id: "41"
+  cents: 
+  rate: "18"
+  unit_id: "9"
+  id: "321"
+  transaction_datetime: 
+  setup_id: "704"
+material_transactions_044: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "61"
+  transaction_datetime: 
+  setup_id: "188"
+material_transactions_614: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "784"
+  transaction_datetime: 
+  setup_id: "1342"
+material_transactions_472: 
+  material_transaction_type_id: 
+  material_id: "85"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "618"
+  transaction_datetime: 
+  setup_id: "1072"
+material_transactions_424: 
+  material_transaction_type_id: 
+  material_id: "71"
+  cents: 
+  rate: "17"
+  unit_id: "9"
+  id: "570"
+  transaction_datetime: 
+  setup_id: "1010"
+material_transactions_282: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "110"
+  unit_id: "9"
+  id: "383"
+  transaction_datetime: 
+  setup_id: "797"
+material_transactions_092: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "144"
+  transaction_datetime: 
+  setup_id: "400"
+material_transactions_234: 
+  material_transaction_type_id: 
+  material_id: "42"
+  cents: 
+  rate: "140"
+  unit_id: "15"
+  id: "323"
+  transaction_datetime: 
+  setup_id: "707"
+material_transactions_045: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "62"
+  transaction_datetime: 
+  setup_id: "189"
+material_transactions_615: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "785"
+  transaction_datetime: 
+  setup_id: "1342"
+material_transactions_473: 
+  material_transaction_type_id: 
+  material_id: "78"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "619"
+  transaction_datetime: 
+  setup_id: "1073"
+material_transactions_425: 
+  material_transaction_type_id: 
+  material_id: "30"
+  cents: 
+  rate: "52"
+  unit_id: "6"
+  id: "571"
+  transaction_datetime: 
+  setup_id: "1013"
+material_transactions_283: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "384"
+  transaction_datetime: 
+  setup_id: "798"
+material_transactions_093: 
+  material_transaction_type_id: 
+  material_id: "22"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "146"
+  transaction_datetime: 
+  setup_id: "402"
+material_transactions_235: 
+  material_transaction_type_id: 
+  material_id: "42"
+  cents: 
+  rate: "140"
+  unit_id: "15"
+  id: "324"
+  transaction_datetime: 
+  setup_id: "708"
+material_transactions_616: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "786"
+  transaction_datetime: 
+  setup_id: "1343"
+material_transactions_474: 
+  material_transaction_type_id: 
+  material_id: "78"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "620"
+  transaction_datetime: 
+  setup_id: "1074"
+material_transactions_426: 
+  material_transaction_type_id: 
+  material_id: "71"
+  cents: 
+  rate: "17"
+  unit_id: "9"
+  id: "572"
+  transaction_datetime: 
+  setup_id: "1013"
+material_transactions_284: 
+  material_transaction_type_id: 
+  material_id: "50"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "386"
+  transaction_datetime: 
+  setup_id: "800"
+material_transactions_094: 
+  material_transaction_type_id: 
+  material_id: "22"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "147"
+  transaction_datetime: 
+  setup_id: "403"
+material_transactions_236: 
+  material_transaction_type_id: 
+  material_id: "42"
+  cents: 
+  rate: "200"
+  unit_id: "15"
+  id: "325"
+  transaction_datetime: 
+  setup_id: "709"
+material_transactions_046: 
+  material_transaction_type_id: 
+  material_id: "16"
+  cents: 
+  rate: "167"
+  unit_id: "9"
+  id: "63"
+  transaction_datetime: 
+  setup_id: "191"
+material_transactions_617: 
+  material_transaction_type_id: 
+  material_id: "106"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "787"
+  transaction_datetime: 
+  setup_id: "1344"
+material_transactions_427: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "573"
+  transaction_datetime: 
+  setup_id: "1013"
+material_transactions_285: 
+  material_transaction_type_id: 
+  material_id: "50"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "387"
+  transaction_datetime: 
+  setup_id: "801"
+material_transactions_095: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "149"
+  transaction_datetime: 
+  setup_id: "405"
+material_transactions_237: 
+  material_transaction_type_id: 
+  material_id: "42"
+  cents: 
+  rate: "200"
+  unit_id: "15"
+  id: "326"
+  transaction_datetime: 
+  setup_id: "710"
+material_transactions_047: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "65"
+  transaction_datetime: 
+  setup_id: "195"
+material_transactions_618: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "788"
+  transaction_datetime: 
+  setup_id: "1345"
+material_transactions_475: 
+  material_transaction_type_id: 
+  material_id: "78"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "621"
+  transaction_datetime: 
+  setup_id: "1075"
+material_transactions_428: 
+  material_transaction_type_id: 
+  material_id: "81"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "574"
+  transaction_datetime: 
+  setup_id: "1016"
+material_transactions_286: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "388"
+  transaction_datetime: 
+  setup_id: "802"
+material_transactions_096: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "150"
+  transaction_datetime: 
+  setup_id: "406"
+material_transactions_238: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "135"
+  unit_id: "9"
+  id: "328"
+  transaction_datetime: 
+  setup_id: "717"
+material_transactions_048: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "66"
+  transaction_datetime: 
+  setup_id: "197"
+material_transactions_619: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "789"
+  transaction_datetime: 
+  setup_id: "1346"
+material_transactions_476: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "100"
+  unit_id: "9"
+  id: "622"
+  transaction_datetime: 
+  setup_id: "1076"
+material_transactions_429: 
+  material_transaction_type_id: 
+  material_id: "24"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "575"
+  transaction_datetime: 
+  setup_id: "1021"
+material_transactions_287: 
+  material_transaction_type_id: 
+  material_id: "51"
+  cents: 
+  rate: "28.6"
+  unit_id: "9"
+  id: "390"
+  transaction_datetime: 
+  setup_id: "805"
+material_transactions_097: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "151"
+  transaction_datetime: 
+  setup_id: "407"
+material_transactions_239: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "329"
+  transaction_datetime: 
+  setup_id: "718"
+material_transactions_049: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "68"
+  transaction_datetime: 
+  setup_id: "201"
+material_transactions_477: 
+  material_transaction_type_id: 
+  material_id: "86"
+  cents: 
+  rate: "40"
+  unit_id: "9"
+  id: "623"
+  transaction_datetime: 
+  setup_id: "1076"
+material_transactions_098: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "153"
+  transaction_datetime: 
+  setup_id: "410"
+material_transactions_100: 
+  material_transaction_type_id: 
+  material_id: "24"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "156"
+  transaction_datetime: 
+  setup_id: "413"
+material_transactions_478: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "100"
+  unit_id: "9"
+  id: "624"
+  transaction_datetime: 
+  setup_id: "1077"
+material_transactions_099: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "154"
+  transaction_datetime: 
+  setup_id: "411"
+material_transactions_288: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "392"
+  transaction_datetime: 
+  setup_id: "807"
+material_transactions_479: 
+  material_transaction_type_id: 
+  material_id: "86"
+  cents: 
+  rate: "40"
+  unit_id: "9"
+  id: "625"
+  transaction_datetime: 
+  setup_id: "1077"
+material_transactions_101: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "157"
+  transaction_datetime: 
+  setup_id: "436"
+material_transactions_289: 
+  material_transaction_type_id: 
+  material_id: "52"
+  cents: 
+  rate: "24"
+  unit_id: "15"
+  id: "393"
+  transaction_datetime: 
+  setup_id: "808"
+material_transactions_340: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: "0.05"
+  unit_id: "10"
+  id: "458"
+  transaction_datetime: 
+  setup_id: "892"
+material_transactions_150: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "216"
+  transaction_datetime: 
+  setup_id: "559"
+material_transactions_102: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "158"
+  transaction_datetime: 
+  setup_id: "437"
+material_transactions_530: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "678"
+  transaction_datetime: 
+  setup_id: "1158"
+material_transactions_341: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "459"
+  transaction_datetime: 
+  setup_id: "895"
+material_transactions_151: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "217"
+  transaction_datetime: 
+  setup_id: "560"
+material_transactions_103: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "159"
+  transaction_datetime: 
+  setup_id: "440"
+material_transactions_531: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "679"
+  transaction_datetime: 
+  setup_id: "1161"
+material_transactions_342: 
+  material_transaction_type_id: 
+  material_id: "61"
+  cents: 
+  rate: "0.5"
+  unit_id: "6"
+  id: "460"
+  transaction_datetime: 
+  setup_id: "895"
+material_transactions_152: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "218"
+  transaction_datetime: 
+  setup_id: "561"
+material_transactions_104: 
+  material_transaction_type_id: 
+  material_id: "15"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "160"
+  transaction_datetime: 
+  setup_id: "446"
+material_transactions_580: 
+  material_transaction_type_id: 
+  material_id: "102"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "739"
+  transaction_datetime: 
+  setup_id: "1306"
+material_transactions_532: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "680"
+  transaction_datetime: 
+  setup_id: "1163"
+material_transactions_390: 
+  material_transaction_type_id: 
+  material_id: "55"
+  cents: 
+  rate: "12"
+  unit_id: "10"
+  id: "528"
+  transaction_datetime: 
+  setup_id: "964"
+material_transactions_153: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "219"
+  transaction_datetime: 
+  setup_id: "562"
+material_transactions_105: 
+  material_transaction_type_id: 
+  material_id: "19"
+  cents: 
+  rate: "15"
+  unit_id: "9"
+  id: "161"
+  transaction_datetime: 
+  setup_id: "450"
+material_transactions_581: 
+  material_transaction_type_id: 
+  material_id: "103"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "740"
+  transaction_datetime: 
+  setup_id: "1306"
+material_transactions_533: 
+  material_transaction_type_id: 
+  material_id: "97"
+  cents: 
+  rate: "1.25"
+  unit_id: "9"
+  id: "681"
+  transaction_datetime: 
+  setup_id: "1164"
+material_transactions_391: 
+  material_transaction_type_id: 
+  material_id: "67"
+  cents: 
+  rate: "1.33"
+  unit_id: "14"
+  id: "529"
+  transaction_datetime: 
+  setup_id: "967"
+material_transactions_343: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: "0.05"
+  unit_id: "10"
+  id: "461"
+  transaction_datetime: 
+  setup_id: "895"
+material_transactions_154: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "220"
+  transaction_datetime: 
+  setup_id: "563"
+material_transactions_106: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "162"
+  transaction_datetime: 
+  setup_id: "453"
+material_transactions_582: 
+  material_transaction_type_id: 
+  material_id: "93"
+  cents: 
+  rate: "0.5"
+  unit_id: "14"
+  id: "741"
+  transaction_datetime: 
+  setup_id: "1307"
+material_transactions_534: 
+  material_transaction_type_id: 
+  material_id: "92"
+  cents: 
+  rate: "40"
+  unit_id: "9"
+  id: "682"
+  transaction_datetime: 
+  setup_id: "1165"
+material_transactions_392: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "530"
+  transaction_datetime: 
+  setup_id: "967"
+material_transactions_344: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "16"
+  unit_id: "10"
+  id: "462"
+  transaction_datetime: 
+  setup_id: "898"
+material_transactions_155: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "221"
+  transaction_datetime: 
+  setup_id: "564"
+material_transactions_107: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "163"
+  transaction_datetime: 
+  setup_id: "466"
+material_transactions_583: 
+  material_transaction_type_id: 
+  material_id: "94"
+  cents: 
+  rate: "2.5"
+  unit_id: "14"
+  id: "742"
+  transaction_datetime: 
+  setup_id: "1307"
+material_transactions_535: 
+  material_transaction_type_id: 
+  material_id: "77"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "683"
+  transaction_datetime: 
+  setup_id: "1171"
+material_transactions_393: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "531"
+  transaction_datetime: 
+  setup_id: "968"
+material_transactions_345: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "16"
+  unit_id: "10"
+  id: "465"
+  transaction_datetime: 
+  setup_id: "907"
+material_transactions_108: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "164"
+  transaction_datetime: 
+  setup_id: "467"
+material_transactions_584: 
+  material_transaction_type_id: 
+  material_id: "104"
+  cents: 
+  rate: "0.5"
+  unit_id: "14"
+  id: "746"
+  transaction_datetime: 
+  setup_id: "1310"
+material_transactions_536: 
+  material_transaction_type_id: 
+  material_id: "77"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "684"
+  transaction_datetime: 
+  setup_id: "1172"
+material_transactions_394: 
+  material_transaction_type_id: 
+  material_id: "75"
+  cents: 
+  rate: "0.5"
+  unit_id: "14"
+  id: "532"
+  transaction_datetime: 
+  setup_id: "971"
+material_transactions_346: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "17"
+  unit_id: "10"
+  id: "466"
+  transaction_datetime: 
+  setup_id: "910"
+material_transactions_156: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "222"
+  transaction_datetime: 
+  setup_id: "565"
+material_transactions_109: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "165"
+  transaction_datetime: 
+  setup_id: "468"
+material_transactions_537: 
+  material_transaction_type_id: 
+  material_id: "92"
+  cents: 
+  rate: "36.6"
+  unit_id: "9"
+  id: "685"
+  transaction_datetime: 
+  setup_id: "1173"
+material_transactions_395: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "533"
+  transaction_datetime: 
+  setup_id: "971"
+material_transactions_347: 
+  material_transaction_type_id: 
+  material_id: "64"
+  cents: 
+  rate: "30"
+  unit_id: "12"
+  id: "469"
+  transaction_datetime: 
+  setup_id: "914"
+material_transactions_157: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "223"
+  transaction_datetime: 
+  setup_id: "566"
+material_transactions_585: 
+  material_transaction_type_id: 
+  material_id: "60"
+  cents: 
+  rate: "0.25"
+  unit_id: "14"
+  id: "747"
+  transaction_datetime: 
+  setup_id: "1310"
+material_transactions_538: 
+  material_transaction_type_id: 
+  material_id: "26"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "686"
+  transaction_datetime: 
+  setup_id: "1177"
+material_transactions_348: 
+  material_transaction_type_id: 
+  material_id: "63"
+  cents: 
+  rate: "8.7"
+  unit_id: "9"
+  id: "470"
+  transaction_datetime: 
+  setup_id: "914"
+material_transactions_158: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "224"
+  transaction_datetime: 
+  setup_id: "567"
+material_transactions_396: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "538"
+  transaction_datetime: 
+  setup_id: "978"
+material_transactions_586: 
+  material_transaction_type_id: 
+  material_id: "74"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "748"
+  transaction_datetime: 
+  setup_id: "1310"
+material_transactions_539: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "687"
+  transaction_datetime: 
+  setup_id: "1178"
+material_transactions_349: 
+  material_transaction_type_id: 
+  material_id: "65"
+  cents: 
+  rate: "50"
+  unit_id: "9"
+  id: "473"
+  transaction_datetime: 
+  setup_id: "918"
+material_transactions_159: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "225"
+  transaction_datetime: 
+  setup_id: "568"
+material_transactions_397: 
+  material_transaction_type_id: 
+  material_id: "76"
+  cents: 
+  rate: "1.5"
+  unit_id: "14"
+  id: "539"
+  transaction_datetime: 
+  setup_id: "981"
+material_transactions_587: 
+  material_transaction_type_id: 
+  material_id: "72"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "749"
+  transaction_datetime: 
+  setup_id: "1311"
+material_transactions_210: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "289"
+  transaction_datetime: 
+  setup_id: "668"
+material_transactions_020: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "32"
+  transaction_datetime: 
+  setup_id: "123"
+material_transactions_588: 
+  material_transaction_type_id: 
+  material_id: "74"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "750"
+  transaction_datetime: 
+  setup_id: "1311"
+material_transactions_400: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "542"
+  transaction_datetime: 
+  setup_id: "983"
+material_transactions_021: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "33"
+  transaction_datetime: 
+  setup_id: "125"
+material_transactions_398: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "23"
+  unit_id: "10"
+  id: "540"
+  transaction_datetime: 
+  setup_id: "981"
+material_transactions_589: 
+  material_transaction_type_id: 
+  material_id: "93"
+  cents: 
+  rate: "0.5"
+  unit_id: "14"
+  id: "751"
+  transaction_datetime: 
+  setup_id: "1312"
+material_transactions_401: 
+  material_transaction_type_id: 
+  material_id: "77"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "544"
+  transaction_datetime: 
+  setup_id: "985"
+material_transactions_211: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "290"
+  transaction_datetime: 
+  setup_id: "669"
+material_transactions_022: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "34"
+  transaction_datetime: 
+  setup_id: "127"
+material_transactions_399: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "541"
+  transaction_datetime: 
+  setup_id: "982"
+material_transactions_450: 
+  material_transaction_type_id: 
+  material_id: "37"
+  cents: 
+  rate: "26"
+  unit_id: "12"
+  id: "596"
+  transaction_datetime: 
+  setup_id: "1047"
+material_transactions_260: 
+  material_transaction_type_id: 
+  material_id: "44"
+  cents: 
+  rate: "195"
+  unit_id: "9"
+  id: "355"
+  transaction_datetime: 
+  setup_id: "757"
+material_transactions_070: 
+  material_transaction_type_id: 
+  material_id: "21"
+  cents: 
+  rate: "2"
+  unit_id: "3"
+  id: "106"
+  transaction_datetime: 
+  setup_id: "297"
+material_transactions_402: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "545"
+  transaction_datetime: 
+  setup_id: "986"
+material_transactions_212: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "291"
+  transaction_datetime: 
+  setup_id: "670"
+material_transactions_023: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "37"
+  unit_id: "10"
+  id: "35"
+  transaction_datetime: 
+  setup_id: "131"
+material_transactions_640: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "814"
+  transaction_datetime: 
+  setup_id: "1366"
+material_transactions_451: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "597"
+  transaction_datetime: 
+  setup_id: "1047"
+material_transactions_403: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "546"
+  transaction_datetime: 
+  setup_id: "987"
+material_transactions_261: 
+  material_transaction_type_id: 
+  material_id: "44"
+  cents: 
+  rate: "257"
+  unit_id: "9"
+  id: "357"
+  transaction_datetime: 
+  setup_id: "762"
+material_transactions_071: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: "9"
+  unit_id: "9"
+  id: "107"
+  transaction_datetime: 
+  setup_id: "305"
+material_transactions_213: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "292"
+  transaction_datetime: 
+  setup_id: "671"
+material_transactions_641: 
+  material_transaction_type_id: 
+  material_id: "71"
+  cents: 
+  rate: "3.37"
+  unit_id: "9"
+  id: "815"
+  transaction_datetime: 
+  setup_id: "1366"
+material_transactions_452: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "598"
+  transaction_datetime: 
+  setup_id: "1048"
+material_transactions_404: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "547"
+  transaction_datetime: 
+  setup_id: "988"
+material_transactions_262: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "75"
+  unit_id: "9"
+  id: "358"
+  transaction_datetime: 
+  setup_id: "763"
+material_transactions_072: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "108"
+  transaction_datetime: 
+  setup_id: "307"
+material_transactions_214: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "293"
+  transaction_datetime: 
+  setup_id: "672"
+material_transactions_024: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "36"
+  transaction_datetime: 
+  setup_id: "132"
+material_transactions_642: 
+  material_transaction_type_id: 
+  material_id: "35"
+  cents: 
+  rate: "1.5"
+  unit_id: "14"
+  id: "816"
+  transaction_datetime: 
+  setup_id: "1367"
+material_transactions_405: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "548"
+  transaction_datetime: 
+  setup_id: "989"
+material_transactions_263: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "359"
+  transaction_datetime: 
+  setup_id: "766"
+material_transactions_073: 
+  material_transaction_type_id: 
+  material_id: "15"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "110"
+  transaction_datetime: 
+  setup_id: "322"
+material_transactions_215: 
+  material_transaction_type_id: 
+  material_id: "34"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "294"
+  transaction_datetime: 
+  setup_id: "673"
+material_transactions_025: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "50"
+  unit_id: "9"
+  id: "38"
+  transaction_datetime: 
+  setup_id: "136"
+material_transactions_643: 
+  material_transaction_type_id: 
+  material_id: "74"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "817"
+  transaction_datetime: 
+  setup_id: "1367"
+material_transactions_453: 
+  material_transaction_type_id: 
+  material_id: "37"
+  cents: 
+  rate: "26"
+  unit_id: "12"
+  id: "599"
+  transaction_datetime: 
+  setup_id: "1049"
+material_transactions_406: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: "200"
+  unit_id: "12"
+  id: "549"
+  transaction_datetime: 
+  setup_id: "991"
+material_transactions_264: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "360"
+  transaction_datetime: 
+  setup_id: "767"
+material_transactions_074: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "114"
+  transaction_datetime: 
+  setup_id: "336"
+material_transactions_216: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "50"
+  unit_id: "9"
+  id: "295"
+  transaction_datetime: 
+  setup_id: "674"
+material_transactions_026: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "1"
+  unit_id: "11"
+  id: "40"
+  transaction_datetime: 
+  setup_id: "140"
+material_transactions_644: 
+  material_transaction_type_id: 
+  material_id: "71"
+  cents: 
+  rate: "2.5"
+  unit_id: "9"
+  id: "818"
+  transaction_datetime: 
+  setup_id: "1367"
+material_transactions_454: 
+  material_transaction_type_id: 
+  material_id: "37"
+  cents: 
+  rate: "26"
+  unit_id: "12"
+  id: "600"
+  transaction_datetime: 
+  setup_id: "1050"
+material_transactions_407: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "553"
+  transaction_datetime: 
+  setup_id: "995"
+material_transactions_265: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "361"
+  transaction_datetime: 
+  setup_id: "768"
+material_transactions_075: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "115"
+  transaction_datetime: 
+  setup_id: "341"
+material_transactions_217: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "30"
+  unit_id: "9"
+  id: "296"
+  transaction_datetime: 
+  setup_id: "675"
+material_transactions_027: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "2"
+  unit_id: "11"
+  id: "41"
+  transaction_datetime: 
+  setup_id: "141"
+material_transactions_645: 
+  material_transaction_type_id: 
+  material_id: "80"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "819"
+  transaction_datetime: 
+  setup_id: "1368"
+material_transactions_455: 
+  material_transaction_type_id: 
+  material_id: "84"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "601"
+  transaction_datetime: 
+  setup_id: "1051"
+material_transactions_408: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "554"
+  transaction_datetime: 
+  setup_id: "996"
+material_transactions_076: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "116"
+  transaction_datetime: 
+  setup_id: "350"
+material_transactions_218: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "170"
+  unit_id: "9"
+  id: "298"
+  transaction_datetime: 
+  setup_id: "680"
+material_transactions_028: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "1.2"
+  unit_id: "11"
+  id: "42"
+  transaction_datetime: 
+  setup_id: "142"
+material_transactions_646: 
+  material_transaction_type_id: 
+  material_id: "107"
+  cents: 
+  rate: "26"
+  unit_id: "15"
+  id: "822"
+  transaction_datetime: 
+  setup_id: "1375"
+material_transactions_456: 
+  material_transaction_type_id: 
+  material_id: "67"
+  cents: 
+  rate: "60"
+  unit_id: "16"
+  id: "602"
+  transaction_datetime: 
+  setup_id: "1051"
+material_transactions_409: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "555"
+  transaction_datetime: 
+  setup_id: "997"
+material_transactions_266: 
+  material_transaction_type_id: 
+  material_id: "46"
+  cents: 
+  rate: "190"
+  unit_id: "15"
+  id: "363"
+  transaction_datetime: 
+  setup_id: "771"
+material_transactions_077: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "119"
+  transaction_datetime: 
+  setup_id: "355"
+material_transactions_219: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "240"
+  unit_id: "9"
+  id: "299"
+  transaction_datetime: 
+  setup_id: "681"
+material_transactions_029: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "1.4"
+  unit_id: "11"
+  id: "43"
+  transaction_datetime: 
+  setup_id: "143"
+material_transactions_647: 
+  material_transaction_type_id: 
+  material_id: "108"
+  cents: 
+  rate: "2.5"
+  unit_id: "7"
+  id: "826"
+  transaction_datetime: 
+  setup_id: "1377"
+material_transactions_457: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "603"
+  transaction_datetime: 
+  setup_id: "1052"
+material_transactions_267: 
+  material_transaction_type_id: 
+  material_id: "46"
+  cents: 
+  rate: "190"
+  unit_id: "15"
+  id: "364"
+  transaction_datetime: 
+  setup_id: "772"
+material_transactions_078: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "121"
+  transaction_datetime: 
+  setup_id: "357"
+material_transactions_648: 
+  material_transaction_type_id: 
+  material_id: "109"
+  cents: 
+  rate: "2.5"
+  unit_id: "7"
+  id: "827"
+  transaction_datetime: 
+  setup_id: "1377"
+material_transactions_458: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "604"
+  transaction_datetime: 
+  setup_id: "1053"
+material_transactions_268: 
+  material_transaction_type_id: 
+  material_id: "44"
+  cents: 
+  rate: "100"
+  unit_id: "9"
+  id: "365"
+  transaction_datetime: 
+  setup_id: "773"
+material_transactions_649: 
+  material_transaction_type_id: 
+  material_id: "110"
+  cents: 
+  rate: "1.25"
+  unit_id: "14"
+  id: "828"
+  transaction_datetime: 
+  setup_id: "1377"
+material_transactions_459: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "605"
+  transaction_datetime: 
+  setup_id: "1054"
+material_transactions_269: 
+  material_transaction_type_id: 
+  material_id: "46"
+  cents: 
+  rate: "190"
+  unit_id: "15"
+  id: "366"
+  transaction_datetime: 
+  setup_id: "774"
+material_transactions_079: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: "15"
+  unit_id: "9"
+  id: "122"
+  transaction_datetime: 
+  setup_id: "365"
+material_transactions_320: 
+  material_transaction_type_id: 
+  material_id: "55"
+  cents: 
+  rate: "14"
+  unit_id: "10"
+  id: "426"
+  transaction_datetime: 
+  setup_id: "859"
+material_transactions_130: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "190"
+  transaction_datetime: 
+  setup_id: "515"
+material_transactions_510: 
+  material_transaction_type_id: 
+  material_id: "78"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "658"
+  transaction_datetime: 
+  setup_id: "1116"
+material_transactions_131: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "191"
+  transaction_datetime: 
+  setup_id: "516"
+material_transactions_511: 
+  material_transaction_type_id: 
+  material_id: "91"
+  cents: 
+  rate: "0.5"
+  unit_id: "14"
+  id: "659"
+  transaction_datetime: 
+  setup_id: "1124"
+material_transactions_321: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "427"
+  transaction_datetime: 
+  setup_id: "861"
+material_transactions_132: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "192"
+  transaction_datetime: 
+  setup_id: "517"
+material_transactions_560: 
+  material_transaction_type_id: 
+  material_id: "94"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "714"
+  transaction_datetime: 
+  setup_id: "1297"
+material_transactions_512: 
+  material_transaction_type_id: 
+  material_id: "92"
+  cents: 
+  rate: "30"
+  unit_id: "9"
+  id: "660"
+  transaction_datetime: 
+  setup_id: "1132"
+material_transactions_370: 
+  material_transaction_type_id: 
+  material_id: "58"
+  cents: 
+  rate: "170"
+  unit_id: "9"
+  id: "506"
+  transaction_datetime: 
+  setup_id: "952"
+material_transactions_180: 
+  material_transaction_type_id: 
+  material_id: "27"
+  cents: 
+  rate: "190"
+  unit_id: "12"
+  id: "249"
+  transaction_datetime: 
+  setup_id: "597"
+material_transactions_322: 
+  material_transaction_type_id: 
+  material_id: "55"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "428"
+  transaction_datetime: 
+  setup_id: "861"
+material_transactions_133: 
+  material_transaction_type_id: 
+  material_id: "29"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "194"
+  transaction_datetime: 
+  setup_id: "519"
+material_transactions_561: 
+  material_transaction_type_id: 
+  material_id: "68"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "717"
+  transaction_datetime: 
+  setup_id: "1299"
+material_transactions_513: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "661"
+  transaction_datetime: 
+  setup_id: "1133"
+material_transactions_371: 
+  material_transaction_type_id: 
+  material_id: "44"
+  cents: 
+  rate: "420"
+  unit_id: "9"
+  id: "507"
+  transaction_datetime: 
+  setup_id: "952"
+material_transactions_181: 
+  material_transaction_type_id: 
+  material_id: "27"
+  cents: 
+  rate: "190"
+  unit_id: "12"
+  id: "250"
+  transaction_datetime: 
+  setup_id: "598"
+material_transactions_323: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "430"
+  transaction_datetime: 
+  setup_id: "863"
+material_transactions_562: 
+  material_transaction_type_id: 
+  material_id: "100"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "718"
+  transaction_datetime: 
+  setup_id: "1299"
+material_transactions_514: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "662"
+  transaction_datetime: 
+  setup_id: "1134"
+material_transactions_372: 
+  material_transaction_type_id: 
+  material_id: "60"
+  cents: 
+  rate: "3.3"
+  unit_id: "9"
+  id: "508"
+  transaction_datetime: 
+  setup_id: "952"
+material_transactions_182: 
+  material_transaction_type_id: 
+  material_id: "35"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "251"
+  transaction_datetime: 
+  setup_id: "602"
+material_transactions_324: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "431"
+  transaction_datetime: 
+  setup_id: "864"
+material_transactions_134: 
+  material_transaction_type_id: 
+  material_id: "29"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "195"
+  transaction_datetime: 
+  setup_id: "520"
+material_transactions_515: 
+  material_transaction_type_id: 
+  material_id: "79"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "663"
+  transaction_datetime: 
+  setup_id: "1134"
+material_transactions_373: 
+  material_transaction_type_id: 
+  material_id: "30"
+  cents: 
+  rate: "26"
+  unit_id: "6"
+  id: "509"
+  transaction_datetime: 
+  setup_id: "954"
+material_transactions_183: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "252"
+  transaction_datetime: 
+  setup_id: "607"
+material_transactions_325: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "432"
+  transaction_datetime: 
+  setup_id: "865"
+material_transactions_135: 
+  material_transaction_type_id: 
+  material_id: "29"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "196"
+  transaction_datetime: 
+  setup_id: "521"
+material_transactions_563: 
+  material_transaction_type_id: 
+  material_id: "68"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "719"
+  transaction_datetime: 
+  setup_id: "1300"
+material_transactions_516: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "664"
+  transaction_datetime: 
+  setup_id: "1135"
+material_transactions_374: 
+  material_transaction_type_id: 
+  material_id: "71"
+  cents: 
+  rate: "3.3"
+  unit_id: "9"
+  id: "510"
+  transaction_datetime: 
+  setup_id: "954"
+material_transactions_184: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "253"
+  transaction_datetime: 
+  setup_id: "608"
+material_transactions_326: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "433"
+  transaction_datetime: 
+  setup_id: "866"
+material_transactions_136: 
+  material_transaction_type_id: 
+  material_id: "29"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "197"
+  transaction_datetime: 
+  setup_id: "522"
+material_transactions_564: 
+  material_transaction_type_id: 
+  material_id: "100"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "720"
+  transaction_datetime: 
+  setup_id: "1300"
+material_transactions_517: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "665"
+  transaction_datetime: 
+  setup_id: "1136"
+material_transactions_375: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "511"
+  transaction_datetime: 
+  setup_id: "954"
+material_transactions_185: 
+  material_transaction_type_id: 
+  material_id: "36"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "256"
+  transaction_datetime: 
+  setup_id: "618"
+material_transactions_327: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "436"
+  transaction_datetime: 
+  setup_id: "872"
+material_transactions_137: 
+  material_transaction_type_id: 
+  material_id: "30"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "199"
+  transaction_datetime: 
+  setup_id: "524"
+material_transactions_565: 
+  material_transaction_type_id: 
+  material_id: "94"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "721"
+  transaction_datetime: 
+  setup_id: "1300"
+material_transactions_518: 
+  material_transaction_type_id: 
+  material_id: "93"
+  cents: 
+  rate: "0.5"
+  unit_id: "14"
+  id: "666"
+  transaction_datetime: 
+  setup_id: "1139"
+material_transactions_186: 
+  material_transaction_type_id: 
+  material_id: "36"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "257"
+  transaction_datetime: 
+  setup_id: "619"
+material_transactions_328: 
+  material_transaction_type_id: 
+  material_id: "57"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "437"
+  transaction_datetime: 
+  setup_id: "874"
+material_transactions_138: 
+  material_transaction_type_id: 
+  material_id: "32"
+  cents: 
+  rate: "18"
+  unit_id: "9"
+  id: "202"
+  transaction_datetime: 
+  setup_id: "527"
+material_transactions_566: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "0.75"
+  unit_id: "7"
+  id: "722"
+  transaction_datetime: 
+  setup_id: "1300"
+material_transactions_519: 
+  material_transaction_type_id: 
+  material_id: "94"
+  cents: 
+  rate: "2.5"
+  unit_id: "14"
+  id: "667"
+  transaction_datetime: 
+  setup_id: "1139"
+material_transactions_376: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "512"
+  transaction_datetime: 
+  setup_id: "956"
+material_transactions_187: 
+  material_transaction_type_id: 
+  material_id: "36"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "258"
+  transaction_datetime: 
+  setup_id: "620"
+material_transactions_329: 
+  material_transaction_type_id: 
+  material_id: "58"
+  cents: 
+  rate: "313.6"
+  unit_id: "9"
+  id: "441"
+  transaction_datetime: 
+  setup_id: "878"
+material_transactions_139: 
+  material_transaction_type_id: 
+  material_id: "32"
+  cents: 
+  rate: "18"
+  unit_id: "9"
+  id: "203"
+  transaction_datetime: 
+  setup_id: "528"
+material_transactions_567: 
+  material_transaction_type_id: 
+  material_id: "101"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "726"
+  transaction_datetime: 
+  setup_id: "1302"
+material_transactions_377: 
+  material_transaction_type_id: 
+  material_id: "63"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "513"
+  transaction_datetime: 
+  setup_id: "957"
+material_transactions_188: 
+  material_transaction_type_id: 
+  material_id: "36"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "259"
+  transaction_datetime: 
+  setup_id: "621"
+material_transactions_568: 
+  material_transaction_type_id: 
+  material_id: "102"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "727"
+  transaction_datetime: 
+  setup_id: "1302"
+material_transactions_001: 
+  material_transaction_type_id: 
+  material_id: "1"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "4"
+  transaction_datetime: 
+  setup_id: "26"
+material_transactions_378: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "516"
+  transaction_datetime: 
+  setup_id: "959"
+material_transactions_569: 
+  material_transaction_type_id: 
+  material_id: "103"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "728"
+  transaction_datetime: 
+  setup_id: "1302"
+material_transactions_379: 
+  material_transaction_type_id: 
+  material_id: "55"
+  cents: 
+  rate: "12"
+  unit_id: "10"
+  id: "517"
+  transaction_datetime: 
+  setup_id: "959"
+material_transactions_189: 
+  material_transaction_type_id: 
+  material_id: "36"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "261"
+  transaction_datetime: 
+  setup_id: "623"
+material_transactions_430: 
+  material_transaction_type_id: 
+  material_id: "59"
+  cents: 
+  rate: "80"
+  unit_id: "9"
+  id: "576"
+  transaction_datetime: 
+  setup_id: "1026"
+material_transactions_002: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "5"
+  transaction_datetime: 
+  setup_id: "41"
+material_transactions_240: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "330"
+  transaction_datetime: 
+  setup_id: "719"
+material_transactions_050: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "69"
+  transaction_datetime: 
+  setup_id: "205"
+material_transactions_620: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "790"
+  transaction_datetime: 
+  setup_id: "1347"
+material_transactions_003: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "6"
+  transaction_datetime: 
+  setup_id: "46"
+material_transactions_241: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "331"
+  transaction_datetime: 
+  setup_id: "721"
+material_transactions_051: 
+  material_transaction_type_id: 
+  material_id: "17"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "70"
+  transaction_datetime: 
+  setup_id: "207"
+material_transactions_621: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "791"
+  transaction_datetime: 
+  setup_id: "1348"
+material_transactions_431: 
+  material_transaction_type_id: 
+  material_id: "82"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "577"
+  transaction_datetime: 
+  setup_id: "1033"
+material_transactions_004: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "7"
+  transaction_datetime: 
+  setup_id: "47"
+material_transactions_242: 
+  material_transaction_type_id: 
+  material_id: "43"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "332"
+  transaction_datetime: 
+  setup_id: "722"
+material_transactions_052: 
+  material_transaction_type_id: 
+  material_id: "17"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "71"
+  transaction_datetime: 
+  setup_id: "209"
+material_transactions_622: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "792"
+  transaction_datetime: 
+  setup_id: "1349"
+material_transactions_480: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "100"
+  unit_id: "9"
+  id: "626"
+  transaction_datetime: 
+  setup_id: "1078"
+material_transactions_432: 
+  material_transaction_type_id: 
+  material_id: "35"
+  cents: 
+  rate: "24"
+  unit_id: "6"
+  id: "578"
+  transaction_datetime: 
+  setup_id: "1033"
+material_transactions_005: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "8"
+  transaction_datetime: 
+  setup_id: "68"
+material_transactions_290: 
+  material_transaction_type_id: 
+  material_id: "52"
+  cents: 
+  rate: "24"
+  unit_id: "15"
+  id: "394"
+  transaction_datetime: 
+  setup_id: "809"
+material_transactions_243: 
+  material_transaction_type_id: 
+  material_id: "43"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "333"
+  transaction_datetime: 
+  setup_id: "724"
+material_transactions_053: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "73"
+  transaction_datetime: 
+  setup_id: "214"
+material_transactions_623: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "793"
+  transaction_datetime: 
+  setup_id: "1350"
+material_transactions_481: 
+  material_transaction_type_id: 
+  material_id: "86"
+  cents: 
+  rate: "40"
+  unit_id: "9"
+  id: "627"
+  transaction_datetime: 
+  setup_id: "1078"
+material_transactions_433: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: "2.69"
+  unit_id: "14"
+  id: "579"
+  transaction_datetime: 
+  setup_id: "1033"
+material_transactions_006: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "9"
+  transaction_datetime: 
+  setup_id: "69"
+material_transactions_291: 
+  material_transaction_type_id: 
+  material_id: "46"
+  cents: 
+  rate: "190"
+  unit_id: "15"
+  id: "395"
+  transaction_datetime: 
+  setup_id: "812"
+material_transactions_054: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "74"
+  transaction_datetime: 
+  setup_id: "215"
+material_transactions_624: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "794"
+  transaction_datetime: 
+  setup_id: "1351"
+material_transactions_482: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "100"
+  unit_id: "9"
+  id: "628"
+  transaction_datetime: 
+  setup_id: "1079"
+material_transactions_434: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "580"
+  transaction_datetime: 
+  setup_id: "1033"
+material_transactions_007: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "37"
+  unit_id: "10"
+  id: "13"
+  transaction_datetime: 
+  setup_id: "81"
+material_transactions_292: 
+  material_transaction_type_id: 
+  material_id: "46"
+  cents: 
+  rate: "190"
+  unit_id: "15"
+  id: "396"
+  transaction_datetime: 
+  setup_id: "814"
+material_transactions_244: 
+  material_transaction_type_id: 
+  material_id: "43"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "334"
+  transaction_datetime: 
+  setup_id: "725"
+material_transactions_055: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "75"
+  transaction_datetime: 
+  setup_id: "216"
+material_transactions_625: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "795"
+  transaction_datetime: 
+  setup_id: "1352"
+material_transactions_483: 
+  material_transaction_type_id: 
+  material_id: "86"
+  cents: 
+  rate: "40"
+  unit_id: "9"
+  id: "629"
+  transaction_datetime: 
+  setup_id: "1079"
+material_transactions_435: 
+  material_transaction_type_id: 
+  material_id: "82"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "581"
+  transaction_datetime: 
+  setup_id: "1036"
+material_transactions_008: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "37"
+  unit_id: "10"
+  id: "14"
+  transaction_datetime: 
+  setup_id: "83"
+material_transactions_293: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "397"
+  transaction_datetime: 
+  setup_id: "815"
+material_transactions_245: 
+  material_transaction_type_id: 
+  material_id: "43"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "335"
+  transaction_datetime: 
+  setup_id: "726"
+material_transactions_056: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "76"
+  transaction_datetime: 
+  setup_id: "217"
+material_transactions_626: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "40"
+  unit_id: "10"
+  id: "796"
+  transaction_datetime: 
+  setup_id: "1353"
+material_transactions_484: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "630"
+  transaction_datetime: 
+  setup_id: "1080"
+material_transactions_436: 
+  material_transaction_type_id: 
+  material_id: "35"
+  cents: 
+  rate: "24"
+  unit_id: "6"
+  id: "582"
+  transaction_datetime: 
+  setup_id: "1036"
+material_transactions_009: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "37"
+  unit_id: "10"
+  id: "16"
+  transaction_datetime: 
+  setup_id: "87"
+material_transactions_294: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "398"
+  transaction_datetime: 
+  setup_id: "820"
+material_transactions_246: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "336"
+  transaction_datetime: 
+  setup_id: "727"
+material_transactions_627: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "797"
+  transaction_datetime: 
+  setup_id: "1354"
+material_transactions_485: 
+  material_transaction_type_id: 
+  material_id: "87"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "631"
+  transaction_datetime: 
+  setup_id: "1080"
+material_transactions_437: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: "2.69"
+  unit_id: "14"
+  id: "583"
+  transaction_datetime: 
+  setup_id: "1036"
+material_transactions_295: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "399"
+  transaction_datetime: 
+  setup_id: "821"
+material_transactions_247: 
+  material_transaction_type_id: 
+  material_id: "43"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "337"
+  transaction_datetime: 
+  setup_id: "731"
+material_transactions_057: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "77"
+  transaction_datetime: 
+  setup_id: "218"
+material_transactions_628: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "798"
+  transaction_datetime: 
+  setup_id: "1355"
+material_transactions_438: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "584"
+  transaction_datetime: 
+  setup_id: "1036"
+material_transactions_296: 
+  material_transaction_type_id: 
+  material_id: "53"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "400"
+  transaction_datetime: 
+  setup_id: "826"
+material_transactions_248: 
+  material_transaction_type_id: 
+  material_id: "43"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "338"
+  transaction_datetime: 
+  setup_id: "732"
+material_transactions_058: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "78"
+  transaction_datetime: 
+  setup_id: "219"
+material_transactions_629: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "799"
+  transaction_datetime: 
+  setup_id: "1356"
+material_transactions_486: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "632"
+  transaction_datetime: 
+  setup_id: "1087"
+material_transactions_439: 
+  material_transaction_type_id: 
+  material_id: "82"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "585"
+  transaction_datetime: 
+  setup_id: "1039"
+material_transactions_297: 
+  material_transaction_type_id: 
+  material_id: "53"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "401"
+  transaction_datetime: 
+  setup_id: "827"
+material_transactions_249: 
+  material_transaction_type_id: 
+  material_id: "43"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "339"
+  transaction_datetime: 
+  setup_id: "734"
+material_transactions_059: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "79"
+  transaction_datetime: 
+  setup_id: "220"
+material_transactions_487: 
+  material_transaction_type_id: 
+  material_id: "84"
+  cents: 
+  rate: "2.25"
+  unit_id: "14"
+  id: "633"
+  transaction_datetime: 
+  setup_id: "1088"
+material_transactions_110: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "166"
+  transaction_datetime: 
+  setup_id: "469"
+material_transactions_298: 
+  material_transaction_type_id: 
+  material_id: "54"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "402"
+  transaction_datetime: 
+  setup_id: "828"
+material_transactions_488: 
+  material_transaction_type_id: 
+  material_id: "88"
+  cents: 
+  rate: "3"
+  unit_id: "6"
+  id: "634"
+  transaction_datetime: 
+  setup_id: "1088"
+material_transactions_300: 
+  material_transaction_type_id: 
+  material_id: "53"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "404"
+  transaction_datetime: 
+  setup_id: "832"
+material_transactions_111: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "167"
+  transaction_datetime: 
+  setup_id: "471"
+material_transactions_489: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "635"
+  transaction_datetime: 
+  setup_id: "1089"
+material_transactions_301: 
+  material_transaction_type_id: 
+  material_id: "52"
+  cents: 
+  rate: "24"
+  unit_id: "15"
+  id: "405"
+  transaction_datetime: 
+  setup_id: "833"
+material_transactions_299: 
+  material_transaction_type_id: 
+  material_id: "53"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "403"
+  transaction_datetime: 
+  setup_id: "829"
+material_transactions_540: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "688"
+  transaction_datetime: 
+  setup_id: "1181"
+material_transactions_302: 
+  material_transaction_type_id: 
+  material_id: "53"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "406"
+  transaction_datetime: 
+  setup_id: "834"
+material_transactions_112: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "168"
+  transaction_datetime: 
+  setup_id: "472"
+material_transactions_350: 
+  material_transaction_type_id: 
+  material_id: "44"
+  cents: 
+  rate: "100"
+  unit_id: "9"
+  id: "474"
+  transaction_datetime: 
+  setup_id: "918"
+material_transactions_160: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "226"
+  transaction_datetime: 
+  setup_id: "569"
+material_transactions_303: 
+  material_transaction_type_id: 
+  material_id: "52"
+  cents: 
+  rate: "25"
+  unit_id: "15"
+  id: "407"
+  transaction_datetime: 
+  setup_id: "835"
+material_transactions_113: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "169"
+  transaction_datetime: 
+  setup_id: "479"
+material_transactions_351: 
+  material_transaction_type_id: 
+  material_id: "66"
+  cents: 
+  rate: "0.6"
+  unit_id: "6"
+  id: "475"
+  transaction_datetime: 
+  setup_id: "921"
+material_transactions_161: 
+  material_transaction_type_id: 
+  material_id: "18"
+  cents: 
+  rate: "1.5"
+  unit_id: "3"
+  id: "227"
+  transaction_datetime: 
+  setup_id: "570"
+material_transactions_541: 
+  material_transaction_type_id: 
+  material_id: "72"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "689"
+  transaction_datetime: 
+  setup_id: "1181"
+material_transactions_304: 
+  material_transaction_type_id: 
+  material_id: "53"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "408"
+  transaction_datetime: 
+  setup_id: "836"
+material_transactions_114: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "170"
+  transaction_datetime: 
+  setup_id: "480"
+material_transactions_352: 
+  material_transaction_type_id: 
+  material_id: "67"
+  cents: 
+  rate: "1.33"
+  unit_id: "14"
+  id: "476"
+  transaction_datetime: 
+  setup_id: "921"
+material_transactions_162: 
+  material_transaction_type_id: 
+  material_id: "18"
+  cents: 
+  rate: "1.5"
+  unit_id: "3"
+  id: "228"
+  transaction_datetime: 
+  setup_id: "571"
+material_transactions_590: 
+  material_transaction_type_id: 
+  material_id: "94"
+  cents: 
+  rate: "2.5"
+  unit_id: "14"
+  id: "752"
+  transaction_datetime: 
+  setup_id: "1312"
+material_transactions_542: 
+  material_transaction_type_id: 
+  material_id: "73"
+  cents: 
+  rate: "10"
+  unit_id: "6"
+  id: "690"
+  transaction_datetime: 
+  setup_id: "1181"
+material_transactions_305: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "110"
+  unit_id: "9"
+  id: "409"
+  transaction_datetime: 
+  setup_id: "839"
+material_transactions_115: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "171"
+  transaction_datetime: 
+  setup_id: "481"
+material_transactions_353: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "477"
+  transaction_datetime: 
+  setup_id: "922"
+material_transactions_163: 
+  material_transaction_type_id: 
+  material_id: "34"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "229"
+  transaction_datetime: 
+  setup_id: "573"
+material_transactions_591: 
+  material_transaction_type_id: 
+  material_id: "95"
+  cents: 
+  rate: "3.5"
+  unit_id: "14"
+  id: "753"
+  transaction_datetime: 
+  setup_id: "1313"
+material_transactions_543: 
+  material_transaction_type_id: 
+  material_id: "74"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "691"
+  transaction_datetime: 
+  setup_id: "1181"
+material_transactions_306: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "110"
+  unit_id: "9"
+  id: "410"
+  transaction_datetime: 
+  setup_id: "840"
+material_transactions_116: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "172"
+  transaction_datetime: 
+  setup_id: "482"
+material_transactions_164: 
+  material_transaction_type_id: 
+  material_id: "34"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "230"
+  transaction_datetime: 
+  setup_id: "574"
+material_transactions_592: 
+  material_transaction_type_id: 
+  material_id: "90"
+  cents: 
+  rate: "2"
+  unit_id: "6"
+  id: "754"
+  transaction_datetime: 
+  setup_id: "1313"
+material_transactions_544: 
+  material_transaction_type_id: 
+  material_id: "95"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "692"
+  transaction_datetime: 
+  setup_id: "1182"
+material_transactions_307: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "411"
+  transaction_datetime: 
+  setup_id: "841"
+material_transactions_117: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "173"
+  transaction_datetime: 
+  setup_id: "483"
+material_transactions_354: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "480"
+  transaction_datetime: 
+  setup_id: "928"
+material_transactions_165: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "50"
+  unit_id: "9"
+  id: "231"
+  transaction_datetime: 
+  setup_id: "575"
+material_transactions_593: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "755"
+  transaction_datetime: 
+  setup_id: "1313"
+material_transactions_545: 
+  material_transaction_type_id: 
+  material_id: "95"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "693"
+  transaction_datetime: 
+  setup_id: "1183"
+material_transactions_308: 
+  material_transaction_type_id: 
+  material_id: "54"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "412"
+  transaction_datetime: 
+  setup_id: "842"
+material_transactions_118: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "174"
+  transaction_datetime: 
+  setup_id: "484"
+material_transactions_355: 
+  material_transaction_type_id: 
+  material_id: "67"
+  cents: 
+  rate: "1.33"
+  unit_id: "14"
+  id: "481"
+  transaction_datetime: 
+  setup_id: "928"
+material_transactions_166: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "232"
+  transaction_datetime: 
+  setup_id: "576"
+material_transactions_594: 
+  material_transaction_type_id: 
+  material_id: "35"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "756"
+  transaction_datetime: 
+  setup_id: "1314"
+material_transactions_546: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "694"
+  transaction_datetime: 
+  setup_id: "1185"
+material_transactions_309: 
+  material_transaction_type_id: 
+  material_id: "50"
+  cents: 
+  rate: "2"
+  unit_id: "3"
+  id: "413"
+  transaction_datetime: 
+  setup_id: "845"
+material_transactions_119: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "24"
+  unit_id: "10"
+  id: "175"
+  transaction_datetime: 
+  setup_id: "486"
+material_transactions_356: 
+  material_transaction_type_id: 
+  material_id: "68"
+  cents: 
+  rate: "1"
+  unit_id: "9"
+  id: "482"
+  transaction_datetime: 
+  setup_id: "928"
+material_transactions_595: 
+  material_transaction_type_id: 
+  material_id: "74"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "757"
+  transaction_datetime: 
+  setup_id: "1314"
+material_transactions_547: 
+  material_transaction_type_id: 
+  material_id: "25"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "697"
+  transaction_datetime: 
+  setup_id: "1195"
+material_transactions_357: 
+  material_transaction_type_id: 
+  material_id: "69"
+  cents: 
+  rate: "6"
+  unit_id: "6"
+  id: "483"
+  transaction_datetime: 
+  setup_id: "928"
+material_transactions_167: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "233"
+  transaction_datetime: 
+  setup_id: "577"
+material_transactions_548: 
+  material_transaction_type_id: 
+  material_id: "25"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "698"
+  transaction_datetime: 
+  setup_id: "1197"
+material_transactions_358: 
+  material_transaction_type_id: 
+  material_id: "67"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "484"
+  transaction_datetime: 
+  setup_id: "931"
+material_transactions_168: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "170"
+  unit_id: "9"
+  id: "235"
+  transaction_datetime: 
+  setup_id: "579"
+material_transactions_596: 
+  material_transaction_type_id: 
+  material_id: "105"
+  cents: 
+  rate: "0.25"
+  unit_id: "6"
+  id: "758"
+  transaction_datetime: 
+  setup_id: "1315"
+material_transactions_549: 
+  material_transaction_type_id: 
+  material_id: "25"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "699"
+  transaction_datetime: 
+  setup_id: "1199"
+material_transactions_359: 
+  material_transaction_type_id: 
+  material_id: "68"
+  cents: 
+  rate: "1"
+  unit_id: "9"
+  id: "485"
+  transaction_datetime: 
+  setup_id: "931"
+material_transactions_169: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "240"
+  unit_id: "9"
+  id: "236"
+  transaction_datetime: 
+  setup_id: "580"
+material_transactions_597: 
+  material_transaction_type_id: 
+  material_id: "73"
+  cents: 
+  rate: "9"
+  unit_id: "6"
+  id: "759"
+  transaction_datetime: 
+  setup_id: "1315"
+material_transactions_220: 
+  material_transaction_type_id: 
+  material_id: "31"
+  cents: 
+  rate: "1"
+  unit_id: "13"
+  id: "300"
+  transaction_datetime: 
+  setup_id: "682"
+material_transactions_030: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "1.3"
+  unit_id: "11"
+  id: "44"
+  transaction_datetime: 
+  setup_id: "144"
+material_transactions_600: 
+  material_transaction_type_id: 
+  material_id: "84"
+  cents: 
+  rate: "2.5"
+  unit_id: "14"
+  id: "763"
+  transaction_datetime: 
+  setup_id: "1318"
+material_transactions_598: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "760"
+  transaction_datetime: 
+  setup_id: "1315"
+material_transactions_410: 
+  material_transaction_type_id: 
+  material_id: "78"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "556"
+  transaction_datetime: 
+  setup_id: "998"
+material_transactions_221: 
+  material_transaction_type_id: 
+  material_id: "31"
+  cents: 
+  rate: "2"
+  unit_id: "13"
+  id: "301"
+  transaction_datetime: 
+  setup_id: "683"
+material_transactions_031: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "1.65"
+  unit_id: "11"
+  id: "45"
+  transaction_datetime: 
+  setup_id: "145"
+material_transactions_601: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "764"
+  transaction_datetime: 
+  setup_id: "1319"
+material_transactions_599: 
+  material_transaction_type_id: 
+  material_id: "84"
+  cents: 
+  rate: "2.5"
+  unit_id: "14"
+  id: "761"
+  transaction_datetime: 
+  setup_id: "1316"
+material_transactions_411: 
+  material_transaction_type_id: 
+  material_id: "78"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "557"
+  transaction_datetime: 
+  setup_id: "999"
+material_transactions_032: 
+  material_transaction_type_id: 
+  material_id: "15"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "47"
+  transaction_datetime: 
+  setup_id: "157"
+material_transactions_650: 
+  material_transaction_type_id: 
+  material_id: "111"
+  cents: 
+  rate: "85"
+  unit_id: "9"
+  id: "831"
+  transaction_datetime: 
+  setup_id: "1380"
+material_transactions_602: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "765"
+  transaction_datetime: 
+  setup_id: "1320"
+material_transactions_460: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "606"
+  transaction_datetime: 
+  setup_id: "1055"
+material_transactions_412: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "15"
+  unit_id: "10"
+  id: "558"
+  transaction_datetime: 
+  setup_id: "1002"
+material_transactions_222: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "303"
+  transaction_datetime: 
+  setup_id: "685"
+material_transactions_033: 
+  material_transaction_type_id: 
+  material_id: "15"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "48"
+  transaction_datetime: 
+  setup_id: "161"
+material_transactions_270: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "367"
+  transaction_datetime: 
+  setup_id: "775"
+material_transactions_080: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "123"
+  transaction_datetime: 
+  setup_id: "366"
+material_transactions_603: 
+  material_transaction_type_id: 
+  material_id: "84"
+  cents: 
+  rate: "2.5"
+  unit_id: "14"
+  id: "766"
+  transaction_datetime: 
+  setup_id: "1321"
+material_transactions_461: 
+  material_transaction_type_id: 
+  material_id: "18"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "607"
+  transaction_datetime: 
+  setup_id: "1058"
+material_transactions_413: 
+  material_transaction_type_id: 
+  material_id: "79"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "559"
+  transaction_datetime: 
+  setup_id: "1002"
+material_transactions_223: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "304"
+  transaction_datetime: 
+  setup_id: "686"
+material_transactions_034: 
+  material_transaction_type_id: 
+  material_id: "15"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "49"
+  transaction_datetime: 
+  setup_id: "163"
+material_transactions_271: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "368"
+  transaction_datetime: 
+  setup_id: "776"
+material_transactions_081: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "128"
+  transaction_datetime: 
+  setup_id: "371"
+material_transactions_651: 
+  material_transaction_type_id: 
+  material_id: "111"
+  cents: 
+  rate: "70"
+  unit_id: "9"
+  id: "832"
+  transaction_datetime: 
+  setup_id: "1381"
+material_transactions_604: 
+  material_transaction_type_id: 
+  material_id: "61"
+  cents: 
+  rate: "0.5"
+  unit_id: "6"
+  id: "770"
+  transaction_datetime: 
+  setup_id: "1329"
+material_transactions_462: 
+  material_transaction_type_id: 
+  material_id: "18"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "608"
+  transaction_datetime: 
+  setup_id: "1059"
+material_transactions_414: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "15"
+  unit_id: "10"
+  id: "560"
+  transaction_datetime: 
+  setup_id: "1003"
+material_transactions_224: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "305"
+  transaction_datetime: 
+  setup_id: "687"
+material_transactions_272: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "370"
+  transaction_datetime: 
+  setup_id: "779"
+material_transactions_082: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "129"
+  transaction_datetime: 
+  setup_id: "376"
+material_transactions_652: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "833"
+  transaction_datetime: 
+  setup_id: "1382"
+material_transactions_605: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: "0.25"
+  unit_id: "18"
+  id: "771"
+  transaction_datetime: 
+  setup_id: "1329"
+material_transactions_463: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "609"
+  transaction_datetime: 
+  setup_id: "1060"
+material_transactions_415: 
+  material_transaction_type_id: 
+  material_id: "79"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "561"
+  transaction_datetime: 
+  setup_id: "1003"
+material_transactions_225: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "306"
+  transaction_datetime: 
+  setup_id: "688"
+material_transactions_035: 
+  material_transaction_type_id: 
+  material_id: "15"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "51"
+  transaction_datetime: 
+  setup_id: "167"
+material_transactions_273: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "371"
+  transaction_datetime: 
+  setup_id: "780"
+material_transactions_083: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "131"
+  transaction_datetime: 
+  setup_id: "383"
+material_transactions_653: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "50"
+  unit_id: "18"
+  id: "835"
+  transaction_datetime: 
+  setup_id: "1386"
+material_transactions_606: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "772"
+  transaction_datetime: 
+  setup_id: "1329"
+material_transactions_416: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "15"
+  unit_id: "10"
+  id: "562"
+  transaction_datetime: 
+  setup_id: "1005"
+material_transactions_226: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "307"
+  transaction_datetime: 
+  setup_id: "689"
+material_transactions_036: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "10"
+  unit_id: "10"
+  id: "52"
+  transaction_datetime: 
+  setup_id: "171"
+material_transactions_274: 
+  material_transaction_type_id: 
+  material_id: "47"
+  cents: 
+  rate: "25"
+  unit_id: "15"
+  id: "373"
+  transaction_datetime: 
+  setup_id: "784"
+material_transactions_084: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "132"
+  transaction_datetime: 
+  setup_id: "384"
+material_transactions_654: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "836"
+  transaction_datetime: 
+  setup_id: "1387"
+material_transactions_607: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "773"
+  transaction_datetime: 
+  setup_id: "1330"
+material_transactions_464: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "610"
+  transaction_datetime: 
+  setup_id: "1061"
+material_transactions_417: 
+  material_transaction_type_id: 
+  material_id: "79"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "563"
+  transaction_datetime: 
+  setup_id: "1005"
+material_transactions_227: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "308"
+  transaction_datetime: 
+  setup_id: "690"
+material_transactions_037: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "30"
+  unit_id: "10"
+  id: "53"
+  transaction_datetime: 
+  setup_id: "176"
+material_transactions_275: 
+  material_transaction_type_id: 
+  material_id: "48"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "375"
+  transaction_datetime: 
+  setup_id: "786"
+material_transactions_085: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "134"
+  transaction_datetime: 
+  setup_id: "387"
+material_transactions_655: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "838"
+  transaction_datetime: 
+  setup_id: "1389"
+material_transactions_608: 
+  material_transaction_type_id: 
+  material_id: "15"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "775"
+  transaction_datetime: 
+  setup_id: "1332"
+material_transactions_465: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "611"
+  transaction_datetime: 
+  setup_id: "1062"
+material_transactions_418: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "15"
+  unit_id: "10"
+  id: "564"
+  transaction_datetime: 
+  setup_id: "1006"
+material_transactions_228: 
+  material_transaction_type_id: 
+  material_id: "34"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "309"
+  transaction_datetime: 
+  setup_id: "691"
+material_transactions_038: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "54"
+  transaction_datetime: 
+  setup_id: "179"
+material_transactions_276: 
+  material_transaction_type_id: 
+  material_id: "42"
+  cents: 
+  rate: "140"
+  unit_id: "15"
+  id: "376"
+  transaction_datetime: 
+  setup_id: "787"
+material_transactions_086: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "135"
+  transaction_datetime: 
+  setup_id: "388"
+material_transactions_656: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "840"
+  transaction_datetime: 
+  setup_id: "1393"
+material_transactions_609: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "776"
+  transaction_datetime: 
+  setup_id: "1334"
+material_transactions_466: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "612"
+  transaction_datetime: 
+  setup_id: "1063"
+material_transactions_419: 
+  material_transaction_type_id: 
+  material_id: "79"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "565"
+  transaction_datetime: 
+  setup_id: "1006"
+material_transactions_229: 
+  material_transaction_type_id: 
+  material_id: "34"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "310"
+  transaction_datetime: 
+  setup_id: "692"
+material_transactions_039: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "0.5"
+  unit_id: "11"
+  id: "55"
+  transaction_datetime: 
+  setup_id: "182"
+material_transactions_087: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "12"
+  unit_id: "10"
+  id: "137"
+  transaction_datetime: 
+  setup_id: "390"
+material_transactions_657: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "40"
+  unit_id: "10"
+  id: "843"
+  transaction_datetime: 
+  setup_id: "1400"
+material_transactions_467: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "613"
+  transaction_datetime: 
+  setup_id: "1064"
+material_transactions_277: 
+  material_transaction_type_id: 
+  material_id: "44"
+  cents: 
+  rate: "350"
+  unit_id: "9"
+  id: "377"
+  transaction_datetime: 
+  setup_id: "789"
+material_transactions_088: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "14"
+  unit_id: "10"
+  id: "138"
+  transaction_datetime: 
+  setup_id: "391"
+material_transactions_468: 
+  material_transaction_type_id: 
+  material_id: "6"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "614"
+  transaction_datetime: 
+  setup_id: "1065"
+material_transactions_278: 
+  material_transaction_type_id: 
+  material_id: "49"
+  cents: 
+  rate: "25"
+  unit_id: "15"
+  id: "379"
+  transaction_datetime: 
+  setup_id: "792"
+material_transactions_089: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "139"
+  transaction_datetime: 
+  setup_id: "392"
+material_transactions_469: 
+  material_transaction_type_id: 
+  material_id: "77"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "615"
+  transaction_datetime: 
+  setup_id: "1066"
+material_transactions_279: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "110"
+  unit_id: "9"
+  id: "380"
+  transaction_datetime: 
+  setup_id: "793"
+material_transactions_330: 
+  material_transaction_type_id: 
+  material_id: "59"
+  cents: 
+  rate: "479.2"
+  unit_id: "9"
+  id: "442"
+  transaction_datetime: 
+  setup_id: "878"
+material_transactions_140: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "204"
+  transaction_datetime: 
+  setup_id: "532"
+material_transactions_520: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "668"
+  transaction_datetime: 
+  setup_id: "1140"
+material_transactions_331: 
+  material_transaction_type_id: 
+  material_id: "60"
+  cents: 
+  rate: "4"
+  unit_id: "9"
+  id: "443"
+  transaction_datetime: 
+  setup_id: "878"
+material_transactions_141: 
+  material_transaction_type_id: 
+  material_id: "30"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "205"
+  transaction_datetime: 
+  setup_id: "535"
+material_transactions_521: 
+  material_transaction_type_id: 
+  material_id: "77"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "669"
+  transaction_datetime: 
+  setup_id: "1142"
+material_transactions_142: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "206"
+  transaction_datetime: 
+  setup_id: "540"
+material_transactions_570: 
+  material_transaction_type_id: 
+  material_id: "101"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "729"
+  transaction_datetime: 
+  setup_id: "1303"
+material_transactions_522: 
+  material_transaction_type_id: 
+  material_id: "92"
+  cents: 
+  rate: "30"
+  unit_id: "9"
+  id: "670"
+  transaction_datetime: 
+  setup_id: "1143"
+material_transactions_332: 
+  material_transaction_type_id: 
+  material_id: "58"
+  cents: 
+  rate: "209.07"
+  unit_id: "9"
+  id: "444"
+  transaction_datetime: 
+  setup_id: "880"
+material_transactions_143: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: "15"
+  unit_id: "9"
+  id: "207"
+  transaction_datetime: 
+  setup_id: "542"
+material_transactions_380: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "518"
+  transaction_datetime: 
+  setup_id: "960"
+material_transactions_190: 
+  material_transaction_type_id: 
+  material_id: "36"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "262"
+  transaction_datetime: 
+  setup_id: "624"
+material_transactions_571: 
+  material_transaction_type_id: 
+  material_id: "102"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "730"
+  transaction_datetime: 
+  setup_id: "1303"
+material_transactions_523: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "671"
+  transaction_datetime: 
+  setup_id: "1144"
+material_transactions_333: 
+  material_transaction_type_id: 
+  material_id: "59"
+  cents: 
+  rate: "319.47"
+  unit_id: "9"
+  id: "445"
+  transaction_datetime: 
+  setup_id: "880"
+material_transactions_144: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "209"
+  transaction_datetime: 
+  setup_id: "544"
+material_transactions_381: 
+  material_transaction_type_id: 
+  material_id: "55"
+  cents: 
+  rate: "12"
+  unit_id: "10"
+  id: "519"
+  transaction_datetime: 
+  setup_id: "960"
+material_transactions_191: 
+  material_transaction_type_id: 
+  material_id: "36"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "263"
+  transaction_datetime: 
+  setup_id: "625"
+material_transactions_572: 
+  material_transaction_type_id: 
+  material_id: "103"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "731"
+  transaction_datetime: 
+  setup_id: "1303"
+material_transactions_524: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "672"
+  transaction_datetime: 
+  setup_id: "1147"
+material_transactions_334: 
+  material_transaction_type_id: 
+  material_id: "60"
+  cents: 
+  rate: "2.67"
+  unit_id: "9"
+  id: "446"
+  transaction_datetime: 
+  setup_id: "880"
+material_transactions_382: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "520"
+  transaction_datetime: 
+  setup_id: "961"
+material_transactions_192: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "100"
+  unit_id: "9"
+  id: "266"
+  transaction_datetime: 
+  setup_id: "629"
+material_transactions_573: 
+  material_transaction_type_id: 
+  material_id: "101"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "732"
+  transaction_datetime: 
+  setup_id: "1304"
+material_transactions_525: 
+  material_transaction_type_id: 
+  material_id: "92"
+  cents: 
+  rate: "30"
+  unit_id: "9"
+  id: "673"
+  transaction_datetime: 
+  setup_id: "1148"
+material_transactions_335: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "453"
+  transaction_datetime: 
+  setup_id: "889"
+material_transactions_145: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "73.8"
+  unit_id: "9"
+  id: "210"
+  transaction_datetime: 
+  setup_id: "548"
+material_transactions_383: 
+  material_transaction_type_id: 
+  material_id: "55"
+  cents: 
+  rate: "12"
+  unit_id: "10"
+  id: "521"
+  transaction_datetime: 
+  setup_id: "961"
+material_transactions_193: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "268"
+  transaction_datetime: 
+  setup_id: "631"
+material_transactions_526: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "674"
+  transaction_datetime: 
+  setup_id: "1149"
+material_transactions_336: 
+  material_transaction_type_id: 
+  material_id: "61"
+  cents: 
+  rate: "0.5"
+  unit_id: "6"
+  id: "454"
+  transaction_datetime: 
+  setup_id: "889"
+material_transactions_146: 
+  material_transaction_type_id: 
+  material_id: "19"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "211"
+  transaction_datetime: 
+  setup_id: "552"
+material_transactions_384: 
+  material_transaction_type_id: 
+  material_id: "67"
+  cents: 
+  rate: "1.33"
+  unit_id: "14"
+  id: "522"
+  transaction_datetime: 
+  setup_id: "962"
+material_transactions_194: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "100"
+  unit_id: "9"
+  id: "270"
+  transaction_datetime: 
+  setup_id: "633"
+material_transactions_574: 
+  material_transaction_type_id: 
+  material_id: "102"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "733"
+  transaction_datetime: 
+  setup_id: "1304"
+material_transactions_527: 
+  material_transaction_type_id: 
+  material_id: "47"
+  cents: 
+  rate: "25"
+  unit_id: "15"
+  id: "675"
+  transaction_datetime: 
+  setup_id: "1151"
+material_transactions_337: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: "0.05"
+  unit_id: "10"
+  id: "455"
+  transaction_datetime: 
+  setup_id: "889"
+material_transactions_147: 
+  material_transaction_type_id: 
+  material_id: "19"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "212"
+  transaction_datetime: 
+  setup_id: "553"
+material_transactions_385: 
+  material_transaction_type_id: 
+  material_id: "69"
+  cents: 
+  rate: "6"
+  unit_id: "6"
+  id: "523"
+  transaction_datetime: 
+  setup_id: "962"
+material_transactions_195: 
+  material_transaction_type_id: 
+  material_id: "37"
+  cents: 
+  rate: "26"
+  unit_id: "12"
+  id: "272"
+  transaction_datetime: 
+  setup_id: "638"
+material_transactions_575: 
+  material_transaction_type_id: 
+  material_id: "103"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "734"
+  transaction_datetime: 
+  setup_id: "1304"
+material_transactions_528: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "676"
+  transaction_datetime: 
+  setup_id: "1152"
+material_transactions_338: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "456"
+  transaction_datetime: 
+  setup_id: "892"
+material_transactions_148: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "213"
+  transaction_datetime: 
+  setup_id: "554"
+material_transactions_386: 
+  material_transaction_type_id: 
+  material_id: "68"
+  cents: 
+  rate: "1"
+  unit_id: "9"
+  id: "524"
+  transaction_datetime: 
+  setup_id: "962"
+material_transactions_196: 
+  material_transaction_type_id: 
+  material_id: "30"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "273"
+  transaction_datetime: 
+  setup_id: "640"
+material_transactions_576: 
+  material_transaction_type_id: 
+  material_id: "101"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "735"
+  transaction_datetime: 
+  setup_id: "1305"
+material_transactions_529: 
+  material_transaction_type_id: 
+  material_id: "96"
+  cents: 
+  rate: "0.5"
+  unit_id: "14"
+  id: "677"
+  transaction_datetime: 
+  setup_id: "1155"
+material_transactions_339: 
+  material_transaction_type_id: 
+  material_id: "61"
+  cents: 
+  rate: "0.5"
+  unit_id: "6"
+  id: "457"
+  transaction_datetime: 
+  setup_id: "892"
+material_transactions_149: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "215"
+  transaction_datetime: 
+  setup_id: "558"
+material_transactions_197: 
+  material_transaction_type_id: 
+  material_id: "37"
+  cents: 
+  rate: "26"
+  unit_id: "12"
+  id: "274"
+  transaction_datetime: 
+  setup_id: "641"
+material_transactions_577: 
+  material_transaction_type_id: 
+  material_id: "102"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "736"
+  transaction_datetime: 
+  setup_id: "1305"
+material_transactions_010: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "18"
+  transaction_datetime: 
+  setup_id: "89"
+material_transactions_387: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "19"
+  unit_id: "10"
+  id: "525"
+  transaction_datetime: 
+  setup_id: "962"
+material_transactions_198: 
+  material_transaction_type_id: 
+  material_id: "37"
+  cents: 
+  rate: "26"
+  unit_id: "12"
+  id: "275"
+  transaction_datetime: 
+  setup_id: "642"
+material_transactions_578: 
+  material_transaction_type_id: 
+  material_id: "103"
+  cents: 
+  rate: "1.5"
+  unit_id: "7"
+  id: "737"
+  transaction_datetime: 
+  setup_id: "1305"
+material_transactions_200: 
+  material_transaction_type_id: 
+  material_id: "38"
+  cents: 
+  rate: "0.5"
+  unit_id: "14"
+  id: "277"
+  transaction_datetime: 
+  setup_id: "652"
+material_transactions_011: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "50"
+  unit_id: "9"
+  id: "19"
+  transaction_datetime: 
+  setup_id: "91"
+material_transactions_388: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "526"
+  transaction_datetime: 
+  setup_id: "963"
+material_transactions_199: 
+  material_transaction_type_id: 
+  material_id: "37"
+  cents: 
+  rate: "26"
+  unit_id: "12"
+  id: "276"
+  transaction_datetime: 
+  setup_id: "645"
+material_transactions_579: 
+  material_transaction_type_id: 
+  material_id: "101"
+  cents: 
+  rate: "1"
+  unit_id: "7"
+  id: "738"
+  transaction_datetime: 
+  setup_id: "1306"
+material_transactions_201: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "279"
+  transaction_datetime: 
+  setup_id: "654"
+material_transactions_012: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "50"
+  unit_id: "9"
+  id: "20"
+  transaction_datetime: 
+  setup_id: "93"
+material_transactions_389: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "527"
+  transaction_datetime: 
+  setup_id: "964"
+material_transactions_440: 
+  material_transaction_type_id: 
+  material_id: "35"
+  cents: 
+  rate: "24"
+  unit_id: "6"
+  id: "586"
+  transaction_datetime: 
+  setup_id: "1039"
+material_transactions_250: 
+  material_transaction_type_id: 
+  material_id: "43"
+  cents: 
+  rate: "2.5"
+  unit_id: "3"
+  id: "340"
+  transaction_datetime: 
+  setup_id: "736"
+material_transactions_060: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "80"
+  transaction_datetime: 
+  setup_id: "221"
+material_transactions_202: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "120"
+  unit_id: "9"
+  id: "280"
+  transaction_datetime: 
+  setup_id: "656"
+material_transactions_630: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "800"
+  transaction_datetime: 
+  setup_id: "1357"
+material_transactions_441: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: "2.69"
+  unit_id: "14"
+  id: "587"
+  transaction_datetime: 
+  setup_id: "1039"
+material_transactions_251: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "343"
+  transaction_datetime: 
+  setup_id: "740"
+material_transactions_061: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "81"
+  transaction_datetime: 
+  setup_id: "222"
+material_transactions_203: 
+  material_transaction_type_id: 
+  material_id: "33"
+  cents: 
+  rate: "120"
+  unit_id: "9"
+  id: "281"
+  transaction_datetime: 
+  setup_id: "657"
+material_transactions_013: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "37"
+  unit_id: "10"
+  id: "21"
+  transaction_datetime: 
+  setup_id: "95"
+material_transactions_631: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "801"
+  transaction_datetime: 
+  setup_id: "1358"
+material_transactions_252: 
+  material_transaction_type_id: 
+  material_id: "44"
+  cents: 
+  rate: "150"
+  unit_id: "9"
+  id: "345"
+  transaction_datetime: 
+  setup_id: "742"
+material_transactions_062: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "125"
+  unit_id: "9"
+  id: "82"
+  transaction_datetime: 
+  setup_id: "231"
+material_transactions_204: 
+  material_transaction_type_id: 
+  material_id: "19"
+  cents: 
+  rate: "15"
+  unit_id: "9"
+  id: "282"
+  transaction_datetime: 
+  setup_id: "659"
+material_transactions_014: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "23"
+  transaction_datetime: 
+  setup_id: "101"
+material_transactions_632: 
+  material_transaction_type_id: 
+  material_id: "84"
+  cents: 
+  rate: "2.25"
+  unit_id: "14"
+  id: "802"
+  transaction_datetime: 
+  setup_id: "1359"
+material_transactions_490: 
+  material_transaction_type_id: 
+  material_id: "89"
+  cents: 
+  rate: "350"
+  unit_id: "9"
+  id: "636"
+  transaction_datetime: 
+  setup_id: "1091"
+material_transactions_442: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "588"
+  transaction_datetime: 
+  setup_id: "1039"
+material_transactions_253: 
+  material_transaction_type_id: 
+  material_id: "44"
+  cents: 
+  rate: "80"
+  unit_id: "9"
+  id: "347"
+  transaction_datetime: 
+  setup_id: "744"
+material_transactions_063: 
+  material_transaction_type_id: 
+  material_id: "18"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "85"
+  transaction_datetime: 
+  setup_id: "247"
+material_transactions_205: 
+  material_transaction_type_id: 
+  material_id: "39"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "284"
+  transaction_datetime: 
+  setup_id: "661"
+material_transactions_015: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "25"
+  transaction_datetime: 
+  setup_id: "103"
+material_transactions_633: 
+  material_transaction_type_id: 
+  material_id: "88"
+  cents: 
+  rate: "3"
+  unit_id: "6"
+  id: "803"
+  transaction_datetime: 
+  setup_id: "1359"
+material_transactions_491: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "300"
+  unit_id: "9"
+  id: "637"
+  transaction_datetime: 
+  setup_id: "1091"
+material_transactions_443: 
+  material_transaction_type_id: 
+  material_id: "31"
+  cents: 
+  rate: "0.8"
+  unit_id: "13"
+  id: "589"
+  transaction_datetime: 
+  setup_id: "1040"
+material_transactions_254: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "2"
+  unit_id: "7"
+  id: "348"
+  transaction_datetime: 
+  setup_id: "745"
+material_transactions_064: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "86"
+  transaction_datetime: 
+  setup_id: "248"
+material_transactions_206: 
+  material_transaction_type_id: 
+  material_id: "38"
+  cents: 
+  rate: "0.5"
+  unit_id: "14"
+  id: "285"
+  transaction_datetime: 
+  setup_id: "664"
+material_transactions_016: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "26"
+  transaction_datetime: 
+  setup_id: "104"
+material_transactions_634: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "806"
+  transaction_datetime: 
+  setup_id: "1362"
+material_transactions_492: 
+  material_transaction_type_id: 
+  material_id: "60"
+  cents: 
+  rate: "2"
+  unit_id: "9"
+  id: "638"
+  transaction_datetime: 
+  setup_id: "1091"
+material_transactions_444: 
+  material_transaction_type_id: 
+  material_id: "83"
+  cents: 
+  rate: "1.3"
+  unit_id: "13"
+  id: "590"
+  transaction_datetime: 
+  setup_id: "1041"
+material_transactions_065: 
+  material_transaction_type_id: 
+  material_id: "18"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "94"
+  transaction_datetime: 
+  setup_id: "257"
+material_transactions_207: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "286"
+  transaction_datetime: 
+  setup_id: "665"
+material_transactions_017: 
+  material_transaction_type_id: 
+  material_id: "11"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "27"
+  transaction_datetime: 
+  setup_id: "105"
+material_transactions_635: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "807"
+  transaction_datetime: 
+  setup_id: "1363"
+material_transactions_493: 
+  material_transaction_type_id: 
+  material_id: "89"
+  cents: 
+  rate: "350"
+  unit_id: "9"
+  id: "639"
+  transaction_datetime: 
+  setup_id: "1092"
+material_transactions_445: 
+  material_transaction_type_id: 
+  material_id: "37"
+  cents: 
+  rate: "26"
+  unit_id: "12"
+  id: "591"
+  transaction_datetime: 
+  setup_id: "1042"
+material_transactions_255: 
+  material_transaction_type_id: 
+  material_id: "45"
+  cents: 
+  rate: "26"
+  unit_id: "15"
+  id: "350"
+  transaction_datetime: 
+  setup_id: "747"
+material_transactions_066: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "96"
+  transaction_datetime: 
+  setup_id: "266"
+material_transactions_208: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "287"
+  transaction_datetime: 
+  setup_id: "666"
+material_transactions_018: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "28"
+  transaction_datetime: 
+  setup_id: "113"
+material_transactions_636: 
+  material_transaction_type_id: 
+  material_id: "82"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "808"
+  transaction_datetime: 
+  setup_id: "1364"
+material_transactions_494: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "300"
+  unit_id: "9"
+  id: "640"
+  transaction_datetime: 
+  setup_id: "1092"
+material_transactions_446: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "592"
+  transaction_datetime: 
+  setup_id: "1042"
+material_transactions_256: 
+  material_transaction_type_id: 
+  material_id: "45"
+  cents: 
+  rate: "26"
+  unit_id: "15"
+  id: "351"
+  transaction_datetime: 
+  setup_id: "748"
+material_transactions_067: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "98"
+  transaction_datetime: 
+  setup_id: "268"
+material_transactions_209: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "288"
+  transaction_datetime: 
+  setup_id: "667"
+material_transactions_019: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "50"
+  unit_id: "9"
+  id: "29"
+  transaction_datetime: 
+  setup_id: "115"
+material_transactions_637: 
+  material_transaction_type_id: 
+  material_id: "105"
+  cents: 
+  rate: "0.25"
+  unit_id: "6"
+  id: "809"
+  transaction_datetime: 
+  setup_id: "1364"
+material_transactions_495: 
+  material_transaction_type_id: 
+  material_id: "60"
+  cents: 
+  rate: "2"
+  unit_id: "9"
+  id: "641"
+  transaction_datetime: 
+  setup_id: "1092"
+material_transactions_447: 
+  material_transaction_type_id: 
+  material_id: "31"
+  cents: 
+  rate: "0.5"
+  unit_id: "13"
+  id: "593"
+  transaction_datetime: 
+  setup_id: "1043"
+material_transactions_257: 
+  material_transaction_type_id: 
+  material_id: "45"
+  cents: 
+  rate: "26"
+  unit_id: "15"
+  id: "352"
+  transaction_datetime: 
+  setup_id: "752"
+material_transactions_638: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "810"
+  transaction_datetime: 
+  setup_id: "1364"
+material_transactions_496: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "642"
+  transaction_datetime: 
+  setup_id: "1096"
+material_transactions_448: 
+  material_transaction_type_id: 
+  material_id: "37"
+  cents: 
+  rate: "26"
+  unit_id: "12"
+  id: "594"
+  transaction_datetime: 
+  setup_id: "1046"
+material_transactions_258: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "353"
+  transaction_datetime: 
+  setup_id: "753"
+material_transactions_068: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "102"
+  transaction_datetime: 
+  setup_id: "287"
+material_transactions_639: 
+  material_transaction_type_id: 
+  material_id: "10"
+  cents: 
+  rate: "4"
+  unit_id: "14"
+  id: "811"
+  transaction_datetime: 
+  setup_id: "1364"
+material_transactions_449: 
+  material_transaction_type_id: 
+  material_id: "23"
+  cents: 
+  rate: "25"
+  unit_id: "9"
+  id: "595"
+  transaction_datetime: 
+  setup_id: "1046"
+material_transactions_259: 
+  material_transaction_type_id: 
+  material_id: "45"
+  cents: 
+  rate: "26"
+  unit_id: "15"
+  id: "354"
+  transaction_datetime: 
+  setup_id: "754"
+material_transactions_069: 
+  material_transaction_type_id: 
+  material_id: "8"
+  cents: 
+  rate: "12"
+  unit_id: "9"
+  id: "103"
+  transaction_datetime: 
+  setup_id: "289"
+material_transactions_497: 
+  material_transaction_type_id: 
+  material_id: "90"
+  cents: 
+  rate: "2"
+  unit_id: "6"
+  id: "643"
+  transaction_datetime: 
+  setup_id: "1099"
+material_transactions_120: 
+  material_transaction_type_id: 
+  material_id: "20"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "176"
+  transaction_datetime: 
+  setup_id: "488"
+material_transactions_500: 
+  material_transaction_type_id: 
+  material_id: "60"
+  cents: 
+  rate: "2"
+  unit_id: "9"
+  id: "646"
+  transaction_datetime: 
+  setup_id: "1100"
+material_transactions_498: 
+  material_transaction_type_id: 
+  material_id: "62"
+  cents: 
+  rate: "4"
+  unit_id: "17"
+  id: "644"
+  transaction_datetime: 
+  setup_id: "1099"
+material_transactions_310: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "3"
+  unit_id: "7"
+  id: "414"
+  transaction_datetime: 
+  setup_id: "846"
+material_transactions_121: 
+  material_transaction_type_id: 
+  material_id: "13"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "177"
+  transaction_datetime: 
+  setup_id: "489"
+material_transactions_501: 
+  material_transaction_type_id: 
+  material_id: "89"
+  cents: 
+  rate: "1"
+  unit_id: "13"
+  id: "647"
+  transaction_datetime: 
+  setup_id: "1101"
+material_transactions_499: 
+  material_transaction_type_id: 
+  material_id: "9"
+  cents: 
+  rate: "250"
+  unit_id: "9"
+  id: "645"
+  transaction_datetime: 
+  setup_id: "1100"
+material_transactions_311: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "415"
+  transaction_datetime: 
+  setup_id: "847"
+material_transactions_122: 
+  material_transaction_type_id: 
+  material_id: "25"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "179"
+  transaction_datetime: 
+  setup_id: "493"
+material_transactions_550: 
+  material_transaction_type_id: 
+  material_id: "25"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "700"
+  transaction_datetime: 
+  setup_id: "1201"
+material_transactions_502: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "648"
+  transaction_datetime: 
+  setup_id: "1103"
+material_transactions_360: 
+  material_transaction_type_id: 
+  material_id: "70"
+  cents: 
+  rate: "16"
+  unit_id: "6"
+  id: "486"
+  transaction_datetime: 
+  setup_id: "934"
+material_transactions_170: 
+  material_transaction_type_id: 
+  material_id: "19"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "237"
+  transaction_datetime: 
+  setup_id: "581"
+material_transactions_312: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "416"
+  transaction_datetime: 
+  setup_id: "848"
+material_transactions_551: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "705"
+  transaction_datetime: 
+  setup_id: "1219"
+material_transactions_503: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "651"
+  transaction_datetime: 
+  setup_id: "1106"
+material_transactions_361: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "487"
+  transaction_datetime: 
+  setup_id: "934"
+material_transactions_171: 
+  material_transaction_type_id: 
+  material_id: "19"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "238"
+  transaction_datetime: 
+  setup_id: "582"
+material_transactions_313: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "419"
+  transaction_datetime: 
+  setup_id: "853"
+material_transactions_123: 
+  material_transaction_type_id: 
+  material_id: "25"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "180"
+  transaction_datetime: 
+  setup_id: "496"
+material_transactions_504: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "652"
+  transaction_datetime: 
+  setup_id: "1107"
+material_transactions_362: 
+  material_transaction_type_id: 
+  material_id: "71"
+  cents: 
+  rate: "3.4"
+  unit_id: "9"
+  id: "488"
+  transaction_datetime: 
+  setup_id: "934"
+material_transactions_172: 
+  material_transaction_type_id: 
+  material_id: "19"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "239"
+  transaction_datetime: 
+  setup_id: "583"
+material_transactions_314: 
+  material_transaction_type_id: 
+  material_id: "55"
+  cents: 
+  rate: "14"
+  unit_id: "10"
+  id: "420"
+  transaction_datetime: 
+  setup_id: "853"
+material_transactions_124: 
+  material_transaction_type_id: 
+  material_id: "26"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "182"
+  transaction_datetime: 
+  setup_id: "498"
+material_transactions_552: 
+  material_transaction_type_id: 
+  material_id: "87"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "706"
+  transaction_datetime: 
+  setup_id: "1219"
+material_transactions_505: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "653"
+  transaction_datetime: 
+  setup_id: "1108"
+material_transactions_363: 
+  material_transaction_type_id: 
+  material_id: "14"
+  cents: 
+  rate: "20"
+  unit_id: "10"
+  id: "489"
+  transaction_datetime: 
+  setup_id: "937"
+material_transactions_173: 
+  material_transaction_type_id: 
+  material_id: "31"
+  cents: 
+  rate: "2"
+  unit_id: "13"
+  id: "240"
+  transaction_datetime: 
+  setup_id: "585"
+material_transactions_315: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "421"
+  transaction_datetime: 
+  setup_id: "855"
+material_transactions_125: 
+  material_transaction_type_id: 
+  material_id: "27"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "184"
+  transaction_datetime: 
+  setup_id: "501"
+material_transactions_553: 
+  material_transaction_type_id: 
+  material_id: "40"
+  cents: 
+  rate: "22"
+  unit_id: "6"
+  id: "707"
+  transaction_datetime: 
+  setup_id: "1219"
+material_transactions_506: 
+  material_transaction_type_id: 
+  material_id: "77"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "654"
+  transaction_datetime: 
+  setup_id: "1109"
+material_transactions_364: 
+  material_transaction_type_id: 
+  material_id: "72"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "490"
+  transaction_datetime: 
+  setup_id: "937"
+material_transactions_174: 
+  material_transaction_type_id: 
+  material_id: "31"
+  cents: 
+  rate: "350"
+  unit_id: "9"
+  id: "241"
+  transaction_datetime: 
+  setup_id: "586"
+material_transactions_316: 
+  material_transaction_type_id: 
+  material_id: "55"
+  cents: 
+  rate: "14"
+  unit_id: "10"
+  id: "422"
+  transaction_datetime: 
+  setup_id: "855"
+material_transactions_126: 
+  material_transaction_type_id: 
+  material_id: "28"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "185"
+  transaction_datetime: 
+  setup_id: "502"
+material_transactions_554: 
+  material_transaction_type_id: 
+  material_id: "71"
+  cents: 
+  rate: "3.44"
+  unit_id: "9"
+  id: "708"
+  transaction_datetime: 
+  setup_id: "1219"
+material_transactions_507: 
+  material_transaction_type_id: 
+  material_id: "77"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "655"
+  transaction_datetime: 
+  setup_id: "1110"
+material_transactions_175: 
+  material_transaction_type_id: 
+  material_id: "31"
+  cents: 
+  rate: "350"
+  unit_id: "9"
+  id: "242"
+  transaction_datetime: 
+  setup_id: "588"
+material_transactions_317: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "423"
+  transaction_datetime: 
+  setup_id: "857"
+material_transactions_127: 
+  material_transaction_type_id: 
+  material_id: "27"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "186"
+  transaction_datetime: 
+  setup_id: "503"
+material_transactions_555: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "709"
+  transaction_datetime: 
+  setup_id: "1238"
+material_transactions_508: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "656"
+  transaction_datetime: 
+  setup_id: "1111"
+material_transactions_365: 
+  material_transaction_type_id: 
+  material_id: "73"
+  cents: 
+  rate: "10"
+  unit_id: "6"
+  id: "491"
+  transaction_datetime: 
+  setup_id: "937"
+material_transactions_176: 
+  material_transaction_type_id: 
+  material_id: "35"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "244"
+  transaction_datetime: 
+  setup_id: "590"
+material_transactions_318: 
+  material_transaction_type_id: 
+  material_id: "55"
+  cents: 
+  rate: "14"
+  unit_id: "10"
+  id: "424"
+  transaction_datetime: 
+  setup_id: "857"
+material_transactions_128: 
+  material_transaction_type_id: 
+  material_id: "27"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "187"
+  transaction_datetime: 
+  setup_id: "506"
+material_transactions_556: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "710"
+  transaction_datetime: 
+  setup_id: "1265"
+material_transactions_509: 
+  material_transaction_type_id: 
+  material_id: "56"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "657"
+  transaction_datetime: 
+  setup_id: "1114"
+material_transactions_366: 
+  material_transaction_type_id: 
+  material_id: "74"
+  cents: 
+  rate: "2"
+  unit_id: "14"
+  id: "492"
+  transaction_datetime: 
+  setup_id: "937"
+material_transactions_177: 
+  material_transaction_type_id: 
+  material_id: "27"
+  cents: 
+  rate: "190"
+  unit_id: "12"
+  id: "245"
+  transaction_datetime: 
+  setup_id: "593"
+material_transactions_319: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: "28"
+  unit_id: "12"
+  id: "425"
+  transaction_datetime: 
+  setup_id: "859"
+material_transactions_129: 
+  material_transaction_type_id: 
+  material_id: "12"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "188"
+  transaction_datetime: 
+  setup_id: "513"
+material_transactions_557: 
+  material_transaction_type_id: 
+  material_id: "5"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "711"
+  transaction_datetime: 
+  setup_id: "1295"
+material_transactions_367: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "503"
+  transaction_datetime: 
+  setup_id: "948"
+material_transactions_558: 
+  material_transaction_type_id: 
+  material_id: "63"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "712"
+  transaction_datetime: 
+  setup_id: "1295"
+material_transactions_368: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "504"
+  transaction_datetime: 
+  setup_id: "949"
+material_transactions_178: 
+  material_transaction_type_id: 
+  material_id: "27"
+  cents: 
+  rate: "190"
+  unit_id: "12"
+  id: "246"
+  transaction_datetime: 
+  setup_id: "594"
+material_transactions_559: 
+  material_transaction_type_id: 
+  material_id: "87"
+  cents: 
+  rate: "1"
+  unit_id: "14"
+  id: "713"
+  transaction_datetime: 
+  setup_id: "1296"
+material_transactions_179: 
+  material_transaction_type_id: 
+  material_id: "27"
+  cents: 
+  rate: "190"
+  unit_id: "12"
+  id: "248"
+  transaction_datetime: 
+  setup_id: "596"
+material_transactions_369: 
+  material_transaction_type_id: 
+  material_id: "7"
+  cents: 
+  rate: 
+  unit_id: 
+  id: "505"
+  transaction_datetime: 
+  setup_id: "950"

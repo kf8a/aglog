@@ -1,0 +1,189 @@
+--- 
+treatments_039: 
+  name: iF1
+  id: "39"
+  study_id: "4"
+treatments_028: 
+  name: B20
+  id: "28"
+  study_id: "2"
+treatments_017: 
+  name: B9
+  id: "17"
+  study_id: "2"
+treatments_006: 
+  name: T5
+  id: "6"
+  study_id: "1"
+treatments_040: 
+  name: iF2
+  id: "40"
+  study_id: "4"
+treatments_029: 
+  name: B21
+  id: "29"
+  study_id: "2"
+treatments_018: 
+  name: B10
+  id: "18"
+  study_id: "2"
+treatments_007: 
+  name: T7
+  id: "7"
+  study_id: "1"
+treatments_041: 
+  name: iF3
+  id: "41"
+  study_id: "4"
+treatments_030: 
+  name: F1
+  id: "30"
+  study_id: "3"
+treatments_019: 
+  name: B11
+  id: "19"
+  study_id: "2"
+treatments_008: 
+  name: T8
+  id: "8"
+  study_id: "1"
+treatments_042: 
+  name: iF4
+  id: "42"
+  study_id: "4"
+treatments_031: 
+  name: F2
+  id: "31"
+  study_id: "3"
+treatments_020: 
+  name: B12
+  id: "20"
+  study_id: "2"
+treatments_009: 
+  name: B1
+  id: "9"
+  study_id: "2"
+treatments_043: 
+  name: iF5
+  id: "43"
+  study_id: "4"
+treatments_032: 
+  name: F3
+  id: "32"
+  study_id: "3"
+treatments_021: 
+  name: B13
+  id: "21"
+  study_id: "2"
+treatments_010: 
+  name: B2
+  id: "10"
+  study_id: "2"
+treatments_044: 
+  name: iF6
+  id: "44"
+  study_id: "4"
+treatments_033: 
+  name: F4
+  id: "33"
+  study_id: "3"
+treatments_022: 
+  name: B14
+  id: "22"
+  study_id: "2"
+treatments_011: 
+  name: B3
+  id: "11"
+  study_id: "2"
+treatments_045: 
+  name: iF7
+  id: "45"
+  study_id: "4"
+treatments_034: 
+  name: F5
+  id: "34"
+  study_id: "3"
+treatments_023: 
+  name: B15
+  id: "23"
+  study_id: "2"
+treatments_012: 
+  name: B4
+  id: "12"
+  study_id: "2"
+treatments_001: 
+  name: T1
+  id: "1"
+  study_id: "1"
+treatments_046: 
+  name: iF8
+  id: "46"
+  study_id: "4"
+treatments_035: 
+  name: F6
+  id: "35"
+  study_id: "3"
+treatments_024: 
+  name: B16
+  id: "24"
+  study_id: "2"
+treatments_013: 
+  name: B5
+  id: "13"
+  study_id: "2"
+treatments_002: 
+  name: T2
+  id: "2"
+  study_id: "1"
+treatments_047: 
+  name: iF9
+  id: "47"
+  study_id: "4"
+treatments_036: 
+  name: F7
+  id: "36"
+  study_id: "3"
+treatments_025: 
+  name: B17
+  id: "25"
+  study_id: "2"
+treatments_014: 
+  name: B6
+  id: "14"
+  study_id: "2"
+treatments_003: 
+  name: T3
+  id: "3"
+  study_id: "1"
+treatments_037: 
+  name: F8
+  id: "37"
+  study_id: "3"
+treatments_026: 
+  name: B18
+  id: "26"
+  study_id: "2"
+treatments_015: 
+  name: B7
+  id: "15"
+  study_id: "2"
+treatments_004: 
+  name: T4
+  id: "4"
+  study_id: "1"
+treatments_038: 
+  name: F9
+  id: "38"
+  study_id: "3"
+treatments_027: 
+  name: B19
+  id: "27"
+  study_id: "2"
+treatments_016: 
+  name: B8
+  id: "16"
+  study_id: "2"
+treatments_005: 
+  name: T6
+  id: "5"
+  study_id: "1"

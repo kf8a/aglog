@@ -1,0 +1,37 @@
+h1 {
+	color: #17a400;
+	font: small-caps bold large "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+legend {
+	font-weight: bold;
+}
+
+a img { border: none;
+		text-decoration: none;
+}
+
+error { 
+	background-color:yellow
+}
+
+label {
+	display: block;
+	font-weight: bold;
+}
+
+#material_transactions_new  {
+	display:  none;
+}
+
+.material_transactions {
+	display:  inline;
+}
+
+.header_bar {
+	background-color: aqua;
+}
+
+.indent {
+	text-indent: 1em;
+}

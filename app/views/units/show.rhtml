@@ -1,0 +1,19 @@
+<h1>Show Unit</h1>
+<p>
+	<table> 
+		<tr>
+			<td align="right"><b>Name: &nbsp</b></td>
+	 		<td align="left"><%=h @unit.name %></td>
+	 	</tr> 
+		<tr>
+	 		<td align="right"><b>SI_Unit ID: &nbsp</b></td>
+	 		<td align="left"><%=h @unit.si_unit_id %></td>
+	 	</tr> 
+		<tr>
+	 		<td align="right"><b>Conversion Factor: &nbsp</b></td>
+	 		<td align="left"><%=h @unit.conversion_factor %></td>	 		
+	 	</tr>
+	</table> 
+</p>
+
+<%= link_to 'List', units_path %>

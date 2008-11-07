@@ -1,0 +1,17 @@
+
+	<% unless @material.hazards.empty? %>
+	<b>Hazards:</b>
+	<table>
+		<tr>
+			<th> Name </th> <th> Chemical Name </th> <th> Exclusion time (days) </th> <th> </th>
+		</tr>
+		<% for hazard in @material.hazards do %>
+		<tr>
+			<td><%=h hazard.name %> </td>
+			<td><%=h hazard.chemical_name %> </td>
+			<td><%=h hazard.exclusion_time_days %> </td>
+			<td><%= link_to 'Details', hazard_path(hazard) %>
+		</tr>
+		<% end %> 
+	</table>
+	<% end %> 

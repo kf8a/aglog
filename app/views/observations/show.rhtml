@@ -1,0 +1,61 @@
+<h1>Show Observation</h1>
+<p>
+  <b>User:</b>
+  <%=h @observation.person.name if @observation.person%>
+</p>
+
+<p>
+  <b>Created on:</b>
+  <%=h @observation.created_on %>
+</p>
+<p>
+	<b>Observation Date</b>
+	<%=h @observation.obs_date  %>
+</p>
+<p>
+	<b>Comment:</b><br/>
+  <%=h @observation.comment %>
+</p>
+<p>
+	<b>in review</b>
+	<%= @observation.in_review? %>
+</p>
+<p>
+	<b>Areas:</b><br/>
+	<%= @observation.areas_as_text %>
+</p>
+<p>
+	<b>Observation Type:</b><br/>
+	<% @observation.observation_types.each  do |type| %>
+	<%= type.name %>
+	<% end %>
+</p>
+<p>
+	
+	<b>Activities:</b><br/>
+<% @observation.activities.each do | activity | %>
+<div>
+	Worker: <%= activity.person.name if activity.person %><br/>
+	<% activity.setups.each do |setup| %>
+		<div class='indent'>
+		Equipment: <%= setup.equipment.name  if setup.equipment %>
+		<% setup.material_transactions.each do |transaction| %>
+		&#149 Material: <%= transaction.material.name if transaction.material %>
+		  @ <%= transaction.rate %>
+			<%= transaction.unit.name if transaction.unit %> per acre
+			<% unless transaction.material.hazards.empty? %>
+				<span style="color: red"> ***
+				<%= link_to 'Hazard', material_path(transaction.material) %>
+				*** </span>
+			<% end %>
+		<% end %>
+		</div>
+	<% end %>
+</div>
+<% end %>
+
+</p>
+
+
+<%= link_to 'Edit', edit_observation_path(@observation) if  logged_in? %> 
+<%= link_to 'List Observations', observations_path %>

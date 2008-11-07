@@ -1,0 +1,16 @@
+<h1>New Observation</h1>
+
+<%= error_messages_for :observation %>
+
+<% form_for(:observation, :url => observations_path,  :html => {:id => 'observation_form'}) do |f| %>
+	
+	<%= render(:partial => 'form', :locals => {:f => f}) %>
+			
+	<p>
+		<%= f.submit 'Create' %>
+  </p>
+
+<% end %> <!-- form_for.. -->
+<%= link_to 'List Observations', observations_path %>
+
+ 

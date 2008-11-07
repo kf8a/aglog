@@ -1,0 +1,40 @@
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+		<label for='material_liquid'>Liquid?</label>
+		<%= f.check_box :liquid %>
+  </p>
+  <p>
+		<label for='material_material_type_id'>Material Type</label>
+		<%= f.select :material_type_id, @material_type_ids, :include_blank => true, :multiple => true, :size => 6 %>
+  </p>
+  <p>
+	
+<!--  w.o. hack 9/4/07 -->
+		<% hazard_choices = Hazard.find(:all).collect{|h| [h.name, h.id]}  %>
+		
+		<%= render(:partial => 'hazards') %>
+		
+		<% if !@material.id.nil? %>
+			<%= link_to "Set Hazards", 
+			{ :controller => "materials",
+			:action => "get_hazards", 
+			:method => :get },
+			:popup => ['get_hazards_window', 'height=400,width=600,scrollbars=true'] %>
+		<% end %>
+	</p>
+			
+	<p>
+		<label for='material_n_content'>N %</label>
+		<%= f.text_field :n_content %>
+		<label for='material_p_content'>P %</label>
+		<%= f.text_field :p_content %>
+		<label for='material_k_content'>K %</label>
+		<%= f.text_field :k_content %>
+	</p>
+	
+	<p>
+		<label for='material_specific_weight'>Specific Weight (kg/l)</label>
+		<%= f.text_field :specific_weight %>
+	</p>
+	

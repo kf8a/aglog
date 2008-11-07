@@ -1,0 +1,42 @@
+<p>
+  <b>Name:</b>
+  <%=h @area.name %>
+</p>
+<table>
+	<% @area.observations.each do |observation| %>
+	<tr>
+		<td><%= observation.obs_date %></td>
+		<td>
+			<% observation.observation_types.each do |type| %>
+			<%= type.name %>
+			<% end %>
+		</td>
+		<td><%= truncate(observation.comment) %></td>
+		<td>
+			<% observation.activities.each  do  |activity| %>
+				<% activity.setups.each do |setup| %>
+					<%= setup.equipment.name %>, 
+				<% end %>
+			<% end %>
+		</td>
+		<td>
+			<% observation.activities.each do |activity| %>
+				<% activity.setups.each do |setup| %>
+					<% setup.material_transactions.each do |m| %>
+							<td><%= m.material.name %></td> 
+							<td><%= "#{pluralize(m.rate, m.unit.name)} per acre" if m.unit %></td>
+					<% end %>
+				<% end %>
+			<% end %>
+		</td>
+		<td>
+			<%= link_to 'Show', observation_path(observation)%>
+			<%= link_to 'Edit', edit_observation_path(observation) if logged_in? %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+
+<%= link_to 'Edit', edit_area_path(@area) if logged_in? %> 
+<%= link_to 'Back', areas_path %>

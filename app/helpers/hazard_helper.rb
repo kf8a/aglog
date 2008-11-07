@@ -1,0 +1,2 @@
+module HazardHelper
+end

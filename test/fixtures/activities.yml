@@ -1,0 +1,6420 @@
+--- 
+activities_844: 
+  operation_type_id: 
+  observation_id: "849"
+  id: "1075"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_027: 
+  operation_type_id: 
+  observation_id: "42"
+  id: "64"
+  hours: 
+  comment: 
+  person_id: 
+activities_159: 
+  operation_type_id: 
+  observation_id: "213"
+  id: "269"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_712: 
+  operation_type_id: 
+  observation_id: "717"
+  id: "934"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_290: 
+  operation_type_id: 
+  observation_id: "280"
+  id: "433"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_845: 
+  operation_type_id: 
+  observation_id: "850"
+  id: "1076"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_028: 
+  operation_type_id: 
+  observation_id: "43"
+  id: "65"
+  hours: 
+  comment: 
+  person_id: 
+activities_713: 
+  operation_type_id: 
+  observation_id: "718"
+  id: "935"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_291: 
+  operation_type_id: 
+  observation_id: "118"
+  id: "434"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_846: 
+  operation_type_id: 
+  observation_id: "851"
+  id: "1077"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_029: 
+  operation_type_id: 
+  observation_id: "44"
+  id: "66"
+  hours: 
+  comment: 
+  person_id: 
+activities_714: 
+  operation_type_id: 
+  observation_id: "720"
+  id: "937"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_160: 
+  operation_type_id: 
+  observation_id: "214"
+  id: "271"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_292: 
+  operation_type_id: 
+  observation_id: "202"
+  id: "435"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_847: 
+  operation_type_id: 
+  observation_id: "852"
+  id: "1078"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_715: 
+  operation_type_id: 
+  observation_id: "721"
+  id: "938"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_161: 
+  operation_type_id: 
+  observation_id: "215"
+  id: "272"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_293: 
+  operation_type_id: 
+  observation_id: "304"
+  id: "436"
+  hours: 
+  comment: 
+  person_id: 
+activities_848: 
+  operation_type_id: 
+  observation_id: "853"
+  id: "1079"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_716: 
+  operation_type_id: 
+  observation_id: "723"
+  id: "940"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_030: 
+  operation_type_id: 
+  observation_id: "45"
+  id: "67"
+  hours: 
+  comment: 
+  person_id: 
+activities_162: 
+  operation_type_id: 
+  observation_id: "216"
+  id: "273"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_294: 
+  operation_type_id: 
+  observation_id: "306"
+  id: "438"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_849: 
+  operation_type_id: 
+  observation_id: "854"
+  id: "1080"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_717: 
+  operation_type_id: 
+  observation_id: "724"
+  id: "941"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_031: 
+  operation_type_id: 
+  observation_id: "46"
+  id: "68"
+  hours: 
+  comment: 
+  person_id: 
+activities_163: 
+  operation_type_id: 
+  observation_id: "220"
+  id: "277"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_295: 
+  operation_type_id: 
+  observation_id: "307"
+  id: "439"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_718: 
+  operation_type_id: 
+  observation_id: "725"
+  id: "942"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_032: 
+  operation_type_id: 
+  observation_id: "47"
+  id: "69"
+  hours: 
+  comment: 
+  person_id: 
+activities_164: 
+  operation_type_id: 
+  observation_id: "221"
+  id: "278"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_296: 
+  operation_type_id: 
+  observation_id: "308"
+  id: "440"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_719: 
+  operation_type_id: 
+  observation_id: "726"
+  id: "943"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_033: 
+  operation_type_id: 
+  observation_id: "51"
+  id: "73"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_165: 
+  operation_type_id: 
+  observation_id: "225"
+  id: "283"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_297: 
+  operation_type_id: 
+  observation_id: "309"
+  id: "441"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_850: 
+  operation_type_id: 
+  observation_id: "855"
+  id: "1082"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_034: 
+  operation_type_id: 
+  observation_id: "50"
+  id: "74"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_166: 
+  operation_type_id: 
+  observation_id: "226"
+  id: "285"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_298: 
+  operation_type_id: 
+  observation_id: "310"
+  id: "442"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_851: 
+  operation_type_id: 
+  observation_id: "856"
+  id: "1083"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_852: 
+  operation_type_id: 
+  observation_id: "857"
+  id: "1085"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_720: 
+  operation_type_id: 
+  observation_id: "727"
+  id: "944"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_035: 
+  operation_type_id: 
+  observation_id: "49"
+  id: "75"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_167: 
+  operation_type_id: 
+  observation_id: "227"
+  id: "286"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_299: 
+  operation_type_id: 
+  observation_id: "311"
+  id: "444"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_853: 
+  operation_type_id: 
+  observation_id: "858"
+  id: "1086"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_721: 
+  operation_type_id: 
+  observation_id: "728"
+  id: "945"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_036: 
+  operation_type_id: 
+  observation_id: "48"
+  id: "76"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_168: 
+  operation_type_id: 
+  observation_id: "229"
+  id: "288"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_854: 
+  operation_type_id: 
+  observation_id: "859"
+  id: "1087"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_722: 
+  operation_type_id: 
+  observation_id: "729"
+  id: "946"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_037: 
+  operation_type_id: 
+  observation_id: "53"
+  id: "78"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_169: 
+  operation_type_id: 
+  observation_id: "230"
+  id: "289"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_855: 
+  operation_type_id: 
+  observation_id: "860"
+  id: "1088"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_723: 
+  operation_type_id: 
+  observation_id: "730"
+  id: "947"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_038: 
+  operation_type_id: 
+  observation_id: "54"
+  id: "79"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_856: 
+  operation_type_id: 
+  observation_id: "861"
+  id: "1089"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_724: 
+  operation_type_id: 
+  observation_id: "731"
+  id: "948"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_170: 
+  operation_type_id: 
+  observation_id: "231"
+  id: "290"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_039: 
+  operation_type_id: 
+  observation_id: "55"
+  id: "80"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_857: 
+  operation_type_id: 
+  observation_id: "862"
+  id: "1090"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_725: 
+  operation_type_id: 
+  observation_id: "732"
+  id: "949"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_171: 
+  operation_type_id: 
+  observation_id: "232"
+  id: "291"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_858: 
+  operation_type_id: 
+  observation_id: "863"
+  id: "1091"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_726: 
+  operation_type_id: 
+  observation_id: "733"
+  id: "950"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_040: 
+  operation_type_id: 
+  observation_id: "56"
+  id: "81"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_172: 
+  operation_type_id: 
+  observation_id: "233"
+  id: "292"
+  hours: 
+  comment: 
+  person_id: 
+activities_859: 
+  operation_type_id: 
+  observation_id: "864"
+  id: "1093"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_727: 
+  operation_type_id: 
+  observation_id: "734"
+  id: "951"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_041: 
+  operation_type_id: 
+  observation_id: "57"
+  id: "82"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_173: 
+  operation_type_id: 
+  observation_id: "235"
+  id: "294"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_728: 
+  operation_type_id: 
+  observation_id: "735"
+  id: "952"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_042: 
+  operation_type_id: 
+  observation_id: "58"
+  id: "83"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_174: 
+  operation_type_id: 
+  observation_id: "236"
+  id: "295"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_729: 
+  operation_type_id: 
+  observation_id: "736"
+  id: "953"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_043: 
+  operation_type_id: 
+  observation_id: "60"
+  id: "86"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_175: 
+  operation_type_id: 
+  observation_id: "237"
+  id: "296"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_860: 
+  operation_type_id: 
+  observation_id: "865"
+  id: "1094"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_044: 
+  operation_type_id: 
+  observation_id: "59"
+  id: "87"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_176: 
+  operation_type_id: 
+  observation_id: "234"
+  id: "297"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_861: 
+  operation_type_id: 
+  observation_id: "866"
+  id: "1095"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_045: 
+  operation_type_id: 
+  observation_id: "61"
+  id: "88"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_177: 
+  operation_type_id: 
+  observation_id: "239"
+  id: "299"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_862: 
+  operation_type_id: 
+  observation_id: "867"
+  id: "1096"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_730: 
+  operation_type_id: 
+  observation_id: "737"
+  id: "954"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_863: 
+  operation_type_id: 
+  observation_id: "868"
+  id: "1097"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_046: 
+  operation_type_id: 
+  observation_id: "62"
+  id: "89"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_178: 
+  operation_type_id: 
+  observation_id: "240"
+  id: "300"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_731: 
+  operation_type_id: 
+  observation_id: "738"
+  id: "955"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_864: 
+  operation_type_id: 
+  observation_id: "869"
+  id: "1098"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_047: 
+  operation_type_id: 
+  observation_id: "63"
+  id: "90"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_179: 
+  operation_type_id: 
+  observation_id: "242"
+  id: "302"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_600: 
+  operation_type_id: 
+  observation_id: "607"
+  id: "811"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_732: 
+  operation_type_id: 
+  observation_id: "739"
+  id: "956"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_865: 
+  operation_type_id: 
+  observation_id: "870"
+  id: "1099"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_048: 
+  operation_type_id: 
+  observation_id: "64"
+  id: "91"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_601: 
+  operation_type_id: 
+  observation_id: "609"
+  id: "815"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_733: 
+  operation_type_id: 
+  observation_id: "740"
+  id: "957"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_866: 
+  operation_type_id: 
+  observation_id: "872"
+  id: "1101"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_180: 
+  operation_type_id: 
+  observation_id: "243"
+  id: "303"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_049: 
+  operation_type_id: 
+  observation_id: "65"
+  id: "92"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_602: 
+  operation_type_id: 
+  observation_id: "608"
+  id: "816"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_734: 
+  operation_type_id: 
+  observation_id: "741"
+  id: "958"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_867: 
+  operation_type_id: 
+  observation_id: "873"
+  id: "1102"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_603: 
+  operation_type_id: 
+  observation_id: "608"
+  id: "817"
+  hours: 
+  comment: 
+  person_id: 
+activities_735: 
+  operation_type_id: 
+  observation_id: "741"
+  id: "959"
+  hours: 
+  comment: 
+  person_id: 
+activities_181: 
+  operation_type_id: 
+  observation_id: "241"
+  id: "304"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_868: 
+  operation_type_id: 
+  observation_id: "874"
+  id: "1103"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_604: 
+  operation_type_id: 
+  observation_id: "608"
+  id: "818"
+  hours: 
+  comment: 
+  person_id: 
+activities_736: 
+  operation_type_id: 
+  observation_id: "742"
+  id: "960"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_050: 
+  operation_type_id: 
+  observation_id: "66"
+  id: "93"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_182: 
+  operation_type_id: 
+  observation_id: "244"
+  id: "305"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_869: 
+  operation_type_id: 
+  observation_id: "871"
+  id: "1104"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_605: 
+  operation_type_id: 
+  observation_id: "611"
+  id: "819"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_737: 
+  operation_type_id: 
+  observation_id: "743"
+  id: "961"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_051: 
+  operation_type_id: 
+  observation_id: "67"
+  id: "94"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_183: 
+  operation_type_id: 
+  observation_id: "246"
+  id: "308"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_606: 
+  operation_type_id: 
+  observation_id: "612"
+  id: "820"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_738: 
+  operation_type_id: 
+  observation_id: "744"
+  id: "962"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_052: 
+  operation_type_id: 
+  observation_id: "69"
+  id: "96"
+  hours: 
+  comment: 
+  person_id: "10"
+activities_184: 
+  operation_type_id: 
+  observation_id: "247"
+  id: "309"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_870: 
+  operation_type_id: 
+  observation_id: "876"
+  id: "1106"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_607: 
+  operation_type_id: 
+  observation_id: "613"
+  id: "821"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_739: 
+  operation_type_id: 
+  observation_id: "745"
+  id: "963"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_053: 
+  operation_type_id: 
+  observation_id: "71"
+  id: "98"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_185: 
+  operation_type_id: 
+  observation_id: "248"
+  id: "310"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_608: 
+  operation_type_id: 
+  observation_id: "614"
+  id: "822"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_054: 
+  operation_type_id: 
+  observation_id: "72"
+  id: "99"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_186: 
+  operation_type_id: 
+  observation_id: "249"
+  id: "311"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_871: 
+  operation_type_id: 
+  observation_id: "877"
+  id: "1107"
+  hours: 
+  comment: 
+  person_id: "8"
+activities_609: 
+  operation_type_id: 
+  observation_id: "615"
+  id: "823"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_055: 
+  operation_type_id: 
+  observation_id: "73"
+  id: "101"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_187: 
+  operation_type_id: 
+  observation_id: "250"
+  id: "312"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_872: 
+  operation_type_id: 
+  observation_id: "878"
+  id: "1109"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_740: 
+  operation_type_id: 
+  observation_id: "746"
+  id: "964"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_056: 
+  operation_type_id: 
+  observation_id: "74"
+  id: "102"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_188: 
+  operation_type_id: 
+  observation_id: "251"
+  id: "314"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_873: 
+  operation_type_id: 
+  observation_id: "879"
+  id: "1110"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_741: 
+  operation_type_id: 
+  observation_id: "747"
+  id: "965"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_874: 
+  operation_type_id: 
+  observation_id: "880"
+  id: "1111"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_610: 
+  operation_type_id: 
+  observation_id: "616"
+  id: "824"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_742: 
+  operation_type_id: 
+  observation_id: "748"
+  id: "966"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_057: 
+  operation_type_id: 
+  observation_id: "75"
+  id: "103"
+  hours: "2"
+  comment: 
+  person_id: "1"
+activities_189: 
+  operation_type_id: 
+  observation_id: "252"
+  id: "315"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_875: 
+  operation_type_id: 
+  observation_id: "881"
+  id: "1113"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_611: 
+  operation_type_id: 
+  observation_id: "617"
+  id: "825"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_743: 
+  operation_type_id: 
+  observation_id: "749"
+  id: "967"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_058: 
+  operation_type_id: 
+  observation_id: "76"
+  id: "104"
+  hours: "2.5"
+  comment: 
+  person_id: "1"
+activities_876: 
+  operation_type_id: 
+  observation_id: "882"
+  id: "1114"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_612: 
+  operation_type_id: 
+  observation_id: "619"
+  id: "828"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_744: 
+  operation_type_id: 
+  observation_id: "749"
+  id: "968"
+  hours: 
+  comment: 
+  person_id: 
+activities_190: 
+  operation_type_id: 
+  observation_id: "253"
+  id: "317"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_059: 
+  operation_type_id: 
+  observation_id: "77"
+  id: "105"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_877: 
+  operation_type_id: 
+  observation_id: "883"
+  id: "1115"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_613: 
+  operation_type_id: 
+  observation_id: "618"
+  id: "829"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_745: 
+  operation_type_id: 
+  observation_id: "750"
+  id: "969"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_191: 
+  operation_type_id: 
+  observation_id: "254"
+  id: "318"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_878: 
+  operation_type_id: 
+  observation_id: "884"
+  id: "1117"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_614: 
+  operation_type_id: 
+  observation_id: "620"
+  id: "830"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_746: 
+  operation_type_id: 
+  observation_id: "751"
+  id: "970"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_060: 
+  operation_type_id: 
+  observation_id: "78"
+  id: "106"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_192: 
+  operation_type_id: 
+  observation_id: "255"
+  id: "319"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_879: 
+  operation_type_id: 
+  observation_id: "885"
+  id: "1118"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_615: 
+  operation_type_id: 
+  observation_id: "623"
+  id: "832"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_747: 
+  operation_type_id: 
+  observation_id: "752"
+  id: "971"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_061: 
+  operation_type_id: 
+  observation_id: "80"
+  id: "108"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_193: 
+  operation_type_id: 
+  observation_id: "258"
+  id: "322"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_616: 
+  operation_type_id: 
+  observation_id: "624"
+  id: "833"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_748: 
+  operation_type_id: 
+  observation_id: "753"
+  id: "972"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_062: 
+  operation_type_id: 
+  observation_id: "81"
+  id: "109"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_194: 
+  operation_type_id: 
+  observation_id: "259"
+  id: "323"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_880: 
+  operation_type_id: 
+  observation_id: "886"
+  id: "1119"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_617: 
+  operation_type_id: 
+  observation_id: "625"
+  id: "834"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_749: 
+  operation_type_id: 
+  observation_id: "754"
+  id: "973"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_063: 
+  operation_type_id: 
+  observation_id: "82"
+  id: "110"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_195: 
+  operation_type_id: 
+  observation_id: "261"
+  id: "325"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_881: 
+  operation_type_id: 
+  observation_id: "887"
+  id: "1120"
+  hours: 
+  comment: 
+  person_id: 
+activities_618: 
+  operation_type_id: 
+  observation_id: "626"
+  id: "835"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_064: 
+  operation_type_id: 
+  observation_id: "83"
+  id: "112"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_196: 
+  operation_type_id: 
+  observation_id: "16"
+  id: "326"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_619: 
+  operation_type_id: 
+  observation_id: "626"
+  id: "836"
+  hours: 
+  comment: 
+  person_id: "6"
+activities_065: 
+  operation_type_id: 
+  observation_id: "85"
+  id: "114"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_197: 
+  operation_type_id: 
+  observation_id: "17"
+  id: "327"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_882: 
+  operation_type_id: 
+  observation_id: "888"
+  id: "1121"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_066: 
+  operation_type_id: 
+  observation_id: "86"
+  id: "115"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_198: 
+  operation_type_id: 
+  observation_id: "18"
+  id: "328"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_750: 
+  operation_type_id: 
+  observation_id: "754"
+  id: "974"
+  hours: 
+  comment: 
+  person_id: 
+activities_883: 
+  operation_type_id: 
+  observation_id: "889"
+  id: "1122"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_067: 
+  operation_type_id: 
+  observation_id: "88"
+  id: "117"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_199: 
+  operation_type_id: 
+  observation_id: "19"
+  id: "329"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_751: 
+  operation_type_id: 
+  observation_id: "755"
+  id: "975"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_884: 
+  operation_type_id: 
+  observation_id: "890"
+  id: "1123"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_620: 
+  operation_type_id: 
+  observation_id: "627"
+  id: "837"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_752: 
+  operation_type_id: 
+  observation_id: "756"
+  id: "976"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_885: 
+  operation_type_id: 
+  observation_id: "891"
+  id: "1124"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_068: 
+  operation_type_id: 
+  observation_id: "89"
+  id: "118"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_621: 
+  operation_type_id: 
+  observation_id: "629"
+  id: "841"
+  hours: 
+  comment: 
+  person_id: "9"
+activities_753: 
+  operation_type_id: 
+  observation_id: "757"
+  id: "977"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_886: 
+  operation_type_id: 
+  observation_id: "892"
+  id: "1125"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_069: 
+  operation_type_id: 
+  observation_id: "90"
+  id: "119"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_622: 
+  operation_type_id: 
+  observation_id: "629"
+  id: "842"
+  hours: 
+  comment: 
+  person_id: "14"
+activities_754: 
+  operation_type_id: 
+  observation_id: "758"
+  id: "978"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_887: 
+  operation_type_id: 
+  observation_id: "893"
+  id: "1126"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_623: 
+  operation_type_id: 
+  observation_id: "629"
+  id: "843"
+  hours: 
+  comment: 
+  person_id: "8"
+activities_755: 
+  operation_type_id: 
+  observation_id: "759"
+  id: "979"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_888: 
+  operation_type_id: 
+  observation_id: "894"
+  id: "1127"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_070: 
+  operation_type_id: 
+  observation_id: "91"
+  id: "120"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_624: 
+  operation_type_id: 
+  observation_id: "630"
+  id: "844"
+  hours: 
+  comment: 
+  person_id: "10"
+activities_756: 
+  operation_type_id: 
+  observation_id: "760"
+  id: "980"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_889: 
+  operation_type_id: 
+  observation_id: "895"
+  id: "1128"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_071: 
+  operation_type_id: 
+  observation_id: "92"
+  id: "121"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_625: 
+  operation_type_id: 
+  observation_id: "631"
+  id: "845"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_757: 
+  operation_type_id: 
+  observation_id: "761"
+  id: "981"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_072: 
+  operation_type_id: 
+  observation_id: "95"
+  id: "124"
+  hours: 
+  comment: 
+  person_id: 
+activities_626: 
+  operation_type_id: 
+  observation_id: "631"
+  id: "846"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_758: 
+  operation_type_id: 
+  observation_id: "762"
+  id: "982"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_890: 
+  operation_type_id: 
+  observation_id: "896"
+  id: "1129"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_073: 
+  operation_type_id: 
+  observation_id: "98"
+  id: "127"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_627: 
+  operation_type_id: 
+  observation_id: "632"
+  id: "847"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_759: 
+  operation_type_id: 
+  observation_id: "763"
+  id: "983"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_891: 
+  operation_type_id: 
+  observation_id: "897"
+  id: "1130"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_074: 
+  operation_type_id: 
+  observation_id: "100"
+  id: "129"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_628: 
+  operation_type_id: 
+  observation_id: "633"
+  id: "848"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_892: 
+  operation_type_id: 
+  observation_id: "898"
+  id: "1131"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_075: 
+  operation_type_id: 
+  observation_id: "102"
+  id: "131"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_760: 
+  operation_type_id: 
+  observation_id: "764"
+  id: "984"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_629: 
+  operation_type_id: 
+  observation_id: "634"
+  id: "849"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_076: 
+  operation_type_id: 
+  observation_id: "103"
+  id: "132"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_893: 
+  operation_type_id: 
+  observation_id: "899"
+  id: "1132"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_077: 
+  operation_type_id: 
+  observation_id: "104"
+  id: "133"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_761: 
+  operation_type_id: 
+  observation_id: "765"
+  id: "985"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_894: 
+  operation_type_id: 
+  observation_id: "900"
+  id: "1135"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_078: 
+  operation_type_id: 
+  observation_id: "105"
+  id: "134"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_630: 
+  operation_type_id: 
+  observation_id: "635"
+  id: "850"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_762: 
+  operation_type_id: 
+  observation_id: "766"
+  id: "986"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_895: 
+  operation_type_id: 
+  observation_id: "901"
+  id: "1136"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_631: 
+  operation_type_id: 
+  observation_id: "636"
+  id: "851"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_763: 
+  operation_type_id: 
+  observation_id: "767"
+  id: "987"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_896: 
+  operation_type_id: 
+  observation_id: "902"
+  id: "1137"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_079: 
+  operation_type_id: 
+  observation_id: "106"
+  id: "135"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_500: 
+  operation_type_id: 
+  observation_id: "513"
+  id: "685"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_632: 
+  operation_type_id: 
+  observation_id: "637"
+  id: "852"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_764: 
+  operation_type_id: 
+  observation_id: "768"
+  id: "988"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_897: 
+  operation_type_id: 
+  observation_id: "903"
+  id: "1139"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_501: 
+  operation_type_id: 
+  observation_id: "514"
+  id: "686"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_633: 
+  operation_type_id: 
+  observation_id: "637"
+  id: "853"
+  hours: 
+  comment: 
+  person_id: 
+activities_765: 
+  operation_type_id: 
+  observation_id: "769"
+  id: "989"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_898: 
+  operation_type_id: 
+  observation_id: "904"
+  id: "1140"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_502: 
+  operation_type_id: 
+  observation_id: "515"
+  id: "687"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_634: 
+  operation_type_id: 
+  observation_id: "638"
+  id: "854"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_766: 
+  operation_type_id: 
+  observation_id: "770"
+  id: "990"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_080: 
+  operation_type_id: 
+  observation_id: "107"
+  id: "137"
+  hours: 
+  comment: 
+  person_id: "8"
+activities_899: 
+  operation_type_id: 
+  observation_id: "905"
+  id: "1141"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_503: 
+  operation_type_id: 
+  observation_id: "516"
+  id: "688"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_635: 
+  operation_type_id: 
+  observation_id: "639"
+  id: "855"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_767: 
+  operation_type_id: 
+  observation_id: "771"
+  id: "991"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_081: 
+  operation_type_id: 
+  observation_id: "108"
+  id: "138"
+  hours: 
+  comment: 
+  person_id: "8"
+activities_504: 
+  operation_type_id: 
+  observation_id: "517"
+  id: "690"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_636: 
+  operation_type_id: 
+  observation_id: "640"
+  id: "856"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_768: 
+  operation_type_id: 
+  observation_id: "772"
+  id: "992"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_082: 
+  operation_type_id: 
+  observation_id: "109"
+  id: "139"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_505: 
+  operation_type_id: 
+  observation_id: "518"
+  id: "691"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_637: 
+  operation_type_id: 
+  observation_id: "641"
+  id: "857"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_769: 
+  operation_type_id: 
+  observation_id: "773"
+  id: "993"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_083: 
+  operation_type_id: 
+  observation_id: "110"
+  id: "141"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_506: 
+  operation_type_id: 
+  observation_id: "519"
+  id: "692"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_638: 
+  operation_type_id: 
+  observation_id: "642"
+  id: "858"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_084: 
+  operation_type_id: 
+  observation_id: "111"
+  id: "142"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_770: 
+  operation_type_id: 
+  observation_id: "774"
+  id: "994"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_507: 
+  operation_type_id: 
+  observation_id: "520"
+  id: "693"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_639: 
+  operation_type_id: 
+  observation_id: "643"
+  id: "859"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_085: 
+  operation_type_id: 
+  observation_id: "112"
+  id: "144"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_771: 
+  operation_type_id: 
+  observation_id: "775"
+  id: "995"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_508: 
+  operation_type_id: 
+  observation_id: "521"
+  id: "694"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_086: 
+  operation_type_id: 
+  observation_id: "113"
+  id: "145"
+  hours: 
+  comment: 
+  person_id: "11"
+activities_509: 
+  operation_type_id: 
+  observation_id: "522"
+  id: "695"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_087: 
+  operation_type_id: 
+  observation_id: "114"
+  id: "146"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_640: 
+  operation_type_id: 
+  observation_id: "644"
+  id: "860"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_772: 
+  operation_type_id: 
+  observation_id: "776"
+  id: "996"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_088: 
+  operation_type_id: 
+  observation_id: "115"
+  id: "147"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_641: 
+  operation_type_id: 
+  observation_id: "646"
+  id: "862"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_773: 
+  operation_type_id: 
+  observation_id: "777"
+  id: "997"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_089: 
+  operation_type_id: 
+  observation_id: "116"
+  id: "148"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_510: 
+  operation_type_id: 
+  observation_id: "523"
+  id: "696"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_642: 
+  operation_type_id: 
+  observation_id: "647"
+  id: "863"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_774: 
+  operation_type_id: 
+  observation_id: "778"
+  id: "998"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_511: 
+  operation_type_id: 
+  observation_id: "524"
+  id: "698"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_643: 
+  operation_type_id: 
+  observation_id: "648"
+  id: "864"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_775: 
+  operation_type_id: 
+  observation_id: "779"
+  id: "999"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_512: 
+  operation_type_id: 
+  observation_id: "525"
+  id: "699"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_644: 
+  operation_type_id: 
+  observation_id: "649"
+  id: "865"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_776: 
+  operation_type_id: 
+  observation_id: "780"
+  id: "1000"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_090: 
+  operation_type_id: 
+  observation_id: "117"
+  id: "149"
+  hours: 
+  comment: 
+  person_id: "11"
+activities_645: 
+  operation_type_id: 
+  observation_id: "650"
+  id: "866"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_777: 
+  operation_type_id: 
+  observation_id: "781"
+  id: "1001"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_091: 
+  operation_type_id: 
+  observation_id: "119"
+  id: "151"
+  hours: 
+  comment: 
+  person_id: "5"
+activities_513: 
+  operation_type_id: 
+  observation_id: "526"
+  id: "700"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_646: 
+  operation_type_id: 
+  observation_id: "651"
+  id: "867"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_778: 
+  operation_type_id: 
+  observation_id: "782"
+  id: "1002"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_092: 
+  operation_type_id: 
+  observation_id: "120"
+  id: "152"
+  hours: 
+  comment: 
+  person_id: 
+activities_514: 
+  operation_type_id: 
+  observation_id: "527"
+  id: "701"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_647: 
+  operation_type_id: 
+  observation_id: "652"
+  id: "868"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_779: 
+  operation_type_id: 
+  observation_id: "783"
+  id: "1003"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_093: 
+  operation_type_id: 
+  observation_id: "121"
+  id: "153"
+  hours: 
+  comment: 
+  person_id: 
+activities_515: 
+  operation_type_id: 
+  observation_id: "528"
+  id: "703"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_648: 
+  operation_type_id: 
+  observation_id: "653"
+  id: "869"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_094: 
+  operation_type_id: 
+  observation_id: "122"
+  id: "154"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_516: 
+  operation_type_id: 
+  observation_id: "529"
+  id: "705"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_649: 
+  operation_type_id: 
+  observation_id: "654"
+  id: "870"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_095: 
+  operation_type_id: 
+  observation_id: "123"
+  id: "155"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_780: 
+  operation_type_id: 
+  observation_id: "784"
+  id: "1004"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_517: 
+  operation_type_id: 
+  observation_id: "530"
+  id: "706"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_096: 
+  operation_type_id: 
+  observation_id: "124"
+  id: "156"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_781: 
+  operation_type_id: 
+  observation_id: "785"
+  id: "1005"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_518: 
+  operation_type_id: 
+  observation_id: "531"
+  id: "707"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_097: 
+  operation_type_id: 
+  observation_id: "125"
+  id: "157"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_650: 
+  operation_type_id: 
+  observation_id: "655"
+  id: "871"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_782: 
+  operation_type_id: 
+  observation_id: "786"
+  id: "1006"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_519: 
+  operation_type_id: 
+  observation_id: "532"
+  id: "708"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_098: 
+  operation_type_id: 
+  observation_id: "126"
+  id: "158"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_099: 
+  operation_type_id: 
+  observation_id: "127"
+  id: "159"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_651: 
+  operation_type_id: 
+  observation_id: "656"
+  id: "872"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_783: 
+  operation_type_id: 
+  observation_id: "787"
+  id: "1007"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_520: 
+  operation_type_id: 
+  observation_id: "533"
+  id: "709"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_652: 
+  operation_type_id: 
+  observation_id: "657"
+  id: "873"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_784: 
+  operation_type_id: 
+  observation_id: "788"
+  id: "1008"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_521: 
+  operation_type_id: 
+  observation_id: "534"
+  id: "710"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_653: 
+  operation_type_id: 
+  observation_id: "658"
+  id: "874"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_785: 
+  operation_type_id: 
+  observation_id: "440"
+  id: "1009"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_522: 
+  operation_type_id: 
+  observation_id: "535"
+  id: "711"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_654: 
+  operation_type_id: 
+  observation_id: "659"
+  id: "875"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_786: 
+  operation_type_id: 
+  observation_id: "597"
+  id: "1010"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_787: 
+  operation_type_id: 
+  observation_id: "789"
+  id: "1011"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_523: 
+  operation_type_id: 
+  observation_id: "536"
+  id: "712"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_655: 
+  operation_type_id: 
+  observation_id: "660"
+  id: "876"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_788: 
+  operation_type_id: 
+  observation_id: "790"
+  id: "1012"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_524: 
+  operation_type_id: 
+  observation_id: "537"
+  id: "713"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_656: 
+  operation_type_id: 
+  observation_id: "661"
+  id: "877"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_789: 
+  operation_type_id: 
+  observation_id: "791"
+  id: "1013"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_525: 
+  operation_type_id: 
+  observation_id: "538"
+  id: "714"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_657: 
+  operation_type_id: 
+  observation_id: "662"
+  id: "878"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_526: 
+  operation_type_id: 
+  observation_id: "539"
+  id: "715"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_658: 
+  operation_type_id: 
+  observation_id: "663"
+  id: "879"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_790: 
+  operation_type_id: 
+  observation_id: "792"
+  id: "1014"
+  hours: "4"
+  comment: 
+  person_id: "1"
+activities_527: 
+  operation_type_id: 
+  observation_id: "540"
+  id: "716"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_659: 
+  operation_type_id: 
+  observation_id: "664"
+  id: "880"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_791: 
+  operation_type_id: 
+  observation_id: "793"
+  id: "1015"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_528: 
+  operation_type_id: 
+  observation_id: "541"
+  id: "717"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_792: 
+  operation_type_id: 
+  observation_id: "794"
+  id: "1016"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_660: 
+  operation_type_id: 
+  observation_id: "665"
+  id: "881"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_529: 
+  operation_type_id: 
+  observation_id: "542"
+  id: "718"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_793: 
+  operation_type_id: 
+  observation_id: "795"
+  id: "1019"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_661: 
+  operation_type_id: 
+  observation_id: "666"
+  id: "882"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_794: 
+  operation_type_id: 
+  observation_id: "795"
+  id: "1020"
+  hours: 
+  comment: 
+  person_id: "15"
+activities_530: 
+  operation_type_id: 
+  observation_id: "543"
+  id: "719"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_662: 
+  operation_type_id: 
+  observation_id: "667"
+  id: "883"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_795: 
+  operation_type_id: 
+  observation_id: "796"
+  id: "1021"
+  hours: 
+  comment: 
+  person_id: "15"
+activities_531: 
+  operation_type_id: 
+  observation_id: "544"
+  id: "720"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_663: 
+  operation_type_id: 
+  observation_id: "668"
+  id: "884"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_796: 
+  operation_type_id: 
+  observation_id: "797"
+  id: "1022"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_400: 
+  operation_type_id: 
+  observation_id: "411"
+  id: "560"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_532: 
+  operation_type_id: 
+  observation_id: "545"
+  id: "721"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_664: 
+  operation_type_id: 
+  observation_id: "669"
+  id: "885"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_797: 
+  operation_type_id: 
+  observation_id: "798"
+  id: "1023"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_401: 
+  operation_type_id: 
+  observation_id: "412"
+  id: "561"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_533: 
+  operation_type_id: 
+  observation_id: "546"
+  id: "722"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_665: 
+  operation_type_id: 
+  observation_id: "670"
+  id: "886"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_798: 
+  operation_type_id: 
+  observation_id: "798"
+  id: "1024"
+  hours: 
+  comment: 
+  person_id: "15"
+activities_402: 
+  operation_type_id: 
+  observation_id: "413"
+  id: "562"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_534: 
+  operation_type_id: 
+  observation_id: "547"
+  id: "723"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_666: 
+  operation_type_id: 
+  observation_id: "671"
+  id: "887"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_799: 
+  operation_type_id: 
+  observation_id: "799"
+  id: "1025"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_403: 
+  operation_type_id: 
+  observation_id: "414"
+  id: "563"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_535: 
+  operation_type_id: 
+  observation_id: "548"
+  id: "724"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_667: 
+  operation_type_id: 
+  observation_id: "673"
+  id: "889"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_404: 
+  operation_type_id: 
+  observation_id: "415"
+  id: "564"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_536: 
+  operation_type_id: 
+  observation_id: "549"
+  id: "725"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_668: 
+  operation_type_id: 
+  observation_id: "674"
+  id: "890"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_405: 
+  operation_type_id: 
+  observation_id: "416"
+  id: "565"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_537: 
+  operation_type_id: 
+  observation_id: "550"
+  id: "726"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_669: 
+  operation_type_id: 
+  observation_id: "675"
+  id: "891"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_406: 
+  operation_type_id: 
+  observation_id: "417"
+  id: "566"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_538: 
+  operation_type_id: 
+  observation_id: "551"
+  id: "727"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_407: 
+  operation_type_id: 
+  observation_id: "418"
+  id: "567"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_539: 
+  operation_type_id: 
+  observation_id: "552"
+  id: "728"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_670: 
+  operation_type_id: 
+  observation_id: "676"
+  id: "892"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_408: 
+  operation_type_id: 
+  observation_id: "419"
+  id: "568"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_671: 
+  operation_type_id: 
+  observation_id: "676"
+  id: "893"
+  hours: 
+  comment: 
+  person_id: 
+activities_409: 
+  operation_type_id: 
+  observation_id: "420"
+  id: "569"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_540: 
+  operation_type_id: 
+  observation_id: "553"
+  id: "729"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_672: 
+  operation_type_id: 
+  observation_id: "677"
+  id: "894"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_541: 
+  operation_type_id: 
+  observation_id: "554"
+  id: "730"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_673: 
+  operation_type_id: 
+  observation_id: "678"
+  id: "895"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_410: 
+  operation_type_id: 
+  observation_id: "421"
+  id: "570"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_542: 
+  operation_type_id: 
+  observation_id: "555"
+  id: "731"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_674: 
+  operation_type_id: 
+  observation_id: "679"
+  id: "896"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_411: 
+  operation_type_id: 
+  observation_id: "422"
+  id: "571"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_543: 
+  operation_type_id: 
+  observation_id: "556"
+  id: "732"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_675: 
+  operation_type_id: 
+  observation_id: "680"
+  id: "897"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_412: 
+  operation_type_id: 
+  observation_id: "423"
+  id: "572"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_544: 
+  operation_type_id: 
+  observation_id: "557"
+  id: "733"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_676: 
+  operation_type_id: 
+  observation_id: "681"
+  id: "898"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_413: 
+  operation_type_id: 
+  observation_id: "424"
+  id: "574"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_545: 
+  operation_type_id: 
+  observation_id: "558"
+  id: "734"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_677: 
+  operation_type_id: 
+  observation_id: "682"
+  id: "899"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_414: 
+  operation_type_id: 
+  observation_id: "425"
+  id: "576"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_546: 
+  operation_type_id: 
+  observation_id: "559"
+  id: "735"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_678: 
+  operation_type_id: 
+  observation_id: "683"
+  id: "900"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_415: 
+  operation_type_id: 
+  observation_id: "426"
+  id: "577"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_547: 
+  operation_type_id: 
+  observation_id: "560"
+  id: "736"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_679: 
+  operation_type_id: 
+  observation_id: "684"
+  id: "901"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_416: 
+  operation_type_id: 
+  observation_id: "427"
+  id: "578"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_548: 
+  operation_type_id: 
+  observation_id: "561"
+  id: "737"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_680: 
+  operation_type_id: 
+  observation_id: "685"
+  id: "902"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_417: 
+  operation_type_id: 
+  observation_id: "428"
+  id: "579"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_549: 
+  operation_type_id: 
+  observation_id: "562"
+  id: "738"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_681: 
+  operation_type_id: 
+  observation_id: "686"
+  id: "903"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_418: 
+  operation_type_id: 
+  observation_id: "429"
+  id: "581"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_550: 
+  operation_type_id: 
+  observation_id: "563"
+  id: "739"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_682: 
+  operation_type_id: 
+  observation_id: "687"
+  id: "904"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_419: 
+  operation_type_id: 
+  observation_id: "430"
+  id: "582"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_551: 
+  operation_type_id: 
+  observation_id: "564"
+  id: "740"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_683: 
+  operation_type_id: 
+  observation_id: "688"
+  id: "905"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_420: 
+  operation_type_id: 
+  observation_id: "431"
+  id: "583"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_552: 
+  operation_type_id: 
+  observation_id: "565"
+  id: "741"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_684: 
+  operation_type_id: 
+  observation_id: "689"
+  id: "906"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_421: 
+  operation_type_id: 
+  observation_id: "432"
+  id: "584"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_553: 
+  operation_type_id: 
+  observation_id: "566"
+  id: "742"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_685: 
+  operation_type_id: 
+  observation_id: "690"
+  id: "907"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_422: 
+  operation_type_id: 
+  observation_id: "433"
+  id: "585"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_554: 
+  operation_type_id: 
+  observation_id: "567"
+  id: "743"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_686: 
+  operation_type_id: 
+  observation_id: "691"
+  id: "908"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_423: 
+  operation_type_id: 
+  observation_id: "434"
+  id: "586"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_555: 
+  operation_type_id: 
+  observation_id: "438"
+  id: "744"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_687: 
+  operation_type_id: 
+  observation_id: "692"
+  id: "909"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_424: 
+  operation_type_id: 
+  observation_id: "435"
+  id: "587"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_556: 
+  operation_type_id: 
+  observation_id: "568"
+  id: "745"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_688: 
+  operation_type_id: 
+  observation_id: "693"
+  id: "910"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_425: 
+  operation_type_id: 
+  observation_id: "436"
+  id: "588"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_557: 
+  operation_type_id: 
+  observation_id: "569"
+  id: "746"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_689: 
+  operation_type_id: 
+  observation_id: "694"
+  id: "911"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_426: 
+  operation_type_id: 
+  observation_id: "437"
+  id: "590"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_558: 
+  operation_type_id: 
+  observation_id: "570"
+  id: "747"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_690: 
+  operation_type_id: 
+  observation_id: "695"
+  id: "912"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_427: 
+  operation_type_id: 
+  observation_id: "439"
+  id: "596"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_559: 
+  operation_type_id: 
+  observation_id: "571"
+  id: "750"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_691: 
+  operation_type_id: 
+  observation_id: "696"
+  id: "913"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_428: 
+  operation_type_id: 
+  observation_id: "441"
+  id: "598"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_560: 
+  operation_type_id: 
+  observation_id: "571"
+  id: "751"
+  hours: 
+  comment: 
+  person_id: 
+activities_692: 
+  operation_type_id: 
+  observation_id: "697"
+  id: "914"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_429: 
+  operation_type_id: 
+  observation_id: "442"
+  id: "599"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_693: 
+  operation_type_id: 
+  observation_id: "698"
+  id: "915"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_561: 
+  operation_type_id: 
+  observation_id: "573"
+  id: "753"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_694: 
+  operation_type_id: 
+  observation_id: "699"
+  id: "916"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_430: 
+  operation_type_id: 
+  observation_id: "443"
+  id: "600"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_562: 
+  operation_type_id: 
+  observation_id: "573"
+  id: "754"
+  hours: 
+  comment: 
+  person_id: 
+activities_695: 
+  operation_type_id: 
+  observation_id: "700"
+  id: "917"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_431: 
+  operation_type_id: 
+  observation_id: "445"
+  id: "602"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_563: 
+  operation_type_id: 
+  observation_id: "574"
+  id: "755"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_696: 
+  operation_type_id: 
+  observation_id: "701"
+  id: "918"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_300: 
+  operation_type_id: 
+  observation_id: "312"
+  id: "445"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_432: 
+  operation_type_id: 
+  observation_id: "446"
+  id: "604"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_564: 
+  operation_type_id: 
+  observation_id: "575"
+  id: "756"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_697: 
+  operation_type_id: 
+  observation_id: "702"
+  id: "919"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_301: 
+  operation_type_id: 
+  observation_id: "313"
+  id: "446"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_433: 
+  operation_type_id: 
+  observation_id: "447"
+  id: "605"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_565: 
+  operation_type_id: 
+  observation_id: "576"
+  id: "757"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_698: 
+  operation_type_id: 
+  observation_id: "703"
+  id: "920"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_302: 
+  operation_type_id: 
+  observation_id: "314"
+  id: "447"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_434: 
+  operation_type_id: 
+  observation_id: "448"
+  id: "606"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_566: 
+  operation_type_id: 
+  observation_id: "577"
+  id: "759"
+  hours: 
+  comment: 
+  person_id: "8"
+activities_699: 
+  operation_type_id: 
+  observation_id: "704"
+  id: "921"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_303: 
+  operation_type_id: 
+  observation_id: "305"
+  id: "448"
+  hours: 
+  comment: 
+  person_id: 
+activities_435: 
+  operation_type_id: 
+  observation_id: "449"
+  id: "607"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_567: 
+  operation_type_id: 
+  observation_id: "578"
+  id: "760"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_304: 
+  operation_type_id: 
+  observation_id: "315"
+  id: "449"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_436: 
+  operation_type_id: 
+  observation_id: "450"
+  id: "608"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_568: 
+  operation_type_id: 
+  observation_id: "578"
+  id: "761"
+  hours: 
+  comment: 
+  person_id: "6"
+activities_305: 
+  operation_type_id: 
+  observation_id: "316"
+  id: "450"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_437: 
+  operation_type_id: 
+  observation_id: "451"
+  id: "609"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_569: 
+  operation_type_id: 
+  observation_id: "578"
+  id: "762"
+  hours: 
+  comment: 
+  person_id: "9"
+activities_306: 
+  operation_type_id: 
+  observation_id: "317"
+  id: "452"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_438: 
+  operation_type_id: 
+  observation_id: "444"
+  id: "610"
+  hours: 
+  comment: 
+  person_id: 
+activities_570: 
+  operation_type_id: 
+  observation_id: "579"
+  id: "765"
+  hours: 
+  comment: 
+  person_id: "8"
+activities_307: 
+  operation_type_id: 
+  observation_id: "318"
+  id: "453"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_439: 
+  operation_type_id: 
+  observation_id: "453"
+  id: "612"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_571: 
+  operation_type_id: 
+  observation_id: "579"
+  id: "766"
+  hours: 
+  comment: 
+  person_id: "9"
+activities_308: 
+  operation_type_id: 
+  observation_id: "319"
+  id: "454"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_440: 
+  operation_type_id: 
+  observation_id: "454"
+  id: "613"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_572: 
+  operation_type_id: 
+  observation_id: "580"
+  id: "768"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_309: 
+  operation_type_id: 
+  observation_id: "320"
+  id: "455"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_441: 
+  operation_type_id: 
+  observation_id: "455"
+  id: "615"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_573: 
+  operation_type_id: 
+  observation_id: "581"
+  id: "769"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_310: 
+  operation_type_id: 
+  observation_id: "321"
+  id: "456"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_442: 
+  operation_type_id: 
+  observation_id: "456"
+  id: "616"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_574: 
+  operation_type_id: 
+  observation_id: "583"
+  id: "773"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_311: 
+  operation_type_id: 
+  observation_id: "322"
+  id: "457"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_443: 
+  operation_type_id: 
+  observation_id: "457"
+  id: "617"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_575: 
+  operation_type_id: 
+  observation_id: "582"
+  id: "774"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_312: 
+  operation_type_id: 
+  observation_id: "323"
+  id: "458"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_444: 
+  operation_type_id: 
+  observation_id: "452"
+  id: "618"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_576: 
+  operation_type_id: 
+  observation_id: "582"
+  id: "775"
+  hours: 
+  comment: 
+  person_id: 
+activities_313: 
+  operation_type_id: 
+  observation_id: "324"
+  id: "459"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_445: 
+  operation_type_id: 
+  observation_id: "458"
+  id: "619"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_577: 
+  operation_type_id: 
+  observation_id: "584"
+  id: "776"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_314: 
+  operation_type_id: 
+  observation_id: "325"
+  id: "460"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_446: 
+  operation_type_id: 
+  observation_id: "459"
+  id: "620"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_578: 
+  operation_type_id: 
+  observation_id: "585"
+  id: "777"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_315: 
+  operation_type_id: 
+  observation_id: "326"
+  id: "461"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_447: 
+  operation_type_id: 
+  observation_id: "460"
+  id: "621"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_579: 
+  operation_type_id: 
+  observation_id: "586"
+  id: "780"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_316: 
+  operation_type_id: 
+  observation_id: "327"
+  id: "462"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_448: 
+  operation_type_id: 
+  observation_id: "461"
+  id: "622"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_580: 
+  operation_type_id: 
+  observation_id: "587"
+  id: "781"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_317: 
+  operation_type_id: 
+  observation_id: "328"
+  id: "463"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_449: 
+  operation_type_id: 
+  observation_id: "462"
+  id: "623"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_581: 
+  operation_type_id: 
+  observation_id: "588"
+  id: "783"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_318: 
+  operation_type_id: 
+  observation_id: "329"
+  id: "464"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_450: 
+  operation_type_id: 
+  observation_id: "463"
+  id: "624"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_582: 
+  operation_type_id: 
+  observation_id: "589"
+  id: "785"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_319: 
+  operation_type_id: 
+  observation_id: "330"
+  id: "465"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_451: 
+  operation_type_id: 
+  observation_id: "464"
+  id: "625"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_583: 
+  operation_type_id: 
+  observation_id: "590"
+  id: "786"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_320: 
+  operation_type_id: 
+  observation_id: "331"
+  id: "466"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_452: 
+  operation_type_id: 
+  observation_id: "465"
+  id: "626"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_584: 
+  operation_type_id: 
+  observation_id: "591"
+  id: "787"
+  hours: 
+  comment: 
+  person_id: "8"
+activities_321: 
+  operation_type_id: 
+  observation_id: "332"
+  id: "467"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_453: 
+  operation_type_id: 
+  observation_id: "466"
+  id: "627"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_585: 
+  operation_type_id: 
+  observation_id: "593"
+  id: "789"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_322: 
+  operation_type_id: 
+  observation_id: "333"
+  id: "468"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_454: 
+  operation_type_id: 
+  observation_id: "467"
+  id: "628"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_586: 
+  operation_type_id: 
+  observation_id: "594"
+  id: "790"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_455: 
+  operation_type_id: 
+  observation_id: "468"
+  id: "629"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_587: 
+  operation_type_id: 
+  observation_id: "595"
+  id: "791"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_323: 
+  operation_type_id: 
+  observation_id: "334"
+  id: "469"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_456: 
+  operation_type_id: 
+  observation_id: "469"
+  id: "630"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_588: 
+  operation_type_id: 
+  observation_id: "596"
+  id: "792"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_324: 
+  operation_type_id: 
+  observation_id: "335"
+  id: "470"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_457: 
+  operation_type_id: 
+  observation_id: "470"
+  id: "631"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_589: 
+  operation_type_id: 
+  observation_id: "599"
+  id: "800"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_325: 
+  operation_type_id: 
+  observation_id: "336"
+  id: "471"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_458: 
+  operation_type_id: 
+  observation_id: "471"
+  id: "632"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_326: 
+  operation_type_id: 
+  observation_id: "337"
+  id: "472"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_459: 
+  operation_type_id: 
+  observation_id: "472"
+  id: "633"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_590: 
+  operation_type_id: 
+  observation_id: "600"
+  id: "801"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_327: 
+  operation_type_id: 
+  observation_id: "339"
+  id: "474"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_591: 
+  operation_type_id: 
+  observation_id: "601"
+  id: "802"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_328: 
+  operation_type_id: 
+  observation_id: "340"
+  id: "475"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_460: 
+  operation_type_id: 
+  observation_id: "473"
+  id: "634"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_592: 
+  operation_type_id: 
+  observation_id: "601"
+  id: "803"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_329: 
+  operation_type_id: 
+  observation_id: "341"
+  id: "476"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_461: 
+  operation_type_id: 
+  observation_id: "474"
+  id: "635"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_593: 
+  operation_type_id: 
+  observation_id: "602"
+  id: "804"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_330: 
+  operation_type_id: 
+  observation_id: "342"
+  id: "477"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_462: 
+  operation_type_id: 
+  observation_id: "475"
+  id: "638"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_594: 
+  operation_type_id: 
+  observation_id: "603"
+  id: "805"
+  hours: 
+  comment: 
+  person_id: "10"
+activities_331: 
+  operation_type_id: 
+  observation_id: "343"
+  id: "478"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_463: 
+  operation_type_id: 
+  observation_id: "476"
+  id: "640"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_595: 
+  operation_type_id: 
+  observation_id: "604"
+  id: "806"
+  hours: 
+  comment: 
+  person_id: "10"
+activities_200: 
+  operation_type_id: 
+  observation_id: "199"
+  id: "330"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_332: 
+  operation_type_id: 
+  observation_id: "344"
+  id: "479"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_464: 
+  operation_type_id: 
+  observation_id: "477"
+  id: "642"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_596: 
+  operation_type_id: 
+  observation_id: "605"
+  id: "807"
+  hours: 
+  comment: 
+  person_id: "8"
+activities_201: 
+  operation_type_id: 
+  observation_id: "200"
+  id: "331"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_333: 
+  operation_type_id: 
+  observation_id: "338"
+  id: "480"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_465: 
+  operation_type_id: 
+  observation_id: "478"
+  id: "643"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_597: 
+  operation_type_id: 
+  observation_id: "606"
+  id: "808"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_202: 
+  operation_type_id: 
+  observation_id: "20"
+  id: "332"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_334: 
+  operation_type_id: 
+  observation_id: "345"
+  id: "481"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_466: 
+  operation_type_id: 
+  observation_id: "479"
+  id: "645"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_598: 
+  operation_type_id: 
+  observation_id: "607"
+  id: "809"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_203: 
+  operation_type_id: 
+  observation_id: "21"
+  id: "333"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_335: 
+  operation_type_id: 
+  observation_id: "346"
+  id: "482"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_467: 
+  operation_type_id: 
+  observation_id: "480"
+  id: "646"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_599: 
+  operation_type_id: 
+  observation_id: "607"
+  id: "810"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_204: 
+  operation_type_id: 
+  observation_id: "22"
+  id: "334"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_336: 
+  operation_type_id: 
+  observation_id: "347"
+  id: "483"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_468: 
+  operation_type_id: 
+  observation_id: "481"
+  id: "647"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_205: 
+  operation_type_id: 
+  observation_id: "23"
+  id: "335"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_337: 
+  operation_type_id: 
+  observation_id: "348"
+  id: "484"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_469: 
+  operation_type_id: 
+  observation_id: "482"
+  id: "648"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_206: 
+  operation_type_id: 
+  observation_id: "24"
+  id: "336"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_338: 
+  operation_type_id: 
+  observation_id: "349"
+  id: "486"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_470: 
+  operation_type_id: 
+  observation_id: "483"
+  id: "649"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_207: 
+  operation_type_id: 
+  observation_id: "262"
+  id: "337"
+  hours: 
+  comment: 
+  person_id: "5"
+activities_339: 
+  operation_type_id: 
+  observation_id: "350"
+  id: "487"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_471: 
+  operation_type_id: 
+  observation_id: "484"
+  id: "650"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_208: 
+  operation_type_id: 
+  observation_id: "263"
+  id: "338"
+  hours: 
+  comment: 
+  person_id: 
+activities_340: 
+  operation_type_id: 
+  observation_id: "351"
+  id: "488"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_472: 
+  operation_type_id: 
+  observation_id: "485"
+  id: "651"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_209: 
+  operation_type_id: 
+  observation_id: "68"
+  id: "339"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_341: 
+  operation_type_id: 
+  observation_id: "352"
+  id: "489"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_473: 
+  operation_type_id: 
+  observation_id: "486"
+  id: "652"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_210: 
+  operation_type_id: 
+  observation_id: "204"
+  id: "340"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_342: 
+  operation_type_id: 
+  observation_id: "353"
+  id: "490"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_474: 
+  operation_type_id: 
+  observation_id: "487"
+  id: "654"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_211: 
+  operation_type_id: 
+  observation_id: "34"
+  id: "341"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_343: 
+  operation_type_id: 
+  observation_id: "354"
+  id: "492"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_475: 
+  operation_type_id: 
+  observation_id: "488"
+  id: "655"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_212: 
+  operation_type_id: 
+  observation_id: "79"
+  id: "342"
+  hours: "1.5"
+  comment: 
+  person_id: "1"
+activities_344: 
+  operation_type_id: 
+  observation_id: "355"
+  id: "493"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_476: 
+  operation_type_id: 
+  observation_id: "490"
+  id: "657"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_213: 
+  operation_type_id: 
+  observation_id: "84"
+  id: "343"
+  hours: 
+  comment: 
+  person_id: "11"
+activities_345: 
+  operation_type_id: 
+  observation_id: "356"
+  id: "494"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_477: 
+  operation_type_id: 
+  observation_id: "491"
+  id: "658"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_214: 
+  operation_type_id: 
+  observation_id: "87"
+  id: "344"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_346: 
+  operation_type_id: 
+  observation_id: "357"
+  id: "495"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_478: 
+  operation_type_id: 
+  observation_id: "492"
+  id: "659"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_900: 
+  operation_type_id: 
+  observation_id: "906"
+  id: "1142"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_215: 
+  operation_type_id: 
+  observation_id: "141"
+  id: "345"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_347: 
+  operation_type_id: 
+  observation_id: "358"
+  id: "496"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_479: 
+  operation_type_id: 
+  observation_id: "489"
+  id: "660"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_901: 
+  operation_type_id: 
+  observation_id: "907"
+  id: "1144"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_216: 
+  operation_type_id: 
+  observation_id: "142"
+  id: "346"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_348: 
+  operation_type_id: 
+  observation_id: "359"
+  id: "497"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_902: 
+  operation_type_id: 
+  observation_id: "908"
+  id: "1146"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_217: 
+  operation_type_id: 
+  observation_id: "174"
+  id: "347"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_349: 
+  operation_type_id: 
+  observation_id: "360"
+  id: "498"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_480: 
+  operation_type_id: 
+  observation_id: "493"
+  id: "661"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_903: 
+  operation_type_id: 
+  observation_id: "909"
+  id: "1149"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_218: 
+  operation_type_id: 
+  observation_id: "198"
+  id: "348"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_481: 
+  operation_type_id: 
+  observation_id: "494"
+  id: "662"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_904: 
+  operation_type_id: 
+  observation_id: "910"
+  id: "1151"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_219: 
+  operation_type_id: 
+  observation_id: "166"
+  id: "349"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_350: 
+  operation_type_id: 
+  observation_id: "361"
+  id: "499"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_482: 
+  operation_type_id: 
+  observation_id: "495"
+  id: "663"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_905: 
+  operation_type_id: 
+  observation_id: "911"
+  id: "1154"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_351: 
+  operation_type_id: 
+  observation_id: "362"
+  id: "500"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_483: 
+  operation_type_id: 
+  observation_id: "496"
+  id: "664"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_906: 
+  operation_type_id: 
+  observation_id: "912"
+  id: "1155"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_220: 
+  operation_type_id: 
+  observation_id: "93"
+  id: "350"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_352: 
+  operation_type_id: 
+  observation_id: "363"
+  id: "501"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_484: 
+  operation_type_id: 
+  observation_id: "497"
+  id: "665"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_907: 
+  operation_type_id: 
+  observation_id: "913"
+  id: "1156"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_221: 
+  operation_type_id: 
+  observation_id: "94"
+  id: "351"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_353: 
+  operation_type_id: 
+  observation_id: "364"
+  id: "502"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_485: 
+  operation_type_id: 
+  observation_id: "498"
+  id: "666"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_908: 
+  operation_type_id: 
+  observation_id: "914"
+  id: "1158"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_909: 
+  operation_type_id: 
+  observation_id: "915"
+  id: "1160"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_222: 
+  operation_type_id: 
+  observation_id: "217"
+  id: "352"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_354: 
+  operation_type_id: 
+  observation_id: "365"
+  id: "503"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_486: 
+  operation_type_id: 
+  observation_id: "499"
+  id: "667"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_223: 
+  operation_type_id: 
+  observation_id: "96"
+  id: "353"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_355: 
+  operation_type_id: 
+  observation_id: "366"
+  id: "504"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_487: 
+  operation_type_id: 
+  observation_id: "500"
+  id: "669"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_224: 
+  operation_type_id: 
+  observation_id: "97"
+  id: "354"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_356: 
+  operation_type_id: 
+  observation_id: "367"
+  id: "505"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_488: 
+  operation_type_id: 
+  observation_id: "501"
+  id: "670"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_910: 
+  operation_type_id: 
+  observation_id: "916"
+  id: "1161"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_225: 
+  operation_type_id: 
+  observation_id: "218"
+  id: "355"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_357: 
+  operation_type_id: 
+  observation_id: "368"
+  id: "506"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_489: 
+  operation_type_id: 
+  observation_id: "502"
+  id: "671"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_911: 
+  operation_type_id: 
+  observation_id: "917"
+  id: "1163"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_226: 
+  operation_type_id: 
+  observation_id: "219"
+  id: "356"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_358: 
+  operation_type_id: 
+  observation_id: "369"
+  id: "507"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_912: 
+  operation_type_id: 
+  observation_id: "918"
+  id: "1164"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_490: 
+  operation_type_id: 
+  observation_id: "503"
+  id: "672"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_227: 
+  operation_type_id: 
+  observation_id: "99"
+  id: "357"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_359: 
+  operation_type_id: 
+  observation_id: "370"
+  id: "508"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_913: 
+  operation_type_id: 
+  observation_id: "919"
+  id: "1165"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_491: 
+  operation_type_id: 
+  observation_id: "504"
+  id: "673"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_228: 
+  operation_type_id: 
+  observation_id: "101"
+  id: "358"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_914: 
+  operation_type_id: 
+  observation_id: "920"
+  id: "1167"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_360: 
+  operation_type_id: 
+  observation_id: "371"
+  id: "509"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_492: 
+  operation_type_id: 
+  observation_id: "505"
+  id: "674"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_229: 
+  operation_type_id: 
+  observation_id: "222"
+  id: "359"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_915: 
+  operation_type_id: 
+  observation_id: "153"
+  id: "1172"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_361: 
+  operation_type_id: 
+  observation_id: "372"
+  id: "510"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_493: 
+  operation_type_id: 
+  observation_id: "506"
+  id: "675"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_916: 
+  operation_type_id: 
+  observation_id: "808"
+  id: "1204"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_230: 
+  operation_type_id: 
+  observation_id: "223"
+  id: "360"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_362: 
+  operation_type_id: 
+  observation_id: "373"
+  id: "511"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_494: 
+  operation_type_id: 
+  observation_id: "507"
+  id: "677"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_917: 
+  operation_type_id: 
+  observation_id: "808"
+  id: "1205"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_231: 
+  operation_type_id: 
+  observation_id: "224"
+  id: "361"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_363: 
+  operation_type_id: 
+  observation_id: "374"
+  id: "514"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_495: 
+  operation_type_id: 
+  observation_id: "508"
+  id: "678"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_100: 
+  operation_type_id: 
+  observation_id: "128"
+  id: "160"
+  hours: 
+  comment: 
+  person_id: 
+activities_232: 
+  operation_type_id: 
+  observation_id: "177"
+  id: "362"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_364: 
+  operation_type_id: 
+  observation_id: "375"
+  id: "515"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_496: 
+  operation_type_id: 
+  observation_id: "509"
+  id: "679"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_101: 
+  operation_type_id: 
+  observation_id: "129"
+  id: "161"
+  hours: 
+  comment: 
+  person_id: 
+activities_233: 
+  operation_type_id: 
+  observation_id: "179"
+  id: "363"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_365: 
+  operation_type_id: 
+  observation_id: "376"
+  id: "516"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_497: 
+  operation_type_id: 
+  observation_id: "510"
+  id: "680"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_102: 
+  operation_type_id: 
+  observation_id: "130"
+  id: "162"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_234: 
+  operation_type_id: 
+  observation_id: "228"
+  id: "364"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_366: 
+  operation_type_id: 
+  observation_id: "377"
+  id: "517"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_498: 
+  operation_type_id: 
+  observation_id: "511"
+  id: "682"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_103: 
+  operation_type_id: 
+  observation_id: "131"
+  id: "163"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_235: 
+  operation_type_id: 
+  observation_id: "146"
+  id: "365"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_367: 
+  operation_type_id: 
+  observation_id: "379"
+  id: "519"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_499: 
+  operation_type_id: 
+  observation_id: "512"
+  id: "684"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_104: 
+  operation_type_id: 
+  observation_id: "132"
+  id: "164"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_236: 
+  operation_type_id: 
+  observation_id: "149"
+  id: "366"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_368: 
+  operation_type_id: 
+  observation_id: "378"
+  id: "520"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_105: 
+  operation_type_id: 
+  observation_id: "133"
+  id: "165"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_237: 
+  operation_type_id: 
+  observation_id: "150"
+  id: "367"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_369: 
+  operation_type_id: 
+  observation_id: "380"
+  id: "521"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_106: 
+  operation_type_id: 
+  observation_id: "134"
+  id: "166"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_238: 
+  operation_type_id: 
+  observation_id: "151"
+  id: "368"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_370: 
+  operation_type_id: 
+  observation_id: "381"
+  id: "522"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_107: 
+  operation_type_id: 
+  observation_id: "135"
+  id: "167"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_239: 
+  operation_type_id: 
+  observation_id: "154"
+  id: "369"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_108: 
+  operation_type_id: 
+  observation_id: "136"
+  id: "168"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_371: 
+  operation_type_id: 
+  observation_id: "382"
+  id: "525"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_109: 
+  operation_type_id: 
+  observation_id: "137"
+  id: "169"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_240: 
+  operation_type_id: 
+  observation_id: "155"
+  id: "371"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_372: 
+  operation_type_id: 
+  observation_id: "383"
+  id: "527"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_241: 
+  operation_type_id: 
+  observation_id: "238"
+  id: "372"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_373: 
+  operation_type_id: 
+  observation_id: "384"
+  id: "529"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_110: 
+  operation_type_id: 
+  observation_id: "138"
+  id: "171"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_242: 
+  operation_type_id: 
+  observation_id: "158"
+  id: "373"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_374: 
+  operation_type_id: 
+  observation_id: "385"
+  id: "531"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_111: 
+  operation_type_id: 
+  observation_id: "139"
+  id: "172"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_243: 
+  operation_type_id: 
+  observation_id: "159"
+  id: "374"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_375: 
+  operation_type_id: 
+  observation_id: "386"
+  id: "532"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_112: 
+  operation_type_id: 
+  observation_id: "140"
+  id: "173"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_244: 
+  operation_type_id: 
+  observation_id: "162"
+  id: "375"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_376: 
+  operation_type_id: 
+  observation_id: "387"
+  id: "534"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_113: 
+  operation_type_id: 
+  observation_id: "143"
+  id: "176"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_245: 
+  operation_type_id: 
+  observation_id: "160"
+  id: "376"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_377: 
+  operation_type_id: 
+  observation_id: "388"
+  id: "535"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_114: 
+  operation_type_id: 
+  observation_id: "144"
+  id: "177"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_246: 
+  operation_type_id: 
+  observation_id: "161"
+  id: "377"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_378: 
+  operation_type_id: 
+  observation_id: "389"
+  id: "536"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_800: 
+  operation_type_id: 
+  observation_id: "799"
+  id: "1026"
+  hours: 
+  comment: 
+  person_id: "15"
+activities_115: 
+  operation_type_id: 
+  observation_id: "145"
+  id: "178"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_247: 
+  operation_type_id: 
+  observation_id: "163"
+  id: "378"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_379: 
+  operation_type_id: 
+  observation_id: "390"
+  id: "537"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_801: 
+  operation_type_id: 
+  observation_id: "801"
+  id: "1027"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_116: 
+  operation_type_id: 
+  observation_id: "147"
+  id: "180"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_248: 
+  operation_type_id: 
+  observation_id: "264"
+  id: "379"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_802: 
+  operation_type_id: 
+  observation_id: "802"
+  id: "1029"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_380: 
+  operation_type_id: 
+  observation_id: "391"
+  id: "538"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_117: 
+  operation_type_id: 
+  observation_id: "148"
+  id: "181"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_249: 
+  operation_type_id: 
+  observation_id: "256"
+  id: "380"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_803: 
+  operation_type_id: 
+  observation_id: "803"
+  id: "1030"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_381: 
+  operation_type_id: 
+  observation_id: "392"
+  id: "539"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_118: 
+  operation_type_id: 
+  observation_id: "152"
+  id: "186"
+  hours: 
+  comment: 
+  person_id: 
+activities_804: 
+  operation_type_id: 
+  observation_id: "804"
+  id: "1031"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_250: 
+  operation_type_id: 
+  observation_id: "257"
+  id: "381"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_382: 
+  operation_type_id: 
+  observation_id: "393"
+  id: "540"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_119: 
+  operation_type_id: 
+  observation_id: "156"
+  id: "190"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_805: 
+  operation_type_id: 
+  observation_id: "804"
+  id: "1032"
+  hours: 
+  comment: 
+  person_id: "11"
+activities_251: 
+  operation_type_id: 
+  observation_id: "260"
+  id: "382"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_383: 
+  operation_type_id: 
+  observation_id: "394"
+  id: "541"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_806: 
+  operation_type_id: 
+  observation_id: "804"
+  id: "1033"
+  hours: 
+  comment: 
+  person_id: "15"
+activities_120: 
+  operation_type_id: 
+  observation_id: "157"
+  id: "191"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_252: 
+  operation_type_id: 
+  observation_id: "265"
+  id: "383"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_384: 
+  operation_type_id: 
+  observation_id: "395"
+  id: "542"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_807: 
+  operation_type_id: 
+  observation_id: "806"
+  id: "1034"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_121: 
+  operation_type_id: 
+  observation_id: "164"
+  id: "200"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_253: 
+  operation_type_id: 
+  observation_id: "266"
+  id: "384"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_385: 
+  operation_type_id: 
+  observation_id: "396"
+  id: "543"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_808: 
+  operation_type_id: 
+  observation_id: "810"
+  id: "1037"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_122: 
+  operation_type_id: 
+  observation_id: "165"
+  id: "201"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_254: 
+  operation_type_id: 
+  observation_id: "267"
+  id: "386"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_386: 
+  operation_type_id: 
+  observation_id: "397"
+  id: "544"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_809: 
+  operation_type_id: 
+  observation_id: "811"
+  id: "1038"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_123: 
+  operation_type_id: 
+  observation_id: "167"
+  id: "203"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_255: 
+  operation_type_id: 
+  observation_id: "268"
+  id: "387"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_387: 
+  operation_type_id: 
+  observation_id: "398"
+  id: "545"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_124: 
+  operation_type_id: 
+  observation_id: "168"
+  id: "204"
+  hours: 
+  comment: 
+  person_id: "11"
+activities_256: 
+  operation_type_id: 
+  observation_id: "269"
+  id: "388"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_388: 
+  operation_type_id: 
+  observation_id: "399"
+  id: "546"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_810: 
+  operation_type_id: 
+  observation_id: "812"
+  id: "1039"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_125: 
+  operation_type_id: 
+  observation_id: "169"
+  id: "205"
+  hours: 
+  comment: 
+  person_id: "5"
+activities_257: 
+  operation_type_id: 
+  observation_id: "270"
+  id: "389"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_389: 
+  operation_type_id: 
+  observation_id: "400"
+  id: "547"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_811: 
+  operation_type_id: 
+  observation_id: "813"
+  id: "1040"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_126: 
+  operation_type_id: 
+  observation_id: "170"
+  id: "206"
+  hours: 
+  comment: 
+  person_id: "5"
+activities_258: 
+  operation_type_id: 
+  observation_id: "271"
+  id: "391"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_812: 
+  operation_type_id: 
+  observation_id: "814"
+  id: "1041"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_390: 
+  operation_type_id: 
+  observation_id: "401"
+  id: "548"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_127: 
+  operation_type_id: 
+  observation_id: "171"
+  id: "207"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_259: 
+  operation_type_id: 
+  observation_id: "272"
+  id: "392"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_813: 
+  operation_type_id: 
+  observation_id: "815"
+  id: "1042"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_391: 
+  operation_type_id: 
+  observation_id: "403"
+  id: "550"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_128: 
+  operation_type_id: 
+  observation_id: "172"
+  id: "209"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_814: 
+  operation_type_id: 
+  observation_id: "816"
+  id: "1043"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_260: 
+  operation_type_id: 
+  observation_id: "273"
+  id: "394"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_392: 
+  operation_type_id: 
+  observation_id: "404"
+  id: "551"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_129: 
+  operation_type_id: 
+  observation_id: "173"
+  id: "211"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_815: 
+  operation_type_id: 
+  observation_id: "817"
+  id: "1044"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_261: 
+  operation_type_id: 
+  observation_id: "274"
+  id: "395"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_393: 
+  operation_type_id: 
+  observation_id: "402"
+  id: "552"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_816: 
+  operation_type_id: 
+  observation_id: "818"
+  id: "1045"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_130: 
+  operation_type_id: 
+  observation_id: "176"
+  id: "217"
+  hours: 
+  comment: 
+  person_id: "5"
+activities_262: 
+  operation_type_id: 
+  observation_id: "275"
+  id: "396"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_394: 
+  operation_type_id: 
+  observation_id: "405"
+  id: "553"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_817: 
+  operation_type_id: 
+  observation_id: "819"
+  id: "1046"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_131: 
+  operation_type_id: 
+  observation_id: "178"
+  id: "220"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_263: 
+  operation_type_id: 
+  observation_id: "276"
+  id: "397"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_395: 
+  operation_type_id: 
+  observation_id: "406"
+  id: "554"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_818: 
+  operation_type_id: 
+  observation_id: "820"
+  id: "1047"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_132: 
+  operation_type_id: 
+  observation_id: "180"
+  id: "222"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_264: 
+  operation_type_id: 
+  observation_id: "277"
+  id: "398"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_396: 
+  operation_type_id: 
+  observation_id: "407"
+  id: "555"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_819: 
+  operation_type_id: 
+  observation_id: "821"
+  id: "1048"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_133: 
+  operation_type_id: 
+  observation_id: "181"
+  id: "223"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_265: 
+  operation_type_id: 
+  observation_id: "278"
+  id: "399"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_397: 
+  operation_type_id: 
+  observation_id: "408"
+  id: "557"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_001: 
+  operation_type_id: 
+  observation_id: "2"
+  id: "17"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_266: 
+  operation_type_id: 
+  observation_id: "279"
+  id: "400"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_398: 
+  operation_type_id: 
+  observation_id: "409"
+  id: "558"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_002: 
+  operation_type_id: 
+  observation_id: "4"
+  id: "18"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_134: 
+  operation_type_id: 
+  observation_id: "182"
+  id: "224"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_820: 
+  operation_type_id: 
+  observation_id: "822"
+  id: "1049"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_267: 
+  operation_type_id: 
+  observation_id: "281"
+  id: "402"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_399: 
+  operation_type_id: 
+  observation_id: "410"
+  id: "559"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_003: 
+  operation_type_id: 
+  observation_id: "6"
+  id: "19"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_135: 
+  operation_type_id: 
+  observation_id: "183"
+  id: "225"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_821: 
+  operation_type_id: 
+  observation_id: "823"
+  id: "1050"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_268: 
+  operation_type_id: 
+  observation_id: "282"
+  id: "403"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_004: 
+  operation_type_id: 
+  observation_id: "5"
+  id: "20"
+  hours: 
+  comment: 
+  person_id: "7"
+activities_136: 
+  operation_type_id: 
+  observation_id: "184"
+  id: "226"
+  hours: 
+  comment: 
+  person_id: 
+activities_822: 
+  operation_type_id: 
+  observation_id: "824"
+  id: "1051"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_269: 
+  operation_type_id: 
+  observation_id: "283"
+  id: "404"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_005: 
+  operation_type_id: 
+  observation_id: "3"
+  id: "21"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_137: 
+  operation_type_id: 
+  observation_id: "185"
+  id: "229"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_823: 
+  operation_type_id: 
+  observation_id: "825"
+  id: "1052"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_006: 
+  operation_type_id: 
+  observation_id: "7"
+  id: "22"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_138: 
+  operation_type_id: 
+  observation_id: "186"
+  id: "230"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_824: 
+  operation_type_id: 
+  observation_id: "826"
+  id: "1053"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_270: 
+  operation_type_id: 
+  observation_id: "284"
+  id: "405"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_007: 
+  operation_type_id: 
+  observation_id: "8"
+  id: "23"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_139: 
+  operation_type_id: 
+  observation_id: "187"
+  id: "232"
+  hours: 
+  comment: 
+  person_id: "12"
+activities_825: 
+  operation_type_id: 
+  observation_id: "827"
+  id: "1054"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_271: 
+  operation_type_id: 
+  observation_id: "285"
+  id: "406"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_008: 
+  operation_type_id: 
+  observation_id: "9"
+  id: "24"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_826: 
+  operation_type_id: 
+  observation_id: "828"
+  id: "1055"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_140: 
+  operation_type_id: 
+  observation_id: "188"
+  id: "233"
+  hours: 
+  comment: 
+  person_id: "12"
+activities_272: 
+  operation_type_id: 
+  observation_id: "287"
+  id: "408"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_009: 
+  operation_type_id: 
+  observation_id: "11"
+  id: "25"
+  hours: 
+  comment: 
+  person_id: "8"
+activities_827: 
+  operation_type_id: 
+  observation_id: "829"
+  id: "1056"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_141: 
+  operation_type_id: 
+  observation_id: "189"
+  id: "234"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_273: 
+  operation_type_id: 
+  observation_id: "288"
+  id: "409"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_828: 
+  operation_type_id: 
+  observation_id: "831"
+  id: "1058"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_010: 
+  operation_type_id: 
+  observation_id: "12"
+  id: "26"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_142: 
+  operation_type_id: 
+  observation_id: "190"
+  id: "235"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_274: 
+  operation_type_id: 
+  observation_id: "289"
+  id: "410"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_829: 
+  operation_type_id: 
+  observation_id: "832"
+  id: "1059"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_011: 
+  operation_type_id: 
+  observation_id: "13"
+  id: "27"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_143: 
+  operation_type_id: 
+  observation_id: "191"
+  id: "236"
+  hours: 
+  comment: 
+  person_id: 
+activities_275: 
+  operation_type_id: 
+  observation_id: "290"
+  id: "411"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_012: 
+  operation_type_id: 
+  observation_id: "14"
+  id: "28"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_144: 
+  operation_type_id: 
+  observation_id: "192"
+  id: "237"
+  hours: 
+  comment: 
+  person_id: 
+activities_276: 
+  operation_type_id: 
+  observation_id: "291"
+  id: "413"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_830: 
+  operation_type_id: 
+  observation_id: "833"
+  id: "1060"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_013: 
+  operation_type_id: 
+  observation_id: "15"
+  id: "29"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_145: 
+  operation_type_id: 
+  observation_id: "193"
+  id: "242"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_277: 
+  operation_type_id: 
+  observation_id: "292"
+  id: "414"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_831: 
+  operation_type_id: 
+  observation_id: "834"
+  id: "1061"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_014: 
+  operation_type_id: 
+  observation_id: "25"
+  id: "40"
+  hours: 
+  comment: 
+  person_id: "4"
+activities_146: 
+  operation_type_id: 
+  observation_id: "195"
+  id: "243"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_278: 
+  operation_type_id: 
+  observation_id: "293"
+  id: "415"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_832: 
+  operation_type_id: 
+  observation_id: "837"
+  id: "1062"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_700: 
+  operation_type_id: 
+  observation_id: "705"
+  id: "922"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_015: 
+  operation_type_id: 
+  observation_id: "26"
+  id: "41"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_147: 
+  operation_type_id: 
+  observation_id: "197"
+  id: "245"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_279: 
+  operation_type_id: 
+  observation_id: "294"
+  id: "416"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_833: 
+  operation_type_id: 
+  observation_id: "838"
+  id: "1063"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_701: 
+  operation_type_id: 
+  observation_id: "706"
+  id: "923"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_016: 
+  operation_type_id: 
+  observation_id: "30"
+  id: "47"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_148: 
+  operation_type_id: 
+  observation_id: "201"
+  id: "249"
+  hours: 
+  comment: 
+  person_id: "2"
+activities_834: 
+  operation_type_id: 
+  observation_id: "839"
+  id: "1064"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_702: 
+  operation_type_id: 
+  observation_id: "707"
+  id: "924"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_280: 
+  operation_type_id: 
+  observation_id: "295"
+  id: "418"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_017: 
+  operation_type_id: 
+  observation_id: "31"
+  id: "48"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_149: 
+  operation_type_id: 
+  observation_id: "203"
+  id: "253"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_835: 
+  operation_type_id: 
+  observation_id: "840"
+  id: "1065"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_281: 
+  operation_type_id: 
+  observation_id: "296"
+  id: "421"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_018: 
+  operation_type_id: 
+  observation_id: "33"
+  id: "50"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_703: 
+  operation_type_id: 
+  observation_id: "708"
+  id: "925"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_836: 
+  operation_type_id: 
+  observation_id: "841"
+  id: "1066"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_150: 
+  operation_type_id: 
+  observation_id: "205"
+  id: "255"
+  hours: "5.5"
+  comment: 
+  person_id: "1"
+activities_282: 
+  operation_type_id: 
+  observation_id: "297"
+  id: "422"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_019: 
+  operation_type_id: 
+  observation_id: "35"
+  id: "52"
+  hours: 
+  comment: 
+  person_id: "5"
+activities_704: 
+  operation_type_id: 
+  observation_id: "709"
+  id: "926"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_837: 
+  operation_type_id: 
+  observation_id: "842"
+  id: "1068"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_151: 
+  operation_type_id: 
+  observation_id: "206"
+  id: "256"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_283: 
+  operation_type_id: 
+  observation_id: "298"
+  id: "423"
+  hours: 
+  comment: 
+  person_id: 
+activities_705: 
+  operation_type_id: 
+  observation_id: "710"
+  id: "927"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_838: 
+  operation_type_id: 
+  observation_id: "843"
+  id: "1069"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_020: 
+  operation_type_id: 
+  observation_id: "28"
+  id: "53"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_152: 
+  operation_type_id: 
+  observation_id: "196"
+  id: "257"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_284: 
+  operation_type_id: 
+  observation_id: "299"
+  id: "425"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_706: 
+  operation_type_id: 
+  observation_id: "711"
+  id: "928"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_839: 
+  operation_type_id: 
+  observation_id: "844"
+  id: "1070"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_021: 
+  operation_type_id: 
+  observation_id: "29"
+  id: "54"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_153: 
+  operation_type_id: 
+  observation_id: "207"
+  id: "258"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_285: 
+  operation_type_id: 
+  observation_id: "286"
+  id: "427"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_707: 
+  operation_type_id: 
+  observation_id: "712"
+  id: "929"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_022: 
+  operation_type_id: 
+  observation_id: "32"
+  id: "55"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_154: 
+  operation_type_id: 
+  observation_id: "208"
+  id: "260"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_286: 
+  operation_type_id: 
+  observation_id: "301"
+  id: "428"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_708: 
+  operation_type_id: 
+  observation_id: "714"
+  id: "930"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_023: 
+  operation_type_id: 
+  observation_id: "38"
+  id: "59"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_155: 
+  operation_type_id: 
+  observation_id: "209"
+  id: "261"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_287: 
+  operation_type_id: 
+  observation_id: "303"
+  id: "430"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_709: 
+  operation_type_id: 
+  observation_id: "715"
+  id: "931"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_840: 
+  operation_type_id: 
+  observation_id: "845"
+  id: "1071"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_841: 
+  operation_type_id: 
+  observation_id: "846"
+  id: "1072"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_024: 
+  operation_type_id: 
+  observation_id: "39"
+  id: "61"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_156: 
+  operation_type_id: 
+  observation_id: "210"
+  id: "262"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_288: 
+  operation_type_id: 
+  observation_id: "302"
+  id: "431"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_842: 
+  operation_type_id: 
+  observation_id: "847"
+  id: "1073"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_025: 
+  operation_type_id: 
+  observation_id: "40"
+  id: "62"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_157: 
+  operation_type_id: 
+  observation_id: "211"
+  id: "264"
+  hours: "3.5"
+  comment: 
+  person_id: "1"
+activities_289: 
+  operation_type_id: 
+  observation_id: "300"
+  id: "432"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_710: 
+  operation_type_id: 
+  observation_id: "716"
+  id: "932"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_843: 
+  operation_type_id: 
+  observation_id: "848"
+  id: "1074"
+  hours: 
+  comment: 
+  person_id: "13"
+activities_026: 
+  operation_type_id: 
+  observation_id: "41"
+  id: "63"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_158: 
+  operation_type_id: 
+  observation_id: "212"
+  id: "267"
+  hours: 
+  comment: 
+  person_id: "1"
+activities_711: 
+  operation_type_id: 
+  observation_id: "716"
+  id: "933"
+  hours: 
+  comment: 
+  person_id: 

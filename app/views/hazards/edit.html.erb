@@ -1,0 +1,15 @@
+<h1>Editing hazard</h1>
+
+<%= error_messages_for :hazard %>
+
+<% form_for(@hazard) do |f| %>
+<p>
+	<%= render(:partial => 'form', :locals => {:f => f}) %>
+</p>  
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @hazard %> |
+<%= link_to 'List', hazards_path %>

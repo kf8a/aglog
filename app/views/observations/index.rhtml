@@ -1,0 +1,58 @@
+<h1>Listing observations</h1>
+
+<%= link_to "Soil Preparation", {:obstype=> 1} %>&nbsp;&nbsp;
+ <%= link_to "Planting", {:obstype => 3} %>&nbsp;&nbsp; 
+ <%= link_to "Fertilizer application", {:obstype=>4} %>&nbsp;&nbsp;
+ <%= link_to "Pesticide application", {:obstype => 5} %>&nbsp;&nbsp;
+ <%= link_to "Weed control", {:obstype => 6} %>&nbsp;&nbsp;
+ <%= link_to "Harvest", {:obstype => 2} %>&nbsp;&nbsp;
+ <%= link_to "Irrigation", {:obstype => 7} %>&nbsp;&nbsp;
+ <%= link_to "Burning", {:obstype => 9} %> 
+
+
+<%= will_paginate @observations %>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Observation Type</th>		
+	<th>Comment</th>
+    <th><%= link_to 'Areas', areas_path %></th>
+	<th><%= link_to 'Material', materials_path %></th>
+  </tr>
+  
+<% @observations.each do |observation| %>
+  <tr valign='top'>
+		<td><%= observation.obs_date %> </td>
+		<td>
+			<% observation.observation_types.each do |type| %>
+			<%= type.name %>
+			<% end %>
+		</td>
+		
+		<td><%= truncate(observation.comment.to_s) %></td>
+		<td><%= observation.areas_as_text %></td>
+		<td>
+			<% observation.activities.each do |activity| %>
+				<% activity.setups.each do |setup| %>
+					<table>
+					<% setup.material_transactions.each do |m| %>
+						<tr>
+							<td><%= m.material.name if m %></td> 
+						</tr>
+					<% end %>
+					</table>
+				<% end %>
+			<% end %>
+		</td>
+		
+    <td><%= link_to 'Show', observation_path(observation) %></td>
+    <td><%= link_to 'Edit', edit_observation_path(observation) if logged_in? %></td>
+    <td><%= link_to 'Destroy', observation_path(observation), :confirm => 'Are you sure?', :method => :delete if logged_in? %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= will_paginate @observations %>
+<br />
+<%= link_to 'New observation', new_observation_path %>

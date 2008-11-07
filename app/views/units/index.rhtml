@@ -1,0 +1,25 @@
+<h1>Listing Units</h1>
+
+<table>
+
+	<tr>
+		<th align="left">Name</th>
+		<th align="left">S.I. Unit</th>
+		<th align="right">Conversion Factor</th>
+	</tr>
+	<% for unit in @units %>
+	  <tr>
+	  	<td><%=h unit.name %></td>
+	  	<td><%=h unit.si_unit_id %></td>
+	  	<td><%=h unit.conversion_factor %></td>
+	  	<td><%= link_to 'Show', unit_path(unit) %></td>
+    	<td><%= link_to 'Edit', edit_unit_path(unit) if logged_in? %></td>
+    	<td><%= link_to 'Destroy', unit_path(unit), :confirm => 'Are you sure?', :method => :delete if logged_in? %></td>
+  
+	  </tr>
+	 <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Unit', new_unit_path if logged_in? %>

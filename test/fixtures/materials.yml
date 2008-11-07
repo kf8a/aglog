@@ -1,0 +1,1091 @@
+--- 
+materials_109: 
+  name: 28% N (28-0-0)
+  material_type_id: "1"
+  operation_type_id: 
+  p_content: "0"
+  specific_weight: "1.29"
+  id: "10"
+  n_content: "28"
+  k_content: "0"
+  liquid: t
+materials_096: 
+  name: Blazer 2L
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "104"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_075: 
+  name: Pioneer 25R26 soft red winter wheat
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "81"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_054: 
+  name: boron (B)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "60"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_012: 
+  name: Pioneer alfalfa
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "22"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_033: 
+  name: Pioneer 9172 soybeans
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "27"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_097: 
+  name: Pinnacle
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "105"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_076: 
+  name: Galaxy (bentazon + acifluorfen)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "82"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_013: 
+  name: alfalfa
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "7"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_034: 
+  name: c. rye
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "18"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_055: 
+  name: Harmony Extra (thifensulfuron methyl + tribenuron methyl)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "61"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_098: 
+  name: "Butyrac 200 "
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "106"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_077: 
+  name: dolomitic agricultural lime
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "83"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_035: 
+  name: rye
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "25"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_056: 
+  name: NIS surfactant
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "62"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_099: 
+  name: Great Lakes 0361 corn
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "107"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_078: 
+  name: Broadstrike + Dual
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "84"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_014: 
+  name: Pioneer 5246 alfalfa
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "41"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_057: 
+  name: Lorsban 15G (chlorpyrifos)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "63"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_080: 
+  name: P205
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "86"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_079: 
+  name: trees
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "85"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_015: 
+  name: crimson clover
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "19"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_036: 
+  name: annual rye
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "24"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_081: 
+  name: 2,4-D ester
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "87"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_016: 
+  name: red clover
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "8"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_037: 
+  name: Pioneer 2552 hard red winter wheat
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "36"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_060: 
+  name: First Rate (cloransulam-methyl)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "66"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_058: 
+  name: Pioneer 35Y55 corn
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "64"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_082: 
+  name: Canopy
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "88"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_017: 
+  name: Mammoth red clover (Trifolium pratense)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "34"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_040: 
+  name: winter wheat
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "29"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_038: 
+  name: Pioneer 25R37 winter wheat
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "11"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_061: 
+  name: "Dual II Magnum (s-metolachlor (+ safener)) "
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "67"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_059: 
+  name: "11-52-0 "
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "65"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_083: 
+  name: pelleted lime
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "89"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_020: 
+  name: 3573 corn
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "26"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_018: 
+  name: corn
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "13"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_041: 
+  name: seed wheat
+  material_type_id: 
+  operation_type_id: "3"
+  p_content: 
+  specific_weight: "1"
+  id: "3"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_039: 
+  name: untreated Pioneer 25R37 winter wheat
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "17"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_062: 
+  name: Atrazine 4L
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "68"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_084: 
+  name: Accent
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "90"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_021: 
+  name: Pioneer 35Y54 corn
+  material_type_id: 
+  operation_type_id: "5"
+  p_content: 
+  specific_weight: "1"
+  id: "5"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_019: 
+  name: seed corn
+  material_type_id: 
+  operation_type_id: "3"
+  p_content: 
+  specific_weight: "1"
+  id: "2"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_042: 
+  name: wheat
+  material_type_id: 
+  operation_type_id: "5"
+  p_content: 
+  specific_weight: "1"
+  id: "6"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_063: 
+  name: Callisto (mesotrione)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "69"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_100: 
+  name: Extrazine (Cyanazine + Atrizine)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "108"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_085: 
+  name: Dimate 4E
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "91"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_043: 
+  name: Chelsea soft white winter wheat
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "43"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_064: 
+  name: Roundup Weathermax (glyphosate)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "70"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_001: 
+  name: nothing
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "1"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_022: 
+  name: Pioneer 37J99 corn
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "28"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_101: 
+  name: Microtech (Alachlor and Lasso)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "109"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_086: 
+  name: hairy vetch
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "92"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_065: 
+  name: Basagran (bentazon)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "72"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_002: 
+  name: Poast Plus
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "35"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_023: 
+  name: Pioneer 3573 Corn Hybrid
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "37"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_044: 
+  name: Augusta wheat
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "50"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_087: 
+  name: Sencor pre-emergence 4L
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "93"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_024: 
+  name: Great Lakes 450 corn
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "45"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_045: 
+  name: creeping red fescue
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "51"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_066: 
+  name: Assure II (quizalofop-p-ethyl)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "73"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_102: 
+  name: Gramoxone Extra (Paraquat)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "110"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_088: 
+  name: Dual 8E
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "94"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_067: 
+  name: crop oil
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "74"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_003: 
+  name: dimate insecticide
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "39"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_046: 
+  name: poplar tree cuttings
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "53"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_103: 
+  name: N
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "111"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_090: 
+  name: Ambush
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "96"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_089: 
+  name: Marksman
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "95"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_068: 
+  name: Ammonium sulfate (AMS)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "71"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_004: 
+  name: 19-19-19
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "16"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_025: 
+  name: Great Lakes 220 corn
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "49"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_104: 
+  name: irrigation water
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "14"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_091: 
+  name: Sevin 80s
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "97"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_070: 
+  name: Buctril (bromoxynil)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "76"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_005: 
+  name: lime
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "31"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_026: 
+  name: Great Lakes 482 corn
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "47"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_047: 
+  name: cover crop
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "48"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_105: 
+  name: 0-0-60 potash fertilizer
+  material_type_id: "3"
+  operation_type_id: 
+  p_content: "0"
+  specific_weight: "1"
+  id: "9"
+  n_content: "0"
+  k_content: "60"
+  liquid: 
+materials_092: 
+  name: Bladex 4L
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "100"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_071: 
+  name: straw
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "77"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_069: 
+  name: Stinger (Clopyralid)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "75"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_006: 
+  name: K20 (0-0-60)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "44"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_027: 
+  name: Great Lakes Hybrid 582 corn
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "52"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_050: 
+  name: hay
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "56"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_048: 
+  name: weeds
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "20"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_106: 
+  name: 60-0-0
+  material_type_id: "1"
+  operation_type_id: "4"
+  p_content: "0"
+  specific_weight: "1"
+  id: "4"
+  n_content: "60"
+  k_content: "0"
+  liquid: 
+materials_093: 
+  name: Goal
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "101"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_072: 
+  name: corn stalks
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "78"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_007: 
+  name: Roundup UltraTM (Glyphosate)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "30"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_030: 
+  name: Pioneer 9202 soybeans
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "42"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_028: 
+  name: oats
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "21"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_051: 
+  name: bales - alfalfa
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "57"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_049: 
+  name: 19-17-0
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "55"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_107: 
+  name: ammonium nitrate (34-0-0)
+  material_type_id: "1"
+  operation_type_id: 
+  p_content: "0"
+  specific_weight: "1"
+  id: "33"
+  n_content: "34"
+  k_content: "0"
+  liquid: 
+materials_094: 
+  name: Princep
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "103"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_073: 
+  name: 2,4-D amine
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "79"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_010: 
+  name: "\"big ten\" alfalfa"
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "54"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_008: 
+  name: Buctril Gel
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "38"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_031: 
+  name: soybeans
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "12"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_029: 
+  name: Pioneer 9272 soybeans
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "46"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_052: 
+  name: triple superphosphate (0-46-0)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "58"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_108: 
+  name: 28% UAN
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "23"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_095: 
+  name: Lorox 4L
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "102"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_074: 
+  name: clover
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "80"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_009: 
+  name: Roundup (glyphosate)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "40"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_032: 
+  name: NK S20-F8 soybeans
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "15"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_053: 
+  name: potash (0-0-62)
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "59"
+  n_content: 
+  k_content: 
+  liquid: 
+materials_011: 
+  name: Pioneer 2547L (leafhopper resistant) alfalfa
+  material_type_id: 
+  operation_type_id: 
+  p_content: 
+  specific_weight: "1"
+  id: "32"
+  n_content: 
+  k_content: 
+  liquid: 

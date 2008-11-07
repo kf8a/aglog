@@ -1,0 +1,27 @@
+<h1>Listing hazards</h1>
+
+<table>
+  <tr>
+  	<th>Name</th>
+  	<th>Type</th>
+  	<th>chemical_name</th>
+  	<th>Exclusion time</th>
+  </tr>
+
+<% for hazard in @hazards %>
+  <tr>
+  	<td><%=h hazard.name %>  </td>	
+  	<td><%=h hazard.hazard_type %>  </td>	 	
+  	<td><%=h hazard.chemical_name %>	  </td> 	
+  	<td><%=h hazard.exclusion_time_days %>  </td>	
+    
+    <td><%= link_to 'Show', hazard %></td>
+    <td><%= link_to 'Edit', edit_hazard_path(hazard) %></td>
+    <td><%= link_to 'Destroy', hazard, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New hazard', new_hazard_path %>

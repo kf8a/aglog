@@ -1,0 +1,35 @@
+<h2> Show Material</h2>
+<%= error_messages_for :material %>
+<p>
+  <b>Name:</b>
+  <%=h @material.name %>
+  <%=h "(Liquid)" if @material.liquid? %> 
+  <br/><b>Material Type</b><br/>
+  <%=h @material.material_type.name unless @material.material_type.nil? %>
+  <br/>
+  <% if !@material.material_type.nil? && @material.material_type.id == 3 %>
+  	<b>N:</b> <%= @material.n_content %> 
+  	<b>P:</b> <%= @material.p_content %> 
+  	<b>K:</b> <%= @material.k_content %> 
+	<% end %>
+</p>
+<p>
+	<%= render(:partial => 'hazards') %>
+</p>
+  
+  <% unless @material.material_transactions.empty? %>
+	<br/><b>Transactions:</b>
+	<% end %>
+	<% @material.material_transactions.each do |m| %>
+	<p>
+		<a href='<%= observation_path(m.setup.activity.observation) %>'>
+		<%= m.setup.activity.observation.obs_date %></a>
+		
+		<%= m.setup.activity.observation.observation_type %>
+		<%=h m.setup.activity.observation.comment %>
+		</p>
+	<% end %>
+<p>
+<%= link_to 'Edit Material', edit_material_path(@material) %> |
+<%= link_to 'List Materials', materials_path %>
+</p>

@@ -1,0 +1,14 @@
+development:
+  adapter: sqlite3
+  database: db/aglog_rest_development.sqlite3
+
+test:
+  adapter: sqlite3
+  database: db/aglog_rest_test.sqlite3
+
+production:
+  adapter: mysql
+  database: aglog_rest_production
+  username: root
+  password: 
+  host: localhost

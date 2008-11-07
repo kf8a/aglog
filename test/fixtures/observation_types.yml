@@ -1,0 +1,28 @@
+--- 
+observation_types_009: 
+  name: Weed control
+  id: "6"
+observation_types_001: 
+  name: Soil Preparation
+  id: "1"
+observation_types_002: 
+  name: Harvest
+  id: "2"
+observation_types_003: 
+  name: Planting
+  id: "3"
+observation_types_004: 
+  name: Fertilizer application
+  id: "4"
+observation_types_005: 
+  name: Pesticide application
+  id: "5"
+observation_types_006: 
+  name: Irrigation
+  id: "7"
+observation_types_007: 
+  name: Observation
+  id: "8"
+observation_types_008: 
+  name: Burning
+  id: "9"

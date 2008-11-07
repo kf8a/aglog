@@ -1,0 +1,11 @@
+<h1>Show Hazard</h1>
+	<p>
+    <b>Name:</b> <%=h @hazard.name %><br />
+    <b>Hazard Type:</b> <%=h @hazard.hazard_type %><br />
+    <b>Chemical Name:</b> <%=h @hazard.chemical_name %><br />
+  	<p><b>Description:</b><br /> <%=h @hazard.description %></p>
+  	<p><b>Notification:</b><br /> <%=h @hazard.notification %></p> 
+    <b>Exclusion Time (Days):</b> <%=h @hazard.exclusion_time_days %><br />
+  </p>
+<%= link_to 'Edit', edit_hazard_path(@hazard) %> |
+<%= link_to 'List', hazards_path %>

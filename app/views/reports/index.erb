@@ -1,0 +1,25 @@
+
+<table>
+	<tr>
+		<th><%= link_to 'Date', reports_path(:order => 'date') %></th>
+		<th><%= link_to 'Plot', reports_path(:order => 'plot') %></th>
+		<th><%= link_to 'Material', reports_path(:order => 'material') %></th>
+		<th>Rate</th>
+		<th>N (kg/ha)</th>
+		<th>P (kg/ha)</th>
+		<th>K (kg/ha)</th>
+	</tr>
+<% @transactions.each do |t| %>
+
+	<td><%= t.obs_date %></td>
+	<td><%= t.name %></td>
+	<td><%= t.material.name %></td> 
+	<td><%= "#{pluralize(t.rate,t.unit.name)} per acre" if t.unit %></td>
+	<td><%= to_kg_ha(t.rate, t.material.n_content, t.material,t.unit)  if t.rate && t.material.n_content && t.unit.conversion_factor %></td>
+	<td><%= to_kg_ha(t.rate, t.material.p_content, t.material, t.unit) if t.rate && t.material.p_content && t.unit.conversion_factor %></td>
+	<td><%= to_kg_ha(t.rate, t.material.k_content, t.material, t.unit) if t.rate && t.material.k_content && t.unit.conversion_factor %></td>
+	<td><%= link_to "show", observation_path(t.observation_id) %></td>
+	</tr>
+
+<% end %>
+</table>

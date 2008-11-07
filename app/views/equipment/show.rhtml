@@ -1,0 +1,19 @@
+<p>
+  <b>Name:</b>
+  <%=h @equipment.name %>
+  <br/>
+  <%= 'Uses Material' if @equipment.use_material? %>
+</p>
+	<% @equipment.setups.each do |setup| %>
+	<p>
+		<a href='<%= observation_path(setup.activity.observation_id) %>'>
+		<%= setup.activity.observation.obs_date %></a>
+		<%= setup.activity.observation.observation_types[0].name %>
+		<%= setup.activity.observation.comment %>
+	</p>
+	<% end %>
+
+
+
+<%= link_to 'Edit', edit_equipment_path(@equipment) if logged_in? %> |
+<%= link_to 'Back', equipment_path %>
