@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081107152342) do
+ActiveRecord::Schema.define(:version => 20081110041403) do
 
   create_table "activities", :force => true do |t|
     t.integer "person_id"
@@ -115,22 +115,18 @@ ActiveRecord::Schema.define(:version => 20081107152342) do
   end
 
   create_table "open_id_authentication_associations", :force => true do |t|
-    t.binary  "server_url"
-    t.string  "handle"
-    t.binary  "secret"
     t.integer "issued"
     t.integer "lifetime"
+    t.string  "handle"
     t.string  "assoc_type"
+    t.binary  "server_url"
+    t.binary  "secret"
   end
 
   create_table "open_id_authentication_nonces", :force => true do |t|
-    t.string  "nonce"
-    t.integer "created"
-  end
-
-  create_table "open_id_authentication_settings", :force => true do |t|
-    t.string "setting"
-    t.binary "value"
+    t.integer "timestamp",  :null => false
+    t.string  "server_url"
+    t.string  "salt",       :null => false
   end
 
   create_table "people", :force => true do |t|
