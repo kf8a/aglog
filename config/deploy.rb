@@ -1,5 +1,7 @@
 set :application, "aglog"
-set :repository,  "http://kf8a.textdriven.com/svn/lter/aglog/branches/basic"
+set :repository,  "/Users/bohms/code/ag_basic"
+set :scm, :git
+
 
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
@@ -7,12 +9,13 @@ set :repository,  "http://kf8a.textdriven.com/svn/lter/aglog/branches/basic"
 # set :deploy_to, "/var/www/#{application}"
 set :deploy_to, "/var/u/apps/#{application}"
 
-# If you aren't using Subversion to manage your source code, specify
-# your SCM below:
-# set :scm, :subversion
-
 set :user, 'deploy'
 set :use_sudo, false
+
+set :branch, "master"
+set :deploy_via, :copy
+#set :git_enable_submodules,1
+
 
 set :mongrel_conf, '/etc/mongrel_cluster/aglog.yml'
 
