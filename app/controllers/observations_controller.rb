@@ -8,14 +8,14 @@ class ObservationsController < ApplicationController
       state  = 'published'
     end
     if params[:obstype]
-      @observations = Observation.paginate :page=> params[:page], 
-        :order => 'obs_date desc', 
-        :conditions => ['state = ? and observation_type_id = ?', state, params[:obstype]], 
-        :joins => 'join observation_types_observations on  observation_types_observations.observation_id = id'
-    else
-      @observations =  Observation.paginate :page => params[:page], :order => 'obs_date desc', :conditions => ['state = ?',state]
-    end
-
+       @observations = Observation.paginate :page=> params[:page], 
+         :order => 'obs_date desc', 
+         :conditions => ['state = ? and observation_type_id = ?', state, params[:obstype]], 
+         :joins => 'join observation_types_observations on  observation_types_observations.observation_id = id'
+     else
+       @observations =  Observation.paginate :page => params[:page], :order => 'obs_date desc', :conditions => ['state = ?',state]
+     end
+ 
 #    @observations = Observation.find(:all, :order => 'obs_date desc', :conditions => ['state = ?',state])
     
     respond_to do |format|
@@ -159,7 +159,8 @@ class ObservationsController < ApplicationController
     @observation = Observation.new(params[:observation])    
     @observation.set_activities(params[:activities])
 
-    @observation.person_id = 1
+    logger.info current_user.name
+    @observation.person_id = current_user.id
 
     respond_to do |format|
       if @observation.save

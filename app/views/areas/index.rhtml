@@ -13,12 +13,12 @@
 	<td><%=h area.description  %></td>
 	<td><%=h area.study.name if area.study %></td>
     <td><%= link_to 'Show', area_path(area) %></td>
-    <td><%= link_to 'Edit', edit_area_path(area) if logged_in? %></td>
-    <td><%= link_to 'Destroy', area_path(area), :confirm => 'Are you sure?', :method => :delete if logged_in? %></td>
+    <td><%= link_to 'Edit', edit_area_path(area) if current_user %></td>
+    <td><%= link_to 'Destroy', area_path(area), :confirm => 'Are you sure?', :method => :delete if current_user %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New area', new_area_path if logged_in? %>
+<%= link_to 'New area', new_area_path if current_user %>

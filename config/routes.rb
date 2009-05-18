@@ -34,8 +34,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :material_transactions
   
+  map.resources :person_sessions
+  map.resource :user_session
+  
   map.open_id_complete 'sessions', :controller => "sessions", :action => "create", :requirements => { :method => :get }
-  map.resource :sessions
   
   map.root :controller => 'observations'
 

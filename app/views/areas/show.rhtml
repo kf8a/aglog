@@ -31,12 +31,12 @@
 		</td>
 		<td>
 			<%= link_to 'Show', observation_path(observation)%>
-			<%= link_to 'Edit', edit_observation_path(observation) if logged_in? %>
+			<%= link_to 'Edit', edit_observation_path(observation) if current_user %>
 		</td>
 	</tr>
 	<% end %>
 </table>
 
 
-<%= link_to 'Edit', edit_area_path(@area) if logged_in? %> 
+<%= link_to 'Edit', edit_area_path(@area) if current_user %> 
 <%= link_to 'Back', areas_path %>

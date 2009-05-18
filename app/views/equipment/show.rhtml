@@ -15,5 +15,5 @@
 
 
 
-<%= link_to 'Edit', edit_equipment_path(@equipment) if logged_in? %> |
+<%= link_to 'Edit', edit_equipment_path(@equipment) if current_user %> |
 <%= link_to 'Back', equipment_path %>

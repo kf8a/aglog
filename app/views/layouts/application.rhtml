@@ -15,7 +15,6 @@
 
 <div class='header_bar'>
 <%= link_to 'observation', observations_path %>&nbsp;&nbsp;
-<%= link_to '(review)',   {:controller => 'observations', :action => 'index', :in_review => true} if logged_in? %>&nbsp;&nbsp;
 <%= link_to 'people', people_path %>&nbsp;&nbsp;
 <%= link_to 'material', materials_path %>&nbsp;&nbsp;
 <%= link_to 'equipment', {:controller => 'equipment'} %>&nbsp;&nbsp;
@@ -28,10 +27,7 @@
 
 <%= @content_for_layout %>
 
-<% if logged_in? %>
 
-<% else %>
-<%= link_to "login", new_sessions_path %>
-<% end %>
+<%= link_to "login", new_person_session_url %>
 </body>
 </html>

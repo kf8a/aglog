@@ -11,12 +11,12 @@
     <td><%=h equipment.name %></td>    
     <td align="center"><%= 'true' if equipment.use_material? %></td>
     <td><%= link_to 'Show', equipment_path(equipment) %></td>
-    <td><%= link_to 'Edit', edit_equipment_path(equipment) if logged_in? %></td>
-    <td><%= link_to 'Destroy', equipment_path(equipment), :confirm => 'Are you sure?', :method => :delete if logged_in? %></td>
+    <td><%= link_to 'Edit', edit_equipment_path(equipment) if current_user %></td>
+    <td><%= link_to 'Destroy', equipment_path(equipment), :confirm => 'Are you sure?', :method => :delete if current_user %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New equipment', new_equipment_path if logged_in? %>
+<%= link_to 'New equipment', new_equipment_path if current_user %>

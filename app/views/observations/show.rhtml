@@ -57,5 +57,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_observation_path(@observation) if  logged_in? %> 
+<%= link_to 'Edit', edit_observation_path(@observation) if  current_user %> 
 <%= link_to 'List Observations', observations_path %>

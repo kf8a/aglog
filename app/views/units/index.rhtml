@@ -13,8 +13,8 @@
 	  	<td><%=h unit.si_unit_id %></td>
 	  	<td><%=h unit.conversion_factor %></td>
 	  	<td><%= link_to 'Show', unit_path(unit) %></td>
-    	<td><%= link_to 'Edit', edit_unit_path(unit) if logged_in? %></td>
-    	<td><%= link_to 'Destroy', unit_path(unit), :confirm => 'Are you sure?', :method => :delete if logged_in? %></td>
+    	<td><%= link_to 'Edit', edit_unit_path(unit) if current_user %></td>
+    	<td><%= link_to 'Destroy', unit_path(unit), :confirm => 'Are you sure?', :method => :delete if current_user %></td>
   
 	  </tr>
 	 <% end %>
@@ -22,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Unit', new_unit_path if logged_in? %>
+<%= link_to 'New Unit', new_unit_path if current_user %>
