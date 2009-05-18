@@ -7,6 +7,8 @@ class ObservationsController < ApplicationController
     else
       state  = 'published'
     end
+    
+    @observations_total = Observation.count();
     if params[:obstype]
        @observations = Observation.paginate :page=> params[:page], 
          :order => 'obs_date desc', 
