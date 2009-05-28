@@ -9,7 +9,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.gem 'ruby-openid', :lib => 'openid' ,  :source => 'http://gems.github.com'  
   config.gem 'authlogic',    :source => 'http://gems.github.com'   #, :version => '1.4.3'
-  config.gem "authlogic-oid", :lib => "authlogic_openid", :source => 'http://gems.github.com'  
+  #config.gem "authlogic-oid", :lib => "authlogic_openid", :source => 'http://gems.github.com'  
   config.gem 'mislav-will_paginate',  :lib => 'will_paginate', 
       :source => 'http://gems.github.com'  
   # Settings in config/environments/* take precedence over those specified here.
