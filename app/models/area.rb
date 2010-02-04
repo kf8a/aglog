@@ -18,6 +18,7 @@ class Area < ActiveRecord::Base
   	end
   	# if treatment exists then it must belong to correct study
     errors.add('inconsistent study and treatment combination') unless  treatment.nil? || (treatment.study_id == study_id)
+    errors.add('names should not contain spaces') if name.scan(/ /) != []
   end
   
   # Area.parse returns an array of arrays if the parse was successful
@@ -59,7 +60,7 @@ class Area < ActiveRecord::Base
       when /^[ce|CE|Ce|cE]([1-9]|1[0-9])$/ then Area.find(:all, :conditions => ['treatment = ? and study_id = 7',$1])
       else
         # try to find an area by name
-        area = Area.find_by_name(token.squeeze.upcase)
+        area = Area.find(:conditions => ['name = upper(?)', token.squeeze.upcase)
         if area.nil?
           token
         else
