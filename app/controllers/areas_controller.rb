@@ -13,7 +13,7 @@ class AreasController < ApplicationController
   # GET /areas/1
   # GET /areas/1.xml
   def show
-    @area = Area.find(params[:id])
+    @area = Area.find(params[:id], :order => 'study_id, name')
     
     respond_to do |format|
       format.html # show.rhtml
