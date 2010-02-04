@@ -2,7 +2,7 @@ class AreasController < ApplicationController
   # GET /areas
   # GET /areas.xml
   def index
-    @areas = Area.find(:all)
+    @areas = Area.find(:all,  :order => 'study_id, name')
 
     respond_to do |format|
       format.html # index.rhtml
@@ -13,7 +13,7 @@ class AreasController < ApplicationController
   # GET /areas/1
   # GET /areas/1.xml
   def show
-    @area = Area.find(params[:id], :order => 'study_id, name')
+    @area = Area.find(params[:id])
     
     respond_to do |format|
       format.html # show.rhtml
