@@ -1,4 +1,4 @@
-require 'fastercsv'
+require 'fastercsv' unless RUBY_VERSION > '1.9'
 
 class Observation < ActiveRecord::Base
   acts_as_state_machine :initial => :published
