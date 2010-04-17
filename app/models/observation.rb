@@ -26,6 +26,18 @@ class Observation < ActiveRecord::Base
     
   def validate
     errors.add('invalid areas') if  @error_areas
+    errors.add('invalid byte sequence') unless is_ascii(self.comment)
+  end
+  
+  def is_ascii(str)
+    valid = true
+    ic = Iconv.new 'US-ASCII', 'UTF-8'
+    begin
+      ic.iconv(str)
+    rescue Exception => e
+      valid = false
+    end
+    valid
   end
   
   def in_review
