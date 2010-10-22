@@ -1,3 +1,4 @@
+
 set :application, "aglog"
 set :repository,  "/Users/bohms/code/ag_basic"
 set :scm, :git
@@ -19,9 +20,9 @@ set :deploy_via, :copy
 
 set :mongrel_conf, '/etc/mongrel_cluster/aglog.yml'
 
-role :app, "houghton.kbs.msu.edu"
-role :web, "houghton.kbs.msu.edu"
-role :db,  "houghton.kbs.msu.edu", :primary => true
+role :app, "sebewa.kbs.msu.edu"
+role :web, "sebewa.kbs.msu.edu"
+role :db,  "sebewa.kbs.msu.edu", :primary => true
 
 namespace :deploy do
     namespace :thin do
