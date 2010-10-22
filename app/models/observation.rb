@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'fastercsv' unless RUBY_VERSION > '1.9'
 
 class Observation < ActiveRecord::Base

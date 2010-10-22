@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.xml
