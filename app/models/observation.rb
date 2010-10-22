@@ -1,7 +1,5 @@
 # encoding: UTF-8
 
-require 'fastercsv' unless RUBY_VERSION > '1.9'
-
 class Observation < ActiveRecord::Base
   acts_as_state_machine :initial => :published
   
@@ -169,7 +167,7 @@ class Observation < ActiveRecord::Base
           end
         end
       end
-      FasterCSV.generate do |csv|
+      CSV.generate do |csv|
         observation.areas.each do |area|
           observation.observation_types.each do |type|
             csv << [observation.obs_date.to_s, type.name, area.name, material_names.join(';;'), n_contents.join(';;'), rates.join(';;'),unit_names.join(';;')]
