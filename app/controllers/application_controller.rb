@@ -2,7 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
   
-  before_filter :require_user, :except => [:index, :show]
+  before_filter :require_user, :except => [:index, :show] if Rails.env == "production"
     
   helper_method :current_user_session, :current_user
 
