@@ -9,7 +9,7 @@ class MaterialTransaction < ActiveRecord::Base
   
   # find fertilizers  on the main site
   def MaterialTransaction.find_fertilizations(order='obs_date desc', study_id =1)
-    MaterialTransaction.find_material_type(3,order,study_id)
+    MaterialTransaction.find_material_types(3,order,study_id)
   end
   
   def MaterialTransaction.find_material_types(material_type_id = 1, order='obs_date desc', study_id =1)
