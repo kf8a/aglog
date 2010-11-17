@@ -7,3 +7,4 @@ db/*.sqlite3
 vendor/gems/specifications
 vendor/gems/doc
 vendor/gems/environment.rb
+.bundle

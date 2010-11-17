@@ -16,17 +16,17 @@ class NormalizeTest < Test::Unit::TestCase
     "http://loudthinking.com:8080"          => "http://loudthinking.com:8080/",
     "techno-weenie.net"                     => "http://techno-weenie.net/",
     "http://techno-weenie.net"              => "http://techno-weenie.net/",
-    "http://techno-weenie.net  "            => "http://techno-weenie.net/",
-    "=name"                                 => "=name"
+    "http://techno-weenie.net  "            => "http://techno-weenie.net/"
   }
 
   def test_normalizations
     NORMALIZATIONS.each do |from, to|
-      assert_equal to, normalize_identifier(from)
+      assert_equal to, normalize_url(from)
     end
   end
-
+  
   def test_broken_open_id
-    assert_raises(InvalidOpenId) { normalize_identifier(nil) }
+    assert_raises(InvalidOpenId) { normalize_url(nil) }
+    assert_raises(InvalidOpenId) { normalize_url("=name") }
   end
 end

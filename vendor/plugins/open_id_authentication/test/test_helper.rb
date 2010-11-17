@@ -4,9 +4,6 @@ require 'rubygems'
 gem 'activesupport'
 require 'active_support'
 
-gem 'actionpack'
-require 'action_controller'
-
 gem 'mocha'
 require 'mocha'
 
