@@ -2,12 +2,9 @@ require 'test_helper'
 require 'people_controller'
 
 class PeopleControllerTest < ActionController::TestCase
-  #fixtures :people
 
   def setup
-    @controller = PeopleController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
+    @person = Factory.create(:person)
   end
 
   def test_should_get_index
@@ -30,23 +27,23 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   def test_should_show_person
-    get :show, :id => 1
+    get :show, :id => @person.id
     assert_response :success
   end
 
   def test_should_get_edit
-    get :edit, :id => 1
+    get :edit, :id => @person.id
     assert_response :success
   end
   
   def test_should_update_person
-    put :update, :id => 1, :person => { :given_name => 'bob', :sur_name => 'hastings'}
+    put :update, :id => @person.id, :person => { :given_name => 'bob', :sur_name => 'hastings'}
     assert_redirected_to person_path(assigns(:person))
   end
   
   def test_should_destroy_person
     old_count = Person.count
-    delete :destroy, :id => 1
+    delete :destroy, :id => @person.id
     assert_equal old_count-1, Person.count
     
     assert_redirected_to people_path
