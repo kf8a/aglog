@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class ActivityTest < Test::Unit::TestCase
+class ActivityTest < ActiveSupport::TestCase
   fixtures :activities, :setups, :material_transactions, :people
 
   def test_new_basic_activity

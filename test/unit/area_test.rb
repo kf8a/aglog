@@ -1,7 +1,7 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 require 'set'
 
-class AreaTest < Test::Unit::TestCase
+class AreaTest < ActiveSupport::TestCase
   fixtures :areas, :studies, :treatments
   
   def test_uniqueness

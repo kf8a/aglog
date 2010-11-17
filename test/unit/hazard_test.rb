@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class HazardTest < Test::Unit::TestCase
+class HazardTest < ActiveSupport::TestCase
   fixtures :hazards
 
   # Replace this with your real tests.

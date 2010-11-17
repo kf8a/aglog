@@ -1,13 +1,10 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 require 'materials_controller'
 
-# Re-raise errors caught by the controller.
-class MaterialsController; def rescue_action(e) raise e end; end
-
-class MaterialsControllerTest < Test::Unit::TestCase
-  fixtures :materials, :observations, :material_transactions
-  fixtures :setups, :activities
-  fixtures :observation_types, :observation_types_observations
+class MaterialsControllerTest < ActionController::TestCase
+#  fixtures :materials, :observations, :material_transactions
+#  fixtures :setups, :activities
+#  fixtures :observation_types, :observation_types_observations
 
   def setup
     @controller = MaterialsController.new

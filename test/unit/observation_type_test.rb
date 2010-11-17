@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class ObservationTypeTest < Test::Unit::TestCase
+class ObservationTypeTest < ActiveSupport::TestCase
   fixtures :observation_types
 
   def test_uniqueness

@@ -1,11 +1,8 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 require 'hazards_controller'
 
-# Re-raise errors caught by the controller.
-class HazardsController; def rescue_action(e) raise e end; end
-
-class HazardsControllerTest < Test::Unit::TestCase
-  fixtures :hazards
+class HazardsControllerTest < ActionController::TestCase
+  #fixtures :hazards
 
   def setup
     @controller = HazardsController.new

@@ -1,11 +1,8 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 require 'areas_controller'
 
-# Re-raise errors caught by the controller.
-class AreasController; def rescue_action(e) raise e end; end
-
-class AreasControllerTest < Test::Unit::TestCase
-  fixtures :areas
+class AreasControllerTest < ActionController::TestCase
+  #fixtures :areas
 
   def setup
     @controller = AreasController.new

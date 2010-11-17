@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class ObservationTest < Test::Unit::TestCase
+class ObservationTest < ActiveSupport::TestCase
   fixtures :observations, :observation_types, :observation_types_observations
 
   def test_should_not_create_observation

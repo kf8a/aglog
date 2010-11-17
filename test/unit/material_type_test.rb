@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class MaterialTypeTest < Test::Unit::TestCase
+class MaterialTypeTest < ActiveSupport::TestCase
   fixtures :material_types
 
   # Replace this with your real tests.

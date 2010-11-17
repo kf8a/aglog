@@ -1,13 +1,10 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 require 'equipment_controller'
 
-# Re-raise errors caught by the controller.
-class EquipmentController; def rescue_action(e) raise e end; end
-
-class EquipmentControllerTest < Test::Unit::TestCase
-  fixtures :equipment, :materials, :observations, :setups 
-  fixtures :material_transactions, :observation_types, :activities
-  fixtures :observation_types_observations
+class EquipmentControllerTest < ActionController::TestCase
+#  fixtures :equipment, :materials, :observations, :setups
+#  fixtures :material_transactions, :observation_types, :activities
+#  fixtures :observation_types_observations
 
   def setup
     @controller = EquipmentController.new

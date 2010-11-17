@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class UnitTest < Test::Unit::TestCase
+class UnitTest < ActiveSupport::TestCase
   fixtures :units
 
   def test_uniqueness

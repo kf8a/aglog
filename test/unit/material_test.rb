@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class MaterialTest < Test::Unit::TestCase
+class MaterialTest < ActiveSupport::TestCase
   fixtures :materials, :material_transactions
   
   def test_uniqueness

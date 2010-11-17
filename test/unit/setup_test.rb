@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class SetupTest < Test::Unit::TestCase
+class SetupTest < ActiveSupport::TestCase
   fixtures :setups
 
   def test_should_create_setup

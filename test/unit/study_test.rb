@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class StudyTest < Test::Unit::TestCase
+class StudyTest < ActiveSupport::TestCase
   fixtures :studies
 
 	# name must be unique
