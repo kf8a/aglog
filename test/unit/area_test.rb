@@ -22,18 +22,18 @@ class AreaTest < ActiveSupport::TestCase
   
   def test_study_exists
   	# area with good study
-  	a = Area.new(:study_id => 1)
+  	a = Area.new(:study_id => 1, :name => "something")
   	assert a.save
   	# area with invalid study
-  	a = Area.new(:study_id => 99)
+  	a = Area.new(:study_id => 99, :name => "something")
   	assert !a.save
   	# area without study is OK
-  	a = Area.new(:name => 'area without study')
+  	a = Area.new(:name => 'area_without_study')
   	assert a.save  	
 	end
 	
 	def test_treatment_requires_study
-		a = Area.new(:study_id => 1, :treatment_id => 6, :name => "something")
+		a = Area.new(:study_id => 1, :treatment_id => 99, :name => "something")
 		assert a.save
 		a = Area.new(:treatment_id => 1, :name => "Something")
 		assert !a.save
