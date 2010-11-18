@@ -33,9 +33,9 @@ class AreaTest < ActiveSupport::TestCase
 	end
 	
 	def test_treatment_requires_study
-		a = Area.new(:study_id => 1, :treatment_id => 99)
+		a = Area.new(:study_id => 1, :treatment_id => 6, :name => "something")
 		assert a.save
-		a = Area.new(:treatment_id => 1)
+		a = Area.new(:treatment_id => 1, :name => "Something")
 		assert !a.save
 	end
   
