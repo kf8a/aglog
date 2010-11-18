@@ -10,9 +10,6 @@ class CreateObservations < ActiveRecord::Migration
       t.column :observation_id, :integer
       t.column :area_id, :integer
     end
-    
-#    Observation.reset_column_information
-    
   end
 
   def self.down
