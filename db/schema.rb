@@ -28,14 +28,10 @@ ActiveRecord::Schema.define(:version => 20090515201740) do
     t.string  "description"
   end
 
-  add_index "areas", ["name"], :name => "area_names", :unique => true
-
   create_table "areas_observations", :id => false, :force => true do |t|
     t.integer "observation_id"
     t.integer "area_id"
   end
-
-  add_index "areas_observations", ["area_id", "observation_id"], :name => "areas_observation_idx", :unique => true
 
   create_table "equipment", :force => true do |t|
     t.string  "name"
@@ -73,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20090515201740) do
   end
 
   create_table "material_transactions", :force => true do |t|
-    t.integer  "material_id",                  :null => false
+    t.integer  "material_id"
     t.integer  "unit_id"
     t.integer  "setup_id"
     t.float    "rate"
