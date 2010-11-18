@@ -2,13 +2,7 @@ require 'test_helper'
 require 'observations_controller'
 
 class ObservationsControllerTest < ActionController::TestCase
-  #fixtures :observations, :people, :areas
-
-  def setup
-    @controller = ObservationsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
+  fixtures :observations, :people, :areas, :observation_types
 
   def test_should_get_index
     get :index
@@ -73,7 +67,7 @@ class ObservationsControllerTest < ActionController::TestCase
       :observation=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", 
         "obs_date(3i)"=>"25", "areas_as_text"=>"t1r1", 
         "comment"=>"Test at 14:45", "observation_type_ids"=>["3"]}, 
-        "commit"=>"Create", "action"=>"create", 
+        "commit"=>"Create", "action"=>"create",
         "activities"=>{
           "0"=>{"setups"=>{
             "0"=>{"equipment_id"=>"2", "material_transactions"=>{
