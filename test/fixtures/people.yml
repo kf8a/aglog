@@ -3,79 +3,79 @@ people_007:
   sur_name: Kokx
   id: "8"
   given_name: Mick
-  open_id: 
+  openid_identifier:
 people_008: 
   sur_name: Bronson
   id: "3"
   given_name: Jim
-  open_id: 
+  openid_identifier:
 people_010: 
   sur_name: Kellam
   id: "7"
   given_name: Gale
-  open_id: 
+  openid_identifier: 
 people_009: 
   sur_name: Parker
   id: "6"
   given_name: "Greg "
-  open_id: 
+  openid_identifier:
 people_011: 
   sur_name: Pixley
   id: "9"
   given_name: Matt
-  open_id: 
+  openid_identifier:
 people_012: 
   sur_name: Kokx
   id: "12"
   given_name: Scott
-  open_id: 
+  openid_identifier:
 people_001: 
   sur_name: ""
   id: "13"
   given_name: unknown
-  open_id: 
+  openid_identifier:
 people_013: 
   sur_name: Dysinger
   id: "10"
   given_name: Keith
-  open_id: 
+  openid_identifier:
 people_002: 
   sur_name: Simmons
   id: "1"
   given_name: Joe
-  open_id: 
+  openid_identifier:
 people_014: 
   sur_name: ""
   id: "14"
   given_name: Tim
-  open_id: 
+  openid_identifier:
 people_003: 
   sur_name: Stoneburner
   id: "2"
   given_name: Jim
-  open_id: 
+  openid_identifier:
 people_015: 
   sur_name: Beeching
   id: "15"
   given_name: Nicole
-  open_id: 
+  openid_identifier:
 people_004: 
   sur_name: Adams
   id: "4"
   given_name: Bob
-  open_id: 
+  openid_identifier:
 people_016: 
   sur_name: bohm
   id: "16"
   given_name: sven
-  open_id: http://kf8a.myopenid.com/
+  openid_identifier:  http://kf8a.myopenid.com/
 people_005: 
   sur_name: Martin
   id: "5"
   given_name: Todd
-  open_id: 
+  openid_identifier:
 people_006: 
   sur_name: ""
   id: "11"
   given_name: Gala
-  open_id: 
+  openid_identifier: 
