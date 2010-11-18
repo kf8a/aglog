@@ -1,3 +1,5 @@
+#These do not work because rails interprets "treatment" as an instance of
+#the Treatment model.
 1.upto(7) do |treat|
   1.upto(6) do |rep|
     Area.new(:name => "T#{treat}R#{rep}", :treatment => treat, :replicate => rep).save
