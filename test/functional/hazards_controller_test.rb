@@ -2,12 +2,10 @@ require 'test_helper'
 require 'hazards_controller'
 
 class HazardsControllerTest < ActionController::TestCase
-  #fixtures :hazards
+  fixtures :hazards
 
   def setup
-    @controller = HazardsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
+    @hazard = Factory.create(:hazard)
   end
 
   def test_should_get_index
@@ -30,23 +28,23 @@ class HazardsControllerTest < ActionController::TestCase
   end
 
   def test_should_show_hazard
-    get :show, :id => 1
+    get :show, :id => @hazard.id
     assert_response :success
   end
 
   def test_should_get_edit
-    get :edit, :id => 1
+    get :edit, :id => @hazard.id
     assert_response :success
   end
 
   def test_should_update_hazard
-    put :update, :id => 1, :hazard => { }
+    put :update, :id => @hazard.id, :hazard => { }
     assert_redirected_to hazard_path(assigns(:hazard))
   end
 
   def test_should_destroy_hazard
     assert_difference('Hazard.count', -1) do
-      delete :destroy, :id => 1
+      delete :destroy, :id => @hazard.id
     end
 
     assert_redirected_to hazards_path

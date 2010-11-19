@@ -18,6 +18,8 @@ GEM
     activeresource (2.3.10)
       activesupport (= 2.3.10)
     activesupport (2.3.10)
+    authlogic-oid (1.0.4)
+      authlogic
     daemons (1.1.0)
     eventmachine (0.12.10)
     factory_girl (1.3.2)
@@ -44,6 +46,7 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic!
+  authlogic-oid
   factory_girl
   pg
   rails (= 2.3.10)

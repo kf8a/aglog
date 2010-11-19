@@ -4,6 +4,11 @@ require 'observations_controller'
 class ObservationsControllerTest < ActionController::TestCase
   fixtures :observations, :people, :areas, :observation_types
 
+  def setup
+    @person = Person.first
+    PersonSession.create(@person, true)
+  end
+
   def test_should_get_index
     get :index
     assert_response :success
