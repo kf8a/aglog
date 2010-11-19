@@ -107,8 +107,8 @@ class ObservationsControllerTest < ActionController::TestCase
 
  		assert_select_rjs :replace, "activities"
   	assert_response :success
-  	assert_equal "text/javascript; charset=utf-8",
-        @response.headers["type"]
+#  	assert_equal "text/javascript; charset=utf-8",
+#        @response.headers["type"]
     
   end 
   
