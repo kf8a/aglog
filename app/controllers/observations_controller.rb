@@ -162,8 +162,8 @@ class ObservationsController < ApplicationController
     @observation = Observation.new(params[:observation])    
     @observation.set_activities(params[:activities])
 
-    logger.info current_user.try(:name)
-    @observation.person_id = current_user.try(:id)
+    logger.info current_user.name
+    @observation.person_id = current_user.id
 
     respond_to do |format|
       if @observation.save
