@@ -5,8 +5,6 @@ class ObservationsControllerTest < ActionController::TestCase
   fixtures :observations, :people, :areas, :observation_types
 
   def setup
-    @person = Person.first
-    PersonSession.create(@person, true)
   end
 
   def test_should_get_index
@@ -24,14 +22,7 @@ class ObservationsControllerTest < ActionController::TestCase
     old_count = Observation.count
     post :create, "observation"=>
       {"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25", 
-        "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45",
-        "observation_type_ids"=>["3"]}, "commit"=>"Create", 
-        "action"=>"create", 
-        "activities"=>{
-          "0"=>{"setups"=>{
-            "0"=>{"equipment_id"=>"2", "material_transactions"=>{
-              "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}}}}, 
-              "hours"=>"1", "person_id"=>"2"}}
+        "observation_type_ids"=>["3"]}
     assert_equal old_count+1, Observation.count
     
     assert_redirected_to observation_path(assigns(:observation))

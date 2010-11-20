@@ -2,11 +2,16 @@
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
   
-  before_filter :require_user, :except => [:index, :show] if Rails.env == "production"
+  before_filter :set_test_user if Rails.env == "test"
+  before_filter :require_user, :except => [:index, :show]
     
   helper_method :current_user_session, :current_user
 
   private
+  def set_test_user
+    @current_user = Person.first
+  end
+
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = PersonSession.find
