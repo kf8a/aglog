@@ -140,10 +140,6 @@ class AreaTest < ActiveSupport::TestCase
     
   def test_area_not_full_rep_unparse
     parse_reverse('T1R1')
-    @area = Area.find_by_name('T2')
-    assert @area
-    assert_equal 2, @area.treatment_id
-    assert_equal 1, @area.study_id
     parse_reverse('T2')
     
     areas =  Area.parse('T1R1 T2')
