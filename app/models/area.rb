@@ -31,7 +31,10 @@ class Area < ActiveRecord::Base
         #specify the whole main site
       when /^MAIN$/ then Area.find(:all, :conditions => ['study_id = 1'])
         #specify a whole treatment
-      when  /^[t|T]([1-8])$/ then Area.find(:all, :conditions => ['treatment = ? and study_id = 1',$1])
+      when  /^[t|T]([1-8])$/
+        number = $1
+        Area.find_all_by_treatment_and_study_id(number, 1) +
+          Area.find_all_by_treatment_id_and_study_id(number, 1)
         #specify a whole rep
       when /^[r|R]([1-6])$/  then Area.find(:all, :conditions => ['replicate = ? and study_id = 1', $1])
         #specify a range of treatments

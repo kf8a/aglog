@@ -1805,3 +1805,12 @@ areas_099:
   study_id: "5"
   treatment: "23"
   replicate: "1"
+areas_T1:
+  name: T1
+  treatment_id: "1"
+  treatment: "1"
+  study_id: "1"
+areas_T2:
+  name: T2
+  treatment_id: "2"
+  study_id: "1"
