@@ -1808,7 +1808,6 @@ areas_099:
 areas_T1:
   name: T1
   treatment_id: "1"
-  treatment: "1"
   study_id: "1"
 areas_T2:
   name: T2
