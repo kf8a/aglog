@@ -187,3 +187,43 @@ treatments_005:
   name: T6
   id: "5"
   study_id: "1"
+treatments_048:
+  name: G1
+  id: "48"
+  study_id: "6"
+treatments_049:
+  name: G2
+  id: "49"
+  study_id: "6"
+treatments_050:
+  name: G3
+  id: "50"
+  study_id: "6"
+treatments_051:
+  name: G4
+  id: "51"
+  study_id: "6"
+treatments_052:
+  name: G5
+  id: "52"
+  study_id: "6"
+treatments_053:
+  name: G6
+  id: "53"
+  study_id: "6"
+treatments_054:
+  name: G7
+  id: "54"
+  study_id: "6"
+treatments_055:
+  name: G8
+  id: "55"
+  study_id: "6"
+treatments_056:
+  name: G9
+  id: "56"
+  study_id: "6"
+treatments_057:
+  name: G10
+  id: "57"
+  study_id: "6"

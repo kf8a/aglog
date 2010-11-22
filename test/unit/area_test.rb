@@ -91,7 +91,7 @@ class AreaTest < ActiveSupport::TestCase
   end
   
   def test_area_unparse
-    areas  = Area.find_all_by_treatment_and_study_id('1','1')
+    areas  = Area.find_all_by_treatment_and_study_id('1','1') + Area.find_all_by_treatment_id_and_study_id(1, 1)
     area_string = Area.unparse(areas)
     assert_equal 'T1', area_string
     

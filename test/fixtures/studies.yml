@@ -18,4 +18,7 @@ studies_004:
 studies_005: 
   name: Rotation Entry Point
   id: "5"
-  description: 
+  description:
+studies_006:
+  name: GLBRC
+  id: "6"

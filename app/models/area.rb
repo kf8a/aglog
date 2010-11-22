@@ -57,7 +57,16 @@ class Area < ActiveRecord::Base
       when /^[r|R][e|E][p|P][t|T]([1-4])[E|e]([1-3])$/ then Area.find(:all, :conditions  => ['treatment = ? and study_id = 5', [$1,$2].join])
         # specify GLRBC plots
       when /^GLBRC$/ then Area.find(:all, :conditions => ['study_id=6'])
-      when /^[g|G](10|[1-9])$/ then Area.find(:all, :conditions => ['treatment = ? and study_id = 6',$1])
+      when /^[g|G](10|[1-9])[r|R]([1-6])$/
+        treat = $1
+        rep = $2
+        Area.find_all_by_name("G#{treat}R#{rep}") +
+          Area.find_all_by_name("G#{treat}r#{rep}") +
+          Area.find_all_by_name("g#{treat}R#{rep}") +
+          Area.find_all_by_name("g#{treat}r#{rep}")
+      when /^[g|G](10|[1-9])$/
+        number = $1
+        Area.find_all_by_name("G#{number}") + Area.find_all_by_name("g#{number}")
         # specify Cellulosic energy study
       when /^CES$/ then Area.find(:all, :conditions => ['study_id=7'])
       when /^[ce|CE|Ce|cE]([1-9]|1[0-9])$/ then Area.find(:all, :conditions => ['treatment = ? and study_id = 7',$1])
