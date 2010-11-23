@@ -51,7 +51,7 @@ areas_103:
 areas_210: 
   name: B10R1
   id: "81"
-  treatment_id: "18"
+  treatment_id:
   study_id: "2"
   treatment: "10"
   replicate: "1"
@@ -72,14 +72,14 @@ areas_104:
 areas_130: 
   name: T1R5
   id: "5"
-  treatment_id: "1"
+  treatment_id: 
   study_id: "1"
   treatment: "1"
   replicate: "5"
 areas_211: 
   name: B10R2
   id: "82"
-  treatment_id: "18"
+  treatment_id: 
   study_id: "2"
   treatment: "10"
   replicate: "2"
@@ -100,14 +100,14 @@ areas_105:
 areas_131: 
   name: T1R6
   id: "6"
-  treatment_id: "1"
+  treatment_id: 
   study_id: "1"
   treatment: "1"
   replicate: "6"
 areas_212: 
   name: B10R3
   id: "83"
-  treatment_id: "18"
+  treatment_id: 
   study_id: "2"
   treatment: "10"
   replicate: "3"
@@ -135,14 +135,14 @@ areas_106:
 areas_132: 
   name: T1R1
   id: "1"
-  treatment_id: "1"
+  treatment_id: 
   study_id: "1"
   treatment: "1"
   replicate: "1"
 areas_213: 
   name: B10R4
   id: "84"
-  treatment_id: "18"
+  treatment_id: 
   study_id: "2"
   treatment: "10"
   replicate: "4"
@@ -156,7 +156,7 @@ areas_025:
 areas_240: 
   name: B17R3
   id: "111"
-  treatment_id: "25"
+  treatment_id: 
   study_id: "2"
   treatment: "17"
   replicate: "3"
@@ -170,14 +170,13 @@ areas_107:
 areas_133: 
   name: T2R1
   id: "7"
-  treatment_id: "2"
+  treatment_id:
   study_id: "1"
-  treatment: "2"
   replicate: "1"
 areas_214: 
   name: B11R1
   id: "85"
-  treatment_id: "19"
+  treatment_id: 
   study_id: "2"
   treatment: "11"
   replicate: "1"
@@ -198,28 +197,28 @@ areas_052:
 areas_241: 
   name: B17R4
   id: "112"
-  treatment_id: "25"
+  treatment_id: 
   study_id: "2"
   treatment: "17"
   replicate: "4"
 areas_134: 
   name: T2R2
   id: "8"
-  treatment_id: "2"
+  treatment_id: 
   study_id: "1"
   treatment: "2"
   replicate: "2"
 areas_160: 
   name: T6R4
   id: "34"
-  treatment_id: "5"
+  treatment_id: 
   study_id: "1"
   treatment: "6"
   replicate: "4"
 areas_215: 
   name: B11R2
   id: "86"
-  treatment_id: "19"
+  treatment_id: 
   study_id: "2"
   treatment: "11"
   replicate: "2"
@@ -240,7 +239,7 @@ areas_053:
 areas_242: 
   name: B18R1
   id: "113"
-  treatment_id: "26"
+  treatment_id: 
   study_id: "2"
   treatment: "18"
   replicate: "1"
@@ -254,21 +253,20 @@ areas_108:
 areas_135: 
   name: T2R3
   id: "9"
-  treatment_id: "2"
+  treatment_id: 
   study_id: "1"
-  treatment: "2"
   replicate: "3"
 areas_161: 
   name: T6R5
   id: "35"
-  treatment_id: "5"
+  treatment_id: 
   study_id: "1"
   treatment: "6"
   replicate: "5"
 areas_216: 
   name: B11R3
   id: "87"
-  treatment_id: "19"
+  treatment_id: 
   study_id: "2"
   treatment: "11"
   replicate: "3"
@@ -296,28 +294,28 @@ areas_080:
 areas_243: 
   name: B18R2
   id: "114"
-  treatment_id: "26"
+  treatment_id: 
   study_id: "2"
   treatment: "18"
   replicate: "2"
 areas_136: 
   name: T2R4
   id: "10"
-  treatment_id: "2"
+  treatment_id: 
   study_id: "1"
   treatment: "2"
   replicate: "4"
 areas_162: 
   name: T6R6
   id: "36"
-  treatment_id: "5"
+  treatment_id: 
   study_id: "1"
   treatment: "6"
   replicate: "6"
 areas_217: 
   name: B11R4
   id: "88"
-  treatment_id: "19"
+  treatment_id: 
   study_id: "2"
   treatment: "11"
   replicate: "4"
@@ -352,21 +350,20 @@ areas_109:
 areas_244: 
   name: B18R3
   id: "115"
-  treatment_id: "26"
+  treatment_id: 
   study_id: "2"
   treatment: "18"
   replicate: "3"
 areas_137: 
   name: T2R5
   id: "11"
-  treatment_id: "2"
+  treatment_id: 
   study_id: "1"
-  treatment: "2"
   replicate: "5"
 areas_163: 
   name: T7R1
   id: "37"
-  treatment_id: "7"
+  treatment_id: 
   study_id: "1"
   treatment: "7"
   replicate: "1"
@@ -387,28 +384,28 @@ areas_082:
 areas_245: 
   name: B18R4
   id: "116"
-  treatment_id: "26"
+  treatment_id: 
   study_id: "2"
   treatment: "18"
   replicate: "4"
 areas_164: 
   name: T7R2
   id: "38"
-  treatment_id: "7"
+  treatment_id:
   study_id: "1"
   treatment: "7"
   replicate: "2"
 areas_190: 
   name: B5R1
   id: "61"
-  treatment_id: "13"
+  treatment_id: 
   study_id: "2"
   treatment: "5"
   replicate: "1"
 areas_218: 
   name: B12R1
   id: "89"
-  treatment_id: "20"
+  treatment_id: 
   study_id: "2"
   treatment: "12"
   replicate: "1"
@@ -429,35 +426,34 @@ areas_083:
 areas_138: 
   name: T2R6
   id: "12"
-  treatment_id: "2"
+  treatment_id: 
   study_id: "1"
-  treatment: "2"
   replicate: "6"
 areas_246: 
   name: B19R1
   id: "117"
-  treatment_id: "27"
+  treatment_id: 
   study_id: "2"
   treatment: "19"
   replicate: "1"
 areas_165: 
   name: T7R3
   id: "39"
-  treatment_id: "7"
+  treatment_id: 
   study_id: "1"
   treatment: "7"
   replicate: "3"
 areas_191: 
   name: B5R2
   id: "62"
-  treatment_id: "13"
+  treatment_id: 
   study_id: "2"
   treatment: "5"
   replicate: "2"
 areas_219: 
   name: B12R2
   id: "90"
-  treatment_id: "20"
+  treatment_id: 
   study_id: "2"
   treatment: "12"
   replicate: "2"
@@ -478,21 +474,21 @@ areas_084:
 areas_139: 
   name: T3R1
   id: "13"
-  treatment_id: "3"
+  treatment_id: 
   study_id: "1"
   treatment: "3"
   replicate: "1"
 areas_247: 
   name: B19R2
   id: "118"
-  treatment_id: "27"
+  treatment_id: 
   study_id: "2"
   treatment: "19"
   replicate: "2"
 areas_192: 
   name: B5R3
   id: "63"
-  treatment_id: "13"
+  treatment_id: 
   study_id: "2"
   treatment: "5"
   replicate: "3"
@@ -513,21 +509,21 @@ areas_085:
 areas_166: 
   name: T7R4
   id: "40"
-  treatment_id: "7"
+  treatment_id: 
   study_id: "1"
   treatment: "7"
   replicate: "4"
 areas_248: 
   name: B19R3
   id: "119"
-  treatment_id: "27"
+  treatment_id: 
   study_id: "2"
   treatment: "19"
   replicate: "3"
 areas_193: 
   name: B5R4
   id: "64"
-  treatment_id: "13"
+  treatment_id: 
   study_id: "2"
   treatment: "5"
   replicate: "4"
@@ -541,14 +537,14 @@ areas_086:
 areas_167: 
   name: T7R5
   id: "41"
-  treatment_id: "7"
+  treatment_id: 
   study_id: "1"
   treatment: "7"
   replicate: "5"
 areas_249: 
   name: B19R4
   id: "120"
-  treatment_id: "27"
+  treatment_id: 
   study_id: "2"
   treatment: "19"
   replicate: "4"
@@ -562,14 +558,14 @@ areas_087:
 areas_168: 
   name: T7R6
   id: "42"
-  treatment_id: "7"
+  treatment_id:
   study_id: "1"
   treatment: "7"
   replicate: "6"
 areas_194: 
   name: B6R1
   id: "65"
-  treatment_id: "14"
+  treatment_id: 
   study_id: "2"
   treatment: "6"
   replicate: "1"
@@ -583,14 +579,14 @@ areas_088:
 areas_169: 
   name: T8R1
   id: "167"
-  treatment_id: "8"
+  treatment_id: 
   study_id: "1"
   treatment: "8"
   replicate: "1"
 areas_195: 
   name: B6R2
   id: "66"
-  treatment_id: "14"
+  treatment_id: 
   study_id: "2"
   treatment: "6"
   replicate: "2"
@@ -604,28 +600,28 @@ areas_089:
 areas_196: 
   name: B6R3
   id: "67"
-  treatment_id: "14"
+  treatment_id: 
   study_id: "2"
   treatment: "6"
   replicate: "3"
 areas_197: 
   name: B6R4
   id: "68"
-  treatment_id: "14"
+  treatment_id: 
   study_id: "2"
   treatment: "6"
   replicate: "4"
 areas_198: 
   name: B7R1
   id: "69"
-  treatment_id: "15"
+  treatment_id: 
   study_id: "2"
   treatment: "7"
   replicate: "1"
 areas_199: 
   name: B7R2
   id: "70"
-  treatment_id: "15"
+  treatment_id: 
   study_id: "2"
   treatment: "7"
   replicate: "2"
@@ -653,7 +649,7 @@ areas_012:
 areas_200: 
   name: B7R3
   id: "71"
-  treatment_id: "15"
+  treatment_id: 
   study_id: "2"
   treatment: "7"
   replicate: "3"
@@ -674,7 +670,7 @@ areas_120:
 areas_201: 
   name: B7R4
   id: "72"
-  treatment_id: "15"
+  treatment_id: 
   study_id: "2"
   treatment: "7"
   replicate: "4"
@@ -702,7 +698,7 @@ areas_121:
 areas_202: 
   name: B8R1
   id: "73"
-  treatment_id: "16"
+  treatment_id: 
   study_id: "2"
   treatment: "8"
   replicate: "1"
@@ -730,14 +726,14 @@ areas_122:
 areas_203: 
   name: B8R2
   id: "74"
-  treatment_id: "16"
+  treatment_id: 
   study_id: "2"
   treatment: "8"
   replicate: "2"
 areas_230: 
   name: B15R1
   id: "101"
-  treatment_id: "23"
+  treatment_id: 
   study_id: "2"
   treatment: "15"
   replicate: "1"
@@ -765,14 +761,14 @@ areas_123:
 areas_204: 
   name: B8R3
   id: "75"
-  treatment_id: "16"
+  treatment_id: 
   study_id: "2"
   treatment: "8"
   replicate: "3"
 areas_231: 
   name: B15R2
   id: "102"
-  treatment_id: "23"
+  treatment_id: 
   study_id: "2"
   treatment: "15"
   replicate: "2"
@@ -800,21 +796,21 @@ areas_124:
 areas_150: 
   name: T4R6
   id: "24"
-  treatment_id: "4"
+  treatment_id:
   study_id: "1"
   treatment: "4"
   replicate: "6"
 areas_205: 
   name: B8R4
   id: "76"
-  treatment_id: "16"
+  treatment_id: 
   study_id: "2"
   treatment: "8"
   replicate: "4"
 areas_232: 
   name: B15R3
   id: "103"
-  treatment_id: "23"
+  treatment_id: 
   study_id: "2"
   treatment: "15"
   replicate: "3"
@@ -849,21 +845,21 @@ areas_125:
 areas_151: 
   name: T5R1
   id: "25"
-  treatment_id: "6"
+  treatment_id: 
   study_id: "1"
   treatment: "5"
   replicate: "1"
 areas_206: 
   name: B9R1
   id: "77"
-  treatment_id: "17"
+  treatment_id: 
   study_id: "2"
   treatment: "9"
   replicate: "1"
 areas_233: 
   name: B15R4
   id: "104"
-  treatment_id: "23"
+  treatment_id: 
   study_id: "2"
   treatment: "15"
   replicate: "4"
@@ -898,14 +894,14 @@ areas_126:
 areas_152: 
   name: T5R2
   id: "26"
-  treatment_id: "6"
+  treatment_id:
   study_id: "1"
   treatment: "5"
   replicate: "2"
 areas_234: 
   name: B16R1
   id: "105"
-  treatment_id: "24"
+  treatment_id: 
   study_id: "2"
   treatment: "16"
   replicate: "1"
@@ -926,28 +922,28 @@ areas_072:
 areas_127: 
   name: T1R2
   id: "2"
-  treatment_id: "1"
+  treatment_id: 
   study_id: "1"
   treatment: "1"
   replicate: "2"
 areas_153: 
   name: T5R3
   id: "27"
-  treatment_id: "6"
+  treatment_id: 
   study_id: "1"
   treatment: "5"
   replicate: "3"
 areas_207: 
   name: B9R2
   id: "78"
-  treatment_id: "17"
+  treatment_id: 
   study_id: "2"
   treatment: "9"
   replicate: "2"
 areas_235: 
   name: B16R2
   id: "106"
-  treatment_id: "24"
+  treatment_id: 
   study_id: "2"
   treatment: "16"
   replicate: "2"
@@ -968,35 +964,35 @@ areas_073:
 areas_128: 
   name: T1R3
   id: "3"
-  treatment_id: "1"
+  treatment_id: 
   study_id: "1"
   treatment: "1"
   replicate: "3"
 areas_154: 
   name: T5R4
   id: "28"
-  treatment_id: "6"
+  treatment_id: 
   study_id: "1"
   treatment: "5"
   replicate: "4"
 areas_180: 
   name: B2R3
   id: "51"
-  treatment_id: "10"
+  treatment_id: 
   study_id: "2"
   treatment: "2"
   replicate: "3"
 areas_208: 
   name: B9R3
   id: "79"
-  treatment_id: "17"
+  treatment_id: 
   study_id: "2"
   treatment: "9"
   replicate: "3"
 areas_236: 
   name: B16R3
   id: "107"
-  treatment_id: "24"
+  treatment_id: 
   study_id: "2"
   treatment: "16"
   replicate: "3"
@@ -1017,35 +1013,35 @@ areas_074:
 areas_129: 
   name: T1R4
   id: "4"
-  treatment_id: "1"
+  treatment_id: 
   study_id: "1"
   treatment: "1"
   replicate: "4"
 areas_155: 
   name: T5R5
   id: "29"
-  treatment_id: "6"
+  treatment_id:
   study_id: "1"
   treatment: "5"
   replicate: "5"
 areas_181: 
   name: B2R4
   id: "52"
-  treatment_id: "10"
+  treatment_id: 
   study_id: "2"
   treatment: "2"
   replicate: "4"
 areas_209: 
   name: B9R4
   id: "80"
-  treatment_id: "17"
+  treatment_id: 
   study_id: "2"
   treatment: "9"
   replicate: "4"
 areas_237: 
   name: B16R4
   id: "108"
-  treatment_id: "24"
+  treatment_id: 
   study_id: "2"
   treatment: "16"
   replicate: "4"
@@ -1066,21 +1062,21 @@ areas_075:
 areas_156: 
   name: T5R6
   id: "30"
-  treatment_id: "6"
+  treatment_id: 
   study_id: "1"
   treatment: "5"
   replicate: "6"
 areas_182: 
   name: B3R1
   id: "53"
-  treatment_id: "11"
+  treatment_id: 
   study_id: "2"
   treatment: "3"
   replicate: "1"
 areas_238: 
   name: B17R1
   id: "109"
-  treatment_id: "25"
+  treatment_id: 
   study_id: "2"
   treatment: "17"
   replicate: "1"
@@ -1094,21 +1090,21 @@ areas_076:
 areas_157: 
   name: T6R1
   id: "31"
-  treatment_id: "5"
+  treatment_id: 
   study_id: "1"
   treatment: "6"
   replicate: "1"
 areas_183: 
   name: B3R2
   id: "54"
-  treatment_id: "11"
+  treatment_id: 
   study_id: "2"
   treatment: "3"
   replicate: "2"
 areas_239: 
   name: B17R2
   id: "110"
-  treatment_id: "25"
+  treatment_id: 
   study_id: "2"
   treatment: "17"
   replicate: "2"
@@ -1122,14 +1118,14 @@ areas_077:
 areas_158: 
   name: T6R2
   id: "32"
-  treatment_id: "5"
+  treatment_id:
   study_id: "1"
   treatment: "6"
   replicate: "2"
 areas_184: 
   name: B3R3
   id: "55"
-  treatment_id: "11"
+  treatment_id: 
   study_id: "2"
   treatment: "3"
   replicate: "3"
@@ -1143,14 +1139,14 @@ areas_078:
 areas_159: 
   name: T6R3
   id: "33"
-  treatment_id: "5"
+  treatment_id: 
   study_id: "1"
   treatment: "6"
   replicate: "3"
 areas_185: 
   name: B3R4
   id: "56"
-  treatment_id: "11"
+  treatment_id: 
   study_id: "2"
   treatment: "3"
   replicate: "4"
@@ -1164,28 +1160,28 @@ areas_079:
 areas_186: 
   name: B4R1
   id: "57"
-  treatment_id: "12"
+  treatment_id: 
   study_id: "2"
   treatment: "4"
   replicate: "1"
 areas_187: 
   name: B4R2
   id: "58"
-  treatment_id: "12"
+  treatment_id: 
   study_id: "2"
   treatment: "4"
   replicate: "2"
 areas_188: 
   name: B4R3
   id: "59"
-  treatment_id: "12"
+  treatment_id: 
   study_id: "2"
   treatment: "4"
   replicate: "3"
 areas_189: 
   name: B4R4
   id: "60"
-  treatment_id: "12"
+  treatment_id: 
   study_id: "2"
   treatment: "4"
   replicate: "4"
@@ -1262,7 +1258,7 @@ areas_112:
 areas_220: 
   name: B12R3
   id: "91"
-  treatment_id: "20"
+  treatment_id: 
   study_id: "2"
   treatment: "12"
   replicate: "3"
@@ -1311,14 +1307,14 @@ areas_114:
 areas_140: 
   name: T3R2
   id: "14"
-  treatment_id: "3"
+  treatment_id:
   study_id: "1"
   treatment: "3"
   replicate: "2"
 areas_221: 
   name: B12R4
   id: "92"
-  treatment_id: "20"
+  treatment_id: 
   study_id: "2"
   treatment: "12"
   replicate: "4"
@@ -1353,21 +1349,21 @@ areas_115:
 areas_141: 
   name: T3R3
   id: "15"
-  treatment_id: "3"
+  treatment_id: 
   study_id: "1"
   treatment: "3"
   replicate: "3"
 areas_222: 
   name: B13R1
   id: "93"
-  treatment_id: "21"
+  treatment_id: 
   study_id: "2"
   treatment: "13"
   replicate: "1"
 areas_223: 
   name: B13R2
   id: "94"
-  treatment_id: "21"
+  treatment_id: 
   study_id: "2"
   treatment: "13"
   replicate: "2"
@@ -1395,21 +1391,21 @@ areas_116:
 areas_142: 
   name: T3R4
   id: "16"
-  treatment_id: "3"
+  treatment_id: 
   study_id: "1"
   treatment: "3"
   replicate: "4"
 areas_250: 
   name: B20R1
   id: "121"
-  treatment_id: "28"
+  treatment_id: 
   study_id: "2"
   treatment: "20"
   replicate: "1"
 areas_224: 
   name: B13R3
   id: "95"
-  treatment_id: "21"
+  treatment_id: 
   study_id: "2"
   treatment: "13"
   replicate: "3"
@@ -1444,21 +1440,21 @@ areas_117:
 areas_143: 
   name: T3R5
   id: "17"
-  treatment_id: "3"
+  treatment_id:
   study_id: "1"
   treatment: "3"
   replicate: "5"
 areas_251: 
   name: B20R2
   id: "122"
-  treatment_id: "28"
+  treatment_id: 
   study_id: "2"
   treatment: "20"
   replicate: "2"
 areas_225: 
   name: B13R4
   id: "96"
-  treatment_id: "21"
+  treatment_id: 
   study_id: "2"
   treatment: "13"
   replicate: "4"
@@ -1486,28 +1482,28 @@ areas_118:
 areas_144: 
   name: T3R6
   id: "18"
-  treatment_id: "3"
+  treatment_id: 
   study_id: "1"
   treatment: "3"
   replicate: "6"
 areas_170: 
   name: T8R2
   id: "168"
-  treatment_id: "8"
+  treatment_id: 
   study_id: "1"
   treatment: "8"
   replicate: "2"
 areas_252: 
   name: B20R3
   id: "123"
-  treatment_id: "28"
+  treatment_id: 
   study_id: "2"
   treatment: "20"
   replicate: "3"
 areas_226: 
   name: B14R1
   id: "97"
-  treatment_id: "22"
+  treatment_id: 
   study_id: "2"
   treatment: "14"
   replicate: "1"
@@ -1535,28 +1531,28 @@ areas_090:
 areas_145: 
   name: T4R1
   id: "19"
-  treatment_id: "4"
+  treatment_id:
   study_id: "1"
   treatment: "4"
   replicate: "1"
 areas_171: 
   name: T8R3
   id: "169"
-  treatment_id: "8"
+  treatment_id: 
   study_id: "1"
   treatment: "8"
   replicate: "3"
 areas_253: 
   name: B20R4
   id: "124"
-  treatment_id: "28"
+  treatment_id: 
   study_id: "2"
   treatment: "20"
   replicate: "4"
 areas_227: 
   name: B14R2
   id: "98"
-  treatment_id: "22"
+  treatment_id: 
   study_id: "2"
   treatment: "14"
   replicate: "2"
@@ -1591,28 +1587,28 @@ areas_119:
 areas_146: 
   name: T4R2
   id: "20"
-  treatment_id: "4"
+  treatment_id:
   study_id: "1"
   treatment: "4"
   replicate: "2"
 areas_172: 
   name: T8R4
   id: "170"
-  treatment_id: "8"
+  treatment_id: 
   study_id: "1"
   treatment: "8"
   replicate: "4"
 areas_254: 
   name: B21R1
   id: "161"
-  treatment_id: "29"
+  treatment_id: 
   study_id: "2"
   treatment: "21"
   replicate: "1"
 areas_228: 
   name: B14R3
   id: "99"
-  treatment_id: "22"
+  treatment_id: 
   study_id: "2"
   treatment: "14"
   replicate: "3"
@@ -1633,7 +1629,7 @@ areas_092:
 areas_147: 
   name: T4R3
   id: "21"
-  treatment_id: "4"
+  treatment_id: 
   study_id: "1"
   treatment: "4"
   replicate: "3"
@@ -1647,7 +1643,7 @@ areas_173:
 areas_255: 
   name: B21R2
   id: "162"
-  treatment_id: "29"
+  treatment_id: 
   study_id: "2"
   treatment: "21"
   replicate: "2"
@@ -1668,28 +1664,28 @@ areas_093:
 areas_148: 
   name: T4R4
   id: "22"
-  treatment_id: "4"
+  treatment_id: 
   study_id: "1"
   treatment: "4"
   replicate: "4"
 areas_174: 
   name: B1R1
   id: "45"
-  treatment_id: "9"
+  treatment_id: 
   study_id: "2"
   treatment: "1"
   replicate: "1"
 areas_256: 
   name: B21R3
   id: "163"
-  treatment_id: "29"
+  treatment_id: 
   study_id: "2"
   treatment: "21"
   replicate: "3"
 areas_229: 
   name: B14R4
   id: "100"
-  treatment_id: "22"
+  treatment_id: 
   study_id: "2"
   treatment: "14"
   replicate: "4"
@@ -1710,21 +1706,21 @@ areas_094:
 areas_149: 
   name: T4R5
   id: "23"
-  treatment_id: "4"
+  treatment_id: 
   study_id: "1"
   treatment: "4"
   replicate: "5"
 areas_175: 
   name: B1R2
   id: "46"
-  treatment_id: "9"
+  treatment_id: 
   study_id: "2"
   treatment: "1"
   replicate: "2"
 areas_257: 
   name: B21R4
   id: "164"
-  treatment_id: "29"
+  treatment_id: 
   study_id: "2"
   treatment: "21"
   replicate: "4"
@@ -1745,14 +1741,14 @@ areas_095:
 areas_176: 
   name: B1R3
   id: "47"
-  treatment_id: "9"
+  treatment_id: 
   study_id: "2"
   treatment: "1"
   replicate: "3"
 areas_258: 
   name: F1R1
   id: "125"
-  treatment_id: "30"
+  treatment_id: 
   study_id: "3"
   treatment: "1"
   replicate: "1"
@@ -1766,7 +1762,7 @@ areas_096:
 areas_177: 
   name: B1R4
   id: "48"
-  treatment_id: "9"
+  treatment_id:
   study_id: "2"
   treatment: "1"
   replicate: "4"
@@ -1780,7 +1776,7 @@ areas_097:
 areas_178: 
   name: B2R1
   id: "49"
-  treatment_id: "10"
+  treatment_id: 
   study_id: "2"
   treatment: "2"
   replicate: "1"
@@ -1794,7 +1790,7 @@ areas_098:
 areas_179: 
   name: B2R2
   id: "50"
-  treatment_id: "10"
+  treatment_id: 
   study_id: "2"
   treatment: "2"
   replicate: "2"
@@ -1805,56 +1801,3 @@ areas_099:
   study_id: "5"
   treatment: "23"
   replicate: "1"
-areas_T1:
-  name: T1
-  treatment_id: "1"
-  study_id: "1"
-areas_T2:
-  name: T2
-  treatment_id: "2"
-  study_id: "1"
-areas_G1R4:
-  name: G1R4
-  treatment_id: "48"
-  replicate: "4"
-  study_id: "6"
-areas_G1:
-  name: G1
-  treatment_id: "48"
-  study_id: "6"
-areas_G2:
-  name: G2
-  treatment_id: "49"
-  study_id: "6"
-areas_G3:
-  name: G3
-  treatment_id: "50"
-  study_id: "6"
-areas_G4:
-  name: G4
-  treatment_id: "51"
-  study_id: "6"
-areas_G5:
-  name: G5
-  treatment_id: "52"
-  study_id: "6"
-areas_G6:
-  name: G6
-  treatment_id: "53"
-  study_id: "6"
-areas_G7:
-  name: G7
-  treatment_id: "54"
-  study_id: "6"
-areas_G8:
-  name: G8
-  treatment_id: "55"
-  study_id: "6"
-areas_G9:
-  name: G9
-  treatment_id: "56"
-  study_id: "6"
-areas_G10:
-  name: G10
-  treatment_id: "57"
-  study_id: "6"

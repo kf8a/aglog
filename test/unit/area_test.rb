@@ -42,7 +42,7 @@ class AreaTest < ActiveSupport::TestCase
   def test_parse
   	# should highlight non-existent R11 and return areas as string
     areas = Area.parse('T1  R11')
-    assert_equal areas.class.name, 'String'
+    assert_equal 'String', areas.class.name
     assert_equal 'T1R1 T1R2 T1R3 T1R4 T1R5 T1R6 *R11*'.split.sort, areas.split.sort
     # should get T1R1 among others
     areas = Area.parse('T1')
