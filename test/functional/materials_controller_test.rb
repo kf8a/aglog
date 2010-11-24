@@ -1,15 +1,8 @@
 require 'test_helper'
-require 'materials_controller'
 
 class MaterialsControllerTest < ActionController::TestCase
-#  fixtures :materials, :observations, :material_transactions
-#  fixtures :setups, :activities
-#  fixtures :observation_types, :observation_types_observations
 
   def setup
-    @controller = MaterialsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_get_index

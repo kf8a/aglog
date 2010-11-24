@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class SetupTest < ActiveSupport::TestCase
-  fixtures :setups
 
   def test_should_create_setup
     old_count =  Setup.count

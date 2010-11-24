@@ -1,8 +1,6 @@
 require 'test_helper'
-require 'observations_controller'
 
 class ObservationsControllerTest < ActionController::TestCase
-  fixtures :observations, :people, :areas, :observation_types
 
   def setup
   end

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class MaterialTest < ActiveSupport::TestCase
-  fixtures :materials, :material_transactions
   
   def test_uniqueness
     num_of_items =  Material.count()

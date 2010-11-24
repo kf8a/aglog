@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EquipmentTest < ActiveSupport::TestCase
-  fixtures :equipment
 
   def test_uniqueness
     num_of_equipments =  Equipment.count()

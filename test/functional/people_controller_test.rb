@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'people_controller'
 
 class PeopleControllerTest < ActionController::TestCase
 

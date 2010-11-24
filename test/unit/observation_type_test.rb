@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ObservationTypeTest < ActiveSupport::TestCase
-  fixtures :observation_types
 
   def test_uniqueness
     num_of_items =  ObservationType.count()

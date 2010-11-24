@@ -2,7 +2,6 @@ require 'test_helper'
 require 'set'
 
 class AreaTest < ActiveSupport::TestCase
-  fixtures :areas, :studies, :treatments
   
   def test_uniqueness
     num_of_areas =  Area.count()

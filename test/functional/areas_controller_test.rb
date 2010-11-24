@@ -1,13 +1,8 @@
 require 'test_helper'
-require 'areas_controller'
 
 class AreasControllerTest < ActionController::TestCase
-  #fixtures :areas
 
   def setup
-    @controller = AreasController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_get_index

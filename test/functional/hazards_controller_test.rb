@@ -1,8 +1,6 @@
 require 'test_helper'
-require 'hazards_controller'
 
 class HazardsControllerTest < ActionController::TestCase
-  fixtures :hazards
 
   def setup
     @hazard = Factory.create(:hazard)

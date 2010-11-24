@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ObservationTest < ActiveSupport::TestCase
-  fixtures :observations, :observation_types, :observation_types_observations
 
   def test_should_not_create_observation
     old_count =  Observation.count

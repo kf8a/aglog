@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class StudyTest < ActiveSupport::TestCase
-  fixtures :studies
 
 	# name must be unique
 	def test_name

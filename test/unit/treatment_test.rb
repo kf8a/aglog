@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TreatmentTest < ActiveSupport::TestCase
-  fixtures :treatments
   
   def test_uniqueness  	
   	t = Treatment.new(:study_id => 1, :name => 'T11')

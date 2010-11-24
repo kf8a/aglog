@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class UnitTest < ActiveSupport::TestCase
-  fixtures :units
 
   def test_uniqueness
     num_of_items =  Unit.count()
