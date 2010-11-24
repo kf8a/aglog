@@ -31,27 +31,27 @@ class Area < ActiveRecord::Base
         #specify the whole main site
       when /^MAIN$/ then Area.find(:all, :conditions => ['study_id = 1'])
         #specify a whole treatment
-      when  /^[t|T]([1-8])$/ then Area.find_all_by_treatment_and_study_id($1, 1)
+      when  /^[t|T]([1-8])$/ then Area.find_all_by_treatment_number_and_study_id($1, 1)
         #specify a whole rep
       when /^[r|R]([1-6])$/  then Area.find(:all, :conditions => ['replicate = ? and study_id = 1', $1])
         #specify a range of treatments
-      when /^[t|T]([1-8])\-([1-8])$/ then Area.find(:all, :conditions => ['treatment =  ? and replicate between ? and ? and study_id = 1',$1,$2])
+      when /^[t|T]([1-8])\-([1-8])$/ then Area.find(:all, :conditions => ['treatment_number =  ? and replicate between ? and ? and study_id = 1',$1,$2])
         #specify a treatment and a rep covered in 'find  area by name' below now
-#      when /^[t|T]([1-8])[r|R]([1-6])$/ then Area.find(:all, :conditions => ['treatment = ? and replicate = ?',$1, $2])        
+#      when /^[t|T]([1-8])[r|R]([1-6])$/ then Area.find(:all, :conditions => ['treatment_number = ? and replicate = ?',$1, $2])
         #specify a treatment except a rep
-      when /^[t|T]([1-8])\![r|R]([1-6])$/ then  Area.find(:all, :conditions => ['treatment = ? and not replicate = ? and study_id = 1',$1, $2])
+      when /^[t|T]([1-8])\![r|R]([1-6])$/ then  Area.find(:all, :conditions => ['treatment_number = ? and not replicate = ? and study_id = 1',$1, $2])
         #specify a replicate except a treatment
-      when /^[r|R]([1-6])\![t|T]([1-8])$/ then Area.find(:all, :conditons => ['replicate = ? and not treatment = ? and study_id = 1', $1,$2])
+      when /^[r|R]([1-6])\![t|T]([1-8])$/ then Area.find(:all, :conditons => ['replicate = ? and not treatment_number = ? and study_id = 1', $1,$2])
         #specify Biodiversity Plots
-      when /^[b|B]([1-9]|1[0-9]|2[0-1])$/ then Area.find(:all, :conditions => ['treatment = ? and study_id=2', $1])
+      when /^[b|B]([1-9]|1[0-9]|2[0-1])$/ then Area.find(:all, :conditions => ['treatment_number = ? and study_id=2', $1])
         #specify N fert
       when /^Fertility_Gradient$/ then Area.find(:all, :conditions=>['study_id=3'])
-      when /^[f|F]([1-9])$/ then Area.find(:all, :conditions => ['treatment = ? and study_id=3', $1])
-      when /^[f|F]([1-9])-([1-9])$/ then Area.find(:all, :conditions=>['study_id=3 and  treatment between ? and ?', $1, $2])
+      when /^[f|F]([1-9])$/ then Area.find(:all, :conditions => ['treatment_number = ? and study_id=3', $1])
+      when /^[f|F]([1-9])-([1-9])$/ then Area.find(:all, :conditions=>['study_id=3 and  treatment_number between ? and ?', $1, $2])
       when /^Irrigated_Fertility_Gradient$/ then Area.find(:all, :conditions=>['study_id=4'])
-      when /^i[f|F]([1-9])$/ then Area.find(:all, :conditions => ['treatment = ? and study_id = 4',  $1])
-      when /^i[f|F]([1-9])-([1-9])$/ then Area.find(:all, :conditions=>['study_id = 4 and treatment betwen ? and ?', $1,$2])
-      when /^[r|R][e|E][p|P][t|T]([1-4])[E|e]([1-3])$/ then Area.find(:all, :conditions  => ['treatment = ? and study_id = 5', [$1,$2].join])
+      when /^i[f|F]([1-9])$/ then Area.find(:all, :conditions => ['treatment_number = ? and study_id = 4',  $1])
+      when /^i[f|F]([1-9])-([1-9])$/ then Area.find(:all, :conditions=>['study_id = 4 and treatment_number betwen ? and ?', $1,$2])
+      when /^[r|R][e|E][p|P][t|T]([1-4])[E|e]([1-3])$/ then Area.find(:all, :conditions  => ['treatment_number = ? and study_id = 5', [$1,$2].join])
         # specify GLRBC plots
       when /^GLBRC$/ then Area.find(:all, :conditions => ['study_id=6'])
       when /^[g|G](10|[1-9])[r|R]([1-6])$/
@@ -66,7 +66,7 @@ class Area < ActiveRecord::Base
         Area.find_all_by_name("G#{number}") + Area.find_all_by_name("g#{number}")
         # specify Cellulosic energy study
       when /^CES$/ then Area.find(:all, :conditions => ['study_id=7'])
-      when /^[ce|CE|Ce|cE]([1-9]|1[0-9])$/ then Area.find(:all, :conditions => ['treatment = ? and study_id = 7',$1])
+      when /^[ce|CE|Ce|cE]([1-9]|1[0-9])$/ then Area.find(:all, :conditions => ['treatment_number = ? and study_id = 7',$1])
       else
         # try to find an area by name
         area = Area.find(:all, :conditions => ['upper(name) = ?', token.squeeze.upcase])
