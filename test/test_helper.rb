@@ -27,4 +27,14 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   fixtures :all
+
+  setup :load_data_if_necessary
+
+  protected
+
+  def load_data_if_necessary
+    if Area.find_by_name("iF9R4").blank?
+      load "#{Rails.root}/db/seeds.rb"
+    end
+  end
 end
