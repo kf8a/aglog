@@ -112,15 +112,15 @@ class ObservationTest < ActiveSupport::TestCase
 
   def test_get_review_status
     o = create_simple_observation
-    assert_equal false, o.in_review? 
+    assert_equal false, o.in_review
   end
 
   def test_set_review_status_to_review
     o = create_simple_observation
     assert o.save
-    assert_equal false, o.in_review?
+    assert_equal false, o.in_review
     o.in_review = "1"
-    assert_equal true, o.in_review?
+    assert_equal true, o.in_review
   end
 
   private
