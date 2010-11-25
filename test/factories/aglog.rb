@@ -1,3 +1,7 @@
+Factory.define :equipment do |e|
+
+end
+
 Factory.define :hazard do |h|
   
 end

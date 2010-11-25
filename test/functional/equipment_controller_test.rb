@@ -23,6 +23,16 @@ class EquipmentControllerTest < ActionController::TestCase
     
     assert_redirected_to equipment_path(assigns(:equipment))
   end
+  
+  context "POST :create with invalid attributes" do
+    setup do
+      Factory.create(:equipment, :name => "Repeat_name")
+      post :create, :equipment => { :name => "Repeat_name" }
+    end
+    
+    should render_template :new
+    should_not set_the_flash
+  end
 
   def test_should_show_equipment
     get :show, :id => 6
@@ -37,6 +47,15 @@ class EquipmentControllerTest < ActionController::TestCase
   def test_should_update_equipment
     put :update, :id => 1, :equipment => { }
     assert_redirected_to equipment_path(assigns(:equipment))
+  end
+  
+  context "PUT :update with invalid attributes" do
+    setup do
+      Factory.create(:equipment, :name => "Repeat_name")
+      put :update, :id => 1, :equipment => { :name => "Repeat_name"}
+    end
+    
+    should render_template :edit
   end
   
   def test_should_destroy_equipment
