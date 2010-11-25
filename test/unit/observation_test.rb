@@ -121,7 +121,25 @@ class ObservationTest < ActiveSupport::TestCase
     o.in_review = "1"
     assert_equal true, o.in_review
   end
-
+  
+  def test_set_review_status_to_published
+    o = create_simple_observation
+    assert o.save
+    o.in_review = "0"
+    assert_equal o.state, 'published'
+  end
+  
+  def test_areas_as_text_with_error_areas
+    o = create_simple_observation
+    assert o.save
+    original_areas = o.areas
+    fake_areas = "NoArea"
+    o.areas_as_text = fake_areas
+    o.reload
+    assert_equal original_areas, o.areas
+    assert_equal "*NoArea*", o.areas_as_text
+  end
+  
   private
   
   def create_simple_observation
