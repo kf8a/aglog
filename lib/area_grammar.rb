@@ -9,5 +9,5 @@ class AreaGrammar < Dhaka::Grammar
   for_symbol('Area') do
     treatments ['T']
     replicate ['R']
-  en
+  end
 end

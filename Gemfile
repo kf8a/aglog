@@ -13,6 +13,10 @@ gem 'ruby-openid', :require => 'openid'
 gem 'will_paginate'
 gem 'thin'
 
+group :development do
+  gem 'metric_fu'
+end
+
 group :test do
   gem "factory_girl"
 end
