@@ -1,19 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
-	def make_request_query(strings)
-		if strings.nil? || strings.size == 0
-			result = nil
-		else
-			result = '?'
-			strings.each do |s|
-				result << s.gsub(/ /, '+') + "&"
-			end
-			result.chomp("&")
-		end # else
-	end
-  
-  def  set_hazard_ids
+  def set_hazard_ids
     @hazard_ids =  Hazard.find(:all).collect {|x| [x.name, x.id]}
   end
 
