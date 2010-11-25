@@ -88,4 +88,22 @@ class MaterialsControllerTest < ActionController::TestCase
     end
   end
 
+  context "PUT :put_hazards with a valid material id" do
+    setup do
+      @material_id = Material.last.id
+      put :put_hazards, :id => @material_id
+    end
+
+    should redirect_to("the edit material page") {edit_material_path(@material_id)}
+  end
+
+  context "PUT :put_hazards with invalid material id" do
+    setup do
+      material_id = Material.last.id + 1
+      put :put_hazards, :id => material_id
+    end
+
+    should redirect_to("the new material page") {new_material_path}
+  end
+
 end
