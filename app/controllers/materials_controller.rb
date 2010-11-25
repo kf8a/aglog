@@ -80,26 +80,6 @@ class MaterialsController < ApplicationController
     end
   end
   
-  # take material
-  def take
-    material = Material.find(params[:id])
-    message_str = "#{params[:amount]} #{material.unit.name unless material.unit.nil?}"
-     
-    # if params[:amount].to_f <= 0.0       
-    # 	flash[:error] = "Amount taken must be a number greater than zero."
-		# else
-    	if material.take_material params[:amount] 
-      	flash[:notice] = "#{message_str} was successfully taken."    
-    	else
-      	flash[:error] = "Insufficient on-hand to fill request for #{message_str}: no material was taken."
-    	end
-    # end
-    respond_to do |format|
-        format.html { redirect_to material_path(material) }
-        format.xml  { render :nothing => true }
-    end
-  end
-  
   # GET /materials/1/get_hazards
   def get_hazards
   	if Material.find(:first, :conditions => "id = #{params[:id]}")
