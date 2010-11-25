@@ -65,4 +65,27 @@ class MaterialsControllerTest < ActionController::TestCase
     
     assert_redirected_to materials_path
   end
+
+  context "GET :get_hazards with a material that exists" do
+    setup do
+      material_id = Material.last.id
+      get :get_hazards, :id => material_id
+    end
+
+    should render_template :get_hazards
+    should assign_to(:material).with(Material.last)
+  end
+
+  context "GET :get_hazards with a material that does not exist" do
+    setup do
+      material_id = Material.last.id + 1
+      get :get_hazards, :id => material_id
+    end
+
+    should render_template :get_hazards
+    should "return a new material object" do
+      assert assigns(:material).new_record?
+    end
+  end
+
 end
