@@ -19,4 +19,5 @@ end
 
 group :test do
   gem "factory_girl"
+  gem 'shoulda'
 end
