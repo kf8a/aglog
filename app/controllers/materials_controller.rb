@@ -82,11 +82,7 @@ class MaterialsController < ApplicationController
   
   # GET /materials/1/get_hazards
   def get_hazards
-  	if Material.find(:first, :conditions => "id = #{params[:id]}")
-    	@material = Material.find(params[:id])
-    else
-  		@material = Material.new
-  	end
+    @material = Material.find_by_id(params[:id]) || Material.new
   end
   
   # PUT /materials/1/put_hazards
