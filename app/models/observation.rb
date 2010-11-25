@@ -28,17 +28,6 @@ class Observation < ActiveRecord::Base
     errors.add('invalid areas') if  @error_areas
   end
   
-  def is_ascii(str)
-    valid = true
-    ic = Iconv.new 'US-ASCII', 'UTF-8'
-    begin
-      ic.iconv(str)
-    rescue Exception => e
-      valid = false
-    end
-    valid
-  end
-  
   def in_review
     self.state == 'in_review'
   end
@@ -50,10 +39,6 @@ class Observation < ActiveRecord::Base
     elsif state == '1'
       self.review!
     end
-  end
-
-  def year
-    obs_date.year
   end
 
   def observation_type
@@ -178,14 +163,4 @@ class Observation < ActiveRecord::Base
     data.unshift(["#date,type,area,material,n_content,rate,unit\n"])
   end
   
-      
-  protected
-  def delete_empty_models
-    activities = activitites.delete_if  {|key,value| value['person_id == ""']}
-    activities.each do |activity|
-      activity.setups.each do |setup|
-        setup.material_transactions = setup.material_transactions.delete_if {|key, value| value['material_id==""']}
-      end
-    end
-  end
 end
