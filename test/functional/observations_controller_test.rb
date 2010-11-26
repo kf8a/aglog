@@ -11,6 +11,24 @@ class ObservationsControllerTest < ActionController::TestCase
     assert assigns(:observations)
   end
 
+  context "GET :index, in_review is true" do
+    setup do
+      @obs_in_review = Factory.create(:observation)
+      @obs_in_review.in_review = '1'
+      @obs_published = Factory.create(:observation)
+      @obs_published.in_review = '0'
+      assert @obs_in_review.in_review
+      assert !@obs_published.in_review
+      get :index, :in_review => true
+    end
+
+    should respond_with :success
+    should "only include observation in review" do
+      assert assigns(:observations).include?(@obs_in_review)
+      assert !assigns(:observations).include?(@obs_published)
+    end
+  end
+
   def test_should_get_new
     get :new
     assert_response :success
