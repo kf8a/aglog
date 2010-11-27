@@ -16,7 +16,9 @@ class ObservationsController < ApplicationController
          :conditions => ['state = ? and observation_type_id = ?', state, params[:obstype]], 
          :joins => 'join observation_types_observations on  observation_types_observations.observation_id = id'
      else
-       @observations =  Observation.paginate :page => params[:page], :order => 'obs_date desc', :conditions => ['state = ?',state]
+       @observations =  Observation.paginate :page => params[:page], 
+         :order => 'obs_date desc',
+         :conditions => ['state = ?',state]
      end
  
 #    @observations = Observation.find(:all, :order => 'obs_date desc', :conditions => ['state = ?',state])

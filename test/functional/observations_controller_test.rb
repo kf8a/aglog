@@ -29,6 +29,23 @@ class ObservationsControllerTest < ActionController::TestCase
     end
   end
 
+  context "GET :index, with observation type selected" do
+    setup do
+      @observation_type = Factory.create(:observation_type)
+      @correct_type_observation = Factory.create(:observation, :observation_types => [@observation_type])
+      @wrong_type_observation = Factory.create(:observation)
+      assert @correct_type_observation.observation_types.include?(@observation_type)
+      assert !@wrong_type_observation.observation_types.include?(@observation_type)
+      get :index, :obstype => @observation_type.id
+    end
+
+    should respond_with :success
+    should "only include observation of correct type" do
+      assert assigns(:observations).include?(@correct_type_observation)
+      assert !assigns(:observations).include?(@wrong_type_observation)
+    end
+  end
+
   def test_should_get_new
     get :new
     assert_response :success
