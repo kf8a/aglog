@@ -30,7 +30,7 @@ class Area < ActiveRecord::Base
     areas.flatten!
 
     # if areas contains a string
-    if (areas.any? {|x| x.class.name  == 'String'})
+    if (areas.any? {|area| area.class.name  == 'String'})
       stringify_areas(areas)
     else
       areas
@@ -113,7 +113,7 @@ class Area < ActiveRecord::Base
 #  private
   
   def Area.reduce_names(areas,name,collection)
-    test = collection.collect {|x| x.name.to_sym}
+    test = collection.collect {|member| member.name.to_sym}
     test = test.to_set
     if !test.empty? && areas.superset?(test)
       areas -= test
