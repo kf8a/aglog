@@ -146,8 +146,7 @@ class Area < ActiveRecord::Base
       study = 1
       #specify a range of treatments
     when /^[t|T]([1-8])\-([1-8])$/
-      treatment_number = $1
-      replicate = $2
+      treatment_number = $1..$2
       study = 1
       #specify a treatment except a rep
     when /^[t|T]([1-8])\![r|R]([1-6])$/ then area = Area.find(:all, :conditions => ['treatment_number = ? and not replicate = ? and study_id = 1',$1, $2])
@@ -162,11 +161,14 @@ class Area < ActiveRecord::Base
       study = 3
       treatment_number = $1
     when /^[f|F]([1-9])-([1-9])$/
-      area = Area.find(:all, :conditions=> { :study_id => 3, :treatment_number => $1..$2 } )
+      treatment_number = $1..$2
+      study = 3
     when /^Irrigated_Fertility_Gradient$/, /^i[f|F]([1-9])$/
       study = 4
       treatment_number = $1
-    when /^i[f|F]([1-9])-([1-9])$/ then area = Area.find(:all, :conditions=>['study_id = 4 and treatment_number betwen ? and ?', $1,$2])
+    when /^i[f|F]([1-9])-([1-9])$/
+      study = 4
+      treatment_number = $1..$2
     when /^[r|R][e|E][p|P][t|T]([1-4])[E|e]([1-3])$/
       treatment_number = [$1,$2].join
       study = 5
