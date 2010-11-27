@@ -12,6 +12,7 @@ gem "authlogic-oid", :require => 'authlogic_openid'
 gem 'ruby-openid', :require => 'openid'
 gem 'will_paginate'
 gem 'thin'
+gem 'fastercsv'
 
 group :development do
   gem 'metric_fu'

@@ -46,6 +46,24 @@ class ObservationsControllerTest < ActionController::TestCase
     end
   end
 
+  context "GET :index in salus_xml format" do
+    setup do
+      get :index, :format => 'salus_xml'
+    end
+
+    should respond_with :success
+    should respond_with_content_type('text/xml')
+  end
+
+  context "GET :index in salus_csv format" do
+    setup do
+      get :index, :format => 'salus_csv'
+    end
+
+    should respond_with :success
+    should respond_with_content_type('text/text')
+  end
+
   def test_should_get_new
     get :new
     assert_response :success

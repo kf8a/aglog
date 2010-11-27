@@ -152,7 +152,12 @@ class Observation < ActiveRecord::Base
           end
         end
       end
-      CSV.generate do |csv|
+      if RUBY_VERSION > "1.9"
+        output = CSV
+      else
+        output = FasterCSV
+      end
+      output.generate do |csv|
         observation.areas.each do |area|
           observation.observation_types.each do |type|
             csv << [observation.obs_date.to_s, type.name, area.name, material_names.join(';;'), n_contents.join(';;'), rates.join(';;'),unit_names.join(';;')]
