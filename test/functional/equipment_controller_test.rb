@@ -34,6 +34,17 @@ class EquipmentControllerTest < ActionController::TestCase
     should_not set_the_flash
   end
 
+  context "POST :create in xml format" do
+    setup do
+      post :create,
+           :format => 'xml',
+           :equipment => { }
+    end
+
+    should respond_with(201)
+    should respond_with_content_type(:xml)
+  end
+
   def test_should_show_equipment
     get :show, :id => 6
     assert_response :success
