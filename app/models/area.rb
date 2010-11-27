@@ -31,17 +31,10 @@ class Area < ActiveRecord::Base
 
     # if areas contains a string
     if (areas.any? {|x| x.class.name  == 'String'})
-      areas = areas.collect do |area|
-        if (area.class.name == 'String')
-          "*"+area+"*"
-        else
-          area.name
-        end
-      end
-      areas = areas.join(' ')
+      stringify_areas(areas)
+    else
+      areas
     end
-
-    areas
   end
 
    
@@ -130,6 +123,17 @@ class Area < ActiveRecord::Base
   end
 
   private
+
+  def Area.stringify_areas(areas)
+    area_strings = areas.collect do |area|
+      if (area.class.name == 'String')
+        "*"+area+"*"
+      else
+        area.name
+      end
+    end
+    area_strings.join(' ')
+  end
 
   def Area.get_areas_by_token(token)
     case token
