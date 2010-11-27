@@ -1,3 +1,7 @@
+Factory.define :area do |a|
+  
+end
+
 Factory.define :equipment do |e|
 
 end
