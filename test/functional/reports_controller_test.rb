@@ -18,4 +18,9 @@ class ReportsControllerTest < ActionController::TestCase
     get :index, :order => 'date'
     assert_response :success
   end
+
+  def test_other_sort
+    get :index, :order => 'something_else'
+    assert_response :success
+  end
 end

@@ -34,6 +34,15 @@ class MaterialsControllerTest < ActionController::TestCase
     should_not set_the_flash
   end
 
+  context "POST :create with XML format" do
+    setup do
+      post :create, :material => { :name => 'xml_name' }, :format => 'xml'
+    end
+
+    should respond_with(201)
+    should respond_with_content_type(:xml)
+  end
+
   def test_should_show_material
     get :show, :id => 15
     assert_response :success

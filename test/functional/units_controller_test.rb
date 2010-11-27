@@ -38,6 +38,15 @@ class UnitsControllerTest < ActionController::TestCase
     should render_template :new
   end
 
+  context "POST :create in XML format" do
+    setup do
+      post :create, :unit => { :name => 'xml_name' }, :format => 'xml'
+    end
+
+    should respond_with(201)
+    should respond_with_content_type(:xml)
+  end
+
   context "A unit exists. " do
     setup do
       @unit = Factory.create(:unit)
