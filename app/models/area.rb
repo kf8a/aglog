@@ -2,14 +2,10 @@ require 'date'
 require 'set'
 class Area < ActiveRecord::Base
   has_and_belongs_to_many :observations, :order => 'obs_date desc'
-#  has_many  :area_location
-#  has_many  :locations, :through => :area_location
   belongs_to :study
   belongs_to :treatment
   
   validates_uniqueness_of :name, :case_sensitive => false, :message => "must be unique"
-  
-  # validates_presence_of :study, :allow_nil => true, :message => "must exist" 
 
   def validate
   	# area without study is OK
@@ -79,7 +75,7 @@ class Area < ActiveRecord::Base
     areas = areas.collect {|area| area.name.to_sym}
     areas = areas.to_set
 
-    studies = Study.find(:all)
+    studies = Study.all
     
     studies.each do | study |
       study.treatments.each do |treatment|
@@ -162,18 +158,14 @@ class Area < ActiveRecord::Base
       treatment_number = $1
       study = 2
       #specify N fert
-    when /^Fertility_Gradient$/
+    when /^Fertility_Gradient$/, /^[f|F]([1-9])$/
       study = 3
-    when /^[f|F]([1-9])$/
       treatment_number = $1
-      study = 3
     when /^[f|F]([1-9])-([1-9])$/
       area = Area.find(:all, :conditions=> { :study_id => 3, :treatment_number => $1..$2 } )
-    when /^Irrigated_Fertility_Gradient$/
+    when /^Irrigated_Fertility_Gradient$/, /^i[f|F]([1-9])$/
       study = 4
-    when /^i[f|F]([1-9])$/
       treatment_number = $1
-      study = 4
     when /^i[f|F]([1-9])-([1-9])$/ then area = Area.find(:all, :conditions=>['study_id = 4 and treatment_number betwen ? and ?', $1,$2])
     when /^[r|R][e|E][p|P][t|T]([1-4])[E|e]([1-3])$/
       treatment_number = [$1,$2].join
@@ -182,11 +174,9 @@ class Area < ActiveRecord::Base
     when /^GLBRC$/
       study = 6
       # specify Cellulosic energy study
-    when /^CES$/
+    when /^CES$/, /^[ce|CE|Ce|cE]([1-9]|1[0-9])$/
       study = 7
-    when /^[ce|CE|Ce|cE]([1-9]|1[0-9])$/
       treatment_number = $1
-      study = 7
     end
     if study 
       if treatment_number
