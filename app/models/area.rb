@@ -65,7 +65,8 @@ class Area < ActiveRecord::Base
         treatment_number = $1
         study = 3
         Area.find_all_by_treatment_number_and_study_id(treatment_number, study)
-      when /^[f|F]([1-9])-([1-9])$/ then Area.find(:all, :conditions=>['study_id=3 and  treatment_number between ? and ?', $1, $2])
+      when /^[f|F]([1-9])-([1-9])$/
+        Area.find(:all, :conditions=> { :study_id => 3, :treatment_number => $1..$2 } )
       when /^Irrigated_Fertility_Gradient$/
         Area.find_all_by_study_id(4)
       when /^i[f|F]([1-9])$/
