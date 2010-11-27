@@ -80,6 +80,20 @@ class ObservationsControllerTest < ActionController::TestCase
      assert_equal num_activities, Activity.count
      assert_response :success
    end
+
+  context "POST :create in xml format" do
+    setup do
+      post :create,
+           :format => 'xml',
+           :observation => {"obs_date(1i)"=>"2007",
+                            "obs_date(2i)"=>"6",
+                            "obs_date(3i)"=>"25",
+                            "observation_type_ids"=>["3"]}
+    end
+
+    should respond_with(201)
+    should respond_with_content_type(:xml)
+  end
  	
   def test_should_show_observation
     get :show, :id => 331
@@ -97,6 +111,15 @@ class ObservationsControllerTest < ActionController::TestCase
         "obs_date(3i)"=>"25", "areas_as_text"=>"t1r1", 
         "comment"=>"Test at 14:45", "observation_type_ids"=>["3"]}
     assert_redirected_to observation_path(assigns(:observation))
+  end
+
+  context "PUT :update with invalid attributes" do
+    setup do
+      put :update, :id => 331, :observation => {:person_id => nil}
+    end
+
+    should render_template 'edit'
+    should_not set_the_flash
   end
   
   def test_should_destroy_observation
