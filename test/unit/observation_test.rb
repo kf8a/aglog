@@ -2,6 +2,21 @@ require 'test_helper'
 
 class ObservationTest < ActiveSupport::TestCase
 
+  setup do
+    Equipment.find_by_id(2) or 2.times do |num|
+      Factory.create(:equipment, :name => "Equipment#{num}")
+    end
+    Material.find_by_id(3) or 3.times do |num|
+      Factory.create(:material, :name => "Material#{num}")
+    end
+    Unit.find_by_id(3) or 3.times do |num|
+      Factory.create(:unit, :name => "Unit#{num}")
+    end
+    Person.find_by_id(2) or 2.times do |num|
+      Factory.create(:person, :sur_name => "Sur#{num}")
+    end
+  end
+  
   def test_should_not_create_observation
     old_count =  Observation.count
     num_activities = Activity.count

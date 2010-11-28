@@ -3,8 +3,9 @@ require 'test_helper'
 class SetupTest < ActiveSupport::TestCase
 
   def test_should_create_setup
+    equipment = Factory.create(:equipment)
     old_count =  Setup.count
-    s =  Setup.new(:equipment_id => 12)
+    s =  Setup.new(:equipment_id => equipment.id)
     assert s.save
     assert_equal old_count+1, Setup.count
   end

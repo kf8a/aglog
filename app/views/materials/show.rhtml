@@ -17,19 +17,19 @@
 	<%= render(:partial => 'hazards') %>
 </p>
   
-  <% unless @material.material_transactions.empty? %>
-	<br/><b>Transactions:</b>
-	<% end %>
-	<% @material.material_transactions.each do |m| %>
-	<p>
-		<a href='<%= observation_path(m.setup.activity.observation) %>'>
-		<%= m.setup.activity.observation.obs_date %></a>
-		
-		<%= m.setup.activity.observation.observation_type %>
-		<%=h m.setup.activity.observation.comment %>
-		</p>
-	<% end %>
+<% unless @material.material_transactions.empty? %>
+  <br/><b>Transactions:</b>
+
+  <% @material.observations.each do |observation| %>
+    <p>
+      <%= link_to observation.obs_date, observation_path(observation) %>
+      <%= observation.observation_type %>
+      <%=h observation.comment %>
+    </p>
+  <% end %>
+<% end %>
+
 <p>
-<%= link_to 'Edit Material', edit_material_path(@material) %> |
-<%= link_to 'List Materials', materials_path %>
+  <%= link_to 'Edit Material', edit_material_path(@material) %> |
+  <%= link_to 'List Materials', materials_path %>
 </p>

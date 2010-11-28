@@ -2,9 +2,6 @@ require 'test_helper'
 
 class EquipmentControllerTest < ActionController::TestCase
 
-  def setup
-  end
-
   def test_should_get_index
     get :index
     assert_response :success
@@ -45,35 +42,54 @@ class EquipmentControllerTest < ActionController::TestCase
     should respond_with_content_type(:xml)
   end
 
-  def test_should_show_equipment
-    get :show, :id => 6
-    assert_response :success
-  end
-
-  def test_should_get_edit
-    get :edit, :id => 1
-    assert_response :success
-  end
-  
-  def test_should_update_equipment
-    put :update, :id => 1, :equipment => { }
-    assert_redirected_to equipment_path(assigns(:equipment))
-  end
-  
-  context "PUT :update with invalid attributes" do
+  context "An equipment exists. " do
     setup do
-      Factory.create(:equipment, :name => "Repeat_name")
-      put :update, :id => 1, :equipment => { :name => "Repeat_name"}
+      @equipment = Factory.create(:equipment)
+    end
+
+    context "GET :show the equipment" do
+      setup do
+        get :show, :id => @equipment
+      end
+
+      should render_template 'show'
     end
     
-    should render_template :edit
+    context "GET :edit the equipment" do
+      setup do
+        get :edit, :id => @equipment
+      end
+      
+      should render_template 'edit'
+    end
+
+    context "PUT :update the equipment with valid attributes" do
+      setup do
+        put :update, :id => @equipment, :equipment => { }
+      end
+
+      should redirect_to("the show page for the equipment") {equipment_path(@equipment)}
+    end
+
+    context "PUT :update the equipment with invalid attributes" do
+      setup do
+        Factory.create(:equipment, :name => "Repeat_name")
+        put :update, :id => @equipment, :equipment => { :name => "Repeat_name"}
+      end
+
+      should render_template :edit
+    end
+
+    context "DELETE :destroy the equipment" do
+      setup do
+        delete :destroy, :id => @equipment
+      end
+
+      should redirect_to("the equipment index page") {equipment_path}
+      should "destroy the equipment" do
+        assert_nil Equipment.find_by_id(@equipment)
+      end
+    end
   end
   
-  def test_should_destroy_equipment
-    old_count = Equipment.count
-    delete :destroy, :id => 1
-    assert_equal old_count-1, Equipment.count
-    
-    assert_redirected_to equipment_path
-  end
 end

@@ -2,7 +2,19 @@ require 'test_helper'
 
 class ObservationsControllerTest < ActionController::TestCase
 
-  def setup
+  setup do
+    Equipment.find_by_id(2) or 2.times do |num|
+      Factory.create(:equipment, :name => "Equipment#{num}")
+    end
+    Material.find_by_id(3) or 3.times do |num|
+      Factory.create(:material, :name => "Material#{num}")
+    end
+    Unit.find_by_id(3) or 3.times do |num|
+      Factory.create(:unit, :name => "Unit#{num}")
+    end
+    Person.find_by_id(2) or 2.times do |num|
+      Factory.create(:person, :sur_name => "Sur#{num}")
+    end
   end
 
   def test_should_get_index
@@ -22,7 +34,6 @@ class ObservationsControllerTest < ActionController::TestCase
       get :index, :in_review => true
     end
 
-    should respond_with :success
     should "only include observation in review" do
       assert assigns(:observations).include?(@obs_in_review)
       assert !assigns(:observations).include?(@obs_published)
@@ -39,7 +50,6 @@ class ObservationsControllerTest < ActionController::TestCase
       get :index, :obstype => @observation_type.id
     end
 
-    should respond_with :success
     should "only include observation of correct type" do
       assert assigns(:observations).include?(@correct_type_observation)
       assert !assigns(:observations).include?(@wrong_type_observation)
@@ -51,7 +61,6 @@ class ObservationsControllerTest < ActionController::TestCase
       get :index, :format => 'salus_xml'
     end
 
-    should respond_with :success
     should respond_with_content_type('text/xml')
   end
 
@@ -60,25 +69,25 @@ class ObservationsControllerTest < ActionController::TestCase
       get :index, :format => 'salus_csv'
     end
 
-    should respond_with :success
     should respond_with_content_type('text/text')
   end
 
-  def test_should_get_new
-    get :new
-    assert_response :success
+  context "GET :new" do
+    setup do
+      get :new
+    end
+
+    should render_template 'new'
   end
-  
-  def test_should_create_observation
-    old_count = Observation.count
-    post :create, "observation"=>
-      {"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25", 
-        "observation_type_ids"=>["3"]}
-    assert_equal old_count+1, Observation.count
-    
-    assert_redirected_to observation_path(assigns(:observation))
+
+  context "POST :create" do
+    setup do
+      post :create, "observation"=>
+          {:obs_date => Date.today, :observation_type_ids => ["3"] }
+    end
+
+    should redirect_to("The observation show page") {observation_path(assigns(:observation))}
   end
-  
   
   def test_should_not_create_observation_or_activity
      old_count = Observation.count
@@ -112,42 +121,114 @@ class ObservationsControllerTest < ActionController::TestCase
     should respond_with(201)
     should respond_with_content_type(:xml)
   end
- 	
-  def test_should_show_observation
-    get :show, :id => 331
-    assert_response :success
-  end
 
-  def test_should_get_edit
-    get :edit, :id => 331
-    assert_response :success
-  end
-  
-  def test_should_update_observation
-    put :update, :id => 331, 
-      :observation=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", 
-        "obs_date(3i)"=>"25", "areas_as_text"=>"t1r1", 
-        "comment"=>"Test at 14:45", "observation_type_ids"=>["3"]}
-    assert_redirected_to observation_path(assigns(:observation))
-  end
-
-  context "PUT :update with invalid attributes" do
+  context "An observation exists. " do
     setup do
-      put :update, :id => 331, :observation => {:person_id => nil}
+      @observation = Factory.create(:observation)
     end
 
-    should render_template 'edit'
-    should_not set_the_flash
+    context "GET :show the observation" do
+      setup do
+        get :show, :id => @observation.id
+      end
+
+      should render_template 'show'
+    end
+
+    context "GET :edit the observation" do
+      setup do
+        get :edit, :id => @observation.id
+      end
+
+      should render_template 'edit'
+    end
+
+    context "PUT :update the observation" do
+      setup do
+        put :update, :id => @observation.id, :observation => { :obs_date => Date.today - 1 }
+      end
+
+      should redirect_to("The observation show page") {observation_path(@observation)}
+    end
+
+    context "PUT :update with invalid attributes" do
+      setup do
+        put :update, :id => @observation.id, :observation => {:person_id => nil}
+      end
+
+      should render_template 'edit'
+      should_not set_the_flash
+    end
+
+    context "PUT :update with two setups to add" do
+      setup do
+        @number_of_setups = Setup.count
+        put :update, :id => @observation.id,
+            :observation=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25",
+        "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45",
+        "observation_type_ids"=>["3"]},
+        :commit=>"Update", :action=>"create",
+        :activities=>{
+          "0"=>{"setups"=>{
+            "0"=>{"equipment_id"=>"2",
+              "material_transactions"=>{
+                "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
+              }
+            },
+            "1"=>{"equipment_id"=>"2",
+              "material_transactions"=>{
+                "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
+              }
+            }
+          }, "hours"=>"1", "person_id"=>"2"}
+        }
+      end
+
+      should "add two setups" do
+        assert_equal @number_of_setups+2, Setup.count
+      end
+    end
+
+    context "PUT :update with two activities to add to the observation" do
+      setup do
+        @number_of_activities = Activity.count
+        put :update, :id => @observation.id,
+          :observation=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25",
+        "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45", "observation_type_ids"=>["3"]},
+        "commit"=>"Update", "action"=>"create",
+        "activities"=>{
+          "0"=>{"setups"=>{
+            "0"=>{"equipment_id"=>"2",
+              "material_transactions"=>{
+                "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
+              }
+            }
+          }, "hours"=>"1", "person_id"=>"2"},
+          "1"=>{"setups"=>{
+             "0"=>{"equipment_id"=>"2",
+               "material_transactions"=>{
+                 "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
+               }
+             }
+           }, "hours"=>"1", "person_id"=>"2"}
+
+        }
+      end
+
+      should "add two activities" do
+        assert_equal @number_of_activities+2, Activity.count
+      end
+    end
+
+    context "DELETE :destroy the observation" do
+      setup do
+        delete :destroy, :id => @observation.id
+      end
+
+      should redirect_to("The observations path") {observations_path}
+    end
   end
-  
-  def test_should_destroy_observation
-    old_count = Observation.count
-    delete :destroy, :id => 331
-    assert_equal old_count-1, Observation.count
-    
-    assert_redirected_to observations_path
-  end
-  
+
   def test_add_activity_to_observation 
     xhr :post, :add_activity, default_params
 #		assert_select_rjs :insert, :bottom,  "activites"
@@ -171,12 +252,6 @@ class ObservationsControllerTest < ActionController::TestCase
     
   end 
   
-  def test_add_material_to_setup_while_editing
-    get :edit, :id => 331
-    assert_response :success
-    
-  end
-  		
   def test_delete_material_from_setup
   	xhr(:delete, :delete_material,
   		"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27", 
@@ -220,59 +295,9 @@ class ObservationsControllerTest < ActionController::TestCase
   	assert_response :success
   end
   
-  def test_add_setup_to_activity_when_editing_observation
-    number_of_setups = Setup.count
-    put :update, :id => 331, 
-      :observation=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25", 
-        "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45", 
-        "observation_type_ids"=>["3"]},
-        :commit=>"Update", :action=>"create",
-        :activities=>{
-          "0"=>{"setups"=>{
-            "0"=>{"equipment_id"=>"2", 
-              "material_transactions"=>{
-                "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-              }
-            },
-            "1"=>{"equipment_id"=>"2", 
-              "material_transactions"=>{
-                "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-              }
-            }      
-          }, "hours"=>"1", "person_id"=>"2"}
-        }
-    
-     assert_redirected_to observation_path(assigns(:observation))
-     assert_equal number_of_setups+1, Setup.count
-  end
   
-  def test_add_activity_when_editing_observation
-    number_of_activities = Activity.count
-    put :update, :id => 331, 
-      :observation=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25", 
-        "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45", "observation_type_ids"=>["3"]},
-        "commit"=>"Update", "action"=>"create", :id => '331',
-        "activities"=>{
-          "0"=>{"setups"=>{
-            "0"=>{"equipment_id"=>"2", 
-              "material_transactions"=>{
-                "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-              }
-            }
-          }, "hours"=>"1", "person_id"=>"2"},
-          "1"=>{"setups"=>{
-             "0"=>{"equipment_id"=>"2", 
-               "material_transactions"=>{
-                 "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-               }
-             }
-           }, "hours"=>"1", "person_id"=>"2"}
-          
-        }   
-    assert_redirected_to observation_path(assigns(:observation))
-    assert_equal number_of_activities+1, Activity.count
-  end
-  private
+  private###########
+
   def default_params
     {"observation" => 
   	{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25", 

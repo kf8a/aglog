@@ -14,6 +14,9 @@ class Material < ActiveRecord::Base
       amount
     end
   end
-  
+
+  def observations
+    self.setups.collect {|setup| setup.activity.try(:observation)}.compact
+  end
   
 end
