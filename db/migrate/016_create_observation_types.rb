@@ -8,16 +8,6 @@ class CreateObservationTypes < ActiveRecord::Migration
     create_table :observation_types do |t|
       t.column  :name, :string
     end
-    
-    ObservationType.reset_column_information
-    ObservationType.create(:name => 'Soil Preparation')
-    ObservationType.create(:name => 'Harvest')
-    ObservationType.create(:name => 'Planting')
-    ObservationType.create(:name => 'Fertilizer application')
-    ObservationType.create(:name => 'Pesticide application')
-    ObservationType.create(:name => 'Herbicide application')
-    
-    
   end
 
   def self.down
