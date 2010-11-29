@@ -21,8 +21,4 @@ class MaterialTransaction < ActiveRecord::Base
     :joins => 'join materials on materials.id  = material_transactions.material_id join setups on setups.id = material_transactions.setup_id join activities on setups.activity_id = activities.id  join observations on activities.observation_id = observations.id join areas_observations on areas_observations.observation_id = observations.id join areas on areas_observations.area_id = areas.id join observation_types_observations on observation_types_observations.observation_id  =  observations.id')    
   end
   
-  def remove_commas
-    self.rate = rate.gsub(/,/,'') if attribute_present?('rate')
-  end
-  
 end
