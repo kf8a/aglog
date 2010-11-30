@@ -65,6 +65,9 @@ GEM
     pg (0.9.0)
     progressbar (0.9.0)
     rack (1.1.0)
+    rack-openid (1.2.0)
+      rack (>= 1.1.0)
+      ruby-openid (>= 2.1.8)
     rails (2.3.10)
       actionmailer (= 2.3.10)
       actionpack (= 2.3.10)
@@ -112,6 +115,7 @@ DEPENDENCIES
   fastercsv
   metric_fu
   pg
+  rack-openid
   rails (= 2.3.10)
   ruby-openid
   shoulda

@@ -9,6 +9,7 @@ gem 'sqlite3-ruby'
 
 gem 'authlogic', :git => "git://github.com/binarylogic/authlogic.git"#, '2.1.3'
 gem "authlogic-oid", :require => 'authlogic_openid'
+gem 'rack-openid'
 gem 'ruby-openid', :require => 'openid'
 gem 'will_paginate'
 gem 'thin'
