@@ -2,13 +2,10 @@
 <% set_material_type_ids %>
 <% set_hazard_ids %>
 <%= error_messages_for 'material' %>
-<% form_for(:material, :url => material_path(@material), :html => { :method => :put }) do |f| %>
-	
+<%= form_for(:material, :url => material_path(@material), :html => { :method => :put }) do |f| %>
   <p>
-  	<%= render(:partial => 'form', :locals => {:f => f}) %>
-	</p>
-	
-	
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+  </p>
   <p>
     <%= submit_tag "Update" %>
   </p>

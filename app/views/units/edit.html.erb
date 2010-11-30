@@ -1,0 +1,25 @@
+<h1>Editing Unit</h1>
+<%= form_for(:unit, :url => unit_path(@unit), :html => { :method => :put}) do |f| %>
+	
+  <p>
+    <b>Name </b><br />
+    <%= f.text_field :name %>
+  </p>
+	
+  <p>
+    <b>SI Unit </b><br />
+    <%= f.text_field :si_unit_id %>
+  </p>
+
+  <p>
+    <b>Conversion Factor</b><br />
+    <%= f.text_field :conversion_factor %>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', unit_path(@unit) %> |
+<%= link_to 'List', units_path %>

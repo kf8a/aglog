@@ -1,7 +1,7 @@
 <% set_form_dropdowns %>
 <h1>Editing area</h1>
 <%= error_messages_for 'area' %>
-<% form_for(:area, :url => area_path(@area), :html => { :method => :put }) do |f| %>
+<%= form_for(:area, :url => area_path(@area), :html => { :method => :put }) do |f| %>
   <p>
     <b>Name</b><br />
     <%= f.text_field :name %>

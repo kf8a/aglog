@@ -2,7 +2,7 @@
 
 <%= error_messages_for 'equipment' %>
 
-<% form_for(:equipment, :url => equipment_path(@equipment), :html => { :method => :put }) do |f| %>
+<%= form_for(:equipment, :url => equipment_path(@equipment), :html => { :method => :put }) do |f| %>
   <p>
     <b>Name:</b>
     <%= f.text_field :name %>

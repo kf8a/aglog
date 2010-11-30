@@ -2,10 +2,10 @@
 
 <%= error_messages_for :hazard %>
 
-<% form_for(@hazard) do |f| %>
-<p>
-	<%= render(:partial => 'form', :locals => {:f => f}) %>
-</p>  
+<%= form_for(@hazard) do |f| %>
+  <p>
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+  </p>
   <p>
     <%= f.submit "Create" %>
   </p>

@@ -1,0 +1,37 @@
+<h1>Set Hazards</h1>
+Material: <%=h @material.name %>
+<p>
+  <% hazard_choices = Hazard.find(:all)  %>
+</p>
+<%= form_for(:hazard, :url => "/materials/#{@material.id}/put_hazards", :html => { :method => :put }) do |f| %>
+
+  <table>
+    <tr>
+      <th>Selected</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>chemical_name</th>
+      <th>Exclusion time</th>
+    </tr>
+    <% for hazard in hazard_choices do %>
+      <% if @material.hazards.include? hazard
+        checkbox_string = "<input type=checkbox name=hazards[#{hazard.id}] value=#{hazard.id} checked> "
+      else
+        checkbox_string = "<input type=checkbox name=hazards[#{hazard.id}] value=#{hazard.id}> "
+      end %>
+      <tr>
+        <td align="center">
+          <%= checkbox_string %>
+        </td>
+        <td><%=h hazard.id%>  </td>
+        <td><%=h hazard.name %>    </td>
+        <td><%=h hazard.hazard_type %>  </td>
+        <td><%=h hazard.chemical_name %>  </td>
+        <td><%=h hazard.exclusion_time_days %>  </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= submit_tag "Update" %>
+  <p><input type=button onClick='window.close(); return(false)' value='Cancel' /></p>
+<% end %>
