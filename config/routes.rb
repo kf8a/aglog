@@ -1,54 +1,37 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :hazards
+Aglog::Application.routes.draw do
+  resources :hazards
+  resources :areas
+  resources :observations do
+    member do
+      put :add_material
+      put :delete_activity
+      put :delete_setup
+      put :delete_material
+      put :add_activity
+      put :add_setup
+    end
+  end
 
-  # You can have the root of your site routed by hooking up '' 
-  # -- just remember to delete public/index.html.
-  # map.connect '', :controller => "welcome"
-  
-  map.resources :areas 
-  map.resources :observations, :new => { :add_activity => :post,
-  														 					 :add_setup => :post,
-  														 					 :add_material => :post,
-  														 					 :delete_activity => :post,
-  														 					 :delete_setup => :post,
-  														 					 :delete_material => :post },
-  														 :member => {:add_activity => :put, 
-  														             :add_setup => :put,
-  														             :add_material => :put,
-  														             :delete_activity => :put,
-  														             :delete_setup => :put,
-  														             :delete_material => :put}
-  							
-  map.resources :activities
-  map.resources :setups
-  map.resources :equipment
-  map.resources :units
-  map.resources :people
-  map.resources :reports
-  # map.resources :materials
-  map.resources :materials, :member => { 	:get_hazards => :get, 
-  																				:put_hazards => :put },
-  													:new => { :new_hazards => :post }
-  
-  # map.choose_hazards 'materials/:id/choose_hazards', :controller => 'materials', :action => "choose_hazards", :conditions => { :method => :get }
-  
-  map.resources :material_transactions
-  
-  map.resources :person_sessions
-  map.resource :user_session
-  
-  map.open_id_complete 'sessions', :controller => "sessions", :action => "create", :requirements => { :method => :get }
-  
-  map.root :controller => 'observations'
+  resources :activities
+  resources :setups
+  resources :equipment
+  resources :units
+  resources :people
+  resources :reports
+  resources :materials do
+    member do
+      put :put_hazards
+      get :get_hazards
+    end
+  end
 
-  
+  resources :material_transactions
+  resources :person_sessions
+  resource :user_session
+  match 'sessions' => 'sessions#create', :as => :open_id_complete, :constraints => { :method => get }
+  match '/' => 'observations#index'
 
-  map.connect '/', :controller => 'observations'
-  
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
-  map.connect ':controller/service.wsdl', :action => 'wsdl'
-
-  # Install the default route as the lowest priority.
-#  map.connect ':controller/:action/:id'
+  match ':controller/service.wsdl' => '#wsdl'
 end
