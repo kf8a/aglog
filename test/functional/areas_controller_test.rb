@@ -43,36 +43,51 @@ class AreasControllerTest < ActionController::TestCase
     should_not set_the_flash
   end
 
-  def test_should_show_area
-    get :show, :id => 1
-    assert_response :success
-  end
-
-  def test_should_get_edit
-    get :edit, :id => 1
-    assert_response :success
-  end
-  
-  def test_should_update_area
-    put :update, :id => 1, :area => { :name  => 'new_area'}
-    assert_redirected_to area_path(assigns(:area))
-  end
-
-  context "PUT :update with invalid attributes" do
+  context "An area exists. " do
     setup do
-      Factory.create(:area, :name => 'repeat_name')
-      put :update, :id => 1, :area => { :name => 'repeat_name' }
+      @area = Factory.create(:area)
+    end
+    
+    context "GET :show the area" do
+      setup do
+        get :show, :id => @area.id
+      end
+
+      should render_template 'show'
     end
 
-    should render_template 'edit'
-    should_not set_the_flash
-  end
-  
-  def test_should_destroy_area
-    old_count = Area.count
-    delete :destroy, :id => 1
-    assert_equal old_count-1, Area.count
-    
-    assert_redirected_to areas_path
+    context "GET :edit the area" do
+      setup do
+        get :edit, :id => @area.id
+      end
+
+      should render_template 'edit'
+    end
+
+    context "PUT :update the area with valid attributes" do
+      setup do
+        put :update, :id => @area.id, :area => { :name => 'new_area'}
+      end
+
+      should redirect_to("the area show page") {area_path(@area)}
+    end
+
+    context "PUT :update with invalid attributes" do
+      setup do
+        Factory.create(:area, :name => 'repeat_name')
+        put :update, :id => @area.id, :area => { :name => 'repeat_name' }
+      end
+
+      should render_template 'edit'
+      should_not set_the_flash
+    end
+
+    context "DELETE :destroy the area" do
+      setup do
+        delete :destroy, :id => @area.id
+      end
+
+      should redirect_to("the areas index") {areas_path}
+    end
   end
 end

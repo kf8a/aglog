@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :set_test_user if Rails.env == "test"
+  before_filter :set_test_user unless Rails.env == "production"
   before_filter :require_user, :except => [:index, :show]
     
   helper_method :current_user_session, :current_user

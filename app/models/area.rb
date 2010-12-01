@@ -14,7 +14,7 @@ class Area < ActiveRecord::Base
   	end
   	# if treatment exists then it must belong to correct study
     errors.add_to_base('inconsistent study and treatment combination') unless  treatment.nil? || (treatment.study_id == study_id)
-    errors.add_to_base('names should not contain spaces') if name.scan(/ /) != []
+    errors.add_to_base('names should not contain spaces') if name && name.scan(/ /) != []
   end
   
   # Area.parse returns an array of arrays if the parse was successful
