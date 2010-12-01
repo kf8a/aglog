@@ -38,6 +38,9 @@ gem 'ruby-openid', :require => 'openid'
 gem 'will_paginate'
 gem 'thin'
 
+#Gets rid of annoying UTF-8 string error in rack
+gem "escape_utils"
+
 group :development do
   gem 'metric_fu'
 end
