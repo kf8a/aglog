@@ -159,8 +159,8 @@ class ObservationTest < ActiveSupport::TestCase
   
   def create_simple_observation
     params = {"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"14", 
-      "areas_as_text"=>"", "comment"=>"", "person_id" => "1", 
-      "observation_type_ids" => "1"}, 
+      "areas_as_text"=>"", "comment"=>"", "person_id" => "1",
+      "observation_type_ids" => ["1"]},
       "commit"=>"Create", "activities"=>{
         "0"=>{"setups"=>{
           "0"=>{"equipment_id"=>"2", "material_transactions"=>{

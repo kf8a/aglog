@@ -10,11 +10,11 @@ class Area < ActiveRecord::Base
   def validate
   	# area without study is OK
   	if :study_id.nil? && ! :treatment_id.nil?
-  		errors.add('No treatment allowed if study is nil')
+  		errors.add_to_base('No treatment allowed if study is nil')
   	end
   	# if treatment exists then it must belong to correct study
-    errors.add('inconsistent study and treatment combination') unless  treatment.nil? || (treatment.study_id == study_id)
-    errors.add('names should not contain spaces') if name.scan(/ /) != []
+    errors.add_to_base('inconsistent study and treatment combination') unless  treatment.nil? || (treatment.study_id == study_id)
+    errors.add_to_base('names should not contain spaces') if name.scan(/ /) != []
   end
   
   # Area.parse returns an array of arrays if the parse was successful
