@@ -35,7 +35,7 @@ gem 'authlogic', :git => "git://github.com/binarylogic/authlogic.git"
 gem "authlogic-oid", :require => 'authlogic_openid'
 gem 'rack-openid'
 gem 'ruby-openid', :require => 'openid'
-gem 'will_paginate'
+gem 'will_paginate', "~> 3.0.pre2"
 gem 'thin'
 
 #Gets rid of annoying UTF-8 string error in rack
