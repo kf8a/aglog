@@ -239,6 +239,7 @@ class ObservationsControllerTest < ActionController::TestCase
   def test_add_setup_to_activity
     params = default_params
   	xhr(:post, :add_setup, params)
+    assert_select_rjs
   	assert_response :success
   end
   
@@ -299,9 +300,10 @@ class ObservationsControllerTest < ActionController::TestCase
   private###########
 
   def default_params
-    {:observation =>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25",
-       "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45",
-       "observation_type_ids"=>["3"]},
+    {:observation =>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25"#,
+#       "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45",
+#       "observation_type_ids"=>["3"]
+     },
      :commit => "Create",
      :action => "create",
      :id => '',

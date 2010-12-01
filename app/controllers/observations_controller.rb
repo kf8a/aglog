@@ -50,7 +50,7 @@ class ObservationsController < ApplicationController
 
   # POST  /observations/add_activity
   def add_activity
-    observation = params[:id].empty? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
 
     observation.set_activities(params[:activities])
 
@@ -66,7 +66,7 @@ class ObservationsController < ApplicationController
 
   # POST /observations/add_setup?activity_index=y
   def add_setup
-    observation = params[:id].empty? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
 
     observation.set_activities(params[:activities])
 
@@ -83,7 +83,7 @@ class ObservationsController < ApplicationController
 
   # POST /observations/add_material?activity_index=x&setup_index=y
   def add_material
-    observation = params[:id].empty? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
     
     observation.set_activities(params[:activities])
 
@@ -101,7 +101,7 @@ class ObservationsController < ApplicationController
   end
   
   def delete_material
-    observation = params[:id].empty? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
     observation.set_activities(params[:activities])
     
     activity = observation.activities[params[:activity_index].to_i]
@@ -119,7 +119,7 @@ class ObservationsController < ApplicationController
   end
 
 	def delete_setup
-	  observation = params[:id].empty? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+	  observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
     observation.set_activities(params[:activities])
     
     activity = observation.activities[params[:activity_index].to_i]
@@ -137,7 +137,7 @@ class ObservationsController < ApplicationController
 	end
 	
 	def delete_activity
-	  observation = params[:id].empty? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+	  observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
     observation.set_activities(params[:activities])
     
     activity = observation.activities[params[:activity_index].to_i]

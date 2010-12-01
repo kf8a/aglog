@@ -17,21 +17,21 @@
               <%= f.select :material_id,  @materials, :include_blank => true %> @
               <%= f.text_field  :rate, :size => 12 %>
               <%= f.select :unit_id, @units,  :include_blank => true %> per acre
-              <%= link_to 'delete material', :url => {:action => 'delete_material', :activity_index => activity_index, :setup_index => setup_index, :material_index => material_index, :id => observation}, :submit => 'observation_form', :remote => true %>
+              <%= link_to 'delete material', delete_material_observations_path(:activity_index => activity_index, :setup_index => setup_index, :material_index => material_index, :id => observation), :submit => 'observation_form', :remote => true %>
             <% end %>
           <% end %>
-          <%= link_to 'add material', :url => {:action => 'add_material', :activity_index => activity_index, :setup_index => setup_index, :id => observation}, :submit => 'observation_form', :remote => true %>
+          <%= link_to 'add material', add_material_observations_path(:activity_index => activity_index, :setup_index => setup_index, :id => observation), :submit => 'observation_form', :remote => true %>
         <% end %>
         |
-        <%= link_to 'delete setup', :url => {:action => 'delete_setup', :activity_index => activity_index, :setup_index => setup_index, :id => observation}, :submit => 'observation_form', :remote => true %>
+        <%= link_to 'delete setup', delete_setup_observations_path(:activity_index => activity_index, :setup_index => setup_index, :id => observation), :submit => 'observation_form', :remote => true %>
         <br/>
       <% end %>
   
-      <%= link_to 'add setup', :url => {:action => 'add_setup', :activity_index => activity_index, :id => observation}, :submit=>'observation_form', :remote => true %>
+      <%= link_to 'add setup', add_setup_observations_path(:activity_index => activity_index, :id => observation), :submit=>'observation_form', :remote => true %>
    
     <% end %>
     |
-    <%= link_to 'delete activity', :url => {:action => 'delete_activity', :activity_index => activity_index, :id => observation }, :submit => 'observation_form', :remote => true %>
+    <%= link_to 'delete activity', delete_activity_observations_path(:activity_index => activity_index, :id => observation), :submit => 'observation_form', :remote => true %>
   <% end %>
 </fieldset>
 

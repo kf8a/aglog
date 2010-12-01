@@ -26,6 +26,6 @@
 
 <%= render :partial => 'activity', :locals => {:f => f, :observation => @observation} %>
 
-<%= link_to 'add activity', :url => {:action => 'add_activity', :id => @observation}, :submit=>'observation_form', :remote => true %>
+<%= link_to 'add activity', add_activity_observations_path(:id => @observation), :method => :post, :submit=>'observation_form', :remote => true %>
 
 <%= initializeArrays -%>
