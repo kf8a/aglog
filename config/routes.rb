@@ -10,6 +10,14 @@ Aglog::Application.routes.draw do
       put :add_activity
       put :add_setup
     end
+    collection do
+      put :add_material
+      put :delete_activity
+      put :delete_setup
+      put :delete_material
+      put :add_activity
+      put :add_setup
+    end
   end
 
   resources :activities
