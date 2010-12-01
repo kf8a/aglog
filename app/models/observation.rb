@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'active_support/builder' unless defined?(Builder)
 
 class Observation < ActiveRecord::Base
   acts_as_state_machine :initial => :published
