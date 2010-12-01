@@ -11,12 +11,12 @@ Aglog::Application.routes.draw do
       put :add_setup
     end
     collection do
-      put :add_material
-      put :delete_activity
-      put :delete_setup
-      put :delete_material
-      put :add_activity
-      put :add_setup
+      post :add_material
+      post :delete_activity
+      post :delete_setup
+      post :delete_material
+      post :add_activity
+      post :add_setup
     end
   end
 
@@ -30,6 +30,9 @@ Aglog::Application.routes.draw do
     member do
       put :put_hazards
       get :get_hazards
+    end
+    collection do
+      post :new_hazards
     end
   end
 
