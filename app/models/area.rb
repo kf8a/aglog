@@ -145,9 +145,9 @@ class Area < ActiveRecord::Base
       treatment_number = $1..$2
       study = 1
       #specify a treatment except a rep
-    when /^[t|T]([1-8])\![r|R]([1-6])$/ then area = Area.find(:all, :conditions => ['treatment_number = ? and not replicate = ? and study_id = 1',$1, $2])
+    when /^[t|T]([1-8])\![r|R]([1-6])$/ then area = Area.where(['treatment_number = ? and not replicate = ? and study_id = 1',$1, $2])
       #specify a replicate except a treatment
-    when /^[r|R]([1-6])\![t|T]([1-8])$/ then area = Area.find(:all, :conditons => ['replicate = ? and not treatment_number = ? and study_id = 1', $1,$2])
+    when /^[r|R]([1-6])\![t|T]([1-8])$/ then area = Area.where(['replicate = ? and not treatment_number = ? and study_id = 1', $1,$2])
       #specify Biodiversity Plots
     when /^[b|B]([1-9]|1[0-9]|2[0-1])$/
       treatment_number = $1
@@ -189,7 +189,7 @@ class Area < ActiveRecord::Base
     end
     if area.blank?
       # try to find an area by name
-      area = Area.find(:all, :conditions => ['upper(name) = ?', token.squeeze.upcase])
+      area = Area.where(['upper(name) = ?', token.squeeze.upcase])
     end
     if area.blank?
       token
