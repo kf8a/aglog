@@ -1,6 +1,6 @@
 <h1>Editing equipment</h1>
 
-<%= error_messages_for 'equipment' %>
+<%= render "shared/error_messages", :target => @equipment %>
 
 <%= form_for(:equipment, :url => equipment_path(@equipment), :html => { :method => :put }) do |f| %>
   <p>

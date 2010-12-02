@@ -1,6 +1,6 @@
 <h1>New Observation</h1>
 
-<%= error_messages_for :observation %>
+<%= render "shared/error_messages", :target => @observation %>
 
 <%= form_for(:observation, :url => observations_path,  :html => {:id => 'observation_form'}) do |f| %>
 	

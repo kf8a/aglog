@@ -1,6 +1,6 @@
 <h1>Editing person</h1>
 
-<%= error_messages_for :person %>
+<%= render "shared/error_messages", :target => @person %>
 
 <%= form_for(:person, :url => person_path(@person), :html => { :method => :put }) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>

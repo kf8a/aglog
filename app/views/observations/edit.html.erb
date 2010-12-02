@@ -1,6 +1,6 @@
 <h1>Edit observation</h1>
 
-<%= error_messages_for :observation %>
+<%= render "shared/error_messages", :target => @observation %>
 
 Created on: <%=h @observation.created_on  %>
 

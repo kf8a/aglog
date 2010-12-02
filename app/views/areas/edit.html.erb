@@ -1,5 +1,5 @@
 <h1>Editing area</h1>
-<%= error_messages_for 'area' %>
+<%= render "shared/error_messages", :target => @area %>
 <%= form_for(:area, :url => area_path(@area), :html => { :method => :put }) do |f| %>
   <p>
     <b>Name</b><br />
