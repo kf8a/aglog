@@ -24,9 +24,10 @@ class Observation < ActiveRecord::Base
   validates_presence_of :observation_types
   
   validates_presence_of :person_id
+  validate :no_invalid_areas
     
-  def validate
-    errors.add('invalid areas') if  @error_areas
+  def no_invalid_areas
+    errors.add(:base, 'invalid areas') if  @error_areas
   end
   
   def in_review
