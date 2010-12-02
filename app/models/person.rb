@@ -20,10 +20,8 @@ class Person < ActiveRecord::Base
     given = self.given_name || ""
     sur =  self.sur_name || ""
     
-    others = Person.find(:first,
-      :conditions => 
-				["lower(given_name) = ? and lower(sur_name) = ?", 
-				  given.downcase, sur.downcase])
+    others = Person.where(["lower(given_name) = ? and lower(sur_name) = ?",
+				  given.downcase, sur.downcase]).first
 		return false if others.nil?
 		others.id != self.id
   end
