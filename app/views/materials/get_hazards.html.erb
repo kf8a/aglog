@@ -22,13 +22,13 @@ Material: <%=h @material.name %>
       end %>
       <tr>
         <td align="center">
-          <%= checkbox_string %>
+          <%= raw checkbox_string %>
         </td>
-        <td><%=h hazard.id%>  </td>
-        <td><%=h hazard.name %>    </td>
-        <td><%=h hazard.hazard_type %>  </td>
-        <td><%=h hazard.chemical_name %>  </td>
-        <td><%=h hazard.exclusion_time_days %>  </td>
+        <td><%= hazard.id%>  </td>
+        <td><%= hazard.name %>    </td>
+        <td><%= hazard.hazard_type %>  </td>
+        <td><%= hazard.chemical_name %>  </td>
+        <td><%= hazard.exclusion_time_days %>  </td>
       </tr>
     <% end %>
   </table>

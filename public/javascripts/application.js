@@ -15,6 +15,13 @@ Event.addBehavior({
 	}
 });
 */
+
+document.on("click", "a[data_popup]", function(event, element) {
+    if (event.stopped) return;
+    window.open($(element).href);
+    event.stop();
+});
+
 var Observation  = {
 	addActivity: function() {
 		index =  Observation.getNewIndex('arrayActivityIndexes');
