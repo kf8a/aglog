@@ -40,7 +40,7 @@ class Area < ActiveRecord::Base
   	# prefixes = ["T", "B", "F", "iF", "REPT"]
   	tokens = []
   	studies = areas.collect{|a| a.study}.uniq  # list of study numbers
-  	# why not do a Studies.find(:all) ?
+  	# why not do a Study.all ?
   	# also remember that not every area belongs to a study
   	
   	# the query set (is subset?)
@@ -88,10 +88,6 @@ class Area < ActiveRecord::Base
     areas.join(' ')
   end
 
-  def location(date=Date.today)
-    Locations.find(:first, :conditions => ['date <= ?',date], order => 'date DESC')
-  end
-   
   def <=>(other)
   	if self.study_id != other.study_id
   		self.study_id <=> other.study_id  # could use study.name
