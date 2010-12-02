@@ -4,11 +4,17 @@ class Person < ActiveRecord::Base
   has_many :observations
   has_many :activities
   has_and_belongs_to_many :hazards
+
+  validate :must_have_unique_name
+  validate :must_have_name
    
   
-  def validate
-    errors.add_to_base("Full Name '#{given_name} #{sur_name}' must be unique") if others_with_name?
-    errors.add_to_base("Name cannot be blank") if self.given_name.blank? and self.sur_name.blank?
+  def must_have_unique_name
+    errors.add(:base, "Full Name '#{given_name} #{sur_name}' must be unique") if others_with_name?
+  end
+
+  def must_have_name
+    errors.add(:base, "Name cannot be blank") if self.given_name.blank? and self.sur_name.blank?
   end
 
   def name
