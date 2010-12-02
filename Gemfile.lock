@@ -36,7 +36,7 @@ GEM
       activemodel (= 3.0.3)
       activesupport (= 3.0.3)
     activesupport (3.0.3)
-    arel (2.0.5)
+    arel (2.0.6)
     arrayfields (4.7.4)
     authlogic-oid (1.0.4)
       authlogic
@@ -93,7 +93,7 @@ GEM
       reek (>= 1.2.6)
       roodi (>= 2.1.0)
     mime-types (1.16)
-    pg (0.9.0)
+    pg (0.10.0)
     polyglot (0.3.1)
     progressbar (0.9.0)
     rack (1.2.1)
@@ -112,9 +112,10 @@ GEM
       activesupport (= 3.0.3)
       bundler (~> 1.0)
       railties (= 3.0.3)
-    rails_best_practices (0.5.0)
+    rails_best_practices (0.5.2)
       activesupport
       colored (~> 1.2)
+      i18n
       progressbar (~> 0.9.0)
       ruby_parser (~> 2.0.4)
     railties (3.0.3)

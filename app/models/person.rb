@@ -9,6 +9,12 @@ class Person < ActiveRecord::Base
   validate :must_have_name
    
   
+  def name
+    [given_name, sur_name].join(' ')
+  end
+  
+  private##################################
+
   def must_have_unique_name
     errors.add(:base, "Full Name '#{given_name} #{sur_name}' must be unique") if others_with_name?
   end
@@ -17,11 +23,6 @@ class Person < ActiveRecord::Base
     errors.add(:base, "Name cannot be blank") if self.given_name.blank? and self.sur_name.blank?
   end
 
-  def name
-    [given_name, sur_name].join(' ')
-  end
-  
-  private
   def others_with_name? 
     given = self.given_name || ""
     sur =  self.sur_name || ""
