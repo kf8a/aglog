@@ -6,6 +6,6 @@ class Equipment < ActiveRecord::Base
   validates_uniqueness_of :name, :case_sensitive => false
 
   def observations
-    self.setups.collect {|setup| setup.activity.try(:observation)}.compact
+    self.setups.collect {|setup| setup.observation}.compact
   end
 end

@@ -9,16 +9,7 @@ class Setup < ActiveRecord::Base
   
   validates_associated :material_transactions
   
-  #   
-  # def validate
-  #    unless (equipment_id.nil? || Equipment.find(:first, 
-  #      :conditions => ["id = ?", equipment_id]))
-  #      errors.add(:equipment, 'is invalid') 
-  #    end
-  #  end
-  #  
-  #  def equipment_id
-  #    equipment ? equipment.id : nil
-  #  end
- 
+  def observation
+    self.activity.try(:observation)
+  end
 end

@@ -15,5 +15,34 @@ class MaterialTransaction < ActiveRecord::Base
     transactions = MaterialTransaction.where(['materials.material_type_id = ? and area_id in (?)', material_type, areas]).order(order).joins('join materials on materials.id  = material_transactions.material_id join setups on setups.id = material_transactions.setup_id join activities on setups.activity_id = activities.id  join observations on activities.observation_id = observations.id join areas_observations on areas_observations.observation_id = observations.id join areas on areas_observations.area_id = areas.id join observation_types_observations on observation_types_observations.observation_id  =  observations.id')
     transactions.uniq
   end
+
+  def n_content_to_kg_ha
+    if self.rate && self.material.n_content && self.unit.conversion_factor
+      to_kg_ha(self.material.n_content)
+    end
+  end
+
+  def p_content_to_kg_ha
+    if self.rate && self.material.p_content && self.unit.conversion_factor
+      to_kg_ha(self.material.p_content)
+    end
+  end
+
+  def k_content_to_kg_ha
+    if self.rate && self.material.k_content && self.unit.conversion_factor
+      to_kg_ha(self.material.k_content)
+    end
+  end
+
+  private##############################
+
+  def to_kg_ha(content)
+    rate = self.rate * self.unit.conversion_factor
+    rate = self.material.to_mass(rate)
+    rate = rate/1000.0
+    rate = rate / 0.404
+    rate = rate * content / 100.0
+    rate = (rate * 100).round / 100.0
+  end
   
 end

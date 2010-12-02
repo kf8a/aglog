@@ -13,9 +13,9 @@
       <td><%= t.setup.activity.observation.obs_date %></td>
       <td><%= t.material.name %></td>
       <td><%= "#{pluralize(t.rate,t.unit.name)} per acre" if t.unit %></td>
-      <td><%= to_kg_ha(t.rate, t.material.n_content, t.material,t.unit)  if t.rate && t.material.n_content && t.unit.conversion_factor %></td>
-      <td><%= to_kg_ha(t.rate, t.material.p_content, t.material, t.unit) if t.rate && t.material.p_content && t.unit.conversion_factor %></td>
-      <td><%= to_kg_ha(t.rate, t.material.k_content, t.material, t.unit) if t.rate && t.material.k_content && t.unit.conversion_factor %></td>
+      <td><%= t.n_content_to_kg_ha %></td>
+      <td><%= t.p_content_to_kg_ha %></td>
+      <td><%= t.k_content_to_kg_ha %></td>
       <td><%= link_to "show", observation_path(t.setup.activity.observation_id) %></td>
     </tr>
   <% end %>
