@@ -6,17 +6,10 @@ class Area < ActiveRecord::Base
   belongs_to :treatment
   
   validates_uniqueness_of :name, :case_sensitive => false, :message => "must be unique"
+  validate :no_treatment_without_study
+  validate :treatment_is_part_of_study
+  validate :name_has_no_spaces
 
-  def validate
-  	# area without study is OK
-  	if :study_id.nil? && ! :treatment_id.nil?
-  		errors.add_to_base('No treatment allowed if study is nil')
-  	end
-  	# if treatment exists then it must belong to correct study
-    errors.add_to_base('inconsistent study and treatment combination') unless  treatment.nil? || (treatment.study_id == study_id)
-    errors.add_to_base('names should not contain spaces') if name && name.scan(/ /) != []
-  end
-  
   # Area.parse returns an array of arrays if the parse was successful
   # otherwise it returns the text with the offendinng token highlighted by **
   # for example  'T1R1 R11' will return  'T1R1 *R11*' 
@@ -102,19 +95,25 @@ class Area < ActiveRecord::Base
   	end	# if self.study != other.study
   end	# def <=>(other)
   
-#  private
   
-  def Area.reduce_names(areas,name,collection)
-    test = collection.collect {|member| member.name.to_sym}
-    test = test.to_set
-    if !test.empty? && areas.superset?(test)
-      areas -= test
-      areas << name.to_sym
-    end
-    return areas
+  private##########################################
+
+  def no_treatment_without_study
+    # area without study is OK
+  	if :study_id.nil? && ! :treatment_id.nil?
+  		errors.add(:base, 'No treatment allowed if study is nil')
+  	end
   end
 
-  private
+  def treatment_is_part_of_study
+    # if treatment exists then it must belong to correct study
+    errors.add(:base, 'inconsistent study and treatment combination') unless  treatment.nil? || (treatment.study_id == study_id)
+  end
+
+  def name_has_no_spaces
+    errors.add(:base, 'names should not contain spaces') if name && name.scan(/ /) != []
+  end
+
 
   def Area.stringify_areas(areas)
     area_strings = areas.collect do |area|
@@ -196,5 +195,15 @@ class Area < ActiveRecord::Base
     else
       area
     end
+  end
+
+  def Area.reduce_names(areas,name,collection)
+    test = collection.collect {|member| member.name.to_sym}
+    test = test.to_set
+    if !test.empty? && areas.superset?(test)
+      areas -= test
+      areas << name.to_sym
+    end
+    return areas
   end
 end
