@@ -1,31 +1,34 @@
-<% set_observation_types %>
-<p>
-  <label  for='observation_date'>Date</label>
-  <%=  f.date_select :obs_date, :start_year => 1988%>
-</p>
-<p>
-  <label for='observation_comment'>Comment</label><br/>
-  <%= f.text_area  :comment, :rows => 5, :cols => 70 %>
-</p>
-<p>
-  <label for='observation_areas_as_text'>Areas:</label>  For example: T6 T5R1 T4!R3 T1-T4 T1R1-3<br/>
-  <%= f.text_field :areas_as_text  , :size => 50%>
-</p>
-<% if !@observation.new_record? %>
+<%= form_for(observation, :html => { :id => 'observation_form', :remote => true}) do |f| %>
+  <%= render "shared/error_messages", :target => observation %>
   <p>
-
-    <label for='observation_state'>In Review</label>
-    <%= f.check_box :in_review %> Yes
+    <label  for='observation_date'>Date</label>
+    <%=  f.date_select :obs_date, :start_year => 1988%>
   </p>
+  <p>
+    <label for='observation_comment'>Comment</label><br/>
+    <%= f.text_area  :comment, :rows => 5, :cols => 70 %>
+  </p>
+  <p>
+    <label for='observation_areas_as_text'>Areas:</label>  For example: T6 T5R1 T4!R3 T1-T4 T1R1-3<br/>
+    <%= f.text_field :areas_as_text  , :size => 50%>
+  </p>
+  <% if !observation.new_record? %>
+    <p>
+
+      <label for='observation_state'>In Review</label>
+      <%= f.check_box :in_review %> Yes
+    </p>
+  <% end %>
+  <p>
+    <label for='observation_observation_type_ids'>Type:</label>
+    <%= f.select :observation_type_ids, observation_type_ids, {}, :multiple => true %>
+  </p>
+
+
+  <%= render :partial => 'activity', :locals => {:f => f, :observation => observation} %>
+
+  <%= submit_tag 'add activity' %>
+
+  <%= initializeArrays -%>
+  <%= f.submit %>
 <% end %>
-<p>
-  <label for='observation_observation_type_ids'>Type:</label>
-  <%= f.select :observation_type_ids, @observation_type_ids, {}, :multiple => true %>
-</p>
-
-
-<%= render :partial => 'activity', :locals => {:f => f, :observation => @observation} %>
-
-<%= link_to 'add activity', add_activity_observations_path(:id => @observation), :method => :post, :submit=>'observation_form', :remote => true %>
-
-<%= initializeArrays -%>

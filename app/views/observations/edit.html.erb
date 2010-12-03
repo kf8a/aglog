@@ -1,19 +1,10 @@
 <h1>Edit observation</h1>
 
-<%= render "shared/error_messages", :target => @observation %>
-
-Created on: <%=h @observation.created_on  %>
-
-<%= form_for(:observation, :url => observation_path(@observation), :html => { :id => 'observation_form', :method => 'put'}) do |f| %>
- 
-  <p>
-    <%= render(:partial => 'form', :locals => {:f => f}) %>
-  </p>
+Created on: <%= @observation.created_on  %>
 
   <p>
-    <input type="submit" value="Update" />
+    <%= render(:partial => 'form', :locals => {:observation => @observation}) %>
   </p>
-<% end %>
 
 <%= link_to 'Show', observation_path(@observation) %> |
 <%= link_to 'List Observations', observations_path %>

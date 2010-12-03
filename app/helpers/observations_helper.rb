@@ -19,8 +19,8 @@ module ObservationsHelper
      @units = Unit.find(:all, :order => 'name').collect {|x| [x.name, x.id]}
    end
    
-   def  set_observation_types
-     @observation_type_ids =  ObservationType.find(:all).collect {|x| [x.name, x.id]}
+   def observation_type_ids
+     @observation_type_ids ||= ObservationType.find(:all).collect {|x| [x.name, x.id]}
    end
    
 

@@ -48,110 +48,6 @@ class ObservationsController < ApplicationController
     @observation = Observation.new
    end
 
-  # POST  /observations/add_activity
-  def add_activity
-    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
-
-    observation.set_activities(params[:activities])
-
-    observation.activities << Activity.new
-    respond_to do |format|
-      format.js do
-        render :update do |page|
-          page.replace'activities',  :partial => 'activity',  :locals => {:observation  => observation}
-        end
-      end
-    end
-  end
-
-  # POST /observations/add_setup?activity_index=y
-  def add_setup
-    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
-
-    observation.set_activities(params[:activities])
-
-    activity  =  observation.activities[params[:activity_index].to_i]
-    activity.setups  <<  Setup.new
-    respond_to do |format|
-      format.js  do
-        render :update do |page|
-          page.replace 'activities',  :partial => 'activity', :locals => {:observation => observation}
-        end
-      end
-    end
-  end
-
-  # POST /observations/add_material?activity_index=x&setup_index=y
-  def add_material
-    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
-    
-    observation.set_activities(params[:activities])
-
-    activity =  observation.activities[params[:activity_index].to_i]
-    setup = activity.setups[params[:setup_index].to_i]
-    setup.material_transactions << MaterialTransaction.new
-
-    respond_to  do |format|
-      format.js do
-        render :update do |page|
-          page.replace 'activities', :partial => 'activity',  :locals => {:observation => observation}
-        end
-      end
-    end
-  end
-  
-  def delete_material
-    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
-    observation.set_activities(params[:activities])
-    
-    activity = observation.activities[params[:activity_index].to_i]
-    setup = activity.setups[params[:setup_index].to_i]
-    material_transaction = setup.material_transactions[params[:material_index].to_i]
-    setup.material_transactions.delete(material_transaction)
-    
-    respond_to  do |format|
-      format.js do
-        render :update do |page|
-          page.replace 'activities', :partial => 'activity',  :locals => {:observation => observation}
-        end
-      end
-    end
-  end
-
-	def delete_setup
-	  observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
-    observation.set_activities(params[:activities])
-    
-    activity = observation.activities[params[:activity_index].to_i]
-    setup = activity.setups[params[:setup_index].to_i]
-    
-    activity.setups.delete(setup)
-		    
-    respond_to  do |format|
-      format.js do
-        render :update do |page|
-          page.replace 'activities', :partial => 'activity',  :locals => {:observation => observation}
-        end
-      end
-    end
-	end
-	
-	def delete_activity
-	  observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
-    observation.set_activities(params[:activities])
-    
-    activity = observation.activities[params[:activity_index].to_i]
-    observation.activities.delete(activity)
-    
-    respond_to  do |format|
-      format.js do
-        render :update do |page|
-          page.replace 'activities', :partial => 'activity',  :locals => {:observation => observation}
-        end
-      end
-    end
-  end
-      
   #   
   # GET /observations/1;edit
   def edit
@@ -161,44 +57,50 @@ class ObservationsController < ApplicationController
   # POST /observations
   # POST /observations.xml
   def create
-    @observation = Observation.new(params[:observation])    
-    @observation.set_activities(params[:activities])
-
-    logger.info current_user.name
-    @observation.person_id = current_user.id
-
-    respond_to do |format|
+    if params[:commit] == "Create Observation" || params[:commit] == ""
+      @observation = Observation.new(params[:observation])
+      @observation.set_activities(params[:activities])
+      logger.info current_user.name
+      @observation.person_id = current_user.id
       if @observation.save
-        flash[:notice] = 'Observation was successfully created.'
-
-        format.html { redirect_to observation_url(@observation) }
-        format.xml do
-          headers["Location"] = observation_url(@observation)
-          render :nothing => true, :status => "201 Created"
-        end
+        flash[:form] = 'Observation was successfully created.'
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @observation.errors.to_xml }
+        flash[:form] = "Creation failed"
       end
+
+      respond_to  do |format|
+        format.js do
+          render :update do |page|
+            page.replace 'observation_form', :partial => 'form', :locals => {:observation => @observation}
+          end
+        end
+      end
+    else
+      update_activity
     end
   end
 
   # PUT /observations/1
   # PUT /observations/1.xml
-  def update    
-    @observation = Observation.find(params[:id])
-    @observation.set_activities(params[:activities])
-
-    respond_to do |format|
+  def update
+    if params[:commit] == "Update Observation" || params[:commit] == ""
+      @observation = Observation.find(params[:id])
+      @observation.set_activities(params[:activities])
       if @observation.update_attributes(params[:observation])
-        flash[:notice] = " observation saved"
-
-        format.html { redirect_to observation_url(@observation) }
-        format.xml  { render :nothing => true }
+        flash[:form] = "Observation Updated!"
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @observation.errors.to_xml }        
+        flash[:form] = "Update failed"
       end
+
+      respond_to  do |format|
+        format.js do
+          render :update do |page|
+            page.replace 'observation_form', :partial => 'form', :locals => {:observation => @observation}
+          end
+        end
+      end
+    else
+      update_activity
     end
   end
 
@@ -214,6 +116,144 @@ class ObservationsController < ApplicationController
     end
   end
 
-  private
+  private #############################
 
+  def update_activity
+    case params[:commit]
+    when "add activity"
+      add_activity
+    when "delete activity"
+      delete_activity
+    when "add setup"
+      add_setup
+    when "delete setup"
+      delete_setup
+    when "add material"
+      add_material
+    when "delete material"
+      delete_material
+    end
+  end
+
+    # POST  /observations/add_activity
+  def add_activity
+    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+
+    observation.set_activities(params[:activities])
+
+    observation.activities << Activity.new
+
+    respond_to do |format|
+      format.js do
+        render :update do |page|
+          page.replace 'observation_form', :partial => 'form', :locals => {:observation => observation}
+        end
+      end
+    end
+  end
+
+  # POST /observations/add_setup?activity_index=y
+  def add_setup
+    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+
+    observation.set_activities(params[:activities])
+
+    activity  =  observation.activities[params[:activity_index].to_i]
+    activity.setups  <<  Setup.new
+
+    activity.save
+    observation.save
+
+    respond_to do |format|
+      format.js  do
+        render :update do |page|
+          page.replace 'observation_form', :partial => 'form', :locals => {:observation => observation}
+        end
+      end
+    end
+  end
+
+  # POST /observations/add_material?activity_index=x&setup_index=y
+  def add_material
+    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+
+    observation.set_activities(params[:activities])
+
+    activity =  observation.activities[params[:activity_index].to_i]
+    setup = activity.setups[params[:setup_index].to_i]
+    setup.material_transactions << MaterialTransaction.new
+    setup.save
+    activity.save
+    observation.save
+
+    respond_to  do |format|
+      format.js do
+        render :update do |page|
+          page.replace 'observation_form', :partial => 'form', :locals => {:observation => observation}
+        end
+      end
+    end
+  end
+
+  def delete_material
+    observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+    observation.set_activities(params[:activities])
+
+    activity = observation.activities[params[:activity_index].to_i]
+    setup = activity.setups[params[:setup_index].to_i]
+    material_transaction = setup.material_transactions[params[:material_index].to_i]
+    setup.material_transactions.delete(material_transaction)
+
+    setup.save
+    activity.save
+    observation.save
+
+    respond_to  do |format|
+      format.js do
+        render :update do |page|
+          page.replace 'observation_form', :partial => 'form', :locals => {:observation => observation}
+        end
+      end
+    end
+  end
+
+	def delete_setup
+	  observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+    observation.set_activities(params[:activities])
+
+    activity = observation.activities[params[:activity_index].to_i]
+    setup = activity.setups[params[:setup_index].to_i]
+
+    activity.setups.delete(setup)
+
+    activity.save
+    observation.save
+
+    respond_to  do |format|
+      format.js do
+        render :update do |page|
+          page.replace 'observation_form', :partial => 'form', :locals => {:observation => observation}
+        end
+      end
+    end
+	end
+
+	def delete_activity
+	  observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
+    observation.set_activities(params[:activities])
+
+    activity = observation.activities[params[:activity_index].to_i]
+    observation.activities.delete(activity)
+
+    activity.save
+    observation.save
+
+    respond_to  do |format|
+      format.js do
+        render :update do |page|
+          page.replace 'observation_form', :partial => 'form', :locals => {:observation => observation}
+        end
+      end
+    end
+  end
 end
