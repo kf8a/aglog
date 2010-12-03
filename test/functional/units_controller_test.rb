@@ -24,7 +24,7 @@ class UnitsControllerTest < ActionController::TestCase
       post :create, :unit => {:name => "test_name"}
     end
 
-    should set_the_flash.to(:notice => "Unit was successfullly created.")
+    should set_the_flash.to(:notice => "Unit was successfully created.")
     should redirect_to("the created unit's page") {unit_path(assigns(:unit))}
   end
 

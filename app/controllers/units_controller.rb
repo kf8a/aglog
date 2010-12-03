@@ -30,7 +30,7 @@ class UnitsController < ApplicationController
   def create
     @unit = Unit.new(params[:unit])
     if @unit.save
-      flash[:notice] = 'Unit was successfullly created.'
+      flash[:notice] = 'Unit was successfully created.'
     end
     respond_with @unit
   end
