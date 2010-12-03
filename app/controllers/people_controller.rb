@@ -1,79 +1,60 @@
 class PeopleController < ApplicationController
+  before_filter :get_person, :only => [:show, :edit, :update, :destroy]
+  respond_to :html, :xml
+
   # GET /people
   # GET /people.xml
   def index
-    @people = Person.find(:all, :order => 'given_name')
-
-    respond_to do |format|
-      format.html # index.erb
-      format.xml  { render :xml => @people.to_xml }
-    end
+    @people = Person.order('given_name')
+    respond_with @people
   end
 
   # GET /people/1
   # GET /people/1.xml
   def show
-    @person = Person.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.erb
-      format.xml  { render :xml => @person.to_xml }
-    end
+    respond_with @person
   end
 
   # GET /people/new
   def new
     @person = Person.new
+    respond_with @person
   end
 
   # GET /people/1;edit
   def edit
-    @person = Person.find(params[:id])
+    respond_with @person
   end
 
   # POST /people
   # POST /people.xml
   def create
     @person = Person.new(params[:person])
-
-    respond_to do |format|
-      if @person.save
-        flash[:notice] = 'Person was successfully created.'
-        format.html { redirect_to person_url(@person) }
-        format.xml  { head :created, :location => person_url(@person) }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @person.errors.to_xml }
-      end
+    if @person.save
+      flash[:notice] = 'Person was successfully created.'
     end
+    respond_with @person
   end
 
   # PUT /people/1
   # PUT /people/1.xml
   def update
-    @person = Person.find(params[:id])
-
-    respond_to do |format|
-      if @person.update_attributes(params[:person])
-        flash[:notice] = 'Person was successfully updated.'
-        format.html { redirect_to person_url(@person) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @person.errors.to_xml }
-      end
+    if @person.update_attributes(params[:person])
+      flash[:notice] = 'Person was successfully updated.'
     end
+    respond_with @person
   end
 
   # DELETE /people/1
   # DELETE /people/1.xml
   def destroy
-    @person = Person.find(params[:id])
     @person.destroy
+    respond_with @person
+  end
 
-    respond_to do |format|
-      format.html { redirect_to people_url }
-      format.xml  { head :ok }
-    end
+  private ##################
+
+  def get_person
+    @person = Person.find(params[:id])
   end
 end
