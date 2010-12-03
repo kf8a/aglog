@@ -1,5 +1,8 @@
 # encoding: UTF-8
 class ObservationsController < ApplicationController
+  before_filter :get_observation, :only => [:show, :edit, :destroy]
+  respond_to :html, :xml
+
   # GET /observations
   # GET /observations.xml
   def index
@@ -21,8 +24,6 @@ class ObservationsController < ApplicationController
          :conditions => ['state = ?',state]
      end
  
-#    @observations = Observation.find(:all, :order => 'obs_date desc', :conditions => ['state = ?',state])
-    
     respond_to do |format|
       format.html #index.html
       format.xml  { render :xml => @observations.to_xml(:include => [:areas]) }
@@ -34,24 +35,19 @@ class ObservationsController < ApplicationController
   # GET /observations/1
   # GET /observations/1.xml
   def show
-    @observation = Observation.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.rhtml
-      format.xml  { render :xml => @observation.to_xml }
-      format.csv  { render :csv => @observation.to_csv }
-    end
+    respond_with @observation
   end
 
   # GET /observations/new
   def new
     @observation = Observation.new
+    respond_with @observation
    end
 
   #   
   # GET /observations/1;edit
   def edit
-    @observation = Observation.find(params[:id])
+    respond_with @observation
   end
 
   # POST /observations
@@ -107,16 +103,15 @@ class ObservationsController < ApplicationController
   # DELETE /observations/1
   # DELETE /observations/1.xml
   def destroy
-    @observation = Observation.find(params[:id])
     @observation.destroy
-
-    respond_to do |format|
-      format.html { redirect_to observations_url   }
-      format.xml  { render :nothing => true }
-    end
+    respond_with @observation
   end
 
   private #############################
+
+  def get_observation
+    @observation = Observation.find(params[:id])
+  end
 
   def update_activity
     case params[:commit]
