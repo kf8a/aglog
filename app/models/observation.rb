@@ -169,5 +169,46 @@ class Observation < ActiveRecord::Base
     end
     data.unshift(["#date,type,area,material,n_content,rate,unit\n"])
   end
-  
+
+  def add_activity
+    self.activities << Activity.new
+  end
+
+  def add_setup(activity_index)
+    activity = self.activities[activity_index.to_i]
+    activity.setups  <<  Setup.new
+    activity.save
+  end
+
+  def add_material(activity_index, setup_index)
+    activity = self.activities[activity_index.to_i]
+    setup = activity.setups[setup_index.to_i]
+    setup.material_transactions << MaterialTransaction.new
+    setup.save
+    activity.save
+  end
+
+  def delete_material(activity_index, setup_index, material_index)
+    activity = self.activities[activity_index.to_i]
+    setup = activity.setups[setup_index.to_i]
+    material_transaction = setup.material_transactions[material_index.to_i]
+    setup.material_transactions.delete(material_transaction)
+
+    setup.save
+    activity.save
+  end
+
+	def delete_setup(activity_index, setup_index)
+    activity = self.activities[activity_index.to_i]
+    setup = activity.setups[setup_index.to_i]
+    activity.setups.delete(setup)
+    activity.save
+	end
+
+	def delete_activity(activity_index)
+    activity = self.activities[activity_index.to_i]
+    self.activities.delete(activity)
+    activity.save
+  end
+
 end
