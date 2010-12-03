@@ -208,7 +208,6 @@ class Observation < ActiveRecord::Base
 	def delete_activity(activity_index)
     activity = self.activities[activity_index.to_i]
     self.activities.delete(activity)
-    activity.save
   end
 
 end

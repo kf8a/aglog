@@ -104,19 +104,23 @@ class ObservationsController < ApplicationController
   def update_activity
     prepare_observation
 
+    activity_index = params[:activity_index]
+    setup_index = params[:setup_index]
+    material_index = params[:material_index]
+
     case params[:commit]
     when "add activity"
       @observation.add_activity
     when "delete activity"
-      @observation.delete_activity(params[:activity_index])
+      @observation.delete_activity(activity_index)
     when "add setup"
-      @observation.add_setup(params[:activity_index])
+      @observation.add_setup(activity_index)
     when "delete setup"
-      @observation.delete_setup(params[:activity_index], params[:setup_index])
+      @observation.delete_setup(activity_index, setup_index)
     when "add material"
-      @observation.add_material(params[:activity_index], params[:setup_index])
+      @observation.add_material(activity_index, setup_index)
     when "delete material"
-      @observation.delete_material(params[:activity_index], params[:setup_index], params[:material_index])
+      @observation.delete_material(activity_index, setup_index, material_index)
     end
   end
 
