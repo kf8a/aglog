@@ -85,7 +85,7 @@ class EquipmentControllerTest < ActionController::TestCase
         delete :destroy, :id => @equipment
       end
 
-      should redirect_to("the equipment index page") {equipment_path}
+      should redirect_to("the equipment index page") {equipment_index_path}
       should "destroy the equipment" do
         assert_nil Equipment.find_by_id(@equipment)
       end
