@@ -23,3 +23,9 @@ class ActiveSupport::TestCase
   end
 
 end
+
+#Shoulda currently has a bug where they use Test::Unit instead of ActiveSupport
+unless defined?(Test::Unit::AssertionFailedError)
+  class Test::Unit::AssertionFailedError < ActiveSupport::TestCase::Assertion
+  end
+end

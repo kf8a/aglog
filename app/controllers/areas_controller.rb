@@ -1,82 +1,58 @@
 class AreasController < ApplicationController
+  before_filter :get_area, :only => [:show, :edit, :update, :destroy]
+  respond_to :html, :xml
+
   # GET /areas
   # GET /areas.xml
   def index
-    @areas = Area.find(:all,  :order => 'study_id, name')
-
-    respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @areas.to_xml }
-    end
+    @areas = Area.order('study_id, name')
+    respond_with @areas
   end
   
   # GET /areas/1
   # GET /areas/1.xml
   def show
-    @area = Area.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.rhtml
-      format.xml  { render :xml => @area.to_xml }
-    end
+    respond_with @area
   end
   
   # GET /areas/new
   def new
     @area = Area.new
+    respond_with @area
   end
   
   # GET /areas/1;edit
   def edit
-    @area = Area.find(params[:id])
+    respond_with @area
   end
 
   # POST /areas
   # POST /areas.xml
   def create
     @area = Area.new(params[:area])
-    
-    respond_to do |format|
-      if @area.save
-        flash[:notice] = 'Area was successfully created.'
-        
-        format.html { redirect_to area_url(@area) }
-        format.xml do
-          headers["Location"] = area_url(@area)
-          render :nothing => true, :status => "201 Created"
-        end
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @area.errors.to_xml }
-      end
+    if @area.save
+      flash[:notice] = 'Area was successfully created.'
     end
+    respond_with @area
   end
   
   # PUT /areas/1
   # PUT /areas/1.xml
   def update
-    @area = Area.find(params[:id])
-    
-    respond_to do |format|
-      if @area.update_attributes(params[:area])
-        format.html { redirect_to area_url(@area) }
-        format.xml  { render :nothing => true }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @area.errors.to_xml }        
-      end
-    end
+    @area.update_attributes(params[:area])
+    respond_with @area
   end
   
   # DELETE /areas/1
   # DELETE /areas/1.xml
   def destroy
-    @area = Area.find(params[:id])
     @area.destroy
-    
-    respond_to do |format|
-      format.html { redirect_to areas_url   }
-      format.xml  { render :nothing => true }
-    end
+    respond_with @area
+  end
+
+  private ###################
+
+  def get_area
+    @area = Area.find(params[:id])
   end
 end

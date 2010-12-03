@@ -79,7 +79,6 @@ class AreasControllerTest < ActionController::TestCase
       end
 
       should render_template 'edit'
-      should_not set_the_flash
     end
 
     context "DELETE :destroy the area" do
