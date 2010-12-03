@@ -80,48 +80,36 @@ class ObservationsControllerTest < ActionController::TestCase
     should render_template 'new'
   end
 
-  #These are now Javascript, so must be tested a different way
-#  context "POST :create" do
-#    setup do
-#      post :create, "observation"=>
-#          {:obs_date => Date.today, :observation_type_ids => ["3"] }
-#    end
-#
-#    should redirect_to("The observation show page") {observation_path(assigns(:observation))}
-#  end
-#
-#  def test_should_not_create_observation_or_activity
-#     old_count = Observation.count
-#     num_activities =  Activity.count
-#
-#     post :create, :observation => {:created_on => 'nodate'}
-#     assert_equal old_count, Observation.count
-#     assert_equal num_activities, Activity.count
-#     assert_response :success
-#
-#     post :create, :observation => {:obs_date => 'nodate'}
-#     assert_equal old_count, Observation.count
-#
-#     post :create, :observation => {:obs_date => Date.today},
-#     :activity => {0 => {:user_id => 50}}
-#     assert_equal old_count, Observation.count
-#     assert_equal num_activities, Activity.count
-#     assert_response :success
-#   end
-#
-#  context "POST :create in xml format" do
-#    setup do
-#      post :create,
-#           :format => 'xml',
-#           :observation => {"obs_date(1i)"=>"2007",
-#                            "obs_date(2i)"=>"6",
-#                            "obs_date(3i)"=>"25",
-#                            "observation_type_ids"=>["3"]}
-#    end
-#
-#    should respond_with(201)
-#    should respond_with_content_type(:xml)
-#  end
+  context "POST :create" do
+    setup do
+      @observation_count = Observation.count
+      xhr(:post, :create, :commit => "Create Observation",
+        :observation => { :obs_date => Date.today, :observation_type_ids => ["3"] })
+    end
+
+    should "create an observation" do
+      assert_equal @observation_count + 1, Observation.count
+    end
+  end
+
+  def test_should_not_create_observation_or_activity
+     old_count = Observation.count
+     num_activities =  Activity.count
+
+     xhr(:post, :create, :commit => "Create Observation", :observation => {:created_on => 'nodate'})
+     assert_equal old_count, Observation.count
+     assert_equal num_activities, Activity.count
+     assert_response :success
+
+     xhr(:post, :create, :commit => "Create Observation", :observation => {:obs_date => 'nodate'})
+     assert_equal old_count, Observation.count
+
+     xhr(:post, :create, :commit => "Create Observation", :observation => {:obs_date => Date.today},
+     :activity => {0 => {:user_id => 50}})
+     assert_equal old_count, Observation.count
+     assert_equal num_activities, Activity.count
+     assert_response :success
+   end
 
   context "An observation exists. " do
     setup do
@@ -144,83 +132,88 @@ class ObservationsControllerTest < ActionController::TestCase
       should render_template 'edit'
     end
 
-    #These are now Javascript, so must be tested a different way
-#    context "PUT :update the observation" do
-#      setup do
-#        put :update, :id => @observation.id, :observation => { :obs_date => Date.today - 1 }
-#      end
-#
-#      should redirect_to("The observation show page") {observation_path(@observation)}
-#    end
-#
-#    context "PUT :update with invalid attributes" do
-#      setup do
-#        put :update, :id => @observation.id, :observation => {:person_id => nil}
-#      end
-#
-#      should render_template 'edit'
-#      should_not set_the_flash
-#    end
-#
-#    context "PUT :update with two setups to add" do
-#      setup do
-#        @number_of_setups = Setup.count
-#        put :update, :id => @observation.id,
-#            :observation=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25",
-#        "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45",
-#        "observation_type_ids"=>["3"]},
-#        :commit=>"Update", :action=>"create",
-#        :activities=>{
-#          "0"=>{"setups"=>{
-#            "0"=>{"equipment_id"=>"2",
-#              "material_transactions"=>{
-#                "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-#              }
-#            },
-#            "1"=>{"equipment_id"=>"2",
-#              "material_transactions"=>{
-#                "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-#              }
-#            }
-#          }, "hours"=>"1", "person_id"=>"2"}
-#        }
-#      end
-#
-#      should "add two setups" do
-#        assert_equal @number_of_setups+2, Setup.count
-#      end
-#    end
-#
-#    context "PUT :update with two activities to add to the observation" do
-#      setup do
-#        @number_of_activities = Activity.count
-#        put :update, :id => @observation.id,
-#          :observation=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25",
-#        "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45", "observation_type_ids"=>["3"]},
-#        "commit"=>"Update", "action"=>"create",
-#        "activities"=>{
-#          "0"=>{"setups"=>{
-#            "0"=>{"equipment_id"=>"2",
-#              "material_transactions"=>{
-#                "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-#              }
-#            }
-#          }, "hours"=>"1", "person_id"=>"2"},
-#          "1"=>{"setups"=>{
-#             "0"=>{"equipment_id"=>"2",
-#               "material_transactions"=>{
-#                 "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-#               }
-#             }
-#           }, "hours"=>"1", "person_id"=>"2"}
-#
-#        }
-#      end
-#
-#      should "add two activities" do
-#        assert_equal @number_of_activities+2, Activity.count
-#      end
-#    end
+    context "PUT :update the observation" do
+      setup do
+        @current_obs_date = @observation.obs_date
+        xhr(:put, :update, :id => @observation.id, :commit => "Update Observation", :observation => { :obs_date => @current_obs_date - 1 })
+      end
+
+      should "update the observation" do
+        @observation.reload
+        assert_equal @current_obs_date - 1, @observation.obs_date
+      end
+    end
+
+    context "PUT :update with invalid attributes" do
+      setup do
+        @current_obs_date = @observation.obs_date
+        xhr(:put, :update, :id => @observation.id, :commit => "Update Observation", :observation => { :person_id => nil, :obs_date => @current_obs_date - 1 })
+      end
+
+      should "not update the observation" do
+        @observation.reload
+        assert_equal @current_obs_date, @observation.obs_date
+      end
+    end
+
+    context "PUT :update with two setups to add" do
+      setup do
+        @number_of_setups = Setup.count
+        xhr(:put, :update, :id => @observation.id, :commit=>"Update Observation",
+            :observation => {"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25",
+                            "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45",
+                            "observation_type_ids"=>["3"]},
+            :activities=>{
+              "0"=>{"setups"=>{
+                "0"=>{"equipment_id"=>"2",
+                  "material_transactions"=>{
+                    "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
+                  }
+                },
+                "1"=>{"equipment_id"=>"2",
+                  "material_transactions"=>{
+                    "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
+                  }
+                }
+              }, "hours"=>"1", "person_id"=>"2"}
+            }
+          )
+      end
+
+      should "add two setups" do
+        assert_equal @number_of_setups+2, Setup.count
+      end
+    end
+
+    context "PUT :update with two activities to add to the observation" do
+      setup do
+        @number_of_activities = Activity.count
+        xhr(:put, :update, :id => @observation.id, :commit => "Update Observation",
+            :observation=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25",
+                        "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45", "observation_type_ids"=>["3"]},
+            :activities=>{
+              "0"=>{"setups"=>{
+                "0"=>{"equipment_id"=>"2",
+                  "material_transactions"=>{
+                    "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
+                  }
+                }
+              }, "hours"=>"1", "person_id"=>"2"},
+              "1"=>{"setups"=>{
+                "0"=>{"equipment_id"=>"2",
+                  "material_transactions"=>{
+                    "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
+                  }
+                }
+                }, "hours"=>"1", "person_id"=>"2"
+              }
+            })
+      end
+
+      should "add two activities" do
+        assert_equal @number_of_activities+2, Activity.count
+      end
+    end
 
     context "DELETE :destroy the observation" do
       setup do
@@ -231,83 +224,77 @@ class ObservationsControllerTest < ActionController::TestCase
     end
   end
 
-  #These are no longer seperate actions, so a new kind of test is required
-#  def test_add_activity_to_observation
-#    xhr :post, :add_activity, default_params
-##		assert_select_rjs :insert, :bottom,  "activites"
-# 		assert_select_rjs # asserts that one or more elements are updated or inserted by RJS statements
-#    assert_response :success
-#  end
-#
-#  def test_add_setup_to_activity
-#    params = default_params
-#  	xhr(:post, :add_setup, params)
-#    assert_select_rjs
-#  	assert_response :success
-#  end
-#
-#  def test_add_material_to_setup
-#  	xhr :post, :add_material, default_params
-#
-# 		assert_select_rjs :replace, "activities"
-#  	assert_response :success
-##  	assert_equal "text/javascript; charset=utf-8",
-##        @response.headers["type"]
-#
-#  end
-#
-#  def test_delete_material_from_setup
-#  	xhr(:delete, :delete_material,
-#  		"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
-#  		  "areas_as_text"=>"", "comment"=>""},
-#  		  "commit"=>"Create", "activity_index"=>"0",
-#  		  "action"=>"delete_material", "setup_index"=>"0", :id => '',
-#  		  "activities"=>{
-#  		    "0"=>{"setups"=>{
-#  		      "0"=>{"equipment_id"=>"2", "material_transactions"=>{
-#  		        "0"=>{"material_id"=>"3", "rate"=>"5", "unit_id"=>"3"}}}},
-#  		        "hours"=>"1", "person_id"=>"2"}},
-#  		        "controller"=>"observations", "material_index"=>"0")
-# 		assert_select_rjs
-#  	assert_response :success
-#  end
-#
-#  def test_delete_setup_from_activity
-#  	xhr(:delete, :delete_setup,
-#  		"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
-#  		  "areas_as_text"=>"", "comment"=>""},
-#  		  "commit"=>"Create", "activity_index"=>"0",
-#  		  "action"=>"delete_setup", "setup_index"=>"0", :id => '',
-#  		  "activities"=>{
-#  		    "0"=>{"setups"=>{
-#  		      "0"=>{"equipment_id"=>"2"}}, "hours"=>"1", "person_id"=>"2"}},
-#  		      "controller"=>"observations")
-# 		assert_select_rjs
-#  	assert_response :success
-#  end
-#
-#  def test_delete_activity_from_observation
-#  	xhr(:delete, :delete_activity,
-#  		"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
-#  		  "areas_as_text"=>"", "comment"=>""},
-#  		  "commit"=>"Create", "activity_index"=>"0", :id  => '',
-#  		  "action"=>"delete_activity",
-#  		  "activities"=>{
-#  		    "0"=>{"hours"=>"1", "person_id"=>"2"}},
-#  		    "controller"=>"observations")
-# 		assert_select_rjs
-#  	assert_response :success
-#  end
+  def test_add_activity_to_observation
+    xhr(:post, :create, default_params("add activity"))
+ 		assert_select_rjs # asserts that one or more elements are updated or inserted by RJS statements
+    assert_response :success
+  end
+
+  def test_add_setup_to_activity
+  	xhr(:post, :create, default_params("add setup"))
+    assert_select_rjs
+  	assert_response :success
+  end
+
+  def test_add_material_to_setup
+  	xhr(:post, :create, default_params("add material"))
+ 		assert_select_rjs
+  	assert_response :success
+  end
+
+  def test_delete_material_from_setup
+  	xhr(:post, :create,
+  		"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
+  		  "areas_as_text"=>"", "comment"=>""},
+  		  "commit"=>"delete material", "activity_index"=>"0",
+        "setup_index"=>"0", :id => '',
+  		  "activities"=>{
+  		    "0"=>{"setups"=>{
+  		      "0"=>{"equipment_id"=>"2", "material_transactions"=>{
+  		        "0"=>{"material_id"=>"3", "rate"=>"5", "unit_id"=>"3"}}}},
+  		        "hours"=>"1", "person_id"=>"2"}},
+  		        "controller"=>"observations", "material_index"=>"0")
+ 		assert_select_rjs
+  	assert_response :success
+  end
+
+  def test_delete_setup_from_activity
+  	xhr(:post, :create,
+        :observation => {"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
+  		  "areas_as_text"=>"", "comment"=>""},
+  		  :commit => "delete setup",
+        :activity_index => "0",
+  		  :setup_index => "0", :id => '',
+  		  :activities => {
+  		    "0"=>{"setups"=>{
+  		      "0"=>{"equipment_id"=>"2"}}, "hours"=>"1", "person_id"=>"2"}},
+  		      "controller"=>"observations")
+ 		assert_select_rjs
+  	assert_response :success
+  end
+
+  def test_delete_activity_from_observation
+  	xhr(:post, :create, :commit => "delete activity",
+        :observation => {"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
+  		  "areas_as_text"=>"", "comment"=>""},
+        :activity_index => "0",
+        :id  => '',
+  		  :activities => {
+  		    "0"=>{"hours"=>"1", "person_id"=>"2"}},
+  		    "controller"=>"observations")
+ 		assert_select_rjs
+  	assert_response :success
+  end
   
   
   private###########
 
-  def default_params
+  def default_params(commit_text)
 
         {"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
   		  "areas_as_text"=>"", "comment"=>""},
-  		  "commit"=>"Create", "activity_index"=>"0",
-  		  "action"=>"add_material", "setup_index"=>"0", :id => '',
+  		  "commit"=>commit_text, "activity_index"=>"0",
+  		  "setup_index"=>"0", :id => '',
   		  "activities"=>{
   		    "0"=>{"setups"=>{
   		      "0"=>{"equipment_id"=>"2", "material_transactions"=>{
