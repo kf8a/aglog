@@ -6,20 +6,15 @@ class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.xml
   def index
-    if params[:in_review]
-      state = 'in_review'
-    else
-      state  = 'published'
-    end
-    
-    @observations_total = Observation.count();
+    state = if params[:in_review] then "in_review" else "published" end
+
     if params[:obstype]
        @observations = Observation.paginate :page=> params[:page], 
          :order => 'obs_date desc', 
          :conditions => ['state = ? and observation_type_id = ?', state, params[:obstype]], 
          :joins => 'join observation_types_observations on  observation_types_observations.observation_id = id'
      else
-       @observations =  Observation.paginate :page => params[:page], 
+       @observations = Observation.paginate :page => params[:page], 
          :order => 'obs_date desc',
          :conditions => ['state = ?',state]
      end
