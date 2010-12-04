@@ -12,11 +12,20 @@ module ObservationsHelper
      javascript_tag(data)
    end
    
-   def set_form_dropdowns
-     @people =  Person.find(:all, :order => 'sur_name, given_name').collect {|x|  [x.name, x.id]}
-     @equipment = Equipment.find(:all, :order => 'name').collect {|x| [x.name, x.id]}
-     @materials =  Material.find(:all, :order => 'material_type_id, name').collect {|x| [x.name, x.id]}
-     @units = Unit.find(:all, :order => 'name').collect {|x| [x.name, x.id]}
+   def units
+     @units ||= Unit.find(:all, :order => 'name').collect {|x| [x.name, x.id]}
+   end
+
+   def people
+     @people ||= Person.find(:all, :order => 'sur_name, given_name').collect {|x| [x.name, x.id]}
+   end
+
+   def equipment
+     @equipment ||= Equipment.find(:all, :order => 'name').collect {|x| [x.name, x.id]}
+   end
+
+   def materials
+     @materials ||= Material.find(:all, :order => 'material_type_id, name').collect {|x| [x.name, x.id]}
    end
    
    def observation_type_ids
