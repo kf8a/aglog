@@ -27,3 +27,4 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
 end
+gem "mocha", :group => :test

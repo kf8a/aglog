@@ -93,6 +93,8 @@ GEM
       reek (>= 1.2.6)
       roodi (>= 2.1.0)
     mime-types (1.16)
+    mocha (0.9.9)
+      rake
     multi_json (0.0.5)
     multipart-post (1.0.1)
     net-ldap (0.1.1)
@@ -208,6 +210,7 @@ DEPENDENCIES
   factory_girl
   factory_girl_rails
   metric_fu
+  mocha
   nifty-generators
   omniauth
   pg

@@ -1,4 +1,6 @@
 Aglog::Application.routes.draw do
+  resources :authentications
+
   resources :hazards
   resources :areas
   resources :observations
