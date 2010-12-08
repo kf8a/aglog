@@ -1,6 +1,5 @@
 class Person < ActiveRecord::Base
-  acts_as_authentic
-  
+
   has_many :observations
   has_many :activities
   has_and_belongs_to_many :hazards
