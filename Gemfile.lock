@@ -32,7 +32,6 @@ GEM
     addressable (2.2.2)
     arel (2.0.6)
     arrayfields (4.7.4)
-    bcrypt-ruby (2.1.2)
     builder (2.1.2)
     chronic (0.2.3)
       hoe (>= 1.2.1)
@@ -44,10 +43,7 @@ GEM
       ruby_parser (~> 2.0.4)
       sexp_processor (~> 3.0.3)
     colored (1.2)
-    daemons (1.1.0)
-    devise (1.1.5)
-      bcrypt-ruby (~> 2.1.2)
-      warden (~> 1.0.2)
+    daemons (1.0.10)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape_utils (0.1.9)
@@ -67,6 +63,7 @@ GEM
     flog (2.5.0)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
+    gem_plugin (0.2.3)
     hirb (0.3.5)
     hoe (2.7.0)
       rake (>= 0.8.7)
@@ -93,8 +90,11 @@ GEM
       reek (>= 1.2.6)
       roodi (>= 2.1.0)
     mime-types (1.16)
-    mocha (0.9.9)
+    mocha (0.9.10)
       rake
+    mongrel (1.2.0.pre2)
+      daemons (~> 1.0.10)
+      gem_plugin (~> 0.2.3)
     multi_json (0.0.5)
     multipart-post (1.0.1)
     net-ldap (0.1.1)
@@ -197,20 +197,18 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
-    warden (1.0.2)
-      rack (>= 1.0.0)
     will_paginate (3.0.pre2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  devise
   escape_utils
   factory_girl
   factory_girl_rails
   metric_fu
   mocha
+  mongrel (= 1.2.0.pre2)
   nifty-generators
   omniauth
   pg

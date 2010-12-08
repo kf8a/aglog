@@ -9,7 +9,8 @@ gem 'pg'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
-gem 'devise'
+gem 'mongrel', '1.2.0.pre2'
+
 gem 'nifty-generators'
 gem 'omniauth'
 gem 'will_paginate', "~> 3.0.pre2"

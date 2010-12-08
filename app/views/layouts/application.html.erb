@@ -8,7 +8,23 @@
 </head>
 <body>
 
+<div class='header_bar'>
+<%= link_to 'observation', observations_path %>&nbsp;&nbsp;
+<%= link_to 'people', people_path %>&nbsp;&nbsp;
+<%= link_to 'material', materials_path %>&nbsp;&nbsp;
+<%= link_to 'equipment', {:controller => 'equipment'} %>&nbsp;&nbsp;
+<%= link_to 'units', units_path %>&nbsp;&nbsp;
+<%= link_to 'areas', areas_path %>
+</div>
+
+<p style="color: green"><%= flash[:notice] %></p>
+<p style="color: red"><%= flash[:error] %></p>
+
 <%= yield %>
 
+  <% unless current_page?(:controller => 'person_sessions', :action => 'new') %>
+    <%= link_to "login", new_person_session_url if !signed_in? %>
+  <% end %>
+  <%= link_to "logout", logout_path if signed_in? %>
 </body>
 </html>

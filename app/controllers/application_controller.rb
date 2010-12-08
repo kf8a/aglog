@@ -3,28 +3,33 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :set_test_user unless Rails.env == "production"
+  before_filter :set_test_user if Rails.env == "test"
   before_filter :require_user, :except => [:index, :show]
     
-  helper_method :current_user_session, :current_user
+  helper_method :current_user, :signed_in?
+
+  protected
+
+  def current_user
+    @current_user ||= Person.find_by_id(session[:user_id])
+  end
+
+  def signed_in?
+    !!current_user
+  end
+
+  def current_user=(user)
+    @current_user = user
+    session[:user_id] = user.try(:id)
+  end
 
   private
   def set_test_user
     @current_user = Person.first
   end
 
-  def current_user_session
-    return @current_user_session if defined?(@current_user_session)
-    @current_user_session = PersonSession.find
-  end
-
-  def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.person
-  end
-    
   def require_user
-    unless current_user
+    unless signed_in?
       store_location
       flash[:notice] = "You must be logged in to access this page"
       redirect_to new_person_session_url
@@ -33,10 +38,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_no_user
-    if current_user
+    if signed_in?
       store_location
       flash[:notice] = "You must be logged out to access this page"
-      redirect_to account_url
+      redirect_to observations_path
       return false
     end
   end

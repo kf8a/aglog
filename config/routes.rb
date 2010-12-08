@@ -1,5 +1,8 @@
 Aglog::Application.routes.draw do
-  resources :authentications
+  resources :person_sessions
+  match '/auth/:provider/callback' => 'person_sessions#create'
+  match '/auth/failure' => 'person_sessions#new'
+  match '/logout' => 'person_sessions#destroy'
 
   resources :hazards
   resources :areas
