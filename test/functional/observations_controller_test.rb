@@ -3,6 +3,7 @@ require 'test_helper'
 class ObservationsControllerTest < ActionController::TestCase
 
   setup do
+    sign_in_as_normal_user
     Equipment.find_by_id(2) or 2.times do |num|
       Factory.create(:equipment, :name => "Equipment#{num}")
     end

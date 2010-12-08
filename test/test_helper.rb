@@ -17,9 +17,14 @@ class ActiveSupport::TestCase
   protected
 
   def load_data_if_necessary
-   if Area.find_by_name("iF9R4").blank?
-     load "#{Rails.root}/db/seeds.rb"
-   end
+    if Area.find_by_name("iF9R4").blank?
+      load "#{Rails.root}/db/seeds.rb"
+    end
+  end
+
+  def sign_in_as_normal_user
+    @user = Person.first || Factory.create(:person)
+    session[:user_id] = @user.id
   end
 
 end

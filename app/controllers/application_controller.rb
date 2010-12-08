@@ -3,7 +3,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :set_test_user if Rails.env == "test"
   before_filter :require_user, :except => [:index, :show]
     
   helper_method :current_user, :signed_in?
@@ -24,9 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  def set_test_user
-    @current_user = Person.first
-  end
 
   def require_user
     unless signed_in?
@@ -47,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location
-    session[:return_to] = request.request_uri
+    session[:return_to] = request.fullpath
   end
 
   def redirect_back_or_default(default)

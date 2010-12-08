@@ -3,6 +3,7 @@ require 'test_helper'
 class MaterialsControllerTest < ActionController::TestCase
 
   def setup
+    sign_in_as_normal_user
   end
 
   def test_should_get_index

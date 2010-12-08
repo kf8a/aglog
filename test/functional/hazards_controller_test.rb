@@ -3,6 +3,7 @@ require 'test_helper'
 class HazardsControllerTest < ActionController::TestCase
 
   def setup
+    sign_in_as_normal_user
     @hazard = Factory.create(:hazard)
   end
 

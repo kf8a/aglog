@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ReportsControllerTest < ActionController::TestCase
   def setup
+    sign_in_as_normal_user
   end
 
   def test_plot_sort
