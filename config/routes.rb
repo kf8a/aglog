@@ -21,9 +21,6 @@ Aglog::Application.routes.draw do
   end
 
   resources :material_transactions
-  resources :person_sessions
-  resource :user_session
-  match 'sessions' => 'sessions#create'#, :as => :open_id_complete, :constraints => { :method => get }
   match '/' => 'observations#index'
 
   # Allow downloading Web Service WSDL as a file with an extension
