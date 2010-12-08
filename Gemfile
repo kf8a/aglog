@@ -9,9 +9,6 @@ gem 'pg'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
-gem 'mongrel', '1.2.0.pre2'
-
-gem 'nifty-generators'
 gem 'omniauth'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'thin'
@@ -28,4 +25,3 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
 end
-gem "mocha", :group => :test
