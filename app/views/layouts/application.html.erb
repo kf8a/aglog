@@ -10,11 +10,11 @@
 
 <div class='header_bar'>
 <%= link_to 'observation', observations_path %>&nbsp;&nbsp;
-<%= link_to 'people', people_path %>&nbsp;&nbsp;
-<%= link_to 'material', materials_path %>&nbsp;&nbsp;
-<%= link_to 'equipment', {:controller => 'equipment'} %>&nbsp;&nbsp;
-<%= link_to 'units', units_path %>&nbsp;&nbsp;
-<%= link_to 'areas', areas_path %>
+<%= link_to 'people', people_path, :accesskey => "P" %>&nbsp;&nbsp;
+<%= link_to 'material', materials_path, :accesskey => "M" %>&nbsp;&nbsp;
+<%= link_to 'equipment', equipment_index_path, :accesskey => "E" %>&nbsp;&nbsp;
+<%= link_to 'units', units_path, :accesskey => "U" %>&nbsp;&nbsp;
+<%= link_to 'areas', areas_path, :accesskey => "A" %>
 </div>
 
 <p style="color: green"><%= flash[:notice] %></p>
