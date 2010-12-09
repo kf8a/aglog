@@ -13,6 +13,9 @@ gem 'omniauth'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'thin'
 
+#Uses jquery instead of prototype in rails
+gem 'jquery-rails'
+
 #Gets rid of annoying UTF-8 string error in rack
 gem "escape_utils"
 

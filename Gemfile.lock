@@ -64,10 +64,12 @@ GEM
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
     hirb (0.3.5)
-    hoe (2.7.0)
+    hoe (2.8.0)
       rake (>= 0.8.7)
-      rubyforge (>= 2.0.4)
     i18n (0.5.0)
+    jquery-rails (0.2.6)
+      rails (~> 3.0)
+      thor (~> 0.14.4)
     json_pure (1.4.6)
     mail (2.2.12)
       activesupport (>= 2.3.6)
@@ -176,8 +178,6 @@ GEM
       sexp_processor (~> 3.0)
     ruby_parser (2.0.5)
       sexp_processor (~> 3.0)
-    rubyforge (2.0.4)
-      json_pure (>= 1.1.7)
     rubyntlm (0.1.1)
     sexp_processor (3.0.5)
     shoulda (2.11.3)
@@ -199,6 +199,7 @@ DEPENDENCIES
   escape_utils
   factory_girl
   factory_girl_rails
+  jquery-rails
   metric_fu
   omniauth
   pg
