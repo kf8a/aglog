@@ -125,13 +125,14 @@ class ObservationsController < ApplicationController
   end
 
   def respond_with_javascript
-    respond_to  do |format|
-      format.js do
-        render :update do |page|
-          page.replace 'observation_form', :partial => 'form', :locals => {:observation => @observation}
-        end
-      end
-    end
+    render :nothing => true
+#    respond_to  do |format|
+#      format.js do
+#        render :update do |page|
+#          page.replace 'observation_form', :partial => 'form', :locals => {:observation => @observation}
+#        end
+#      end
+#    end
   end
 
 end

@@ -24,11 +24,12 @@
     <%= f.select :observation_type_ids, observation_type_ids, {}, :multiple => true %>
   </p>
 
+  <div id="activities">
+    <%= render :partial => 'activity', :locals => {:f => f, :observation => observation} %>
+  </div>
 
-  <%= render :partial => 'activity', :locals => {:f => f, :observation => observation} %>
-
-  <%= submit_tag 'add activity' %>
-
+  <%= submit_tag 'add activity', :class => 'activity_refresher', :current_page => controller.action_name %>
+  
   <%= initializeArrays -%>
   <%= f.submit %>
 <% end %>

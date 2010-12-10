@@ -38,6 +38,11 @@ $(document).ready(function() {
         e.preventDefault();
         $('#hazards').load('edit.html div#hazards');
     });
+
+    //This specifically refreshes the activity part of edit observations page, but could be combined with above.
+    $('.activity_refresher').click(function(e) {
+        $('#activities').load($(this).attr('current_page') + '.html div#activities');
+    });
 });
 
 var Observation  = {

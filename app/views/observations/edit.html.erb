@@ -2,9 +2,9 @@
 
 Created on: <%= @observation.created_on  %>
 
-  <p>
-    <%= render(:partial => 'form', :locals => {:observation => @observation}) %>
-  </p>
+<p>
+  <%= render(:partial => 'form', :locals => {:observation => @observation}) %>
+</p>
 
 <%= link_to 'Show', observation_path(@observation) %> |
 <%= link_to 'List Observations', observations_path %>
