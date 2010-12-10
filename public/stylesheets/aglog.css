@@ -20,6 +20,15 @@ label {
 	font-weight: bold;
 }
 
+dt {
+    font-weight: bold
+}
+
+#main_page {
+    border: double thin;
+    padding: 5em;
+}
+
 #material_transactions_new  {
 	display:  none;
 }
