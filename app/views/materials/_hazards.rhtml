@@ -13,6 +13,7 @@
         <td><%=h hazard.chemical_name %> </td>
         <td><%=h hazard.exclusion_time_days %> </td>
         <td><%= link_to 'Details', hazard_path(hazard) %></td>
+        <td><%= link_to 'Dynamic Details', hazard_path(hazard), :dynamic_load => true %></td>
       </tr>
     <% end %>
   </table>

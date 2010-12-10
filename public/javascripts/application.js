@@ -16,10 +16,28 @@ Event.addBehavior({
 });
 */
 
-document.on("click", "a[data_popup]", function(event, element) {
-    if (event.stopped) return;
-    window.open($(element).href);
-    event.stop();
+$(document).ready(function() {
+    // All links with data_popup make a small popup window of what they link to.
+    $('a[data_popup]').click(function(e) {
+        e.preventDefault();
+        window.open($(this).attr('href'), 'popwindow', 'height=400,width=600,scrollbars=true');
+    });
+
+    // Closes the current window.
+    $('.closer').click(function(e) {
+        window.close();
+    });
+
+    // Changes 'update' to 'updated' so that the user knows something happened
+    $('.remote_updater').click(function(e) {
+        alert('Updated!');
+    });
+
+    // This specifically refreshes the hazards part of edit materials page, but could be extended.
+    $('#refresh_hazards').click(function(e) {
+        e.preventDefault();
+        $('#hazards').load('edit.html div#hazards');
+    });
 });
 
 var Observation  = {

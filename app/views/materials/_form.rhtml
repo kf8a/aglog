@@ -1,27 +1,25 @@
-  <p>
-    <b>Name</b><br />
-    <%= f.text_field :name %>
-		<label for='material_liquid'>Liquid?</label>
-		<%= f.check_box :liquid %>
-  </p>
-  <p>
-		<label for='material_material_type_id'>Material Type</label>
-		<%= f.select :material_type_id, @material_type_ids, :include_blank => true, :multiple => true, :size => 6 %>
-  </p>
-  <p>
-	
-<!--  w.o. hack 9/4/07 -->
-		<% hazard_choices = Hazard.find(:all).collect{|h| [h.name, h.id]}  %>
-		
-		<%= render(:partial => 'hazards') %>
-		
-		<% if !@material.id.nil? %>
-			<%= link_to "Set Hazards", 
-			{ :controller => "materials",
-			:action => "get_hazards", 
-			:method => :get },
-                        :data_popup => true %>
-		<% end %>
+<p>
+  <b>Name</b><br />
+  <%= f.text_field :name %>
+  <%= f.label :liquid, 'Liquid?' %>
+  <%= f.check_box :liquid %>
+</p>
+<p>
+  <label for='material_material_type_id'>Material Type</label>
+  <%= f.select :material_type_id, @material_type_ids, :include_blank => true, :multiple => true, :size => 6 %>
+</p>
+<p>
+
+<div id="hazards">
+  <%= render(:partial => 'hazards') %>
+</div>
+
+<% if !@material.id.nil? %>
+  <%= link_to "Set Hazards",
+      { :controller => "materials", :action => "get_hazards" },
+        :data_popup => true %>
+  <input type="button" id="refresh_hazards" value="Refresh Hazards" />
+<% end %>
 	</p>
 			
 	<p>
