@@ -6,5 +6,16 @@ Created on: <%= @observation.created_on  %>
   <%= render(:partial => 'form', :locals => {:observation => @observation}) %>
 </p>
 
+<div id="activities">
+  <%= render  :partial => 'activity', 
+              :locals => {:f => f, :observation => observation} %>
+</div>
+
+<%= submit_tag 'add activity', 
+    :class => 'activity_refresher', :current_page => controller.action_name %>
+  
+<input type="button" class="activity_refresher" value='refresh activities' />
+
+
 <%= link_to 'Show', observation_path(@observation) %> |
 <%= link_to 'List Observations', observations_path %>

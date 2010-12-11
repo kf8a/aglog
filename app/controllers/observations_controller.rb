@@ -48,39 +48,28 @@ class ObservationsController < ApplicationController
   # POST /observations
   # POST /observations.xml
   def create
-    if params[:commit] == "Create Observation" || params[:commit] == ""
-      @observation = Observation.new(params[:observation])
-      @observation.set_activities(params[:activities])
-      logger.info current_user.name
-      @observation.person_id = current_user.id
-      if @observation.save
-        flash[:form] = 'Observation was successfully created.'
-      else
-        flash[:form] = "Creation failed"
-      end
+    @observation = Observation.new(params[:observation])
+    logger.info current_user.name
+    @observation.person_id = current_user.id
+    if @observation.save
+      flash[:form] = 'Observation was successfully created.'
     else
-      update_activity
+      flash[:form] = "Creation failed"
     end
-
-    respond_with_javascript
+    respond_with @observation
   end
 
   # PUT /observations/1
   # PUT /observations/1.xml
   def update
-    if params[:commit] == "Update Observation" || params[:commit] == ""
-      @observation = Observation.find(params[:id])
-      @observation.set_activities(params[:activities])
-      if @observation.update_attributes(params[:observation])
-        flash[:form] = "Observation Updated!"
-      else
-        flash[:form] = "Update failed"
-      end
+    @observation = Observation.find(params[:id])
+    @observation.set_activities(params[:activities])
+    if @observation.update_attributes(params[:observation])
+      flash[:form] = "Observation Updated!"
     else
-      update_activity
+      flash[:form] = "Update failed"
     end
-
-    respond_with_javascript
+    respond_with @observation
   end
 
   # DELETE /observations/1
@@ -93,7 +82,7 @@ class ObservationsController < ApplicationController
   private #############################
 
   def get_observation
-    @observation = Observation.find(params[:id])
+    @observation = Observation.find_by_id(params[:id])
   end
 
   def update_activity

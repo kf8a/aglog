@@ -1,4 +1,4 @@
-<%= form_for(observation, :html => { :id => 'observation_form', :remote => true}) do |f| %>
+<%= form_for(observation, :html => { :id => 'observation_form' }) do |f| %>
   <%= render "shared/error_messages", :target => observation %>
   <p>
     <label  for='observation_date'>Date</label>
@@ -24,12 +24,6 @@
     <%= f.select :observation_type_ids, observation_type_ids, {}, :multiple => true %>
   </p>
 
-  <div id="activities">
-    <%= render :partial => 'activity', :locals => {:f => f, :observation => observation} %>
-  </div>
-
-  <%= submit_tag 'add activity', :class => 'activity_refresher', :current_page => controller.action_name %>
-  
   <%= initializeArrays -%>
   <%= f.submit %>
 <% end %>
