@@ -1,0 +1,10 @@
+<h1>Activities</h1>
+
+<dl>
+  <% @activities.each do |activity| %>
+    <dt>Worker:</dt>
+      <dd><%= activity.person.try(:name) %></dd>
+    <dt>Hours:</dt>
+      <dd><%= activity.hours %></dd>
+  <% end %>
+</dl>

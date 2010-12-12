@@ -110,7 +110,6 @@ class ObservationsController < ApplicationController
 
   def prepare_observation
     @observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
-    @observation.set_activities(params[:activities])
   end
 
   def respond_with_javascript

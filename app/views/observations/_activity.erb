@@ -32,7 +32,7 @@
    
     <% end %>
     |
-    <%= submit_tag 'delete activity', :activity_index => activity_index %>
+    <%= link_to 'delete activity', activity_path(activity), :id => "delete_activity" %>
   <% end %>
 </fieldset>
 

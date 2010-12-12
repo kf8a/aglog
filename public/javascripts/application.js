@@ -18,7 +18,7 @@ Event.addBehavior({
 
 $(document).ready(function() {
     // All links with data_popup make a small popup window of what they link to.
-    $('a[data_popup]').click(function(e) {
+    $('.data_popup').click(function(e) {
         e.preventDefault();
         window.open($(this).attr('href'), 'popwindow', 'height=400,width=600,scrollbars=true');
     });
@@ -41,8 +41,23 @@ $(document).ready(function() {
 
     //This specifically refreshes the activity part of edit observations page, but could be combined with above.
     $('.activity_refresher').click(function(e) {
-        $('#activities').load($(this).attr('current_page') + '.html div#activities');
+        $('#activities').load('edit.html div#activities');
     });
+
+    //This is to delete an activity
+    $('#delete_activity').click(function(e) {
+        e.preventDefault();
+        activity_path = $(this).attr('href');
+        $.ajax({
+            type: 'DELETE',
+            url: activity_path,
+            success: function(data) {
+                $('#activities').load('edit.html div#activities');
+            }
+        });
+    });
+
+
 });
 
 var Observation  = {

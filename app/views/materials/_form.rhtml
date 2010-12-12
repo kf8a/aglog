@@ -17,7 +17,7 @@
 <% if !@material.id.nil? %>
   <%= link_to "Set Hazards",
       { :controller => "materials", :action => "get_hazards" },
-        :data_popup => true %>
+        :class => 'data_popup' %>
   <input type="button" id="refresh_hazards" value="Refresh Hazards" />
 <% end %>
 	</p>
