@@ -2,37 +2,52 @@
   <%= flash[:form] %>
   <%= flash[:activity] %>
   <legend>Activities</legend>
-  <% observation.activities.each_with_index do | activity, activity_index| %>
-    <%= fields_for  "activities[#{activity_index}]",  activity do |f| %>
-      <label for="activities_<%= activity_index %>_worker">Worker</label>
-      <%= f.select :person_id, people, :include_blank => true %>
-      <label for="activities_<%= activity_index %>_hours">Hours</label>
-      <%= f.text_field  :hours, :Size => 5 %>
-      <% activity.setups.each_with_index do |setup,setup_index| %>
-        <%= fields_for  "activities[#{activity_index}][setups][#{setup_index}]", setup do |f| %>
-          <label for="activities_<%= activity_index %>_setups_<%= setup_index %>">Equipment</label>
-          <%= f.select :equipment_id, equipment, :include_blank => true %>
-          <% setup.material_transactions.each_with_index do |material_transaction, material_index| %>
-            <%= fields_for "activities[#{activity_index}][setups][#{setup_index}][material_transactions][#{material_index}]", material_transaction do |f| %>
-              <br/>&nbsp;
-              <%= f.select :material_id, materials, :include_blank => true %> @
-              <%= f.text_field  :rate, :size => 12 %>
-              <%= f.select :unit_id, units,  :include_blank => true %> per acre
-              <%= submit_tag 'delete material', :activity_index => activity_index, :setup_index => setup_index, :material_index => material_index %>
-            <% end %>
-          <% end %>
-          <%= submit_tag 'add material', :activity_index => activity_index, :setup_index => setup_index %>
+  <dl>
+    <% observation.activities.each_with_index do | activity, activity_index| %>
+      <div class="activity">
+        <dt>Worker</dt>
+          <dd><%= activity.person.try(:name) %></dd>
+        <dt>Hours</dt>
+          <dd><%= activity.hours %></dd>
+        <% unless activity.setups.blank? %>
+          <dt>Setups</dt>
+          <dd>
+            <dl>
+              <% activity.setups.each_with_index do |setup,setup_index| %>
+                <div class="setup">
+                  <dt>Equipment</dt>
+                    <dd><%= setup.equipment.try(:name) %></dd>
+                  <% unless setup.material_transactions.blank? %>
+                    <dt>Material Transactions</dt>
+                    <dd>
+                      <dl>
+                        <% setup.material_transactions.each_with_index do |material_transaction, material_index| %>
+                          <div class="material_transaction">
+                            <dt>Material</dt>
+                              <dd><%= material_transaction.material.try(:name) %></dd>
+                            <dt>Rate</dt>
+                              <dd><%= material_transaction.rate %> <%= material_transaction.unit.try(:name) %> per acre </dd>
+                            <%= link_to 'delete material', material_transaction_path(material_transaction), :class => "deleter" %>
+                          </div>
+                        <% end %>
+                      </dl>
+                    </dd>
+                  <% end %>
+
+                  <%= link_to 'add material', new_material_transaction_path(:setup_id => setup.id), :class => 'data_popup' %>
+                  |
+                  <%= link_to 'delete setup', setup_path(setup), :class => "deleter" %>
+                </div>
+              <% end %>
+            </dl>
+          </dd>
         <% end %>
+
+        <%= link_to 'add setup', new_setup_path(:activity_id => activity.id), :class => 'data_popup' %>
         |
-        <%= submit_tag 'delete setup', :activity_index => activity_index, :setup_index => setup_index %>
-        <br/>
-      <% end %>
-  
-      <%= submit_tag 'add setup', :activity_index => activity_index %>
-   
+        <%= link_to 'delete activity', activity_path(activity), :class => "deleter" %>
+      </div>
     <% end %>
-    |
-    <%= link_to 'delete activity', activity_path(activity), :id => "delete_activity" %>
-  <% end %>
+  </dl>
 </fieldset>
 

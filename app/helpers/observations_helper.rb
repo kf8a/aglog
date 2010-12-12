@@ -16,14 +16,6 @@ module ObservationsHelper
      @units ||= Unit.find(:all, :order => 'name').collect {|x| [x.name, x.id]}
    end
 
-   def people
-     @people ||= Person.find(:all, :order => 'sur_name, given_name').collect {|x| [x.name, x.id]}
-   end
-
-   def equipment
-     @equipment ||= Equipment.find(:all, :order => 'name').collect {|x| [x.name, x.id]}
-   end
-
    def materials
      @materials ||= Material.find(:all, :order => 'material_type_id, name').collect {|x| [x.name, x.id]}
    end

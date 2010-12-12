@@ -33,6 +33,21 @@ dt {
 	display:  none;
 }
 
+.activity {
+    border: inset thin;
+    padding: 1em;
+}
+
+.setup {
+    border: inset thin;
+    padding: 1em;
+}
+
+.material_transaction {
+    border: inset thin;
+    padding: 1em;
+}
+
 .material_transactions {
 	display:  inline;
 }

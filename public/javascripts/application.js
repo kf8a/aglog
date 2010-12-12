@@ -18,7 +18,7 @@ Event.addBehavior({
 
 $(document).ready(function() {
     // All links with data_popup make a small popup window of what they link to.
-    $('.data_popup').click(function(e) {
+    $('.data_popup').live('click', function(e) {
         e.preventDefault();
         window.open($(this).attr('href'), 'popwindow', 'height=400,width=600,scrollbars=true');
     });
@@ -44,19 +44,18 @@ $(document).ready(function() {
         $('#activities').load('edit.html div#activities');
     });
 
-    //This is to delete an activity
-    $('#delete_activity').click(function(e) {
+    //This sends a delete request and refreshes the activity div
+    $('.deleter').live('click', function(e) {
         e.preventDefault();
-        activity_path = $(this).attr('href');
+        path = $(this).attr('href');
         $.ajax({
             type: 'DELETE',
-            url: activity_path,
+            url: path,
             success: function(data) {
                 $('#activities').load('edit.html div#activities');
             }
         });
     });
-
 
 });
 

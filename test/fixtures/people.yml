@@ -78,4 +78,8 @@ people_006:
   sur_name: ""
   id: "11"
   given_name: Gala
-  openid_identifier: 
+  openid_identifier:
+people_jon:
+  sur_name: Jones
+  given_name: Jon
+  openid_identifier: http://jonathonjonesphilosophy.wordpress.com/
