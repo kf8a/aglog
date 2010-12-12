@@ -225,69 +225,6 @@ class ObservationsControllerTest < ActionController::TestCase
     end
   end
 
-  def test_add_activity_to_observation
-    xhr(:post, :create, default_params("add activity"))
- 		assert_select_rjs # asserts that one or more elements are updated or inserted by RJS statements
-    assert_response :success
-  end
-
-  def test_add_setup_to_activity
-  	xhr(:post, :create, default_params("add setup"))
-    assert_select_rjs
-  	assert_response :success
-  end
-
-  def test_add_material_to_setup
-  	xhr(:post, :create, default_params("add material"))
- 		assert_select_rjs
-  	assert_response :success
-  end
-
-  def test_delete_material_from_setup
-  	xhr(:post, :create,
-  		"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
-  		  "areas_as_text"=>"", "comment"=>""},
-  		  "commit"=>"delete material", "activity_index"=>"0",
-        "setup_index"=>"0", :id => '',
-  		  "activities"=>{
-  		    "0"=>{"setups"=>{
-  		      "0"=>{"equipment_id"=>"2", "material_transactions"=>{
-  		        "0"=>{"material_id"=>"3", "rate"=>"5", "unit_id"=>"3"}}}},
-  		        "hours"=>"1", "person_id"=>"2"}},
-  		        "controller"=>"observations", "material_index"=>"0")
- 		assert_select_rjs
-  	assert_response :success
-  end
-
-  def test_delete_setup_from_activity
-  	xhr(:post, :create,
-        :observation => {"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
-  		  "areas_as_text"=>"", "comment"=>""},
-  		  :commit => "delete setup",
-        :activity_index => "0",
-  		  :setup_index => "0", :id => '',
-  		  :activities => {
-  		    "0"=>{"setups"=>{
-  		      "0"=>{"equipment_id"=>"2"}}, "hours"=>"1", "person_id"=>"2"}},
-  		      "controller"=>"observations")
- 		assert_select_rjs
-  	assert_response :success
-  end
-
-  def test_delete_activity_from_observation
-  	xhr(:post, :create, :commit => "delete activity",
-        :observation => {"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
-  		  "areas_as_text"=>"", "comment"=>""},
-        :activity_index => "0",
-        :id  => '',
-  		  :activities => {
-  		    "0"=>{"hours"=>"1", "person_id"=>"2"}},
-  		    "controller"=>"observations")
- 		assert_select_rjs
-  	assert_response :success
-  end
-  
-  
   private###########
 
   def default_params(commit_text)

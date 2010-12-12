@@ -85,42 +85,4 @@ class ObservationsController < ApplicationController
     @observation = Observation.find_by_id(params[:id])
   end
 
-  def update_activity
-    prepare_observation
-
-    activity_index = params[:activity_index]
-    setup_index = params[:setup_index]
-    material_index = params[:material_index]
-
-    case params[:commit]
-    when "add activity"
-      @observation.add_activity
-    when "delete activity"
-      @observation.delete_activity(activity_index)
-    when "add setup"
-      @observation.add_setup(activity_index)
-    when "delete setup"
-      @observation.delete_setup(activity_index, setup_index)
-    when "add material"
-      @observation.add_material(activity_index, setup_index)
-    when "delete material"
-      @observation.delete_material(activity_index, setup_index, material_index)
-    end
-  end
-
-  def prepare_observation
-    @observation = params[:id].blank? ? Observation.new(params[:observation]) : Observation.find(params[:id])
-  end
-
-  def respond_with_javascript
-    render :nothing => true
-#    respond_to  do |format|
-#      format.js do
-#        render :update do |page|
-#          page.replace 'observation_form', :partial => 'form', :locals => {:observation => @observation}
-#        end
-#      end
-#    end
-  end
-
 end
