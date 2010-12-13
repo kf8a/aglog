@@ -63,7 +63,6 @@ class ObservationsController < ApplicationController
   # PUT /observations/1.xml
   def update
     @observation = Observation.find(params[:id])
-    @observation.set_activities(params[:activities])
     if @observation.update_attributes(params[:observation])
       flash[:form] = "Observation Updated!"
     else

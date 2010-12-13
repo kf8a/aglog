@@ -157,65 +157,6 @@ class ObservationsControllerTest < ActionController::TestCase
       end
     end
 
-    context "PUT :update with two setups to add" do
-      setup do
-        @number_of_setups = Setup.count
-        xhr(:put, :update, :id => @observation.id, :commit=>"Update Observation",
-            :observation => {"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25",
-                            "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45",
-                            "observation_type_ids"=>["3"]},
-            :activities=>{
-              "0"=>{"setups"=>{
-                "0"=>{"equipment_id"=>"2",
-                  "material_transactions"=>{
-                    "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-                  }
-                },
-                "1"=>{"equipment_id"=>"2",
-                  "material_transactions"=>{
-                    "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-                  }
-                }
-              }, "hours"=>"1", "person_id"=>"2"}
-            }
-          )
-      end
-
-      should "add two setups" do
-        assert_equal @number_of_setups+2, Setup.count
-      end
-    end
-
-    context "PUT :update with two activities to add to the observation" do
-      setup do
-        @number_of_activities = Activity.count
-        xhr(:put, :update, :id => @observation.id, :commit => "Update Observation",
-            :observation=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"25",
-                        "areas_as_text"=>"t1r1", "comment"=>"Test at 14:45", "observation_type_ids"=>["3"]},
-            :activities=>{
-              "0"=>{"setups"=>{
-                "0"=>{"equipment_id"=>"2",
-                  "material_transactions"=>{
-                    "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-                  }
-                }
-              }, "hours"=>"1", "person_id"=>"2"},
-              "1"=>{"setups"=>{
-                "0"=>{"equipment_id"=>"2",
-                  "material_transactions"=>{
-                    "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}
-                  }
-                }
-                }, "hours"=>"1", "person_id"=>"2"
-              }
-            })
-      end
-
-      should "add two activities" do
-        assert_equal @number_of_activities+2, Activity.count
-      end
-    end
-
     context "DELETE :destroy the observation" do
       setup do
         delete :destroy, :id => @observation.id
