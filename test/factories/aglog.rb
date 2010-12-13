@@ -23,6 +23,10 @@ Factory.define :person do |p|
   p.sur_name "Dobolina"
 end
 
+Factory.define :activity do |a|
+  a.person              Person.first || Factory.create(:person)
+end
+
 Factory.define :observation do |o|
   o.obs_date            Date.today
   o.observation_types   [ObservationType.first || Factory.create(:observation_type)]

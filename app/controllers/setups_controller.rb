@@ -1,8 +1,8 @@
 class SetupsController < ApplicationController
 
   def new
-    @activity = Activity.find_by_id(params[:activity_id])
-    @setup = if @activity then @activity.setups.new else Setup.new end
+    activity = Activity.find_by_id(params[:activity_id])
+    @setup = if activity then activity.setups.new else Setup.new end
   end
 
   def create

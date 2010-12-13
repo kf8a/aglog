@@ -148,7 +148,7 @@ GEM
       activesupport (= 3.0.3)
       bundler (~> 1.0)
       railties (= 3.0.3)
-    rails_best_practices (0.5.3)
+    rails_best_practices (0.5.5)
       activesupport
       colored (~> 1.2)
       erubis (~> 2.6.6)
@@ -181,6 +181,7 @@ GEM
     rubyntlm (0.1.1)
     sexp_processor (3.0.5)
     shoulda (2.11.3)
+    single_test (0.3.7)
     sqlite3-ruby (1.3.2)
     thin (1.2.7)
       daemons (>= 1.0.9)
@@ -205,6 +206,7 @@ DEPENDENCIES
   pg
   rails (= 3.0.3)
   shoulda
+  single_test
   sqlite3-ruby
   thin
   will_paginate (~> 3.0.pre2)
