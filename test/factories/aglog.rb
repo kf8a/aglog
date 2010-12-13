@@ -1,3 +1,5 @@
+#Independent Factories
+
 Factory.define :area do |a|
   
 end
@@ -23,6 +25,13 @@ Factory.define :person do |p|
   p.sur_name "Dobolina"
 end
 
+Factory.define :unit do |u|
+
+end
+
+
+#Dependent Factories
+
 Factory.define :activity do |a|
   a.person              Person.first || Factory.create(:person)
 end
@@ -33,6 +42,6 @@ Factory.define :observation do |o|
   o.person              Person.first || Factory.create(:person)
 end
 
-Factory.define :unit do |u|
-  
+Factory.define :setup do |s|
+  s.equipment         Equipment.first || Factory.create(:equipment)
 end
