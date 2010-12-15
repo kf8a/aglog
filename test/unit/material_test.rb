@@ -18,5 +18,17 @@ class MaterialTest < ActiveSupport::TestCase
     assert a.errors.empty?
     assert_equal num_of_items + 1, Material.count
   end
+
+  context "A material exists that is liquid. " do
+    setup do
+      @material = Factory.create(:material, :liquid => true)
+    end
+
+    context "to_mass(amount)" do
+      should "be the right number" do
+        assert_equal 4000, @material.to_mass(4)
+      end
+    end
+  end
   
 end
