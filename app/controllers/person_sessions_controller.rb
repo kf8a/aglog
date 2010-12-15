@@ -25,17 +25,6 @@ class PersonSessionsController < ApplicationController
       flash[:notice] = "Wrong provider - should be open_id"
       render :action => :new
     end
-
-#    @person_session = PersonSession.new(params[:person_session])
-#
-#    @person_session.save do |result|
-#      if result
-#        flash[:notice] = "Login successful!"
-#        redirect_back_or_default 'observation'
-#      else
-#        render :action => :new
-#      end
-#    end
   end
 
   def destroy
