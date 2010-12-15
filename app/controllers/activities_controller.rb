@@ -20,17 +20,6 @@ class ActivitiesController < ApplicationController
     respond_with @activity
   end
   
-  def edit
-    @activity = Activity.find(params[:id])
-  end
-  
-  def update
-    @activity = Activity.find(params[:id])
-    @activity.update_attributes(params[:activity])
-    @activity.save
-    respond_with @activity
-  end
-  
   #This is most commonly called from the Edit Observation page
   def destroy
     @activity = Activity.find(params[:id])
