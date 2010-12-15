@@ -3,18 +3,6 @@ require 'test_helper'
 class ObservationTest < ActiveSupport::TestCase
 
   setup do
-    Equipment.find_by_id(2) or 2.times do |num|
-      Factory.create(:equipment, :name => "Equipment#{num}")
-    end
-    Material.find_by_id(3) or 3.times do |num|
-      Factory.create(:material, :name => "Material#{num}")
-    end
-    Unit.find_by_id(3) or 3.times do |num|
-      Factory.create(:unit, :name => "Unit#{num}")
-    end
-    Person.find_by_id(2) or 2.times do |num|
-      Factory.create(:person, :sur_name => "Sur#{num}")
-    end
   end
   
   def test_should_not_create_observation
@@ -78,52 +66,6 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal 0, o.activities.size
   end
   
-  def test_add_activity_to_observation
-    o = create_simple_observation
-    assert o.save
-    number_of_activities = Activity.count
-    params = {
-      "activities"=>{
-        "0"=>{"setups"=>{
-          "0"=>{"equipment_id"=>"2", "material_transactions"=>{
-            "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"},
-            "1"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}}}}, 
-            "hours"=>"1", "person_id"=>"2"},
-        "1"=>{"setups"=>{
-          "0"=>{"equipment_id"=>"2", "material_transactions"=>{
-            "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"},
-            "1"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}}}}, 
-          "hours"=>"1", "person_id"=>"2"}
-      }
-    }
-    o.set_activities(params['activities'])
-    assert_equal 2, o.activities.size
-    assert o.save
-    assert_equal number_of_activities+1, Activity.count
-  end
-     
-  def test_add_setup_to_observation
-    o = create_simple_observation
-    assert o.save
-    number_of_setups = Setup.count
-    params = {
-      "activities"=>{
-        "0"=>{"setups"=>{
-          "0"=>{"equipment_id"=>"2", "material_transactions"=>{
-            "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"},
-            "1"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}}},
-          "1"=>{"equipment_id"=>"2", "material_transactions"=>{
-            "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"},
-            "1"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}}}
-            }, "hours"=>"1", "person_id"=>"2"}
-      }
-    }
-    o.set_activities(params['activities'])
-    assert_equal 2, o.activities[0].setups.size
-    assert o.save
-    assert_equal number_of_setups+1, Setup.count   
-  end
-
   def test_get_review_status
     o = create_simple_observation
     assert_equal false, o.in_review
@@ -158,18 +100,23 @@ class ObservationTest < ActiveSupport::TestCase
   private
   
   def create_simple_observation
-    params = {"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"14", 
-      "areas_as_text"=>"", "comment"=>"", "person_id" => "1",
-      "observation_type_ids" => ["1"]},
-      "commit"=>"Create", "activities"=>{
-        "0"=>{"setups"=>{
-          "0"=>{"equipment_id"=>"2", "material_transactions"=>{
-            "0"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"},
-            "1"=>{"material_id"=>"3", "rate"=>"4", "unit_id"=>"3"}}}}, 
-            "hours"=>"1", "person_id"=>"2"}}
-      }
-    o = Observation.new(params['observation'])
-    o.set_activities(params['activities'])
-    return o
+    person1 = Person.find_by_sur_name("Sur1") || Factory.create(:person, :sur_name => "Sur1")
+    observation = Observation.new(:obs_date => "June 14, 2007", :person_id => person1.id, :observation_type_ids => [1])
+    assert observation.save
+    person2 = Person.find_by_sur_name("Sur2") || Factory.create(:person, :sur_name => "Sur2")
+    activity = observation.activities.new(:hours => 1, :person_id => person2.id)
+    assert activity.save
+    equipment = Equipment.find_by_name("Equipment2") || Factory.create(:equipment, :name => "Equipment2")
+    setup = activity.setups.new(:equipment_id => equipment.id)
+    assert setup.save
+    material = Material.find_by_name("Material3") || Factory.create(:material, :name => "Material3")
+    unit = Unit.find_by_name("Unit3") || Factory.create(:unit, :name => "Unit3")
+    trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 4, :unit_id => unit.id)
+    assert trans_0.save
+    trans_1 = setup.material_transactions.new(:material_id => material.id, :rate => 4, :unit_id => unit.id)
+    assert trans_1.save
+    observation.reload
+
+    return observation
   end
 end

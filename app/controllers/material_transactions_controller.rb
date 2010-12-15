@@ -1,8 +1,8 @@
 class MaterialTransactionsController < ApplicationController
 
   def new
-    @setup = Setup.find_by_id(params[:setup_id])
-    @transaction = if @setup then @setup.material_transactions.new else MaterialTransaction.new end
+    setup = Setup.find_by_id(params[:setup_id])
+    @transaction = if setup then setup.material_transactions.new else MaterialTransaction.new end
   end
 
   def create

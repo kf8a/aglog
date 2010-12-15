@@ -28,4 +28,5 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'single_test'
+  gem 'simplecov', '>= 0.3.5', :require => false
 end

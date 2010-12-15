@@ -69,29 +69,6 @@ class Observation < ActiveRecord::Base
     end
   end
     
-  def set_activities(params_activities)
-    return unless params_activities
-
-    activities = params_activities.collect do |key, activity|
-      setups = activity.delete('setups')  ||  {}
-
-      a  = Activity.new(activity)
-      s =  setups.collect do  |key, setup|
-        material_transactions = setup.delete('material_transactions') || {}
-        s = Setup.new(setup)
-        material_transactions.each_value do |transaction|
-          # This will bite us if we go global
-          transaction['rate'].gsub!(/,/,'') # remove any commas the user might have entered 
-          s.material_transactions.build(transaction)  #unless transaction['material_id'] ==''
-        end
-        s #return
-      end
-      a.setups  =  s
-      a # return
-    end
-    self.activities  =  activities
-  end
- 
   def Observation.to_salus_xml(options = {})
     options[:indent] ||= 2
     xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])

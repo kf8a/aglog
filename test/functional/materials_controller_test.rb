@@ -78,17 +78,18 @@ class MaterialsControllerTest < ActionController::TestCase
 
   context "GET :get_hazards with a material that exists" do
     setup do
-      material_id = Material.last.id
-      get :get_hazards, :id => material_id
+      @material_id = Material.last.id
+      get :get_hazards, :id => @material_id
     end
 
     should render_template :get_hazards
-    should assign_to(:material).with(Material.last)
+    should assign_to(:material).with(@material_id)
   end
 
   context "GET :get_hazards with a material that does not exist" do
     setup do
       material_id = Material.last.id + 1
+      assert_nil Material.find_by_id(material_id)
       get :get_hazards, :id => material_id
     end
 

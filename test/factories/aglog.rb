@@ -36,6 +36,10 @@ Factory.define :activity do |a|
   a.person              Person.first || Factory.create(:person)
 end
 
+Factory.define :material_transaction do |m|
+  m.material          Material.first || Factory.create(:material)
+end
+
 Factory.define :observation do |o|
   o.obs_date            Date.today
   o.observation_types   [ObservationType.first || Factory.create(:observation_type)]
