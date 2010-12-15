@@ -7,11 +7,18 @@ Created on: <%= @observation.created_on  %>
 </p>
 
 <div id="activities">
-  <%= render  :partial => 'activity', 
-              :locals => {:observation => @observation} %>
+  <fieldset id='activities'>
+    <legend>Activities</legend>
+    <dl>
+      <%= render  :partial => 'activity',
+                  :collection => @observation.activities %>
+    </dl>
+  </fieldset>
 </div>
 
-<%= link_to 'add activity', new_activity_path(:observation_id => @observation.id), :class => 'data_popup' %>
+<%= link_to 'add activity', 
+            new_activity_path(:observation_id => @observation.id),
+            :class => 'data_popup' %>
   
 <input type="button" class="activity_refresher" value='refresh activities' /><br />
 

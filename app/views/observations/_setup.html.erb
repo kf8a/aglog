@@ -1,0 +1,17 @@
+<div class="setup">
+  <dt>Equipment</dt>
+    <dd><%= setup.equipment.try(:name) %></dd>
+  <% unless setup.material_transactions.blank? %>
+    <dt>Material Transactions</dt>
+    <dd>
+      <dl>
+        <%= render  :partial => 'material_transaction',
+                    :collection => setup.material_transactions %>
+      </dl>
+    </dd>
+  <% end %>
+
+  <%= link_to 'add material', new_material_transaction_path(:setup_id => setup.id), :class => 'data_popup' %>
+  |
+  <%= link_to 'delete setup', setup_path(setup), :class => "deleter" %>
+</div>

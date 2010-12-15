@@ -1,0 +1,7 @@
+<div class="material_transaction">
+  <dt>Material</dt>
+    <dd><%= material_transaction.material.try(:name) %></dd>
+  <dt>Rate</dt>
+    <dd><%= material_transaction.rate %> <%= material_transaction.unit.try(:name) %> per acre </dd>
+  <%= link_to 'delete material', material_transaction_path(material_transaction), :class => "deleter" %>
+</div>
