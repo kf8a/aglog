@@ -31,6 +31,10 @@ class ActiveSupport::TestCase
     session[:user_id] = @user.id
   end
 
+  def sign_out
+    session[:user_id] = nil
+  end
+
 end
 
 #Shoulda currently has a bug where they use Test::Unit instead of ActiveSupport

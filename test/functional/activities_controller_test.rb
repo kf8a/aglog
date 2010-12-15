@@ -2,6 +2,28 @@ require 'test_helper'
 
 class ActivitiesControllerTest < ActionController::TestCase
 
+  context "Not signed in. " do
+    setup do
+      sign_out
+    end
+
+    context "GET :index" do
+      setup do
+        get :index
+      end
+
+      should render_template 'index'
+    end
+
+    context "GET :new" do
+      setup do
+        get :new
+      end
+
+      should redirect_to("the sign in path") {new_person_session_path}
+    end
+  end
+
   context "Signed in as a normal user. " do
     setup do
       sign_in_as_normal_user

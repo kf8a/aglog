@@ -33,15 +33,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_no_user
-    if signed_in?
-      store_location
-      flash[:notice] = "You must be logged out to access this page"
-      redirect_to observations_path
-      return false
-    end
-  end
-
   def store_location
     session[:return_to] = request.fullpath
   end
@@ -51,13 +42,4 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
  
-  def mark_for_deletion
-    deleted_id = params[:id] 
-    p deleted_id
-    render :update do |page|
-      page << "$('#{deleted_id}_deleted').value='true'"
-      page.hide deleted_id
-    end
-  end
-  
 end
