@@ -1,11 +1,4 @@
 module ObservationsHelper
-  def initializeArrays(activities)
-    data = "arrayActivityIndexes = [];"
-    activities.each do |activity|
-      data << "arrayActivityIndexes.push(#{activity.id});"
-    end
-    javascript_tag(data)
-  end
 
   def initializeArrays
      data = "arrayActivityIndexes = []; arraySetupIndexes=[];"
@@ -24,5 +17,4 @@ module ObservationsHelper
      @observation_type_ids ||= ObservationType.find(:all).collect {|x| [x.name, x.id]}
    end
    
-
 end
