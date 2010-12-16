@@ -3,7 +3,7 @@ class MaterialsController < ApplicationController
   # GET /materials
   # GET /materials.xml
   def index
-    @materials = Material.find(:all, :order => 'material_type_id, name')
+    @materials = Material.order('material_type_id, name')
     respond_with @materials
   end
   

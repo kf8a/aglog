@@ -3,7 +3,7 @@
 <dl>
   <% @activities.each do |activity| %>
     <dt>Worker:</dt>
-      <dd><%= activity.person.try(:name) %></dd>
+      <dd><%= activity.person_name %></dd>
     <dt>Hours:</dt>
       <dd><%= activity.hours %></dd>
   <% end %>

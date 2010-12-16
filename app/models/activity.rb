@@ -5,5 +5,9 @@ class Activity < ActiveRecord::Base
   
   validates_presence_of :person
   validates_associated :person
+
+  def person_name
+    self.person.try(:name)
+  end
   
 end
