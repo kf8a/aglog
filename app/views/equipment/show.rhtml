@@ -1,17 +1,22 @@
 <p>
-  <b>Name:</b>
-  <%=h @equipment.name %>
-  <br/>
-  <%= 'Uses Material' if @equipment.use_material? %>
+  <b>Name:</b> <%= @equipment.name %><br />
+  <ul>
+    <%= raw("<li>Uses Material</li>") if @equipment.use_material? %>
+    <%= raw("<li>Is a Tractor</li>") if @equipment.is_tractor? %>
+    <%= raw("<li>Archived</li>") if @equipment.archived? %>
+  </ul>
+  <%= raw("<b>Description: </b>") + @equipment.description unless @equipment.description.blank? %>
 </p>
+
 <% @equipment.observations.each do |observation| %>
   <p>
-    <a href='<%= observation_path(observation) %>'>
-    <%= observation.obs_date %></a>
-    <%= observation.observation_types[0].name %>
+    <%= link_to observation.obs_date, observation_path(observation) %>
+    <%= observation.observation_type %>
     <%= observation.comment %>
   </p>
 <% end %>
 
-<%= link_to 'Edit', edit_equipment_path(@equipment) if current_user %> |
-<%= link_to 'Back', equipment_path %>
+<% if signed_in? %>
+  <%= link_to 'Edit', edit_equipment_path(@equipment) %> |
+<% end %>
+<%= link_to 'Back', equipment_index_path %>

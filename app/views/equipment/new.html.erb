@@ -6,7 +6,10 @@
   <p>
     <b>Name:</b>
     <%= f.text_field :name %>
-    <b>&nbsp Use Material:</b><%= f.check_box :use_material %> 
+    <b>&nbsp Use Material:</b><%= f.check_box :use_material %>
+    <b>Archived:</b><%= f.check_box :archived %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
   </p>
 
   <p>

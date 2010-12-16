@@ -6,15 +6,15 @@
     <th>Use Material</th>
   </tr>
   
-<% for equipment in @equipment %>
-  <tr>
-    <td><%=h equipment.name %></td>    
-    <td align="center"><%= 'true' if equipment.use_material? %></td>
-    <td><%= link_to 'Show', equipment_path(equipment) %></td>
-    <td><%= link_to 'Edit', edit_equipment_path(equipment) if current_user %></td>
-    <td><%= link_to 'Destroy', equipment_path(equipment), :confirm => 'Are you sure?', :method => :delete if current_user %></td>
-  </tr>
-<% end %>
+  <% for equipment in @equipment %>
+    <tr>
+      <td><%= equipment.name %></td>
+      <td align="center"><%= 'true' if equipment.use_material? %></td>
+      <td><%= link_to 'Show', equipment_path(equipment) %></td>
+      <td><%= link_to 'Edit', edit_equipment_path(equipment) if current_user %></td>
+      <td><%= link_to 'Destroy', equipment_path(equipment), :confirm => 'Are you sure?', :method => :delete if current_user %></td>
+    </tr>
+  <% end %>
 </table>
 
 <br />
