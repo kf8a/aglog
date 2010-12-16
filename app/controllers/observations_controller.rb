@@ -1,7 +1,5 @@
 # encoding: UTF-8
 class ObservationsController < ApplicationController
-  before_filter :get_observation, :only => [:show, :edit, :destroy]
-  respond_to :html, :xml
 
   # GET /observations
   # GET /observations.xml
@@ -27,24 +25,6 @@ class ObservationsController < ApplicationController
     end
   end
 
-  # GET /observations/1
-  # GET /observations/1.xml
-  def show
-    respond_with @observation
-  end
-
-  # GET /observations/new
-  def new
-    @observation = Observation.new
-    respond_with @observation
-   end
-
-  #   
-  # GET /observations/1;edit
-  def edit
-    respond_with @observation
-  end
-
   # POST /observations
   # POST /observations.xml
   def create
@@ -57,31 +37,6 @@ class ObservationsController < ApplicationController
       flash[:form] = "Creation failed"
     end
     respond_with @observation
-  end
-
-  # PUT /observations/1
-  # PUT /observations/1.xml
-  def update
-    @observation = Observation.find(params[:id])
-    if @observation.update_attributes(params[:observation])
-      flash[:form] = "Observation Updated!"
-    else
-      flash[:form] = "Update failed"
-    end
-    respond_with @observation
-  end
-
-  # DELETE /observations/1
-  # DELETE /observations/1.xml
-  def destroy
-    @observation.destroy
-    respond_with @observation
-  end
-
-  private #############################
-
-  def get_observation
-    @observation = Observation.find_by_id(params[:id])
   end
 
 end

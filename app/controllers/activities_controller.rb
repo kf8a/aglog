@@ -1,13 +1,8 @@
 class ActivitiesController < ApplicationController
   before_filter :get_observation
-  respond_to :html, :xml
 
   def index
     @activities = if @observation then @observation.activities else Activity.all end
-  end
-  
-  def show
-    @activity = Activity.find(params[:id])
   end
   
   def new
