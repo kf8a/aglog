@@ -18,11 +18,9 @@ class ApplicationController < ActionController::Base
   #   respond_with @areas
   # end
   def index
-    model = self.controller_name.singularize.capitalize.constantize
-    model_name = self.controller_name
-    instance = model.all
-    instance_variable_set("@#{model_name}", instance)
-    respond_with instance
+    collection = model.all
+    instance_variable_set("@#{controller_name}", collection)
+    respond_with collection
   end
 
   # This is equivalent to the following code for each controller:
@@ -31,8 +29,6 @@ class ApplicationController < ActionController::Base
   #   respond_with @area
   # end
   def show
-    model = self.controller_name.singularize.capitalize.constantize
-    model_name = self.controller_name.singularize
     instance = model.find(params[:id])
     instance_variable_set("@#{model_name}", instance)
     respond_with instance
@@ -44,8 +40,6 @@ class ApplicationController < ActionController::Base
   #   respond_with @hazard
   # end
   def new
-    model = self.controller_name.singularize.capitalize.constantize
-    model_name = self.controller_name.singularize
     instance = model.new
     instance_variable_set("@#{model_name}", instance)
     respond_with instance
@@ -61,12 +55,10 @@ class ApplicationController < ActionController::Base
   #   respond_with @hazard
   # end
   def create
-    model = self.controller_name.singularize.capitalize.constantize
-    model_name = self.controller_name.singularize
     symbol = model_name.to_sym
     instance = model.new(params[symbol])
     if instance.save
-      flash[:notice] = "#{model_name.capitalize} was successfully created."
+      flash[:notice] = "#{model_name.titleize} was successfully created."
     end
 
     instance_variable_set("@#{model_name}", instance)
@@ -79,8 +71,6 @@ class ApplicationController < ActionController::Base
   #   respond_with @area
   # end
   def edit
-    model = self.controller_name.singularize.capitalize.constantize
-    model_name = self.controller_name.singularize
     instance = model.find(params[:id])
     instance_variable_set("@#{model_name}", instance)
     respond_with instance
@@ -96,12 +86,10 @@ class ApplicationController < ActionController::Base
   #   respond_with @area
   # end
   def update
-    model = self.controller_name.singularize.capitalize.constantize
-    model_name = self.controller_name.singularize
     instance = model.find(params[:id])
     symbol = model_name.to_sym
     if instance.update_attributes(params[symbol])
-      flash[:notice] = "#{model_name.capitalize} was successfully updated."
+      flash[:notice] = "#{model_name.titleize} was successfully updated."
     end
     instance_variable_set("@#{model_name}", instance)
     respond_with instance
@@ -114,8 +102,6 @@ class ApplicationController < ActionController::Base
   #   respond_with @area
   # end
   def destroy
-    model = self.controller_name.singularize.capitalize.constantize
-    model_name = self.controller_name.singularize
     instance = model.find(params[:id])
     instance.destroy
     instance_variable_set("@#{model_name}", instance)
@@ -134,6 +120,14 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def model_name
+    self.controller_name.singularize
+  end
+
+  def model
+    model_name.capitalize.constantize
+  end
 
   def require_user
     unless signed_in?
