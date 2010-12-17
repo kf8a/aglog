@@ -10,7 +10,7 @@ class ReportsController < ApplicationController
      when 'material'
        by_material_name_desc == current ? by_material_name : by_material_name_desc
      else
-       sort_by_date
+       by_date
      end
      
      session[:current_order] = order
