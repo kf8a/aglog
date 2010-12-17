@@ -1,4 +1,4 @@
-<table>
+<table border="1">
   <tr>
     <th><%= link_to 'Date', reports_path(:order => 'date') %></th>
     <th><%= link_to 'Plot', reports_path(:order => 'plot') %></th>
@@ -11,6 +11,7 @@
   <% @transactions.each do |t| %>
     <tr>
       <td><%= t.setup.activity.observation.obs_date %></td>
+      <td></td>
       <td><%= t.material.name %></td>
       <td><%= "#{pluralize(t.rate,t.unit.name)} per acre" if t.unit %></td>
       <td><%= t.n_content_to_kg_ha %></td>

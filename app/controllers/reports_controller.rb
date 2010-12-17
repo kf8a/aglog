@@ -1,15 +1,16 @@
 class ReportsController < ApplicationController
 
   def index
+    current = session[:current_order]
     order = case params[:order]
      when 'date'
-       session[:current_order] == 'obs_date desc, areas.name, materials.name' ? 'obs_date, areas.name, materials.name' : 'obs_date desc, areas.name, materials.name'
+       by_date_desc == current ? by_date : by_date_desc
      when 'plot'
-       session[:current_order] == 'areas.name desc, obs_date desc, materials.name' ? 'areas.name, obs_date desc, materials.name' : 'areas.name desc, obs_date desc, materials.name'
+       by_area_name_desc == current ? by_area_name : by_area_name_desc
      when 'material'
-       session[:current_order] == 'materials.name desc, obs_date desc, areas.name' ? 'materials.name, obs_date desc, areas.name' : 'materials.name desc, obs_date desc, areas.name'
+       by_material_name_desc == current ? by_material_name : by_material_name_desc
      else
-         'obs_date desc, areas.name, materials.name'
+       sort_by_date
      end
      
      session[:current_order] = order
@@ -19,5 +20,32 @@ class ReportsController < ApplicationController
      respond_to do |format|
        format.html 
      end
+  end
+
+
+  private #############
+
+  def by_date
+    'obs_date, areas.name, materials.name'
+  end
+
+  def by_date_desc
+    'obs_date desc, areas.name, materials.name'
+  end
+
+  def by_area_name
+    'areas.name, obs_date desc, materials.name'
+  end
+
+  def by_area_name_desc
+    'areas.name desc, obs_date desc, materials.name'
+  end
+
+  def by_material_name
+    'materials.name, obs_date desc, areas.name'
+  end
+
+  def by_material_name_desc
+    'materials.name desc, obs_date desc, areas.name'
   end
 end
