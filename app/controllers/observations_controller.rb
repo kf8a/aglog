@@ -26,6 +26,16 @@ class ObservationsController < ApplicationController
     end
   end
 
+  def show
+    @observation = Observation.find(params[:id])
+    respond_with @observation
+  end
+
+  def new
+    @observation = Observation.new
+    respond_with @observation
+  end
+
   # POST /observations
   # POST /observations.xml
   def create
@@ -37,6 +47,25 @@ class ObservationsController < ApplicationController
     else
       flash[:form] = "Creation failed"
     end
+    respond_with @observation
+  end
+
+  def edit
+    @observation = Observation.find(params[:id])
+    respond_with @observation
+  end
+
+  def update
+    @observation = Observation.find(params[:id])
+    if @observation.update_attributes(params[:observation])
+      flash[:notice] = "Observation was successfully updated."
+    end
+    respond_with @observation
+  end
+
+  def destroy
+    @observation = Observation.find(params[:id])
+    @observation.destroy
     respond_with @observation
   end
 
