@@ -1,0 +1,31 @@
+<h1>Related Observations</h1>
+
+<dl>
+  <% @areas.each do |area| %>
+    <hr />
+    <dt><%= area.name %></dt>
+    <dd>
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Observation Type</th>
+          <th>Comment</th>
+        </tr>
+        <% area.observations.each do |observation| %>
+          <tr valign='top'>
+            <td><%= observation.obs_date %> </td>
+            <td>
+              <% observation.observation_types.each do |type| %>
+                <%= type.name %>
+              <% end %>
+            </td>
+            <td><%= truncate(observation.comment.to_s) %></td>
+            <td><%= link_to 'Show', observation_path(observation) %></td>
+            <td><%= link_to 'Edit', edit_observation_path(observation)%></td>
+            <td><%= link_to 'Destroy', observation_path(observation), :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+        <% end %>
+      </table>
+    </dd>
+  <% end %>
+</dl>

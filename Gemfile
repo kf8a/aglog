@@ -29,4 +29,8 @@ group :test do
   gem 'shoulda'
   gem 'single_test'
   gem 'simplecov', '>= 0.3.5', :require => false
+  gem 'cucumber-rails'
+  gem 'spork'
+  gem 'launchy'
+  gem 'capybara'
 end

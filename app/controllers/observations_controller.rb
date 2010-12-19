@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class ObservationsController < ApplicationController
+  before_filter :require_user, :except => [:index, :show, :related]
 
   # GET /observations
   # GET /observations.xml
@@ -37,6 +38,11 @@ class ObservationsController < ApplicationController
       flash[:form] = "Creation failed"
     end
     respond_with @observation
+  end
+
+  def related
+    @observation = Observation.find_by_id(params[:id])
+    @areas = @observation.areas
   end
 
 end

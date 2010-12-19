@@ -7,7 +7,11 @@ Aglog::Application.routes.draw do
   resources :activities
   resources :hazards
   resources :areas
-  resources :observations
+  resources :observations do
+    collection do
+      get :related
+    end
+  end
   resources :activities
   resources :setups
   resources :equipment
