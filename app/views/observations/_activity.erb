@@ -1,4 +1,11 @@
 <div class="activity">
+  <%= form_for activity, :remote => true do |f| %>
+    <%= f.label :person_id, "Worker" %>
+    <%= f.select :person_id, people, :include_blank => true %>
+    <%= f.label :hours %>
+    <%= f.text_field :hours, :Size => 5 %>
+    <%= f.submit :class => 'activity_submitter' %>
+  <% end %>
   <dt>Worker</dt>
     <dd><%= activity.person.try(:name) %></dd>
   <dt>Hours</dt>

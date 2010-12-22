@@ -9,6 +9,7 @@ Created on: <%= @observation.created_on  %>
 <div id="activities">
   <fieldset id='activities'>
     <legend>Activities</legend>
+    <%= flash[:activity] %>
     <dl>
       <%= render  :partial => 'activity',
                   :collection => @observation.activities %>

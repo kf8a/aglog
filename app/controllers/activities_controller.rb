@@ -19,6 +19,14 @@ class ActivitiesController < ApplicationController
     @activity.save
     respond_with @activity
   end
+
+  def update
+    @activity = Activity.find(params[:id])
+    if @activity.update_attributes(params[:activity])
+      flash[:activity] = "Activity was successfully updated."
+    end
+    render :nothing => true
+  end
   
   #This is most commonly called from the Edit Observation page
   def destroy

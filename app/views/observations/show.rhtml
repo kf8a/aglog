@@ -31,29 +31,27 @@
 	<% end %>
 </p>
 <p>
-	
-	<b>Activities:</b><br/>
-<% @observation.activities.each do | activity | %>
-<div>
-	Worker: <%= activity.person.name if activity.person %><br/>
-	<% activity.setups.each do |setup| %>
-		<div class='indent'>
-		Equipment: <%= setup.equipment.name  if setup.equipment %>
-		<% setup.material_transactions.each do |transaction| %>
-		&#149 Material: <%= transaction.material.name if transaction.material %>
-		  @ <%= transaction.rate %>
-			<%= transaction.unit.name if transaction.unit %> per acre
-			<% unless transaction.material.hazards.empty? %>
-				<span style="color: red"> ***
-				<%= link_to 'Hazard', material_path(transaction.material) %>
-				*** </span>
-			<% end %>
-		<% end %>
-		</div>
-	<% end %>
-</div>
-<% end %>
-
+  <b>Activities: </b><br/>
+  <% @observation.activities.each do | activity | %>
+    <div>
+      Worker: <%= activity.person.name if activity.person %><br/>
+      <% activity.setups.each do |setup| %>
+        <div class='indent'>
+          Equipment: <%= setup.equipment.name  if setup.equipment %>
+          <% setup.material_transactions.each do |transaction| %>
+            &#149 Material: <%= transaction.material.name if transaction.material %>
+            @ <%= transaction.rate %>
+            <%= transaction.unit.name if transaction.unit %> per acre
+            <% unless transaction.material.hazards.empty? %>
+              <span style="color: red"> ***
+                <%= link_to 'Hazard', material_path(transaction.material) %>
+              *** </span>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </p>
 
 <%= link_to 'Related Observations', related_observations_path(:id => @observation.id) %>
