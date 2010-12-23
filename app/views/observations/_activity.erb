@@ -1,21 +1,25 @@
 <div class="activity">
   <%= form_for activity, :remote => true do |f| %>
+    <%= f.hidden_field :observation_id %>
     <%= f.label :person_id, "Worker" %>
     <%= f.select :person_id, people, :include_blank => true %>
     <%= f.label :hours %>
     <%= f.text_field :hours, :Size => 5 %>
     <%= f.submit :class => 'activity_submitter' %>
   <% end %>
-  <% unless activity.setups.blank? %>
+  <% unless activity.new_record? %>
     <dt>Setups</dt>
     <dd>
       <dl>
         <%= render :partial => 'setup', :collection => activity.setups %>
+        <div>
+          <input type="button" class="toggler" value="Display\Hide new setup?" />
+          <div style="display: none">
+            <%= render :partial => 'setup', :locals => { :setup => activity.setups.new } %>
+          </div>
+        </div>
       </dl>
     </dd>
+    <%= link_to 'delete activity', activity_path(activity), :class => "deleter" %>
   <% end %>
-
-  <%= link_to 'add setup', new_setup_path(:activity_id => activity.id), :class => 'data_popup' %>
-  |
-  <%= link_to 'delete activity', activity_path(activity), :class => "deleter" %>
 </div>

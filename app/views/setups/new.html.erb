@@ -1,8 +1,8 @@
 <h1>Setup</h1>
 
-<%= form_for @setup, :remote => true do |f| %>
+<%= form_for @setup do |f| %>
   <%= f.hidden_field :activity_id %>
   <%= f.label :equipment_id, "Equipment" %>
   <%= f.select :equipment_id, equipment, :include_blank => true %>
-  <%= f.submit :class => 'popup_activity_submitter' %>
+  <%= f.submit %>
 <% end %>

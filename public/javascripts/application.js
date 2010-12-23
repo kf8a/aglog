@@ -39,22 +39,15 @@ $(document).ready(function() {
         $('#hazards').load('edit.html div#hazards');
     });
 
-    //This specifically refreshes the activity part of edit observations page, but could be combined with above.
-    $('.activity_refresher').live('click', function(e) {
-        $('#activities').load('edit.html div#activities');
-    });
-
     $('.activity_submitter').live('click', function(e) {
         e.preventDefault();
         $(this).parent('form').submit();
         $('#activities').load('edit.html div#activities');
     });
 
-    $('.popup_activity_submitter').live('click', function(e) {
+    $('.toggler').live('click', function(e) {
         e.preventDefault();
-        $(this).parent('form').submit();
-        alert("Updated! Press 'refresh activities' to make it appear.")
-        window.close();
+        $(this).next('div').toggle();
     });
 
     //This sends a delete request and refreshes the activity div

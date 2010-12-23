@@ -1,20 +1,24 @@
 <div class="setup">
   <%= form_for setup, :remote => true do |f| %>
+    <%= f.hidden_field :activity_id %>
     <%= f.label :equipment_id, "Equipment" %>
     <%= f.select :equipment_id, equipment, :include_blank => true %>
     <%= f.submit :class => 'activity_submitter' %>
   <% end %>
-  <% unless setup.material_transactions.blank? %>
+  <% unless setup.new_record? %>
     <dt>Materials</dt>
     <dd>
       <dl>
         <%= render  :partial => 'material_transaction',
                     :collection => setup.material_transactions %>
+        <div>
+          <input type="button" class="toggler" value="Display\Hide new material?" />
+          <div style="display: none">
+            <%= render  :partial => 'material_transaction', :locals => { :material_transaction => setup.material_transactions.new } %>
+          </div>
+        </div>
       </dl>
     </dd>
+    <%= link_to 'delete setup', setup_path(setup), :class => "deleter" %>
   <% end %>
-
-  <%= link_to 'add material', new_material_transaction_path(:setup_id => setup.id), :class => 'data_popup' %>
-  |
-  <%= link_to 'delete setup', setup_path(setup), :class => "deleter" %>
 </div>

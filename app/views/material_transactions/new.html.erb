@@ -1,9 +1,9 @@
 <h1>Material Transaction</h1>
 
-<%= form_for @transaction, :remote => true do |f| %>
+<%= form_for @transaction do |f| %>
   <%= f.hidden_field :setup_id %>
   <%= f.select :material_id, materials, :include_blank => true %> @
   <%= f.text_field  :rate, :size => 12 %>
   <%= f.select :unit_id, units,  :include_blank => true %> per acre
-  <%= f.submit :class => 'popup_activity_submitter' %>
+  <%= f.submit %>
 <% end %>

@@ -13,15 +13,15 @@ Created on: <%= @observation.created_on  %>
     <dl>
       <%= render  :partial => 'activity',
                   :collection => @observation.activities %>
+      <div>
+        <input type="button" class="toggler" value="Display\Hide new activity?" />
+        <div style="display: none">
+          <%= render  :partial => 'activity', :locals => { :activity => @observation.activities.new } %>
+        </div>
+      </div>
     </dl>
   </fieldset>
 </div>
-
-<%= link_to 'add activity', 
-            new_activity_path(:observation_id => @observation.id),
-            :class => 'data_popup' %>
-  
-<input type="button" class="activity_refresher" value='refresh activities' /><br />
 
 
 <%= link_to 'Show', observation_path(@observation) %> |

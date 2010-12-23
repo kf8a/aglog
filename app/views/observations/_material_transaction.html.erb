@@ -4,8 +4,10 @@
     <%= f.select :material_id, materials, :include_blank => true %> @<br />
     <%= f.text_field  :rate, :size => 12 %>
     <%= f.select :unit_id, units,  :include_blank => true %> per acre
-    <%= f.submit 'Update Material', :class => 'activity_submitter' %>
+    <%= f.submit :class => 'activity_submitter' %>
   <% end %>
 
-  <%= link_to 'delete material', material_transaction_path(material_transaction), :class => "deleter" %>
+  <% unless material_transaction.new_record? %>
+    <%= link_to 'delete material', material_transaction_path(material_transaction), :class => "deleter" %>
+  <% end %>
 </div>
