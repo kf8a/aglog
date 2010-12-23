@@ -50,6 +50,13 @@ $(document).ready(function() {
         $('#activities').load('edit.html div#activities');
     });
 
+    $('.popup_activity_submitter').live('click', function(e) {
+        e.preventDefault();
+        $(this).parent('form').submit();
+        alert("Updated! Press 'refresh activities' to make it appear.")
+        window.close();
+    });
+
     //This sends a delete request and refreshes the activity div
     $('.deleter').live('click', function(e) {
         e.preventDefault();

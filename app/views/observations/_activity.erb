@@ -6,10 +6,6 @@
     <%= f.text_field :hours, :Size => 5 %>
     <%= f.submit :class => 'activity_submitter' %>
   <% end %>
-  <dt>Worker</dt>
-    <dd><%= activity.person.try(:name) %></dd>
-  <dt>Hours</dt>
-    <dd><%= activity.hours %></dd>
   <% unless activity.setups.blank? %>
     <dt>Setups</dt>
     <dd>

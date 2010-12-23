@@ -11,6 +11,14 @@ class MaterialTransactionsController < ApplicationController
     render :nothing => true
   end
 
+  def update
+    @transaction = MaterialTransaction.find(params[:id])
+    if @transaction.update_attributes(params[:material_transaction])
+      flash[:activity] = "Material Transaction was successfully updated."
+    end
+    render :nothing => true
+  end
+
   #This is most commonly called from the Edit Observation page
   def destroy
     @transaction = MaterialTransaction.find(params[:id])

@@ -1,7 +1,11 @@
 <div class="material_transaction">
-  <dt>Material</dt>
-    <dd><%= material_transaction.material.try(:name) %></dd>
-  <dt>Rate</dt>
-    <dd><%= material_transaction.rate %> <%= material_transaction.unit.try(:name) %> per acre </dd>
+  <%= form_for material_transaction, :remote => true do |f| %>
+    <%= f.hidden_field :setup_id %>
+    <%= f.select :material_id, materials, :include_blank => true %> @<br />
+    <%= f.text_field  :rate, :size => 12 %>
+    <%= f.select :unit_id, units,  :include_blank => true %> per acre
+    <%= f.submit 'Update Material', :class => 'activity_submitter' %>
+  <% end %>
+
   <%= link_to 'delete material', material_transaction_path(material_transaction), :class => "deleter" %>
 </div>

@@ -1,8 +1,11 @@
 <div class="setup">
-  <dt>Equipment</dt>
-    <dd><%= setup.equipment.try(:name) %></dd>
+  <%= form_for setup, :remote => true do |f| %>
+    <%= f.label :equipment_id, "Equipment" %>
+    <%= f.select :equipment_id, equipment, :include_blank => true %>
+    <%= f.submit :class => 'activity_submitter' %>
+  <% end %>
   <% unless setup.material_transactions.blank? %>
-    <dt>Material Transactions</dt>
+    <dt>Materials</dt>
     <dd>
       <dl>
         <%= render  :partial => 'material_transaction',

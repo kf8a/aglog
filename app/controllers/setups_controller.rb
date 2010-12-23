@@ -11,6 +11,15 @@ class SetupsController < ApplicationController
     render :nothing => true
   end
 
+  def update
+    @setup = Setup.find(params[:id])
+    if @setup.update_attributes(params[:setup])
+      flash[:activity] = "Setup was successfully updated."
+    end
+    render :nothing => true
+  end
+
+
   #This is most commonly called from the Edit Observation page
   def destroy
     @setup = Setup.find(params[:id])

@@ -1,12 +1,12 @@
 <h1>Activity</h1>
 
-<%= form_for @activity do |f| %>
+<%= form_for @activity, :remote => true do |f| %>
   <%= f.hidden_field :observation_id %>
   <%= f.label :person_id, 'Worker' %>
   <%= f.select :person_id, people, :include_blank => true %>
   <%= f.label :hours %>
   <%= f.text_field :hours, :Size => 5 %>
-  <%= f.submit %>
+  <%= f.submit :class => 'popup_activity_submitter' %>
 <% end %>
 
 
