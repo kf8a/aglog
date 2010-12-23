@@ -28,7 +28,7 @@ $(document).ready(function() {
         window.close();
     });
 
-    // Changes 'update' to 'updated' so that the user knows something happened
+    // Lets user know that it was updated.
     $('.remote_updater').click(function(e) {
         alert('Updated!');
     });
@@ -39,9 +39,15 @@ $(document).ready(function() {
         $('#hazards').load('edit.html div#hazards');
     });
 
-    //This specifically refreshes the activity part of edit observations page, but could be combined with above.
-    $('.activity_refresher').click(function(e) {
+    $('.activity_submitter').live('click', function(e) {
+        e.preventDefault();
+        $(this).parent('form').submit();
         $('#activities').load('edit.html div#activities');
+    });
+
+    $('.toggler').live('click', function(e) {
+        e.preventDefault();
+        $(this).next('div').toggle();
     });
 
     //This sends a delete request and refreshes the activity div
