@@ -17,6 +17,9 @@ Event.addBehavior({
 */
 
 $(document).ready(function() {
+    // Put cursor on first text input of form
+    $('#focus_here').focus();
+
     // All links with data_popup make a small popup window of what they link to.
     $('.data_popup').live('click', function(e) {
         e.preventDefault();
