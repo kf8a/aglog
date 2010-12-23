@@ -2,29 +2,11 @@ require 'test_helper'
 
 class MaterialTransactionsControllerTest < ActionController::TestCase
 
+  #Write tests for non-signed-in-user
+
   context "Signed in as a normal user. " do
     setup do
       sign_in_as_normal_user
-    end
-
-    context "GET :new" do
-      setup do
-        get :new
-      end
-
-      should render_template 'new'
-    end
-
-    context "GET :new with a setup" do
-      setup do
-        @setup = Factory.create(:setup)
-        get :new, :setup_id => @setup.id
-      end
-
-      should render_template 'new'
-      should "make a material transaction that is part of that setup" do
-        assert_equal @setup, assigns(:transaction).setup
-      end
     end
 
     context "POST :create" do
@@ -60,6 +42,8 @@ class MaterialTransactionsControllerTest < ActionController::TestCase
         assert_nil MaterialTransaction.find_by_id(@transaction.id)
       end
     end
+
+    #TODO Write tests for PUT :update
   end
 
 end

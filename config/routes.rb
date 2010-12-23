@@ -4,7 +4,7 @@ Aglog::Application.routes.draw do
   match '/auth/failure' => 'person_sessions#new'
   match '/logout' => 'person_sessions#destroy'
 
-  resources :activities
+  resources :activities, :only => [:create, :update, :destroy]
   resources :hazards
   resources :areas
   resources :observations do
@@ -12,8 +12,9 @@ Aglog::Application.routes.draw do
       get :related
     end
   end
-  resources :activities
-  resources :setups
+  resources :activities,            :only => [:create, :update, :destroy]
+  resources :setups,                :only => [:create, :update, :destroy]
+  resources :material_transactions, :only => [:create, :update, :destroy]
   resources :equipment
   resources :units
   resources :people
@@ -27,8 +28,7 @@ Aglog::Application.routes.draw do
       post :new_hazards
     end
   end
-
-  resources :material_transactions
+  
   match '/' => 'observations#index'
 
   # Allow downloading Web Service WSDL as a file with an extension
