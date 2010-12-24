@@ -16,7 +16,7 @@ class Material < ActiveRecord::Base
   end
 
   def observations
-    self.setups.collect {|setup| setup.activity.try(:observation)}.compact
+    self.setups.collect {|setup| setup.observation}.compact
   end
   
 end

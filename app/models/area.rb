@@ -100,14 +100,16 @@ class Area < ActiveRecord::Base
 
   def no_treatment_without_study
     # area without study is OK
-  	if :study_id.nil? && ! :treatment_id.nil?
+  	if treatment_id? && !study_id?
   		errors.add(:base, 'No treatment allowed if study is nil')
   	end
   end
 
   def treatment_is_part_of_study
     # if treatment exists then it must belong to correct study
-    errors.add(:base, 'inconsistent study and treatment combination') unless  treatment.nil? || (treatment.study_id == study_id)
+    if treatment && (treatment.study_id != study_id)
+      errors.add(:base, 'inconsistent study and treatment combination')
+    end
   end
 
   def name_has_no_spaces
@@ -175,17 +177,9 @@ class Area < ActiveRecord::Base
       study = 7
       treatment_number = $1
     end
-    if study 
-      if treatment_number
-        if replicate
-          area = Area.find_all_by_study_id_and_treatment_number_and_replicate(study, treatment_number, replicate)
-        else
-          area = Area.find_all_by_study_id_and_treatment_number(study, treatment_number)
-        end
-      else
-        area = Area.find_all_by_study_id(study)
-      end
-    end
+    area = Area.where(:study_id => study) if study
+    area = area.where(:treatment_number => treatment_number) if treatment_number
+    area = area.where(:replicate => replicate) if replicate
     if area.blank?
       # try to find an area by name
       area = Area.where(['upper(name) = ?', token.squeeze.upcase])

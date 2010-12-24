@@ -70,7 +70,7 @@ class ObservationsController < ApplicationController
   end
 
   def related
-    @observation = Observation.find_by_id(params[:id])
+    @observation = Observation.find(params[:id])
     @areas = @observation.areas
   end
 
