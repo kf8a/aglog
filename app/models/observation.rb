@@ -20,10 +20,9 @@ class Observation < ActiveRecord::Base
   has_and_belongs_to_many :observation_types
   belongs_to :person
   
-  validates_presence_of :obs_date, :message => "can't be blank"
-  validates_presence_of :observation_types
-  
-  validates_presence_of :person_id
+  validates :obs_date,          :presence => true
+  validates :observation_types, :presence => true
+  validates :person_id,         :presence => true
   validate :no_invalid_areas
     
   def no_invalid_areas

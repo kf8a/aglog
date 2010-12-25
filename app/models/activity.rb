@@ -3,7 +3,7 @@ class Activity < ActiveRecord::Base
   belongs_to :observation
   has_many :setups, :dependent => :destroy
   
-  validates_presence_of :person
+  validates :person, :presence => true
   validates_associated :person
 
   def person_name

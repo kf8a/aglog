@@ -5,7 +5,7 @@ class Setup < ActiveRecord::Base
   has_many :materials, :through => :material_transactions
   
   validates_associated :equipment
-  validates_presence_of :equipment
+  validates :equipment, :presence => true
   
   validates_associated :material_transactions
   

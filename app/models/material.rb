@@ -5,7 +5,7 @@ class Material < ActiveRecord::Base
   has_many :setups, :through => :material_transactions
   belongs_to :material_type
   
-  validates_uniqueness_of :name, :case_sensitive => false, :message => "must be unique"
+  validates :name, :uniqueness => { :case_sensitive => false }
  
   def to_mass(amount)
     if liquid

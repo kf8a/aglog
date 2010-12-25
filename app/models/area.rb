@@ -5,7 +5,7 @@ class Area < ActiveRecord::Base
   belongs_to :study
   belongs_to :treatment
   
-  validates_uniqueness_of :name, :case_sensitive => false, :message => "must be unique"
+  validates :name, :uniqueness => { :case_sensitive => false }
   validate :no_treatment_without_study
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
