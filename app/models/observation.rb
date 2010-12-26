@@ -2,6 +2,8 @@
 require 'active_support/builder' unless defined?(Builder)
 
 class Observation < ActiveRecord::Base
+  attr_accessible :person_id, :comment, :obs_date, :state, :observation_type_ids
+
   acts_as_state_machine :initial => :published
   
   state  :published

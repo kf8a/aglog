@@ -1,4 +1,5 @@
 class Person < ActiveRecord::Base
+  attr_accessible :given_name, :sur_name, :openid_identifier
 
   has_many :observations
   has_many :activities

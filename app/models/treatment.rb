@@ -1,4 +1,6 @@
 class Treatment < ActiveRecord::Base
+  attr_accessible :name, :study_id
+
   has_many :areas
   belongs_to :study
   

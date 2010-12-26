@@ -1,4 +1,6 @@
 class Setup < ActiveRecord::Base
+  attr_accessible :activity_id, :equipment_id, :settings
+  
   belongs_to :activity
   belongs_to :equipment
   has_many :material_transactions, :dependent => :destroy

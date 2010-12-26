@@ -1,6 +1,9 @@
 require 'date'
 require 'set'
 class Area < ActiveRecord::Base
+  attr_accessible :name, :treatment_number, :replicate, :study_id,
+                  :treatment_id, :description
+
   has_and_belongs_to_many :observations, :order => 'obs_date desc'
   belongs_to :study
   belongs_to :treatment
