@@ -1,11 +1,14 @@
 class Material < ActiveRecord::Base
+  attr_accessible :name, :operation_type_id, :material_type_id, :n_content,
+                  :p_content, :k_content, :specific_weight, :liquid
+
   has_and_belongs_to_many :equipment 
   has_and_belongs_to_many :hazards
   has_many :material_transactions
   has_many :setups, :through => :material_transactions
   belongs_to :material_type
   
-  validates_uniqueness_of :name, :case_sensitive => false, :message => "must be unique"
+  validates :name, :uniqueness => { :case_sensitive => false }
  
   def to_mass(amount)
     if liquid
@@ -16,7 +19,7 @@ class Material < ActiveRecord::Base
   end
 
   def observations
-    self.setups.collect {|setup| setup.activity.try(:observation)}.compact
+    self.setups.collect {|setup| setup.observation}.compact
   end
   
 end

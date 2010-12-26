@@ -7,11 +7,11 @@
       <th> Exclusion time (days) </th>
       <th> </th>
     </tr>
-    <% for hazard in @material.hazards do %>
+    <% @material.hazards.each do |hazard| %>
       <tr>
-        <td><%=h hazard.name %> </td>
-        <td><%=h hazard.chemical_name %> </td>
-        <td><%=h hazard.exclusion_time_days %> </td>
+        <td><%= hazard.name %> </td>
+        <td><%= hazard.chemical_name %> </td>
+        <td><%= hazard.exclusion_time_days %> </td>
         <td><%= link_to 'Details', hazard_path(hazard) %></td>
       </tr>
     <% end %>

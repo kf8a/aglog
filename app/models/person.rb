@@ -1,4 +1,5 @@
 class Person < ActiveRecord::Base
+  attr_accessible :given_name, :sur_name, :openid_identifier
 
   has_many :observations
   has_many :activities
@@ -19,7 +20,7 @@ class Person < ActiveRecord::Base
   end
 
   def must_have_name
-    errors.add(:base, "Name cannot be blank") if self.given_name.blank? and self.sur_name.blank?
+    errors.add(:base, "Name cannot be blank") unless given_name? || sur_name?
   end
 
   def others_with_name? 
@@ -28,7 +29,7 @@ class Person < ActiveRecord::Base
     
     others = Person.where(["lower(given_name) = ? and lower(sur_name) = ?",
 				  given.downcase, sur.downcase]).first
-		return false if others.nil?
-		others.id != self.id
+
+		others && (others.id != self.id)
   end
 end

@@ -1,38 +1,32 @@
 <p>
-  <b>Name</b><br />
-  <%= f.text_field :name %>
-  <%= f.label :liquid, 'Liquid?' %>
-  <%= f.check_box :liquid %>
+  <%= f.label       :name %>
+  <%= f.text_field  :name, :class => 'focus_here' %>
+  <%= f.label       :liquid, 'Liquid?' %>
+  <%= f.check_box   :liquid %>
+  <%= f.label       :material_type_id, 'Material Type' %>
+  <%= f.select      :material_type_id, @material_type_ids,
+                    :include_blank => true, :multiple => true, :size => 6 %>
 </p>
-<p>
-  <label for='material_material_type_id'>Material Type</label>
-  <%= f.select :material_type_id, @material_type_ids, :include_blank => true, :multiple => true, :size => 6 %>
-</p>
-<p>
+<% unless @material.new_record? %>
+  <p>
+    <div id="hazards">
+      <%= render :partial => 'hazards' %>
+    </div>
 
-<div id="hazards">
-  <%= render(:partial => 'hazards') %>
-</div>
-
-<% if !@material.id.nil? %>
-  <%= link_to "Set Hazards",
-      { :controller => "materials", :action => "get_hazards" },
-        :class => 'data_popup' %>
-  <input type="button" id="refresh_hazards" value="Refresh Hazards" />
+    <%= link_to "Set Hazards",
+        { :controller => "materials", :action => "get_hazards" },
+          :class => 'data_popup' %>
+    <input type="button" id="refresh_hazards" value="Refresh Hazards" />
+  </p>
 <% end %>
-	</p>
-			
-	<p>
-		<label for='material_n_content'>N %</label>
-		<%= f.text_field :n_content %>
-		<label for='material_p_content'>P %</label>
-		<%= f.text_field :p_content %>
-		<label for='material_k_content'>K %</label>
-		<%= f.text_field :k_content %>
-	</p>
-	
-	<p>
-		<label for='material_specific_weight'>Specific Weight (kg/l)</label>
-		<%= f.text_field :specific_weight %>
-	</p>
+<p>
+  <%= f.label       :n_content, 'N %' %>
+  <%= f.text_field  :n_content %>
+  <%= f.label       :p_content, 'P %' %>
+  <%= f.text_field  :p_content %>
+  <%= f.label       :k_content, 'K %' %>
+  <%= f.text_field  :k_content %>
+  <%= f.label       :specific_weight, 'Specific Weight (kg/l)' %>
+  <%= f.text_field  :specific_weight %>
+</p>
 	

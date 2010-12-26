@@ -1,10 +1,13 @@
 class MaterialTransaction < ActiveRecord::Base
+  attr_accessible :material_id, :unit_id, :setup_id, :rate, :cents,
+                  :material_transaction_type_id, :transaction_datetime
+
   belongs_to :material
   belongs_to :setup
   belongs_to :unit
   
 
-  validates_presence_of :material_id
+  validates :material_id, :presence => true
   validates_associated :material
   
   # find fertilizers  on the main site

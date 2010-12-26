@@ -2,19 +2,21 @@
   <%= render "shared/error_messages", :target => @material %>
 <p>
   <b>Name:</b>
-  <%=h @material.name %>
-  <%=h "(Liquid)" if @material.liquid? %> 
+  <%= @material.name %>
+  <%= "(Liquid)" if @material.liquid? %> 
   <br/><b>Material Type</b><br/>
-  <%=h @material.material_type.name unless @material.material_type.nil? %>
-  <br/>
-  <% if !@material.material_type.nil? && @material.material_type.id == 3 %>
-  	<b>N:</b> <%= @material.n_content %> 
-  	<b>P:</b> <%= @material.p_content %> 
-  	<b>K:</b> <%= @material.k_content %> 
-	<% end %>
+  <% if @material.material_type %>
+    <%= @material.material_type.name %>
+    <br/>
+    <% if @material.material_type.id == 3 %>
+      <b>N:</b> <%= @material.n_content %>
+      <b>P:</b> <%= @material.p_content %>
+      <b>K:</b> <%= @material.k_content %>
+    <% end %>
+  <% end %>
 </p>
 <p>
-	<%= render(:partial => 'hazards') %>
+  <%= render(:partial => 'hazards') %>
 </p>
   
 <% unless @material.material_transactions.empty? %>

@@ -52,12 +52,10 @@ class MaterialsController < ApplicationController
   # PUT /materials/1/put_hazards
   def put_hazards
     @material = Material.find_by_id(params[:id])
-    if @material.nil?
-      redirect_to :action => "new"
-    else
+    if @material
       haz = []
 
-      if !params[:hazards].nil?
+      if params[:hazards]
         vals = params[:hazards].values
         vals.each { |h| haz << Hazard.find(h) }
       end
@@ -65,6 +63,8 @@ class MaterialsController < ApplicationController
       @material.hazards = haz
 
       redirect_to :action => "edit"
+    else
+      redirect_to :action => "new"
     end
 	end
 	

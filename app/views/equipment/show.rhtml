@@ -5,7 +5,9 @@
     <%= raw("<li>Is a Tractor</li>") if @equipment.is_tractor? %>
     <%= raw("<li>Archived</li>") if @equipment.archived? %>
   </ul>
-  <%= raw("<b>Description: </b>") + @equipment.description unless @equipment.description.blank? %>
+  <% if @equipment.description? %>
+    <b>Description: </b> <%= @equipment.description %>
+  <% end %>
 </p>
 
 <% @equipment.observations.each do |observation| %>

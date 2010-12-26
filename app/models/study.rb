@@ -1,5 +1,7 @@
 class Study < ActiveRecord::Base
+  attr_accessible :name, :description
+  
 	has_many :areas
 	has_many :treatments
-  validates_uniqueness_of :name, :case_sensitive => false, :message => "must be unique"
+  validates :name, :uniqueness => { :case_sensitive => false }
 end

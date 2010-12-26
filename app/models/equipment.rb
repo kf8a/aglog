@@ -1,9 +1,10 @@
 class Equipment < ActiveRecord::Base
+  attr_accessible :name, :use_material, :is_tractor, :description, :archived
 
   has_many                :setups
   has_and_belongs_to_many :materials
   
-  validates_uniqueness_of :name, :case_sensitive => false
+  validates :name, :uniqueness => { :case_sensitive => false }
 
   def observations
     self.setups.collect {|setup| setup.observation}.compact
