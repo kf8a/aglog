@@ -59,14 +59,11 @@ class Observation < ActiveRecord::Base
   
   def areas_as_text=(areas_as_text)
     @error_areas =  nil
-    a = Area.parse(areas_as_text)
-    if a.class.name ==  'String'  then
-      @error_areas = a
+    new_areas = Area.parse(areas_as_text)
+    if String == new_areas.class
+      @error_areas = new_areas
     else
-      # First delete all the old area asscociations
-      self.areas.delete
-      # then set new areas
-      self.areas  = a
+      self.areas  = new_areas
     end
   end
     
