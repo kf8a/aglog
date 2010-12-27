@@ -3,7 +3,7 @@
 Created on: <%= @observation.created_on  %>
 
 <p>
-  <%= render(:partial => 'form', :locals => {:observation => @observation}) %>
+  <%= render 'form', :observation => @observation %>
 </p>
 
 <div id="activities">
@@ -11,12 +11,11 @@ Created on: <%= @observation.created_on  %>
     <legend>Activities</legend>
     <%= flash[:activity] %>
     <dl>
-      <%= render  :partial => 'activity',
-                  :collection => @observation.activities %>
+      <%= render @observation.activities %>
       <div>
         <input type="button" class="toggler" value="Display\Hide new activity?" />
         <div style="display: none">
-          <%= render  :partial => 'activity', :locals => { :activity => @observation.activities.new } %>
+          <%= render @observation.activities.new %>
         </div>
       </div>
     </dl>

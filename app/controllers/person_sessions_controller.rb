@@ -19,11 +19,11 @@ class PersonSessionsController < ApplicationController
         redirect_back_or_default '/observations'
       else
         flash[:notice] = "No user exists with #{openid} as an open_id authentication."
-        render :action => :new
+        render :new
       end
     else
       flash[:notice] = "Wrong provider - should be open_id"
-      render :action => :new
+      render :new
     end
   end
 
