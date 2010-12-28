@@ -6,7 +6,9 @@ module ObservationsHelper
   end
    
   def observation_type_ids
-    @observation_type_ids ||= ObservationType.all.collect {|x| [x.name, x.id]}
+    @observation_type_ids ||= ObservationType.all.collect do |type|
+      [type.name, type.id]
+    end
   end
    
 end

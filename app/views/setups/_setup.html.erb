@@ -9,12 +9,11 @@
     <dt>Materials</dt>
     <dd>
       <dl>
-        <%= render  :partial => 'material_transaction',
-                    :collection => setup.material_transactions %>
+        <%= render setup.material_transactions %>
         <div>
           <input type="button" class="toggler" value="Display\Hide new material?" />
           <div style="display: none">
-            <%= render  :partial => 'material_transaction', :locals => { :material_transaction => setup.material_transactions.new } %>
+            <%= render setup.material_transactions.new %>
           </div>
         </div>
       </dl>

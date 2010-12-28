@@ -11,11 +11,11 @@
     <dt>Setups</dt>
     <dd>
       <dl>
-        <%= render :partial => 'setup', :collection => activity.setups %>
+        <%= render activity.setups %>
         <div>
           <input type="button" class="toggler" value="Display\Hide new setup?" />
           <div style="display: none">
-            <%= render :partial => 'setup', :locals => { :setup => activity.setups.new } %>
+            <%= render activity.setups.new %>
           </div>
         </div>
       </dl>
