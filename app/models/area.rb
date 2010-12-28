@@ -32,35 +32,35 @@ class Area < ActiveRecord::Base
    
   # an implementation of unparse() that is more general.
   # Should work on all studies, should not make assumptions about the number of reps.  
-  def Area.unparse2(areas=[])
+  def Area.better_unparse(areas=[])
   	# prefixes = ["T", "B", "F", "iF", "REPT"]
   	tokens = []
-  	studies = areas.collect{|a| a.study}.uniq  # list of study numbers
+  	studies = areas.collect{|area| area.study}.uniq  # list of study numbers
   	# why not do a Study.all ?
   	# also remember that not every area belongs to a study
   	
   	# the query set (is subset?)
 	  areas_set = areas.to_set	
 	  	
-	  studies.each do |s|
-	  	study_set = s.areas.to_set
+	  studies.each do |study|
+	  	study_set = study.areas.to_set
 	  	if !study_set.empty? && study_set.subset?(areas_set)
 	  		areas_set -= study_set
-	  		tokens << s.name
+	  		tokens << study.name
 	  	end # if
 	  	
-	  	s.treatments.each do |t|
-	  		treatment_set = t.areas.to_set
+	  	study.treatments.each do |treatment|
+	  		treatment_set = treatment.areas.to_set
 	  		if !treatment_set.empty? && treatment_set.subset?(areas_set)
 	  			areas_set -= treatment_set
-	  			tokens << t.name
+	  			tokens << treatment.name
 	  		end # if
 	  	end # s.treatments.each
 	  end # studies.each
 	  
 	  if !areas_set.empty?
 	    remaining = areas_set.to_a.sort
-			tokens << remaining.collect{|r| r.name}
+			tokens << remaining.collect{|area| area.name}
 		end
 	  
 	  tokens.flatten.join(' ')
