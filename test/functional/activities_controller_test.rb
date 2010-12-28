@@ -7,7 +7,44 @@ class ActivitiesControllerTest < ActionController::TestCase
       sign_out
     end
 
-    #TODO Write tests for non-signed-in-user
+    context "POST :create" do
+      setup do
+        @person = Factory.create(:person)
+        post :create, :activity => { :person_id => @person.id }
+      end
+
+      should "not create an activity" do
+        assert_nil Activity.find_by_person_id(@person.id)
+      end
+    end
+
+    context "An activity exists. " do
+      setup do
+        @activity = Factory.create(:activity)
+      end
+
+      context "PUT :update the activity" do
+        setup do
+          @new_person = Factory.create(:person, :sur_name => "Newguy")
+          put :update, :id => @activity.id, :activity => { :person_id => @new_person.id }
+        end
+
+        should "not update the activity" do
+          assert_nil Activity.find_by_person_id(@new_person.id)
+        end
+      end
+
+      context "DELETE :destroy an activity" do
+        setup do
+          delete :destroy, :id => @activity.id
+        end
+
+        should "not delete the activity" do
+          assert Activity.find_by_id(@activity.id)
+        end
+      end
+    end
+
   end
 
   context "Signed in as a normal user. " do
@@ -20,18 +57,28 @@ class ActivitiesControllerTest < ActionController::TestCase
         @activity = Factory.create(:activity)
       end
 
+      context "PUT :update the activity" do
+        setup do
+          @new_person = Factory.create(:person, :sur_name => "Newguy")
+          put :update, :id => @activity.id, :activity => { :person_id => @new_person.id }
+        end
+
+        should "not update the activity" do
+          assert Activity.find_by_person_id(@new_person.id)
+        end
+      end
+
       context "DELETE :destroy an activity" do
         setup do
           delete :destroy, :id => @activity.id
         end
 
-        should "delete the setup" do
+        should "delete the activity" do
           assert_nil Activity.find_by_id(@activity.id)
         end
       end
     end
     
-
     context "POST :create" do
       setup do
         @person = Factory.create(:person)
@@ -54,7 +101,5 @@ class ActivitiesControllerTest < ActionController::TestCase
         refute_nil Activity.find_by_observation_id_and_person_id(@observation.id, @person.id)
       end
     end
-
-    #TODO Write tests for PUT :update
   end
 end
