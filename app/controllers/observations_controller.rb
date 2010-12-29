@@ -20,9 +20,9 @@ class ObservationsController < ApplicationController
  
     respond_to do |format|
       format.html #index.html
-      format.xml  { render :xml => @observations.to_xml(:include => [:areas]) }
-      format.salus_xml { render :xml => Observation.to_salus_xml}
-      format.salus_csv {render :text => Observation.to_salus_csv}
+      format.xml  { render :xml => @observations.to_xml }
+      format.salus_xml { render 'index.salus_xml' }
+      format.salus_csv { render 'index.salus_csv' }#:text => Observation.to_salus_csv}
     end
   end
 

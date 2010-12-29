@@ -1,5 +1,5 @@
 # encoding: UTF-8
-require 'active_support/builder' unless defined?(Builder)
+if RUBY_VERSION > "1.9" then require 'csv' else require 'fastercsv' end
 
 class Observation < ActiveRecord::Base
   attr_accessible :person_id, :comment, :obs_date, :state, :observation_type_ids
@@ -66,83 +66,20 @@ class Observation < ActiveRecord::Base
       self.areas  = new_areas
     end
   end
-    
-  def Observation.to_salus_xml(options = {})
-    options[:indent] ||= 2
-    xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
-    xml.instruct! unless options[:skip_instruct]
 
-    observations = Observation.find(:all, :include=>[:areas,:activities], :order=>'obs_date desc')
-    observations.each do |observation|
-      xml.observation do
-        xml.date observation.obs_date.to_s
-        xml.comment observation.comment
-        xml.areas do 
-          observation.areas.each do |area|
-            xml.area area.name
-          end
-        end
-        xml.observation_types do
-          observation.observation_types.each do |type|
-            xml.observation_type type.name
-          end
-        end
-        xml.activities do
-          observation.activities.each do |activity|
-            xml.setups do 
-              activity.setups.each do |setup|
-                xml.transactions do 
-                  setup.material_transactions.each do |transaction|
-                    xml.transaction do
-                      xml.material transaction.material.name if transaction.material
-                      xml.rate transaction.rate
-                      xml.n_content transaction.material.n_content if transaction.material
-                      xml.unit transaction.unit.name if transaction.unit
-                    end
-                  end
-                end
-              end  
-            end
-          end
-        end
-      end
-    end
-  end 
- 
-  def Observation.to_salus_csv 
-    observations = Observation.find(:all,  :include => [:areas,:activities], :order=> 'obs_date desc')
-    data = observations.collect do |observation|
-      material_names = []
-      unit_names = []
-      n_contents = []
-      rates = []
-      observation.activities.each do |activity|
-        activity.setups.each do |setup|
-          setup.material_transactions.each do |transaction|
-            if transaction.material
-              material_names << transaction.material.name 
-              unit_names << transaction.material.n_content
-            
-              rates << transaction.rate
-              unit_names << transaction.unit.name if transaction.unit
-            end
-          end
-        end
-      end
-      if RUBY_VERSION > "1.9"
-        output = CSV
-      else
-        output = FasterCSV
-      end
-      output.generate do |csv|
-        observation.areas.each do |area|
-          observation.observation_types.each do |type|
-            csv << [observation.obs_date.to_s, type.name, area.name, material_names.join(';;'), n_contents.join(';;'), rates.join(';;'),unit_names.join(';;')]
-          end
-        end
-      end
-    end
-    data.unshift(["#date,type,area,material,n_content,rate,unit\n"])
+  def material_names
+    activities.collect { |activity| activity.material_names }.flatten.compact.uniq
   end
 
+  def n_contents
+    activities.collect { |activity| activity.n_contents }.flatten.compact.uniq
+  end
+
+  def rates
+    activities.collect { |activity| activity.rates }.flatten.compact.uniq
+  end
+
+  def unit_names
+    activities.collect { |activity| activity.unit_names }.flatten.compact.uniq
+  end
 end
