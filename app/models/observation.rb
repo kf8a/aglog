@@ -1,6 +1,7 @@
 # encoding: UTF-8
 if RUBY_VERSION > "1.9" then require 'csv' else require 'fastercsv' end
 
+# The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
   attr_accessible :person_id, :comment, :obs_date, :state, :observation_type_ids
 

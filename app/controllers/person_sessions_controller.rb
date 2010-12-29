@@ -1,3 +1,4 @@
+# This controller deals with logging in and out
 class PersonSessionsController < ApplicationController
   before_filter :require_user, :only => :destroy
 

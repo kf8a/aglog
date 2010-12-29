@@ -1,3 +1,4 @@
+# These are potentially hazardous chemicals.
 class Hazard < ActiveRecord::Base
   attr_accessible :name, :hazard_type, :chemical_name, :description,
                   :notification, :exclusion_time_days

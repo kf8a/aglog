@@ -1,3 +1,4 @@
+# Allows modification and viewing of hazards
 class HazardsController < ApplicationController
 
   def index

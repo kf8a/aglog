@@ -1,5 +1,7 @@
 require 'date'
 require 'set'
+
+# Represents a location where observations are done.
 class Area < ActiveRecord::Base
   attr_accessible :name, :treatment_number, :replicate, :study_id,
                   :treatment_id, :description

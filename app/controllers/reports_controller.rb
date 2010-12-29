@@ -1,3 +1,4 @@
+# Allows modification and viewing of reports
 class ReportsController < ApplicationController
 
   def index

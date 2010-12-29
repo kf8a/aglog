@@ -1,3 +1,4 @@
+# A broad class of activities being done: harvesting, controlling weeds, etc.
 class ObservationType < ActiveRecord::Base
   attr_accessible :name
   

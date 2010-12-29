@@ -1,3 +1,4 @@
+# Allows modification and viewing of materials
 class MaterialsController < ApplicationController
   
   # GET /materials

@@ -1,4 +1,5 @@
 # encoding: UTF-8
+# Allows modification and viewing of observations
 class ObservationsController < ApplicationController
   before_filter :require_user, :except => [:index, :show, :related]
 

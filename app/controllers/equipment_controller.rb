@@ -1,3 +1,4 @@
+# Allows modification and viewing of equipment
 class EquipmentController < ApplicationController
 
   def index

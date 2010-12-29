@@ -1,3 +1,4 @@
+# A setup is the equipment and material used for an activity.
 class Setup < ActiveRecord::Base
   attr_accessible :activity_id, :equipment_id, :settings
   

@@ -1,3 +1,4 @@
+# Represents equipment used during an activity, like a plow or tractor.
 class Equipment < ActiveRecord::Base
   attr_accessible :name, :use_material, :is_tractor, :description, :archived
 

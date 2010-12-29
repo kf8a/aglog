@@ -1,3 +1,5 @@
+# These methods are most commonly called from the Edit Observation page to modify
+# setups of an observation
 class SetupsController < ApplicationController
 
   def create
