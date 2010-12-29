@@ -22,7 +22,7 @@ class ObservationsController < ApplicationController
       format.html #index.html
       format.xml  { render :xml => @observations.to_xml }
       format.salus_xml { render 'index.salus_xml' }
-      format.salus_csv {render :text => Observation.to_salus_csv}
+      format.salus_csv { render 'index.salus_csv' }#:text => Observation.to_salus_csv}
     end
   end
 

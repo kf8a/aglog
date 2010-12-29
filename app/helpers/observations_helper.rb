@@ -10,5 +10,13 @@ module ObservationsHelper
       [type.name, type.id]
     end
   end
+
+  def format_cell(array)
+    if array.empty?
+      "_"
+    else
+      array.join(';;').gsub(/([,])/, ' ')
+    end
+  end
    
 end

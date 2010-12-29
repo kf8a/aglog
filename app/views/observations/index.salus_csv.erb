@@ -1,0 +1,16 @@
+<%- headers = ["Date", "Type", "Area", "Material", "N_Content", "Rate", "Unit"] -%>
+<%= CSV.generate_line headers %>
+<%- @observations.each do |observation| -%>
+  <%- observation.areas.each do |area| -%>
+    <%- observation.observation_types.each do |type| -%>
+      <%- row = [ observation.obs_date.to_s,
+                  type.name,
+                  area.name,
+                  format_cell(observation.material_names),
+                  format_cell(observation.n_contents),
+                  format_cell(observation.rates),
+                  format_cell(observation.unit_names) ] -%>
+      <%= CSV.generate_line row %>
+    <%- end -%>
+  <%- end -%>
+<%- end -%>

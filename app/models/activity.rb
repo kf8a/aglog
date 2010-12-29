@@ -12,5 +12,20 @@ class Activity < ActiveRecord::Base
   def person_name
     self.person.try(:name)
   end
-  
+
+  def material_names
+    setups.collect { |setup| setup.material_names }
+  end
+
+  def n_contents
+    setups.collect { |setup| setup.n_contents }
+  end
+
+  def rates
+    setups.collect { |setup| setup.rates }
+  end
+
+  def unit_names
+    setups.collect { |setup| setup.unit_names }
+  end
 end

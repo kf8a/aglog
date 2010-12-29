@@ -20,7 +20,7 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def n_content_to_kg_ha
-    to_kg_ha(self.material.n_content) if self.material.n_content
+    to_kg_ha(self.n_content) if self.n_content
   end
 
   def p_content_to_kg_ha
@@ -29,6 +29,18 @@ class MaterialTransaction < ActiveRecord::Base
 
   def k_content_to_kg_ha
     to_kg_ha(self.material.k_content) if self.material.k_content
+  end
+
+  def material_name
+    self.material.try(:name)
+  end
+
+  def n_content
+    self.material.try(:n_content)
+  end
+
+  def unit_name
+    self.unit.try(:name)
   end
 
   private##############################
