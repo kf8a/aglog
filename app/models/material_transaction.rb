@@ -31,6 +31,10 @@ class MaterialTransaction < ActiveRecord::Base
     to_kg_ha(self.material.k_content) if self.material.k_content
   end
 
+  def material_with_rate
+    self.material.try(:name) + (if self.unit then rate_and_unit else "" end)
+  end
+
   def material_name
     self.material.try(:name)
   end
@@ -55,5 +59,14 @@ class MaterialTransaction < ActiveRecord::Base
       rate = (rate * 100).round / 100.0
     end
   end
-  
+
+  def rate_and_unit
+    case self.rate
+    when 1
+      ": #{self.rate} #{self.unit.name} per acre"
+    else
+      ": #{self.rate} #{self.unit.name.pluralize} per acre"
+    end
+  end
+
 end

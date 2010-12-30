@@ -1,24 +1,6 @@
 <h1>Editing area</h1>
-<%= render "shared/error_messages", :target => @area %>
-<%= form_for @area do |f| %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %>
-    <%= f.text_field :description, :size => 50 %>
-  </p>
-  <p>
-    <%= f.label :study_id, 'Study' %>
-    <%= f.select :study_id, options_from_collection_for_select(studies, 'id', 'name'), {:include_blank => true} %>
-    <%= f.label :treatment_id, 'Treatment' %>
-    <%= f.select :treatment_id, options_from_collection_for_select(treatments, 'id', 'name'), {:include_blank => true} %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+
+<%= render 'form' %>
 
 <%= link_to 'Show', area_path(@area) %> |
 <%= link_to 'Back', areas_path %>
