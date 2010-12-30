@@ -1,3 +1,4 @@
+# Allows modification and viewing of people
 class PeopleController < ApplicationController
 
   # GET /people

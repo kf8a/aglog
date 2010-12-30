@@ -1,6 +1,7 @@
 # encoding: UTF-8
 if RUBY_VERSION > "1.9" then require 'csv' else require 'fastercsv' end
 
+# The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
   attr_accessible :person_id, :comment, :obs_date, :state, :observation_type_ids
 
@@ -47,16 +48,11 @@ class Observation < ActiveRecord::Base
   def observation_type
     self.observation_types.first.name
   end
-  
+
   def areas_as_text
-    if @error_areas then
-      return @error_areas
-    else
-      return Area.unparse(areas)
-#      return areas.map(&:name).join(' ')
-    end
+    @error_areas || Area.unparse(areas)
   end
-  
+
   def areas_as_text=(areas_as_text)
     @error_areas =  nil
     new_areas = Area.parse(areas_as_text)

@@ -1,3 +1,5 @@
+# These methods are most commonly called from the Edit Observation page to modify
+# material transactions of an observation
 class MaterialTransactionsController < ApplicationController
 
   def create

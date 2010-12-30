@@ -100,43 +100,6 @@ class AreaTest < ActiveSupport::TestCase
     assert_equal  [:T1, :T2].to_set, areas.to_set
   end
   
-  def test_comparison
-  	# studies
-		area1 = Area.new(:name => 'a1', :treatment_id => 1, :replicate => 1, :study_id => 1)
-		area2 = Area.new(:name => 'a2', :treatment_id => 1, :replicate => 1, :study_id => 2)
-		assert_equal 0, area1 <=> area1
-		assert_equal -1, area1 <=> area2
-		assert_equal 1, area2 <=> area1
-		
-		# treatments
-		area1 = Area.new(:name => 'a1', :treatment_id => 1, :replicate => 1, :study_id => 1)
-		area2 = Area.new(:name => 'a2', :treatment_id => 2, :replicate => 1, :study_id => 1)
-		assert_equal 0, area1 <=> area1
-		assert_equal -1, area1 <=> area2
-		assert_equal 1, area2 <=> area1
-		
-		# replicates
-		area1 = Area.new(:name => 'a1', :treatment_id => 1, :replicate => 1, :study_id => 1)
-		area2 = Area.new(:name => 'a2', :treatment_id => 1, :replicate => 2, :study_id => 1)
-		assert_equal 0, area1 <=> area1
-		assert_equal -1, area1 <=> area2
-		assert_equal 1,area2 <=> area1
-		
-  	# nil replicate
-		area1 = Area.new(:name => 'a1', :treatment_id => 1, :replicate => 1, :study_id => nil)
-		area2 = Area.new(:name => 'a2', :treatment_id => 2, :replicate => 1, :study_id => nil)
-		assert_equal 0, area1 <=> area1
-		assert_equal -1, area1 <=> area2
-		assert_equal 1,area2 <=> area1
-		
-		# this generates no-method error - nil object
-		# area1 = Area.new(:name => 'a1', :treatment => 1, :replicate => 1, :study_id => nil)
-		# area2 = Area.new(:name => 'a2', :treatment => 1, :replicate => 1, :study_id => 1)
-		# assert_equal area1 <=> area1, 0
-		# assert_equal area1 <=> area2, -1
-		# assert_equal area2 <=> area1, 1
-	end
-    
   def test_area_not_full_rep_unparse
     parse_reverse('T1R1')
     parse_reverse('T2')

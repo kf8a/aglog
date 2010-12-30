@@ -1,3 +1,5 @@
+# A person is both someone who performs activities, and (with an open id) a
+# user of the web application.
 class Person < ActiveRecord::Base
   attr_accessible :given_name, :sur_name, :openid_identifier
 

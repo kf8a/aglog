@@ -1,3 +1,4 @@
+# Allows modification and viewing of areas
 class AreasController < ApplicationController
 
   def index

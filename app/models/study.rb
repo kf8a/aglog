@@ -1,3 +1,4 @@
+# Groups of areas belong to different studies.
 class Study < ActiveRecord::Base
   attr_accessible :name, :description
   
