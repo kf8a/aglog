@@ -31,61 +31,39 @@ class Area < ActiveRecord::Base
     end
   end
 
-   
-  # an implementation of unparse() that is more general.
-  # Should work on all studies, should not make assumptions about the number of reps.  
-  def Area.better_unparse(areas=[])
+  def Area.unparse(areas=[])
   	# prefixes = ["T", "B", "F", "iF", "REPT"]
   	tokens = []
-  	studies = areas.collect{|area| area.study}.uniq  # list of study numbers
-  	# why not do a Study.all ?
-  	# also remember that not every area belongs to a study
-  	
-  	# the query set (is subset?)
 	  areas_set = areas.to_set	
 	  	
-	  studies.each do |study|
+	  Study.all.each do |study|
+      # if all of a study's areas are here,
+      # use the study's name instead of individiual areas
 	  	study_set = study.areas.to_set
 	  	if !study_set.empty? && study_set.subset?(areas_set)
 	  		areas_set -= study_set
 	  		tokens << study.name
-	  	end # if
-	  	
-	  	study.treatments.each do |treatment|
-	  		treatment_set = treatment.areas.to_set
-	  		if !treatment_set.empty? && treatment_set.subset?(areas_set)
-	  			areas_set -= treatment_set
-	  			tokens << treatment.name
-	  		end # if
-	  	end # s.treatments.each
-	  end # studies.each
+	  	end
+    end
+
+    Treatment.all.each do |treatment|
+      # if all of a treatment's areas are here,
+      # use the treatment's name instead of individual areas
+      treatment_set = treatment.areas.to_set
+      if !treatment_set.empty? && treatment_set.subset?(areas_set)
+        areas_set -= treatment_set
+        tokens << treatment.name
+      end
+    end
 	  
-	  if !areas_set.empty?
-	    remaining = areas_set.to_a.sort
+	  unless areas_set.empty?
+	    remaining = areas_set.to_a
 			tokens << remaining.collect{|area| area.name}
 		end
 	  
-	  tokens.flatten.join(' ')
-  
+	  tokens.flatten.sort.join(' ')
   end
   
-  def Area.unparse(areas=[])
-    areas = areas.collect {|area| area.name.to_sym}
-    areas = areas.to_set
-
-    studies = Study.all
-    
-    studies.each do | study |
-      study.treatments.each do |treatment|
-        areas = reduce_names(areas, treatment.name, treatment.areas)
-      end
-      areas = reduce_names(areas, study.name, study.treatments)
-    end
-    
-  	areas = areas.collect {|area| area.to_s}.sort
-    areas.join(' ')
-  end
-
   def <=>(other)
   	if self.study_id != other.study_id
   		self.study_id <=> other.study_id  # could use study.name
@@ -172,13 +150,4 @@ class Area < ActiveRecord::Base
     area
   end
 
-  def Area.reduce_names(areas,name,collection)
-    test = collection.collect {|member| member.name.to_sym}
-    test = test.to_set
-    if !test.empty? && areas.superset?(test)
-      areas -= test
-      areas << name.to_sym
-    end
-    return areas
-  end
 end
