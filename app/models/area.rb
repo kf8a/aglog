@@ -11,7 +11,7 @@ class Area < ActiveRecord::Base
   belongs_to :treatment
   
   validates :name, :uniqueness => { :case_sensitive => false }
-  validate :no_treatment_without_study
+  validates :study, :presence => { :if => :treatment_id }
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
@@ -42,13 +42,6 @@ class Area < ActiveRecord::Base
   end
   
   private##########################################
-
-  def no_treatment_without_study
-    # area without study is OK
-  	if treatment_id? && !study_id?
-  		errors.add(:base, 'No treatment allowed if study is nil')
-  	end
-  end
 
   def treatment_is_part_of_study
     # if treatment exists then it must belong to correct study
