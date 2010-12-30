@@ -11,11 +11,11 @@ class Area < ActiveRecord::Base
   belongs_to :treatment
   
   validates :name, :uniqueness => { :case_sensitive => false }
-  validate :no_treatment_without_study
+  validates :study, :presence => { :if => :treatment_id }
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
-  # Area.parse returns an array of arrays if the parse was successful
+  # Area.parse returns an array of areas if the parse was successful
   # otherwise it returns the text with the offendinng token highlighted by **
   # for example  'T1R1 R11' will return  'T1R1 *R11*' 
   def Area.parse(areas_as_text)
@@ -24,7 +24,7 @@ class Area < ActiveRecord::Base
     areas.flatten!
 
     # if areas contains a string
-    if (areas.any? {|area| area.class.name  == 'String'})
+    if (areas.any? { |area| area.class == String })
       stringify_areas(areas)
     else
       areas
@@ -33,45 +33,15 @@ class Area < ActiveRecord::Base
 
   def Area.unparse(areas=[])
   	# prefixes = ["T", "B", "F", "iF", "REPT"]
-  	tokens = []
-	  areas_set = areas.to_set	
-	  	
-	  Study.all.each do |study|
-      # if all of a study's areas are here,
-      # use the study's name instead of individiual areas
-	  	study_set = study.areas.to_set
-	  	if !study_set.empty? && study_set.subset?(areas_set)
-	  		areas_set -= study_set
-	  		tokens << study.name
-	  	end
-    end
-
-    Treatment.all.each do |treatment|
-      # if all of a treatment's areas are here,
-      # use the treatment's name instead of individual areas
-      treatment_set = treatment.areas.to_set
-      if !treatment_set.empty? && treatment_set.subset?(areas_set)
-        areas_set -= treatment_set
-        tokens << treatment.name
-      end
-    end
-	  
-	  unless areas_set.empty?
-	    remaining = areas_set.to_a
-			tokens << remaining.collect{|area| area.name}
-		end
-	  
-	  tokens.flatten.sort.join(' ')
+	  areas_set = areas.to_set
+    areas_set = replace_study_areas_by_study(areas_set)
+    areas_set = replace_treatment_areas_by_treatment(areas_set)
+    names     = areas_set.to_a.collect{ |member| member.name }
+			  
+	  names.sort.join(' ')
   end
   
   private##########################################
-
-  def no_treatment_without_study
-    # area without study is OK
-  	if treatment_id? && !study_id?
-  		errors.add(:base, 'No treatment allowed if study is nil')
-  	end
-  end
 
   def treatment_is_part_of_study
     # if treatment exists then it must belong to correct study
@@ -83,7 +53,6 @@ class Area < ActiveRecord::Base
   def name_has_no_spaces
     errors.add(:base, 'names should not contain spaces') if name && name.scan(/ /) != []
   end
-
 
   def Area.stringify_areas(areas)
     area_strings = areas.collect do |area|
@@ -133,6 +102,32 @@ class Area < ActiveRecord::Base
     area = Area.where(['upper(name) = ?', token.squeeze.upcase]) if area.blank?
     area = token if area.blank? #failed to find an area
     area
+  end
+
+  def Area.replace_study_areas_by_study(areas_set)
+    Study.all.each do |study|
+      # if all of a study's areas are here,
+      # use the study's name instead of individual areas
+	  	study_set = study.areas.to_set
+	  	if !study_set.empty? && study_set.subset?(areas_set)
+	  		areas_set -= study_set
+        areas_set += [study].to_set
+	  	end
+    end
+    areas_set
+  end
+
+  def Area.replace_treatment_areas_by_treatment(areas_set)
+    Treatment.all.each do |treatment|
+      # if all of a treatment's areas are here,
+      # use the treatment's name instead of individual areas
+      treatment_set = treatment.areas.to_set
+      if !treatment_set.empty? && treatment_set.subset?(areas_set)
+        areas_set -= treatment_set
+        areas_set += [treatment].to_set
+      end
+    end
+    areas_set
   end
 
 end
