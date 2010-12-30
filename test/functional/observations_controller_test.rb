@@ -84,12 +84,16 @@ class ObservationsControllerTest < ActionController::TestCase
   context "POST :create" do
     setup do
       @observation_count = Observation.count
-      xhr(:post, :create, :commit => "Create Observation",
-        :observation => { :obs_date => Date.today, :observation_type_ids => ["3"] })
+      post :create, :observation => { :obs_date => Date.today,
+                                      :observation_type_ids => ["3"] }
     end
 
     should "create an observation" do
       assert_equal @observation_count + 1, Observation.count
+    end
+
+    should "assign the current user as the observation's person" do
+      assert_equal @user.id, assigns(:observation).person_id
     end
   end
 
