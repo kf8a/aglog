@@ -15,9 +15,14 @@ class Area < ActiveRecord::Base
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
-  # Area.parse returns an array of areas if the parse was successful
-  # otherwise it returns the text with the offendinng token highlighted by **
-  # for example  'T1R1 R11' will return  'T1R1 *R11*' 
+  # Tries to find areas by their names.
+  # @param [String] areas_as_text a string containing area names
+  # @return [String or Array] the original string with errors highlighted or
+  #   an array of areas
+  # @example Parse a string of actual area names
+  #   Area.parse('T1R1 T2') #=> [#<Area id: 1, name: "T1R1" ... >, ... ]
+  # @example Parse a string which has no area with that name
+  #   Area.parse('T1R1 R11') #=> "T1R1 *R11*"
   def Area.parse(areas_as_text)
     tokens = areas_as_text.chomp.split(/ +/)
     areas = tokens.collect {|token| get_areas_by_token(token)}
@@ -31,8 +36,12 @@ class Area < ActiveRecord::Base
     end
   end
 
+  # Transforms an array of areas into a list of area names and study names if a
+  # whole study's areas are included.
+  # @param [Array] areas an array of areas
+  # @return [String] a list of area names and study names if a whole study's
+  #   areas are included (and treatment names for the same reason)
   def Area.unparse(areas=[])
-  	# prefixes = ["T", "B", "F", "iF", "REPT"]
 	  areas_set = areas.to_set
     areas_set = replace_study_areas_by_study(areas_set)
     areas_set = replace_treatment_areas_by_treatment(areas_set)

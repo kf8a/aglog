@@ -1,0 +1,1015 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Conversation</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (C)</a> &raquo; 
+    
+    
+    <span class="title">Conversation</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Conversation
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Conversation</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#can_close%3D-instance_method" title="#can_close= (instance method)">- (Object) <strong>can_close</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    <span class="note title writeonly">writeonly</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Sets the attribute can_close.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#closed_after-instance_method" title="#closed_after (instance method)">- (Object) <strong>closed_after</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute closed_after.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#needs_attention_after-instance_method" title="#needs_attention_after (instance method)">- (Object) <strong>needs_attention_after</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute needs_attention_after.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#needs_attention_enter-instance_method" title="#needs_attention_enter (instance method)">- (Object) <strong>needs_attention_enter</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute needs_attention_enter.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_after_first-instance_method" title="#read_after_first (instance method)">- (Object) <strong>read_after_first</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute read_after_first.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_after_second-instance_method" title="#read_after_second (instance method)">- (Object) <strong>read_after_second</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute read_after_second.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_enter-instance_method" title="#read_enter (instance method)">- (Object) <strong>read_enter</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute read_enter.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_exit-instance_method" title="#read_exit (instance method)">- (Object) <strong>read_exit</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute read_exit.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#always_true-instance_method" title="#always_true (instance method)">- (Object) <strong>always_true</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#can_close%3F-instance_method" title="#can_close? (instance method)">- (Boolean) <strong>can_close?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#closed_after_action-instance_method" title="#closed_after_action (instance method)">- (Object) <strong>closed_after_action</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_after_first_action-instance_method" title="#read_after_first_action (instance method)">- (Object) <strong>read_after_first_action</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_after_second_action-instance_method" title="#read_after_second_action (instance method)">- (Object) <strong>read_after_second_action</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_enter_action-instance_method" title="#read_enter_action (instance method)">- (Object) <strong>read_enter_action</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="can_close=-instance_method"></span>
+      <span id=""></span>
+      <div class="method_details first">
+  <p class="signature first" id="can_close=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>can_close=</strong>(value)  <span class="extras">(writeonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Sets the attribute can_close
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>value</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the value to set the attribute can_close to.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2
+3
+4</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 2</span>
+
+<span class='kw'>def</span> <span class='id can_close='>can_close=</span><span class='lparen'>(</span><span class='id value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@can_close</span> <span class='op'>=</span> <span class='id value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="closed_after=-instance_method"></span>
+      <span id="closed_after-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="closed_after-instance_method">
+  
+    - (<tt>Object</tt>) <strong>closed_after</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute closed_after
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id closed_after'>closed_after</span>
+  <span class='ivar'>@closed_after</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="needs_attention_after=-instance_method"></span>
+      <span id="needs_attention_after-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="needs_attention_after-instance_method">
+  
+    - (<tt>Object</tt>) <strong>needs_attention_after</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute needs_attention_after
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id needs_attention_after'>needs_attention_after</span>
+  <span class='ivar'>@needs_attention_after</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="needs_attention_enter=-instance_method"></span>
+      <span id="needs_attention_enter-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="needs_attention_enter-instance_method">
+  
+    - (<tt>Object</tt>) <strong>needs_attention_enter</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute needs_attention_enter
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id needs_attention_enter'>needs_attention_enter</span>
+  <span class='ivar'>@needs_attention_enter</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="read_after_first=-instance_method"></span>
+      <span id="read_after_first-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="read_after_first-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read_after_first</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute read_after_first
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id read_after_first'>read_after_first</span>
+  <span class='ivar'>@read_after_first</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="read_after_second=-instance_method"></span>
+      <span id="read_after_second-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="read_after_second-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read_after_second</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute read_after_second
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id read_after_second'>read_after_second</span>
+  <span class='ivar'>@read_after_second</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="read_enter=-instance_method"></span>
+      <span id="read_enter-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="read_enter-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read_enter</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute read_enter
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id read_enter'>read_enter</span>
+  <span class='ivar'>@read_enter</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="read_exit=-instance_method"></span>
+      <span id="read_exit-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="read_exit-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read_exit</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute read_exit
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id read_exit'>read_exit</span>
+  <span class='ivar'>@read_exit</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="always_true-instance_method">
+  
+    - (<tt>Object</tt>) <strong>always_true</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 52</span>
+
+<span class='kw'>def</span> <span class='id always_true'>always_true</span>
+  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="can_close?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>can_close?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id can_close?'>can_close?</span>
+  <span class='ivar'>@can_close</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="closed_after_action-instance_method">
+  
+    - (<tt>Object</tt>) <strong>closed_after_action</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 64</span>
+
+<span class='kw'>def</span> <span class='id closed_after_action'>closed_after_action</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id closed_after'>closed_after</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_after_first_action-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read_after_first_action</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id read_after_first_action'>read_after_first_action</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id read_after_first'>read_after_first</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_after_second_action-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read_after_second_action</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='id read_after_second_action'>read_after_second_action</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id read_after_second'>read_after_second</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_enter_action-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read_enter_action</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/test/fixtures/conversation.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id read_enter_action'>read_enter_action</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id read_enter'>read_enter</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Thu Dec 30 13:51:47 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: NavigationHelpers</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (N)</a> &raquo; 
+    
+    
+    <span class="title">NavigationHelpers</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: NavigationHelpers
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">features/support/paths.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#path_to-instance_method" title="#path_to (instance method)">- (Object) <strong>path_to</strong>(page_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Maps a name to a path.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="path_to-instance_method">
+  
+    - (<tt>Object</tt>) <strong>path_to</strong>(page_name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Maps a name to a path. Used by the
+</p>
+<pre class="code">
+  When /^I go to (.+)$/ do |page_name|
+</pre>
+<p>
+step definition in web_steps.rb
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'features/support/paths.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id path_to'>path_to</span><span class='lparen'>(</span><span class='id page_name'>page_name</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id page_name'>page_name</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>the home\s?page</span><span class='regexp_end'>/</span></span>
+    <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span>
+
+  <span class='comment'># Add more mappings here.
+</span>  <span class='comment'># Here is an example that pulls values out of the Regexp:
+</span>  <span class='comment'>#
+</span>  <span class='comment'>#   when /^(.*)'s profile page$/i
+</span>  <span class='comment'>#     user_profile_path(User.find_by_login($1))
+</span>
+  <span class='kw'>else</span>
+    <span class='kw'>begin</span>
+      <span class='id page_name'>page_name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>the (.*) page</span><span class='regexp_end'>/</span></span>
+      <span class='id path_components'>path_components</span> <span class='op'>=</span> <span class='backref'>$1</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\s+</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+      <span class='kw'>self</span><span class='period'>.</span><span class='id send'>send</span><span class='lparen'>(</span><span class='id path_components'>path_components</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>path</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>_</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_sym'>to_sym</span><span class='rparen'>)</span>
+    <span class='kw'>rescue</span> <span class='const'>Object</span> <span class='op'>=&gt;</span> <span class='id e'>e</span>
+      <span class='id raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can't find mapping from \&quot;</span><span class='embexpr_beg'>#{</span><span class='id page_name'>page_name</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot; to a path.\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Now, go and add a mapping in </span><span class='embexpr_beg'>#{</span><span class='kw'>__FILE__</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Thu Dec 30 13:51:43 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
