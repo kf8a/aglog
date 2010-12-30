@@ -1,0 +1,632 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: ObservationsController</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (O)</a> &raquo; 
+    
+    
+    <span class="title">ObservationsController</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: ObservationsController
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActionController::Base</li>
+          
+            <li class="next"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></li>
+          
+            <li class="next">ObservationsController</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/controllers/observations_controller.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+encoding: UTF-8 Allows modification and viewing of observations
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+  
+  
+  
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-instance_method" title="#create (instance method)">- (Object) <strong>create</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+POST /observations POST /observations.xml.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#destroy-instance_method" title="#destroy (instance method)">- (Object) <strong>destroy</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#edit-instance_method" title="#edit (instance method)">- (Object) <strong>edit</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#index-instance_method" title="#index (instance method)">- (Object) <strong>index</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+GET /observations GET /observations.xml.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new-instance_method" title="#new (instance method)">- (Object) <strong>new</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#related-instance_method" title="#related (instance method)">- (Object) <strong>related</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#show-instance_method" title="#show (instance method)">- (Object) <strong>show</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#signed_in%3F-instance_method" title="ApplicationController#signed_in? (method)">#signed_in?</a></span></p>
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="create-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+POST /observations POST /observations.xml
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/observations_controller.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='id create'>create</span>
+  <span class='ivar'>@observation</span> <span class='op'>=</span> <span class='id current_user'>current_user</span><span class='period'>.</span><span class='id observations'>observations</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:observation</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id logger'>logger</span><span class='period'>.</span><span class='id info'>info</span> <span class='id current_user'>current_user</span><span class='period'>.</span><span class='id name'>name</span>
+  <span class='kw'>if</span> <span class='ivar'>@observation</span><span class='period'>.</span><span class='id save'>save</span>
+    <span class='id flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:form</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Observation was successfully created.</span><span class='tstring_end'>'</span></span>
+  <span class='kw'>else</span>
+    <span class='id flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:form</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Creation failed</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id respond_with'>respond_with</span> <span class='ivar'>@observation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="destroy-instance_method">
+  
+    - (<tt>Object</tt>) <strong>destroy</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/observations_controller.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id destroy'>destroy</span>
+  <span class='ivar'>@observation</span> <span class='op'>=</span> <span class='const'>Observation</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@observation</span><span class='period'>.</span><span class='id destroy'>destroy</span>
+  <span class='id respond_with'>respond_with</span> <span class='ivar'>@observation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="edit-instance_method">
+  
+    - (<tt>Object</tt>) <strong>edit</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/observations_controller.rb', line 52</span>
+
+<span class='kw'>def</span> <span class='id edit'>edit</span>
+  <span class='ivar'>@observation</span> <span class='op'>=</span> <span class='const'>Observation</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id respond_with'>respond_with</span> <span class='ivar'>@observation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="index-instance_method">
+  
+    - (<tt>Object</tt>) <strong>index</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+GET /observations GET /observations.xml
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/observations_controller.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id index'>index</span>
+  <span class='id state'>state</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:in_review</span><span class='rbracket'>]</span> <span class='kw'>then</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>in_review</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>else</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>published</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>end</span>
+  <span class='id obstype'>obstype</span><span class='comma'>,</span> <span class='id page'>page</span> <span class='op'>=</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:obstype</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span>
+  <span class='id state_observations'>state_observations</span> <span class='op'>=</span> <span class='const'>Observation</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='symbol'>:state</span> <span class='op'>=&gt;</span> <span class='id state'>state</span><span class='rparen'>)</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>obs_date desc</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id obstype'>obstype</span>
+    <span class='ivar'>@observations</span> <span class='op'>=</span> <span class='id state_observations'>state_observations</span><span class='period'>.</span><span class='id paginate'>paginate</span> <span class='symbol'>:page</span><span class='op'>=&gt;</span> <span class='id page'>page</span><span class='comma'>,</span>
+      <span class='symbol'>:conditions</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>observation_type_id = ?</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id obstype'>obstype</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='symbol'>:joins</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>join observation_types_observations on  observation_types_observations.observation_id = id</span><span class='tstring_end'>'</span></span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@observations</span> <span class='op'>=</span> <span class='id state_observations'>state_observations</span><span class='period'>.</span><span class='id paginate'>paginate</span> <span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='id page'>page</span>
+  <span class='kw'>end</span>
+ 
+  <span class='id respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id format'>format</span><span class='op'>|</span>
+    <span class='id format'>format</span><span class='period'>.</span><span class='id html'>html</span> <span class='comment'>#index.html
+</span>    <span class='id format'>format</span><span class='period'>.</span><span class='id xml'>xml</span>  <span class='lbrace'>{</span> <span class='id render'>render</span> <span class='symbol'>:xml</span> <span class='op'>=&gt;</span> <span class='ivar'>@observations</span><span class='period'>.</span><span class='id to_xml'>to_xml</span> <span class='rbrace'>}</span>
+    <span class='id format'>format</span><span class='period'>.</span><span class='id salus_xml'>salus_xml</span> <span class='lbrace'>{</span> <span class='id render'>render</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>index.salus_xml</span><span class='tstring_end'>'</span></span> <span class='rbrace'>}</span>
+    <span class='id format'>format</span><span class='period'>.</span><span class='id salus_csv'>salus_csv</span> <span class='lbrace'>{</span> <span class='id render'>render</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>index.salus_csv</span><span class='tstring_end'>'</span></span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="new-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/observations_controller.rb', line 34</span>
+
+<span class='kw'>def</span> <span class='id new'>new</span>
+  <span class='ivar'>@observation</span> <span class='op'>=</span> <span class='const'>Observation</span><span class='period'>.</span><span class='id new'>new</span>
+  <span class='id respond_with'>respond_with</span> <span class='ivar'>@observation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="related-instance_method">
+  
+    - (<tt>Object</tt>) <strong>related</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/observations_controller.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id related'>related</span>
+  <span class='ivar'>@observation</span> <span class='op'>=</span> <span class='const'>Observation</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@areas</span> <span class='op'>=</span> <span class='ivar'>@observation</span><span class='period'>.</span><span class='id areas'>areas</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="show-instance_method">
+  
+    - (<tt>Object</tt>) <strong>show</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/observations_controller.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='id show'>show</span>
+  <span class='ivar'>@observation</span> <span class='op'>=</span> <span class='const'>Observation</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id respond_with'>respond_with</span> <span class='ivar'>@observation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59
+60
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/observations_controller.rb', line 57</span>
+
+<span class='kw'>def</span> <span class='id update'>update</span>
+  <span class='ivar'>@observation</span> <span class='op'>=</span> <span class='const'>Observation</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@observation</span><span class='period'>.</span><span class='id update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:observation</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:notice</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Observation was successfully updated.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id respond_with'>respond_with</span> <span class='ivar'>@observation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Thu Dec 30 15:27:34 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

@@ -11,7 +11,7 @@ class Material < ActiveRecord::Base
   
   validates :name, :uniqueness => { :case_sensitive => false }
 
-  #Liquid amounts are in liters. This method converts liters to grams.
+  # Converts liquids from liters to grams.
   def to_mass(amount)
     if liquid
       (amount * specific_weight) * 1000.0

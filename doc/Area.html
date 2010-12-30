@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Area</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo; 
+    
+    
+    <span class="title">Area</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Area
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Area</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/area.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Represents a location where observations are done.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse-class_method" title="parse (class method)">+ (String or Array) <strong>parse</strong>(areas_as_text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Tries to find areas by their names.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unparse-class_method" title="unparse (class method)">+ (String) <strong>unparse</strong>(areas = []) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Transforms an array of areas into a list of area names and study names if a
+whole study&#8217;s areas are included.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="parse-class_method">
+  
+    + (<tt>String or Array</tt>) <strong>parse</strong>(areas_as_text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Tries to find areas by their names.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'><p>
+Parse a string of actual area names
+</p>
+</div></h4>
+      <pre class="example code"><span class='const'>Area</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>T1R1 T2</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; [#&lt;Area id: 1, name: &quot;T1R1&quot; ... &gt;, ... ]</span></pre>
+    
+      <h4><div class='inline'><p>
+Parse a string which has no area with that name
+</p>
+</div></h4>
+      <pre class="example code"><span class='const'>Area</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>T1R1 R11</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;T1R1 *R11*&quot;</span></pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>areas_as_text</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+a string containing area names
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String or Array</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the original string with errors highlighted or an array of areas
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/area.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='const'>Area</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='id areas_as_text'>areas_as_text</span><span class='rparen'>)</span>
+  <span class='id tokens'>tokens</span> <span class='op'>=</span> <span class='id areas_as_text'>areas_as_text</span><span class='period'>.</span><span class='id chomp'>chomp</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'> +</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+  <span class='id areas'>areas</span> <span class='op'>=</span> <span class='id tokens'>tokens</span><span class='period'>.</span><span class='id collect'>collect</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id token'>token</span><span class='op'>|</span> <span class='id get_areas_by_token'>get_areas_by_token</span><span class='lparen'>(</span><span class='id token'>token</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+  <span class='id areas'>areas</span><span class='period'>.</span><span class='id flatten!'>flatten!</span>
+
+  <span class='comment'># if areas contains a string
+</span>  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id areas'>areas</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id area'>area</span><span class='op'>|</span> <span class='id area'>area</span><span class='period'>.</span><span class='id class'>class</span> <span class='op'>==</span> <span class='const'>String</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='id stringify_areas'>stringify_areas</span><span class='lparen'>(</span><span class='id areas'>areas</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id areas'>areas</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="unparse-class_method">
+  
+    + (<tt>String</tt>) <strong>unparse</strong>(areas = []) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Transforms an array of areas into a list of area names and study names if a
+whole study&#8217;s areas are included.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>areas</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+an array of areas
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+a list of area names and study names if a whole study&#8217;s areas are
+included (and treatment names for the same reason)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/area.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='const'>Area</span><span class='period'>.</span><span class='id unparse'>unparse</span><span class='lparen'>(</span><span class='id areas'>areas</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+ <span class='id areas_set'>areas_set</span> <span class='op'>=</span> <span class='id areas'>areas</span><span class='period'>.</span><span class='id to_set'>to_set</span>
+  <span class='id areas_set'>areas_set</span> <span class='op'>=</span> <span class='id replace_study_areas_by_study'>replace_study_areas_by_study</span><span class='lparen'>(</span><span class='id areas_set'>areas_set</span><span class='rparen'>)</span>
+  <span class='id areas_set'>areas_set</span> <span class='op'>=</span> <span class='id replace_treatment_areas_by_treatment'>replace_treatment_areas_by_treatment</span><span class='lparen'>(</span><span class='id areas_set'>areas_set</span><span class='rparen'>)</span>
+  <span class='id names'>names</span>     <span class='op'>=</span> <span class='id areas_set'>areas_set</span><span class='period'>.</span><span class='id to_a'>to_a</span><span class='period'>.</span><span class='id collect'>collect</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id member'>member</span><span class='op'>|</span> <span class='id member'>member</span><span class='period'>.</span><span class='id name'>name</span> <span class='rbrace'>}</span>
+	  
+ <span class='id names'>names</span><span class='period'>.</span><span class='id sort'>sort</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Thu Dec 30 15:27:32 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: ScottBarron::Acts::StateMachine::SupportingClasses::State</title>
+<link rel="stylesheet" href="../../../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../../../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../../_index.html">Index (S)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../../../../ScottBarron.html" title="ScottBarron (module)">ScottBarron</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../../Acts.html" title="ScottBarron::Acts (module)">Acts</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../StateMachine.html" title="ScottBarron::Acts::StateMachine (module)">StateMachine</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../SupportingClasses.html" title="ScottBarron::Acts::StateMachine::SupportingClasses (module)">SupportingClasses</a></span></span>
+     &raquo; 
+    <span class="title">State</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: ScottBarron::Acts::StateMachine::SupportingClasses::State
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ScottBarron::Acts::StateMachine::SupportingClasses::State</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">vendor/plugins/acts_as_state_machine/lib/acts_as_state_machine.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (Object) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute name.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entered-instance_method" title="#entered (instance method)">- (Object) <strong>entered</strong>(record) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entering-instance_method" title="#entering (instance method)">- (Object) <strong>entering</strong>(record) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#exited-instance_method" title="#exited (instance method)">- (Object) <strong>exited</strong>(record) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (State) <strong>initialize</strong>(name, opts) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of State.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="ScottBarron::Acts::StateMachine::SupportingClasses::State (class)">State</a></span></tt>) <strong>initialize</strong>(name, opts) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of State
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/lib/acts_as_state_machine.rb', line 17</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id opts'>opts</span><span class='rparen'>)</span>
+  <span class='ivar'>@name</span><span class='comma'>,</span> <span class='ivar'>@opts</span> <span class='op'>=</span> <span class='id name'>name</span><span class='comma'>,</span> <span class='id opts'>opts</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="name-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>name</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute name
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/lib/acts_as_state_machine.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id name'>name</span>
+  <span class='ivar'>@name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="entered-instance_method">
+  
+    - (<tt>Object</tt>) <strong>entered</strong>(record) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/lib/acts_as_state_machine.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='id entered'>entered</span><span class='lparen'>(</span><span class='id record'>record</span><span class='rparen'>)</span>
+  <span class='id afteractions'>afteractions</span> <span class='op'>=</span> <span class='ivar'>@opts</span><span class='lbracket'>[</span><span class='symbol'>:after</span><span class='rbracket'>]</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id afteractions'>afteractions</span>
+  <span class='const'>Array</span><span class='lparen'>(</span><span class='id afteractions'>afteractions</span><span class='rparen'>)</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id afteract'>afteract</span><span class='op'>|</span>
+    <span class='id record'>record</span><span class='period'>.</span><span class='id send'>send</span><span class='lparen'>(</span><span class='symbol'>:run_transition_action</span><span class='comma'>,</span> <span class='id afteract'>afteract</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="entering-instance_method">
+  
+    - (<tt>Object</tt>) <strong>entering</strong>(record) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/lib/acts_as_state_machine.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id entering'>entering</span><span class='lparen'>(</span><span class='id record'>record</span><span class='rparen'>)</span>
+  <span class='id enteract'>enteract</span> <span class='op'>=</span> <span class='ivar'>@opts</span><span class='lbracket'>[</span><span class='symbol'>:enter</span><span class='rbracket'>]</span>
+  <span class='id record'>record</span><span class='period'>.</span><span class='id send'>send</span><span class='lparen'>(</span><span class='symbol'>:run_transition_action</span><span class='comma'>,</span> <span class='id enteract'>enteract</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id enteract'>enteract</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="exited-instance_method">
+  
+    - (<tt>Object</tt>) <strong>exited</strong>(record) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'vendor/plugins/acts_as_state_machine/lib/acts_as_state_machine.rb', line 34</span>
+
+<span class='kw'>def</span> <span class='id exited'>exited</span><span class='lparen'>(</span><span class='id record'>record</span><span class='rparen'>)</span>
+  <span class='id exitact'>exitact</span>  <span class='op'>=</span> <span class='ivar'>@opts</span><span class='lbracket'>[</span><span class='symbol'>:exit</span><span class='rbracket'>]</span>
+  <span class='id record'>record</span><span class='period'>.</span><span class='id send'>send</span><span class='lparen'>(</span><span class='symbol'>:run_transition_action</span><span class='comma'>,</span> <span class='id exitact'>exitact</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id exitact'>exitact</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Thu Dec 30 13:51:46 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
