@@ -54,12 +54,8 @@ class MaterialsController < ApplicationController
   def put_hazards
     @material = Material.find_by_id(params[:id])
     if @material
-      @material.hazards = []
-
-      if params[:hazards]
-        values = params[:hazards].values
-        values.each { |value| @material.hazards << Hazard.find(value) }
-      end
+      values = params[:hazards].try(:values).to_a # If nil, we get []
+      @material.hazards = values.collect { |value| Hazard.find(value) }
       
       redirect_to :action => "edit"
     else
