@@ -28,7 +28,7 @@ class PeopleControllerTest < ActionController::TestCase
 
   context "POST :create with invalid attributes" do
     setup do
-      post :create, :person => { :given_name => "", :sur_name => "" }
+      post :create, :person => { :given_name => nil, :sur_name => nil }
     end
 
     should render_template 'new'

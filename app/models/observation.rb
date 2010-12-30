@@ -33,14 +33,15 @@ class Observation < ActiveRecord::Base
   end
   
   def in_review
-    self.state == 'in_review'
+    'in_review' == self.state
   end
     	
   def in_review=(state)
     return if new_record?
-    if state == '0'
+    case state
+    when '0'
       self.publish!
-    elsif state == '1'
+    when '1'
       self.review!
     end
   end
