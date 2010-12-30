@@ -61,12 +61,10 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def rate_and_unit
-    case self.rate
-    when 1
-      ": #{self.rate} #{self.unit.name} per acre"
-    else
-      ": #{self.rate} #{self.unit.name.pluralize} per acre"
-    end
+    unit_name = self.unit.name
+    unit_name = unit_name.pluralize unless self.rate == 1
+    
+    ": #{self.rate} #{unit_name} per acre"
   end
 
 end
