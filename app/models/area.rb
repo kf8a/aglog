@@ -64,21 +64,6 @@ class Area < ActiveRecord::Base
 	  tokens.flatten.sort.join(' ')
   end
   
-  def <=>(other)
-  	if self.study_id != other.study_id
-  		self.study_id <=> other.study_id  # could use study.name
-  	else
-  	# invariant: self.study_id == other.study_id
-  		if self.treatment_id != other.treatment_id
-  			self.treatment_id <=> other.treatment_id
-  		else
-  			# invariant: self.study_id == other.study_id && self.treatment == other.treatment
-  			self.replicate <=> other.replicate
-  		end
-  	end	# if self.study != other.study
-  end	# def <=>(other)
-  
-  
   private##########################################
 
   def no_treatment_without_study
