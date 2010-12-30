@@ -4,7 +4,7 @@ app/models/study.rb ee3716c8fc45c23eb7f7fe52f13ce586e2c144d2
 app/models/setup.rb 4c511d554e3efa6ac3e9e2d3f3aa78a3e0fd2581
 app/models/hazard.rb 21023185e5e046ca18a43400b9a9a60af633c55b
 app/models/person.rb 2e76fa40a86e7c0f8f60f331ea4a9eb374899854
-app/models/material.rb 5a164878ba8ab3abcb61588f9deb7246ac7f9d92
+app/models/material.rb 0471df88691f2778273a53d3de0ec1d1b99857e4
 app/models/activity.rb c4fb7521b5e763f72fe7d025cad8c4580b8319c1
 app/models/treatment.rb d0f209d1ed1c9ea4338bd9590dd92c7da263b396
 app/models/equipment.rb 736871cbc2cc84565b5daa879bc9ffb2ac49aebf
