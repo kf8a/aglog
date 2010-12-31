@@ -1,32 +1,27 @@
-<p>
-  <%= f.label       :name %>
-  <%= f.text_field  :name, :class => 'focus_here' %>
-  <%= f.label       :liquid, 'Liquid?' %>
-  <%= f.check_box   :liquid %>
-  <%= f.label       :material_type_id, 'Material Type' %>
-  <%= f.select      :material_type_id, @material_type_ids,
-                    :include_blank => true, :multiple => true, :size => 6 %>
-</p>
-<% unless @material.new_record? %>
+<%= render "shared/error_messages", :target => material %>
+<%= form_for material do |f| %>
   <p>
-    <div id="hazards">
-      <%= render 'hazards' %>
-    </div>
-
-    <%= link_to "Set Hazards",
-        { :controller => "materials", :action => "get_hazards" },
-          :class => 'data_popup' %>
-    <input type="button" id="refresh_hazards" value="Refresh Hazards" />
+    <%= f.label  :name %><%= f.text_field  :name, :class => 'focus_here' %>
+    <%= f.label  :liquid, 'Liquid?' %><%= f.check_box   :liquid %>
+    <%= f.label  :material_type_id, 'Material Type' %>
+    <%= f.select :material_type_id, @material_type_ids,
+                 :include_blank => true, :multiple => true, :size => 6 %>
   </p>
+  <% unless material.new_record? %>
+    <p>
+      <div id="hazards"><%= render 'hazards', :material => material %></div>
+      <%= link_to "Set Hazards",
+          { :controller => "materials", :action => "get_hazards" },
+            :class => 'data_popup' %>
+      <input type="button" id="refresh_hazards" value="Refresh Hazards" />
+    </p>
+  <% end %>
+  <p>
+    <%= f.label       :n_content, 'N %' %><%= f.text_field  :n_content %>
+    <%= f.label       :p_content, 'P %' %><%= f.text_field  :p_content %>
+    <%= f.label       :k_content, 'K %' %><%= f.text_field  :k_content %>
+    <%= f.label       :specific_weight, 'Specific Weight (kg/l)' %>
+    <%= f.text_field  :specific_weight %>
+  </p>
+  <p><%= f.submit %></p>
 <% end %>
-<p>
-  <%= f.label       :n_content, 'N %' %>
-  <%= f.text_field  :n_content %>
-  <%= f.label       :p_content, 'P %' %>
-  <%= f.text_field  :p_content %>
-  <%= f.label       :k_content, 'K %' %>
-  <%= f.text_field  :k_content %>
-  <%= f.label       :specific_weight, 'Specific Weight (kg/l)' %>
-  <%= f.text_field  :specific_weight %>
-</p>
-	
