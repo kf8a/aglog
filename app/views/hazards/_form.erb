@@ -1,7 +1,15 @@
+<%= render "shared/error_messages", :target => hazard %>
 
+<%= form_for hazard do |f| %>
+  <p>
     <b>Name</b> <%= f.text_field :name %><br />
     <b>Hazard Type</b> <%= f.text_field :hazard_type %><br />
     <b>Chemical Name</b> <%= f.text_field :chemical_name %><br />
     <b>Description</b><br /> <%= f.text_area  :description, :rows => 3, :cols => 70 %><br />
     <b>Notification</b><br /> <%= f.text_area  :notification, :rows => 3, :cols => 70 %><br />
     <b>Exclusion Time (Days)</b> <%= f.text_field  :exclusion_time_days %><br />
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
