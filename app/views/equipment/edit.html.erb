@@ -1,22 +1,6 @@
 <h1>Editing equipment</h1>
 
-<%= render "shared/error_messages", :target => @equipment %>
-
-<%= form_for(:equipment, :url => equipment_path(@equipment), :html => { :method => :put }) do |f| %>
-  <p>
-    <b>Name:</b>
-    <%= f.text_field :name %>
-    <b>Use Material:</b><%= f.check_box :use_material %> 
-    <b>Tractor:</b><%= f.check_box :is_tractor %>
-    <b>Archived:</b><%= f.check_box :archived %>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </p>
-
-  <p>
-    <%= submit_tag "Update" %>
-  </p>
-<% end %>
+<%= render 'form', :equipment => @equipment %>
 
 <%= link_to 'Show', equipment_path(@equipment) %> |
-<%= link_to 'Back', equipment_path %>
+<%= link_to 'Back', equipment_index_path %>

@@ -1,0 +1,21 @@
+<%= render "shared/error_messages", :target => equipment %>
+
+<%= form_for equipment do |f| %>
+  <p>
+    <b>Name:</b>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.check_box :use_material %><b>Use Material</b><br />
+    <%= f.check_box :is_tractor %><b>Tractor</b><br />
+    <%= f.check_box :archived %><b>Archived</b><br />
+  </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

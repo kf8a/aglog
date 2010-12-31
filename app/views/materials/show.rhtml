@@ -16,7 +16,7 @@
   <% end %>
 </p>
 <p>
-  <%= render 'hazards' %>
+  <%= render 'hazards', :material => @material %>
 </p>
   
 <% unless @material.material_transactions.empty? %>

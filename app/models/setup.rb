@@ -16,6 +16,14 @@ class Setup < ActiveRecord::Base
     self.activity.try(:observation)
   end
 
+  def equipment_name
+    self.equipment.try(:name)
+  end
+
+  def materials_with_rates
+    self.material_transactions.collect { |trans| trans.material_with_rate }
+  end
+
   def material_names
     material_transactions.collect { |transaction| transaction.material_name }
   end

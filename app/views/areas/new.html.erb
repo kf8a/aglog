@@ -1,14 +1,5 @@
 <h1>New area</h1>
-<%= render "shared/error_messages", :target => @area %>
-<%= form_for(:area, :url => areas_path) do |f| %>
-  <p>
-    <b>Name</b><br />
-    <%= f.text_field :name %>
-  </p>
 
-  <p>
-    <%= submit_tag "Create" %>
-  </p>
-<% end %>
+<%= render 'form', :area => @area %>
 
 <%= link_to 'Back', areas_path %>

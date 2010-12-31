@@ -1,15 +1,8 @@
 <h1>Editing material</h1>
 <% set_material_type_ids %>
 <% set_hazard_ids %>
-<%= render "shared/error_messages", :target => @material %>
-<%= form_for(:material, :url => material_path(@material), :html => { :method => :put }) do |f| %>
-  <p>
-    <%= render 'form', :f => f %>
-  </p>
-  <p>
-    <%= submit_tag "Update" %>
-  </p>
-<% end %>
+
+<%= render 'form', :material => @material %>
 
 <%= link_to 'Show', material_path(@material) %> |
 <%= link_to 'List Materials', materials_path %>

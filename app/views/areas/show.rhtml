@@ -1,40 +1,18 @@
+<%= link_to 'Edit', edit_area_path(@area) if current_user %>
+<%= link_to 'Back', areas_path %>
 <p>
   <b>Name:</b>
-  <%=h @area.name %>
+  <%= @area.name %>
 </p>
 <table>
-	<% @area.observations.each do |observation| %>
-	<tr>
-		<td><%= observation.obs_date %></td>
-		<td>
-			<% observation.observation_types.each do |type| %>
-			<%= type.name %>
-			<% end %>
-		</td>
-		<td><%= truncate(observation.comment) %></td>
-		<td>
-			<% observation.activities.each  do  |activity| %>
-				<% activity.setups.each do |setup| %>
-					<%= setup.equipment.name %>, 
-				<% end %>
-			<% end %>
-		</td>
-		<td>
-			<% observation.activities.each do |activity| %>
-				<% activity.setups.each do |setup| %>
-					<% setup.material_transactions.each do |m| %>
-							<td><%= m.material.name %></td> 
-							<td><%= "#{pluralize(m.rate, m.unit.name)} per acre" if m.unit %></td>
-					<% end %>
-				<% end %>
-			<% end %>
-		</td>
-		<td>
-			<%= link_to 'Show', observation_path(observation)%>
-			<%= link_to 'Edit', edit_observation_path(observation) if current_user %>
-		</td>
-	</tr>
-	<% end %>
+  <tr>
+    <th>Observation Date</th>
+    <th>Observation Types</th>
+    <th>Observation Comment</th>
+    <th>Equipment</th>
+    <th>Material</th>
+  </tr>
+  <%= render @area.observations %>
 </table>
 
 

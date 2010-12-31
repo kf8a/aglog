@@ -1,15 +1,6 @@
 <h1>Editing hazard</h1>
 
-<%= render "shared/error_messages", :target => @hazard %>
-
-<%= form_for(@hazard) do |f| %>
-  <p>
-    <%= render 'form', :f => f %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
+<%= render 'form', :hazard => @hazard %>
 
 <%= link_to 'Show', @hazard %> |
 <%= link_to 'List', hazards_path %>

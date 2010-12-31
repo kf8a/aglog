@@ -1,8 +1,5 @@
 <h1>Set Hazards</h1>
-Material: <%=h @material.name %>
-<p>
-  <% hazard_choices = Hazard.find(:all)  %>
-</p>
+Material: <%= @material.name %>
 <%= form_for(:hazard, :url => "/materials/#{@material.id}/put_hazards", :html => { :method => :put }, :remote => true) do |f| %>
 
   <table>
@@ -14,17 +11,13 @@ Material: <%=h @material.name %>
       <th>chemical_name</th>
       <th>Exclusion time</th>
     </tr>
-    <% for hazard in hazard_choices do %>
-      <% if @material.hazards.include? hazard
-        checkbox_string = "<input type=checkbox name=hazards[#{hazard.id}] value=#{hazard.id} checked> "
-      else
-        checkbox_string = "<input type=checkbox name=hazards[#{hazard.id}] value=#{hazard.id}> "
-      end %>
+    <% hazard_choices.each do |hazard| %>
+      <% checked_word = if @material.hazards.include?(hazard) then "checked" else "" end %>
       <tr>
         <td align="center">
-          <%= raw checkbox_string %>
+          <input type=checkbox name="hazards[<%= hazard.id %>]" value="<%= hazard.id %>" <%= checked_word %> />
         </td>
-        <td><%= hazard.id%>  </td>
+        <td><%= hazard.id %>  </td>
         <td><%= hazard.name %>    </td>
         <td><%= hazard.hazard_type %>  </td>
         <td><%= hazard.chemical_name %>  </td>

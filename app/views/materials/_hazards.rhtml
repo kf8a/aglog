@@ -1,4 +1,4 @@
-<% unless @material.hazards.empty? %>
+<% unless material.hazards.empty? %>
   <b>Hazards:</b>
   <table>
     <tr>
@@ -7,7 +7,7 @@
       <th> Exclusion time (days) </th>
       <th> </th>
     </tr>
-    <% @material.hazards.each do |hazard| %>
+    <% material.hazards.each do |hazard| %>
       <tr>
         <td><%= hazard.name %> </td>
         <td><%= hazard.chemical_name %> </td>

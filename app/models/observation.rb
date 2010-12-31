@@ -31,22 +31,35 @@ class Observation < ActiveRecord::Base
   def no_invalid_areas
     errors.add(:base, 'invalid areas') if  @error_areas
   end
+
+  def equipment_names
+    activities.collect { |activity| activity.equipment_names }.flatten.join(', ')
+  end
   
   def in_review
-    self.state == 'in_review'
+    'in_review' == self.state
   end
     	
   def in_review=(state)
     return if new_record?
-    if state == '0'
+    case state
+    when '0'
       self.publish!
-    elsif state == '1'
+    when '1'
       self.review!
     end
   end
 
+  def materials_with_rates
+    self.activities.collect { |activity| activity.materials_with_rates }.flatten.join(', ')
+  end
+
   def observation_type
     self.observation_types.first.name
+  end
+
+  def observation_type_names
+    self.observation_types.collect { |type| type.name }.join(', ')
   end
 
   def areas_as_text

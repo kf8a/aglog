@@ -1,24 +1,24 @@
 <h1>Listing areas</h1>
 
+<%= link_to 'New area', new_area_path if current_user %>
+
 <table>
   <tr>
     <th>Name</th>
-	<th>Description</th>
-	<th>Study</th>
+    <th>Description</th>
+    <th>Study</th>
   </tr>
   
-<% for area in @areas %>
-  <tr>
-    <td><%=h area.name %></td>
-	<td><%=h area.description  %></td>
-	<td><%=h area.study.name if area.study %></td>
-    <td><%= link_to 'Show', area_path(area) %></td>
-    <td><%= link_to 'Edit', edit_area_path(area) if current_user %></td>
-    <td><%= link_to 'Destroy', area_path(area), :confirm => 'Are you sure?', :method => :delete if current_user %></td>
-  </tr>
-<% end %>
+  <% @areas.each do |area| %>
+    <tr>
+      <td><%= area.name %></td>
+      <td><%= area.description %></td>
+      <td><%= area.study.name if area.study %></td>
+      <td><%= link_to 'Show', area_path(area) %></td>
+      <% if current_user %>
+        <td><%= link_to 'Edit', edit_area_path(area) %></td>
+        <td><%= link_to 'Destroy', area_path(area), :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New area', new_area_path if current_user %>
