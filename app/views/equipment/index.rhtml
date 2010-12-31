@@ -1,18 +1,22 @@
 <h1>Listing equipment</h1>
 
+<%= link_to 'New equipment', new_equipment_path if current_user %>
+
 <table>
   <tr>
     <th align="left">Name</th>
     <th>Use Material</th>
   </tr>
   
-  <% for equipment in @equipment %>
+  <% @equipment.each do |equipment| %>
     <tr>
       <td><%= equipment.name %></td>
       <td align="center"><%= 'true' if equipment.use_material? %></td>
       <td><%= link_to 'Show', equipment_path(equipment) %></td>
-      <td><%= link_to 'Edit', edit_equipment_path(equipment) if current_user %></td>
-      <td><%= link_to 'Destroy', equipment_path(equipment), :confirm => 'Are you sure?', :method => :delete if current_user %></td>
+      <% if current_user %>
+        <td><%= link_to 'Edit', edit_equipment_path(equipment) %></td>
+        <td><%= link_to 'Destroy', equipment_path(equipment), :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
