@@ -1,5 +1,5 @@
-<%= render "shared/error_messages", :target => @area %>
-<%= form_for @area do |f| %>
+<%= render "shared/error_messages", :target => area %>
+<%= form_for area do |f| %>
   <p>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -10,9 +10,9 @@
   </p>
   <p>
     <%= f.label :study_id, 'Study' %>
-    <%= f.select :study_id, options_from_collection_for_select(studies, 'id', 'name', @area.study_id), {:include_blank => true} %>
+    <%= f.select :study_id, study_options(area), {:include_blank => true} %>
     <%= f.label :treatment_id, 'Treatment' %>
-    <%= f.select :treatment_id, options_from_collection_for_select(treatments, 'id', 'name', @area.treatment_id), {:include_blank => true} %>
+    <%= f.select :treatment_id, treatment_options(area), {:include_blank => true} %>
   </p>
   <p>
     <%= f.submit %>

@@ -31,6 +31,7 @@ class MaterialTransaction < ActiveRecord::Base
     to_kg_ha(self.material.k_content) if self.material.k_content
   end
 
+  # @example Wheat: 250 pounds per acre
   def material_with_rate
     self.material.try(:name) + (if self.unit then rate_and_unit else "" end)
   end
