@@ -4,12 +4,15 @@ class MaterialsController < ApplicationController
   # GET /materials
   # GET /materials.xml
   def index
-    @materials = Material.order('material_type_id, name')
+    @materials = Material.order('material_type_id, name').includes(:material_type).all
     respond_with @materials
   end
 
   def show
     @material = Material.find(params[:id])
+    @hazards = @material.hazards.all
+    @material_transactions = @material.material_transactions.all
+    @observations = @material.observations
     respond_with @material
   end
 

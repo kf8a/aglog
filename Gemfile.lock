@@ -90,6 +90,7 @@ GEM
       sexp_processor (~> 3.0)
     gherkin (2.3.3)
       json (~> 1.4.6)
+    haml (3.0.25)
     hirb (0.3.5)
     hoe (2.8.0)
       rake (>= 0.8.7)
@@ -246,6 +247,7 @@ DEPENDENCIES
   escape_utils
   factory_girl
   factory_girl_rails
+  haml
   jquery-rails
   launchy
   metric_fu
