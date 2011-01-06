@@ -9,7 +9,7 @@
   </p>
   <% unless material.new_record? %>
     <p>
-      <div id="hazards"><%= render 'hazards', :material => material %></div>
+      <div id="hazards"><%= render 'hazards', :hazards => hazards %></div>
       <%= link_to "Set Hazards",
           { :controller => "materials", :action => "get_hazards" },
             :class => 'data_popup' %>

@@ -18,6 +18,7 @@ class MaterialsController < ApplicationController
 
   def edit
     @material = Material.find(params[:id])
+    @hazards = @material.hazards.all
     respond_with @material
   end
 
@@ -39,6 +40,7 @@ class MaterialsController < ApplicationController
     if @material.update_attributes(params[:material])
       flash[:notice] = 'Material was successfully updated.'
     end
+    @hazards = @material.hazards.all
     respond_with @material
   end
 

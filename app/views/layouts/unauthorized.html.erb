@@ -1,4 +1,4 @@
-<% content_for :header do %>
+<%= content_for :header do %>
   <% unless current_page?(:controller => 'person_sessions', :action => 'new') %>
     <%= link_to "login", new_person_session_url %>
   <% end %>
