@@ -2,12 +2,12 @@
 class EquipmentController < ApplicationController
 
   def index
-    @equipment = Equipment.order('name')
+    @equipment = Equipment.order('name').all
     respond_with @equipment
   end
 
   def show
-    @equipment = Equipment.find(params[:id])
+    @equipment = Equipment.where(:id => params[:id]).includes(:setups => {:observation => :observation_types}).first
     respond_with @equipment
   end
 
