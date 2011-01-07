@@ -19,6 +19,7 @@ class Observation < ActiveRecord::Base
   end
   
   has_many :activities, :dependent => :destroy
+  has_many :setups, :through => :activities
   has_and_belongs_to_many :areas
   has_and_belongs_to_many :observation_types
   belongs_to :person
@@ -33,7 +34,7 @@ class Observation < ActiveRecord::Base
   end
 
   def equipment_names
-    activities.collect { |activity| activity.equipment_names }.flatten.join(', ')
+    setups.collect { |setup| setup.equipment_name }.flatten.join(', ')
   end
   
   def in_review
@@ -51,7 +52,7 @@ class Observation < ActiveRecord::Base
   end
 
   def materials_with_rates
-    self.activities.collect { |activity| activity.materials_with_rates }.flatten.join(', ')
+    self.setups.collect { |setup| setup.materials_with_rates }.flatten.join(', ')
   end
 
   def observation_type

@@ -6,20 +6,13 @@ class Activity < ActiveRecord::Base
   belongs_to :person
   belongs_to :observation
   has_many :setups, :dependent => :destroy
+  has_many :material_transactions, :through => :setups
   
   validates :person, :presence => true
   validates_associated :person
 
-  def equipment_names
-    self.setups.collect { |setup| setup.equipment_name }
-  end
-
   def person_name
     self.person.try(:name)
-  end
-
-  def materials_with_rates
-    self.setups.collect { |setup| setup.materials_with_rates }
   end
 
   def material_names
