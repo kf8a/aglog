@@ -4,7 +4,6 @@ Aglog::Application.routes.draw do
   match '/auth/failure' => 'person_sessions#new'
   match '/logout' => 'person_sessions#destroy'
 
-  resources :activities, :only => [:create, :update, :destroy]
   resources :hazards
   resources :areas
   resources :observations do
