@@ -9,10 +9,7 @@ class MaterialsController < ApplicationController
   end
 
   def show
-    @material = Material.find(params[:id])
-    @hazards = @material.hazards.all
-    @material_transactions = @material.material_transactions.all
-    @observations = @material.observations
+    @material = Material.where(:id => params[:id]).includes(:hazards, :material_transactions, :setups => {:observation => :observation_types}).first
     respond_with @material
   end
 
@@ -53,6 +50,7 @@ class MaterialsController < ApplicationController
   # GET /materials/1/get_hazards
   def get_hazards
     @material = Material.find_by_id(params[:id]) || Material.new
+    @current_hazards = @material.hazards.all
   end
   
   # PUT /materials/1/put_hazards
