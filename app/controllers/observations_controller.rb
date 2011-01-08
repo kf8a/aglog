@@ -27,7 +27,8 @@ class ObservationsController < ApplicationController
   end
 
   def show
-    @observation = Observation.find(params[:id])
+    @observation = Observation.where(:id => params[:id]).includes(:person, :observation_types, {:activities => [:person, {:setups => [:equipment, {:material_transactions => [{:material => :hazards}, :unit]}]}]}).first
+    @areas_as_text = @observation.areas_as_text
     respond_with @observation
   end
 
@@ -50,12 +51,12 @@ class ObservationsController < ApplicationController
   end
 
   def edit
-    @observation = Observation.find(params[:id])
+    @observation = Observation.where(:id => params[:id]).includes(:observation_types, {:activities => {:setups => :material_transactions}}).first
     respond_with @observation
   end
 
   def update
-    @observation = Observation.find(params[:id])
+    @observation = Observation.where(:id => params[:id]).includes(:observation_types, {:activities => {:setups => :material_transactions}}).first
     if @observation.update_attributes(params[:observation])
       flash[:notice] = "Observation was successfully updated."
     end
@@ -69,8 +70,7 @@ class ObservationsController < ApplicationController
   end
 
   def related
-    @observation = Observation.find(params[:id])
-    @areas = @observation.areas
+    @observation = Observation.where(:id => params[:id]).includes(:areas => :observations).first
   end
 
 end

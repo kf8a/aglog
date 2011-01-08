@@ -1,34 +1,34 @@
 <h1>Show Observation</h1>
 <p>
   <b>User:</b>
-  <%=h @observation.person.name if @observation.person%>
+  <%= @observation.person.try(:name) %>
 </p>
 
 <p>
   <b>Created on:</b>
-  <%=h @observation.created_on %>
+  <%= @observation.created_on %>
 </p>
 <p>
-	<b>Observation Date</b>
-	<%=h @observation.obs_date  %>
+  <b>Observation Date</b>
+  <%= @observation.obs_date  %>
 </p>
 <p>
-	<b>Comment:</b><br/>
-  <%=h @observation.comment %>
+  <b>Comment:</b><br/>
+  <%= @observation.comment %>
 </p>
 <p>
-	<b>in review</b>
-	<%= @observation.in_review? %>
+  <b>in review</b>
+  <%= @observation.in_review? %>
 </p>
 <p>
-	<b>Areas:</b><br/>
-	<%= @observation.areas_as_text %>
+  <b>Areas:</b><br/>
+  <%= @areas_as_text %>
 </p>
 <p>
-	<b>Observation Type:</b><br/>
-	<% @observation.observation_types.each  do |type| %>
-	<%= type.name %>
-	<% end %>
+  <b>Observation Type:</b><br/>
+  <% @observation.observation_types.each  do |type| %>
+    <%= type.name %>
+  <% end %>
 </p>
 <p>
   <b>Activities: </b><br/>
