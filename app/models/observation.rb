@@ -78,18 +78,18 @@ class Observation < ActiveRecord::Base
   end
 
   def material_names
-    activities.collect { |activity| activity.material_names }.flatten.compact.uniq
+    setups.collect { |setup| setup.material_names }.flatten.compact.uniq
   end
 
   def n_contents
-    activities.collect { |activity| activity.n_contents }.flatten.compact.uniq
+    setups.collect { |setup| setup.n_contents }.flatten.compact.uniq
   end
 
   def rates
-    activities.collect { |activity| activity.rates }.flatten.compact.uniq
+    setups.collect { |setup| setup.rates }.flatten.compact.uniq
   end
 
   def unit_names
-    activities.collect { |activity| activity.unit_names }.flatten.compact.uniq
+    setups.collect { |setup| setup.unit_names }.flatten.compact.uniq
   end
 end
