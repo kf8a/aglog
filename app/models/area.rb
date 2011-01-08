@@ -1,5 +1,4 @@
 require 'date'
-require 'set'
 
 # Represents a location where observations are done.
 class Area < ActiveRecord::Base
@@ -36,21 +35,54 @@ class Area < ActiveRecord::Base
     end
   end
 
-  # Transforms an array of areas into a list of area names and study names if a
+    # Transforms an array of areas into a list of area names and study names if a
   # whole study's areas are included.
   # @param [Array] areas an array of areas
   # @return [String] a list of area names and study names if a whole study's
   #   areas are included (and treatment names for the same reason)
-  def Area.unparse(areas=[])
-	  areas_set = areas.to_set
-    areas_set = replace_study_areas_by_study(areas_set)
-    areas_set = replace_treatment_areas_by_treatment(areas_set)
-    names     = areas_set.to_a.collect{ |member| member.name }
-			  
-	  names.sort.join(' ')
+  def Area.unparse(areas = [])
+    areas = areas.to_a
+    studies, areas = replace_study_areas_by_study(areas)
+    treatments, areas = replace_treatment_areas_by_treatment(areas)
+    area_names = areas.compact.uniq.collect { |area| area.name }
+    names = studies + treatments + area_names
+
+    names.sort.join(' ')
   end
-  
+
   private##########################################
+
+  def Area.replace_study_areas_by_study(areas)
+    # if all of a study's areas are here,
+    # use the study's name instead of individual areas
+    studies = []
+    study_ids = areas.collect { |area| area.study_id }
+    study_ids.compact.uniq.each do |study_id|
+      study_areas = Area.where(:study_id => study_id).all
+      if !study_areas.empty? && ([] == study_areas - areas)
+        areas -= study_areas
+        studies << Study.find(study_id).name
+      end
+    end
+
+    [studies, areas]
+  end
+
+  def Area.replace_treatment_areas_by_treatment(areas)
+    # if all of a treatment's areas are here,
+    # use the treatment's name instead of individual areas
+    treatments = []
+    treatment_ids = areas.collect { |area| area.treatment_id }
+    treatment_ids.compact.uniq.each do |treatment_id|
+      treatment_areas = Area.where(:treatment_id => treatment_id).all
+      if !treatment_areas.empty? && ([] == treatment_areas - areas)
+        areas -= treatment_areas
+        treatments << Treatment.find(treatment_id).name
+      end
+    end
+
+    [treatments, areas]
+  end
 
   def treatment_is_part_of_study
     # if treatment exists then it must belong to correct study
@@ -111,32 +143,6 @@ class Area < ActiveRecord::Base
     area = Area.where(['upper(name) = ?', token.squeeze.upcase]) if area.blank?
     area = token if area.blank? #failed to find an area
     area
-  end
-
-  def Area.replace_study_areas_by_study(areas_set)
-    Study.all.each do |study|
-      # if all of a study's areas are here,
-      # use the study's name instead of individual areas
-	  	study_set = study.areas.to_set
-	  	if !study_set.empty? && study_set.subset?(areas_set)
-	  		areas_set -= study_set
-        areas_set += [study].to_set
-	  	end
-    end
-    areas_set
-  end
-
-  def Area.replace_treatment_areas_by_treatment(areas_set)
-    Treatment.all.each do |treatment|
-      # if all of a treatment's areas are here,
-      # use the treatment's name instead of individual areas
-      treatment_set = treatment.areas.to_set
-      if !treatment_set.empty? && treatment_set.subset?(areas_set)
-        areas_set -= treatment_set
-        areas_set += [treatment].to_set
-      end
-    end
-    areas_set
   end
 
 end

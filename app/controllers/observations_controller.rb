@@ -8,7 +8,7 @@ class ObservationsController < ApplicationController
   def index
     state = if params[:in_review] then "in_review" else "published" end
     obstype, page = params[:obstype], params[:page]
-    state_observations = Observation.where(:state => state).order('obs_date desc')
+    state_observations = Observation.where(:state => state).order('obs_date desc').includes({:areas => [:study, :treatment]}, :observation_types, {:activities => {:setups => {:material_transactions => :material}}})
 
     if obstype
       @observations = state_observations.paginate :page=> page,
