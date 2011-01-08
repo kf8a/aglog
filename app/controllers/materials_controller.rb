@@ -4,17 +4,18 @@ class MaterialsController < ApplicationController
   # GET /materials
   # GET /materials.xml
   def index
-    @materials = Material.order('material_type_id, name')
+    @materials = Material.order('material_type_id, name').includes(:material_type).all
     respond_with @materials
   end
 
   def show
-    @material = Material.find(params[:id])
+    @material = Material.where(:id => params[:id]).includes(:hazards, :material_transactions, :setups => {:observation => :observation_types}).first
     respond_with @material
   end
 
   def edit
     @material = Material.find(params[:id])
+    @hazards = @material.hazards.all
     respond_with @material
   end
 
@@ -36,6 +37,7 @@ class MaterialsController < ApplicationController
     if @material.update_attributes(params[:material])
       flash[:notice] = 'Material was successfully updated.'
     end
+    @hazards = @material.hazards.all
     respond_with @material
   end
 
@@ -48,6 +50,7 @@ class MaterialsController < ApplicationController
   # GET /materials/1/get_hazards
   def get_hazards
     @material = Material.find_by_id(params[:id]) || Material.new
+    @current_hazards = @material.hazards.all
   end
   
   # PUT /materials/1/put_hazards

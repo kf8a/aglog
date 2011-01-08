@@ -3,16 +3,22 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   respond_to :html, :xml
-  
+
   before_filter :require_user, :except => [:index, :show]
     
   helper_method :current_user, :signed_in?
+
+  layout :site_layout
 
   def signed_in?
     !!current_user
   end
 
   protected
+
+  def site_layout
+    if current_user then "authorized" else "unauthorized" end
+  end
 
   def current_user
     @current_user ||= Person.find_by_id(session[:user_id])

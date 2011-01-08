@@ -15,10 +15,7 @@
   <%= link_to 'equipment', equipment_index_path, :accesskey => "E" %>&nbsp;&nbsp;
   <%= link_to 'units', units_path, :accesskey => "U" %>&nbsp;&nbsp;
   <%= link_to 'areas', areas_path, :accesskey => "A" %>&nbsp;&nbsp;
-  <% unless current_page?(:controller => 'person_sessions', :action => 'new') %>
-    <%= link_to "login", new_person_session_url if !signed_in? %>
-  <% end %>
-  <%= link_to "logout", logout_path if signed_in? %>
+  <%= yield :header %>
 </div>
 <div id="main_page">
 

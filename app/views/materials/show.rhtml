@@ -16,7 +16,7 @@
   <% end %>
 </p>
 <p>
-  <%= render 'hazards', :material => @material %>
+  <%= render 'hazards', :hazards => @material.hazards %>
 </p>
   
 <% unless @material.material_transactions.empty? %>
@@ -26,7 +26,7 @@
     <p>
       <%= link_to observation.obs_date, observation_path(observation) %>
       <%= observation.observation_type %>
-      <%=h observation.comment %>
+      <%= observation.comment %>
     </p>
   <% end %>
 <% end %>

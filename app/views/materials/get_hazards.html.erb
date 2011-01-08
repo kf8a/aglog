@@ -12,7 +12,7 @@ Material: <%= @material.name %>
       <th>Exclusion time</th>
     </tr>
     <% hazard_choices.each do |hazard| %>
-      <% checked_word = if @material.hazards.include?(hazard) then "checked" else "" end %>
+      <% checked_word = if @current_hazards.include?(hazard) then "checked" else "" end %>
       <tr>
         <td align="center">
           <input type=checkbox name="hazards[<%= hazard.id %>]" value="<%= hazard.id %>" <%= checked_word %> />

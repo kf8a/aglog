@@ -36,16 +36,8 @@ class MaterialTransaction < ActiveRecord::Base
     self.material.try(:name) + (if self.unit then rate_and_unit else "" end)
   end
 
-  def material_name
-    self.material.try(:name)
-  end
-
   def n_content
     self.material.try(:n_content)
-  end
-
-  def unit_name
-    self.unit.try(:name)
   end
 
   private##############################

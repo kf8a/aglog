@@ -4,11 +4,16 @@ class AreasController < ApplicationController
   def index
     @observation = Observation.find_by_id(params[:observation_id])
     @areas = if @observation then @observation.areas.order('study_id, name') else Area.order('study_id, name') end
+    @areas = @areas.includes(:study).all
     respond_with @areas
   end
 
   def show
     @area = Area.find(params[:id])
+    @observations = @area.observations.includes(
+        :observation_types,
+        {:setups => [:equipment,
+                    {:material_transactions => [:material, :unit]}]}).all
     respond_with @area
   end
 
