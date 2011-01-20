@@ -27,17 +27,29 @@ ActiveRecord::Schema.define(:version => 20101216212215) do
     t.integer "study_id"
     t.integer "treatment_id"
     t.string  "description"
+    t.integer "company_id"
   end
+
+  add_index "areas", ["name"], :name => "area_names", :unique => true
 
   create_table "areas_observations", :id => false, :force => true do |t|
     t.integer "observation_id"
     t.integer "area_id"
   end
 
+  add_index "areas_observations", ["observation_id", "area_id"], :name => "areas_observation_idx", :unique => true
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "equipment", :force => true do |t|
     t.string  "name"
     t.boolean "use_material", :default => false
     t.boolean "is_tractor",   :default => false
+    t.integer "company_id"
     t.string  "description"
     t.boolean "archived"
   end
@@ -72,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20101216212215) do
   end
 
   create_table "material_transactions", :force => true do |t|
-    t.integer  "material_id"
+    t.integer  "material_id",                  :null => false
     t.integer  "unit_id"
     t.integer  "setup_id"
     t.float    "rate"
@@ -94,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20101216212215) do
     t.float   "k_content"
     t.float   "specific_weight",   :default => 1.0
     t.boolean "liquid"
+    t.integer "company_id"
   end
 
   create_table "observation_types", :force => true do |t|
@@ -111,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20101216212215) do
     t.date    "obs_date"
     t.date    "created_on"
     t.string  "state"
+    t.integer "company_id"
   end
 
   create_table "open_id_authentication_associations", :force => true do |t|
@@ -137,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20101216212215) do
     t.datetime "last_request_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "company_id"
   end
 
   create_table "sessions", :force => true do |t|
