@@ -1,20 +1,5 @@
 <%= render "shared/error_messages", :target => area %>
-<%= form_for area do |f| %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %>
-    <%= f.text_field :description, :size => 50 %>
-  </p>
-  <p>
-    <%= f.label :study_id, 'Study' %>
-    <%= f.select :study_id, study_options(area), {:include_blank => true} %>
-    <%= f.label :treatment_id, 'Treatment' %>
-    <%= f.select :treatment_id, treatment_options(area), {:include_blank => true} %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+<%= semantic_form_for area do |form| %>
+  <%= form.inputs :name, :description, :study, :treatment %>
+  <%= form.buttons %>
 <% end %>
