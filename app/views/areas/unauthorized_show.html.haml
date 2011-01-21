@@ -1,0 +1,17 @@
+= link_to 'Back', areas_path
+
+%p
+  %b Name:
+  = @area.name
+
+%table
+  %tr
+    %th Observation Date
+    %th Observation Types
+    %th Observation Comment
+    %th Equipment
+    %th Material
+  = render :partial => "observations/unauthorized_observation",
+              :collection => @observations, :as => :observation
+
+= link_to 'Back', areas_path

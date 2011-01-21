@@ -1,0 +1,18 @@
+= link_to 'Edit', edit_area_path(@area)
+= link_to 'Back', areas_path
+
+%p
+  %b Name:
+  = @area.name
+
+%table
+  %tr
+    %th Observation Date
+    %th Observation Types
+    %th Observation Comment
+    %th Equipment
+    %th Material
+  = render @observations
+
+= link_to 'Edit', edit_area_path(@area)
+= link_to 'Back', areas_path
