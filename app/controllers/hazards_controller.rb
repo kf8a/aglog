@@ -3,7 +3,13 @@ class HazardsController < ApplicationController
 
   def index
     @hazards = Hazard.all
-    respond_with @hazards
+    respond_with @hazards do |format|
+      if signed_in?
+        format.html { render 'authorized_index' }
+      else
+        format.html { render 'unauthorized_index'}
+      end
+    end
   end
 
   def show
