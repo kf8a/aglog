@@ -3,7 +3,13 @@ class EquipmentController < ApplicationController
 
   def index
     @equipment = Equipment.order('name').all
-    respond_with @equipment
+    respond_with @equipment do |format|
+      if current_user
+        format.html { render 'authorized_index' }
+      else
+        format.html { render 'unauthorized_index'}
+      end
+    end
   end
 
   def show
