@@ -1,0 +1,13 @@
+%h1 Material Transaction
+
+= render "shared/error_messages", :target => @transaction
+= semantic_form_for @transaction do |form|
+  = form.inputs do
+    = form.input :setup_id, :as => :hidden
+    = form.input :material
+    @
+    = form.input :rate, :input_html => { :size => 12 }
+    = form.input :unit
+    per acre
+  = form.buttons
+
