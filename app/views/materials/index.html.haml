@@ -10,13 +10,13 @@
       %td
         = material.name
       %td
-        = material.material_type.try(:name)
+        = material.material_type_name
       %td
-        = link_to 'Show', material_path(material)
+        = link_to 'Show', material
       %td
         = link_to 'Edit', edit_material_path(material)
       %td
-        = link_to 'Destroy', material_path(material), :confirm => 'Are you sure?', :method => :delete
+        = link_to 'Destroy', material, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

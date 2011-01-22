@@ -8,9 +8,9 @@
   %b Material Type
   %br
   - if @material.material_type
-    = @material.material_type.name
+    = @material.material_type_name
     %br
-    - if @material.material_type.id == 3
+    - if @material.material_type_id == 3
       %b N:
       = @material.n_content
       %b P:

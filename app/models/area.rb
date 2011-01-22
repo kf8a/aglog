@@ -50,6 +50,10 @@ class Area < ActiveRecord::Base
     names.sort.join(' ')
   end
 
+  def study_name
+    self.study.try(:name)
+  end
+
   private##########################################
 
   def Area.replace_study_areas_by_study(areas)

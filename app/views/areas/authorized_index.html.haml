@@ -15,10 +15,10 @@
       %td
         = area.description
       %td
-        = area.study.try(:name)
+        = area.study_name
       %td
-        = link_to 'Show', area_path(area)
+        = link_to 'Show', area
       %td
         = link_to 'Edit', edit_area_path(area)
       %td
-        = link_to 'Destroy', area_path(area), :confirm => 'Are you sure?', :method => :delete
+        = link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
