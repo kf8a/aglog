@@ -72,6 +72,16 @@ class ActivitiesControllerTest < ActionController::TestCase
         should "update the activity" do
           assert Activity.find_by_person_id(@new_person.id)
         end
+
+        should set_the_flash
+      end
+
+      context 'PUT :update the activity with invalid attributes' do
+        setup do
+          put :update, :id => @activity.id, :activity => { :person_id => nil }
+        end
+
+        should_not set_the_flash
       end
 
       context "DELETE :destroy an activity" do
