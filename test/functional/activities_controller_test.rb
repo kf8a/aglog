@@ -16,6 +16,8 @@ class ActivitiesControllerTest < ActionController::TestCase
       should "not create an activity" do
         assert_nil Activity.find_by_person_id(@person.id)
       end
+
+      should ("redirect to the sign in page"){ redirect_to new_person_session_url }
     end
 
     context "An activity exists. " do
@@ -32,6 +34,8 @@ class ActivitiesControllerTest < ActionController::TestCase
         should "not update the activity" do
           assert_nil Activity.find_by_person_id(@new_person.id)
         end
+
+        should ("redirect to the sign in page"){ redirect_to new_person_session_url }
       end
 
       context "DELETE :destroy an activity" do
@@ -42,6 +46,8 @@ class ActivitiesControllerTest < ActionController::TestCase
         should "not delete the activity" do
           assert Activity.find_by_id(@activity.id)
         end
+
+        should ("redirect to the sign in page"){ redirect_to new_person_session_url }
       end
     end
 
@@ -63,7 +69,7 @@ class ActivitiesControllerTest < ActionController::TestCase
           put :update, :id => @activity.id, :activity => { :person_id => @new_person.id }
         end
 
-        should "not update the activity" do
+        should "update the activity" do
           assert Activity.find_by_person_id(@new_person.id)
         end
       end
@@ -86,19 +92,7 @@ class ActivitiesControllerTest < ActionController::TestCase
       end
 
       should "create an activity" do
-        refute_nil Activity.find_by_person_id(@person.id)
-      end
-    end
-
-    context "POST :create with an observation" do
-      setup do
-        @observation = Factory.create(:observation)
-        @person = Factory.create(:person)
-        post :create, :activity => { :observation_id => @observation.id, :person_id => @person.id }
-      end
-
-      should "create a setup for that activity" do
-        refute_nil Activity.find_by_observation_id_and_person_id(@observation.id, @person.id)
+        assert Activity.find_by_person_id(@person.id)
       end
     end
   end
