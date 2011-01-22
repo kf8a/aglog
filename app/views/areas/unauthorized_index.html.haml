@@ -1,0 +1,18 @@
+%h1 Listing areas
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Study
+
+  - @areas.each do |area|
+    %tr
+      %td
+        = area.name
+      %td
+        = area.description
+      %td
+        = area.study.try(:name)
+      %td
+        = link_to 'Show', area_path(area)

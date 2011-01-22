@@ -1,0 +1,10 @@
+<tr>
+  <td><%= observation.obs_date %></td>
+  <td><%= observation.observation_type_names %></td>
+  <td><%= truncate(observation.comment) %></td>
+  <td><%= observation.equipment_names %></td>
+  <td><%= observation.materials_with_rates %></td>
+  <td>
+    <%= link_to 'Show', observation_path(observation)%>
+  </td>
+</tr>

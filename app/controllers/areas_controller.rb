@@ -5,7 +5,13 @@ class AreasController < ApplicationController
     @observation = Observation.find_by_id(params[:observation_id])
     @areas = if @observation then @observation.areas.order('study_id, name') else Area.order('study_id, name') end
     @areas = @areas.includes(:study).all
-    respond_with @areas
+    respond_with(@areas) do |format|
+      if signed_in?
+        format.html { render 'authorized_index' }
+      else
+        format.html { render 'unauthorized_index'}
+      end
+    end
   end
 
   def show
@@ -14,7 +20,14 @@ class AreasController < ApplicationController
         :observation_types,
         {:setups => [:equipment,
                     {:material_transactions => [:material, :unit]}]}).all
-    respond_with @area
+
+    respond_with @area do |format|
+      if signed_in?
+        format.html { render 'authorized_show' }
+      else
+        format.html { render 'unauthorized_show'}
+      end
+    end
   end
 
   def new
