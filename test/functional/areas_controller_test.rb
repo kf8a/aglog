@@ -31,7 +31,7 @@ class AreasControllerTest < ActionController::TestCase
       end
 
       should ("redirect to the sign in page"){ redirect_to new_person_session_url }
-      should 'create an area' do
+      should 'not create an area' do
         assert_nil Area.find_by_name('T2R22')
       end
     end
