@@ -31,7 +31,7 @@ class PersonSessionsControllerTest < ActionController::TestCase
       end
 
       should "log out the user" do
-        refute @controller.signed_in?
+        assert !@controller.signed_in?
       end
     end
   end

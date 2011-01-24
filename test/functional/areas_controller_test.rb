@@ -67,7 +67,7 @@ class AreasControllerTest < ActionController::TestCase
         should ("redirect to the sign in page"){ redirect_to new_person_session_url }
         should "not change the area" do
           @area.reload
-          refute_equal 'new_area', @area.name
+          assert 'new_area' != @area.name
         end
       end
 
@@ -186,7 +186,7 @@ class AreasControllerTest < ActionController::TestCase
         should render_template 'edit'
         should "not change the area" do
           @area.reload
-          refute_equal 'repeat_name', @area.name
+          assert 'repeat_name' != @area.name
         end
       end
 
@@ -197,7 +197,7 @@ class AreasControllerTest < ActionController::TestCase
 
         should redirect_to("the areas index") {areas_path}
         should "destroy the area" do
-          refute Area.find_by_id(@area.id)
+          assert Area.find_by_id(@area.id).nil?
         end
       end
     end

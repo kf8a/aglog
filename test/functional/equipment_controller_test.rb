@@ -66,7 +66,7 @@ class EquipmentControllerTest < ActionController::TestCase
         should ("redirect to the sign in page"){ redirect_to new_person_session_url }
         should "not change the equipment" do
           @equipment.reload
-          refute_equal 'new_equipment', @equipment.name
+          assert 'new_equipment' != @equipment.name
         end
       end
 
@@ -185,7 +185,7 @@ class EquipmentControllerTest < ActionController::TestCase
         should assign_to(:equipment).with(@equipment)
         should 'not change the equipment' do
           @equipment.reload
-          refute_equal 'Repeat Name', @equipment.name
+          assert 'Repeat Name' != @equipment.name
         end
       end
 

@@ -38,7 +38,7 @@ class SetupsControllerTest < ActionController::TestCase
       end
 
       should "not delete the setup" do
-        refute_nil Setup.find_by_id(@setup.id)
+        assert Setup.find_by_id(@setup.id)
       end
     end
 
@@ -51,7 +51,7 @@ class SetupsControllerTest < ActionController::TestCase
 
       should "not update the setup" do
         @setup.reload
-        refute_equal @setup.equipment, @new_equipment
+        assert @setup.equipment != @new_equipment
       end
     end
   end
