@@ -29,4 +29,11 @@ class ActivityTest < ActiveSupport::TestCase
     assert !a.save
     assert_equal num_activities, Activity.count
   end
+
+  def test_person_name
+    person = Factory.create(:person, :given_name => "Cool", :sur_name => "Name")
+    person_activity = Factory.create(:activity, :person_id => person.id)
+
+    assert_equal "Cool Name", person_activity.person_name
+  end
 end
