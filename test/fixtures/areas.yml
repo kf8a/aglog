@@ -1861,3 +1861,79 @@ areas_G10:
   treatment_id: "57"
   treatment_number: "10"
   study_id: "6"
+areas_CE1:
+  name: CE1
+  treatment_number: "1"
+  study_id: "7"
+areas_CE2:
+  name: CE2
+  treatment_number: "2"
+  study_id: "7"
+areas_CE3:
+  name: CE3
+  treatment_number: "3"
+  study_id: "7"
+areas_CE4:
+  name: CE4
+  treatment_number: "4"
+  study_id: "7"
+areas_CE5:
+  name: CE5
+  treatment_number: "5"
+  study_id: "7"
+areas_CE6:
+  name: CE6
+  treatment_number: "6"
+  study_id: "7"
+areas_CE7:
+  name: CE7
+  treatment_number: "7"
+  study_id: "7"
+areas_CE8:
+  name: CE8
+  treatment_number: "8"
+  study_id: "7"
+areas_CE9:
+  name: CE9
+  treatment_number: "9"
+  study_id: "7"
+areas_CE10:
+  name: CE10
+  treatment_number: "10"
+  study_id: "7"
+areas_CE11:
+  name: CE11
+  treatment_number: "11"
+  study_id: "7"
+areas_CE12:
+  name: CE12
+  treatment_number: "12"
+  study_id: "7"
+areas_CE13:
+  name: CE13
+  treatment_number: "13"
+  study_id: "7"
+areas_CE14:
+  name: CE14
+  treatment_number: "14"
+  study_id: "7"
+areas_CE15:
+  name: CE15
+  treatment_number: "15"
+  study_id: "7"
+areas_CE16:
+  name: CE16
+  treatment_number: "16"
+  study_id: "7"
+areas_CE17:
+  name: CE17
+  treatment_number: "17"
+  study_id: "7"
+areas_CE18:
+  name: CE18
+  treatment_number: "18"
+  study_id: "7"
+areas_CE19:
+  name: CE19
+  treatment_number: "19"
+  study_id: "7"

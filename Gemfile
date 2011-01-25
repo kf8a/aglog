@@ -14,6 +14,9 @@ gem 'will_paginate', "~> 3.0.pre2"
 gem 'thin'
 gem 'haml'
 gem 'formtastic'
+unless RUBY_VERSION > "1.9"
+  gem 'fastercsv'
+end
 
 #Uses jquery instead of prototype in rails
 gem 'jquery-rails'

@@ -58,7 +58,7 @@ class MaterialTransactionsControllerTest < ActionController::TestCase
       end
 
       should "create a material transaction" do
-        refute_nil MaterialTransaction.find_by_material_id(@material.id)
+        assert MaterialTransaction.find_by_material_id(@material.id)
       end
     end
 
@@ -70,7 +70,7 @@ class MaterialTransactionsControllerTest < ActionController::TestCase
       end
 
       should "create a material transaction for that setup" do
-        refute_nil MaterialTransaction.find_by_setup_id_and_material_id(@setup.id, @material.id)
+        assert MaterialTransaction.find_by_setup_id_and_material_id(@setup.id, @material.id)
       end
     end
 
