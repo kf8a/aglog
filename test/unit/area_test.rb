@@ -176,6 +176,28 @@ class AreaTest < ActiveSupport::TestCase
     parse_reverse('ECB')
   end
 
+  def test_main
+    parse_reverse('MAIN')
+  end
+
+  def test_t_range
+    areas = Area.parse('t1-7')
+    real_areas = Area.find_all_by_study_id_and_treatment_number(1, 1..7)
+    assert_equal [], (areas - real_areas)
+  end
+
+  def test_t_not_r_parse
+    areas = Area.parse('t2!r1')
+    real_areas = Area.find_all_by_study_id_and_treatment_number_and_replicate(1, 2, 2..8)
+    assert_equal [], (areas - real_areas)
+  end
+
+  def test_r_not_t_parse
+    areas = Area.parse('r2!T1')
+    real_areas = Area.find_all_by_study_id_and_replicate_and_treatment_number(1, 2, 2..8)
+    assert_equal [], (areas - real_areas)
+  end
+
   def test_f_parse
     areas = Area.parse('Fertility_Gradient')
     real_areas = Area.find_all_by_study_id(3)
