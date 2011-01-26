@@ -30,5 +30,51 @@ class MaterialTest < ActiveSupport::TestCase
       end
     end
   end
+
+  should 'grab all and only the right its own observations with self.observations' do
+    @material = Factory.create(:material, :name => 'correct material')
+
+    included_observation_first = Factory.create(:observation)
+    activity = Factory.create(:activity, :observation_id => included_observation_first.id)
+    setup = Factory.create(:setup, :activity_id => activity.id)
+    Factory.create(:material_transaction, :setup_id => setup.id, :material_id => @material.id)
+
+    included_observation_second = Factory.create(:observation)
+    activity = Factory.create(:activity, :observation_id => included_observation_second.id)
+    setup = Factory.create(:setup, :activity_id => activity.id)
+    Factory.create(:material_transaction, :setup_id => setup.id, :material_id => @material.id)
+
+    evil_material = Factory.create(:material, :name => 'evil material')
+    not_included_observation = Factory.create(:observation)
+    activity = Factory.create(:activity, :observation_id => not_included_observation.id)
+    setup = Factory.create(:setup, :activity_id => activity.id)
+    Factory.create(:material_transaction, :setup_id => setup.id, :material_id => evil_material.id)
+
+    @material.reload
+    assert @material.observations.include?(included_observation_first)
+    assert @material.observations.include?(included_observation_second)
+    assert !@material.observations.include?(not_included_observation)
+  end
+
+  context 'A material with a material type' do
+    setup do
+      @material_type = Factory.create(:material_type, :name => 'Testable Name')
+      @material = Factory.create(:material, :material_type_id => @material_type.id)
+    end
+
+    should 'return the name of the material type on material_type_name' do
+      assert_equal @material_type.name, @material.material_type_name
+    end
+  end
+
+  context 'An area with no study' do
+    setup do
+      @area = Factory.create(:area, :study_id => nil)
+    end
+
+    should 'return nil for study_name' do
+      assert_equal nil, @area.study_name
+    end
+  end
   
 end

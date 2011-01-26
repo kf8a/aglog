@@ -18,6 +18,10 @@ if Factory.factories.blank? #prevent redefining these factories
 
   end
 
+  Factory.define :material_type do |m|
+    
+  end
+
   Factory.define :observation_type do |o|
     o.name    "Default"
   end
