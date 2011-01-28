@@ -40,7 +40,7 @@ class Area < ActiveRecord::Base
   # @param [Array] areas an array of areas
   # @return [String] a list of area names and study names if a whole study's
   #   areas are included (and treatment names for the same reason)
-  def Area.unparse(areas = [])
+  def Area.unparse(areas = nil)
     areas = areas.to_a
     studies, areas = replace_study_areas_by_study(areas)
     treatments, areas = replace_treatment_areas_by_treatment(areas)
@@ -48,6 +48,10 @@ class Area < ActiveRecord::Base
     names = studies + treatments + area_names
 
     names.sort.join(' ')
+  end
+
+  def study_name
+    self.study.try(:name)
   end
 
   private##########################################
@@ -59,7 +63,7 @@ class Area < ActiveRecord::Base
     study_ids = areas.collect { |area| area.study_id }
     study_ids.compact.uniq.each do |study_id|
       study_areas = Area.where(:study_id => study_id).all
-      if !study_areas.empty? && ([] == study_areas - areas)
+      if [] == study_areas - areas
         areas -= study_areas
         studies << Study.find(study_id).name
       end
@@ -75,7 +79,7 @@ class Area < ActiveRecord::Base
     treatment_ids = areas.collect { |area| area.treatment_id }
     treatment_ids.compact.uniq.each do |treatment_id|
       treatment_areas = Area.where(:treatment_id => treatment_id).all
-      if !treatment_areas.empty? && ([] == treatment_areas - areas)
+      if [] == treatment_areas - areas
         areas -= treatment_areas
         treatments << Treatment.find(treatment_id).name
       end
@@ -122,11 +126,15 @@ class Area < ActiveRecord::Base
       Area.where(:study_id => 1, :replicate => $1).where(['not treatment_number = ?',$2])
     when /^[b|B]([1-9]|1[0-9]|2[0-1])$/ #specify Biodiversity Plots
       Area.where(:study_id => 2, :treatment_number => $1)
-    when /^Fertility_Gradient$/, /^[f|F]([1-9])$/ #specify N fert
+    when /^Fertility_Gradient$/
+      Area.where(:study_id => 3)
+    when /^[f|F]([1-9])$/ #specify N fert
       Area.where(:study_id => 3, :treatment_number => $1)
     when /^[f|F]([1-9])-([1-9])$/
       Area.where(:study_id => 3, :treatment_number => $1..$2)
-    when /^Irrigated_Fertility_Gradient$/, /^i[f|F]([1-9])$/
+    when /^Irrigated_Fertility_Gradient$/
+      Area.where(:study_id => 4)
+    when /^i[f|F]([1-9])$/
       Area.where(:study_id => 4, :treatment_number => $1)
     when /^i[f|F]([1-9])-([1-9])$/
       Area.where(:study_id => 4, :treatment_number => $1..$2)
@@ -134,8 +142,8 @@ class Area < ActiveRecord::Base
       Area.where(:study_id => 5, :treatment_number => [$1,$2].join)
     when /^GLBRC$/ # specify GLRBC plots
       Area.where(:study_id => 6)
-    when /^CES$/, /^[ce|CE|Ce|cE]([1-9]|1[0-9])$/ # specify Cellulosic energy study
-      Area.where(:study_id => 7, :treatment_number => $1)
+    when /^CES$/ # specify Cellulosic energy study
+      Area.where(:study_id => 7)
     else
       nil
     end

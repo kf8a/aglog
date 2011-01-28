@@ -1,0 +1,25 @@
+%h1 Show Hazard
+
+%dl
+  %dt Name:
+  %dd
+    = @hazard.name
+  %dt Hazard Type:
+  %dd
+    = @hazard.hazard_type
+  %dt Chemical Name
+  %dd
+    = @hazard.chemical_name
+  %dt Description:
+  %dd
+    = @hazard.description
+  %dt Notification:
+  %dd
+    = @hazard.notification
+  %dt "Exclusion Time (Days):"
+  %dd
+    = @hazard.exclusion_time_days
+
+= link_to 'Edit', edit_hazard_path(@hazard) if signed_in?
+|
+= link_to 'List', hazards_path

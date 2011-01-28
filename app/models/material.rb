@@ -23,5 +23,9 @@ class Material < ActiveRecord::Base
   def observations
     self.setups.collect {|setup| setup.observation}.compact
   end
+
+  def material_type_name
+    self.material_type.try(:name)
+  end
   
 end

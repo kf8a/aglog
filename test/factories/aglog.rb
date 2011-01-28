@@ -1,51 +1,63 @@
-#Independent Factories
+if Factory.factories.blank? #prevent redefining these factories
 
-Factory.define :area do |a|
-  
-end
+  #Independent Factories
 
-Factory.define :equipment do |e|
+  Factory.define :area do |a|
 
-end
+  end
 
-Factory.define :hazard do |h|
-  
-end
+  Factory.define :equipment do |e|
 
-Factory.define :material do |m|
-  
-end
+  end
 
-Factory.define :observation_type do |o|
-  o.name    "Default"
-end
+  Factory.define :hazard do |h|
 
-Factory.define :person do |p|
-  p.given_name  "Bob"
-  p.sur_name "Dobolina"
-end
+  end
 
-Factory.define :unit do |u|
+  Factory.define :material do |m|
 
-end
+  end
+
+  Factory.define :material_type do |m|
+    
+  end
+
+  Factory.define :observation_type do |o|
+    o.name    "Default"
+  end
+
+  Factory.define :person do |p|
+    p.given_name  "Bob"
+    p.sur_name "Dobolina"
+  end
+
+  Factory.define :study do |s|
+    
+  end
+
+  Factory.define :unit do |u|
+
+  end
 
 
-#Dependent Factories
+  #Dependent Factories
 
-Factory.define :activity do |a|
-  a.person              Person.first || Factory.create(:person)
-end
+  Factory.define :activity do |a|
+    a.person              Person.first || Factory.create(:person)
+  end
 
-Factory.define :material_transaction do |m|
-  m.material          Material.first || Factory.create(:material)
-end
+  Factory.define :material_transaction do |m|
+    m.material          Material.first || Factory.create(:material)
+  end
 
-Factory.define :observation do |o|
-  o.obs_date            Date.today
-  o.observation_types   [ObservationType.first || Factory.create(:observation_type)]
-  o.person              Person.first || Factory.create(:person)
-end
+  Factory.define :observation do |o|
+    o.obs_date            Date.today
+    o.observation_types   [ObservationType.first || Factory.create(:observation_type)]
+    o.person              Person.first || Factory.create(:person)
+  end
 
-Factory.define :setup do |s|
-  s.equipment         Equipment.first || Factory.create(:equipment)
+  Factory.define :setup do |s|
+    s.equipment         Equipment.first || Factory.create(:equipment)
+  end
+
 end

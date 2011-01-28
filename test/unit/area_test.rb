@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'set'
 
 class AreaTest < ActiveSupport::TestCase
   
@@ -176,11 +175,89 @@ class AreaTest < ActiveSupport::TestCase
   def test_area_not_in_study
     parse_reverse('ECB')
   end
+
+  def test_main
+    parse_reverse('MAIN')
+  end
+
+  def test_t_range
+    areas = Area.parse('t1-7')
+    real_areas = Area.find_all_by_study_id_and_treatment_number(1, 1..7)
+    assert_equal [], (areas - real_areas)
+  end
+
+  def test_t_not_r_parse
+    areas = Area.parse('t2!r1')
+    real_areas = Area.find_all_by_study_id_and_treatment_number_and_replicate(1, 2, 2..8)
+    assert_equal [], (areas - real_areas)
+  end
+
+  def test_r_not_t_parse
+    areas = Area.parse('r2!T1')
+    real_areas = Area.find_all_by_study_id_and_replicate_and_treatment_number(1, 2, 2..8)
+    assert_equal [], (areas - real_areas)
+  end
+
+  def test_f_parse
+    areas = Area.parse('Fertility_Gradient')
+    real_areas = Area.find_all_by_study_id(3)
+    assert_equal [], (areas - real_areas)
+
+    areas = Area.parse('F4')
+    real_areas = Area.find_all_by_study_id_and_treatment_number(3, 4)
+    assert_equal [], (areas - real_areas)
+
+    areas = Area.parse('F2-3')
+    real_areas = Area.find_all_by_study_id_and_treatment_number(3, 2..3)
+    assert_equal [], (areas - real_areas)
+  end
+
+  def test_if_parse
+    areas = Area.parse('Irrigated_Fertility_Gradient')
+    real_areas = Area.find_all_by_study_id(4)
+    assert_equal [], (areas - real_areas)
+
+    areas = Area.parse('iF7')
+    real_areas = Area.find_all_by_study_id_and_treatment_number(4, 7)
+    assert_equal [], (areas - real_areas)
+
+    areas = Area.parse("iF1-4")
+    real_areas = Area.find_all_by_study_id_and_treatment_number(4, 1..4)
+    assert_equal [], (areas - real_areas)
+  end
   
   def test_glrbc_parse
     parse_reverse('G1R4')
     parse_reverse('G2')
     parse_reverse('G10')
+    parse_reverse('GLBRC')
+  end
+
+  def test_ces_parse
+    parse_reverse('CES')
+    parse_reverse('CE1')
+    parse_reverse('ce13')
+  end
+
+  context 'An area with a study' do
+    setup do
+      @study = Factory.create(:study, :name => 'Testable Name')
+      @area = Factory.create(:area, :study_id => @study.id)
+    end
+
+    should 'return the name of the study on study_name' do
+      assert_equal @study.name, @area.study_name
+    end
+  end
+
+  context 'An area with no study' do
+    setup do
+      @area = Factory.create(:area, :study_id => nil)
+    end
+
+    should 'return nil for study_name' do
+      assert_equal nil, @area.study_name
+    end
   end
   
 private

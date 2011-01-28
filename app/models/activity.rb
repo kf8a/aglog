@@ -12,7 +12,7 @@ class Activity < ActiveRecord::Base
   validates_associated :person
 
   def person_name
-    self.person.try(:name)
+    self.person.name
   end
 
 end

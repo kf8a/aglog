@@ -1,0 +1,24 @@
+%h1 Listing equipment
+
+= link_to 'New equipment', new_equipment_path
+
+%table
+  %tr
+    %th(align="left") Name
+    %th Use Material
+
+  - @equipment.each do |equipment|
+    %tr
+      %td
+        = equipment.name
+      %td(align="center")
+        = 'true' if equipment.use_material?
+      %td
+        = link_to 'Show', equipment_path(equipment)
+      %td
+        = link_to 'Edit', edit_equipment_path(equipment)
+      %td
+        = link_to 'Destroy', equipment_path(equipment), :confirm => 'Are you sure?', :method => :delete
+%br
+
+= link_to 'New equipment', new_equipment_path
