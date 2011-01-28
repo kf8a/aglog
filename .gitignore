@@ -1,8 +1,8 @@
 # .gitignore
 .DS_Store
 log/*.log
-tmp/**/*
-tmp/*
+tmp/
+nbproject/
 config/database.yml
 db/*.sqlite3
 vendor/gems/specifications
