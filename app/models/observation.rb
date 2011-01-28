@@ -52,7 +52,7 @@ class Observation < ActiveRecord::Base
   end
 
   def materials_with_rates
-    self.setups.collect { |setup| setup.materials_with_rates }.flatten.join(', ')
+    self.setups.collect { |setup| setup.materials_with_rates }.flatten.uniq.join(', ')
   end
 
   def observation_type

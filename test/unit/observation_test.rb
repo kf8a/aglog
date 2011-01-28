@@ -79,11 +79,19 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal true, o.in_review
   end
   
-  def test_set_review_status_to_published
+  def test_set_review_status_to_published_from_in_review
     o = create_simple_observation
     assert o.save
+    o.in_review = "1"
+    assert_equal o.state, 'in_review'
     o.in_review = "0"
     assert_equal o.state, 'published'
+  end
+
+  def test_set_review_status_fails_elegantly_for_new_records
+    o = Observation.new
+    o.in_review = "0"
+    assert o.state != 'published'
   end
   
   def test_areas_as_text_with_error_areas
@@ -95,6 +103,45 @@ class ObservationTest < ActiveSupport::TestCase
     o.reload
     assert_equal original_areas, o.areas
     assert_equal "*NoArea*", o.areas_as_text
+    assert !o.save
+    assert_equal ["invalid areas"],  o.errors[:base]
+  end
+
+  def test_equipment_names
+    o = create_simple_observation
+    another_equipment = Factory.create(:equipment, :name => "Another Equipment")
+    evil_equipment = Factory.create(:equipment, :name => "Evil Equipment")
+    another_setup = o.setups.new(:equipment_id => another_equipment.id)
+    another_setup.save
+    assert_equal "Equipment2, Another Equipment", o.equipment_names
+  end
+  
+  def test_materials_with_rates
+    o = create_simple_observation
+    activity = Factory.create(:activity, :observation_id => o.id)
+    equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
+    setup = activity.setups.new(:equipment_id => equipment.id)
+    assert setup.save
+    material = Material.find_by_name("Material4") || Factory.create(:material, :name => "Material4")
+    unit = Unit.find_by_name("Unit4") || Factory.create(:unit, :name => "Unit4")
+    trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
+    assert trans_0.save
+    assert_equal "Material3: 4.0 Unit3s per acre, Material4: 5.0 Unit4s per acre", o.materials_with_rates
+  end
+
+  def test_observation_type
+    o = create_simple_observation
+    assert_equal "Soil Preparation", o.observation_type
+  end
+
+  def test_observation_type_names
+    o = create_simple_observation
+    another_type = ObservationType.new(:name => "Another Type", :observations => [o])
+    assert another_type.save
+    o.observation_types << another_type
+    assert o.save
+    o.reload
+    assert_equal "Soil Preparation, Another Type", o.observation_type_names
   end
   
   private
