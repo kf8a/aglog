@@ -143,6 +143,72 @@ class ObservationTest < ActiveSupport::TestCase
     o.reload
     assert_equal "Soil Preparation, Another Type", o.observation_type_names
   end
+
+  def test_areas_as_text
+    o = create_simple_observation
+    text_areas =  "MAIN"
+    o.areas_as_text = text_areas
+    assert_equal text_areas, o.areas_as_text
+  end
+
+  def test_material_names
+    o = create_simple_observation
+    activity = Factory.create(:activity, :observation_id => o.id)
+    equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
+    setup = activity.setups.new(:equipment_id => equipment.id)
+    assert setup.save
+    material = Material.find_by_name("Material4") || Factory.create(:material, :name => "Material4")
+    unit = Unit.find_by_name("Unit4") || Factory.create(:unit, :name => "Unit4")
+    trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
+    assert trans_0.save
+    assert_equal ["Material3", "Material4"], o.material_names
+  end
+
+  #TODO This test, material_names, and materials_with_rates should be refactored
+  def test_n_contents
+    o = create_simple_observation
+    activity = Factory.create(:activity, :observation_id => o.id)
+    equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
+    setup = activity.setups.new(:equipment_id => equipment.id)
+    assert setup.save
+    material = Material.find_by_name("Material4") || Factory.create(:material, :name => "Material4")
+    unit = Unit.find_by_name("Unit4") || Factory.create(:unit, :name => "Unit4")
+    trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
+    assert trans_0.save
+    material = Material.find_by_name("Material3")
+    material.n_content = 40
+    material.save
+    material = Material.find_by_name("Material4")
+    material.n_content = 30
+    material.save
+    assert_equal [40.0, 30.0], o.n_contents
+  end
+
+  def test_rates
+    o = create_simple_observation
+    activity = Factory.create(:activity, :observation_id => o.id)
+    equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
+    setup = activity.setups.new(:equipment_id => equipment.id)
+    assert setup.save
+    material = Material.find_by_name("Material4") || Factory.create(:material, :name => "Material4")
+    unit = Unit.find_by_name("Unit4") || Factory.create(:unit, :name => "Unit4")
+    trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
+    assert trans_0.save
+    assert_equal [4.0, 5.0], o.rates
+  end
+
+  def test_unit_names
+    o = create_simple_observation
+    activity = Factory.create(:activity, :observation_id => o.id)
+    equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
+    setup = activity.setups.new(:equipment_id => equipment.id)
+    assert setup.save
+    material = Material.find_by_name("Material4") || Factory.create(:material, :name => "Material4")
+    unit = Unit.find_by_name("Unit4") || Factory.create(:unit, :name => "Unit4")
+    trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
+    assert trans_0.save
+    assert_equal ['Unit3', 'Unit4'], o.unit_names
+  end
   
   private
   
