@@ -38,4 +38,5 @@ group :test do
   gem 'spork'
   gem 'launchy'
   gem 'capybara'
+  gem 'rspec-rails'
 end
