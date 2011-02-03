@@ -7,8 +7,16 @@ require 'rspec/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+def find_or_factory(model, attributes = Hash.new)
+  model_as_constant = model.to_s.titleize.gsub(' ', '').constantize
+  object = model_as_constant.where(attributes).first
+  object ||= Factory.create(model.to_sym, attributes)
+
+  object
+end
+
 def sign_in_as_normal_user
-  @user = Person.first || Factory.create(:person)
+  @user = find_or_factory(:person)
   session[:user_id] = @user.id
 end
 

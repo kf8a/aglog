@@ -10,7 +10,8 @@ describe ActivitiesController do
 
     describe "POST :create" do
       before(:each) do
-        @person = Factory.create(:person)
+        @person = find_or_factory(:person)
+        assert_nil Activity.find_by_person_id(@person.id)
         post :create, :activity => { :person_id => @person.id }
       end
 
@@ -107,7 +108,8 @@ describe ActivitiesController do
     
     describe "POST :create" do
       before(:each) do
-        @person = Factory.create(:person)
+        @person = find_or_factory(:person)
+        assert_nil Activity.find_by_person_id(@person.id)
         post :create, :activity => { :person_id => @person.id }
       end
 
