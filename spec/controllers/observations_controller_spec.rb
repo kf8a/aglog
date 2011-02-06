@@ -1,8 +1,9 @@
-require 'test_helper'
+require 'spec_helper'
 
-class ObservationsControllerTest < ActionController::TestCase
-
-  setup do
+describe ObservationsController do
+  render_views
+  
+  before(:each) do
     sign_in_as_normal_user
     Equipment.find_by_id(2) or 2.times do |num|
       Factory.create(:equipment, :name => "Equipment#{num}")
@@ -18,14 +19,14 @@ class ObservationsControllerTest < ActionController::TestCase
     end
   end
 
-  def test_should_get_index
+  it "should get index" do
     get :index
     assert_response :success
     assert assigns(:observations)
   end
 
-  context "GET :index, in_review is true" do
-    setup do
+  describe "GET :index, in_review is true" do
+    before(:each) do
       @obs_in_review = Factory.create(:observation)
       @obs_in_review.in_review = '1'
       @obs_published = Factory.create(:observation)
@@ -35,14 +36,14 @@ class ObservationsControllerTest < ActionController::TestCase
       get :index, :in_review => true
     end
 
-    should "only include observation in review" do
+    it "should only include observation in review" do
       assert assigns(:observations).include?(@obs_in_review)
       assert !assigns(:observations).include?(@obs_published)
     end
   end
 
-  context "GET :index, with observation type selected" do
-    setup do
+  describe "GET :index, with observation type selected" do
+    before(:each) do
       @observation_type = Factory.create(:observation_type)
       @correct_type_observation = Factory.create(:observation, :observation_types => [@observation_type])
       @wrong_type_observation = Factory.create(:observation)
@@ -51,53 +52,53 @@ class ObservationsControllerTest < ActionController::TestCase
       get :index, :obstype => @observation_type.id
     end
 
-    should "only include observation of correct type" do
+    it "should only include observation of correct type" do
       assert assigns(:observations).include?(@correct_type_observation)
       assert !assigns(:observations).include?(@wrong_type_observation)
     end
   end
 
-  context "GET :index in salus_xml format" do
-    setup do
+  describe "GET :index in salus_xml format" do
+    before(:each) do
       get :index, :format => 'salus_xml'
     end
 
-    should respond_with_content_type('text/xml')
+    it { should respond_with_content_type('text/xml') }
   end
 
-  context "GET :index in salus_csv format" do
-    setup do
+  describe "GET :index in salus_csv format" do
+    before(:each) do
       get :index, :format => 'salus_csv'
     end
 
-    should respond_with_content_type('text/text')
+    it { should respond_with_content_type('text/text') }
   end
 
-  context "GET :new" do
-    setup do
+  describe "GET :new" do
+    before(:each) do
       get :new
     end
 
-    should render_template 'new'
+    it { should render_template 'new' }
   end
 
-  context "POST :create" do
-    setup do
+  describe "POST :create" do
+    before(:each) do
       @observation_count = Observation.count
       post :create, :observation => { :obs_date => Date.today,
                                       :observation_type_ids => ["3"] }
     end
 
-    should "create an observation" do
+    it "should create an observation" do
       assert_equal @observation_count + 1, Observation.count
     end
 
-    should "assign the current user as the observation's person" do
+    it "should assign the current user as the observation's person" do
       assert_equal @user.id, assigns(:observation).person_id
     end
   end
 
-  def test_should_not_create_observation_or_activity
+  it "should not create observation or activity" do
      old_count = Observation.count
      num_activities =  Activity.count
 
@@ -116,57 +117,57 @@ class ObservationsControllerTest < ActionController::TestCase
      assert_response :success
    end
 
-  context "An observation exists. " do
-    setup do
+  describe "An observation exists. " do
+    before(:each) do
       @observation = Factory.create(:observation)
     end
 
-    context "GET :show the observation" do
-      setup do
+    describe "GET :show the observation" do
+      before(:each) do
         get :show, :id => @observation.id
       end
 
-      should render_template 'show'
+      it { should render_template 'show' }
     end
 
-    context "GET :edit the observation" do
-      setup do
+    describe "GET :edit the observation" do
+      before(:each) do
         get :edit, :id => @observation.id
       end
 
-      should render_template 'edit'
+      it { should render_template 'edit' }
     end
 
-    context "PUT :update the observation" do
-      setup do
+    describe "PUT :update the observation" do
+      before(:each) do
         @current_obs_date = @observation.obs_date
         xhr(:put, :update, :id => @observation.id, :commit => "Update Observation", :observation => { :obs_date => @current_obs_date - 1 })
       end
 
-      should "update the observation" do
+      it "should update the observation" do
         @observation.reload
         assert_equal @current_obs_date - 1, @observation.obs_date
       end
     end
 
-    context "PUT :update with invalid attributes" do
-      setup do
+    describe "PUT :update with invalid attributes" do
+      before(:each) do
         @current_obs_date = @observation.obs_date
         xhr(:put, :update, :id => @observation.id, :commit => "Update Observation", :observation => { :person_id => nil, :obs_date => @current_obs_date - 1 })
       end
 
-      should "not update the observation" do
+      it "should not update the observation" do
         @observation.reload
         assert_equal @current_obs_date, @observation.obs_date
       end
     end
 
-    context "DELETE :destroy the observation" do
-      setup do
+    describe "DELETE :destroy the observation" do
+      before(:each) do
         delete :destroy, :id => @observation.id
       end
 
-      should redirect_to("The observations path") {observations_path}
+      it { should redirect_to observations_path }
     end
   end
 
@@ -185,5 +186,5 @@ class ObservationsControllerTest < ActionController::TestCase
   		        "hours"=>"1", "person_id"=>"2"}},
   		        "controller"=>"observations", "material_index"=>"0"}
   end
-  
 end
+

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ActivitiesController do
   render_views
   
-  describe "Not signed in. " do
+  context "Not signed in. " do
     before(:each) do
       sign_out
     end
@@ -16,7 +16,8 @@ describe ActivitiesController do
       end
 
       it "should not create an activity" do
-        assert_nil Activity.find_by_person_id(@person.id)
+        @person.reload
+        @person.activities.should be_empty
       end
 
       it "should redirect to the sign in page" do
