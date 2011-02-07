@@ -22,18 +22,18 @@ describe EquipmentController do
         get :new
       end
 
-      it { should redirect_to new_person_session_url }
+      it { should redirect_to new_person_session_path }
     end
 
     describe 'POST :create' do
       before(:each) do
-        assert_nil Equipment.find_by_name('Controller Creation')
+        Equipment.exists?(:name => 'Controller Creation').should be_false
         post :create, :equipment => { :name => 'Controller Creation' }
       end
 
-      it { should redirect_to new_person_session_url }
+      it { should redirect_to new_person_session_path }
       it 'should not create an equipment' do
-        assert_nil Equipment.find_by_name('Controller Creation')
+        Equipment.exists?(:name => 'Controller Creation').should be_false
       end
     end
 
@@ -56,7 +56,7 @@ describe EquipmentController do
           get :edit, :id => @equipment.id
         end
 
-        it { should redirect_to new_person_session_url }
+        it { should redirect_to new_person_session_path }
       end
 
       describe 'PUT :update the equipment' do
@@ -64,10 +64,10 @@ describe EquipmentController do
           put :update, :id => @equipment.id, :area => { :name => 'new_equipment'}
         end
 
-        it { should redirect_to new_person_session_url }
+        it { should redirect_to new_person_session_path }
         it "should not change the equipment" do
           @equipment.reload
-          assert 'new_equipment' != @equipment.name
+          @equipment.name.should_not be_eql('new_equipment')
         end
       end
 
@@ -76,9 +76,9 @@ describe EquipmentController do
           delete :destroy, :id => @equipment.id
         end
 
-        it { should redirect_to new_person_session_url }
+        it { should redirect_to new_person_session_path }
         it "should not destroy the equipment" do
-          assert Equipment.find_by_id(@equipment.id)
+          Equipment.exists?(@equipment.id).should be_true
         end
       end
     end
@@ -109,13 +109,13 @@ describe EquipmentController do
 
     describe "POST :create" do
       before(:each) do
-        assert_nil Equipment.find_by_name('Controller Creation')
+        Equipment.exists?(:name => 'Controller Creation').should be_false
         post :create, :equipment => { :name => 'Controller Creation' }
       end
 
       it { should redirect_to equipment_path(assigns(:equipment)) }
       it 'should create an equipment' do
-        assert Equipment.find_by_name('Controller Creation')
+        Equipment.exists?(:name => 'Controller Creation').should be_true
       end
       it { should set_the_flash }
     end
@@ -171,7 +171,7 @@ describe EquipmentController do
         it { should redirect_to equipment_path(@equipment) }
         it 'should change the equipment' do
           @equipment.reload
-          assert_equal 'New Name', @equipment.name
+          @equipment.name.should be_eql('New Name')
         end
       end
 
@@ -185,7 +185,7 @@ describe EquipmentController do
         it { should assign_to(:equipment).with(@equipment) }
         it 'should not change the equipment' do
           @equipment.reload
-          assert 'Repeat Name' != @equipment.name
+          @equipment.name.should_not be_eql('Repeat Name')
         end
       end
 
@@ -196,7 +196,7 @@ describe EquipmentController do
 
         it { should redirect_to equipment_index_path }
         it "should destroy the equipment" do
-          assert_nil Equipment.find_by_id(@equipment)
+          Equipment.exists?(@equipment.id).should be_false
         end
       end
     end
