@@ -13,13 +13,8 @@ describe AreasController do
         get :index
       end
 
-      it "should render unauthorized_index" do
-        should render_template 'unauthorized_index'
-      end
-      
-      it "should assign @areas" do
-        should assign_to :areas
-      end
+      it { should render_template 'unauthorized_index' }
+      it { should assign_to :areas }
     end
 
     describe 'GET :new' do
@@ -27,23 +22,19 @@ describe AreasController do
         get :new
       end
 
-      it "should redirect to the sign in page" do
-        should redirect_to new_person_session_url
-      end
+      it { should redirect_to new_person_session_path }
     end
 
     describe 'POST :create' do
       before(:each) do
-        assert_nil Area.find_by_name('T2R22')
+        Area.exists?(:name => 'T2R22').should be_false
         post :create, :area => { :name => 'T2R22' }
       end
 
-      it "should redirect to the sign in page" do
-        should redirect_to new_person_session_url
-      end
+      it { should redirect_to new_person_session_path }
       
       it "should not create an area" do
-        assert_nil Area.find_by_name('T2R22')
+        Area.exists?(:name => 'T2R22').should be_false
       end
     end
 
@@ -67,7 +58,7 @@ describe AreasController do
           get :edit, :id => @area.id
         end
 
-        it { should redirect_to new_person_session_url }
+        it { should redirect_to new_person_session_path }
       end
 
       describe 'PUT :update the area' do
@@ -75,10 +66,10 @@ describe AreasController do
           put :update, :id => @area.id, :area => { :name => 'new_area'}
         end
 
-        it { should redirect_to new_person_session_url }
+        it { should redirect_to new_person_session_path }
         it "should not change the area" do
           @area.reload
-          assert 'new_area' != @area.name
+          @area.name.should_not be_eql('new_area')
         end
       end
 
@@ -87,9 +78,9 @@ describe AreasController do
           delete :destroy, :id => @area.id
         end
 
-        it { should redirect_to new_person_session_url }
+        it { should redirect_to new_person_session_path }
         it "should not destroy the area" do
-          assert Area.find_by_id(@area.id)
+          Area.exists?(@area.id).should be_true
         end
       end
     end
@@ -126,7 +117,7 @@ describe AreasController do
 
       it { should redirect_to area_path(assigns(:area)) }
       it "should create an area" do
-        assert Area.find_by_name('T2R22')
+        Area.exists?(:name => 'T2R22').should be_true
       end
       it { should set_the_flash }
     end
@@ -182,7 +173,7 @@ describe AreasController do
         it { should redirect_to area_path(@area) }
         it "should change the area" do
           @area.reload
-          assert_equal 'new_area', @area.name
+          @area.name.should be_eql('new_area')
         end
       end
 
@@ -195,7 +186,7 @@ describe AreasController do
         it { should render_template 'edit' }
         it "should not change the area" do
           @area.reload
-          assert 'repeat_name' != @area.name
+          @area.name.should_not be_eql('repeat_name')
         end
       end
 
@@ -206,7 +197,7 @@ describe AreasController do
 
         it { should redirect_to areas_path }
         it "should destroy the area" do
-          assert Area.find_by_id(@area.id).nil?
+          Area.exists?(@area.id).should be_false
         end
       end
     end

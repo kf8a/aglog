@@ -49,7 +49,7 @@ describe ActivitiesController do
         end
 
         it "should not delete the activity" do
-          assert Activity.find_by_id(@activity.id)
+          Activity.exists?(@activity.id).should be_true
         end
 
         it { should redirect_to new_person_session_path }
@@ -96,7 +96,7 @@ describe ActivitiesController do
         end
 
         it "should delete the activity" do
-          assert_nil Activity.find_by_id(@activity.id)
+          Activity.exists?(@activity.id).should be_false
         end
       end
     end
