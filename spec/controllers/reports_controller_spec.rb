@@ -1,27 +1,30 @@
-require 'test_helper'
+require 'spec_helper'
 
-class ReportsControllerTest < ActionController::TestCase
-  def setup
+describe ReportsController do
+  render_views
+  
+  before(:each) do
     sign_in_as_normal_user
   end
 
-  def test_plot_sort
+  it "GET :index, ordered by plot" do
     get :index, :order=>'plot'
     assert_response :success
   end
   
-  def test_material_sort
+  it "GET :index, ordered by material" do
     get :index, :order => 'material'
     assert_response :success
   end
   
-  def test_date_sort
+  it "GET :index, ordered by date" do
     get :index, :order => 'date'
     assert_response :success
   end
 
-  def test_other_sort
+  it "GET :index, ordered by something_else" do
     get :index, :order => 'something_else'
     assert_response :success
   end
 end
+

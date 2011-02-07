@@ -8,43 +8,67 @@ describe HazardsController do
     @hazard = Factory.create(:hazard)
   end
 
-  it "should get index" do
-    get :index
-    assert_response :success
-    assert assigns(:hazards)
+  describe "get :index" do
+    before(:each) do
+      get :index
+    end
+
+    it { should respond_with :success }
+    it { should assign_to :hazards }
   end
 
-  it "should get new" do
-    get :new
-    assert_response :success
+  describe "get :new" do
+    before(:each) do
+      get :new
+    end
+
+    it { should respond_with :success }
   end
 
-  it "should create hazard" do
-    hazards = Hazard.count
-    post :create, :hazard => { }
-    assert_redirected_to hazard_path(assigns(:hazard))
-    assert_equal hazards + 1, Hazard.count
+  describe "POST :create" do
+    before(:each) do
+      @old_count = Hazard.count
+      post :create, :hazard => { }
+    end
+
+    it { should redirect_to hazard_path(assigns(:hazard)) }
+    it "should create hazard" do
+      Hazard.count.should be_eql(@old_count + 1)
+    end
   end
 
-  it "should show hazard" do
-    get :show, :id => @hazard.id
-    assert_response :success
+  describe "GET :show" do
+    before(:each) do
+      get :show, :id => @hazard.id
+    end
+
+    it { should respond_with :success }
   end
 
-  it "should get edit" do
-    get :edit, :id => @hazard.id
-    assert_response :success
+  describe "GET :edit" do
+    before(:each) do
+      get :edit, :id => @hazard.id
+    end
+
+    it { should respond_with :success }
   end
 
-  it "should update hazard" do
-    put :update, :id => @hazard.id, :hazard => { }
-    assert_redirected_to hazard_path(assigns(:hazard))
+  describe "PUT :update" do
+    before(:each) do
+      put :update, :id => @hazard.id, :hazard => { }
+    end
+
+    it { should redirect_to hazard_path(@hazard)}
   end
 
-  it "should destroy hazard" do
-    hazards = Hazard.count
-    delete :destroy, :id => @hazard.id
-    assert_redirected_to hazards_path
-    assert_equal hazards - 1, Hazard.count
+  describe "DELETE :destroy" do
+    before(:each) do
+      delete :destroy, :id => @hazard.id
+    end
+
+    it "should destroy the hazard" do
+      Hazard.exists?(@hazard.id).should be_false
+    end
+    it {should redirect_to hazards_path }
   end
 end
