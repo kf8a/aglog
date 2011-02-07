@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ActivitiesController do
   render_views
   
-  context "Not signed in. " do
+  context "Signed in. " do
     before(:each) do
       sign_out
     end
@@ -11,21 +11,19 @@ describe ActivitiesController do
     describe "POST :create" do
       before(:each) do
         @person = find_or_factory(:person)
-        Activity.where(:person_id => @person.id).destroy_all
+        @prior_activities = @person.activities.count
         post :create, :activity => { :person_id => @person.id }
       end
 
       it "should not create an activity" do
         @person.reload
-        @person.activities.should be_empty
+        @person.activities.count.should equal(@prior_activities)
       end
 
-      it "should redirect to the sign in page" do
-        should redirect_to new_person_session_url
-      end
+      it { should redirect_to new_person_session_path }
     end
 
-    describe "An activity exists. " do
+    context "An activity exists. " do
       before(:each) do
         @activity = Factory.create(:activity)
       end
@@ -37,15 +35,15 @@ describe ActivitiesController do
         end
 
         it "should not update the activity" do
-          assert_nil Activity.find_by_person_id(@new_person.id)
+          @activity.reload
+          @new_person.reload
+          @activity.person.should_not be_eql(@new_person)
         end
 
-        it "should redirect to the sign in page" do
-          should redirect_to new_person_session_url
-        end
+        it { should redirect_to new_person_session_path }
       end
 
-      describe "DELETE :destroy an activity" do
+      describe "DELETE :destroy the activity" do
         before(:each) do
           delete :destroy, :id => @activity.id
         end
@@ -54,9 +52,7 @@ describe ActivitiesController do
           assert Activity.find_by_id(@activity.id)
         end
 
-        it "should redirect to the sign in page" do
-          should redirect_to new_person_session_url
-        end
+        it { should redirect_to new_person_session_path }
       end
     end
   end
@@ -78,12 +74,12 @@ describe ActivitiesController do
         end
 
         it "should update the activity" do
-          assert Activity.find_by_person_id(@new_person.id)
+          @activity.reload
+          @new_person.reload
+          @activity.person.should be_eql(@new_person)
         end
 
-        it "should set the flash" do
-          should set_the_flash
-        end
+        it { should set_the_flash }
       end
 
       describe 'PUT :update the activity with invalid attributes' do
@@ -91,9 +87,7 @@ describe ActivitiesController do
           put :update, :id => @activity.id, :activity => { :person_id => nil }
         end
 
-        it "should not set the flash" do
-          should_not set_the_flash
-        end
+        it { should_not set_the_flash }
       end
 
       describe "DELETE :destroy an activity" do
@@ -110,12 +104,13 @@ describe ActivitiesController do
     describe "POST :create" do
       before(:each) do
         @person = find_or_factory(:person)
-        Activity.where(:person_id => @person.id).destroy_all
+        @prior_activities = @person.activities.count
         post :create, :activity => { :person_id => @person.id }
       end
 
       it "should create an activity" do
-        assert Activity.find_by_person_id(@person.id)
+        @person.reload
+        @person.activities.count.should equal(@prior_activities + 1)
       end
     end
   end
