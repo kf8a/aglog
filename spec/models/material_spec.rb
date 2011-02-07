@@ -1,37 +1,41 @@
-require 'test_helper'
+require 'spec_helper'
 
-class MaterialTest < ActiveSupport::TestCase
-  
-  def test_uniqueness
-    num_of_items =  Material.count()
-    test_name = 'seed corn'
-    a  = Material.new(:name => test_name) # is in fixture already
-    assert !a.save
-    assert !a.errors.empty?
+describe Material do
+  describe "requires unique name: " do
+    before(:each) do
+      @repeat_name = 'seed corn'
+      find_or_factory(:material, :name => @repeat_name)
+    end
     
-    a  = Material.new(:name => test_name.upcase) # case insensitive
-    assert !a.save
-    assert !a.errors.empty?
-    
-    a = Material.new(:name => 'A New Material') # is new name
-    assert a.save
-    assert a.errors.empty?
-    assert_equal num_of_items + 1, Material.count
+    describe 'a material with the same name as another' do
+      subject { Material.new(:name => @repeat_name) }
+      it { should_not be_valid }
+    end
+
+    describe 'a material with the same name, different case as another' do
+      subject { Material.new(:name => @repeat_name.upcase) }
+      it { should_not be_valid }
+    end
+
+    describe 'a material with a different name' do
+      subject { Material.new(:name => 'A New Material') }
+      it { should be_valid }
+    end
   end
 
   context "A material exists that is liquid. " do
-    setup do
+    before(:each) do
       @material = Factory.create(:material, :liquid => true)
     end
 
     context "to_mass(amount)" do
-      should "be the right number" do
+      it "should be the right number" do
         assert_equal 4000, @material.to_mass(4)
       end
     end
   end
 
-  should 'grab all and only the right its own observations with self.observations' do
+  it 'should grab all and only the right its own observations with self.observations' do
     @material = Factory.create(:material, :name => 'correct material')
 
     included_observation_first = Factory.create(:observation)
@@ -56,25 +60,20 @@ class MaterialTest < ActiveSupport::TestCase
     assert !@material.observations.include?(not_included_observation)
   end
 
-  context 'A material with a material type' do
-    setup do
+  describe 'A material with a material type' do
+    before(:each) do
       @material_type = Factory.create(:material_type, :name => 'Testable Name')
       @material = Factory.create(:material, :material_type_id => @material_type.id)
     end
 
-    should 'return the name of the material type on material_type_name' do
+    it 'should return the name of the material type on material_type_name' do
       assert_equal @material_type.name, @material.material_type_name
     end
   end
 
-  context 'An area with no study' do
-    setup do
-      @area = Factory.create(:area, :study_id => nil)
-    end
-
-    should 'return nil for study_name' do
-      assert_equal nil, @area.study_name
-    end
+  describe 'An area with no study' do
+    subject { Factory.create(:area, :study_id => nil) }
+    its(:study_name) { should be_nil }
   end
-  
 end
+

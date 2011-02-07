@@ -8,7 +8,7 @@ describe Equipment do
   it { should validate_uniqueness_of(:name).case_insensitive }
 
   it 'should grab all and only the right its own observations with self.observations' do
-    @equipment = Factory.create(:equipment, :name => 'correct equipment')
+    @equipment = find_or_factory(:equipment, :name => 'correct equipment')
 
     included_observation_first = Factory.create(:observation)
     activity = Factory.create(:activity, :observation_id => included_observation_first.id)
