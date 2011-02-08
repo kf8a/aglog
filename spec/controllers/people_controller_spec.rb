@@ -5,7 +5,7 @@ describe PeopleController do
   
   before(:each) do
     sign_in_as_normal_user
-    @person = Factory.create(:person)
+    @person = find_or_factory(:person)
   end
 
   it "should get index" do

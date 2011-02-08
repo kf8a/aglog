@@ -35,6 +35,10 @@ if Factory.factories.blank? #prevent redefining these factories
     
   end
 
+  Factory.define :treatment do |t|
+    
+  end
+
   Factory.define :unit do |u|
 
   end

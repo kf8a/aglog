@@ -10,12 +10,14 @@ describe MaterialTransactionsController do
 
     describe "POST :create" do
       before(:each) do
-        @material = Factory.create(:material)
+        @material = find_or_factory(:material)
+        @old_count = @material.material_transactions.count
         post :create, :material_transaction => { :material_id => @material.id }
       end
 
       it "should not create a material transaction" do
-        assert_nil MaterialTransaction.find_by_material_id(@material.id)
+        new_count = @material.material_transactions.count
+        new_count.should equal @old_count
       end
     end
 
@@ -54,24 +56,28 @@ describe MaterialTransactionsController do
 
     describe "POST :create" do
       before(:each) do
-        @material = Factory.create(:material)
+        @material = find_or_factory(:material)
+        @old_count = @material.material_transactions.count
         post :create, :material_transaction => { :material_id => @material.id }
       end
 
       it "should create a material transaction" do
-        assert MaterialTransaction.find_by_material_id(@material.id)
+        new_count = @material.material_transactions.count
+        new_count.should equal(@old_count + 1)
       end
     end
 
     describe "POST :create with a setup" do
       before(:each) do
-        @setup = Factory.create(:setup)
-        @material = Factory.create(:material)
+        @setup = find_or_factory(:setup)
+        @material = find_or_factory(:material)
+        @old_count = MaterialTransaction.where(:setup_id => @setup.id, :material_id => @material.id).count
         post :create, :material_transaction => { :setup_id => @setup.id, :material_id => @material.id }
       end
 
       it "should create a material transaction for that setup" do
-        assert MaterialTransaction.find_by_setup_id_and_material_id(@setup.id, @material.id)
+        new_count = MaterialTransaction.where(:setup_id => @setup.id, :material_id => @material.id).count
+        new_count.should equal(@old_count + 1)
       end
     end
 

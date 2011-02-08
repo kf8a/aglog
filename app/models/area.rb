@@ -10,7 +10,8 @@ class Area < ActiveRecord::Base
   belongs_to :treatment
   
   validates :name, :uniqueness => { :case_sensitive => false }
-  validates :study, :presence => { :if => :treatment_id }
+  validates :study, :presence => { :if => :study_id }
+  
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
@@ -44,8 +45,9 @@ class Area < ActiveRecord::Base
     areas = areas.to_a
     studies, areas = replace_study_areas_by_study(areas)
     treatments, areas = replace_treatment_areas_by_treatment(areas)
+    treatment_numbers, areas = replace_treatment_number_areas_by_treatment_number(areas)
     area_names = areas.compact.uniq.collect { |area| area.name }
-    names = studies + treatments + area_names
+    names = studies + treatments + treatment_numbers + area_names
 
     names.sort.join(' ')
   end
@@ -86,6 +88,42 @@ class Area < ActiveRecord::Base
     end
 
     [treatments, areas]
+  end
+
+  def Area.replace_treatment_number_areas_by_treatment_number(areas)
+    # if all of a treatment number's areas are here,
+    # use the treatment's name instead of individual areas
+    treatments = []
+    treatment_and_studies = areas.collect { |area| [area.treatment_number, area.study_id] }
+
+    treatment_and_studies.compact.uniq.each do |treatment_and_study|
+      treatment_number, study_id = treatment_and_study
+      if treatment_number
+        treatment_areas = Area.where(:treatment_number => treatment_number, :study_id => study_id).all
+        if [] == treatment_areas - areas
+          areas -= treatment_areas
+          name_to_include = overlap(treatment_areas[0].name, treatment_areas[-1].name)
+          if name_to_include.end_with?('R') || name_to_include.end_with?('r')
+            name_to_include.chop!
+          end
+          treatments << name_to_include
+        end
+      end
+    end
+
+    [treatments, areas]
+  end
+
+  def Area.overlap(string1, string2)
+    id = 0
+    max = string1.length
+    overlap = ''
+    until (string1[0..id] != string2[0..id]) || id > max
+      overlap = string1[0..id]
+      id += 1
+    end
+
+    overlap
   end
 
   def treatment_is_part_of_study

@@ -44,12 +44,13 @@ describe ObservationsController do
 
   describe "GET :index, with observation type selected" do
     before(:each) do
-      @observation_type = Factory.create(:observation_type)
-      @correct_type_observation = Factory.create(:observation, :observation_types => [@observation_type])
-      @wrong_type_observation = Factory.create(:observation)
-      assert @correct_type_observation.observation_types.include?(@observation_type)
-      assert !@wrong_type_observation.observation_types.include?(@observation_type)
-      get :index, :obstype => @observation_type.id
+      observation_type = find_or_factory(:observation_type)
+      @correct_type_observation = Factory.create(:observation, :observation_types => [observation_type])
+      wrong_type = find_or_factory(:observation_type, :name => 'wrong_type')
+      @wrong_type_observation = Factory.create(:observation, :observation_types => [wrong_type])
+      assert @correct_type_observation.observation_types.include?(observation_type)
+      assert !@wrong_type_observation.observation_types.include?(observation_type)
+      get :index, :obstype => observation_type.id
     end
 
     it "should only include observation of correct type" do
@@ -85,8 +86,9 @@ describe ObservationsController do
   describe "POST :create" do
     before(:each) do
       @observation_count = Observation.count
+      observation_type_id = ObservationType.first.id
       post :create, :observation => { :obs_date => Date.today,
-                                      :observation_type_ids => ["3"] }
+                                      :observation_type_ids => [observation_type_id] }
     end
 
     it "should create an observation" do
