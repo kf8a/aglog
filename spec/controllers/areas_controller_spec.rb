@@ -40,7 +40,7 @@ describe AreasController do
 
     describe 'An area exists. ' do
       before(:each) do
-        @area = Factory.create(:area)
+        @area = Factory.create(:area, :name => 'standard_area')
       end
 
       describe 'GET :show the area' do
@@ -63,13 +63,13 @@ describe AreasController do
 
       describe 'PUT :update the area' do
         before(:each) do
-          put :update, :id => @area.id, :area => { :name => 'new_area'}
+          put :update, :id => @area.id, :area => { :name => 'new_area' }
         end
 
         it { should redirect_to new_person_session_path }
         it "should not change the area" do
           @area.reload
-          @area.name.should_not be_eql('new_area')
+          @area.name.should_not match 'new_area'
         end
       end
 
@@ -143,7 +143,7 @@ describe AreasController do
 
     describe "An area exists. " do
       before(:each) do
-        @area = Factory.create(:area)
+        @area = Factory.create(:area, :name => 'existing_area')
       end
 
       describe "GET :show the area" do
@@ -173,7 +173,7 @@ describe AreasController do
         it { should redirect_to area_path(@area) }
         it "should change the area" do
           @area.reload
-          @area.name.should be_eql('new_area')
+          @area.name.should match 'new_area'
         end
       end
 
@@ -186,7 +186,7 @@ describe AreasController do
         it { should render_template 'edit' }
         it "should not change the area" do
           @area.reload
-          @area.name.should_not be_eql('repeat_name')
+          @area.name.should_not match 'repeat_name'
         end
       end
 

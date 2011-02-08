@@ -9,7 +9,7 @@
     %th Study
 
   - @areas.each do |area|
-    %tr
+    %tr(id="#{area.name}")
       %td
         = area.name
       %td
