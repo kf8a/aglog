@@ -37,8 +37,8 @@ describe UnitsController do
 
     describe "POST :create with invalid parameters" do
       before(:each) do
-        repeat_name = Unit.first.name
-        post :create, :unit => {:name => repeat_name}
+        find_or_factory(:unit, :name => 'repeat_name')
+        post :create, :unit => { :name => 'repeat_name' }
       end
 
       it { should_not set_the_flash }

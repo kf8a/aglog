@@ -4,7 +4,7 @@ describe Treatment do
   it "should require unique name within a study" do
   	t = Treatment.new(:study_id => 1, :name => 'T11')
   	assert t.save
-  	t = Treatment.new(:study_id => 1, :name => 'T1')
+  	t = Treatment.new(:study_id => 1, :name => 'T11')
   	assert !t.save
   end
 

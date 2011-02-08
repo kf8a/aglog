@@ -8,11 +8,15 @@ describe Activity do
   end
 
   describe "an activity with an invalid user" do
-    id = 1
-    while Person.exists?(id)
-      id += 1
+    before(:each) do
+      @id = 1
+      while Person.exists?(@id)
+        @id += 1
+      end
+      assert !Person.exists?(@id)
     end
-    subject { Activity.new(:person_id => id) }
+    
+    subject { Activity.new(:person_id => @id) }
     it { should_not be_valid }
   end
 

@@ -20,7 +20,8 @@ describe MaterialsController do
 
   it "should create material" do
     old_count = Material.count
-    post :create, :material => { }
+    assert !Material.exists?(:name => 'NewName')
+    post :create, :material => { :name => 'NewName' }
     assert_equal old_count+1, Material.count
 
     assert_redirected_to material_path(assigns(:material))
@@ -45,38 +46,45 @@ describe MaterialsController do
     it { should respond_with_content_type(:xml) }
   end
 
-  it "should show material" do
-    get :show, :id => 15
-    assert_response :success
-  end
-
-  it "should get edit" do
-    get :edit, :id => 2
-    assert_response :success
-  end
-
-  it "should update material" do
-    put :update, :id => 1, :material => { }
-    assert_redirected_to material_path(assigns(:material))
-  end
-
-  describe "PUT :update with invalid attributes" do
+  context 'a material exists' do
     before(:each) do
-      Factory.create(:material, :name => "repeat_name")
-      put :update, :id => 1, :material => { :name => "repeat_name" }
+      @material = find_or_factory(:material)
     end
 
-    it { should render_template :edit }
+    it "should show material" do
+      get :show, :id => @material.id
+      assert_response :success
+    end
+
+    it "should get edit" do
+      get :edit, :id => @material.id
+      assert_response :success
+    end
+
+    it "should update material" do
+      put :update, :id => @material.id, :material => { :name => 'updated_name' }
+      assert_redirected_to material_path(assigns(:material))
+    end
+
+
+    describe "PUT :update with invalid attributes" do
+      before(:each) do
+        Factory.create(:material, :name => "repeat_name")
+        put :update, :id => @material.id, :material => { :name => "repeat_name" }
+      end
+
+      it { should render_template :edit }
+    end
+
+    it "should destroy material" do
+      old_count = Material.count
+      delete :destroy, :id => @material.id
+      assert_equal old_count-1, Material.count
+
+      assert_redirected_to materials_path
+    end
   end
-
-  it "should destroy material" do
-    old_count = Material.count
-    delete :destroy, :id => 1
-    assert_equal old_count-1, Material.count
-
-    assert_redirected_to materials_path
-  end
-
+  
   describe "GET :get_hazards with a material that exists" do
     before(:each) do
       @material_id = Material.last.id

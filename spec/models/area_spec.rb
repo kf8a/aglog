@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+load "#{Rails.root}/db/seeds.rb"
+
 def non_existent_study_id
   id = 1
   while Study.exists?(id)
@@ -64,7 +66,7 @@ describe Area do
   describe "requires the study of the treatment if it has a treatment: " do
     before(:each) do
       @study = find_or_factory(:study)
-      @another_study = Factory.create(:study)
+      @another_study = Factory.create(:study, :name => 'another_study')
       @treatment = find_or_factory(:treatment, :study_id => @study.id)
     end
 
@@ -88,7 +90,7 @@ describe Area do
     it "should highlight non-existent areas and return string" do
       areas = Area.parse('T1  R11')
       areas.should be_a String
-      areas.split.sort.should be_eql 'T1R1 T1R2 T1R3 T1R4 T1R5 T1R6 *R11*'.split.sort
+      assert_equal areas.split.sort, 'T1R1 T1R2 T1R3 T1R4 T1R5 T1R6 *R11*'.split.sort
     end
 
     it "should return area T1R1 (among others) when given 'T1' to parse" do
@@ -270,6 +272,7 @@ describe Area do
     end
 
     it "should correctly parse/unparse an area not in study" do
+      find_or_factory(:area, :name => 'ECB')
       parse_reverse('ECB')
     end
 

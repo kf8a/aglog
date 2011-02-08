@@ -208,8 +208,10 @@ describe Observation do
   private
   
   def create_simple_observation
+    type = ObservationType.find_by_name('Soil Preparation')
+    assert type
     person1 = Person.find_by_sur_name("Sur1") || Factory.create(:person, :sur_name => "Sur1")
-    observation = Observation.new(:obs_date => "June 14, 2007", :person_id => person1.id, :observation_type_ids => [1])
+    observation = Observation.new(:obs_date => "June 14, 2007", :person_id => person1.id, :observation_type_ids => [type.id])
     assert observation.save
     person2 = Person.find_by_sur_name("Sur2") || Factory.create(:person, :sur_name => "Sur2")
     activity = observation.activities.new(:hours => 1, :person_id => person2.id)
