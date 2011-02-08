@@ -63,7 +63,7 @@ describe MaterialTransactionsController do
 
       it "should create a material transaction" do
         new_count = @material.material_transactions.count
-        new_count.should equal (@old_count + 1)
+        new_count.should equal(@old_count + 1)
       end
     end
 
@@ -77,7 +77,7 @@ describe MaterialTransactionsController do
 
       it "should create a material transaction for that setup" do
         new_count = MaterialTransaction.where(:setup_id => @setup.id, :material_id => @material.id).count
-        new_count.should equal (@old_count + 1)
+        new_count.should equal(@old_count + 1)
       end
     end
 
