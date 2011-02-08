@@ -1,13 +1,11 @@
-require 'test_helper'
+require 'spec_helper'
 
-class StudyTest < ActiveSupport::TestCase
-
-	# name must be unique
-	def test_name
+describe Study do
+	it "should require unique name" do
 		s = Study.new(:name => 'newname')
 		assert s.save
 		s = Study.new(:name => 'Main')
 		assert !s.save
 	end
-	
 end
+

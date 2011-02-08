@@ -1,11 +1,7 @@
-require 'test_helper'
+require 'spec_helper'
 
-class ObservationTest < ActiveSupport::TestCase
-
-  setup do
-  end
-  
-  def test_should_not_create_observation
+describe Observation do
+  it 'should not create observation' do
     old_count =  Observation.count
     num_activities = Activity.count
     
@@ -23,10 +19,9 @@ class ObservationTest < ActiveSupport::TestCase
     assert !o.save
     assert_equal old_count, Observation.count
     assert_equal num_activities, Activity.count
-        
   end
   
-  def test_simple_observation
+  it 'should work normally with a simple observation' do
     o = create_simple_observation
     assert o.save 
     assert_equal  1, o.activities.size
@@ -36,7 +31,7 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal  2, setup.material_transactions.size
   end
   
-  def test_delete_material
+  it 'should delete material' do
     o = create_simple_observation
     activity = o.activities[0]
     setup =  activity.setups[0]
@@ -47,7 +42,7 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal 1, setup.material_transactions.size
   end
   
-  def test_delete_setup
+  it 'should delete setup' do
     o = create_simple_observation
     activity = o.activities[0]
     setup =  activity.setups[0]    
@@ -57,7 +52,7 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal 0, activity.setups.size    
   end
   
-  def test_delete_activity
+  it 'should delete activity' do
     o = create_simple_observation
     activity = o.activities[0]    
     assert_equal 1, o.activities.size
@@ -66,12 +61,12 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal 0, o.activities.size
   end
   
-  def test_get_review_status
+  it 'should get review status' do
     o = create_simple_observation
     assert_equal false, o.in_review
   end
 
-  def test_set_review_status_to_review
+  it 'should set review status to review' do
     o = create_simple_observation
     assert o.save
     assert_equal false, o.in_review
@@ -79,7 +74,7 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal true, o.in_review
   end
   
-  def test_set_review_status_to_published_from_in_review
+  it 'should set review status to published from in review' do
     o = create_simple_observation
     assert o.save
     o.in_review = "1"
@@ -88,13 +83,13 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal o.state, 'published'
   end
 
-  def test_set_review_status_fails_elegantly_for_new_records
+  it 'should should not set review status for new records' do
     o = Observation.new
     o.in_review = "0"
     assert o.state != 'published'
   end
   
-  def test_areas_as_text_with_error_areas
+  it 'should not be valid if it has error areas' do
     o = create_simple_observation
     assert o.save
     original_areas = o.areas
@@ -107,7 +102,7 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal ["invalid areas"],  o.errors[:base]
   end
 
-  def test_equipment_names
+  it 'should have the right equipment_names' do
     o = create_simple_observation
     another_equipment = Factory.create(:equipment, :name => "Another Equipment")
     evil_equipment = Factory.create(:equipment, :name => "Evil Equipment")
@@ -116,7 +111,7 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal "Equipment2, Another Equipment", o.equipment_names
   end
   
-  def test_materials_with_rates
+  it 'should get the right materials_with_rates' do
     o = create_simple_observation
     activity = Factory.create(:activity, :observation_id => o.id)
     equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
@@ -129,12 +124,12 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal "Material3: 4.0 Unit3s per acre, Material4: 5.0 Unit4s per acre", o.materials_with_rates
   end
 
-  def test_observation_type
+  it "should return the right observation_type" do
     o = create_simple_observation
     assert_equal "Soil Preparation", o.observation_type
   end
 
-  def test_observation_type_names
+  it "should give all of the right observation_type_names" do
     o = create_simple_observation
     another_type = ObservationType.new(:name => "Another Type", :observations => [o])
     assert another_type.save
@@ -144,14 +139,14 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal "Soil Preparation, Another Type", o.observation_type_names
   end
 
-  def test_areas_as_text
+  it "should give the right areas_as_text" do
     o = create_simple_observation
     text_areas =  "MAIN"
     o.areas_as_text = text_areas
     assert_equal text_areas, o.areas_as_text
   end
 
-  def test_material_names
+  it "should give the right material_names" do
     o = create_simple_observation
     activity = Factory.create(:activity, :observation_id => o.id)
     equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
@@ -165,7 +160,7 @@ class ObservationTest < ActiveSupport::TestCase
   end
 
   #TODO This test, material_names, and materials_with_rates should be refactored
-  def test_n_contents
+  it "should give the right n_contents" do
     o = create_simple_observation
     activity = Factory.create(:activity, :observation_id => o.id)
     equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
@@ -184,7 +179,7 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal [40.0, 30.0], o.n_contents
   end
 
-  def test_rates
+  it "should give the right rates" do
     o = create_simple_observation
     activity = Factory.create(:activity, :observation_id => o.id)
     equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
@@ -197,7 +192,7 @@ class ObservationTest < ActiveSupport::TestCase
     assert_equal [4.0, 5.0], o.rates
   end
 
-  def test_unit_names
+  it "should give the right unit_names" do
     o = create_simple_observation
     activity = Factory.create(:activity, :observation_id => o.id)
     equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
@@ -233,3 +228,4 @@ class ObservationTest < ActiveSupport::TestCase
     return observation
   end
 end
+

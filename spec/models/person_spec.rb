@@ -1,35 +1,37 @@
-require 'test_helper'
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
 
-class PersonTest < ActiveSupport::TestCase
+require 'spec_helper'
 
-  def test_should_not_create_duplicate
+describe Person do
+  it "should require unique name" do
     given_name = 'Joe'
     sur_name = 'Simmons'
-    
+
     a  = Person.new(:given_name => given_name, :sur_name => sur_name) # is in fixture already
     assert !a.save
     assert !a.errors.empty?
-    
+
     a  = Person.new(:given_name => given_name.upcase, :sur_name => sur_name) # case insensitive
     assert !a.save
     assert !a.errors.empty?
-    
+
     a  = Person.new(:given_name => given_name, :sur_name => sur_name.upcase) # case insensitive
     assert !a.save
     assert !a.errors.empty?
   end
-  
-  def test_should_create_new_person
+
+  it "should allow a new name person to be created" do
     num_of_persons =  Person.count()
     a = Person.new(:given_name => 'new', :sur_name => 'person') # is new name
     assert a.save
     assert a.errors.empty?
     assert_equal num_of_persons + 1, Person.count
   end
-  
-  def test_create_person_with_no_name
+
+  it "should not allow a person with no name to be created" do
     a  =  Person.new
     assert !a.save
   end
-  
 end
+

@@ -1,20 +1,19 @@
-require 'test_helper'
+require 'spec_helper'
 
-class SetupTest < ActiveSupport::TestCase
-
-  def test_should_create_setup
-    equipment = Factory.create(:equipment)
+describe Setup do
+  it "should allow a setup to be created with valid equipment" do
+    equipment = find_or_factory(:equipment)
     old_count =  Setup.count
     s =  Setup.new(:equipment_id => equipment.id)
     assert s.save
     assert_equal old_count+1, Setup.count
   end
-  
-  def test_should_not_create_setup 
+
+  it "should not allow a setup to be created with invalid equipment" do
     old_count =  Setup.count
     s = Setup.new(:equipment_id => 9999) # invalid equipment
     assert !s.save
     assert_equal old_count, Setup.count
   end
-  
 end
+
