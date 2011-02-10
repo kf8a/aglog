@@ -149,34 +149,34 @@ class Area < ActiveRecord::Base
   end
 
   def Area.get_areas_by_token(token)
-    area = case token
+    area = case token.upcase
     when /^MAIN$/ #specify the whole main site
       Area.where(:study_id => 1)
-    when /^[t|T]([1-8])$/ #specify a whole treatment
+    when /^T([1-8])$/ #specify a whole treatment
       Area.where(:study_id => 1, :treatment_number => $1)
-    when /^[r|R]([1-6])$/ #specify a whole rep
+    when /^R([1-6])$/ #specify a whole rep
       Area.where(:study_id => 1, :replicate => $1)
-    when /^[t|T]([1-8])\-([1-8])$/ #specify a range of treatments
+    when /^T([1-8])\-([1-8])$/ #specify a range of treatments
       Area.where(:study_id => 1, :treatment_number => $1..$2)
-    when /^[t|T]([1-8])\![r|R]([1-6])$/ #specify a treatment except a rep
+    when /^T([1-8])\![r|R]([1-6])$/ #specify a treatment except a rep
       Area.where(:study_id => 1, :treatment_number => $1).where(['not replicate = ?',$2])
-    when /^[r|R]([1-6])\![t|T]([1-8])$/ #specify a replicate except a treatment
+    when /^R([1-6])\![t|T]([1-8])$/ #specify a replicate except a treatment
       Area.where(:study_id => 1, :replicate => $1).where(['not treatment_number = ?',$2])
-    when /^[b|B]([1-9]|1[0-9]|2[0-1])$/ #specify Biodiversity Plots
+    when /^B([1-9]|1[0-9]|2[0-1])$/ #specify Biodiversity Plots
       Area.where(:study_id => 2, :treatment_number => $1)
-    when /^Fertility_Gradient$/
+    when /^FERTILITY_GRADIENT$/
       Area.where(:study_id => 3)
     when /^[f|F]([1-9])$/ #specify N fert
       Area.where(:study_id => 3, :treatment_number => $1)
-    when /^[f|F]([1-9])-([1-9])$/
+    when /^F([1-9])-([1-9])$/
       Area.where(:study_id => 3, :treatment_number => $1..$2)
-    when /^Irrigated_Fertility_Gradient$/
+    when /^IRRIGATED_FERTILITY_GRADIENT$/
       Area.where(:study_id => 4)
-    when /^i[f|F]([1-9])$/
+    when /^IF([1-9])$/
       Area.where(:study_id => 4, :treatment_number => $1)
-    when /^i[f|F]([1-9])-([1-9])$/
+    when /^IF([1-9])-([1-9])$/
       Area.where(:study_id => 4, :treatment_number => $1..$2)
-    when /^[r|R][e|E][p|P][t|T]([1-4])[E|e]([1-3])$/
+    when /^REPT([1-4])E([1-3])$/
       Area.where(:study_id => 5, :treatment_number => [$1,$2].join)
     when /^GLBRC$/ # specify GLRBC plots
       Area.where(:study_id => 6)
