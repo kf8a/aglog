@@ -158,9 +158,9 @@ class Area < ActiveRecord::Base
       Area.where(:study_id => 1, :replicate => $1)
     when /^T([1-8])\-([1-8])$/ #specify a range of treatments
       Area.where(:study_id => 1, :treatment_number => $1..$2)
-    when /^T([1-8])\![r|R]([1-6])$/ #specify a treatment except a rep
+    when /^T([1-8])\!R([1-6])$/ #specify a treatment except a rep
       Area.where(:study_id => 1, :treatment_number => $1).where(['not replicate = ?',$2])
-    when /^R([1-6])\![t|T]([1-8])$/ #specify a replicate except a treatment
+    when /^R([1-6])\!T([1-8])$/ #specify a replicate except a treatment
       Area.where(:study_id => 1, :replicate => $1).where(['not treatment_number = ?',$2])
     when /^B([1-9]|1[0-9]|2[0-1])$/ #specify Biodiversity Plots
       Area.where(:study_id => 2, :treatment_number => $1)
