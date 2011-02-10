@@ -166,7 +166,7 @@ class Area < ActiveRecord::Base
       Area.where(:study_id => 2, :treatment_number => $1)
     when /^FERTILITY_GRADIENT$/
       Area.where(:study_id => 3)
-    when /^[f|F]([1-9])$/ #specify N fert
+    when /^F([1-9])$/ #specify N fert
       Area.where(:study_id => 3, :treatment_number => $1)
     when /^F([1-9])-([1-9])$/
       Area.where(:study_id => 3, :treatment_number => $1..$2)
