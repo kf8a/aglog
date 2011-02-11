@@ -33,6 +33,29 @@ class Observation < ActiveRecord::Base
     errors.add(:base, 'invalid areas') if  @error_areas
   end
 
+  def Observation.by_state(state)
+    where(:state => state)
+  end
+
+  def Observation.ordered_by_date
+    order('obs_date desc')
+  end
+
+  def Observation.includes_everything
+    includes({:areas => [:study, :treatment]}, :observation_types, {:activities => {:setups => {:material_transactions => :material}}})
+  end
+
+  def Observation.get_observations_by_type_and_state_and_page(obstype, state, page)
+    if obstype
+      type = ObservationType.find(obstype)
+      observations = type.observations.by_state(state).ordered_by_date.includes_everything.paginate :page => page
+    else
+      observations = Observation.by_state(state).ordered_by_date.includes_everything.paginate :page => page
+    end
+
+    observations
+  end
+
   def equipment_names
     setups.collect { |setup| setup.equipment_name }.flatten.join(', ')
   end

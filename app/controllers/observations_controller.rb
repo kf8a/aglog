@@ -6,17 +6,10 @@ class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.xml
   def index
-    state = if params[:in_review] then "in_review" else "published" end
+    state = params[:in_review] ? "in_review" : "published"
     obstype, page = params[:obstype], params[:page]
+    @observations = Observation.get_observations_by_type_and_state_and_page(obstype, state, page)
 
-    if obstype
-      type = ObservationType.find(obstype)
-      @observations = type.observations.where(:state => state).order('obs_date desc').includes({:areas => [:study, :treatment]}, :observation_types, {:activities => {:setups => {:material_transactions => :material}}}).paginate :page => page
-    else
-      state_observations = Observation.where(:state => state).order('obs_date desc').includes({:areas => [:study, :treatment]}, :observation_types, {:activities => {:setups => {:material_transactions => :material}}})
-      @observations = state_observations.paginate :page => page
-    end
- 
     respond_to do |format|
       format.html #index.html
       format.xml  { render :xml => @observations.to_xml }
