@@ -2,15 +2,12 @@
 class AreasController < ApplicationController
 
   def index
-    @observation = Observation.find_by_id(params[:observation_id])
-    @areas = if @observation then @observation.areas.order('study_id, name') else Area.order('study_id, name') end
-    @areas = @areas.includes(:study).all
+    observation = Observation.find_by_id(params[:observation_id])
+    broad_scope = observation.try(:areas) || Area
+    @areas = broad_scope.order('study_id, name').includes(:study).all
+    
     respond_with(@areas) do |format|
-      if signed_in?
-        format.html { render 'authorized_index' }
-      else
-        format.html { render 'unauthorized_index'}
-      end
+      format.html { render_by_authorization('index') }
     end
   end
 
@@ -22,11 +19,7 @@ class AreasController < ApplicationController
                     {:material_transactions => [:material, :unit]}]}).all
 
     respond_with @area do |format|
-      if signed_in?
-        format.html { render 'authorized_show' }
-      else
-        format.html { render 'unauthorized_show'}
-      end
+      format.html { render_by_authorization('show') }
     end
   end
 
@@ -58,6 +51,13 @@ class AreasController < ApplicationController
     @area = Area.find(params[:id])
     @area.destroy
     respond_with @area
+  end
+
+  private
+
+  def render_by_authorization(base)
+    file_to_render = signed_in? ? "authorized_#{base}" : "unauthorized_#{base}"
+    render file_to_render
   end
 
 end
