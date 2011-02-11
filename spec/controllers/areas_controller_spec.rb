@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe AreasController do
-  render_views
   
   describe 'Not signed in. ' do
     before(:each) do
