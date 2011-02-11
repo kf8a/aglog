@@ -7,13 +7,11 @@ class ObservationsController < ApplicationController
   # GET /observations.xml
   def index
     state = params[:in_review] ? "in_review" : "published"
-    obstype, page = params[:obstype], params[:page]
-    broad_scope = ObservationType.find_by_id(obstype).try(:observations) || Observation
-    @observations = broad_scope.by_state_and_page(state, page)
+    obstype = ObservationType.find_by_id(params[:obstype])
+    broad_scope = obstype.try(:observations) || Observation
+    @observations = broad_scope.by_state_and_page(state, params[:page])
 
-    respond_to do |format|
-      format.html #index.html
-      format.xml  { render :xml => @observations.to_xml }
+    respond_with @observations do |format|
       format.salus_xml { render 'index.salus_xml' }
       format.salus_csv { render 'index.salus_csv' }
     end
@@ -35,11 +33,7 @@ class ObservationsController < ApplicationController
   def create
     @observation = current_user.observations.new(params[:observation])
     logger.info current_user.name
-    if @observation.save
-      flash[:form] = 'Observation was successfully created.'
-    else
-      flash[:form] = "Creation failed"
-    end
+    flash[:form] = @observation.save ? 'Observation was successfully created.' : "Creation failed"
     respond_with @observation
   end
 
