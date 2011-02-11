@@ -33,7 +33,7 @@ class MaterialTransaction < ActiveRecord::Base
 
   # @example Wheat: 250 pounds per acre
   def material_with_rate
-    self.material.try(:name) + (if self.unit then rate_and_unit else "" end)
+    self.material.try(:name) + (self.unit ? rate_and_unit : "" )
   end
 
   def n_content
@@ -55,7 +55,7 @@ class MaterialTransaction < ActiveRecord::Base
 
   def rate_and_unit
     unit_name = self.unit.name
-    unit_name = unit_name.pluralize unless self.rate == 1
+    unit_name = unit_name.pluralize unless 1 == self.rate
     
     ": #{self.rate} #{unit_name} per acre"
   end

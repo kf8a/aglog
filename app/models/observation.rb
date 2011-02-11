@@ -45,15 +45,8 @@ class Observation < ActiveRecord::Base
     includes({:areas => [:study, :treatment]}, :observation_types, {:activities => {:setups => {:material_transactions => :material}}})
   end
 
-  def Observation.get_observations_by_type_and_state_and_page(obstype, state, page)
-    if obstype
-      type = ObservationType.find(obstype)
-      observations = type.observations.by_state(state).ordered_by_date.includes_everything.paginate :page => page
-    else
-      observations = Observation.by_state(state).ordered_by_date.includes_everything.paginate :page => page
-    end
-
-    observations
+  def Observation.by_state_and_page(state, page)
+    by_state(state).ordered_by_date.includes_everything.paginate :page => page
   end
 
   def equipment_names

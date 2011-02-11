@@ -8,7 +8,8 @@ class ObservationsController < ApplicationController
   def index
     state = params[:in_review] ? "in_review" : "published"
     obstype, page = params[:obstype], params[:page]
-    @observations = Observation.get_observations_by_type_and_state_and_page(obstype, state, page)
+    broad_scope = ObservationType.find_by_id(obstype).try(:observations) || Observation
+    @observations = broad_scope.by_state_and_page(state, page)
 
     respond_to do |format|
       format.html #index.html
