@@ -116,10 +116,9 @@ class Area < ActiveRecord::Base
 
   def Area.overlap(string1, string2)
     id = 0
-    max = string1.length
     overlap = ''
-    until (string1[0..id] != string2[0..id]) || id > max
-      overlap = string1[0..id]
+    while string1[id] && (string1[id] == string2[id])
+      overlap += string1[id].to_s
       id += 1
     end
 
