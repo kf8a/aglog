@@ -110,7 +110,7 @@ describe AreasController do
 
     describe 'POST :create' do
       before(:each) do
-        assert_nil Area.find_by_name('T2R22')
+        Area.exists?(:name => 'T2R22').should be_false
         post :create, :area => { :name => 'T2R22' }
       end
 
