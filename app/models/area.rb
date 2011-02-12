@@ -26,14 +26,7 @@ class Area < ActiveRecord::Base
   def Area.parse(areas_as_text)
     areas = []
     tokens = areas_as_text.chomp.split(/ +/)
-    tokens.each do |token|
-      area = get_areas_by_token(token)
-      if area.class == Array
-        areas += area
-      else
-        areas << area
-      end
-    end
+    tokens.each { |token| areas += get_areas_by_token(token) }
 
     # if areas contains a string
     if (areas.any? { |area| area.class == String })
@@ -146,11 +139,7 @@ class Area < ActiveRecord::Base
 
   def Area.stringify_areas(areas)
     area_strings = areas.collect do |area|
-      if (area.class.name == 'String')
-        "*"+area+"*"
-      else
-        area.name
-      end
+      (area.class == String) ? "*#{area}*" : area.name
     end
     area_strings.join(' ')
   end
@@ -194,7 +183,7 @@ class Area < ActiveRecord::Base
     end
     # try to find an area by name
     area = Area.where(['upper(name) = ?', token.squeeze.upcase]).all if area.blank?
-    area = token if area.blank? #failed to find an area
+    area = [token] if area.blank?
     area
   end
 
