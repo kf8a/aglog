@@ -39,6 +39,11 @@ class ApplicationController < ActionController::Base
     model_name.capitalize.constantize
   end
 
+  def render_by_authorization(base)
+    file_to_render = signed_in? ? "authorized_#{base}" : "unauthorized_#{base}"
+    render file_to_render
+  end
+
   def require_user
     unless signed_in?
       store_location
