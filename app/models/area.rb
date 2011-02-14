@@ -43,8 +43,8 @@ class Area < ActiveRecord::Base
   #   areas are included (and treatment names for the same reason)
   def Area.unparse(areas = nil)
     areas = areas.to_a
-    studies, areas = replace_study_areas_by_study(areas)
-    treatments, areas = replace_treatment_areas_by_treatment(areas)
+    studies, areas = replace_class_areas_by_class(areas, Study)
+    treatments, areas = replace_class_areas_by_class(areas, Treatment)
     treatment_numbers, areas = replace_treatment_number_areas_by_treatment_number(areas)
     area_names = areas.compact.uniq.collect { |area| area.name }
     names = studies + treatments + treatment_numbers + area_names
@@ -58,36 +58,19 @@ class Area < ActiveRecord::Base
 
   private##########################################
 
-  def Area.replace_study_areas_by_study(areas)
-    # if all of a study's areas are here,
-    # use the study's name instead of individual areas
-    studies = []
-    study_ids = areas.collect { |area| area.study_id }
-    study_ids.compact.uniq.each do |study_id|
-      study_areas = Area.where(:study_id => study_id).all
-      if [] == study_areas - areas
-        areas -= study_areas
-        studies << Study.find(study_id).name
+  def Area.replace_class_areas_by_class(areas, klass)
+    members = []
+    id_method = "#{klass.name.downcase}_id"
+    member_ids = areas.collect { |area| area.send(id_method) }
+    member_ids.compact.uniq.each do |member_id|
+      member_areas = Area.where(id_method => member_id).all
+      if areas.contains(member_areas)
+        areas -= member_areas
+        members << klass.find(member_id).name
       end
     end
 
-    [studies, areas]
-  end
-
-  def Area.replace_treatment_areas_by_treatment(areas)
-    # if all of a treatment's areas are here,
-    # use the treatment's name instead of individual areas
-    treatments = []
-    treatment_ids = areas.collect { |area| area.treatment_id }
-    treatment_ids.compact.uniq.each do |treatment_id|
-      treatment_areas = Area.where(:treatment_id => treatment_id).all
-      if [] == treatment_areas - areas
-        areas -= treatment_areas
-        treatments << Treatment.find(treatment_id).name
-      end
-    end
-
-    [treatments, areas]
+    [members, areas]
   end
 
   def Area.replace_treatment_number_areas_by_treatment_number(areas)
@@ -96,33 +79,19 @@ class Area < ActiveRecord::Base
     treatments = []
     treatment_and_studies = areas.collect { |area| [area.treatment_number, area.study_id] }
 
-    treatment_and_studies.compact.uniq.each do |treatment_and_study|
-      treatment_number, study_id = treatment_and_study
+    treatment_and_studies.compact.uniq.each do |treatment_number, study_id|
       if treatment_number
         treatment_areas = Area.where(:treatment_number => treatment_number, :study_id => study_id).all
-        if [] == treatment_areas - areas
+        if areas.contains(treatment_areas)
           areas -= treatment_areas
-          name_to_include = overlap(treatment_areas[0].name, treatment_areas[-1].name)
-          if name_to_include.end_with?('R') || name_to_include.end_with?('r')
-            name_to_include.chop!
-          end
+          name_to_include = treatment_areas[0].name.overlap(treatment_areas[-1].name)
+          name_to_include.chomp!('r') or name_to_include.chomp!('R')
           treatments << name_to_include
         end
       end
     end
 
     [treatments, areas]
-  end
-
-  def Area.overlap(string1, string2)
-    id = 0
-    overlap = ''
-    while string1[id] && (string1[id] == string2[id])
-      overlap += string1[id].to_s
-      id += 1
-    end
-
-    overlap
   end
 
   def treatment_is_part_of_study
@@ -133,7 +102,7 @@ class Area < ActiveRecord::Base
   end
 
   def name_has_no_spaces
-    errors.add(:base, 'names should not contain spaces') if name && name.scan(/ /) != []
+    errors.add(:base, 'names should not contain spaces') if name.to_s.include?(' ')
   end
 
   def Area.stringify_areas(areas)
@@ -186,4 +155,23 @@ class Area < ActiveRecord::Base
     area
   end
 
+end
+
+class Array
+  def contains(other_array)
+    [] == other_array - self
+  end
+end
+
+class String
+  def overlap(other_string)
+    id = 0
+    overlap = ''
+    while self[id] && (self[id] == other_string[id])
+      overlap += self[id].to_s
+      id += 1
+    end
+
+    overlap
+  end
 end
