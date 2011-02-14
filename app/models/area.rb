@@ -77,21 +77,24 @@ class Area < ActiveRecord::Base
     # if all of a treatment number's areas are here,
     # use the treatment's name instead of individual areas
     treatments = []
-    treatment_and_studies = areas.collect { |area| [area.treatment_number, area.study_id] }
+    treatment_and_studies = areas.collect { |area| [area.treatment_number, area.study_id] if area.treatment_number }
 
-    treatment_and_studies.compact.uniq.each do |treatment_number, study_id|
-      if treatment_number
-        treatment_areas = Area.where(:treatment_number => treatment_number, :study_id => study_id).all
-        if areas.contains(treatment_areas)
-          areas -= treatment_areas
-          name_to_include = treatment_areas[0].name.overlap(treatment_areas[-1].name)
-          name_to_include.chomp!('r') or name_to_include.chomp!('R')
-          treatments << name_to_include
-        end
+    treatment_and_studies.uniq.each do |treatment_number, study_id|
+      treatment_areas = Area.where(:treatment_number => treatment_number, :study_id => study_id).all
+      if areas.contains(treatment_areas)
+        areas -= treatment_areas
+        treatments << extract_treatment_name(treatment_areas)
       end
     end
 
     [treatments, areas]
+  end
+
+  def Area.extract_treatment_name(treatment_areas)
+    name_to_include = treatment_areas[0].name.overlap(treatment_areas[-1].name)
+    name_to_include.chomp!('r') or name_to_include.chomp!('R')
+
+    name_to_include
   end
 
   def treatment_is_part_of_study
@@ -115,44 +118,44 @@ class Area < ActiveRecord::Base
   def Area.get_areas_by_token(token)
     area = case token.upcase
     when /^MAIN$/ #specify the whole main site
-      Area.where(:study_id => 1).all
+      Area.where(:study_id => 1)
     when /^T([1-8])$/ #specify a whole treatment
-      Area.where(:study_id => 1, :treatment_number => $1).all
+      Area.where(:study_id => 1, :treatment_number => $1)
     when /^R([1-6])$/ #specify a whole rep
-      Area.where(:study_id => 1, :replicate => $1).all
+      Area.where(:study_id => 1, :replicate => $1)
     when /^T([1-8])\-([1-8])$/ #specify a range of treatments
-      Area.where(:study_id => 1, :treatment_number => $1..$2).all
+      Area.where(:study_id => 1, :treatment_number => $1..$2)
     when /^T([1-8])\!R([1-6])$/ #specify a treatment except a rep
-      Area.where(:study_id => 1, :treatment_number => $1).where(['not replicate = ?',$2]).all
+      Area.where(:study_id => 1, :treatment_number => $1).where(['not replicate = ?',$2])
     when /^R([1-6])\!T([1-8])$/ #specify a replicate except a treatment
-      Area.where(:study_id => 1, :replicate => $1).where(['not treatment_number = ?',$2]).all
+      Area.where(:study_id => 1, :replicate => $1).where(['not treatment_number = ?',$2])
     when /^B([1-9]|1[0-9]|2[0-1])$/ #specify Biodiversity Plots
-      Area.where(:study_id => 2, :treatment_number => $1).all
+      Area.where(:study_id => 2, :treatment_number => $1)
     when /^FERTILITY_GRADIENT$/
-      Area.where(:study_id => 3).all
+      Area.where(:study_id => 3)
     when /^F([1-9])$/ #specify N fert
-      Area.where(:study_id => 3, :treatment_number => $1).all
+      Area.where(:study_id => 3, :treatment_number => $1)
     when /^F([1-9])-([1-9])$/
-      Area.where(:study_id => 3, :treatment_number => $1..$2).all
+      Area.where(:study_id => 3, :treatment_number => $1..$2)
     when /^IRRIGATED_FERTILITY_GRADIENT$/
-      Area.where(:study_id => 4).all
+      Area.where(:study_id => 4)
     when /^IF([1-9])$/
-      Area.where(:study_id => 4, :treatment_number => $1).all
+      Area.where(:study_id => 4, :treatment_number => $1)
     when /^IF([1-9])-([1-9])$/
-      Area.where(:study_id => 4, :treatment_number => $1..$2).all
+      Area.where(:study_id => 4, :treatment_number => $1..$2)
     when /^REPT([1-4])E([1-3])$/
-      Area.where(:study_id => 5, :treatment_number => [$1,$2].join).all
+      Area.where(:study_id => 5, :treatment_number => [$1,$2].join)
     when /^GLBRC$/ # specify GLRBC plots
-      Area.where(:study_id => 6).all
+      Area.where(:study_id => 6)
     when /^CES$/ # specify Cellulosic energy study
-      Area.where(:study_id => 7).all
+      Area.where(:study_id => 7)
     else
       nil
     end
     # try to find an area by name
-    area = Area.where(['upper(name) = ?', token.squeeze.upcase]).all if area.blank?
-    area = [token] if area.blank?
-    area
+    area = Area.where(['upper(name) = ?', token.squeeze.upcase]) if area.blank?
+
+    area.blank? ? [token] : area.all
   end
 
 end
