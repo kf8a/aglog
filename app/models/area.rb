@@ -127,31 +127,31 @@ class Area < ActiveRecord::Base
     area = case token.upcase
     when /^MAIN$/ #specify the whole main site
       main_study
-    when /^T([1-8])$/ #specify a whole treatment
+    when /^T(\d)$/ #specify a whole treatment
       main_study.where(:treatment_number => $1)
-    when /^R([1-6])$/ #specify a whole rep
+    when /^R(\d)$/ #specify a whole rep
       main_study.where(:replicate => $1)
-    when /^T([1-8])\-([1-8])$/ #specify a range of treatments
+    when /^T(\d)\-(\d)$/ #specify a range of treatments
       main_study.where(:treatment_number => $1..$2)
-    when /^T([1-8])\!R([1-6])$/ #specify a treatment except a rep
+    when /^T(\d)\!R(\d)$/ #specify a treatment except a rep
       main_study.where(:treatment_number => $1).where('not replicate = ?',$2)
-    when /^R([1-6])\!T([1-8])$/ #specify a replicate except a treatment
+    when /^R(\d)\!T(\d)$/ #specify a replicate except a treatment
       main_study.where(:replicate => $1).where('not treatment_number = ?',$2)
-    when /^B([1-9]|1[0-9]|2[0-1])$/ #specify Biodiversity Plots
+    when /^B(\d+)$/ #specify Biodiversity Plots
       where(:study_id => 2, :treatment_number => $1)
     when /^FERTILITY_GRADIENT$/
       fert_study
-    when /^F([1-9])$/ #specify N fert
+    when /^F(\d)$/ #specify N fert
       fert_study.where(:treatment_number => $1)
-    when /^F([1-9])-([1-9])$/
+    when /^F(\d)-(\d)$/
       fert_study.where(:treatment_number => $1..$2)
     when /^IRRIGATED_FERTILITY_GRADIENT$/
       if_study
-    when /^IF([1-9])$/
+    when /^IF(\d)$/
       if_study.where(:treatment_number => $1)
-    when /^IF([1-9])-([1-9])$/
+    when /^IF(\d)-(\d)$/
       if_study.where(:treatment_number => $1..$2)
-    when /^REPT([1-4])E([1-3])$/
+    when /^REPT(\d)E(\d)$/
       where(:study_id => 5, :treatment_number => [$1,$2].join)
     when /^GLBRC$/ # specify GLRBC plots
       where(:study_id => 6)
