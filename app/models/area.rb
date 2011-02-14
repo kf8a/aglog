@@ -41,13 +41,11 @@ class Area < ActiveRecord::Base
   # @param [Array] areas an array of areas
   # @return [String] a list of area names and study names if a whole study's
   #   areas are included (and treatment names for the same reason)
-  def Area.unparse(areas = nil)
-    areas = areas.to_a
-    studies, areas = replace_class_areas_by_class(areas, Study)
-    treatments, areas = replace_class_areas_by_class(areas, Treatment)
-    treatment_numbers, areas = replace_treatment_number_areas_by_treatment_number(areas)
-    area_names = areas.compact.uniq.collect { |area| area.name }
-    names = studies + treatments + treatment_numbers + area_names
+  def Area.unparse(areas = [])
+    names, areas = replace_class_areas_by_class([], areas, Study)
+    names, areas = replace_class_areas_by_class(names, areas, Treatment)
+    names, areas = replace_treatment_number_areas_by_treatment_number(names, areas)
+    names += areas.uniq.collect { |area| area.name }
 
     names.sort.join(' ')
   end
@@ -58,36 +56,34 @@ class Area < ActiveRecord::Base
 
   private##########################################
 
-  def Area.replace_class_areas_by_class(areas, klass)
-    members = []
+  def Area.replace_class_areas_by_class(names, areas, klass)
     id_method = "#{klass.name.downcase}_id"
     member_ids = areas.collect { |area| area.send(id_method) }
     member_ids.compact.uniq.each do |member_id|
       member_areas = Area.where(id_method => member_id).all
       if areas.contains(member_areas)
         areas -= member_areas
-        members << klass.find(member_id).name
+        names << klass.find(member_id).name
       end
     end
 
-    [members, areas]
+    [names, areas]
   end
 
-  def Area.replace_treatment_number_areas_by_treatment_number(areas)
+  def Area.replace_treatment_number_areas_by_treatment_number(names, areas)
     # if all of a treatment number's areas are here,
     # use the treatment's name instead of individual areas
-    treatments = []
     treatment_and_studies = areas.collect { |area| [area.treatment_number, area.study_id] if area.treatment_number }
 
     treatment_and_studies.uniq.each do |treatment_number, study_id|
       treatment_areas = Area.where(:treatment_number => treatment_number, :study_id => study_id).all
       if areas.contains(treatment_areas)
         areas -= treatment_areas
-        treatments << extract_treatment_name(treatment_areas)
+        names << extract_treatment_name(treatment_areas)
       end
     end
 
-    [treatments, areas]
+    [names, areas]
   end
 
   def Area.extract_treatment_name(treatment_areas)
