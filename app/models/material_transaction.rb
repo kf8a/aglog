@@ -19,6 +19,10 @@ class MaterialTransaction < ActiveRecord::Base
     transactions.uniq
   end
 
+  def hazardous?
+    !self.material.hazards.empty?
+  end
+
   def n_content_to_kg_ha
     to_kg_ha(self.n_content) if self.n_content
   end
@@ -31,13 +35,21 @@ class MaterialTransaction < ActiveRecord::Base
     to_kg_ha(self.material.k_content) if self.material.k_content
   end
 
+  def material_name
+    self.material.try(:name)
+  end
+
   # @example Wheat: 250 pounds per acre
   def material_with_rate
-    self.material.try(:name) + (self.unit ? rate_and_unit : "" )
+    material_name + (self.unit ? rate_and_unit : "" )
   end
 
   def n_content
     self.material.try(:n_content)
+  end
+
+  def unit_name
+    self.unit.try(:name)
   end
 
   private##############################
@@ -54,10 +66,10 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def rate_and_unit
-    unit_name = self.unit.name
-    unit_name = unit_name.pluralize unless 1 == self.rate
+    unit_display = unit_name
+    unit_display = unit_display.pluralize unless 1 == self.rate
     
-    ": #{self.rate} #{unit_name} per acre"
+    ": #{self.rate} #{unit_display} per acre"
   end
 
 end

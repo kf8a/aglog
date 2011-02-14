@@ -1,7 +1,7 @@
 <h1>Show Observation</h1>
 <p>
   <b>User:</b>
-  <%= @observation.person.try(:name) %>
+  <%= @observation.person_name %>
 </p>
 
 <p>
@@ -34,15 +34,15 @@
   <b>Activities: </b><br/>
   <% @observation.activities.each do | activity | %>
     <div>
-      Worker: <%= activity.person.name if activity.person %><br/>
+      Worker: <%= activity.person_name %><br/>
       <% activity.setups.each do |setup| %>
         <div class='indent'>
-          Equipment: <%= setup.equipment.name  if setup.equipment %>
+          Equipment: <%= setup.equipment_name %>
           <% setup.material_transactions.each do |transaction| %>
-            &#149 Material: <%= transaction.material.name if transaction.material %>
+            &#149 Material: <%= transaction.material_name %>
             @ <%= transaction.rate %>
-            <%= transaction.unit.name if transaction.unit %> per acre
-            <% unless transaction.material.hazards.empty? %>
+            <%= transaction.unit_name %> per acre
+            <% if transaction.hazardous? %>
               <span style="color: red"> ***
                 <%= link_to 'Hazard', material_path(transaction.material) %>
               *** </span>

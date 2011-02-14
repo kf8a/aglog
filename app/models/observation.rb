@@ -101,6 +101,10 @@ class Observation < ActiveRecord::Base
     self.observation_types.collect { |type| type.name }.join(', ')
   end
 
+  def person_name
+    self.person.name
+  end
+
   def rates
     setups.collect { |setup| setup.rates }.flatten.compact.uniq
   end
