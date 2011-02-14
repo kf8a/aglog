@@ -111,47 +111,61 @@ class Area < ActiveRecord::Base
     area_strings.join(' ')
   end
 
+  def Area.main_study
+    where(:study_id => 1)
+  end
+
+  def Area.fert_study
+    where(:study_id => 3)
+  end
+
+  def Area.if_study
+    where(:study_id => 4)
+  end
+
   def Area.get_areas_by_token(token)
     area = case token.upcase
     when /^MAIN$/ #specify the whole main site
-      Area.where(:study_id => 1)
+      main_study
     when /^T([1-8])$/ #specify a whole treatment
-      Area.where(:study_id => 1, :treatment_number => $1)
+      main_study.where(:treatment_number => $1)
     when /^R([1-6])$/ #specify a whole rep
-      Area.where(:study_id => 1, :replicate => $1)
+      main_study.where(:replicate => $1)
     when /^T([1-8])\-([1-8])$/ #specify a range of treatments
-      Area.where(:study_id => 1, :treatment_number => $1..$2)
+      main_study.where(:treatment_number => $1..$2)
     when /^T([1-8])\!R([1-6])$/ #specify a treatment except a rep
-      Area.where(:study_id => 1, :treatment_number => $1).where(['not replicate = ?',$2])
+      main_study.where(:treatment_number => $1).where('not replicate = ?',$2)
     when /^R([1-6])\!T([1-8])$/ #specify a replicate except a treatment
-      Area.where(:study_id => 1, :replicate => $1).where(['not treatment_number = ?',$2])
+      main_study.where(:replicate => $1).where('not treatment_number = ?',$2)
     when /^B([1-9]|1[0-9]|2[0-1])$/ #specify Biodiversity Plots
-      Area.where(:study_id => 2, :treatment_number => $1)
+      where(:study_id => 2, :treatment_number => $1)
     when /^FERTILITY_GRADIENT$/
-      Area.where(:study_id => 3)
+      fert_study
     when /^F([1-9])$/ #specify N fert
-      Area.where(:study_id => 3, :treatment_number => $1)
+      fert_study.where(:treatment_number => $1)
     when /^F([1-9])-([1-9])$/
-      Area.where(:study_id => 3, :treatment_number => $1..$2)
+      fert_study.where(:treatment_number => $1..$2)
     when /^IRRIGATED_FERTILITY_GRADIENT$/
-      Area.where(:study_id => 4)
+      if_study
     when /^IF([1-9])$/
-      Area.where(:study_id => 4, :treatment_number => $1)
+      if_study.where(:treatment_number => $1)
     when /^IF([1-9])-([1-9])$/
-      Area.where(:study_id => 4, :treatment_number => $1..$2)
+      if_study.where(:treatment_number => $1..$2)
     when /^REPT([1-4])E([1-3])$/
-      Area.where(:study_id => 5, :treatment_number => [$1,$2].join)
+      where(:study_id => 5, :treatment_number => [$1,$2].join)
     when /^GLBRC$/ # specify GLRBC plots
-      Area.where(:study_id => 6)
+      where(:study_id => 6)
     when /^CES$/ # specify Cellulosic energy study
-      Area.where(:study_id => 7)
+      where(:study_id => 7)
     else
-      nil
+      by_upper_name(token)
     end
-    # try to find an area by name
-    area = Area.where(['upper(name) = ?', token.squeeze.upcase]) if area.blank?
 
     area.blank? ? [token] : area.all
+  end
+
+  def Area.by_upper_name(token)
+    where(['upper(name) = ?', token.squeeze.upcase])
   end
 
 end
