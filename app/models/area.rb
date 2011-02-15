@@ -131,11 +131,11 @@ class Area < ActiveRecord::Base
       main_study.where(:treatment_number => $1)
     when /^R(\d)$/ #specify a whole rep
       main_study.where(:replicate => $1)
-    when /^T(\d)\-(\d)$/ #specify a range of treatments
+    when /^T(\d)-(\d)$/ #specify a range of treatments
       main_study.where(:treatment_number => $1..$2)
-    when /^T(\d)\!R(\d)$/ #specify a treatment except a rep
+    when /^T(\d)!R(\d)$/ #specify a treatment except a rep
       main_study.where(:treatment_number => $1).where('not replicate = ?',$2)
-    when /^R(\d)\!T(\d)$/ #specify a replicate except a treatment
+    when /^R(\d)!T(\d)$/ #specify a replicate except a treatment
       main_study.where(:replicate => $1).where('not treatment_number = ?',$2)
     when /^B(\d+)$/ #specify Biodiversity Plots
       where(:study_id => 2, :treatment_number => $1)
