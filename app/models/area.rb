@@ -181,7 +181,7 @@ class String
     id = 0
     overlap = ''
     while self[id] && (self[id] == other_string[id])
-      overlap += self[id].to_s
+      overlap += self[id..id].to_s #id..id gives letter in 1.8.7; just id gives char number
       id += 1
     end
 
