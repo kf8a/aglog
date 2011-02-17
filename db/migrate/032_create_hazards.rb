@@ -6,7 +6,7 @@ class CreateHazards < ActiveRecord::Migration
     	t.column :chemical_name, :string
     	t.column :description, :text
     	t.column :notification, :text
-    	t.column :exclusion_time_days, :float    	
+    	t.column :exclusion_time_days, :float
     end
     create_table :hazards_people, :id => false do |t|
     	t.column :hazard_id, :integer
@@ -16,11 +16,11 @@ class CreateHazards < ActiveRecord::Migration
     	t.column :hazard_id, :integer
     	t.column :material_id, :integer
     end
-    	
+
   end
 
   def self.down
-  	drop_table :hazards_people 
+  	drop_table :hazards_people
   	drop_table :hazards_materials
     drop_table :hazards
   end

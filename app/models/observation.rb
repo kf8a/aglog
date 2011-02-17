@@ -6,29 +6,29 @@ class Observation < ActiveRecord::Base
   attr_accessible :person_id, :comment, :obs_date, :state, :observation_type_ids
 
   acts_as_state_machine :initial => :published
-  
+
   state  :published
   state  :in_review
-  
+
   event :review do
     transitions :from => :published, :to => :in_review
   end
-  
+
   event :publish do
     transitions :from => :in_review, :to => :published
   end
-  
+
   has_many :activities, :dependent => :destroy
   has_many :setups, :through => :activities
   has_and_belongs_to_many :areas
   has_and_belongs_to_many :observation_types
   belongs_to :person
-  
+
   validates :obs_date,          :presence => true
   validates :observation_types, :presence => true
   validates :person_id,         :presence => true
   validate :no_invalid_areas
-    
+
   def no_invalid_areas
     errors.add(:base, 'invalid areas') if  @error_areas
   end
@@ -66,11 +66,11 @@ class Observation < ActiveRecord::Base
   def equipment_names
     setups.collect { |setup| setup.equipment_name }.flatten.join(', ')
   end
-  
+
   def in_review
     'in_review' == self.state
   end
-    	
+
   def in_review=(state)
     return if new_record?
     case state

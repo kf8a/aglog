@@ -5,5 +5,5 @@ module SetupsHelper
        [equipment.name, equipment.id] unless equipment.archived?
      end.compact
    end
-   
+
 end

@@ -5,11 +5,11 @@ class MaterialTransaction < ActiveRecord::Base
   belongs_to :material
   belongs_to :setup
   belongs_to :unit
-  
+
 
   validates :material_id, :presence => true
   validates_associated :material
-  
+
   # find fertilizers  on the main site
   def MaterialTransaction.find_fertilizations(order='obs_date desc')
     study = Study.find_by_name("MAIN")
@@ -71,7 +71,7 @@ class MaterialTransaction < ActiveRecord::Base
   def rate_and_unit
     unit_display = unit_name
     unit_display = unit_display.pluralize unless 1 == self.rate
-    
+
     ": #{self.rate} #{unit_display} per acre"
   end
 

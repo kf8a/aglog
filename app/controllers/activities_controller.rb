@@ -15,7 +15,7 @@ class ActivitiesController < ApplicationController
     end
     render :nothing => true
   end
-  
+
   def destroy
     activity = Activity.find(params[:id])
     activity.destroy

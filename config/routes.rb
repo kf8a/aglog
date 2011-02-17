@@ -27,7 +27,7 @@ Aglog::Application.routes.draw do
       post :new_hazards
     end
   end
-  
+
   match '/' => 'observations#index'
 
   # Allow downloading Web Service WSDL as a file with an extension

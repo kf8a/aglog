@@ -1,7 +1,7 @@
 <h1>New Unit</h1>
 
 <%= form_for(:unit, :url => units_path) do |f| %>
-	
+
   <p>
     <b>Name</b><br />
     <%= f.text_field :name %>
@@ -14,7 +14,7 @@
     <b>Conversion Factor</b><br />
     <%= f.text_field :conversion_factor %>
   </p>
-  
+
   <p>
     <%= submit_tag "Create" %>
   </p>

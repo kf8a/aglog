@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   respond_to :html, :xml
 
   before_filter :require_user, :except => [:index, :show]
-    
+
   helper_method :current_user, :signed_in?
 
   layout :site_layout
@@ -61,5 +61,5 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
- 
+
 end

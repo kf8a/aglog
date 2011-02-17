@@ -5,7 +5,7 @@ class AreasController < ApplicationController
     observation = Observation.find_by_id(params[:observation_id])
     broad_scope = observation.try(:areas) || Area
     @areas = broad_scope.order('study_id, name').includes(:study).all
-    
+
     respond_with @areas do |format|
       format.html { render_by_authorization('index') }
     end

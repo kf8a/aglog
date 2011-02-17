@@ -2,7 +2,7 @@
 class PersonSessionsController < ApplicationController
   before_filter :require_user, :only => :destroy
 
-  
+
   def new
     if Rails.env == 'test'
       person = Person.first
@@ -44,5 +44,5 @@ class PersonSessionsController < ApplicationController
       render :new
     end
   end
-  
+
 end
