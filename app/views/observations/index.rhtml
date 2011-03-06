@@ -2,13 +2,13 @@
 
 <div class='flickr_pagination'>
   <%= link_to "Soil Preparation", {:obstype=> 1} %>&nbsp;&nbsp;
-  <%= link_to "Planting", {:obstype => 3} %>&nbsp;&nbsp; 
+  <%= link_to "Planting", {:obstype => 3} %>&nbsp;&nbsp;
   <%= link_to "Fertilizer application", {:obstype=>4} %>&nbsp;&nbsp;
   <%= link_to "Pesticide application", {:obstype => 5} %>&nbsp;&nbsp;
   <%= link_to "Weed control", {:obstype => 6} %>&nbsp;&nbsp;
   <%= link_to "Harvest", {:obstype => 2} %>&nbsp;&nbsp;
   <%= link_to "Irrigation", {:obstype => 7} %>&nbsp;&nbsp;
-  <%= link_to "Burning", {:obstype => 9} %> 
+  <%= link_to "Burning", {:obstype => 9} %>
 </div>
 
 <div class='flickr_pagination'>
@@ -19,12 +19,12 @@
   <table>
     <tr>
       <th>Date</th>
-      <th>Observation Type</th>		
+      <th>Observation Type</th>
 	    <th>Comment</th>
       <th><%= link_to 'Areas', areas_path %></th>
 	    <th><%= link_to 'Material', materials_path %></th>
     </tr>
-    
+
     <% @observations.each do |observation| %>
       <tr valign='top'>
 		    <td><%= observation.obs_date %> </td>
@@ -41,7 +41,7 @@
 					    <table>
 					      <% setup.material_transactions.each do |m| %>
 						      <tr>
-							      <td><%= m.material.name if m %></td> 
+							      <td><%= m.material.name if m %></td>
     						  </tr>
 	    				  <% end %>
 					    </table>

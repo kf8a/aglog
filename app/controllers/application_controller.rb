@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   respond_to :html, :xml
 
   before_filter :require_user, :except => [:index, :show]
-    
+
   helper_method :current_user, :signed_in?
 
   layout :site_layout
@@ -39,6 +39,11 @@ class ApplicationController < ActionController::Base
     model_name.capitalize.constantize
   end
 
+  def render_by_authorization(base)
+    file_to_render = signed_in? ? "authorized_#{base}" : "unauthorized_#{base}"
+    render file_to_render
+  end
+
   def require_user
     unless signed_in?
       store_location
@@ -56,5 +61,5 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
- 
+
 end

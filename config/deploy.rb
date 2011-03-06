@@ -57,7 +57,7 @@ namespace :deploy do
     task :stop, :roles => :app do
       deploy.thin.stop
     end
-  
+
   after "deploy:update_code", :link_production_db
 end
 

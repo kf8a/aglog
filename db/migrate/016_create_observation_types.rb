@@ -4,7 +4,7 @@ class CreateObservationTypes < ActiveRecord::Migration
       t.column :observation_id, :integer
       t.column :observation_type_id,  :integer
     end
-    
+
     create_table :observation_types do |t|
       t.column  :name, :string
     end

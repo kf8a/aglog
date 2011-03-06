@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-load "#{Rails.root}/db/seeds.rb"
-
 def non_existent_study_id
   id = 1
   while Study.exists?(id)

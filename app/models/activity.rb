@@ -7,7 +7,7 @@ class Activity < ActiveRecord::Base
   belongs_to :observation
   has_many :setups, :dependent => :destroy
   has_many :material_transactions, :through => :setups
-  
+
   validates :person, :presence => true
   validates_associated :person
 

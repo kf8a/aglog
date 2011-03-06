@@ -4,11 +4,7 @@ class EquipmentController < ApplicationController
   def index
     @equipment = Equipment.order('name').all
     respond_with @equipment do |format|
-      if signed_in?
-        format.html { render 'authorized_index' }
-      else
-        format.html { render 'unauthorized_index'}
-      end
+      format.html { render_by_authorization('index') }
     end
   end
 

@@ -5,13 +5,13 @@ activities do |a|
   a.date = today
 end
 
-activity :user => {:name => 'jim', time => '4 hours'}, 
-  :setup => {tractor, implement}, 
+activity :user => {:name => 'jim', time => '4 hours'},
+  :setup => {tractor, implement},
   :material => {:name => 'urea', :rate => 45}, :area => 'T1:T4',
   :date => today, :comment => "I didn't do it"
-  
+
 activity do
-  user do 
+  user do
     name 'simmonsj'
     time 4 hours
   end

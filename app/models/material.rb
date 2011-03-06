@@ -3,12 +3,12 @@ class Material < ActiveRecord::Base
   attr_accessible :name, :operation_type_id, :material_type_id, :n_content,
                   :p_content, :k_content, :specific_weight, :liquid
 
-  has_and_belongs_to_many :equipment 
+  has_and_belongs_to_many :equipment
   has_and_belongs_to_many :hazards
   has_many :material_transactions
   has_many :setups, :through => :material_transactions
   belongs_to :material_type
-  
+
   validates :name, :uniqueness => { :case_sensitive => false }
 
   # Converts liquids from liters to grams.
@@ -27,5 +27,5 @@ class Material < ActiveRecord::Base
   def material_type_name
     self.material_type.try(:name)
   end
-  
+
 end

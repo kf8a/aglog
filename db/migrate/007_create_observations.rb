@@ -6,7 +6,7 @@ class CreateObservations < ActiveRecord::Migration
       t.column :obs_date, :date
       t.column :created_on, :date
     end
-    create_table :areas_observations, :id => false do |t| 
+    create_table :areas_observations, :id => false do |t|
       t.column :observation_id, :integer
       t.column :area_id, :integer
     end

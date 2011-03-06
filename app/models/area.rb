@@ -8,10 +8,10 @@ class Area < ActiveRecord::Base
   has_and_belongs_to_many :observations, :order => 'obs_date desc'
   belongs_to :study
   belongs_to :treatment
-  
+
   validates :name, :uniqueness => { :case_sensitive => false }
   validates :study, :presence => { :if => :study_id }
-  
+
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
@@ -24,9 +24,9 @@ class Area < ActiveRecord::Base
   # @example Parse a string which has no area with that name
   #   Area.parse('T1R1 R11') #=> "T1R1 *R11*"
   def Area.parse(areas_as_text)
+    areas = []
     tokens = areas_as_text.chomp.split(/ +/)
-    areas = tokens.collect {|token| get_areas_by_token(token)}
-    areas.flatten!
+    tokens.each { |token| areas += get_areas_by_token(token) }
 
     # if areas contains a string
     if (areas.any? { |area| area.class == String })
@@ -41,13 +41,11 @@ class Area < ActiveRecord::Base
   # @param [Array] areas an array of areas
   # @return [String] a list of area names and study names if a whole study's
   #   areas are included (and treatment names for the same reason)
-  def Area.unparse(areas = nil)
-    areas = areas.to_a
-    studies, areas = replace_study_areas_by_study(areas)
-    treatments, areas = replace_treatment_areas_by_treatment(areas)
-    treatment_numbers, areas = replace_treatment_number_areas_by_treatment_number(areas)
-    area_names = areas.compact.uniq.collect { |area| area.name }
-    names = studies + treatments + treatment_numbers + area_names
+  def Area.unparse(areas = [])
+    names, areas = replace_class_areas_by_class([], areas, Study)
+    names, areas = replace_class_areas_by_class(names, areas, Treatment)
+    names, areas = replace_treatment_number_areas_by_treatment_number(names, areas)
+    names += areas.uniq.collect { |area| area.name }
 
     names.sort.join(' ')
   end
@@ -58,72 +56,41 @@ class Area < ActiveRecord::Base
 
   private##########################################
 
-  def Area.replace_study_areas_by_study(areas)
-    # if all of a study's areas are here,
-    # use the study's name instead of individual areas
-    studies = []
-    study_ids = areas.collect { |area| area.study_id }
-    study_ids.compact.uniq.each do |study_id|
-      study_areas = Area.where(:study_id => study_id).all
-      if [] == study_areas - areas
-        areas -= study_areas
-        studies << Study.find(study_id).name
+  def Area.replace_class_areas_by_class(names, areas, klass)
+    id_method = "#{klass.name.downcase}_id"
+    member_ids = areas.collect { |area| area.send(id_method) }
+    member_ids.compact.uniq.each do |member_id|
+      member_areas = Area.where(id_method => member_id).all
+      if areas.contains(member_areas)
+        areas -= member_areas
+        names << klass.find(member_id).name
       end
     end
 
-    [studies, areas]
+    [names, areas]
   end
 
-  def Area.replace_treatment_areas_by_treatment(areas)
-    # if all of a treatment's areas are here,
-    # use the treatment's name instead of individual areas
-    treatments = []
-    treatment_ids = areas.collect { |area| area.treatment_id }
-    treatment_ids.compact.uniq.each do |treatment_id|
-      treatment_areas = Area.where(:treatment_id => treatment_id).all
-      if [] == treatment_areas - areas
-        areas -= treatment_areas
-        treatments << Treatment.find(treatment_id).name
-      end
-    end
-
-    [treatments, areas]
-  end
-
-  def Area.replace_treatment_number_areas_by_treatment_number(areas)
+  def Area.replace_treatment_number_areas_by_treatment_number(names, areas)
     # if all of a treatment number's areas are here,
     # use the treatment's name instead of individual areas
-    treatments = []
-    treatment_and_studies = areas.collect { |area| [area.treatment_number, area.study_id] }
+    treatment_and_studies = areas.collect { |area| [area.treatment_number, area.study_id] if area.treatment_number }
 
-    treatment_and_studies.compact.uniq.each do |treatment_and_study|
-      treatment_number, study_id = treatment_and_study
-      if treatment_number
-        treatment_areas = Area.where(:treatment_number => treatment_number, :study_id => study_id).all
-        if [] == treatment_areas - areas
-          areas -= treatment_areas
-          name_to_include = overlap(treatment_areas[0].name, treatment_areas[-1].name)
-          if name_to_include.end_with?('R') || name_to_include.end_with?('r')
-            name_to_include.chop!
-          end
-          treatments << name_to_include
-        end
+    treatment_and_studies.uniq.each do |treatment_number, study_id|
+      treatment_areas = Area.where(:treatment_number => treatment_number, :study_id => study_id).all
+      if areas.contains(treatment_areas)
+        areas -= treatment_areas
+        names << extract_treatment_name(treatment_areas)
       end
     end
 
-    [treatments, areas]
+    [names, areas]
   end
 
-  def Area.overlap(string1, string2)
-    id = 0
-    max = string1.length
-    overlap = ''
-    until (string1[0..id] != string2[0..id]) || id > max
-      overlap = string1[0..id]
-      id += 1
-    end
+  def Area.extract_treatment_name(treatment_areas)
+    name_to_include = treatment_areas[0].name.overlap(treatment_areas[-1].name)
+    name_to_include.chomp!('r') or name_to_include.chomp!('R')
 
-    overlap
+    name_to_include
   end
 
   def treatment_is_part_of_study
@@ -134,61 +101,90 @@ class Area < ActiveRecord::Base
   end
 
   def name_has_no_spaces
-    errors.add(:base, 'names should not contain spaces') if name && name.scan(/ /) != []
+    errors.add(:base, 'names should not contain spaces') if name.to_s.include?(' ')
   end
 
   def Area.stringify_areas(areas)
     area_strings = areas.collect do |area|
-      if (area.class.name == 'String')
-        "*"+area+"*"
-      else
-        area.name
-      end
+      (area.class == String) ? "*#{area}*" : area.name
     end
     area_strings.join(' ')
   end
 
-  def Area.get_areas_by_token(token)
-    area = case token
-    when /^MAIN$/ #specify the whole main site
-      Area.where(:study_id => 1)
-    when /^[t|T]([1-8])$/ #specify a whole treatment
-      Area.where(:study_id => 1, :treatment_number => $1)
-    when /^[r|R]([1-6])$/ #specify a whole rep
-      Area.where(:study_id => 1, :replicate => $1)
-    when /^[t|T]([1-8])\-([1-8])$/ #specify a range of treatments
-      Area.where(:study_id => 1, :treatment_number => $1..$2)
-    when /^[t|T]([1-8])\![r|R]([1-6])$/ #specify a treatment except a rep
-      Area.where(:study_id => 1, :treatment_number => $1).where(['not replicate = ?',$2])
-    when /^[r|R]([1-6])\![t|T]([1-8])$/ #specify a replicate except a treatment
-      Area.where(:study_id => 1, :replicate => $1).where(['not treatment_number = ?',$2])
-    when /^[b|B]([1-9]|1[0-9]|2[0-1])$/ #specify Biodiversity Plots
-      Area.where(:study_id => 2, :treatment_number => $1)
-    when /^Fertility_Gradient$/
-      Area.where(:study_id => 3)
-    when /^[f|F]([1-9])$/ #specify N fert
-      Area.where(:study_id => 3, :treatment_number => $1)
-    when /^[f|F]([1-9])-([1-9])$/
-      Area.where(:study_id => 3, :treatment_number => $1..$2)
-    when /^Irrigated_Fertility_Gradient$/
-      Area.where(:study_id => 4)
-    when /^i[f|F]([1-9])$/
-      Area.where(:study_id => 4, :treatment_number => $1)
-    when /^i[f|F]([1-9])-([1-9])$/
-      Area.where(:study_id => 4, :treatment_number => $1..$2)
-    when /^[r|R][e|E][p|P][t|T]([1-4])[E|e]([1-3])$/
-      Area.where(:study_id => 5, :treatment_number => [$1,$2].join)
-    when /^GLBRC$/ # specify GLRBC plots
-      Area.where(:study_id => 6)
-    when /^CES$/ # specify Cellulosic energy study
-      Area.where(:study_id => 7)
-    else
-      nil
-    end
-    # try to find an area by name
-    area = Area.where(['upper(name) = ?', token.squeeze.upcase]) if area.blank?
-    area = token if area.blank? #failed to find an area
-    area
+  def Area.main_study
+    where(:study_id => 1)
   end
 
+  def Area.fert_study
+    where(:study_id => 3)
+  end
+
+  def Area.if_study
+    where(:study_id => 4)
+  end
+
+  def Area.get_areas_by_token(token)
+    area = case token.upcase
+    when /^MAIN$/ #specify the whole main site
+      main_study
+    when /^T(\d)$/ #specify a whole treatment
+      main_study.where(:treatment_number => $1)
+    when /^R(\d)$/ #specify a whole rep
+      main_study.where(:replicate => $1)
+    when /^T(\d)-(\d)$/ #specify a range of treatments
+      main_study.where(:treatment_number => $1..$2)
+    when /^T(\d)!R(\d)$/ #specify a treatment except a rep
+      main_study.where(:treatment_number => $1).where('not replicate = ?',$2)
+    when /^R(\d)!T(\d)$/ #specify a replicate except a treatment
+      main_study.where(:replicate => $1).where('not treatment_number = ?',$2)
+    when /^B(\d+)$/ #specify Biodiversity Plots
+      where(:study_id => 2, :treatment_number => $1)
+    when /^FERTILITY_GRADIENT$/
+      fert_study
+    when /^F(\d)$/ #specify N fert
+      fert_study.where(:treatment_number => $1)
+    when /^F(\d)-(\d)$/
+      fert_study.where(:treatment_number => $1..$2)
+    when /^IRRIGATED_FERTILITY_GRADIENT$/
+      if_study
+    when /^IF(\d)$/
+      if_study.where(:treatment_number => $1)
+    when /^IF(\d)-(\d)$/
+      if_study.where(:treatment_number => $1..$2)
+    when /^REPT(\d)E(\d)$/
+      where(:study_id => 5, :treatment_number => [$1,$2].join)
+    when /^GLBRC$/ # specify GLRBC plots
+      where(:study_id => 6)
+    when /^CES$/ # specify Cellulosic energy study
+      where(:study_id => 7)
+    else
+      by_upper_name(token)
+    end
+
+    area.blank? ? [token] : area.all
+  end
+
+  def Area.by_upper_name(token)
+    where(['upper(name) = ?', token.squeeze.upcase])
+  end
+
+end
+
+class Array
+  def contains(other_array)
+    [] == other_array - self
+  end
+end
+
+class String
+  def overlap(other_string)
+    id = 0
+    overlap = ''
+    while self[id] && (self[id] == other_string[id])
+      overlap += self[id..id].to_s #id..id gives letter in 1.8.7; just id gives char number
+      id += 1
+    end
+
+    overlap
+  end
 end

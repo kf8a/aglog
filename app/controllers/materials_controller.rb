@@ -1,6 +1,6 @@
 # Allows modification and viewing of materials
 class MaterialsController < ApplicationController
-  
+
   # GET /materials
   # GET /materials.xml
   def index
@@ -46,29 +46,29 @@ class MaterialsController < ApplicationController
     @material.destroy
     respond_with @material
   end
-  
+
   # GET /materials/1/get_hazards
   def get_hazards
     @material = Material.find_by_id(params[:id]) || Material.new
     @current_hazards = @material.hazards.all
   end
-  
+
   # PUT /materials/1/put_hazards
   def put_hazards
     @material = Material.find_by_id(params[:id])
     if @material
       values = params[:hazards].try(:values).to_a # If nil, we get []
       @material.hazards = values.collect { |value| Hazard.find(value) }
-      
+
       redirect_to :action => "edit"
     else
       redirect_to :action => "new"
     end
 	end
-	
+
 	# POST /materials/new_hazards
 	def new_hazards
-	
+
 	end
 
 end
