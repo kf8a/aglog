@@ -19,7 +19,7 @@ unless RUBY_VERSION > "1.9"
 end
 
 #Uses jquery instead of prototype in rails
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 0.2.6'
 
 #Gets rid of annoying UTF-8 string error in rack
 gem "escape_utils"
