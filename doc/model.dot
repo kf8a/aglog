@@ -1,35 +1,51 @@
-digraph models_diagram {
-	graph[overlap=false, splines=true]
-	"Activity" [shape=Mrecord, label="{Activity|comment :text\lhours :float\l}"]
-	"Area" [shape=Mrecord, label="{Area|name :string\ltreatment :integer\lreplicate :integer\ldescription :string\l}"]
-	"Equipment" [shape=Mrecord, label="{Equipment|name :string\luse_material :boolean\lis_tractor :boolean\l}"]
-	"Hazard" [shape=Mrecord, label="{Hazard|name :string\lhazard_type :string\lchemical_name :string\ldescription :text\lnotification :text\lexclusion_time_days :float\l}"]
-	"Material" [shape=Mrecord, label="{Material|name :string\ln_content :float\lp_content :float\lk_content :float\lspecific_weight :float\lliquid :boolean\l}"]
-	"MaterialTransaction" [shape=Mrecord, label="{MaterialTransaction|rate :float\lcents :integer\ltransaction_datetime :datetime\l}"]
-	"MaterialType" [shape=Mrecord, label="{MaterialType|name :string\l}"]
-	"Observation" [shape=Mrecord, label="{Observation|comment :text\lobs_date :date\lcreated_on :date\lstate :string\l}"]
-	"ObservationType" [shape=Mrecord, label="{ObservationType|name :string\l}"]
-	"Person" [shape=Mrecord, label="{Person|given_name :string\lsur_name :string\lopenid_identifier :string\lpersistence_token :string\lpassword_salt :string\llast_request_at :datetime\lcreated_at :datetime\lupdated_at :datetime\l}"]
-	"Setup" [shape=Mrecord, label="{Setup|settings :string\l}"]
-	"Study" [shape=Mrecord, label="{Study|name :string\ldescription :text\l}"]
-	"Treatment" [shape=Mrecord, label="{Treatment|name :string\l}"]
-	"Unit" [shape=Mrecord, label="{Unit|name :string\lconversion_factor :float\l}"]
-	"Activity" -> "Setup" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Area" -> "Observation" [arrowtail=crow, arrowhead=crow, dir=both]
-	"Equipment" -> "Setup" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Equipment" -> "Material" [arrowtail=crow, arrowhead=crow, dir=both]
-	"Hazard" -> "Material" [arrowtail=crow, arrowhead=crow, dir=both]
-	"Hazard" -> "Person" [arrowtail=crow, arrowhead=crow, dir=both]
-	"Material" -> "MaterialTransaction" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Material" -> "Setup" [arrowtail=crow, arrowhead=crow, dir=both]
-	"MaterialType" -> "Material" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Observation" -> "Activity" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Observation" -> "ObservationType" [arrowtail=crow, arrowhead=crow, dir=both]
-	"Person" -> "Observation" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Person" -> "Activity" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Setup" -> "MaterialTransaction" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Study" -> "Area" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Study" -> "Treatment" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Treatment" -> "Area" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Unit" -> "MaterialTransaction" [arrowtail=crow, arrowhead=dot, dir=both]
+digraph x {
+Activity
+Activity -> Person [label=belongs_to]
+Activity -> Observation [label=belongs_to]
+Activity -> Setup [label=has_many]
+Activity -> MaterialTransaction [label=has_many]
+Area
+Area -> Observation [label=has_and_belongs_to_many]
+Area -> Study [label=belongs_to]
+Area -> Treatment [label=belongs_to]
+Equipment
+Equipment -> Setup [label=has_many]
+Equipment -> Material [label=has_and_belongs_to_many]
+Hazard
+Hazard -> Material [label=has_and_belongs_to_many]
+Hazard -> Person [label=has_and_belongs_to_many]
+Material
+Material -> Equipment [label=has_and_belongs_to_many]
+Material -> Hazard [label=has_and_belongs_to_many]
+Material -> MaterialTransaction [label=has_many]
+Material -> MaterialType [label=belongs_to]
+MaterialTransaction
+MaterialTransaction -> Material [label=belongs_to]
+MaterialTransaction -> Setup [label=belongs_to]
+MaterialTransaction -> Unit [label=belongs_to]
+MaterialType
+MaterialType -> Material [label=has_many]
+Observation
+Observation -> Activity [label=has_many]
+Observation -> Area [label=has_and_belongs_to_many]
+Observation -> ObservationType [label=has_and_belongs_to_many]
+Observation -> Person [label=belongs_to]
+ObservationType
+ObservationType -> Observation [label=has_and_belongs_to_many]
+Person
+Person -> Observation [label=has_many]
+Person -> Activity [label=has_many]
+Person -> Hazard [label=has_and_belongs_to_many]
+Setup
+Setup -> Activity [label=belongs_to]
+Setup -> Equipment [label=belongs_to]
+Setup -> MaterialTransaction [label=has_many]
+Study
+Study -> Area [label=has_many]
+Study -> Treatment [label=has_many]
+Treatment
+Treatment -> Area [label=has_many]
+Treatment -> Study [label=belongs_to]
+Unit
+Unit -> MaterialTransaction [label=has_many]
 }

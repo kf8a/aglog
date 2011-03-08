@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-require "config/environment"
+require_relative "./config/environment"
 Dir.glob("app/models/*rb") { |f|
-    require f
+    require_relative f
 }
 puts "digraph x {"
 Dir.glob("app/models/*rb") { |f|
