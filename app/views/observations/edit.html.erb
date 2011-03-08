@@ -2,25 +2,7 @@
 
 Created on: <%= @observation.created_on  %>
 
-<p>
-  <%= render 'form', :observation => @observation %>
-</p>
-
-<div id="activities">
-  <fieldset id='activities'>
-    <legend>Activities</legend>
-    <%= flash[:activity] %>
-    <dl>
-      <%= render @observation.activities %>
-      <div>
-        <input type="button" class="toggler" value="Display\Hide new activity?" />
-        <div style="display: none">
-          <%= render @observation.activities.new %>
-        </div>
-      </div>
-    </dl>
-  </fieldset>
-</div>
+<%= render 'form', :observation => @observation %>
 
 
 <%= link_to 'Show', observation_path(@observation) %> |

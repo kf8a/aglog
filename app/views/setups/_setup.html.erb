@@ -1,14 +1,13 @@
 <div class="setup">
-  <%= form_for setup, :remote => true do |f| %>
-    <%= f.hidden_field :activity_id %>
-    <%= f.label :equipment_id, "Equipment" %>
-    <%= f.select :equipment_id, equipment, :include_blank => true %>
+  <%= semantic_fields_for setup do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :equipment %>
+    <% end %>
     <%= f.submit :class => 'activity_submitter' %>
-  <% end %>
   <% unless setup.new_record? %>
-    <dt>Materials</dt>
-    <dd>
-      <dl>
+    <% if setup.equipment.use_material %>
+    <fieldset>
+      <legend>Materials</legend>
         <%= render setup.material_transactions %>
         <div>
           <input type="button" class="toggler" value="Display\Hide new material?" />
@@ -16,8 +15,9 @@
             <%= render setup.material_transactions.new %>
           </div>
         </div>
-      </dl>
-    </dd>
+      </fieldset>
+    <% end %>
     <%= link_to 'delete setup', setup_path(setup), :class => "deleter" %>
+  <% end %>
   <% end %>
 </div>

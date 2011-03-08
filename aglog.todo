@@ -3,8 +3,6 @@ aglog:
 - subselect on  area screens
 - change title when subselect
 
-- login enabled send url to Scott Swinton. 
-
 - areas order id to return in the same way.
 
 - material_transactions without use_material

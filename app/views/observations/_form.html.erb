@@ -5,6 +5,19 @@
     <%= f.input :comment, :id=>'focus_here' %>
     <%= f.input :areas_as_text, :hint=>'T6 T5R1 T4!R3 T1-T4 T1R1-3' %>
     <%= f.input :observation_types, :multiple=>true%>
+
+  <fieldset id='activities'>
+    <legend>Activities</legend>
+    <%= flash[:activity] %>
+      <%= render @observation.activities %>
+      <div>
+        <input type="button" class="toggler" value="Display\Hide new activity?" />
+        <div style="display: none">
+          <%= render @observation.activities.new %>
+        </div>
+      </div>
+  </fieldset>
+
     <%= f.submit %>
   <% end %>
 

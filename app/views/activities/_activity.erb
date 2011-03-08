@@ -1,16 +1,14 @@
 <div class="activity">
-  <%= form_for activity, :remote => true do |f| %>
+  <%= semantic_fields_for activity do |f| %>
     <%= f.hidden_field :observation_id %>
-    <%= f.label :person_id, "Worker" %>
-    <%= f.select :person_id, people, :include_blank => true %>
-    <%= f.label :hours %>
-    <%= f.text_field :hours, :Size => 5 %>
-    <%= f.submit :class => 'activity_submitter' %>
-  <% end %>
+    <%= f.inputs do %>
+      <%= f.input :person, :label => 'Worker'%>
+      <%= f.input :hours, :input_html => {  :size => 10 } %>
+     <% end %>
   <% unless activity.new_record? %>
-    <dt>Setups</dt>
-    <dd>
-      <dl>
+    
+    <fieldset id='setups'>
+      <legend>Setups</legend>
         <%= render activity.setups %>
         <div>
           <input type="button" class="toggler" value="Display\Hide new setup?" />
@@ -18,8 +16,7 @@
             <%= render activity.setups.new %>
           </div>
         </div>
-      </dl>
-    </dd>
-    <%= link_to 'delete activity', activity_path(activity), :class => "deleter" %>
+      <%= link_to 'delete activity', activity_path(activity), :class => "deleter" %>
+    <% end %>
   <% end %>
 </div>
