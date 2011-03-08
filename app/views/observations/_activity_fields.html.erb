@@ -1,0 +1,19 @@
+<%= f.input :person %>
+<%= f.input :hours, :input_html=> {:size=>5} %>
+<%= link_to_remove_fields "Remove", f %>
+<table>
+  <tr>
+    <th>Equipment</th>
+    <th>Material</th>
+    <th>Rate</th>
+    <th>Unit</th>
+  </tr>
+  <% f.inputs :for => :material_transactions do |transaction| %>
+    <tr>
+      <td><%= transaction.input :equipment %></td>
+      <td><%= transaction.input :material  %></td>
+      <td><%= transaction.input :rate      %></td>
+      <td><%= transaction.input :unit      %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,25 +1,14 @@
-<%= semantic_form_for(observation) do |f| %>
-  <%= render "shared/error_messages", :target => observation %>
-  <%= f.inputs do %>
-    <%= f.input :obs_date, :start_year=>1988 %>
-    <%= f.input :comment, :id=>'focus_here' %>
-    <%= f.input :areas_as_text, :hint=>'T6 T5R1 T4!R3 T1-T4 T1R1-3' %>
-    <%= f.input :observation_types, :multiple=>true%>
+<%= form.inputs do %>
+  <%= form.input :obs_date, :start_year=>1988 %>
+  <%= form.input :comment, :id=>'focus_here' %>
+  <%= form.input :areas_as_text, :hint=>'T6 T5R1 T4!R3 T1-T4 T1R1-3' %>
+  <%= form.input :observation_types, :multiple=>true%>
 
-  <fieldset id='activities'>
-    <legend>Activities</legend>
-    <%= flash[:activity] %>
-      <%= render @observation.activities %>
-      <div>
-        <input type="button" class="toggler" value="Display\Hide new activity?" />
-        <div style="display: none">
-          <%= render @observation.activities.new %>
-        </div>
-      </div>
-  </fieldset>
 
-    <%= f.submit %>
-  <% end %>
-
-  <%= initialize_arrays -%>
+  <div id='actvities'>
+    <%= form.inputs :for => :activities do |f| %>
+      <%= render :partial => 'activity_fields', :locals => {:f => f} %>
+    <% end %>
+  </div>
+  <%= link_to_add_fields "Add Activity", form, :activities %>
 <% end %>

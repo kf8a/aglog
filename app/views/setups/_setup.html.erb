@@ -1,23 +1,9 @@
-<div class="setup">
-  <%= semantic_fields_for setup do |f| %>
-    <%= f.inputs do %>
-      <%= f.input :equipment %>
-    <% end %>
-    <%= f.submit :class => 'activity_submitter' %>
-  <% unless setup.new_record? %>
-    <% if setup.equipment.use_material %>
-    <fieldset>
-      <legend>Materials</legend>
-        <%= render setup.material_transactions %>
-        <div>
-          <input type="button" class="toggler" value="Display\Hide new material?" />
-          <div style="display: none">
-            <%= render setup.material_transactions.new %>
-          </div>
-        </div>
-      </fieldset>
-    <% end %>
-    <%= link_to 'delete setup', setup_path(setup), :class => "deleter" %>
-  <% end %>
-  <% end %>
-</div>
+<table class='setup'>
+  <tr>
+    <th>Equipement</th>
+    <th>Material</th>
+    <th>Rate</th>
+    <th>Unit</th>
+  </tr>
+  <%= render setup.material_transactions %>
+</table>

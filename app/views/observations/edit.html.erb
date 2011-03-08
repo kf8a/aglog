@@ -2,7 +2,11 @@
 
 Created on: <%= @observation.created_on  %>
 
-<%= render 'form', :observation => @observation %>
+<%= semantic_form_for @observation do |form| %>
+
+  <%= render :partial => 'form', :locals => {:form => form } %>
+  <%= form.buttons %>
+<% end %>
 
 
 <%= link_to 'Show', observation_path(@observation) %> |
