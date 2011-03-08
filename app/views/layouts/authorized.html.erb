@@ -1,4 +1,5 @@
 <%= content_for :header do %>
+  Logged in as: <%= current_user.name %>
   <%= link_to "logout", logout_path %>
 <% end %>
 <%=  render :file => 'layouts/application' %>

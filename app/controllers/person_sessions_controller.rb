@@ -18,7 +18,7 @@ class PersonSessionsController < ApplicationController
   def create
     auth = request.env['omniauth.auth']
     if auth['provider'] == "open_id"
-      open_id_session(params[:openid1_claimed_id])
+      open_id_session(auth['uid'])
     else
       flash[:notice] = "Wrong provider - should be open_id"
       render :new
