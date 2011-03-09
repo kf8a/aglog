@@ -6,8 +6,8 @@
 
 
   <div id='actvities'>
-    <%= form.inputs :for => :activities do |f| %>
-      <%= render :partial => 'activity_fields', :locals => {:f => f} %>
+    <%= form.inputs :for => :activities do |builder| %>
+      <%= render 'activity_fields', :f => builder %>
     <% end %>
   </div>
   <%= link_to_add_fields "Add Activity", form, :activities %>

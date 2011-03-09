@@ -14,6 +14,8 @@ class Setup < ActiveRecord::Base
 
   validates_associated :material_transactions
 
+  accepts_nested_attributes_for :material_transactions, :allow_destroy => true
+
   def equipment_name
     self.equipment.try(:name)
   end

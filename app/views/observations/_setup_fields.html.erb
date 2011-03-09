@@ -1,0 +1,4 @@
+<%= f.input :equipment %>
+<%= f.inputs :for => :material_transactions do |builder| %>
+  <%= render 'material_transaction_fields', :f => builder %>
+<% end %>

@@ -29,7 +29,7 @@ class Observation < ActiveRecord::Base
   validates :person_id,         :presence => true
   validate :no_invalid_areas
 
-  accepts_nested_attributes_for :activities, :setups
+  accepts_nested_attributes_for :activities, :allow_destroy => true
 
   def no_invalid_areas
     errors.add(:base, 'invalid areas') if  @error_areas

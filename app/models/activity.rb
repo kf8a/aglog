@@ -11,6 +11,8 @@ class Activity < ActiveRecord::Base
   validates :person, :presence => true
   validates_associated :person
 
+  accepts_nested_attributes_for :setups, :allow_destroy => true
+
   def person_name
     self.person.name
   end
