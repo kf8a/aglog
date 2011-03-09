@@ -44,3 +44,13 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 end
+
+class PersonSessionsController
+  
+  #override new in PersonSessionsController for easier testing
+  def new
+    person = Person.first
+    self.current_user = person
+    redirect_back_or_default '/observations'
+  end
+end

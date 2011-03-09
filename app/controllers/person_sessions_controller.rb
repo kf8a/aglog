@@ -4,21 +4,15 @@ class PersonSessionsController < ApplicationController
 
 
   def new
-    if Rails.env == 'test'
-      person = Person.first
-      self.current_user = person
-      redirect_back_or_default '/observations'
-    else
-      if params[:message] == "connection_failed"
-        flash[:error] = "OpenId is unable to verify the credentials you provided."
-      end
+    if params[:message] == "connection_failed"
+      flash[:error] = "OpenId is unable to verify the credentials you provided."
     end
   end
 
   def create
     auth = request.env['omniauth.auth']
     if auth['provider'] == "open_id"
-      open_id_session(auth['uid'])
+      open_id_session auth['uid']
     else
       flash[:notice] = "Wrong provider - should be open_id"
       render :new
@@ -35,7 +29,7 @@ class PersonSessionsController < ApplicationController
 
   def open_id_session(openid)
     person = Person.find_by_openid_identifier(openid)
-    if person
+    if person.present?
       self.current_user = person
       flash[:notice] = "Login successful!"
       redirect_back_or_default '/observations'
