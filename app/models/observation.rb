@@ -3,7 +3,7 @@ if RUBY_VERSION > "1.9" then require 'csv' else require 'fastercsv' end
 
 # The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
-  attr_accessible :person_id, :comment, :obs_date, :state, :observation_type_ids
+  #attr_accessible :person_id, :comment, :obs_date, :state, :observation_type_ids
 
   acts_as_state_machine :initial => :published
 
@@ -27,7 +27,7 @@ class Observation < ActiveRecord::Base
   validates :obs_date,          :presence => true
   validates :observation_types, :presence => true
   validates :person_id,         :presence => true
-  validate :no_invalid_areas
+  #validate :no_invalid_areas
 
   accepts_nested_attributes_for :activities, :allow_destroy => true
 
