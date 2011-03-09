@@ -1,4 +1,6 @@
 <%= f.input :equipment %>
+<%= link_to_remove_fields 'Remove', f%>
+
 <div class='material-transaction'>
 <%= f.inputs :for => :material_transactions do |builder| %>
   <%= render 'material_transaction_fields', :f => builder %>
