@@ -16,3 +16,20 @@ form.formtastic fieldset ol li p.inline-hints {
   font-style: italic;
  font-size: 11px;
 }
+form.formtastic div.material-transaction {
+  position: relative;
+  left: 25%;
+  width: 75%;
+}
+
+form.formtastic div.material-transaction fieldset {
+  overflow: hidden;
+}
+
+form.formtastic div.material-transaction li {
+  display: inline;
+}
+
+form.formtastic div.material-transaction label {
+  display: none;
+}

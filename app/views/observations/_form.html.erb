@@ -5,7 +5,7 @@
   <%= form.input :observation_types, :multiple=>true%>
 
 
-  <div id='actvities'>
+  <div class='actvities'>
     <%= form.inputs :for => :activities do |builder| %>
       <%= render 'activity_fields', :f => builder %>
     <% end %>

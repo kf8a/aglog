@@ -1,4 +1,6 @@
 <%= f.input :equipment %>
+<div class='material-transaction'>
 <%= f.inputs :for => :material_transactions do |builder| %>
   <%= render 'material_transaction_fields', :f => builder %>
 <% end %>
+</div>
