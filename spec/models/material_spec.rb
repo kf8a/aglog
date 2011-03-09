@@ -6,6 +6,8 @@ describe Material do
       @repeat_name = 'seed corn'
       find_or_factory(:material, :name => @repeat_name)
     end
+
+    it {should belong_to :company}
     
     describe 'a material with the same name as another' do
       subject { Material.new(:name => @repeat_name) }

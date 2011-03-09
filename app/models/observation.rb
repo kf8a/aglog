@@ -23,6 +23,7 @@ class Observation < ActiveRecord::Base
   has_and_belongs_to_many :areas
   has_and_belongs_to_many :observation_types
   belongs_to :person
+  belongs_to :company
 
   validates :obs_date,          :presence => true
   validates :observation_types, :presence => true

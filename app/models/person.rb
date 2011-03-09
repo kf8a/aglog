@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
 
   has_many :observations
   has_many :activities
+  belongs_to :company
   has_and_belongs_to_many :hazards
 
   validates :given_name,

@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe Equipment do
+
   before(:each) do
     find_or_factory(:equipment)
   end
 
+  it {should belong_to :company }
   it { should validate_uniqueness_of(:name).case_insensitive }
 
   it 'should grab all and only the right its own observations with self.observations' do

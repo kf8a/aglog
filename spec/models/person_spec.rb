@@ -4,6 +4,8 @@
 require 'spec_helper'
 
 describe Person do
+  it {should belong_to :company}
+
   it "should require unique name" do
     given_name = 'Joe'
     sur_name = 'Simmons'

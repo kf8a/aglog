@@ -8,6 +8,7 @@ class Area < ActiveRecord::Base
   has_and_belongs_to_many :observations, :order => 'obs_date desc'
   belongs_to :study
   belongs_to :treatment
+  belongs_to :company
 
   validates :name, :uniqueness => { :case_sensitive => false }
   validates :study, :presence => { :if => :study_id }

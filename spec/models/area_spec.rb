@@ -10,6 +10,7 @@ def non_existent_study_id
 end
 
 describe Area do
+  it {should belong_to :company}
 
   describe "requires a unique name: " do
     context "An area exists with a name. " do
