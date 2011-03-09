@@ -1,4 +1,6 @@
-<%= f.input :material %>
-<%= f.input :rate, :input_html => {:size => 10}%>
-<%= f.input :unit %>
-<%= link_to_remove_fields "Remove", f %>
+<%= f.inputs do %>
+  <%= f.input :material %>
+  <%= f.input :rate, :input_html => {:size => 10}%>
+  <%= f.input :unit %>
+  <%= link_to_remove_fields "Remove", f %>
+<% end %>
