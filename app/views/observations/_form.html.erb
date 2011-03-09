@@ -1,8 +1,8 @@
 <%= form.inputs do %>
   <%= form.input :obs_date, :start_year=>1988 %>
-  <%= form.input :comment, :id=>'focus_here' %>
+  <%= form.input :comment, :input_html=>{:class => 'autofocus'} %>
   <%= form.input :areas_as_text, :hint=>'T6 T5R1 T4!R3 T1-T4 T1R1-3' %>
-  <%= form.input :observation_types, :multiple=>true%>
+  <%= form.input :observation_types, :as=>:check_boxes, :multiple=>true%>
 
 
   <div class='actvities'>

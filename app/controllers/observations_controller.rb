@@ -27,6 +27,7 @@ class ObservationsController < ApplicationController
 
   def new
     @observation = Observation.new
+    @observation.obs_date = Date.today
     respond_with @observation
   end
 

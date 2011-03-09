@@ -1,35 +1,35 @@
 
 $(document).ready(function() {
     // Put cursor on first text input of form
-    $('#focus_here').focus();
+    $('.autofocus:first').focus();
 
-    // All links with data_popup make a small popup window of what they link to.
-    $('.data_popup').live('click', function(e) {
-        e.preventDefault();
-        window.open($(this).attr('href'), 'popwindow', 'height=400,width=600,scrollbars=true');
-    });
-
-    // Closes the current window.
-    $('.closer').click(function(e) {
-        window.close();
-    });
-
-    // Lets user know that it was updated.
-    $('.remote_updater').click(function(e) {
-        alert('Updated!');
-    });
-
-    // This specifically refreshes the hazards part of edit materials page, but could be extended.
-    $('#refresh_hazards').click(function(e) {
-        e.preventDefault();
-        $('#hazards').load('edit.html div#hazards');
-    });
-
-
-    $('.toggler').live('click', function(e) {
-        e.preventDefault();
-        $(this).next('div').toggle();
-    });
+//    // All links with data_popup make a small popup window of what they link to.
+//    $('.data_popup').live('click', function(e) {
+//        e.preventDefault();
+//        window.open($(this).attr('href'), 'popwindow', 'height=400,width=600,scrollbars=true');
+//    });
+//
+//    // Closes the current window.
+//    $('.closer').click(function(e) {
+//        window.close();
+//    });
+//
+//    // Lets user know that it was updated.
+//    $('.remote_updater').click(function(e) {
+//        alert('Updated!');
+//    });
+//
+//    // This specifically refreshes the hazards part of edit materials page, but could be extended.
+//    $('#refresh_hazards').click(function(e) {
+//        e.preventDefault();
+//        $('#hazards').load('edit.html div#hazards');
+//    });
+//
+//
+//    $('.toggler').live('click', function(e) {
+//        e.preventDefault();
+//        $(this).next('div').toggle();
+//    });
 
 });
 
