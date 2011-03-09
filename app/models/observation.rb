@@ -27,7 +27,7 @@ class Observation < ActiveRecord::Base
   validates :obs_date,          :presence => true
   validates :observation_types, :presence => true
   validates :person_id,         :presence => true
-  #validate :no_invalid_areas
+  validate :no_invalid_areas
 
   accepts_nested_attributes_for :activities, :allow_destroy => true
 
