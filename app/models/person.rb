@@ -15,6 +15,8 @@ class Person < ActiveRecord::Base
               :presence   => { :unless => :given_name },
               :uniqueness => { :scope => :given_name, :case_sensitive => false }
 
+  validates_presence_of :company
+
   def name
     [given_name, sur_name].join(' ')
   end
