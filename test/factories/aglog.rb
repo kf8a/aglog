@@ -26,9 +26,8 @@ if Factory.factories.blank? #prevent redefining these factories
     o.name    "Default"
   end
 
-  Factory.define :person do |p|
-    p.given_name  "Bob"
-    p.sur_name "Dobolina"
+  Factory.define :company do |c|
+    c.name    'lter'
   end
 
   Factory.define :study do |s|
@@ -45,6 +44,12 @@ if Factory.factories.blank? #prevent redefining these factories
 
 
   #Dependent Factories
+  
+  Factory.define :person do |p|
+    p.given_name  "Bob"
+    p.sur_name    "Dobolina"
+    p.company     Company.first || Factory.create(:company)
+  end
 
   Factory.define :activity do |a|
     a.person              Person.first || Factory.create(:person)

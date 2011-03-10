@@ -12,7 +12,8 @@ describe Person do
       given_name = 'Joe'
       sur_name = 'Simmons'
 
-      @person  = Person.new(:given_name => given_name, :sur_name => sur_name) # is in fixture already
+      Factory.create(:person, :given_name=>given_name, :sur_name => sur_name)
+      @person  = Person.new(:given_name => given_name, :sur_name => sur_name) 
       @person.company = Company.new
     end
 
