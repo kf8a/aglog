@@ -2,19 +2,7 @@ if Factory.factories.blank? #prevent redefining these factories
 
   #Independent Factories
 
-  Factory.define :area do |a|
-
-  end
-
-  Factory.define :equipment do |e|
-
-  end
-
   Factory.define :hazard do |h|
-
-  end
-
-  Factory.define :material do |m|
 
   end
 
@@ -48,7 +36,19 @@ if Factory.factories.blank? #prevent redefining these factories
   Factory.define :person do |p|
     p.given_name  "Bob"
     p.sur_name    "Dobolina"
-    p.company     Company.first || Factory.create(:company)
+    p.association :company, :factory => :company
+  end
+
+  Factory.define :area do |a|
+    a.association :company, :factory => :company
+  end
+
+  Factory.define :material do |m|
+    m.association :company, :factory => :company
+  end
+
+  Factory.define :equipment do |e|
+    e.association :company, :factory => :company
   end
 
   Factory.define :activity do |a|
@@ -66,7 +66,7 @@ if Factory.factories.blank? #prevent redefining these factories
   end
 
   Factory.define :setup do |s|
-    s.equipment         Equipment.first || Factory.create(:equipment)
+    s.association :equipment, :factory => :equipment
   end
 
 end

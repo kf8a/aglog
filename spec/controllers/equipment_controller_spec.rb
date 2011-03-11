@@ -32,9 +32,6 @@ describe EquipmentController do
       end
 
       it { should redirect_to new_person_session_path }
-      it 'should not create an equipment' do
-        Equipment.exists?(:name => 'Controller Creation').should be_false
-      end
     end
 
     describe 'An equipment exists. ' do
@@ -85,8 +82,24 @@ describe EquipmentController do
   end
 
   describe "Signed in as a normal user. " do
+    before(:all) do
+      company_2 = Factory.create(:company, :name => 'glbrc')
+
+      @equipment_2 = Factory.create(:equipment, :name=>'glbrc_tractor', :company => company_2)
+      @equipment_2.company = company_2
+    end
+
     before(:each) do
       sign_in_as_normal_user
+
+      @company_1 = @user.company
+      @equipment_1 = find_or_factory(:equipment, :name =>'lter_tractor', :company_id => @company_1)
+    end
+
+    after(:all) do
+      @company = nil
+      @equipment_1 = nil
+      @equipment_2 = nil
     end
 
     describe 'GET :index' do
@@ -114,16 +127,21 @@ describe EquipmentController do
       end
 
       it { should redirect_to equipment_path(assigns(:equipment)) }
+
       it 'should create an equipment' do
         Equipment.exists?(:name => 'Controller Creation').should be_true
       end
+
+      it 'should assign the current company to the equipment' do
+        assigns(:equipment).company.should == @company_1
+      end
+
       it { should set_the_flash }
     end
-    
+
     describe "POST :create with invalid attributes" do
       before(:each) do
-        Factory.create(:equipment, :name => "Repeat_name")
-        post :create, :equipment => { :name => "Repeat_name" }
+        post :create, :equipment => { :name => "lter_tractor" } # Repeated name
       end
 
       it { should render_template 'new' }
@@ -133,8 +151,8 @@ describe EquipmentController do
     describe "POST :create in xml format" do
       before(:each) do
         post :create,
-             :format => 'xml',
-             :equipment => { }
+          :format => 'xml',
+          :equipment => { }
       end
 
       it { should respond_with_content_type(:xml) }
@@ -142,7 +160,7 @@ describe EquipmentController do
 
     describe "An equipment exists. " do
       before(:each) do
-        @equipment = find_or_factory(:equipment)
+        @equipment = find_or_factory(:equipment, :company_id => @user.company)
       end
 
       describe "GET :show the equipment" do
@@ -175,9 +193,10 @@ describe EquipmentController do
         end
       end
 
+      #TODO is this just testing the validates helper again?
       describe "PUT :update the equipment with invalid attributes" do
         before(:each) do
-          Factory.create(:equipment, :name => "Repeat_name")
+          Factory.create(:equipment, :name => "Repeat_name", :company_id=>@user.company)
           put :update, :id => @equipment, :equipment => { :name => "Repeat_name"}
         end
 

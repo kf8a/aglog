@@ -17,8 +17,9 @@ def find_or_factory(model, attributes = Hash.new)
   object
 end
 
-def sign_in_as_normal_user
+def sign_in_as_normal_user(company=nil)
   @user = find_or_factory(:person)
+  @user.company = company unless company.nil?
   session[:user_id] = @user.id
 end
 

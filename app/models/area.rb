@@ -10,6 +10,8 @@ class Area < ActiveRecord::Base
   belongs_to :treatment
   belongs_to :company
 
+  scope :by_company, lambda {|company| where(:company_id => company)}
+
   validates :name, :uniqueness => { :case_sensitive => false }
   validates :study, :presence => { :if => :study_id }
 

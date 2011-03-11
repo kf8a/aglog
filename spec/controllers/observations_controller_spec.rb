@@ -1,6 +1,33 @@
 require 'spec_helper'
 
 describe ObservationsController do
+  describe 'an unauthenticated user' do
+    describe 'GET :index' do
+      it 'should be successful' do
+        get :index
+        assert_response :success
+      end 
+    end
+
+    describe 'GET :new' do
+      it 'should redirect to sign in' do
+        get :new
+        assert_response :redirect
+      end
+    end 
+
+    describe 'POST :update' do
+      it 'should redirect to sign in'
+    end
+  end
+
+  describe 'as an authenticated user' do
+    before(:each) do
+      @company2 = Factory.create(:company)
+      
+    end
+  end
+
   describe 'as an an authenticated user' do
     render_views
 
@@ -24,23 +51,6 @@ describe ObservationsController do
       get :index
       assert_response :success
       assert assigns(:observations)
-    end
-
-    describe "GET :index, in_review is true" do
-      before(:each) do
-        @obs_in_review = Factory.create(:observation)
-        @obs_in_review.in_review = '1'
-        @obs_published = Factory.create(:observation)
-        @obs_published.in_review = '0'
-        assert @obs_in_review.in_review
-        assert !@obs_published.in_review
-        get :index, :in_review => true
-      end
-
-      it "should only include observation in review" do
-        assert assigns(:observations).include?(@obs_in_review)
-        assert !assigns(:observations).include?(@obs_published)
-      end
     end
 
     describe "GET :index, with observation type selected" do

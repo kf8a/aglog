@@ -10,6 +10,8 @@ class Material < ActiveRecord::Base
   belongs_to :material_type
   belongs_to :company
 
+  scope :by_company, lambda {|company| where(:company_id => company)}
+
   validates :name, :uniqueness => { :case_sensitive => false }
 
   # Converts liquids from liters to grams.

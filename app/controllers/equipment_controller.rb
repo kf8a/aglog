@@ -19,6 +19,7 @@ class EquipmentController < ApplicationController
 
   def create
     @equipment = Equipment.new(params[:equipment])
+    @equipment.company = current_user.company
     if @equipment.save
       flash[:notice] = 'Equipment was successfully created.'
     end

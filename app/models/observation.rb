@@ -30,6 +30,8 @@ class Observation < ActiveRecord::Base
   validates :person_id,         :presence => true
   validate :no_invalid_areas
 
+  scope :by_company, lambda {|company| where(:company_id => company)}
+
   accepts_nested_attributes_for :activities, :allow_destroy => true
 
   def no_invalid_areas
