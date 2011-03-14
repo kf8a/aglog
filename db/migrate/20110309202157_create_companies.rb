@@ -16,30 +16,30 @@ class CreateCompanies < ActiveRecord::Migration
     # upgrade old records
     # company = Company.create(:name => 'LTER') 
      
-     Observations.all.each do |observation|
-       observation.company = company
-       observation.save
-     end
-
-     Equipment.all.each do |e|
-       e.company = company
-       e.save
-     end
-
-     Person.all.each do |p|
-       p.company = company
-       p.save
-     end
-
-     Material.all.each do |m|
-       m.company = company
-       m.save
-     end
-
-     Areas.all.each do |a|
-       a.company = company
-       a.save
-     end
+#     Observations.all.each do |observation|
+#       observation.company = company
+#       observation.save
+#     end
+#
+#     Equipment.all.each do |e|
+#       e.company = company
+#       e.save
+#     end
+#
+#     Person.all.each do |p|
+#       p.company = company
+#       p.save
+#     end
+#
+#     Material.all.each do |m|
+#       m.company = company
+#       m.save
+#     end
+#
+#     Areas.all.each do |a|
+#       a.company = company
+#       a.save
+#     end
 
      
   end
