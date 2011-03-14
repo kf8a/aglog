@@ -15,6 +15,10 @@ class Area < ActiveRecord::Base
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
+  scope :main_study, where(:study_id => 1)
+  scope :fert_study, where(:study_id => 3)
+  scope :if_study,   where(:study_id => 4)
+
   # Tries to find areas by their names.
   # @param [String] areas_as_text a string containing area names
   # @return [String or Array] the original string with errors highlighted or
@@ -109,18 +113,6 @@ class Area < ActiveRecord::Base
       (area.class == String) ? "*#{area}*" : area.name
     end
     area_strings.join(' ')
-  end
-
-  def Area.main_study
-    where(:study_id => 1)
-  end
-
-  def Area.fert_study
-    where(:study_id => 3)
-  end
-
-  def Area.if_study
-    where(:study_id => 4)
   end
 
   def Area.get_areas_by_token(token)
