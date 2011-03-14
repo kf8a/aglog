@@ -10,4 +10,3 @@ vendor/gems/doc
 vendor/gems/environment.rb
 .bundle
 nbproject/*
-Gemfile.lock

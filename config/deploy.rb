@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 set :application, "aglog"
-set :repository,  "/Users/bohms/code/ag_basic"
+set :repository,  "/Users/bohms/code/aglog"
 set :scm, :git
 
 
@@ -29,7 +29,7 @@ namespace :deploy do
       [:stop, :start, :restart].each do |t|
         desc "#{t.to_s.capitalize} the thin appserver"
         task t, :roles => :app do
-          invoke_command "bundle exec thin -C /etc/thin/aglog.yml #{t.to_s}"
+          invoke_command "cd #{current_path}; bundle exec thin -C /etc/thin/aglog.yml #{t.to_s}"
         end
       end
     end
