@@ -1,5 +1,5 @@
 <%= f.inputs do %>
-  <%= f.input :equipment %>
+  <%= f.input :equipment, :collection=>Equipment.by_company(current_user.company) %>
   <%= link_to_remove_fields 'Remove', f%>
 
   <div class='material-transaction'>

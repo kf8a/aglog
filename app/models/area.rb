@@ -8,6 +8,14 @@ class Area < ActiveRecord::Base
   has_and_belongs_to_many :observations, :order => 'obs_date desc'
   belongs_to :study
   belongs_to :treatment
+  belongs_to :company
+
+  scope :by_company, lambda {|company| where(:company_id => company)}
+
+  scope :main_study, where(:study_id => 1)
+  scope :fert_study, where(:study_id => 3)
+  scope :if_study, where(:study_id => 4)
+  scope :ce_study, where(:study_id => 7)
 
   validates :name, :uniqueness => { :case_sensitive => false }
   validates :study, :presence => { :if => :study_id }
@@ -137,6 +145,8 @@ class Area < ActiveRecord::Base
       fert_study.where(:treatment_number => $1)
     when /^F(\d)-(\d)$/
       fert_study.where(:treatment_number => $1..$2)
+    when /^CE(\d{1,2})-(\d{1,2})$/
+      ce_study.where(:treatment_number => $1..$2)
     when /^IRRIGATED_FERTILITY_GRADIENT$/
       if_study
     when /^IF(\d)$/

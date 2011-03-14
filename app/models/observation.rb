@@ -23,20 +23,20 @@ class Observation < ActiveRecord::Base
   has_and_belongs_to_many :areas
   has_and_belongs_to_many :observation_types
   belongs_to :person
+  belongs_to :company
 
   validates :obs_date,          :presence => true
   validates :observation_types, :presence => true
   validates :person_id,         :presence => true
   validate :no_invalid_areas
 
+  scope :by_company, lambda {|company| where(:company_id => company)}
+  scope :by_state, lambda {|state| where(:state=> state)}
+
   accepts_nested_attributes_for :activities, :allow_destroy => true
 
   def no_invalid_areas
     errors.add(:base, 'invalid areas') if @error_areas.present?
-  end
-
-  def Observation.by_state(state)
-    where(:state => state)
   end
 
   def Observation.by_state_and_page(state, page)

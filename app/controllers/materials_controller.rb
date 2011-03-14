@@ -4,7 +4,11 @@ class MaterialsController < ApplicationController
   # GET /materials
   # GET /materials.xml
   def index
-    @materials = Material.order('material_type_id, name').includes(:material_type).all
+    if current_user
+      @materials = Material.by_company(current_user.company).order('material_type_id, name').includes(:material_type).all
+    else
+      @materials = Material.order('material_type_id, name').includes(:material_type).all
+    end
     respond_with @materials
   end
 

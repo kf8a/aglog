@@ -2,7 +2,12 @@
 class EquipmentController < ApplicationController
 
   def index
-    @equipment = Equipment.order('name').all
+    if current_user
+      @equipment = Equipment.by_company(current_user.company)
+    else
+      @equipment = Equipment.order('name').all
+    end
+
     respond_with @equipment do |format|
       format.html { render_by_authorization('index') }
     end
@@ -19,6 +24,7 @@ class EquipmentController < ApplicationController
 
   def create
     @equipment = Equipment.new(params[:equipment])
+    @equipment.company = current_user.company
     if @equipment.save
       flash[:notice] = 'Equipment was successfully created.'
     end

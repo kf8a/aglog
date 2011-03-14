@@ -8,6 +8,9 @@ class Material < ActiveRecord::Base
   has_many :material_transactions
   has_many :setups, :through => :material_transactions
   belongs_to :material_type
+  belongs_to :company
+
+  scope :by_company, lambda {|company| where(:company_id => company)}
 
   validates :name, :uniqueness => { :case_sensitive => false }
 

@@ -10,6 +10,7 @@ def non_existent_study_id
 end
 
 describe Area do
+  it {should belong_to :company}
 
   describe "requires a unique name: " do
     context "An area exists with a name. " do
@@ -196,6 +197,22 @@ describe Area do
 
       areas = Area.parse("iF1-4")
       real_areas = Area.find_all_by_study_id_and_treatment_number(4, 1..4)
+      assert_equal [], (areas - real_areas)
+    end
+
+    it 'should correctly parse CE areas' do
+      areas = Area.parse('CES')
+      real_areas = Area.find_all_by_study_id(7)
+      assert_equal [], (areas - real_areas)
+
+      areas = Area.parse('CE1')
+      real_areas = Area.find_all_by_study_id_and_treatment_number(7,1)
+      assert_equal [], (areas - real_areas)
+
+      areas = Area.parse('CE1-12')
+      real_areas = Area.find_all_by_study_id_and_treatment_number(7,1..12)
+      assert_not_equal [], real_areas
+      assert_not_equal [], areas
       assert_equal [], (areas - real_areas)
     end
   end
