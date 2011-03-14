@@ -142,7 +142,8 @@ describe AreasController do
 
     describe "An area exists. " do
       before(:each) do
-        @area = Factory.create(:area, :name => 'existing_area')
+        @area = Factory.create(:area, :name => 'existing_area', 
+                               :company_id=>@user.company)
       end
 
       describe "GET :show the area" do

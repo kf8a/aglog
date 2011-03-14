@@ -18,7 +18,7 @@ class MaterialsController < ApplicationController
   end
 
   def edit
-    @material = Material.find(params[:id])
+    @material = Material.by_company(current_user.company).find(params[:id])
     @hazards = @material.hazards.all
     respond_with @material
   end
@@ -30,6 +30,7 @@ class MaterialsController < ApplicationController
 
   def create
     @material = Material.new(params[:material])
+    @material.company = current_user.company
     if @material.save
       flash[:notice] = 'Material was successfully created.'
     end

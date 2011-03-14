@@ -34,6 +34,7 @@ class AreasController < ApplicationController
 
   def create
     @area = Area.new(params[:area])
+    @area.company = current_user.company
     if @area.save
       flash[:notice] = 'Area was successfully created.'
     end
@@ -41,12 +42,12 @@ class AreasController < ApplicationController
   end
 
   def edit
-    @area = Area.find(params[:id])
+    @area = Area.by_company(current_user.company).find(params[:id])
     respond_with @area
   end
 
   def update
-    @area = Area.find(params[:id])
+    @area = Area.by_company(current_user.company).find(params[:id])
     @area.update_attributes(params[:area])
     respond_with @area
   end

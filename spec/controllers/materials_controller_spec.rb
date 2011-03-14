@@ -49,6 +49,8 @@ describe MaterialsController do
   context 'a material exists' do
     before(:each) do
       @material = find_or_factory(:material)
+      @material.company = @user.company
+      @material.save
     end
 
     it "should show material" do

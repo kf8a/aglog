@@ -19,12 +19,13 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    @person = Person.find(params[:id])
+    @person = Person.by_company(current_user.company).find(params[:id])
     respond_with @person
   end
 
   def create
     @person = Person.new(params[:person])
+    @person.company = current_user.company
     if @person.save
       flash[:notice] = 'Person was successfully created.'
     end
@@ -32,7 +33,7 @@ class PeopleController < ApplicationController
   end
 
   def update
-    @person = Person.find(params[:id])
+    @person = Person.by_company(current_user.company).find(params[:id])
     if @person.update_attributes(params[:person])
       flash[:notice] = 'Person was successfully updated.'
     end
