@@ -85,8 +85,8 @@ describe EquipmentController do
     before(:all) do
       company_2 = Factory.create(:company, :name => 'glbrc')
 
-      @equipment_2 = Factory.create(:equipment, :name=>'glbrc_tractor', :company => company_2)
-      @equipment_2.company = company_2
+      @equipment_2 = Factory.create(:equipment, :name=>'glbrc_tractor', 
+                                    :company => company_2)
     end
 
     before(:each) do
@@ -109,6 +109,14 @@ describe EquipmentController do
 
       it { should render_template 'authorized_index' }
       it { should assign_to(:equipment) }
+
+      it 'should only show equipment for the company of the current user' do
+        assert assigns(:equipment).include?(@equipment_1)
+      end
+
+      it 'should not show the other companies equipment' do
+        assert !assigns(:equipment).include?(@equipment_2)
+      end
     end
 
     describe 'GET :new' do

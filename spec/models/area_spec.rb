@@ -208,6 +208,12 @@ describe Area do
       areas = Area.parse('CE1')
       real_areas = Area.find_all_by_study_id_and_treatment_number(7,1)
       assert_equal [], (areas - real_areas)
+
+      areas = Area.parse('CE1-12')
+      real_areas = Area.find_all_by_study_id_and_treatment_number(7,1..12)
+      assert_not_equal [], real_areas
+      assert_not_equal [], areas
+      assert_equal [], (areas - real_areas)
     end
   end
 

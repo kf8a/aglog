@@ -4,7 +4,11 @@ class AreasController < ApplicationController
   def index
     observation = Observation.find_by_id(params[:observation_id])
     broad_scope = observation.try(:areas) || Area
-    @areas = broad_scope.order('study_id, name').includes(:study).all
+    if current_user
+      @areas = broad_scope.by_company(current_user.company).order('study_id, name').includes(:study).all
+    else
+      @areas = broad_scope.order('study_id, name').includes(:study).all
+    end
 
     respond_with @areas do |format|
       format.html { render_by_authorization('index') }
