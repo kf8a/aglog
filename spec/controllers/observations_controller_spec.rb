@@ -56,9 +56,11 @@ describe ObservationsController do
     describe "GET :index, with observation type selected" do
       before(:each) do
         observation_type = find_or_factory(:observation_type)
-        @correct_type_observation = Factory.create(:observation, :observation_types => [observation_type])
+        @correct_type_observation = Factory.create(:observation, :observation_types => [observation_type],
+                                                  :company_id => 1)
         wrong_type = find_or_factory(:observation_type, :name => 'wrong_type')
-        @wrong_type_observation = Factory.create(:observation, :observation_types => [wrong_type])
+        @wrong_type_observation = Factory.create(:observation, :observation_types => [wrong_type],
+                                                :company_id => 1)
         assert @correct_type_observation.observation_types.include?(observation_type)
         assert !@wrong_type_observation.observation_types.include?(observation_type)
         get :index, :obstype => observation_type.id
@@ -132,7 +134,7 @@ describe ObservationsController do
 
     describe "An observation exists. " do
       before(:each) do
-        @observation = Factory.create(:observation)
+        @observation = Factory.create(:observation, :company_id=>1)
       end
 
       describe "GET :show the observation" do

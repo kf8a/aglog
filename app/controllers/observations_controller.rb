@@ -9,7 +9,11 @@ class ObservationsController < ApplicationController
     state = params[:in_review] ? "in_review" : "published"
     obstype = ObservationType.find_by_id(params[:obstype])
     broad_scope = obstype.try(:observations) || Observation
-    @observations = broad_scope.by_state_and_page(state, params[:page])
+    if current_user
+      @observations = broad_scope.by_company(current_user.company).by_state_and_page(state, params[:page])
+    else
+      @observations = broad_scope.by_state_and_page(state, params[:page])
+    end
 
     respond_with @observations do |format|
       format.salus_xml { render 'index.salus_xml' }

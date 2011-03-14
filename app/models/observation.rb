@@ -31,15 +31,12 @@ class Observation < ActiveRecord::Base
   validate :no_invalid_areas
 
   scope :by_company, lambda {|company| where(:company_id => company)}
+  scope :by_state, lambda {|state| where(:state=> state)}
 
   accepts_nested_attributes_for :activities, :allow_destroy => true
 
   def no_invalid_areas
     errors.add(:base, 'invalid areas') if  @error_areas
-  end
-
-  def Observation.by_state(state)
-    where(:state => state)
   end
 
   def Observation.by_state_and_page(state, page)

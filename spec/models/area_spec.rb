@@ -199,6 +199,16 @@ describe Area do
       real_areas = Area.find_all_by_study_id_and_treatment_number(4, 1..4)
       assert_equal [], (areas - real_areas)
     end
+
+    it 'should correctly parse CE areas' do
+      areas = Area.parse('CES')
+      real_areas = Area.find_all_by_study_id(7)
+      assert_equal [], (areas - real_areas)
+
+      areas = Area.parse('CE1')
+      real_areas = Area.find_all_by_study_id_and_treatment_number(7,1)
+      assert_equal [], (areas - real_areas)
+    end
   end
 
   describe "self.unparse should consolidate a list of areas into a string: " do
