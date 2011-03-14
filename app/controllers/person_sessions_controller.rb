@@ -2,6 +2,14 @@
 class PersonSessionsController < ApplicationController
   before_filter :require_user, :only => :destroy
 
+  def index
+   if current_user
+     @person = Person.by_company(current_user.company).order('sur_name')
+   else
+     @person = Person.all.order('sur_name')
+   end 
+  end
+
 
   def new
     if params[:message] == "connection_failed"

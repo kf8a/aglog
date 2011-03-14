@@ -18,6 +18,8 @@ class Person < ActiveRecord::Base
 
   validates_presence_of :company
 
+  scope :by_company, lambda {|company| where(:company_id => company)}
+
   def name
     [given_name, sur_name].join(' ')
   end
