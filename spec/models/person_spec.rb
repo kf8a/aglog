@@ -12,26 +12,39 @@ describe Person do
       given_name = 'Joe'
       sur_name = 'Simmons'
 
-      Factory.create(:person, :given_name=>given_name, :sur_name => sur_name)
+      company = Company.new
+      @decoy_person = Factory.create(:person, :given_name=>given_name, :sur_name => sur_name,
+                                    :company_id => 1)
+      @decoy_person.company = company
+      assert @decoy_person.save
+
       @person  = Person.new(:given_name => given_name, :sur_name => sur_name) 
-      @person.company = Company.new
+      @person.company = company
+    end
+
+    after(:each) do
+      @decoy_person.delete
+      @person.delete
     end
 
     it "should require unique name" do
       assert !@person.save
-      assert !@person.errors.empty?
     end
 
     it 'should be insensitive on the first name' do
       @person.given_name = @person.given_name.upcase
       assert !@person.save
-      assert !@person.errors.empty?
     end
 
     it 'should be insensitive on the last name' do
-      @person.sur_name = @person.sur_name.upcase
+      @person.sur_name.upcase!
       assert !@person.save
-      assert !@person.errors.empty?
+    end
+
+    it 'should be insensitive to the first and last name' do
+      @person.sur_name.upcase!
+      @person.given_name.upcase!
+      assert !@person.save
     end
   end
 

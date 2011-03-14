@@ -29,7 +29,7 @@ namespace :deploy do
       [:stop, :start, :restart].each do |t|
         desc "#{t.to_s.capitalize} the thin appserver"
         task t, :roles => :app do
-          invoke_command "thin -C /etc/thin/aglog.yml #{t.to_s}"
+          invoke_command "bundle exec thin -C /etc/thin/aglog.yml #{t.to_s}"
         end
       end
     end
