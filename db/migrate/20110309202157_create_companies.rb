@@ -12,9 +12,9 @@ class CreateCompanies < ActiveRecord::Migration
 #     add_column :materials, :company_id, :integer
 #     add_column :areas, :company_id, :integer
 
-     reset_column_information
+    # reset_column_information
     # upgrade old records
-     company = Company.create(:name => 'LTER') 
+    # company = Company.create(:name => 'LTER') 
      
      Observations.all.each do |observation|
        observation.company = company
