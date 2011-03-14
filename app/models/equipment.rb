@@ -8,7 +8,8 @@ class Equipment < ActiveRecord::Base
 
   validates_presence_of :company
 
-  validates :name, :uniqueness => { :case_sensitive => false, :scope => :company_id }
+  validates :name, :uniqueness => { :case_sensitive => false, 
+                                    :scope => :company_id }
 
   scope :current, where(:archive => false)
   scope :by_company, lambda {|company| where(:company_id => company) }

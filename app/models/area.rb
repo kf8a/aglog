@@ -17,7 +17,8 @@ class Area < ActiveRecord::Base
   scope :if_study, where(:study_id => 4)
   scope :ce_study, where(:study_id => 7)
 
-  validates :name, :uniqueness => { :case_sensitive => false }
+  validates :name, :uniqueness => { :case_sensitive => false,
+                                    :scope => :company_id }
   validates :study, :presence => { :if => :study_id }
 
   validate :treatment_is_part_of_study
