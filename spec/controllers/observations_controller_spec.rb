@@ -6,7 +6,7 @@ describe ObservationsController do
       it 'should be successful' do
         get :index
         assert_response :success
-      end 
+      end
     end
 
     describe 'GET :new' do
@@ -14,17 +14,22 @@ describe ObservationsController do
         get :new
         assert_response :redirect
       end
-    end 
+    end
 
-    describe 'POST :update' do
-      it 'should redirect to sign in'
+    describe 'PUT :update' do
+      before(:each) do
+        @observation = Factory.create(:observation, :company_id=>1)
+        put :update, :id => @observation.id, :observation => {}
+      end
+      
+      it { should redirect_to new_person_session_path }
     end
   end
 
   describe 'as an authenticated user' do
     before(:each) do
       @company2 = Factory.create(:company)
-      
+
     end
   end
 
@@ -203,4 +208,3 @@ describe ObservationsController do
   		        "controller"=>"observations", "material_index"=>"0"}
   end
 end
-
