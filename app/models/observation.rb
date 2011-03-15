@@ -1,5 +1,5 @@
 # encoding: UTF-8
-if RUBY_VERSION > "1.9" then require 'csv' else require 'fastercsv' end
+require 'csv'
 
 # The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
@@ -36,7 +36,7 @@ class Observation < ActiveRecord::Base
   accepts_nested_attributes_for :activities, :allow_destroy => true
 
   def no_invalid_areas
-    errors.add(:base, 'invalid areas') if  @error_areas
+    errors.add(:base, 'invalid areas') if @error_areas.present?
   end
 
   def Observation.by_state_and_page(state, page)
