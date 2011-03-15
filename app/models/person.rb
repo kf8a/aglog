@@ -9,14 +9,17 @@ class Person < ActiveRecord::Base
 
   has_and_belongs_to_many :hazards
 
-  validates :given_name,
-              :presence   => { :unless => :sur_name },
-              :uniqueness => { :scope => :sur_name, :case_sensitive => false }
-  validates :sur_name,
-              :presence   => { :unless => :given_name },
-              :uniqueness => { :scope => :given_name, :case_sensitive => false }
+  validates :given_name, :presence   => { :unless => :sur_name }
+  validates :sur_name, :presence   => { :unless => :given_name }
 
+  validate :name_must_be_unique
   validates_presence_of :company
+
+  def name_must_be_unique
+    person = Person.where([ "lower(given_name) = ?", given_name.try(:downcase) ]).where([ "lower(sur_name) = ?", sur_name.try(:downcase) ]).all - [self]
+    errors.add(:base, "Name must be unique") if person.present?
+
+  end
 
   def name
     [given_name, sur_name].join(' ')
