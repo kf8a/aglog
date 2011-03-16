@@ -48,7 +48,7 @@ describe 'AreaParserTransform' do
     it 'should transform it into a hash for a where clause' do
       assert_equal 'T', @result[:study]
       assert_kind_of String, @result[:study]
-      assert_equal 1, @result[:replicate_number]
+      assert_equal 1, @result[:replicate]
     end
   end
 

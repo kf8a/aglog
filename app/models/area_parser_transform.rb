@@ -15,6 +15,6 @@ class AreaParserTransform < Parslet::Transform
   rule(:study => simple(:study), 
        :treatment_number => simple(:trt)) { {:study => String(study), :treatment_number => trt } }
   rule(:study => simple(:study),
-      :replicate_number => simple(:rep)) { {:study => String(study), :replicate_number => rep } }
+      :replicate_number => simple(:rep)) { {:study => String(study), :replicate => rep } }
   rule(:study => simple(:study)) { { :study => String(study)} }
 end
