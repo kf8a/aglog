@@ -8,7 +8,11 @@ Study.find_or_create_by_name_and_description(:name => 'CE', :description => 'CES
 
 1.upto(8) do |treat|
   1.upto(6) do |rep|
-    Area.find_or_create_by_name(:name => "T#{treat}R#{rep}", :treatment_number => treat, :replicate => rep, :study_id => 1)
+    Area.find_or_create_by_name(:name => "T#{treat}R#{rep}", 
+                                :treatment_number => treat, 
+                                :replicate => rep, 
+                                :company_id => 1,
+                                :study_id => 1)
   end
 end
 
@@ -17,21 +21,33 @@ Person.create(:given_name => 'Joe', :sur_name => 'Simmons')
 #add biodiversity
 1.upto(21) do |treat|
   1.upto(4) do |rep|
-    Area.find_or_create_by_name(:name => "B#{treat}R#{rep}", :treatment_number => treat, :replicate => rep, :study_id => 2)
+    Area.find_or_create_by_name(:name => "B#{treat}R#{rep}", 
+                                :treatment_number => treat, 
+                                :replicate => rep, 
+                                :company_id => 1,
+                                :study_id => 2)
   end
 end
 
 #add N rate study
 1.upto(9) do |treat|
   1.upto(4) do |rep|
-    Area.find_or_create_by_name(:name => "F#{treat}R#{rep}", :treatment_number => treat, :replicate => rep, :study_id => 3)
+    Area.find_or_create_by_name(:name => "F#{treat}R#{rep}", 
+                                :treatment_number => treat, 
+                                :replicate => rep, 
+                                :company_id => 1,
+                                :study_id => 3)
   end
 end
 
 1.upto(4) do |t|
   1.upto(3) do  |e|
     1.upto(4)  do |r|
-      Area.find_or_create_by_name(:name => "REPT#{t}E#{e}R#{r}", :replicate => "#{r}", :treatment_number => "#{t}#{e}", :study_id => 5)
+      Area.find_or_create_by_name(:name => "REPT#{t}E#{e}R#{r}", 
+                                  :replicate => "#{r}", 
+                                  :treatment_number => "#{t}#{e}", 
+                                  :company_id => 1,
+                                  :study_id => 5)
     end
   end
 end
@@ -39,22 +55,36 @@ end
 #add irrigated N rate study
 1.upto(9) do |treat|
   1.upto(4) do |rep|
-    Area.find_or_create_by_name(:name => "iF#{treat}R#{rep}", :treatment_number => treat, :replicate => rep, :study_id => 4)
+    Area.find_or_create_by_name(:name => "iF#{treat}R#{rep}", 
+                                :treatment_number => treat, 
+                                :replicate => rep, 
+                                :company_id => 1,
+                                :study_id => 4)
   end
 end
 
 #GLBRC study
 1.upto(4) do |r|
-  Area.find_or_create_by_name(:name => "G1R#{r}", :treatment_number => 1, :replicate => r, :study_id => 6)
+  Area.find_or_create_by_name(:name => "G1R#{r}", 
+                              :treatment_number => 1, 
+                              :replicate => r, 
+                              :company_id => 1,
+                              :study_id => 6)
 end
 
 1.upto(10) do |t|
-  Area.find_or_create_by_name(:name => "G#{t}", :treatment_number => t, :study_id => 6)
+  Area.find_or_create_by_name(:name => "G#{t}", 
+                              :treatment_number => t, 
+                              :company_id => 1,
+                              :study_id => 6)
 end
 
 #CES study
 1.upto(19) do |t|
-  Area.find_or_create_by_name(:name => "CE#{t}", :treatment_number => t, :study_id => 7)
+  Area.find_or_create_by_name(:name => "CE#{t}", 
+                              :treatment_number => t, 
+                              :company_id => 1,
+                              :study_id => 7)
 end
 
 company = Company.find_or_create_by_name(:name=>'lter')

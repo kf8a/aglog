@@ -12,20 +12,25 @@ end
 describe Area do
   it {should belong_to :company}
 
-  describe "requires a unique name: " do
+  describe "requires a unique name within a company: " do
     context "An area exists with a name. " do
       before(:each) do
-        find_or_factory(:area, :name => 'T1R1')
+        find_or_factory(:area, :name => 'T1R1', :company_id => 1)
       end
 
       describe "an area with the same name" do
-        subject { Area.new(:name => 'T1R1') }
-        it { should_not be_valid }
-      end
 
-      describe "an area with a lower case version of the same name" do
-        subject { Area.new(:name => 't1r1') }
-        it { should_not be_valid }
+        it 'should not allow a second area witht the smae name to be created' do
+          a = Area.new(:name => 'T1R1')
+          a.company_id = 1
+          assert !a.valid?
+        end
+
+        it 'should be case insensitive' do
+          a = Area.new(:name => 't1r1')
+          a.company_id = 1
+          assert !a.valid?
+        end
       end
 
       describe "an area with a different name" do
@@ -209,13 +214,18 @@ describe Area do
     end
 
     describe 'areas with the same name from different company' do
-      setup do
-        Factory.create(:area, :name=>'D1', :company_id=>1)
-        Factory.create(:area, :name=>'D1', :company_id=>2)
+      before(:each) do
+        @area = Area.find_by_name('T1R1') 
+        @area.company_id = 1
+        @area.save
       end
 
       it 'should parse the area associated with the current users company' do
-        areas = Area.parse('D1', :company => 1)
+        assert_equal @area, Area.parse('T1R1', :company => 1)[0]
+      end
+
+      it 'should not parse any other areas' do
+        assert_equal '*T1R1*', Area.parse('T1R1', :company => 2 )[0]
       end
     end
   end
