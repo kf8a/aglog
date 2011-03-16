@@ -4,7 +4,6 @@ class AreaParser < Parslet::Parser
   rule(:range_op)   { space? >> str('-') >> space? }
 
   rule(:range)      { range_op >> integer.as(:treatment_end) }
-  rule(:range?)     { range.maybe }
 
   rule(:wildcard)   { str('*') }
 
@@ -32,11 +31,13 @@ class AreaParser < Parslet::Parser
   rule(:trt)        { treatment_number.as(:treatment) }
 
   rule(:single_plot){ trt_rep }
-  rule(:plot_range) { trt >> range | trt }
-  rule(:plot)       { single_plot.as(:plot) | plot_range.as(:plot_range) | rep.as(:rep_range)}
-  rule(:area)       { study.as(:study) >> plot | study.as(:whole_study)}
+  rule(:trt_range)  { trt >> range | trt }
+  rule(:plot)       { single_plot.as(:plot) | trt_range.as(:treatment_number) | rep.as(:replicate_number)}
+  rule(:plot?)      { plot.maybe }
 
+  rule(:area)       { study.as(:study) >> plot? } 
   rule(:areas)      { area >> delimiter? }
+
   rule(:expression) { areas.repeat(1) }
   root(:expression)
 end

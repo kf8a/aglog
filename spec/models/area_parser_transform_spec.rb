@@ -9,10 +9,10 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('T1R1'))[0]
     end
 
-    it 'should transform it into a where clause' do
-      assert_equal %q{where(:study => "T", :plot => "T1R1")}, @result
+    it 'should transform it into a hash for a where clause' do
+      assert_equal 'T', @result[:study]
+      assert_equal 'T1R1', @result[:plot]
     end
-
   end
 
   describe 'multi rep range' do
@@ -20,8 +20,9 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('T1'))[0]
     end
 
-    it 'should transform it into a where clause' do
-      assert_equal %q{where(:study => "T", :treatment_number => 1)}, @result
+    it 'should transform it into a hash for a where clause' do
+      assert_equal 'T', @result[:study]
+      assert_equal 1, @result[:treatment_number]
     end
   end
 
@@ -30,8 +31,9 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('T1-4'))[0]
     end
 
-    it 'should transform it into a where clause' do
-      assert_equal %q{where(:study => "T", :treatment_number => 1..4)}, @result
+    it 'should transform it into a hash for a where clause' do
+      assert_equal 'T', @result[:study]
+      assert_equal 1..4, @result[:treatment_number]
     end
   end
 
@@ -40,8 +42,9 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('T*R1'))[0]
     end
 
-    it 'should transform it into a where clause' do
-      assert_equal %q{where(:study => "T", :replicate_number => 1)}, @result
+    it 'should transform it into a hash for a where clause' do
+      assert_equal 'T', @result[:study]
+      assert_equal 1, @result[:replicate_number]
     end
   end
 
@@ -50,8 +53,8 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('T'))[0]
     end
 
-    it 'should transform it into a where clause' do
-      assert_equal %q{where(:study => "T")}, @result
+    it 'should transform it into a hash for a where clause' do
+      assert_equal 'T', @result[:study]
     end
   end
 end

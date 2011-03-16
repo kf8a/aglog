@@ -25,14 +25,14 @@ describe 'AreaParser' do
   it 'should parse T3' do
     result = @parser.parse('T3')[0]
     assert_equal 'T', result[:study]
-    assert_equal '3', result[:plot_range][:treatment]
+    assert_equal '3', result[:treatment_number][:treatment]
   end
 
   it 'should parse T1-T3 to all of treatment 1 through 3 in study main' do
     result = @parser.parse('T1-3')[0]
     assert_equal 'T', result[:study]
-    assert_equal '1', result[:plot_range][:treatment]
-    assert_equal '3', result[:plot_range][:treatment_end]
+    assert_equal '1', result[:treatment_number][:treatment]
+    assert_equal '3', result[:treatment_number][:treatment_end]
   end
 
   it 'should parse G1R1' do
@@ -44,13 +44,13 @@ describe 'AreaParser' do
 
   it 'should parse G' do
     result = @parser.parse('G')[0]
-    assert_equal 'G', result[:whole_study]
+    assert_equal 'G', result[:study]
   end
 
   it 'should parse G*R1' do
     result = @parser.parse('G*R1')[0]
     assert_equal 'G', result[:study]
-    assert_equal '1', result[:rep_range][:replicate]
+    assert_equal '1', result[:replicate_number][:replicate]
   end
 
   it 'should parse multiple plots with spaces between' do
@@ -106,8 +106,8 @@ describe 'AreaParser' do
   it 'should parse T1-4 G2R4' do
     results = @parser.parse('T1-4 G2R4')
     assert_equal 'T', results[0][:study]
-    assert_equal '1', results[0][:plot_range][:treatment]
-    assert_equal '4', results[0][:plot_range][:treatment_end]
+    assert_equal '1', results[0][:treatment_number][:treatment]
+    assert_equal '4', results[0][:treatment_number][:treatment_end]
     assert_nil        results[0][:plot]
     assert_equal 'G', results[1][:study]
     assert_equal '2', results[1][:plot][:treatment]
