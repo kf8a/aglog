@@ -12,12 +12,6 @@ class Area < ActiveRecord::Base
 
   scope :by_company, lambda {|company| where(:company_id => company)}
 
-  scope :main_study, where(:study_id => 1)
-  scope :fert_study, where(:study_id => 3)
-  scope :if_study, where(:study_id => 4)
-  scope :ce_study, where(:study_id => 7)
-  scope :glbrc_study, where(:study_id => 6)
-
   validates :name, :uniqueness => { :case_sensitive => false,
                                     :scope => :company_id }
   validates :study, :presence => { :if => :study_id }
@@ -33,19 +27,27 @@ class Area < ActiveRecord::Base
   #   Area.parse('T1R1 T2') #=> [#<Area id: 1, name: "T1R1" ... >, ... ]
   # @example Parse a string which has no area with that name
   #   Area.parse('T1R1 R11') #=> "T1R1 *R11*"
-  def Area.parse(areas_as_text)
+  def Area.parse(areas_as_text, company_id = 1)
+    return [] if areas_as_text.strip.empty?
     parser = AreaParser.new
     transformer = AreaParserTransform.new
     invalid_tokens = []
     begin
       area_tokens = transformer.apply(parser.parse(areas_as_text))
-      areas = area_tokens.collect do |token|
+      areas = area_tokens.collect.with_index do |token, i|
         study_id = Study.find_by_name(token.delete(:study))
-        area = Area.send(:where, token).where(:study_id => study_id).all
-        invalid_tokens << token if area.empty?
+        area = Area.where(:study_id => study_id)
+                   .send(:where, token)
+                   .all
+        invalid_tokens << i if area.empty?
         area
       end
-    areas.flatten
+      if invalid_tokens.empty?
+        areas.flatten
+      else
+        mark_invalid_tokens(invalid_tokens, areas_as_text)
+      end
+      
     rescue Parslet::ParseFailed => error
       areas_as_text 
     end
@@ -70,6 +72,14 @@ class Area < ActiveRecord::Base
   end
 
   private##########################################
+
+  def Area.mark_invalid_tokens(invalid_tokens, areas_as_text)
+    tokens = areas_as_text.split(/[ |,]+/)
+    invalid_tokens.each do |index|
+      tokens[index] = '*' + tokens[index] + '*'
+    end
+    tokens.join(' ')
+  end
 
   def Area.replace_class_areas_by_class(names, areas, klass)
     id_method = "#{klass.name.downcase}_id"
@@ -124,49 +134,6 @@ class Area < ActiveRecord::Base
       (area.class == String) ? "*#{area}*" : area.name
     end
     area_strings.join(' ')
-  end
-
-  def Area.get_areas_by_token(token)
-    area = case token.upcase
-    when /^MAIN$/ #specify the whole main site
-      main_study
-    when /^T(\d)$/ #specify a whole treatment
-      main_study.where(:treatment_number => $1)
-    when /^R(\d)$/ #specify a whole rep
-      main_study.where(:replicate => $1)
-    when /^T(\d)-(\d)$/ #specify a range of treatments
-      main_study.where(:treatment_number => $1..$2)
-    when /^T(\d)!R(\d)$/ #specify a treatment except a rep
-      main_study.where(:treatment_number => $1).where('not replicate = ?',$2)
-    when /^R(\d)!T(\d)$/ #specify a replicate except a treatment
-      main_study.where(:replicate => $1).where('not treatment_number = ?',$2)
-    when /^B(\d+)$/ #specify Biodiversity Plots
-      where(:study_id => 2, :treatment_number => $1)
-    when /^FERTILITY_GRADIENT$/
-      fert_study
-    when /^F(\d)$/ #specify N fert
-      fert_study.where(:treatment_number => $1)
-    when /^F(\d)-(\d)$/
-      fert_study.where(:treatment_number => $1..$2)
-    when /^CE(\d{1,2})-(\d{1,2})$/
-      ce_study.where(:treatment_number => $1..$2)
-    when /^IRRIGATED_FERTILITY_GRADIENT$/
-      if_study
-    when /^IF(\d)$/
-      if_study.where(:treatment_number => $1)
-    when /^IF(\d)-(\d)$/
-      if_study.where(:treatment_number => $1..$2)
-    when /^REPT(\d)E(\d)$/
-      where(:study_id => 5, :treatment_number => [$1,$2].join)
-    when /^GLBRC$/ # specify GLRBC plots
-      where(:study_id => 6)
-    when /^CES$/ # specify Cellulosic energy study
-      where(:study_id => 7)
-    else
-      by_upper_name(token)
-    end
-
-    area.blank? ? [token] : area.all
   end
 
   def Area.by_upper_name(token)

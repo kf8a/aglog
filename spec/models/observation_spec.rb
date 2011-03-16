@@ -141,7 +141,7 @@ describe Observation do
 
   it "should give the right areas_as_text" do
     o = create_simple_observation
-    text_areas =  "MAIN"
+    text_areas =  "T"
     o.areas_as_text = text_areas
     assert_equal text_areas, o.areas_as_text
   end
