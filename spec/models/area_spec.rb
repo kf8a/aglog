@@ -225,7 +225,7 @@ describe Area do
       end
 
       it 'should not parse any other areas' do
-        assert_equal '*T1R1*', Area.parse('T1R1', :company => 2 )[0]
+        assert_equal '*T1R1*', Area.parse('T1R1', :company => 2 )
       end
     end
   end

@@ -132,7 +132,7 @@ describe AreasController do
 
     describe "POST :create with invalid attributes" do
       before(:each) do
-        Factory.create(:area, :name => 'repeat_name')
+        Factory.create(:area, :name => 'repeat_name', :company_id => @user.company)
         post :create, :area => { :name => 'repeat_name' }
       end
 
@@ -179,7 +179,7 @@ describe AreasController do
 
       describe "PUT :update with invalid attributes" do
         before(:each) do
-          Factory.create(:area, :name => 'repeat_name')
+          Factory.create(:area, :name => 'repeat_name', :company_id => @user.company)
           put :update, :id => @area.id, :area => { :name => 'repeat_name' }
         end
 
