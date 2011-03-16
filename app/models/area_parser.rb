@@ -14,7 +14,7 @@ class AreaParser < Parslet::Parser
   rule(:delimiter)  { space? >> comma >> space? | space }
   rule(:delimiter?) { delimiter.maybe }
 
-  rule(:study)      { match('[A-Z]').repeat(1) }
+  rule(:study)      { match('[A-Z]|[a-z]').repeat(1) }
   rule(:integer)    { match('\d').repeat(1) }
 
   rule(:replicate_delimiter) {str('R')}
