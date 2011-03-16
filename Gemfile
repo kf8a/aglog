@@ -14,6 +14,7 @@ gem 'will_paginate', "~> 3.0.pre2"
 gem 'thin'
 gem 'haml'
 gem 'formtastic'
+gem 'parslet'
 
 #Uses jquery instead of prototype in rails
 gem 'jquery-rails', '>= 0.2.6'

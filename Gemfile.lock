@@ -32,6 +32,7 @@ GEM
     addressable (2.2.4)
     arel (2.0.9)
     arrayfields (4.7.4)
+    blankslate (2.1.2.3)
     builder (2.1.2)
     capybara (0.4.1.2)
       celerity (>= 0.7.9)
@@ -162,6 +163,8 @@ GEM
       oa-enterprise (= 0.1.6)
       oa-oauth (= 0.1.6)
       oa-openid (= 0.1.6)
+    parslet (1.2.0)
+      blankslate (~> 2.0)
     pg (0.10.1)
     polyglot (0.3.1)
     pyu-ruby-sasl (0.0.3.2)
@@ -272,6 +275,7 @@ DEPENDENCIES
   launchy
   metric_fu
   omniauth
+  parslet
   pg
   rails (= 3.0.5)
   rspec-rails

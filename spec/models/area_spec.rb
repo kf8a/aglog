@@ -154,8 +154,8 @@ describe Area do
       assert areas.any? {|a| a.name  == 'iF9R1' }
     end
 
-    it "should correctly parse a treatment range ('t1-7')" do
-      areas = Area.parse('t1-7')
+    it "should correctly parse a treatment range ('T1-7')" do
+      areas = Area.parse('T1-7')
       real_areas = Area.find_all_by_study_id_and_treatment_number(1, 1..7)
       assert_equal [], (areas - real_areas)
     end
@@ -214,6 +214,23 @@ describe Area do
       assert_not_equal [], real_areas
       assert_not_equal [], areas
       assert_equal [], (areas - real_areas)
+    end
+
+    it 'should correctly parse GLBRC areas' do
+      areas = Area.parse('G1')
+      real_areas = Area.find_all_by_study_id(6)
+      assert_equal [], (areas - real_areas)
+    end
+
+    describe 'areas with the same name from different company' do
+      setup do
+        Factory.create(:area, :name=>'D1', :company_id=>1)
+        Factory.create(:area, :name=>'D1', :company_id=>2)
+      end
+
+      it 'should parse the area associated with the current users company' do
+        areas = Area.parse('D1', :company => 1)
+      end
     end
   end
 
