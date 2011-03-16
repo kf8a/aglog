@@ -18,8 +18,8 @@ describe 'AreaParser' do
   it 'should parse T1R1 to treatment 1 and rep 1' do
     result =  @parser.parse("T1R1")[0]
     assert_equal "T", result[:study]
-    assert_equal '1', result[:plot][:treatment]
-    assert_equal '1', result[:plot][:replicate]
+    assert_equal '1', result[:name][:treatment]
+    assert_equal '1', result[:name][:replicate]
   end
 
   it 'should parse T3' do
@@ -38,8 +38,8 @@ describe 'AreaParser' do
   it 'should parse G1R1' do
     result = @parser.parse('G1R1')[0]
     assert_equal "G", result[:study]
-    assert_equal '1', result[:plot][:treatment]
-    assert_equal '1', result[:plot][:replicate]
+    assert_equal '1', result[:name][:treatment]
+    assert_equal '1', result[:name][:replicate]
   end
 
   it 'should parse G' do
@@ -53,54 +53,54 @@ describe 'AreaParser' do
     assert_equal '1', result[:replicate_number][:replicate]
   end
 
-  it 'should parse multiple plots with spaces between' do
+  it 'should parse multiple names with spaces between' do
     results = @parser.parse('T1R1 G2R4')
     assert_equal 'T', results[0][:study]
-    assert_equal '1', results[0][:plot][:treatment]
-    assert_equal '1', results[0][:plot][:replicate]
+    assert_equal '1', results[0][:name][:treatment]
+    assert_equal '1', results[0][:name][:replicate]
     assert_equal 'G', results[1][:study]
-    assert_equal '2', results[1][:plot][:treatment]
-    assert_equal '4', results[1][:plot][:replicate]
+    assert_equal '2', results[1][:name][:treatment]
+    assert_equal '4', results[1][:name][:replicate]
   end
   
   it 'should parse mulitple areas with commas between' do
     results = @parser.parse('T1R1,G2R4')
     assert_equal 'T', results[0][:study]
-    assert_equal '1', results[0][:plot][:treatment]
-    assert_equal '1', results[0][:plot][:replicate]
+    assert_equal '1', results[0][:name][:treatment]
+    assert_equal '1', results[0][:name][:replicate]
     assert_equal 'G', results[1][:study]
-    assert_equal '2', results[1][:plot][:treatment]
-    assert_equal '4', results[1][:plot][:replicate]
+    assert_equal '2', results[1][:name][:treatment]
+    assert_equal '4', results[1][:name][:replicate]
   end
 
   it 'should parse mulitple areas with comma and space between' do
     results = @parser.parse('T1R1, G2R4')
     assert_equal 'T', results[0][:study]
-    assert_equal '1', results[0][:plot][:treatment]
-    assert_equal '1', results[0][:plot][:replicate]
+    assert_equal '1', results[0][:name][:treatment]
+    assert_equal '1', results[0][:name][:replicate]
     assert_equal 'G', results[1][:study]
-    assert_equal '2', results[1][:plot][:treatment]
-    assert_equal '4', results[1][:plot][:replicate]
+    assert_equal '2', results[1][:name][:treatment]
+    assert_equal '4', results[1][:name][:replicate]
   end
 
   it 'should parse mulitple areas with space and comma between' do
     results = @parser.parse('T1R1 ,G2R4')
     assert_equal 'T', results[0][:study]
-    assert_equal '1', results[0][:plot][:treatment]
-    assert_equal '1', results[0][:plot][:replicate]
+    assert_equal '1', results[0][:name][:treatment]
+    assert_equal '1', results[0][:name][:replicate]
     assert_equal 'G', results[1][:study]
-    assert_equal '2', results[1][:plot][:treatment]
-    assert_equal '4', results[1][:plot][:replicate]
+    assert_equal '2', results[1][:name][:treatment]
+    assert_equal '4', results[1][:name][:replicate]
   end
 
   it 'should parse mulitple areas with space and comma and space between' do
     results = @parser.parse('T1R1 , G2R4')
     assert_equal 'T', results[0][:study]
-    assert_equal '1', results[0][:plot][:treatment]
-    assert_equal '1', results[0][:plot][:replicate]
+    assert_equal '1', results[0][:name][:treatment]
+    assert_equal '1', results[0][:name][:replicate]
     assert_equal 'G', results[1][:study]
-    assert_equal '2', results[1][:plot][:treatment]
-    assert_equal '4', results[1][:plot][:replicate]
+    assert_equal '2', results[1][:name][:treatment]
+    assert_equal '4', results[1][:name][:replicate]
   end
 
   it 'should parse T1-4 G2R4' do
@@ -108,10 +108,10 @@ describe 'AreaParser' do
     assert_equal 'T', results[0][:study]
     assert_equal '1', results[0][:treatment_number][:treatment]
     assert_equal '4', results[0][:treatment_number][:treatment_end]
-    assert_nil        results[0][:plot]
+    assert_nil        results[0][:name]
     assert_equal 'G', results[1][:study]
-    assert_equal '2', results[1][:plot][:treatment]
-    assert_equal '4', results[1][:plot][:replicate]
+    assert_equal '2', results[1][:name][:treatment]
+    assert_equal '4', results[1][:name][:replicate]
   end
   
   it 'should not parse T1-3R3' 

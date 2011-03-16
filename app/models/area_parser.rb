@@ -32,7 +32,7 @@ class AreaParser < Parslet::Parser
 
   rule(:single_plot){ trt_rep }
   rule(:trt_range)  { trt >> range | trt }
-  rule(:plot)       { single_plot.as(:plot) | trt_range.as(:treatment_number) | rep.as(:replicate_number)}
+  rule(:plot)       { single_plot.as(:name) | trt_range.as(:treatment_number) | rep.as(:replicate_number)}
   rule(:plot?)      { plot.maybe }
 
   rule(:area)       { study.as(:study) >> plot? } 
