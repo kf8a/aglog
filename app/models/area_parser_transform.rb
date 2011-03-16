@@ -6,7 +6,7 @@ class AreaParserTransform < Parslet::Transform
   rule(:treatment => simple(:trt), 
        :replicate => simple(:rep)) { String(trt) + 'R'+ String(rep) }
   rule(:study => simple(:study), 
-       :plot => simple(:plot)) { {:study => String(study), :plot => String(study) + plot } }
+       :name=> simple(:plot)) { {:study => String(study), :name=> String(study) + plot} }
 
   # transform ranges
   rule(:treatment => simple(:trt_start), :treatment_end => simple(:trt_end)) {Integer(trt_start)..Integer(trt_end)}
