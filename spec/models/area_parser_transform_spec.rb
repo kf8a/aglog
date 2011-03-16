@@ -36,5 +36,22 @@ describe 'AreaParserTransform' do
   end
 
   describe 'replicate wildcard' do
+    before(:each) do
+      @result = trans.apply(parser.parse('T*R1'))[0]
+    end
+
+    it 'should transform it into a where clause' do
+      assert_equal %q{where(:study => "T", :replicate_number => 1)}, @result
+    end
+  end
+
+  describe 'whole studies' do
+    before(:each) do
+      @result = trans.apply(parser.parse('T'))[0]
+    end
+
+    it 'should transform it into a where clause' do
+      assert_equal %q{where(:study => "T")}, @result
+    end
   end
 end

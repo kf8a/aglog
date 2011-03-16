@@ -42,17 +42,15 @@ describe 'AreaParser' do
     assert_equal '1', result[:plot][:replicate]
   end
 
-  it 'should parse G*' do
-    result = @parser.parse('G*')[0]
-    assert_equal 'G', result[:study]
-    assert_equal '*', result[:plot_range][:treatment]
+  it 'should parse G' do
+    result = @parser.parse('G')[0]
+    assert_equal 'G', result[:whole_study]
   end
 
   it 'should parse G*R1' do
     result = @parser.parse('G*R1')[0]
     assert_equal 'G', result[:study]
-    assert_equal '*', result[:plot][:treatment]
-    assert_equal '1', result[:plot][:replicate]
+    assert_equal '1', result[:rep_range][:replicate]
   end
 
   it 'should parse multiple plots with spaces between' do

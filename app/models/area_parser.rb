@@ -20,8 +20,11 @@ class AreaParser < Parslet::Parser
 
   rule(:replicate_delimiter) {str('R')}
 
-  rule(:treatment_number) { integer | wildcard }
-  rule(:replicate_number) { integer | wildcard }
+  rule(:treatment_number) { integer }
+  rule(:replicate_number) { integer }
+
+  rule(:rep)        { wildcard >> replicate_delimiter >> 
+                      replicate_number.as(:replicate) }
 
   rule(:trt_rep)    { treatment_number.as(:treatment) >>
                       replicate_delimiter >> replicate_number.as(:replicate) }
@@ -30,8 +33,8 @@ class AreaParser < Parslet::Parser
 
   rule(:single_plot){ trt_rep }
   rule(:plot_range) { trt >> range | trt }
-  rule(:plot)       { single_plot.as(:plot) | plot_range.as(:plot_range) }
-  rule(:area)       { study.as(:study) >> plot }
+  rule(:plot)       { single_plot.as(:plot) | plot_range.as(:plot_range) | rep.as(:rep_range)}
+  rule(:area)       { study.as(:study) >> plot | study.as(:whole_study)}
 
   rule(:areas)      { area >> delimiter? }
   rule(:expression) { areas.repeat(1) }
