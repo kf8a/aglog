@@ -129,17 +129,6 @@ class Area < ActiveRecord::Base
     errors.add(:base, 'names should not contain spaces') if name.to_s.include?(' ')
   end
 
-  def Area.stringify_areas(areas)
-    area_strings = areas.collect do |area|
-      (area.class == String) ? "*#{area}*" : area.name
-    end
-    area_strings.join(' ')
-  end
-
-  def Area.by_upper_name(token)
-    where(['upper(name) = ?', token.squeeze.upcase])
-  end
-
 end
 
 class Array
