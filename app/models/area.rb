@@ -16,6 +16,7 @@ class Area < ActiveRecord::Base
   scope :fert_study, where(:study_id => 3)
   scope :if_study, where(:study_id => 4)
   scope :ce_study, where(:study_id => 7)
+  scope :glbrc_study, where(:study_id => 6)
 
   validates :name, :uniqueness => { :case_sensitive => false,
                                     :scope => :company_id }
@@ -23,10 +24,6 @@ class Area < ActiveRecord::Base
 
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
-
-  scope :main_study, where(:study_id => 1)
-  scope :fert_study, where(:study_id => 3)
-  scope :if_study,   where(:study_id => 4)
 
   # Tries to find areas by their names.
   # @param [String] areas_as_text a string containing area names
@@ -37,16 +34,29 @@ class Area < ActiveRecord::Base
   # @example Parse a string which has no area with that name
   #   Area.parse('T1R1 R11') #=> "T1R1 *R11*"
   def Area.parse(areas_as_text)
-    areas = []
-    tokens = areas_as_text.chomp.split(/ +/)
-    tokens.each { |token| areas += get_areas_by_token(token) }
-
-    # if areas contains a string
-    if (areas.any? { |area| area.class == String })
-      stringify_areas(areas)
-    else
-      areas
+    parser = AreaParser.new
+    transformer = AreaParserTransform.new
+    begin
+      area_tokens = transformer.apply(parser.parse(areas_as_text))
+      areas = area_tokens.collect do |token|
+        study_id = Study.find_by_name(token.delete(:study))
+        Area.send(:where, token).where(:study_id => study_id).all
+      end
+    areas.flatten
+    rescue Parslet::ParseFailed => error
+      areas_as_text 
     end
+
+#    areas = []
+#    tokens = areas_as_text.chomp.split(/ +/)
+#    tokens.each { |token| areas += get_areas_by_token(token) }
+#
+#    # if areas contains a string
+#    if (areas.any? { |area| area.class == String })
+#      stringify_areas(areas)
+#    else
+#      areas
+#    end
   end
 
     # Transforms an array of areas into a list of area names and study names if a

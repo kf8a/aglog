@@ -92,13 +92,17 @@ describe Area do
       assert_equal areas.split.sort, 'T1R1 T1R2 T1R3 T1R4 T1R5 T1R6 *R11*'.split.sort
     end
 
+    it 'should return T1R1 when given T1R1 to parse'do
+      assert_equal 'T1R1', Area.parse('T1R1')[0].name
+    end
+
     it "should return area T1R1 (among others) when given 'T1' to parse" do
       areas = Area.parse('T1')
       assert areas.any? {|a| a.name = 'T1R1'}
     end
 
-    it "should return area T1R1 (among others) when given 'R1' to parse" do
-      areas = Area.parse('R1')
+    it "should return area T1R1 (among others) when given 'T*R1' to parse" do
+      areas = Area.parse('T*R1')
       assert areas.any? {|a| a.name = 'T1R1'}
     end
 
@@ -122,16 +126,15 @@ describe Area do
     end
 
     it "should correctly parse 'B31' as a String (there is no B31 area)" do
-      areas = Area.parse('B31')
-      areas.should be_a String
+      assert_equal [], Area.parse('B31')
     end
 
-    it "should return an empty array when given '' to parse" do
-      areas = Area.parse('')
-      areas.should be_a Array
-      areas.size.should equal 0
-    end
-
+#    it "should return an empty array when given '' to parse" do
+#      areas = Area.parse('')
+#      areas.should be_a Array
+#      areas.size.should equal 0
+#    end
+#
     it "should get an array with one element when given a whole area name to parse" do
       areas = Area.parse('T1R1')
       assert areas.all? {|x| x.class.name =='Area'}
@@ -139,41 +142,29 @@ describe Area do
       assert_equal 1, areas.size
     end
 
-    it "should correctly parse 'T1R8' as a String (there is no T1R8 area)" do
-      areas = Area.parse('T1R8')
-      areas.should be_a String
-    end
-
-    it "should correctly parse 'REPT4E1'" do
-      areas = Area.parse('REPT4E1')
-      assert areas.any?  {|a| a.name =='REPT4E1R1'}
-    end
-
-    it "should correctly parse 'iF9'" do
-      areas = Area.parse('iF9')
-      assert areas.any? {|a| a.name  == 'iF9R1' }
-    end
-
+#    it "should correctly parse 'T1R8' as a String (there is no T1R8 area)" do
+#      areas = Area.parse('T1R8')
+#      areas.should be_a String
+#    end
+#
+#    it "should correctly parse 'REPT4E1'" do
+#      areas = Area.parse('REPT4E1')
+#      assert areas.any?  {|a| a.name =='REPT4E1R1'}
+#    end
+#
+#    it "should correctly parse 'iF9'" do
+#      areas = Area.parse('iF9')
+#      assert areas.any? {|a| a.name  == 'iF9R1' }
+#    end
+#
     it "should correctly parse a treatment range ('T1-7')" do
       areas = Area.parse('T1-7')
       real_areas = Area.find_all_by_study_id_and_treatment_number(1, 1..7)
       assert_equal [], (areas - real_areas)
     end
 
-    it "should correctly parse when given treatment and not replicate ('t2!r1)" do
-      areas = Area.parse('t2!r1')
-      real_areas = Area.find_all_by_study_id_and_treatment_number_and_replicate(1, 2, 2..8)
-      assert_equal [], (areas - real_areas)
-    end
-
-    it "should correctly parse when given replicate and not treatment ('r2!T1')" do
-      areas = Area.parse('r2!T1')
-      real_areas = Area.find_all_by_study_id_and_replicate_and_treatment_number(1, 2, 2..8)
-      assert_equal [], (areas - real_areas)
-    end
-
     it "should correctly parse Fertility Gradient areas" do
-      areas = Area.parse('Fertility_Gradient')
+      areas = Area.parse('F')
       real_areas = Area.find_all_by_study_id(3)
       assert_equal [], (areas - real_areas)
 
@@ -187,7 +178,7 @@ describe Area do
     end
 
     it "should correctly parse Irrigated Fertility Gradient areas" do
-      areas = Area.parse('Irrigated_Fertility_Gradient')
+      areas = Area.parse('iF')
       real_areas = Area.find_all_by_study_id(4)
       assert_equal [], (areas - real_areas)
 
@@ -201,7 +192,7 @@ describe Area do
     end
 
     it 'should correctly parse CE areas' do
-      areas = Area.parse('CES')
+      areas = Area.parse('CE')
       real_areas = Area.find_all_by_study_id(7)
       assert_equal [], (areas - real_areas)
 
@@ -222,16 +213,16 @@ describe Area do
       assert_equal [], (areas - real_areas)
     end
 
-    describe 'areas with the same name from different company' do
-      setup do
-        Factory.create(:area, :name=>'D1', :company_id=>1)
-        Factory.create(:area, :name=>'D1', :company_id=>2)
-      end
-
-      it 'should parse the area associated with the current users company' do
-        areas = Area.parse('D1', :company => 1)
-      end
-    end
+#    describe 'areas with the same name from different company' do
+#      setup do
+#        Factory.create(:area, :name=>'D1', :company_id=>1)
+#        Factory.create(:area, :name=>'D1', :company_id=>2)
+#      end
+#
+#      it 'should parse the area associated with the current users company' do
+#        areas = Area.parse('D1', :company => 1)
+#      end
+#    end
   end
 
   describe "self.unparse should consolidate a list of areas into a string: " do
@@ -308,8 +299,8 @@ describe Area do
       parse_reverse('ECB')
     end
 
-    it "should correctly parse/unparse 'MAIN'" do
-      parse_reverse('MAIN')
+    it "should correctly parse/unparse 'T'" do
+      parse_reverse('T')
     end
 
     it "should correctly parse/unparse GLBRC areas" do
