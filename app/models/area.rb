@@ -36,27 +36,19 @@ class Area < ActiveRecord::Base
   def Area.parse(areas_as_text)
     parser = AreaParser.new
     transformer = AreaParserTransform.new
+    invalid_tokens = []
     begin
       area_tokens = transformer.apply(parser.parse(areas_as_text))
       areas = area_tokens.collect do |token|
         study_id = Study.find_by_name(token.delete(:study))
-        Area.send(:where, token).where(:study_id => study_id).all
+        area = Area.send(:where, token).where(:study_id => study_id).all
+        invalid_tokens << token if area.empty?
+        area
       end
     areas.flatten
     rescue Parslet::ParseFailed => error
       areas_as_text 
     end
-
-#    areas = []
-#    tokens = areas_as_text.chomp.split(/ +/)
-#    tokens.each { |token| areas += get_areas_by_token(token) }
-#
-#    # if areas contains a string
-#    if (areas.any? { |area| area.class == String })
-#      stringify_areas(areas)
-#    else
-#      areas
-#    end
   end
 
     # Transforms an array of areas into a list of area names and study names if a

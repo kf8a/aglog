@@ -1,10 +1,10 @@
-Study.find_or_create_by_name(:name => 'MAIN')
-Study.find_or_create_by_name(:name => 'Biodiversity')
-Study.find_or_create_by_name(:name => 'Fertility Gradient')
-Study.find_or_create_by_name(:name => 'Irrigated Fertility Gradient')
-Study.find_or_create_by_name(:name => 'Rotation Entry Point')
-Study.find_or_create_by_name(:name => 'GLBRC')
-Study.find_or_create_by_name(:name => 'CES')
+Study.find_or_create_by_name_and_description(:name => 'T', :description=> 'MAIN')
+Study.find_or_create_by_name_and_description(:name => 'B', :description => 'Biodiversity')
+Study.find_or_create_by_name_and_description(:name => 'F', :description => 'Fertility Gradient')
+Study.find_or_create_by_name_and_description(:name => 'iF', :description => 'Irrigated Fertility Gradient')
+Study.find_or_create_by_name_and_description(:name => 'RT', :description => 'Rotation Entry Point')
+Study.find_or_create_by_name_and_description(:name => 'G', :description => 'GLBRC')
+Study.find_or_create_by_name_and_description(:name => 'CE', :description => 'CES')
 
 1.upto(8) do |treat|
   1.upto(6) do |rep|

@@ -241,22 +241,22 @@ describe Area do
     end
 
     it "should unparse an array of all of a study's areas, returning the study name" do
-      study = Study.where(:name => 'MAIN').first
+      study = Study.where(:name => 'T').first
       area_string = Area.unparse(study.areas)
-      assert_equal 'MAIN', area_string
+      assert_equal 'T', area_string
 
-      study = Study.where(:name => 'Biodiversity').first
+      study = Study.where(:name => 'B').first
       areas = study.areas
       area_string = Area.unparse(areas)
-      assert_equal "Biodiversity", area_string
+      assert_equal "B", area_string
 
       areas = Area.parse("T1 T2 T3 T4 T5 T6 T7 T8")
       area_string = Area.unparse(areas)
-      assert_equal "MAIN", area_string
+      assert_equal "T", area_string
 
       areas = Area.parse("B1 B2 B3 B4 B5 B6 B7 B8 B9 B10 B11 B12 B13 B14 B15 B16 B17 B18 B19 B20 B21")
       area_string = Area.unparse(areas)
-      assert_equal "Biodiversity", area_string
+      assert_equal "B", area_string
     end
 
     it "should unparse treatment areas to the treatment name" do
@@ -282,10 +282,6 @@ describe Area do
       end
     end
 
-    it "should correctly parse/unparse regardless of case" do
-      parse_reverse('t1')
-    end
-
     it "should correctly parse/unparse in the right order" do
       parse_reverse("B2R1 B1")
     end
@@ -307,13 +303,12 @@ describe Area do
       parse_reverse('G1R4')
       parse_reverse('G2')
       parse_reverse('G10')
-      parse_reverse('GLBRC')
+      parse_reverse('G')
     end
 
     it "should correctly parse/unparse CES areas" do
-      parse_reverse('CES')
+      parse_reverse('CE')
       parse_reverse('CE1')
-      parse_reverse('ce13')
     end
   end
 
