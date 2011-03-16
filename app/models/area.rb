@@ -27,16 +27,20 @@ class Area < ActiveRecord::Base
   #   Area.parse('T1R1 T2') #=> [#<Area id: 1, name: "T1R1" ... >, ... ]
   # @example Parse a string which has no area with that name
   #   Area.parse('T1R1 R11') #=> "T1R1 *R11*"
-  def Area.parse(areas_as_text, company_id = 1)
+  def Area.parse(areas_as_text, options={}) 
     return [] if areas_as_text.strip.empty?
+
+    company = options[:company] || 1
     parser = AreaParser.new
     transformer = AreaParserTransform.new
     invalid_tokens = []
+
     begin
       area_tokens = transformer.apply(parser.parse(areas_as_text))
       areas = area_tokens.collect.with_index do |token, i|
         study_id = Study.find_by_name(token.delete(:study))
         area = Area.where(:study_id => study_id)
+                   .where(:company_id => company)
                    .send(:where, token)
                    .all
         invalid_tokens << i if area.empty?

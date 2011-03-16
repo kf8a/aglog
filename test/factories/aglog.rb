@@ -40,7 +40,7 @@ if Factory.factories.blank? #prevent redefining these factories
   end
 
   Factory.define :area do |a|
-    a.association :company, :factory => :company
+    a.company_id  1
   end
 
   Factory.define :material do |m|
