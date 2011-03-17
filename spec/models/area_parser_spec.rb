@@ -22,6 +22,13 @@ describe 'AreaParser' do
     assert_equal '1', result[:name][:replicate]
   end
 
+  it 'should parse CE102' do
+    assert @parser.irregular_plot.parse('123')
+    result =  @parser.parse("CE102")[0]
+    assert_equal "CE", result[:study]
+    assert_equal '102', result[:name]
+  end
+
   it 'should parse T3' do
     result = @parser.parse('T3')[0]
     assert_equal 'T', result[:study]
@@ -115,4 +122,5 @@ describe 'AreaParser' do
   end
   
   it 'should not parse T1-3R3' 
+
 end

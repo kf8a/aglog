@@ -314,6 +314,7 @@ describe Area do
     it "should correctly parse/unparse CES areas" do
       parse_reverse('CE')
       parse_reverse('CE1')
+      parse_reverse('CE101')
     end
   end
 

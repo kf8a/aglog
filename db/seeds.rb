@@ -87,6 +87,8 @@ end
                               :study_id => 7)
 end
 
+Area.find_or_create_by_name( :name=>'CE101', :treatment_number =>1, :company_id=>7, :study_id => 7)
+
 company = Company.find_or_create_by_name(:name=>'lter')
 
 Equipment.find_or_create_by_name(:name => "John Deere 5220 Tractor",:is_tractor => true, :company_id=>company)

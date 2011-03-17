@@ -15,6 +15,18 @@ describe 'AreaParserTransform' do
       assert_equal 'T1R1', @result[:name]
     end
   end
+   
+  describe 'an irregular plot'do
+    before(:each) do
+      @result = trans.apply(parser.parse('CE101'))[0]
+    end
+
+    it 'should transform it into a hash for a where clause' do
+      assert_equal 'CE', @result[:study]
+      assert_kind_of String, @result[:study]
+      assert_equal 'CE101', @result[:name]
+    end
+  end
 
   describe 'multi rep range' do
     before(:each) do
