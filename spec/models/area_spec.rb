@@ -162,7 +162,6 @@ describe Area do
       real_areas = ['T1','T2','T3','T4'].collect do |name|
         Treatment.find_by_name(name).areas
       end.flatten
-      p real_areas
 #      real_areas = Area.find_all_by_study_id_and_treatment_number(1, 1..7)
       assert_equal [], (areas - real_areas)
     end

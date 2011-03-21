@@ -146,6 +146,13 @@ describe Observation do
     assert_equal text_areas, o.areas_as_text
   end
 
+  it 'should accept CE1 as an area' do
+    o = create_simple_observation
+    text_areas = 'CE1'
+    o.areas_as_text = text_areas
+    assert_equal text_areas, o.areas_as_text
+  end
+
   it "should give the right material_names" do
     o = create_simple_observation
     activity = Factory.create(:activity, :observation_id => o.id)

@@ -5,6 +5,7 @@ Study.find_or_create_by_name(:name => 'iF', :description => 'Irrigated Fertility
 Study.find_or_create_by_name(:name => 'RT', :description => 'Rotation Entry Point')
 Study.find_or_create_by_name(:name => 'G', :description => 'GLBRC')
 Study.find_or_create_by_name(:name => 'CE', :description => 'CES')
+Area.find_or_create_by_name(:name=>'ECB')
 
 1.upto(6) do |rep|
   1.upto(8) do |treat|

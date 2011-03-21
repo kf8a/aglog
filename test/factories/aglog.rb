@@ -51,10 +51,6 @@ if Factory.factories.blank? #prevent redefining these factories
     e.association :company, :factory => :company
   end
 
-  Factory.define :activity do |a|
-    a.person              Person.first || Factory.create(:person)
-  end
-
   Factory.define :material_transaction do |m|
     m.material          Material.first || Factory.create(:material)
   end
@@ -63,6 +59,11 @@ if Factory.factories.blank? #prevent redefining these factories
     o.obs_date            Date.today
     o.observation_types   [ObservationType.first || Factory.create(:observation_type)]
     o.person              Person.first || Factory.create(:person)
+  end
+
+  Factory.define :activity do |a|
+    a.observation         Observation.first || Factory.create(:observation)
+    a.person              Person.first || Factory.create(:person)
   end
 
   Factory.define :setup do |s|
