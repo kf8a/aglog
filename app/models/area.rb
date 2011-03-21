@@ -2,7 +2,7 @@ require 'date'
 
 # Represents a location where observations are done.
 class Area < ActiveRecord::Base
-  attr_accessible :name, :treatment_number, :replicate, :study_id,
+  attr_accessible :name, :replicate, :study_id,
                   :treatment_id, :description
   attr_accessible :company_id if Rails.env == 'test'
 
@@ -40,9 +40,10 @@ class Area < ActiveRecord::Base
       area_tokens = transformer.apply(parser.parse(areas_as_text))
       areas = area_tokens.collect.with_index do |token, i|
         study_id = Study.find_by_name(token.delete(:study))
-        area = Area.where(:study_id => study_id)
+        area = Area.joins(:treatment)
+                   .where(:study_id => study_id)
                    .where(:company_id => company)
-                   .send(:where, token)
+                   .send(:where, token[:where])
                    .all
         invalid_tokens << i if area.empty?
         area
@@ -66,7 +67,6 @@ class Area < ActiveRecord::Base
   def Area.unparse(areas = [])
     names, areas = replace_class_areas_by_class([], areas, Study)
     names, areas = replace_class_areas_by_class(names, areas, Treatment)
-    names, areas = replace_treatment_number_areas_by_treatment_number(names, areas)
     names += areas.uniq.collect { |area| area.name }
 
     names.sort.join(' ')
@@ -98,29 +98,6 @@ class Area < ActiveRecord::Base
     end
 
     [names, areas]
-  end
-
-  def Area.replace_treatment_number_areas_by_treatment_number(names, areas)
-    # if all of a treatment number's areas are here,
-    # use the treatment's name instead of individual areas
-    treatment_and_studies = areas.collect { |area| [area.treatment_number, area.study_id] if area.treatment_number }
-
-    treatment_and_studies.uniq.each do |treatment_number, study_id|
-      treatment_areas = Area.where(:treatment_number => treatment_number, :study_id => study_id).all
-      if areas.contains(treatment_areas)
-        areas -= treatment_areas
-        names << extract_treatment_name(treatment_areas)
-      end
-    end
-
-    [names, areas]
-  end
-
-  def Area.extract_treatment_name(treatment_areas)
-    name_to_include = treatment_areas[0].name.overlap(treatment_areas[-1].name)
-    name_to_include.chomp!('r') or name_to_include.chomp!('R')
-
-    name_to_include
   end
 
   def treatment_is_part_of_study

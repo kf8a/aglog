@@ -12,7 +12,7 @@ describe 'AreaParserTransform' do
     it 'should transform it into a hash for a where clause' do
       assert_equal 'T', @result[:study]
       assert_kind_of String, @result[:study]
-      assert_equal 'T1R1', @result[:name]
+      assert_equal ['areas.name = ?', 'T1R1'], @result[:where]
     end
   end
    
@@ -24,7 +24,7 @@ describe 'AreaParserTransform' do
     it 'should transform it into a hash for a where clause' do
       assert_equal 'CE', @result[:study]
       assert_kind_of String, @result[:study]
-      assert_equal 'CE101', @result[:name]
+      assert_equal ['areas.name = ?','CE101'], @result[:where]
     end
   end
 
@@ -36,7 +36,7 @@ describe 'AreaParserTransform' do
     it 'should transform it into a hash for a where clause' do
       assert_equal 'T', @result[:study]
       assert_kind_of String, @result[:study]
-      assert_equal 1, @result[:treatment_number]
+      assert_equal ['treatments.treatment_number in (?)', 1], @result[:where]
     end
   end
 
@@ -48,7 +48,7 @@ describe 'AreaParserTransform' do
     it 'should transform it into a hash for a where clause' do
       assert_equal 'T', @result[:study]
       assert_kind_of String, @result[:study]
-      assert_equal 1..4, @result[:treatment_number]
+      assert_equal ['treatments.treatment_number in (?)', 1..4] , @result[:where]
     end
   end
 
@@ -60,7 +60,7 @@ describe 'AreaParserTransform' do
     it 'should transform it into a hash for a where clause' do
       assert_equal 'T', @result[:study]
       assert_kind_of String, @result[:study]
-      assert_equal 1, @result[:replicate]
+      assert_equal ['replicate = ?', 1], @result[:where]
     end
   end
 

@@ -10,11 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309202157) do
+ActiveRecord::Schema.define(:version => 20110318023214) do
 
   create_table "activities", :force => true do |t|
     t.integer "person_id"
-    t.integer "observation_id"
+    t.integer "observation_id",    :null => false
     t.integer "operation_type_id"
     t.text    "comment"
     t.float   "hours"
@@ -22,15 +22,12 @@ ActiveRecord::Schema.define(:version => 20110309202157) do
 
   create_table "areas", :force => true do |t|
     t.string  "name"
-    t.integer "treatment_number"
     t.integer "replicate"
     t.integer "study_id"
     t.integer "treatment_id"
     t.string  "description"
     t.integer "company_id"
   end
-
-  add_index "areas", ["name"], :name => "area_names", :unique => true
 
   create_table "areas_observations", :id => false, :force => true do |t|
     t.integer "observation_id"
@@ -146,12 +143,16 @@ ActiveRecord::Schema.define(:version => 20110309202157) do
     t.string   "given_name"
     t.string   "sur_name"
     t.string   "openid_identifier"
-    t.string   "persistence_token"
     t.string   "password_salt"
     t.datetime "last_request_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "persistence_token"
     t.integer  "company_id"
+  end
+
+  create_table "schema_info", :id => false, :force => true do |t|
+    t.integer "version"
   end
 
   create_table "sessions", :force => true do |t|
@@ -178,6 +179,7 @@ ActiveRecord::Schema.define(:version => 20110309202157) do
   create_table "treatments", :force => true do |t|
     t.string  "name"
     t.integer "study_id"
+    t.integer "treatment_number"
   end
 
   create_table "units", :force => true do |t|

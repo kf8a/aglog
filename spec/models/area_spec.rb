@@ -157,9 +157,13 @@ describe Area do
       assert areas.any? {|a| a.name  == 'iF9R1' }
     end
 
-    it "should correctly parse a treatment range ('T1-7')" do
-      areas = Area.parse('T1-7')
-      real_areas = Area.find_all_by_study_id_and_treatment_number(1, 1..7)
+    it "should correctly parse a treatment range ('T1-4')" do
+      areas = Area.parse('T1-4')
+      real_areas = ['T1','T2','T3','T4'].collect do |name|
+        Treatment.find_by_name(name).areas
+      end.flatten
+      p real_areas
+#      real_areas = Area.find_all_by_study_id_and_treatment_number(1, 1..7)
       assert_equal [], (areas - real_areas)
     end
 
@@ -169,11 +173,11 @@ describe Area do
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('F4')
-      real_areas = Area.find_all_by_study_id_and_treatment_number(3, 4)
+      real_areas = find_by_study_and_treatment_number(3, 4)
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('F2-3')
-      real_areas = Area.find_all_by_study_id_and_treatment_number(3, 2..3)
+      real_areas = find_by_study_and_treatment_number(3, 2..3)
       assert_equal [], (areas - real_areas)
     end
 
@@ -183,11 +187,11 @@ describe Area do
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('iF7')
-      real_areas = Area.find_all_by_study_id_and_treatment_number(4, 7)
+      real_areas = find_by_study_and_treatment_number(4, 7)
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse("iF1-4")
-      real_areas = Area.find_all_by_study_id_and_treatment_number(4, 1..4)
+      real_areas = find_by_study_and_treatment_number(4, 1..4)
       assert_equal [], (areas - real_areas)
     end
 
@@ -197,11 +201,11 @@ describe Area do
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('CE1')
-      real_areas = Area.find_all_by_study_id_and_treatment_number(7,1)
+      real_areas = find_by_study_and_treatment_number(7,1)
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('CE1-12')
-      real_areas = Area.find_all_by_study_id_and_treatment_number(7,1..12)
+      real_areas = find_by_study_and_treatment_number(7,1..12)
       assert_not_equal [], real_areas
       assert_not_equal [], areas
       assert_equal [], (areas - real_areas)
@@ -232,7 +236,7 @@ describe Area do
 
   describe "self.unparse should consolidate a list of areas into a string: " do
     it "should return 'T1' when given an array of all the T1 areas" do
-      areas  = Area.find_all_by_treatment_number_and_study_id('1','1') + Area.find_all_by_treatment_id_and_study_id(1, 1)
+      areas  = find_by_study_and_treatment_number('1','1') + find_by_study_and_treatment_number(1, 1)
       area_string = Area.unparse(areas)
       assert_equal 'T1', area_string
     end
@@ -339,6 +343,11 @@ describe Area do
     areas.should be_a Array
   	unparsed_area_string = Area.unparse(areas)
   	assert_equal test_string.upcase.split.sort.join(' '), unparsed_area_string.split.sort.join(' ')
+  end
+  
+  def find_by_study_and_treatment_number(study, treatment_number)
+    treatments = Treatment.where(:study_id => study, :treatment_number => treatment_number)
+    treatments.collect{ |t| t.areas}.flatten
   end
 end
 

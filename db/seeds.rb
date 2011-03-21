@@ -1,15 +1,19 @@
-Study.find_or_create_by_name_and_description(:name => 'T', :description=> 'MAIN')
-Study.find_or_create_by_name_and_description(:name => 'B', :description => 'Biodiversity')
-Study.find_or_create_by_name_and_description(:name => 'F', :description => 'Fertility Gradient')
-Study.find_or_create_by_name_and_description(:name => 'iF', :description => 'Irrigated Fertility Gradient')
-Study.find_or_create_by_name_and_description(:name => 'RT', :description => 'Rotation Entry Point')
-Study.find_or_create_by_name_and_description(:name => 'G', :description => 'GLBRC')
-Study.find_or_create_by_name_and_description(:name => 'CE', :description => 'CES')
+Study.find_or_create_by_name(:name => 'T', :description=> 'MAIN')
+Study.find_or_create_by_name(:name => 'B', :description => 'Biodiversity')
+Study.find_or_create_by_name(:name => 'F', :description => 'Fertility Gradient')
+Study.find_or_create_by_name(:name => 'iF', :description => 'Irrigated Fertility Gradient')
+Study.find_or_create_by_name(:name => 'RT', :description => 'Rotation Entry Point')
+Study.find_or_create_by_name(:name => 'G', :description => 'GLBRC')
+Study.find_or_create_by_name(:name => 'CE', :description => 'CES')
 
-1.upto(8) do |treat|
-  1.upto(6) do |rep|
+1.upto(6) do |rep|
+  1.upto(8) do |treat|
+    t = Treatment.find_or_create_by_name(:name => "T#{treat}",
+                                         :treatment_number => treat,
+                                         :study_id => 1)
+
     Area.find_or_create_by_name(:name => "T#{treat}R#{rep}", 
-                                :treatment_number => treat, 
+                                :treatment_id => t.id,
                                 :replicate => rep, 
                                 :company_id => 1,
                                 :study_id => 1)
@@ -19,10 +23,13 @@ end
 Person.create(:given_name => 'Joe', :sur_name => 'Simmons')
 
 #add biodiversity
-1.upto(21) do |treat|
-  1.upto(4) do |rep|
+1.upto(4) do |rep|
+  1.upto(21) do |treat|
+    t = Treatment.find_or_create_by_name(:name=>"B#{treat}",
+                                         :treatment_number => treat,
+                                         :study_id => 2)
     Area.find_or_create_by_name(:name => "B#{treat}R#{rep}", 
-                                :treatment_number => treat, 
+                                :treatment_id => t.id,
                                 :replicate => rep, 
                                 :company_id => 1,
                                 :study_id => 2)
@@ -30,64 +37,63 @@ Person.create(:given_name => 'Joe', :sur_name => 'Simmons')
 end
 
 #add N rate study
-1.upto(9) do |treat|
-  1.upto(4) do |rep|
+1.upto(4) do |rep|
+  1.upto(9) do |treat|
+    t = Treatment.find_or_create_by_name(:name => "F#{treat}",
+                                         :treatment_number => treat,
+                                        :study_id => 3)
     Area.find_or_create_by_name(:name => "F#{treat}R#{rep}", 
-                                :treatment_number => treat, 
                                 :replicate => rep, 
+                                :treatment_id => t.id,
                                 :company_id => 1,
                                 :study_id => 3)
   end
 end
 
-1.upto(4) do |t|
-  1.upto(3) do  |e|
-    1.upto(4)  do |r|
-      Area.find_or_create_by_name(:name => "REPT#{t}E#{e}R#{r}", 
-                                  :replicate => "#{r}", 
-                                  :treatment_number => "#{t}#{e}", 
-                                  :company_id => 1,
-                                  :study_id => 5)
-    end
-  end
-end
-
 #add irrigated N rate study
-1.upto(9) do |treat|
-  1.upto(4) do |rep|
+1.upto(4) do |rep|
+  1.upto(9) do |treat|
+    t = Treatment.find_or_create_by_name(:name=>"iF#{treat}",
+                                         :treatment_number => treat,
+                                        :study_id => 4)
     Area.find_or_create_by_name(:name => "iF#{treat}R#{rep}", 
-                                :treatment_number => treat, 
                                 :replicate => rep, 
+                                :treatment_id => t.id,
                                 :company_id => 1,
                                 :study_id => 4)
   end
 end
 
 #GLBRC study
-1.upto(4) do |r|
-  Area.find_or_create_by_name(:name => "G1R#{r}", 
-                              :treatment_number => 1, 
-                              :replicate => r, 
-                              :company_id => 1,
-                              :study_id => 6)
+1.upto(5) do |rep|
+  1.upto(10) do |trt|
+    t = Treatment.find_or_create_by_name(:name=>"G#{trt}",
+                                         :treatment_number => trt,
+                                         :study_id => 6)
+    Area.find_or_create_by_name(:name => "G#{trt}R#{rep}", 
+                                :treatment_id => t.id,
+                                :replicate => rep, 
+                                :company_id => 1,
+                                :study_id => 6)
+  end
 end
 
-1.upto(10) do |t|
-  Area.find_or_create_by_name(:name => "G#{t}", 
-                              :treatment_number => t, 
-                              :company_id => 1,
-                              :study_id => 6)
-end
 
 #CES study
-1.upto(19) do |t|
-  Area.find_or_create_by_name(:name => "CE#{t}", 
-                              :treatment_number => t, 
-                              :company_id => 1,
-                              :study_id => 7)
+1.upto(4) do |rep|
+  plot = rep * 100
+  1.upto(19) do |trt|
+    t = Treatment.find_or_create_by_name(:name=>"CE#{trt}",
+                                         :treatment_number => trt,
+                                         :study_id => 7)
+    Area.find_or_create_by_name(:name => "CE#{plot}", 
+                                :treatment_id => t.id,
+                                :replicate => rep,
+                                :company_id => 1,
+                                :study_id => 7)
+    plot = plot + 1
+  end
 end
-
-Area.find_or_create_by_name( :name=>'CE101', :treatment_number =>1, :company_id=>7, :study_id => 7)
 
 company = Company.find_or_create_by_name(:name=>'lter')
 
@@ -130,12 +136,6 @@ ObservationType.find_or_create_by_name(:name => 'Planting')
 ObservationType.find_or_create_by_name(:name => 'Fertilizer application')
 ObservationType.find_or_create_by_name(:name => 'Pesticide application')
 ObservationType.find_or_create_by_name(:name => 'Herbicide application')
-
-Study.find_or_create_by_name(:name => 'MAIN')
-Study.find_or_create_by_name(:name => 'Biodiversity')
-Study.find_or_create_by_name(:name => 'Fertility Gradient')
-Study.find_or_create_by_name(:name => 'Irrigated Fertility Gradient')
-Study.find_or_create_by_name(:name => 'Rotation Entry Point')
 
 Material.find(:all).each do |m|
   m.specific_weight = 1
