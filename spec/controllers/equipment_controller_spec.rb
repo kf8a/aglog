@@ -93,7 +93,8 @@ describe EquipmentController do
       sign_in_as_normal_user
 
       @company_1 = @user.company
-      @equipment_1 = find_or_factory(:equipment, :name =>'lter_tractor', :company_id => @company_1)
+      @equipment_1 = find_or_factory(:equipment, :name =>'lter_tractor', 
+                                     :company_id => @company_1.id)
     end
 
     after(:all) do
@@ -168,7 +169,7 @@ describe EquipmentController do
 
     describe "An equipment exists. " do
       before(:each) do
-        @equipment = find_or_factory(:equipment, :company_id => @user.company)
+        @equipment = find_or_factory(:equipment, :company_id => @user.company_id)
       end
 
       describe "GET :show the equipment" do
@@ -204,7 +205,8 @@ describe EquipmentController do
       #TODO is this just testing the validates helper again?
       describe "PUT :update the equipment with invalid attributes" do
         before(:each) do
-          Factory.create(:equipment, :name => "Repeat_name", :company_id=>@user.company)
+          find_or_factory(:equipment, :name => "Repeat_name", 
+                          :company_id=>@user.company.id)
           put :update, :id => @equipment, :equipment => { :name => "Repeat_name"}
         end
 
