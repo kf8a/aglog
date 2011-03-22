@@ -238,6 +238,7 @@ GEM
       rubyzip
     sexp_processor (3.0.5)
     shoulda (2.11.3)
+    silent-postgres (0.0.7)
     simplecov (0.4.1)
       simplecov-html (~> 0.4.3)
     simplecov-html (0.4.3)
@@ -280,6 +281,7 @@ DEPENDENCIES
   rails (= 3.0.5)
   rspec-rails
   shoulda
+  silent-postgres
   simplecov (>= 0.3.5)
   single_test
   spork

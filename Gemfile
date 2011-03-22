@@ -25,6 +25,9 @@ gem "escape_utils"
 group :development do
   gem 'metric_fu'
 end
+group :development, :test do 
+  gem 'silent-postgres'
+end
 
 group :test do
   gem "factory_girl"

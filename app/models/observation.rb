@@ -3,8 +3,7 @@ require 'csv'
 
 # The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
-  attr_accessible :person_id, :comment, :obs_date, :state, :observation_type_ids
-  attr_accessible :company_id if Rails.env == 'test'
+  attr_protected :company_id unless Rails.env == 'test'
 
   acts_as_state_machine :initial => :published
 
