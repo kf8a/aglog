@@ -39,9 +39,7 @@ class Area < ActiveRecord::Base
     begin
       area_tokens = transformer.apply(parser.parse(areas_as_text))
       areas = area_tokens.collect.with_index do |token, i|
-        study_id = Study.find_by_name(token.delete(:study))
-        area = Area.joins(:treatment)
-                   .where(:study_id => study_id)
+        area = Area.joins(:treatment, :study)
                    .where(:company_id => company)
                    .send(:where, token[:where])
                    .all
@@ -68,7 +66,6 @@ class Area < ActiveRecord::Base
     names, areas = replace_class_areas_by_class([], areas, Study)
     names, areas = replace_class_areas_by_class(names, areas, Treatment)
     names += areas.uniq.collect { |area| area.name }
-
     names.sort.join(' ')
   end
 

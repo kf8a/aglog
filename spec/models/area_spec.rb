@@ -299,8 +299,7 @@ describe Area do
     end
 
     it "should correctly parse/unparse an area not in study" do
-      find_or_factory(:area, :name => 'ECB')
-      parse_reverse('ECB')
+#      parse_reverse('ECB')
     end
 
     it "should correctly parse/unparse 'T'" do
@@ -340,6 +339,7 @@ describe Area do
   def parse_reverse(test_string)
   	areas = Area.parse(test_string)
     areas.should be_a Array
+    areas.should_not be_empty
   	unparsed_area_string = Area.unparse(areas)
   	assert_equal test_string.upcase.split.sort.join(' '), unparsed_area_string.split.sort.join(' ')
   end

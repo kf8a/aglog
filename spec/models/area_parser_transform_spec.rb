@@ -10,8 +10,6 @@ describe 'AreaParserTransform' do
     end
 
     it 'should transform it into a hash for a where clause' do
-      assert_equal 'T', @result[:study]
-      assert_kind_of String, @result[:study]
       assert_equal ['areas.name = ?', 'T1R1'], @result[:where]
     end
   end
@@ -22,8 +20,6 @@ describe 'AreaParserTransform' do
     end
 
     it 'should transform it into a hash for a where clause' do
-      assert_equal 'CE', @result[:study]
-      assert_kind_of String, @result[:study]
       assert_equal ['areas.name = ?','CE101'], @result[:where]
     end
   end
@@ -34,9 +30,7 @@ describe 'AreaParserTransform' do
     end
 
     it 'should transform it into a hash for a where clause' do
-      assert_equal 'T', @result[:study]
-      assert_kind_of String, @result[:study]
-      assert_equal ['treatments.treatment_number in (?)', 1], @result[:where]
+      assert_equal ['studies.name = ? and treatments.treatment_number in (?)', 'T',1], @result[:where]
     end
   end
 
@@ -46,9 +40,7 @@ describe 'AreaParserTransform' do
     end
 
     it 'should transform it into a hash for a where clause' do
-      assert_equal 'T', @result[:study]
-      assert_kind_of String, @result[:study]
-      assert_equal ['treatments.treatment_number in (?)', 1..4] , @result[:where]
+      assert_equal ['studies.name = ? and treatments.treatment_number in (?)', 'T', 1..4] , @result[:where]
     end
   end
 
@@ -58,9 +50,7 @@ describe 'AreaParserTransform' do
     end
 
     it 'should transform it into a hash for a where clause' do
-      assert_equal 'T', @result[:study]
-      assert_kind_of String, @result[:study]
-      assert_equal ['replicate = ?', 1], @result[:where]
+      assert_equal ['studies.name = ? and replicate = ?', 'T', 1], @result[:where]
     end
   end
 
@@ -70,8 +60,7 @@ describe 'AreaParserTransform' do
     end
 
     it 'should transform it into a hash for a where clause' do
-      assert_equal 'T', @result[:study]
-      assert_kind_of String, @result[:study]
+      assert_equal ['studies.name = ?', 'T'], @result[:where]
     end
   end
 end
