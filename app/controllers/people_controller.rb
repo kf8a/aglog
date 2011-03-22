@@ -4,7 +4,11 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
-    @people = Person.order('given_name').all
+    if current_user
+      @people = Person.by_company(current_user.company).order('given_name').all
+    else
+      @people = Person.order('given_name').all
+    end 
     respond_with @people
   end
 

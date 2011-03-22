@@ -22,7 +22,7 @@ describe PeopleController do
   it "should create person" do
     old_count = Person.count
     @company = find_or_factory(:company)
-    post :create, :person => { :given_name => 'given', :company_id => @company}
+    post :create, :person => { :given_name => 'given', :company_id => @company.id}
     assert_equal old_count+1, Person.count
 
     assert_redirected_to person_path(assigns(:person))

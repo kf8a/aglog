@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe ObservationsController do
+  render_views
   describe 'an unauthenticated user' do
     describe 'GET :index' do
       it 'should be successful' do
