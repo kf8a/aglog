@@ -132,7 +132,7 @@ describe AreasController do
 
     describe "POST :create with invalid attributes" do
       before(:each) do
-        Factory.create(:area, :name => 'repeat_name', :company_id => @user.company)
+        find_or_factory(:area, :name => 'repeat_name', :company_id => @user.company_id)
         post :create, :area => { :name => 'repeat_name' }
       end
 
@@ -142,8 +142,8 @@ describe AreasController do
 
     describe "An area exists. " do
       before(:each) do
-        @area = Factory.create(:area, :name => 'existing_area', 
-                               :company_id=>@user.company)
+        @area = find_or_factory(:area, :name => 'existing_area', 
+                               :company_id=>@user.company_id)
       end
 
       describe "GET :show the area" do
@@ -179,7 +179,8 @@ describe AreasController do
 
       describe "PUT :update with invalid attributes" do
         before(:each) do
-          Factory.create(:area, :name => 'repeat_name', :company_id => @user.company)
+          find_or_factory(:area, :name => 'repeat_name', 
+                          :company_id => @user.company_id)
           put :update, :id => @area.id, :area => { :name => 'repeat_name' }
         end
 
