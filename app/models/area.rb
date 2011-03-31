@@ -37,7 +37,7 @@ class Area < ActiveRecord::Base
     invalid_tokens = []
 
     begin
-      area_tokens = transformer.apply(parser.parse(areas_as_text))
+      area_tokens = transformer.apply(parser.parse(areas_as_text.upcase))
       areas = area_tokens.collect.with_index do |token, i|
         area = Area.joins(:treatment, :study)
                    .where(:company_id => company)

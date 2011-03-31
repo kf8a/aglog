@@ -1,7 +1,7 @@
 Study.find_or_create_by_name(:name => 'T', :description=> 'MAIN')
 Study.find_or_create_by_name(:name => 'B', :description => 'Biodiversity')
 Study.find_or_create_by_name(:name => 'F', :description => 'Fertility Gradient')
-Study.find_or_create_by_name(:name => 'iF', :description => 'Irrigated Fertility Gradient')
+Study.find_or_create_by_name(:name => 'IF', :description => 'Irrigated Fertility Gradient')
 Study.find_or_create_by_name(:name => 'RT', :description => 'Rotation Entry Point')
 Study.find_or_create_by_name(:name => 'G', :description => 'GLBRC')
 Study.find_or_create_by_name(:name => 'CE', :description => 'CES')
