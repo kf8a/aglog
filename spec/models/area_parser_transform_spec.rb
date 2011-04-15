@@ -9,7 +9,7 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('T1R1'))[0]
     end
 
-    it 'should transform it into a hash for a where clause' do
+    it 'should transform into a hash for a where clause' do
       assert_equal ['areas.name = ?', 'T1R1'], @result[:where]
     end
   end
@@ -19,7 +19,7 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('CE101'))[0]
     end
 
-    it 'should transform it into a hash for a where clause' do
+    it 'should transform into a hash for a where clause' do
       assert_equal ['areas.name = ?','CE101'], @result[:where]
     end
   end
@@ -29,7 +29,7 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('T1'))[0]
     end
 
-    it 'should transform it into a hash for a where clause' do
+    it 'should transform into a hash for a where clause' do
       assert_equal ['studies.name = ? and treatments.treatment_number in (?)', 'T',1], @result[:where]
     end
   end
@@ -39,7 +39,7 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('T1-4'))[0]
     end
 
-    it 'should transform it into a hash for a where clause' do
+    it 'should transform into a hash for a where clause' do
       assert_equal ['studies.name = ? and treatments.treatment_number in (?)', 'T', 1..4] , @result[:where]
     end
   end
@@ -49,7 +49,7 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('T*R1'))[0]
     end
 
-    it 'should transform it into a hash for a where clause' do
+    it 'should transform into a hash for a where clause' do
       assert_equal ['studies.name = ? and replicate = ?', 'T', 1], @result[:where]
     end
   end
@@ -59,8 +59,18 @@ describe 'AreaParserTransform' do
       @result = trans.apply(parser.parse('T'))[0]
     end
 
-    it 'should transform it into a hash for a where clause' do
+    it 'should transform into a hash for a where clause' do
       assert_equal ['studies.name = ?', 'T'], @result[:where]
+    end
+  end
+
+  describe 'the lysimeter field' do
+    before do
+      @result = trans.apply(parser.parse('LYSIMETER_FIELD'))[0]
+    end
+
+    it 'should transform into a hash for a where clause' do
+      assert_equal ['studies.name = ?', 'LYSIMETER_FIELD'], @result[:where]
     end
   end
 end

@@ -123,4 +123,9 @@ describe 'AreaParser' do
   
   it 'should not parse T1-3R3' 
 
+  it 'should parse LYSIMETER' do
+    results = @parser.parse('LYSIMETER_FIELD')
+    assert_equal 'LYSIMETER_FIELD', results[0][:study]
+  end
+
 end

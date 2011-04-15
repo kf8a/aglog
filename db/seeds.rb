@@ -6,7 +6,16 @@ Study.find_or_create_by_name(:name => 'RT', :description => 'Rotation Entry Poin
 Study.find_or_create_by_name(:name => 'G', :description => 'GLBRC')
 Study.find_or_create_by_name(:name => 'CE', :description => 'CES')
 Study.find_or_create_by_name(:name=>'ECB')
+Study.find_or_create_by_name(:name=>'LYSIMETER_FIELD')
 
+#Lysimeter field
+t =Treatment.find_or_create_by_name(:name=>'LYSIMETER_FIELD', :study_id=>9)
+Area.find_or_create_by_name(:name=>'LYSIMETER_FIELD', 
+                            :treatment_number => t,
+                            :study_id=>9,
+                            :company_id=>1)
+
+# Main Site
 1.upto(6) do |rep|
   1.upto(8) do |treat|
     t = Treatment.find_or_create_by_name(:name => "T#{treat}",

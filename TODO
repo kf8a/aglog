@@ -1,1 +1,6 @@
 TODO: move from authlogic to devise
+TODO: irregular areas like the LYSIMETER field which does not have a treatment
+      or replicates are currently handled by having an entry in the studies,
+      treatment and areas table. I think they should just have an area entry
+      and the Area.parse should search on area.name, but I don't know how to
+      distinguish study names from irregular area names.

@@ -216,6 +216,13 @@ describe Area do
       assert_equal [], (areas - real_areas)
     end
 
+    it 'should correctly parse LYSIMETER field' do
+      areas = Area.parse('LYSIMETER_FIELD')
+      real_areas = Area.find_all_by_study_id(9)
+      assert_kind_of Array, areas
+      assert_equal [], (areas - real_areas)
+    end
+
     describe 'areas with the same name from different company' do
       before(:each) do
         @area = Area.find_by_name('T1R1') 
