@@ -2,7 +2,7 @@
 $(document).ready(function() {
     // Put cursor on first text input of form
     $('.autofocus:first').focus();
-
+    $('input.ui-date-picker').datepicker();
 //    // All links with data_popup make a small popup window of what they link to.
 //    $('.data_popup').live('click', function(e) {
 //        e.preventDefault();

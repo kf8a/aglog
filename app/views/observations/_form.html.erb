@@ -1,5 +1,5 @@
 <%= form.inputs do %>
-  <%= form.input :obs_date, :start_year=>1988 %>
+  <%= form.input :observation_date, :start_year=>1988, :as=>:date_picker %>
   <%= form.input :comment, :input_html=>{:class => 'autofocus'} %>
   <%= form.input :areas_as_text, :hint=>'G T6 T5R1 T1-4 T*R1 G G3 G2R3 G1-2 G*R2' %>
   <%= form.input :observation_types, :as=>:check_boxes, :multiple=>true%>

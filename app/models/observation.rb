@@ -5,6 +5,8 @@ require 'csv'
 class Observation < ActiveRecord::Base
   attr_protected :company_id unless Rails.env == 'test'
 
+  attr :observation_date
+
   acts_as_state_machine :initial => :published
 
   state  :published
@@ -37,6 +39,16 @@ class Observation < ActiveRecord::Base
 
   def no_invalid_areas
     errors.add(:base, 'invalid areas') if @error_areas.present?
+  end
+
+  def observation_date=(date_string)
+    logger.info date_string
+    self.obs_date = Chronic.parse(date_string)
+    logger.info obs_date
+  end
+
+  def observation_date
+    self.obs_date
   end
 
   def Observation.by_state_and_page(state, page)

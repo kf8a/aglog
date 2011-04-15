@@ -92,6 +92,11 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
+    formtastic_datepicker_inputs (1.0.0)
+      actionpack (>= 2.3.7)
+      activesupport (>= 2.3.7)
+      formtastic
+      i18n (>= 0.4.0)
     gherkin (2.3.3)
       json (~> 1.4.6)
     haml (3.0.25)
@@ -266,11 +271,13 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  chronic
   cucumber-rails
   escape_utils
   factory_girl
   factory_girl_rails
   formtastic
+  formtastic_datepicker_inputs
   haml
   jquery-rails (>= 0.2.6)
   launchy

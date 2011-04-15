@@ -13,11 +13,15 @@ gem 'omniauth'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'thin'
 gem 'haml'
-gem 'formtastic'
 gem 'parslet'
+
+gem 'chronic'
 
 #Uses jquery instead of prototype in rails
 gem 'jquery-rails', '>= 0.2.6'
+
+gem 'formtastic'
+gem 'formtastic_datepicker_inputs'
 
 #Gets rid of annoying UTF-8 string error in rack
 gem "escape_utils"
