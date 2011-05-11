@@ -30,7 +30,7 @@ group :development do
   gem 'metric_fu'
 end
 group :development, :test do 
-  gem 'silent-postgres'
+  #gem 'silent-postgres'
 end
 
 group :test do
