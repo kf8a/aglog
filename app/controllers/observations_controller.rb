@@ -32,6 +32,7 @@ class ObservationsController < ApplicationController
   def new
     @observation = Observation.new
     @observation.obs_date = Date.today
+    @people = Person.current.by_company(current_user.company).ordered
     respond_with @observation
   end
 
@@ -47,6 +48,7 @@ class ObservationsController < ApplicationController
 
   def edit
     @observation = Observation.by_company(current_user.company).where(:id => params[:id]).includes(:observation_types, {:activities => {:setups => :material_transactions}}).first
+    @people = Person.by_company(current_user.company).ordered
     respond_with @observation
   end
 
