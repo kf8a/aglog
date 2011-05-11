@@ -11,7 +11,7 @@ class Equipment < ActiveRecord::Base
   validates :name, :uniqueness => { :case_sensitive => false, 
                                     :scope => :company_id }
 
-  scope :current, where(:archive => false)
+  scope :current, where(:archived => false)
   scope :by_company, lambda {|company| where(:company_id => company) }
 
   def observations

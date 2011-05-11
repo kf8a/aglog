@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(:version => 20110511174713) do
     t.float   "specific_weight",   :default => 1.0
     t.boolean "liquid"
     t.integer "company_id"
-    t.boolean "archived"
+    t.boolean "archived",          :default => false
   end
 
   create_table "observation_types", :force => true do |t|
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(:version => 20110511174713) do
     t.datetime "updated_at"
     t.string   "persistence_token"
     t.integer  "company_id"
-    t.boolean  "archived"
+    t.boolean  "archived",          :default => false
   end
 
   create_table "schema_info", :id => false, :force => true do |t|
