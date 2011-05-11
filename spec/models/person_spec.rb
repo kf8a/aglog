@@ -46,6 +46,11 @@ describe Person do
       @person.given_name.upcase!
       assert !@person.save
     end
+
+    it 'should be deprecatable' do
+      assert @person.archived = true
+      assert @person.archived = false
+    end
   end
 
   it "should allow a new name person to be created" do

@@ -10,7 +10,7 @@ class Material < ActiveRecord::Base
   belongs_to :material_type
   belongs_to :company
 
-  scope :by_company, lambda {|company| where(:company_id => company)}
+  scope :by_company, lambda {|company| where(:company_id => company).order('name')}
 
   validates :name, :uniqueness => { :case_sensitive => false }
 

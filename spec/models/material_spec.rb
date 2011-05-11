@@ -8,6 +8,11 @@ describe Material do
     end
 
     it {should belong_to :company}
+
+    describe 'an archived material' do
+      subject { Material.new(:name => 'deprecated', :archived=> true) }
+        it {should be_valid}
+    end
     
     describe 'a material with the same name as another' do
       subject { Material.new(:name => @repeat_name) }

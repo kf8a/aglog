@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
   validate :name_must_be_unique
   validates_presence_of :company
 
-  scope :by_company, lambda {|company| where(:company_id => company)}
+  scope :by_company, lambda {|company| where(:company_id => company).order('sur_name, given_name')}
 
   def name_must_be_unique
     person = Person.where([ "lower(given_name) = ?", given_name.try(:downcase) ]).where([ "lower(sur_name) = ?", sur_name.try(:downcase) ]).all - [self]
