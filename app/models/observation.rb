@@ -99,16 +99,20 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def collect_from_setups(method_to_collect)
+    self.setups.collect { |setup| setup.send(method_to_collect) }.flatten.compact.uniq
+  end
+
   def material_names
-    setups.collect { |setup| setup.material_names }.flatten.compact.uniq
+    collect_from_setups('material_names')
   end
 
   def materials_with_rates
-    self.setups.collect { |setup| setup.materials_with_rates }.flatten.uniq.join(', ')
+    collect_from_setups('materials_with_rates').join(', ')
   end
 
   def n_contents
-    setups.collect { |setup| setup.n_contents }.flatten.compact.uniq
+    collect_from_setups('n_contents')
   end
 
   def observation_type
@@ -124,10 +128,10 @@ class Observation < ActiveRecord::Base
   end
 
   def rates
-    setups.collect { |setup| setup.rates }.flatten.compact.uniq
+    collect_from_setups('rates')
   end
 
   def unit_names
-    setups.collect { |setup| setup.unit_names }.flatten.compact.uniq
+    collect_from_setups('unit_names')
   end
 end
