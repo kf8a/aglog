@@ -20,6 +20,16 @@ class Area < ActiveRecord::Base
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
+  def Area.index_areas(observation_id, current_user)
+    observation = Observation.find_by_id(observation_id)
+    broad_scope = observation.try(:areas) || Area
+    if current_user
+      broad_scope.by_company(current_user.company).order('study_id, name').includes(:study).all
+    else
+      broad_scope.order('study_id, name').includes(:study).all
+    end
+  end
+
   # Tries to find areas by their names.
   # @param [String] areas_as_text a string containing area names
   # @return [String or Array] the original string with errors highlighted or
@@ -28,7 +38,7 @@ class Area < ActiveRecord::Base
   #   Area.parse('T1R1 T2') #=> [#<Area id: 1, name: "T1R1" ... >, ... ]
   # @example Parse a string which has no area with that name
   #   Area.parse('T1R1 R11') #=> "T1R1 *R11*"
-  def Area.parse(areas_as_text, options={}) 
+  def Area.parse(areas_as_text, options={})
     return [] if areas_as_text.strip.empty?
 
     company = options[:company] || 1
@@ -51,9 +61,9 @@ class Area < ActiveRecord::Base
       else
         mark_invalid_tokens(invalid_tokens, areas_as_text)
       end
-      
+
     rescue Parslet::ParseFailed => error
-      areas_as_text 
+      areas_as_text
     end
   end
 
@@ -72,6 +82,7 @@ class Area < ActiveRecord::Base
   def study_name
     self.study.try(:name)
   end
+
 
   private##########################################
 
