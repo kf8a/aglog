@@ -1,7 +1,7 @@
 # A person is both someone who performs activities, and (with an open id) a
 # user of the web application.
 class Person < ActiveRecord::Base
-  attr_accessible :given_name, :sur_name, :openid_identifier, :company_id
+  attr_accessible :given_name, :sur_name, :openid_identifier, :company_id, :archived
 
   has_many :observations
   has_many :activities
@@ -15,6 +15,8 @@ class Person < ActiveRecord::Base
   validate :name_must_be_unique
   validates_presence_of :company
 
+  scope :current, where(:archived => false)
+  scope :ordered, order('sur_name, given_name')
   scope :by_company, lambda {|company| where(:company_id => company)}
 
   def name_must_be_unique
