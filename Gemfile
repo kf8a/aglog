@@ -31,8 +31,10 @@ gem "escape_utils"
 group :development do
   gem 'metric_fu'
 end
+
 group :development, :test do 
   #gem 'silent-postgres'
+  gem 'rspec-rails'
 end
 
 group :test do
@@ -45,5 +47,4 @@ group :test do
   gem 'spork'
   gem 'launchy'
   gem 'capybara'
-  gem 'rspec-rails'
 end
