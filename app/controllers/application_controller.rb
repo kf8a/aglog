@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def site_layout
-    if current_user then "authorized" else "unauthorized" end
+    signed_in? ? "authorized" : "unauthorized"
   end
 
   def current_user
