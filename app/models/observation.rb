@@ -41,6 +41,10 @@ class Observation < ActiveRecord::Base
     errors.add(:base, 'invalid areas') if @error_areas.present?
   end
 
+  def company_name
+    self.company.try(:name)
+  end
+
   def observation_date=(date_string)
     logger.info date_string
     self.obs_date = Chronic.parse(date_string)

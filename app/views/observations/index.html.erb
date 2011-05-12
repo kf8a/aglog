@@ -29,7 +29,7 @@
     <% @observations.each do |observation| %>
       <tr valign='top'>
 		    <td><%= observation.obs_date %> </td>
-        <td><%= observation.company.try(:name) %></td>
+        <td><%= observation.company_name %></td>
 		    <td>
 			    <% observation.observation_types.each do |type| %>
 			      <%= type.name %>
