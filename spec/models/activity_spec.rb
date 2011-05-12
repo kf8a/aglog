@@ -30,5 +30,10 @@ describe Activity do
     subject { Factory.create(:activity, :person_id => person.id) }
     its(:person_name) { should match('Cool Name') }
   end
+
+  describe "a valid activity with hours inputted as '1,000'" do
+    subject { Factory.create(:activity, :hours => '1,000') }
+    its(:hours) { should == 1000 }
+  end
 end
 

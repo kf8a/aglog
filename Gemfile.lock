@@ -66,6 +66,7 @@ GEM
       cucumber (>= 0.8.0)
     culerity (0.2.15)
     daemons (1.1.0)
+    delocalize (0.2.5)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -272,6 +273,7 @@ DEPENDENCIES
   capybara
   chronic
   cucumber-rails
+  delocalize
   escape_utils
   factory_girl
   factory_girl_rails
