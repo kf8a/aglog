@@ -1,5 +1,9 @@
 <%= f.inputs do %>
-  <%= f.input :material, :collection=>Material.by_company(current_user.company).ordered, :include_blank=>false %>
+  <% if only_current %>
+    <%= f.input :material, :collection=>Material.by_company(current_user.company).current.ordered, :include_blank=>false %>
+  <% else %>
+    <%= f.input :material, :collection=>Material.by_company(current_user.company).ordered, :include_blank=>false %>
+  <% end %>
   <%= f.input :rate, :input_html => {:size => 10}%>
   <%= f.input :unit %> per acre
   <%= link_to_remove_fields "Remove", f %>

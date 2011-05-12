@@ -1,7 +1,7 @@
 <h1>New Observation</h1>
 
 <%= semantic_form_for @observation do |form| %>
-  <%= render :partial => 'form', :locals => {:form => form } %>
+  <%= render :partial => 'form', :locals => {:form => form, :only_current => true } %>
   <%= form.buttons %>
 <% end %>
 			

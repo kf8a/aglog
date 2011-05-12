@@ -1,11 +1,15 @@
 <%= f.inputs do %>
-  <%= f.input :equipment, :collection=>Equipment.by_company(current_user.company).ordered, :include_blank => false %>
+  <% if only_current %>
+    <%= f.input :equipment, :collection=>Equipment.by_company(current_user.company).current.ordered, :include_blank => false %>
+  <% else %>
+    <%= f.input :equipment, :collection=>Equipment.by_company(current_user.company).ordered, :include_blank => false %>
+  <% end %>
   <%= link_to_remove_fields 'Remove', f%>
 
   <div class='material-transaction'>
     <%= f.inputs :for => :material_transactions do |builder| %>
-      <%= render 'material_transaction_fields', :f => builder %>
+      <%= render 'material_transaction_fields', :f => builder, :only_current => only_current %>
     <% end %>
   </div>
-  <%= link_to_add_fields 'Add Material', f, :material_transactions %>
+  <%= link_to_add_fields 'Add Material', f, :material_transactions, only_current %>
 <% end %>

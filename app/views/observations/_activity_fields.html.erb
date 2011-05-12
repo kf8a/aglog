@@ -1,11 +1,15 @@
 <%= f.inputs do  %>
-  <%= f.input :person, :collection => Person.by_company(current_user.company).ordered, :include_blank=>false %>
+  <% if only_current %>
+    <%= f.input :person, :collection => Person.by_company(current_user.company).current.ordered, :include_blank=>false %>
+  <% else %>
+    <%= f.input :person, :collection => Person.by_company(current_user.company).ordered, :include_blank=>false %>
+  <% end %>
   <%= f.input :hours, :input_html=> {:size=>5} %>
   <div class='setup'>
     <%= f.inputs :for => :setups do |builder| %>
-      <%= render 'setup_fields', :f=>builder %>
+      <%= render 'setup_fields', :f=>builder, :only_current => only_current %>
     <% end %>
   </div>
-  <%= link_to_add_fields 'Add Equipment', f, :setups %>
+  <%= link_to_add_fields 'Add Equipment', f, :setups, only_current %>
   <%= link_to_remove_fields "Remove Activity", f %>
 <% end %>

@@ -7,8 +7,8 @@
 
   <div class='actvities'>
     <%= form.inputs :for => :activities do |builder| %>
-      <%= render 'activity_fields', :f => builder %>
+      <%= render 'activity_fields', :f => builder, :only_current => only_current %>
     <% end %>
   </div>
-  <%= link_to_add_fields "Add Activity", form, :activities %>
+  <%= link_to_add_fields "Add Activity", form, :activities, only_current %>
 <% end %>
