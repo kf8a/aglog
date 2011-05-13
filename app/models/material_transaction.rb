@@ -28,15 +28,18 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def n_content_to_kg_ha
-    to_kg_ha(self.n_content) if self.n_content && convertible?
+    content = self.n_content
+    to_kg_ha(content) if content && convertible?
   end
 
   def p_content_to_kg_ha
-    to_kg_ha(self.material.p_content) if self.material.p_content && convertible?
+    content = self.material.p_content
+    to_kg_ha(content) if content && convertible?
   end
 
   def k_content_to_kg_ha
-    to_kg_ha(self.material.k_content) if self.material.k_content && convertible?
+    content = self.material.k_content
+    to_kg_ha(content) if content && convertible?
   end
 
   def material_name
@@ -69,10 +72,11 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def rate_and_unit
-    unit_display = unit_name
-    unit_display = unit_display.pluralize unless 1 == self.rate
+    display_rate = self.rate.to_s
+    unit_display = self.unit_name
+    unit_display = unit_display.pluralize unless display_rate == '1.0'
 
-    ": #{self.rate} #{unit_display} per acre"
+    ": #{display_rate} #{unit_display} per acre"
   end
 
 end

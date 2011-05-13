@@ -81,6 +81,10 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def collect_from_setups(method_to_collect)
+    self.setups.collect { |setup| setup.send(method_to_collect) }.flatten.compact.uniq
+  end
+
   def equipment_names
     setups.collect { |setup| setup.equipment_name }.flatten.join(', ')
   end
@@ -97,10 +101,6 @@ class Observation < ActiveRecord::Base
     when '1'
       self.review!
     end
-  end
-
-  def collect_from_setups(method_to_collect)
-    self.setups.collect { |setup| setup.send(method_to_collect) }.flatten.compact.uniq
   end
 
   def material_names
