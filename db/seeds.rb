@@ -10,8 +10,8 @@ Study.find_or_create_by_name(:name=>'LYSIMETER_FIELD')
 
 #Lysimeter field
 t =Treatment.find_or_create_by_name(:name=>'LYSIMETER_FIELD', :study_id=>9)
-Area.find_or_create_by_name(:name=>'LYSIMETER_FIELD', 
-                            :treatment_number => t,
+Area.find_or_create_by_name(:name=>'LYSIMETER_FIELD',
+                            :treatment_id => t,
                             :study_id=>9,
                             :company_id=>1)
 
@@ -22,9 +22,9 @@ Area.find_or_create_by_name(:name=>'LYSIMETER_FIELD',
                                          :treatment_number => treat,
                                          :study_id => 1)
 
-    Area.find_or_create_by_name(:name => "T#{treat}R#{rep}", 
+    Area.find_or_create_by_name(:name => "T#{treat}R#{rep}",
                                 :treatment_id => t.id,
-                                :replicate => rep, 
+                                :replicate => rep,
                                 :company_id => 1,
                                 :study_id => 1)
   end
@@ -38,9 +38,9 @@ Person.create(:given_name => 'Joe', :sur_name => 'Simmons')
     t = Treatment.find_or_create_by_name(:name=>"B#{treat}",
                                          :treatment_number => treat,
                                          :study_id => 2)
-    Area.find_or_create_by_name(:name => "B#{treat}R#{rep}", 
+    Area.find_or_create_by_name(:name => "B#{treat}R#{rep}",
                                 :treatment_id => t.id,
-                                :replicate => rep, 
+                                :replicate => rep,
                                 :company_id => 1,
                                 :study_id => 2)
   end
@@ -52,8 +52,8 @@ end
     t = Treatment.find_or_create_by_name(:name => "F#{treat}",
                                          :treatment_number => treat,
                                         :study_id => 3)
-    Area.find_or_create_by_name(:name => "F#{treat}R#{rep}", 
-                                :replicate => rep, 
+    Area.find_or_create_by_name(:name => "F#{treat}R#{rep}",
+                                :replicate => rep,
                                 :treatment_id => t.id,
                                 :company_id => 1,
                                 :study_id => 3)
@@ -66,8 +66,8 @@ end
     t = Treatment.find_or_create_by_name(:name=>"iF#{treat}",
                                          :treatment_number => treat,
                                         :study_id => 4)
-    Area.find_or_create_by_name(:name => "iF#{treat}R#{rep}", 
-                                :replicate => rep, 
+    Area.find_or_create_by_name(:name => "iF#{treat}R#{rep}",
+                                :replicate => rep,
                                 :treatment_id => t.id,
                                 :company_id => 1,
                                 :study_id => 4)
@@ -80,9 +80,9 @@ end
     t = Treatment.find_or_create_by_name(:name=>"G#{trt}",
                                          :treatment_number => trt,
                                          :study_id => 6)
-    Area.find_or_create_by_name(:name => "G#{trt}R#{rep}", 
+    Area.find_or_create_by_name(:name => "G#{trt}R#{rep}",
                                 :treatment_id => t.id,
-                                :replicate => rep, 
+                                :replicate => rep,
                                 :company_id => 1,
                                 :study_id => 6)
   end
@@ -96,7 +96,7 @@ end
     t = Treatment.find_or_create_by_name(:name=>"CE#{trt}",
                                          :treatment_number => trt,
                                          :study_id => 7)
-    Area.find_or_create_by_name(:name => "CE#{plot}", 
+    Area.find_or_create_by_name(:name => "CE#{plot}",
                                 :treatment_id => t.id,
                                 :replicate => rep,
                                 :company_id => 1,
