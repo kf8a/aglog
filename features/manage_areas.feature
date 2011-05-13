@@ -17,7 +17,6 @@ Feature: Manage observations
     Given an area exists with a name of "cool_area"
       And I am signed in
       And I am on the areas page
-      Then show me the page
     Then I should see "cool_area"
       And I should see "Edit"
       And I should see "Destroy"
