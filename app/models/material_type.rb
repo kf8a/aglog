@@ -1,3 +1,4 @@
+# Divides materials into differnet subgroups.
 class MaterialType < ActiveRecord::Base
   attr_accessible :name
 

@@ -16,8 +16,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def site_layout
+  def authorized_text
     signed_in? ? "authorized" : "unauthorized"
+  end
+
+  def site_layout
+    authorized_text
   end
 
   def current_user
@@ -40,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_by_authorization(base)
-    file_to_render = signed_in? ? "authorized_#{base}" : "unauthorized_#{base}"
+    file_to_render = "#{authorized_text}_#{base}"
     render file_to_render
   end
 
