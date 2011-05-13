@@ -22,8 +22,8 @@ class ObservationsController < ApplicationController
   end
 
   def show
-    @observation = Observation.where(:id => params[:id]).includes(:person, :observation_types, 
-                                                                  {:activities => [:person, 
+    @observation = Observation.where(:id => params[:id]).includes(:person, :observation_types,
+                                                                  {:activities => [:person,
                                                                     {:setups => [:equipment, {:material_transactions => [{:material => :hazards}, :unit]}]}]}).first
     @areas_as_text = @observation.areas_as_text
     respond_with @observation
@@ -38,9 +38,10 @@ class ObservationsController < ApplicationController
   # POST /observations
   # POST /observations.xml
   def create
-    @observation = current_user.observations.new(params[:observation])
-    @observation.company = current_user.company
-    logger.info current_user.name
+    user = current_user
+    @observation = user.observations.new(params[:observation])
+    @observation.company = user.company
+    logger.info user.name
     flash[:form] = @observation.save ? 'Observation was successfully created.' : "Creation failed"
     respond_with @observation
   end

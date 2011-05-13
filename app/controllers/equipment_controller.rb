@@ -2,11 +2,8 @@
 class EquipmentController < ApplicationController
 
   def index
-    if current_user
-      @equipment = Equipment.by_company(current_user.company)
-    else
-      @equipment = Equipment.order('name').all
-    end
+    company = current_user.try(:company)
+    @equipment = company ? Equipment.by_company(company) : Equipment.order('name')
 
     respond_with @equipment do |format|
       format.html { render_by_authorization('index') }
