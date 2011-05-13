@@ -88,6 +88,33 @@ describe MaterialTransaction do
         assert_equal "Carrots", @transaction.material_with_rate
       end
     end
+
+    context 'The transaction has a material.' do
+      before(:each) do
+        @material = @transaction.material = find_or_factory(:material, :name => 'Waste')
+      end
+
+      context 'The material is hazardous.' do
+        before(:each) do
+          @material.hazards << Factory.create(:hazard)
+        end
+
+        describe 'The hazardous transaction' do
+          subject { @transaction }
+          it { should be_hazardous }
+        end
+      end
+
+      context 'The material is not hazardous.' do
+        before(:each) do
+          @material.stub(:hazards) { [] }
+        end
+
+        describe 'The nonhazardous transaction' do
+          subject { @transaction }
+          it { should_not be_hazardous }
+        end
+      end
+    end
   end
 end
-
