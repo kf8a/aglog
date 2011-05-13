@@ -2,14 +2,14 @@ Feature: Manage observations
   In order to [goal]
   [stakeholder]
   wants [behaviour]
-  
+
   Scenario: Index and show as non-logged-in-user
     Given an area exists with a name of "cool_area"
       And I am on the areas page
     Then I should see "cool_area"
       And I should not see "Edit"
       And I should not see "Destroy"
-    
+
     When I follow "Show" within "tr#cool_area"
       Then I should see "Name: cool_area"
 
@@ -17,14 +17,15 @@ Feature: Manage observations
     Given an area exists with a name of "cool_area"
       And I am signed in
       And I am on the areas page
+      Then show me the page
     Then I should see "cool_area"
       And I should see "Edit"
       And I should see "Destroy"
-    
+
     When I follow "Show" within "tr#cool_area"
     Then I should see "Name: cool_area"
       And I should see "Edit"
-    
+
     When I follow "Edit"
     Then I should see "Editing area"
 
@@ -43,11 +44,9 @@ Feature: Manage observations
       And I press "Create Area"
     Then I should see "Name: brand_new_area"
       And I should see "Area was successfully created."
-    
+
     When I follow "Back"
       Then I should see "brand_new_area"
 
     When I follow "Destroy" within "tr#brand_new_area"
       Then I should not see "brand_new_area"
-
-

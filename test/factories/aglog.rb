@@ -7,7 +7,7 @@ if Factory.factories.blank? #prevent redefining these factories
   end
 
   Factory.define :material_type do |m|
-    
+
   end
 
   Factory.define :observation_type do |o|
@@ -19,11 +19,11 @@ if Factory.factories.blank? #prevent redefining these factories
   end
 
   Factory.define :study do |s|
-    
+
   end
 
   Factory.define :treatment do |t|
-    
+
   end
 
   Factory.define :unit do |u|
@@ -32,23 +32,23 @@ if Factory.factories.blank? #prevent redefining these factories
 
 
   #Dependent Factories
-  
+
   Factory.define :person do |p|
     p.given_name  "Bob"
     p.sur_name    "Dobolina"
-    p.association :company, :factory => :company
+    p.company  Company.first || Factory.create(:company)
   end
 
   Factory.define :area do |a|
-    a.company_id  1
+    a.company  Company.first || Factory.create(:company)
   end
 
   Factory.define :material do |m|
-    m.association :company, :factory => :company
+    m.company  Company.first || Factory.create(:company)
   end
 
   Factory.define :equipment do |e|
-    e.association :company, :factory => :company
+    e.association  :company
   end
 
   Factory.define :material_transaction do |m|

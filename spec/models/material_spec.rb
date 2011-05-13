@@ -13,7 +13,7 @@ describe Material do
       subject { Material.new(:name => 'deprecated', :archived=> true) }
         it {should be_valid}
     end
-    
+
     describe 'a material with the same name as another' do
       subject { Material.new(:name => @repeat_name) }
       it { should_not be_valid }
@@ -83,4 +83,3 @@ describe Material do
     its(:study_name) { should be_nil }
   end
 end
-
