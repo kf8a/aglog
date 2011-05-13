@@ -19,8 +19,8 @@ class MaterialTransaction < ActiveRecord::Base
     transactions.uniq
   end
 
-  def convertible?
-    self.rate && self.unit.conversion_factor
+  def convertible?(content)
+    content && self.rate && self.unit.conversion_factor
   end
 
   def hazardous?
@@ -28,18 +28,15 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def n_content_to_kg_ha
-    content = self.n_content
-    to_kg_ha(content) if content && convertible?
+    to_kg_ha(self.n_content)
   end
 
   def p_content_to_kg_ha
-    content = self.material.p_content
-    to_kg_ha(content) if content && convertible?
+    to_kg_ha(self.material.p_content)
   end
 
   def k_content_to_kg_ha
-    content = self.material.k_content
-    to_kg_ha(content) if content && convertible?
+    to_kg_ha(self.material.k_content)
   end
 
   def material_name
@@ -62,6 +59,7 @@ class MaterialTransaction < ActiveRecord::Base
   private##############################
 
   def to_kg_ha(content)
+    return unless convertible?(content)
     rate = self.rate * self.unit.conversion_factor
     rate = self.material.to_mass(rate)  #liters to grams
     rate = rate/1000.0                  #grams to kilograms
