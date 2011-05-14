@@ -25,7 +25,7 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def hazardous?
-    !self.material.hazards.empty?
+    self.material.hazards.present?
   end
 
   def n_content_to_kg_ha

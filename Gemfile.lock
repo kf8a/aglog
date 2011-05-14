@@ -68,6 +68,7 @@ GEM
       rack-test (>= 0.5.7)
     culerity (0.2.15)
     daemons (1.1.3)
+    database_cleaner (0.6.7)
     delocalize (0.2.5)
     diff-lcs (1.1.2)
     erubis (2.6.6)
@@ -280,6 +281,7 @@ DEPENDENCIES
   capybara
   chronic
   cucumber-rails
+  database_cleaner
   delocalize
   escape_utils
   factory_girl
