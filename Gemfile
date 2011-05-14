@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -32,7 +32,7 @@ group :development do
   gem 'metric_fu'
 end
 
-group :development, :test do 
+group :development, :test do
   #gem 'silent-postgres'
   gem 'rspec-rails'
 end
