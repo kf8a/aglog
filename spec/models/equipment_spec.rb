@@ -6,22 +6,21 @@ describe Equipment do
     find_or_factory(:equipment)
   end
 
-  it {should belong_to :company }
+  it { should belong_to :company }
   it { should validate_presence_of :company}
-  it 'should validate the uniquenes of the case insensitive name by scope' do
+  it 'should validate the uniqueness of the case insensitive name by scope' do
     name = 'tractor'
     company = find_or_factory(:company)
     equipment = find_or_factory(:equipment, :name => name, :company_id => company)
 
-    equipment_with_same_name_and_company = Equipment.new(:name=>name.upcase)
-    equipment_with_same_name_and_company.company = company
-    equipment_with_same_name_different_company = Equipment.new(:name=>name)
-    equipment_with_same_name_different_company.company = Factory.create(:company)
+    equipment_with_same_name_and_company = company.equipment.new(:name=>name.upcase)
+    equipment_with_same_name_different_company = Equipment.new(:name=>name, :company => Factory.create(:company))
+
     equipment_with_same_name_different_company.save
     equipment_with_same_name_and_company.save
-    
-    assert_equal "has already been taken", equipment_with_same_name_and_company.errors[:name][0]
-    assert_nil equipment_with_same_name_different_company.errors[:name][0]
+
+    equipment_with_same_name_and_company.errors[:name][0].should eq("has already been taken")
+    equipment_with_same_name_different_company.errors[:name][0].should be_nil
   end
 
   it 'should grab all and only the right its own observations with self.observations' do
@@ -46,4 +45,3 @@ describe Equipment do
     assert !@equipment.observations.include?(not_included_observation)
   end
 end
-
