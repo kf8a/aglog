@@ -2,7 +2,7 @@
 class UnitsController < ApplicationController
 
   def index
-    @units = Unit.all
+    @units = Unit.ordered.all
     respond_with @units
   end
 
