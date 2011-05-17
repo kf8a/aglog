@@ -3,9 +3,9 @@ class EquipmentController < ApplicationController
 
   def index
     if current_user
-      @equipment = Equipment.by_company(current_user.company)
+      @equipment = Equipment.by_company(current_user.company).ordered
     else
-      @equipment = Equipment.order('name').all
+      @equipment = Equipment.ordered.all
     end
 
     respond_with @equipment do |format|
