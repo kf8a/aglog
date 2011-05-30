@@ -20,6 +20,9 @@ label {
 	font-weight: bold;
 }
 
+tr:hover {
+  background-color: #FCF;
+}
 dt {
     font-weight: bold
 }

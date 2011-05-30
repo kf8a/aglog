@@ -5,9 +5,9 @@ class PeopleController < ApplicationController
   # GET /people.xml
   def index
     if current_user
-      @people = Person.by_company(current_user.company).order('given_name').all
+      @people = Person.by_company(current_user.company).ordered.all
     else
-      @people = Person.order('given_name').all
+      @people = Person.ordered.all
     end 
     respond_with @people
   end
