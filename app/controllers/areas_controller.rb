@@ -54,9 +54,7 @@ class AreasController < ApplicationController
 
   def check_parsing
     @areas = Area.check_parse(params[:areas_as_text])
-    respond_with @areas do |format|
-      format.js { render :text => @areas }
-    end
+    render :text => @areas
   end
 
 end

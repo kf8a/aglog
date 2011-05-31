@@ -2,6 +2,8 @@
   <%= form.input :observation_date, :start_year=>1988, :as=>:date_picker %>
   <%= form.input :comment, :input_html=>{:class => 'autofocus'} %>
   <%= form.input :areas_as_text, :hint=> area_help_text %>
+  <p>Results of parsing these areas will appear below: </p>
+  <div id="results"></div>
   <%= form.input :observation_types, :as=>:check_boxes, :multiple=>true%>
 
 

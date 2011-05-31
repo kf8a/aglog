@@ -68,7 +68,7 @@ class Area < ActiveRecord::Base
   end
 
   def Area.check_parse(areas_as_text)
-    parsing_result = Area.parse(areas_as_text)
+    parsing_result = parse(areas_as_text)
     if parsing_result.class == String #failed parse
       'Parsing failed; invalid parts are marked: ' + parsing_result
     else
