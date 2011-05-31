@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AreasController do
   render_views
-  
+
   describe 'Not signed in. ' do
     before(:each) do
       sign_out
@@ -32,7 +32,7 @@ describe AreasController do
       end
 
       it { should redirect_to new_person_session_path }
-      
+
       it "should not create an area" do
         Area.exists?(:name => 'T2R22').should be_false
       end
@@ -143,7 +143,7 @@ describe AreasController do
 
     describe "An area exists. " do
       before(:each) do
-        @area = find_or_factory(:area, :name => 'existing_area', 
+        @area = find_or_factory(:area, :name => 'existing_area',
                                :company_id=>@user.company_id)
       end
 
@@ -180,7 +180,7 @@ describe AreasController do
 
       describe "PUT :update with invalid attributes" do
         before(:each) do
-          find_or_factory(:area, :name => 'repeat_name', 
+          find_or_factory(:area, :name => 'repeat_name',
                           :company_id => @user.company_id)
           put :update, :id => @area.id, :area => { :name => 'repeat_name' }
         end
@@ -202,6 +202,17 @@ describe AreasController do
           Area.exists?(@area.id).should be_false
         end
       end
+    end
+
+    describe 'GET :check_parsing (js)' do
+      before(:each) do
+        get :check_parsing, :areas_as_text => 'G1', :format => 'js'
+      end
+
+      it 'should give the right response' do
+        response.body.should == 'G1R1, G1R2, G1R3, G1R4, G1R5'
+      end
+      it { should assign_to :areas }
     end
   end
 end

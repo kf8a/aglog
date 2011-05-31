@@ -5,7 +5,11 @@ Aglog::Application.routes.draw do
   match '/logout' => 'person_sessions#destroy'
 
   resources :hazards
-  resources :areas
+  resources :areas do
+    collection do
+      get :check_parsing
+    end
+  end
   resources :observations do
     collection do
       get :related

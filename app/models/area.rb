@@ -67,6 +67,15 @@ class Area < ActiveRecord::Base
     end
   end
 
+  def Area.check_parse(areas_as_text)
+    parsing_result = Area.parse(areas_as_text)
+    if parsing_result.class == String #failed parse
+      'Parsing failed; invalid parts are marked: ' + parsing_result
+    else
+      parsing_result.collect { |area| area.name }.join(', ')
+    end
+  end
+
     # Transforms an array of areas into a list of area names and study names if a
   # whole study's areas are included.
   # @param [Array] areas an array of areas
