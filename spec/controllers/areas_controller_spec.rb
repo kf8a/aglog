@@ -214,5 +214,15 @@ describe AreasController do
       end
       it { should assign_to :areas }
     end
+
+    describe 'GET :check_parsing (js) with failed parsing' do
+      before(:each) do
+        get :check_parsing, :areas_as_text => 'V7', :format => 'js'
+      end
+
+      it 'should give the right message' do
+        response.body.should == 'Parsing failed; invalid parts are marked: *V7*'
+      end
+    end
   end
 end
