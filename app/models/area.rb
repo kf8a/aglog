@@ -20,14 +20,16 @@ class Area < ActiveRecord::Base
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
-  def Area.index_areas(observation_id, current_user)
+  def Area.index_areas(observation_id)
     observation = Observation.find_by_id(observation_id)
     broad_scope = observation.try(:areas) || Area
-    if current_user
-      broad_scope.by_company(current_user.company).order('study_id, name').includes(:study).all
-    else
-      broad_scope.order('study_id, name').includes(:study).all
-    end
+    broad_scope.order('study_id, name').includes(:study).all
+  end
+
+  def Area.index_areas_by_company_and_observation(company, observation_id)
+    observation = Observation.find_by_id(observation_id)
+    broad_scope = observation.try(:areas) || Area
+    broad_scope.by_company(company).order('study_id, name').includes(:study).all
   end
 
   # Tries to find areas by their names.

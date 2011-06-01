@@ -2,7 +2,14 @@
 class AreasController < ApplicationController
 
   def index
-    @areas = Area.index_areas(params[:observation_id], current_user)
+    company = current_user.try(:company)
+    observation_id = params[:observation_id]
+    @areas =
+        if company
+          Area.index_areas_by_company_and_observation(company, observation_id)
+        else
+          Area.index_areas(observation_id)
+        end
 
     respond_with @areas do |format|
       format.html { render_by_authorization('index') }
