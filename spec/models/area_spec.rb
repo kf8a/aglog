@@ -225,7 +225,7 @@ describe Area do
 
     describe 'areas with the same name from different company' do
       before(:each) do
-        @area = Area.find_by_name('T1R1') 
+        @area = Area.find_by_name('T1R1')
         @area.company_id = 1
         @area.save
       end
@@ -325,6 +325,13 @@ describe Area do
       parse_reverse('CE1')
       parse_reverse('CE101')
     end
+
+    it "should return and correcttly mark problematic areas" do
+      assert_equal '*G34*', Area.parse('G34')
+      assert_equal 'G2R1 *G34*', Area.parse('G2R1, G34')
+      assert_equal 'G2R1 *G34-*', Area.parse('G2R1, G34-')
+      assert_equal 'G2R1 *G34**', Area.parse('G2R1, G34*')
+    end
   end
 
   context 'An area with a study' do
@@ -350,10 +357,9 @@ describe Area do
   	unparsed_area_string = Area.unparse(areas)
   	assert_equal test_string.upcase.split.sort.join(' '), unparsed_area_string.split.sort.join(' ')
   end
-  
+
   def find_by_study_and_treatment_number(study, treatment_number)
     treatments = Treatment.where(:study_id => study, :treatment_number => treatment_number)
     treatments.collect{ |t| t.areas}.flatten
   end
 end
-
