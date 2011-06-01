@@ -67,24 +67,6 @@ class Area < ActiveRecord::Base
     end
   end
 
-  def Area.bad_ones_marked(areas_as_text)
-    area_parts = areas_as_text.sub(',', ' ').split
-    if area_parts.count == 1
-      area_text = '*' + area_parts[0] + '*'
-    else
-      area_text = area_parts.collect do |area_part|
-        parsed_part = parse(area_part)
-        if parsed_part.class == String
-          parsed_part
-        else
-          area_part
-        end
-      end.join(' ')
-    end
-
-    area_text
-  end
-
   def Area.check_parse(areas_as_text)
     parsing_result = parse(areas_as_text)
     if parsing_result.class == String #failed parse
@@ -112,6 +94,26 @@ class Area < ActiveRecord::Base
 
 
   private##########################################
+
+  def Area.bad_ones_marked(areas_as_text)
+    area_parts = areas_as_text.sub(',', ' ').split
+    if area_parts.count == 1
+      '*' + area_parts[0] + '*'
+    else
+      parse_individual_pieces(area_parts)
+    end
+  end
+
+  def Area.parse_individual_pieces(area_parts)
+    area_parts.collect do |area_part|
+      parsed_part = parse(area_part)
+      if parsed_part.class == String
+        parsed_part
+      else
+        area_part
+      end
+    end.join(' ')
+  end
 
   def Area.mark_invalid_tokens(invalid_tokens, areas_as_text)
     tokens = areas_as_text.split(/[ |,]+/)
