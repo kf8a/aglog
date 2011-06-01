@@ -63,8 +63,26 @@ class Area < ActiveRecord::Base
       end
 
     rescue Parslet::ParseFailed => error
-      areas_as_text
+      bad_ones_marked(areas_as_text)
     end
+  end
+
+  def Area.bad_ones_marked(areas_as_text)
+    area_parts = areas_as_text.sub(',', ' ').split
+    if area_parts.count == 1
+      area_text = '*' + area_parts[0] + '*'
+    else
+      area_text = area_parts.collect do |area_part|
+        parsed_part = parse(area_part)
+        if parsed_part.class == String
+          parsed_part
+        else
+          area_part
+        end
+      end.join(' ')
+    end
+
+    area_text
   end
 
   def Area.check_parse(areas_as_text)
