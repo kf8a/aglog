@@ -49,9 +49,9 @@ class Area < ActiveRecord::Base
     begin
       area_tokens = transformer.apply(parser.parse(areas_as_text.upcase))
       areas = area_tokens.collect.with_index do |token, i|
-        area = Area.joins(:treatment, :study)
-                   .where(:company_id => company)
-                   .send(:where, token[:where])
+        area = Area.joins(:treatment, :study)\
+                   .where(:company_id => company)\
+                   .send(:where, token[:where])\
                    .all
         invalid_tokens << i if area.empty?
         area
