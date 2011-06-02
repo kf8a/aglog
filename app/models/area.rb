@@ -44,11 +44,8 @@ class Area < ActiveRecord::Base
     return [] if areas_as_text.strip.empty?
 
     company = options[:company] || 1
-    parser = AreaParser.new
-    transformer = AreaParserTransform.new
-
     begin
-      area_tokens = transformer.apply(parser.parse(areas_as_text.upcase))
+      area_tokens = transform_text_to_tokens(areas_as_text)
       areas, invalid_tokens = search_with_tokens(area_tokens, company)
       if invalid_tokens.empty?
         areas.flatten
@@ -88,6 +85,11 @@ class Area < ActiveRecord::Base
 
 
   private##########################################
+
+  def Area.transform_text_to_tokens(areas_as_text)
+    parser, transformer = AreaParser.new, AreaParserTransform.new
+    transformer.apply(parser.parse(areas_as_text.upcase))
+  end
 
   def Area.search_with_tokens(area_tokens, company, invalid_tokens = [])
     areas = area_tokens.collect.with_index do |token, index|
