@@ -84,8 +84,8 @@ class Area < ActiveRecord::Base
   # @return [String] a list of area names and study names if a whole study's
   #   areas are included (and treatment names for the same reason)
   def Area.unparse(areas = [])
-    names, areas = replace_class_areas_by_class([], areas, Study)
-    names, areas = replace_class_areas_by_class(names, areas, Treatment)
+    names, areas = replace_class_areas_by_class([], areas, 'Study')
+    names, areas = replace_class_areas_by_class(names, areas, 'Treatment')
     names += areas.uniq.collect { |area| area.name }
     names.sort.join(' ')
   end
@@ -125,14 +125,13 @@ class Area < ActiveRecord::Base
     tokens.join(' ')
   end
 
-  def Area.replace_class_areas_by_class(names, areas, klass)
-    id_method = "#{klass.name.downcase}_id"
-    member_ids = areas.collect { |area| area.send(id_method) }
-    member_ids.compact.uniq.each do |member_id|
+  def Area.replace_class_areas_by_class(names, areas, class_name)
+    id_method = class_name.foreign_key
+    areas.member_ids(id_method).each do |member_id|
       member_areas = Area.where(id_method => member_id).all
       if areas.contains(member_areas)
         areas -= member_areas
-        names << klass.find(member_id).name
+        names << class_name.constantize.find(member_id).name
       end
     end
 
@@ -155,6 +154,12 @@ end
 class Array
   def contains(other_array)
     [] == other_array - self
+  end
+
+  #Gathers the range of ids (e.g. study_ids) that an array has.
+  # id_method should be a string, like 'study_id' or 'treatment_id'
+  def member_ids(id_method)
+    collect { |member| member.send(id_method) }.compact.uniq
   end
 end
 
