@@ -89,14 +89,13 @@ class Area < ActiveRecord::Base
 
   private##########################################
 
-  def Area.search_with_tokens(area_tokens, company)
-    invalid_tokens = []
-    areas = area_tokens.collect.with_index do |token, i|
+  def Area.search_with_tokens(area_tokens, company, invalid_tokens = [])
+    areas = area_tokens.collect.with_index do |token, index|
       area = Area.joins(:treatment, :study)\
                    .where(:company_id => company)\
                    .send(:where, token[:where])\
                    .all
-      invalid_tokens << i if area.empty?
+      invalid_tokens << index if area.empty?
       area
     end
 
