@@ -46,18 +46,10 @@ class Area < ActiveRecord::Base
     company = options[:company] || 1
     parser = AreaParser.new
     transformer = AreaParserTransform.new
-    invalid_tokens = []
 
     begin
       area_tokens = transformer.apply(parser.parse(areas_as_text.upcase))
-      areas = area_tokens.collect.with_index do |token, i|
-        area = Area.joins(:treatment, :study)\
-                   .where(:company_id => company)\
-                   .send(:where, token[:where])\
-                   .all
-        invalid_tokens << i if area.empty?
-        area
-      end
+      areas, invalid_tokens = search_with_tokens(area_tokens, company)
       if invalid_tokens.empty?
         areas.flatten
       else
@@ -96,6 +88,20 @@ class Area < ActiveRecord::Base
 
 
   private##########################################
+
+  def Area.search_with_tokens(area_tokens, company)
+    invalid_tokens = []
+    areas = area_tokens.collect.with_index do |token, i|
+      area = Area.joins(:treatment, :study)\
+                   .where(:company_id => company)\
+                   .send(:where, token[:where])\
+                   .all
+      invalid_tokens << i if area.empty?
+      area
+    end
+
+    [areas, invalid_tokens]
+  end
 
   def Area.bad_ones_marked(areas_as_text)
     area_parts = areas_as_text.sub(',', ' ').split
