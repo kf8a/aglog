@@ -326,7 +326,19 @@ describe Area do
       parse_reverse('CE101')
     end
 
-    it "should return and correcttly mark problematic areas" do
+    it "should correctly parse/unparse WICST areas" do
+      parse_reverse('ldpR1')
+      parse_reverse('ldpR2')
+      parse_reverse('ldpR3')
+      parse_reverse('hdpR1')
+      parse_reverse('hdpR2')
+      parse_reverse('hdpR3')
+      parse_reverse('sgR1')
+      parse_reverse('sgR2')
+      parse_reverse('sgR3')
+    end
+
+    it "should return and correctly mark problematic areas" do
       assert_equal '*G34*', Area.parse('G34')
       assert_equal 'G2R1 *G34*', Area.parse('G2R1, G34')
       assert_equal 'G2R1 *G34-*', Area.parse('G2R1, G34-')
