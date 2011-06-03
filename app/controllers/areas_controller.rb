@@ -12,6 +12,7 @@ class AreasController < ApplicationController
         if company
           Area.index_areas_by_company_and_observation(company, observation_id)
         else
+#          Area.index_areas_by_observation(observation_id)
           Area.roots
         end
 

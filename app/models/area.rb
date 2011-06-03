@@ -37,6 +37,11 @@ class Area < ActiveRecord::Base
     leaves
   end
 
+  def Area.coalese(areas = [])
+    # need to check if one or more ancestors are complete
+
+  end
+
   def Area.index_areas(observation_id)
     observation = Observation.find_by_id(observation_id)
     broad_scope = observation.try(:areas) || Area

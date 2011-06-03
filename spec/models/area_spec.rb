@@ -47,7 +47,7 @@ describe Area do
   describe 'finding Areas within a company' do
   end
 
-  describe 'expanding Areas' do
+  describe 'expanding and coalesing Areas' do
     context 'a plot with children' do
       before(:each) do
         @ancestor = find_or_factory(:area, :name=>'T1')
@@ -57,17 +57,18 @@ describe Area do
         @child1.move_to_child_of(@ancestor)
         @child2.move_to_child_of(@ancestor)
       end
-      it 'should return an array of children' do
+      it 'should expand  to an array of children' do
         assert @ancestor.expand.include?(@child1)
         assert @ancestor.expand.include?(@child2)
         assert !@ancestor.expand.include?(@child3)
       end
-    end
-  end
 
-  describe 'coalesing Areas' do
-    context 'a complete set of children' do
-      it 'should return the ancestor' 
+      context 'coalesing area' do
+
+        it 'should return the ancestor'  do
+          assert_equal @ancestor, Area.coalese([@child1, @child2]) 
+        end
+      end
     end
   end
 
