@@ -30,6 +30,8 @@ gem 'delocalize'
 
 gem 'awesome_nested_set'
 
+gem 'seedbed'
+
 #Gets rid of annoying UTF-8 string error in rack
 gem "escape_utils"
 
