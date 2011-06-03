@@ -33,6 +33,10 @@ class Area < ActiveRecord::Base
     Area.where('lower(name) like ?', query).all
   end
 
+  def expand
+    leaves
+  end
+
   def Area.index_areas(observation_id)
     observation = Observation.find_by_id(observation_id)
     broad_scope = observation.try(:areas) || Area

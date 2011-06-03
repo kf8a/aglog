@@ -47,6 +47,24 @@ describe Area do
   describe 'finding Areas within a company' do
   end
 
+  describe 'expanding Areas' do
+    context 'a plot with children' do
+      before(:each) do
+        @ancestor = find_or_factory(:area, :name=>'T1')
+        @child1 = find_or_factory(:area, :name=>'T1R1')
+        @child2 = find_or_factory(:area, :name=>'T1R2')
+        @child3 = find_or_factory(:area, :name=>'T2R1')
+        @child1.move_to_child_of(@ancestor)
+        @child2.move_to_child_of(@ancestor)
+      end
+      it 'should return an array of children' do
+        assert @ancestor.expand.include?(@child1)
+        assert @ancestor.expand.include?(@child2)
+        assert !@ancestor.expand.include?(@child3)
+      end
+    end
+  end
+
   describe "requires valid study if any: " do
     before(:each) do
       @existent_study = find_or_factory(:study)
