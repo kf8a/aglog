@@ -65,6 +65,12 @@ describe Area do
     end
   end
 
+  describe 'coalesing Areas' do
+    context 'a complete set of children' do
+      it 'should return the ancestor' 
+    end
+  end
+
   describe "requires valid study if any: " do
     before(:each) do
       @existent_study = find_or_factory(:study)
