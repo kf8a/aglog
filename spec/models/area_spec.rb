@@ -44,6 +44,9 @@ describe Area do
     end
   end
 
+  describe 'finding Areas within a company' do
+  end
+
   describe "requires valid study if any: " do
     before(:each) do
       @existent_study = find_or_factory(:study)

@@ -4,21 +4,8 @@
 
 %table
   %tr
-    %th Name
+    %th Area
     %th Description
-    %th Study
 
   - @areas.each do |area|
-    %tr(id="#{area.name}")
-      %td
-        = area.name
-      %td
-        = area.description
-      %td
-        = area.study_name
-      %td
-        = link_to 'Show', area
-      %td
-        = link_to 'Edit', edit_area_path(area)
-      %td
-        = link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
+    = render area

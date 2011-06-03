@@ -22,6 +22,17 @@ class Area < ActiveRecord::Base
 
   acts_as_nested_set
 
+  # returns a name that has the propper indentation 
+  # for displaying in a tree view
+  def tree_name
+    '-' * level + ' ' + name
+  end
+
+  def Area.find_with_name_like(query)
+    query = query.downcase + '%'
+    Area.where('lower(name) like ?', query).all
+  end
+
   def Area.index_areas(observation_id)
     observation = Observation.find_by_id(observation_id)
     broad_scope = observation.try(:areas) || Area

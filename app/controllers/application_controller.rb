@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   respond_to :html, :xml
 
-  before_filter :require_user, :except => [:index, :show]
+  before_filter :require_user, :except => [:index, :show] 
 
   helper_method :current_user, :signed_in?
 

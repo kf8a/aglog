@@ -1,19 +1,30 @@
 # Allows modification and viewing of areas
 class AreasController < ApplicationController
 
+  respond_to :html, :json
+
   def index
     company = current_user.try(:company)
     observation_id = params[:observation_id]
+    query = params[:q]
+
     @areas =
         if company
           Area.index_areas_by_company_and_observation(company, observation_id)
         else
-          Area.index_areas(observation_id)
+          Area.roots
         end
 
-    respond_with @areas do |format|
-      format.html { render_by_authorization('index') }
+    if query
+      @areas =  
+        if company
+          Area.by_company(company).find_with_name_like(query)
+        else
+          Area.find_with_name_like(query)
+        end
+        @areas = @areas.collect {|x| {:id=>x.id, :name=>x.name}}
     end
+    respond_with @areas
   end
 
   def show
@@ -26,6 +37,11 @@ class AreasController < ApplicationController
     respond_with @area do |format|
       format.html { render_by_authorization('show') }
     end
+  end
+
+  def query
+    company = current_user.try(:company)
+    respond_with @areas
   end
 
   def new

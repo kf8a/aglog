@@ -3,25 +3,7 @@ $(document).ready(function() {
     // Put cursor on first text input of form
     $('.autofocus:first').focus();
     $('input.ui-date-picker').datepicker();
-    $('#observation_areas_as_text').keyup(function(e){
-        e.preventDefault();
-        var $q = $(this);
-
-        if($q.val() == ''){
-            $('div#results').html('');
-            return false;
-        }
-
-        $.get('../areas/check_parsing',{
-            areas_as_text:$q.val()
-        }, function(data){
-            $('div#results').html(data);
-            return true;
-        });
-    });
-
-
-
+    $('#observation_areas_as_text').tokenInput('/areas');
 
 
 //    // All links with data_popup make a small popup window of what they link to.
