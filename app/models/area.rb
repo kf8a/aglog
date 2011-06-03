@@ -20,6 +20,8 @@ class Area < ActiveRecord::Base
   validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
+  acts_as_nested_set
+
   def Area.index_areas(observation_id)
     observation = Observation.find_by_id(observation_id)
     broad_scope = observation.try(:areas) || Area
