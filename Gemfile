@@ -28,6 +28,8 @@ gem 'formtastic_datepicker_inputs'
 
 gem 'delocalize'
 
+gem 'awesome_nested_set'
+
 #Gets rid of annoying UTF-8 string error in rack
 gem "escape_utils"
 

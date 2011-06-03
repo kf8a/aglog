@@ -32,6 +32,8 @@ GEM
     addressable (2.2.4)
     arel (2.0.10)
     arrayfields (4.7.4)
+    awesome_nested_set (2.0.0)
+      activerecord (>= 3.0.0)
     blankslate (2.1.2.4)
     builder (2.1.2)
     capybara (1.0.0.beta1)
@@ -274,6 +276,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_nested_set
   capybara
   chronic
   cucumber-rails
