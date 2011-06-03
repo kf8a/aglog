@@ -1,0 +1,7 @@
+Unit.find_or_create_by_name(:name => 'gram')
+Unit.find_or_create_by_name(:name => 'kilogram', :si_unit_id => 1, :conversion_factor => 1000)
+Unit.find_or_create_by_name(:name => 'bushel')
+Unit.find_or_create_by_name(:name => 'metric ton')
+Unit.find_or_create_by_name(:name => 'fluid ounce')
+Unit.find_or_create_by_name(:name => 'ounce')
+Unit.find_or_create_by_name(:name => 'quart')
