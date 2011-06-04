@@ -66,7 +66,7 @@ describe Area do
       context 'coalesing area' do
 
         it 'should return the ancestor'  do
-          assert_equal @ancestor, Area.coalese([@child1, @child2]) 
+          assert_equal @ancestor, Area.coalese([@child1, @child2])
         end
       end
     end
@@ -391,11 +391,11 @@ describe Area do
   private
 
   def parse_reverse(test_string)
-  	areas = Area.parse(test_string)
+    areas = Area.parse(test_string)
     areas.should be_a Array
     areas.should_not be_empty
-  	unparsed_area_string = Area.unparse(areas)
-  	assert_equal test_string.upcase.split.sort.join(' '), unparsed_area_string.split.sort.join(' ')
+    unparsed_area_string = Area.unparse(areas)
+    assert_equal test_string.upcase.split.sort.join(' '), unparsed_area_string.upcase.split.sort.join(' ')
   end
 
   def find_by_study_and_treatment_number(study, treatment_number)
