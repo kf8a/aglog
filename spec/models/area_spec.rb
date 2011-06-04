@@ -50,10 +50,10 @@ describe Area do
   describe 'expanding and coalesing Areas' do
     context 'a plot with children' do
       before(:each) do
-        @ancestor = find_or_factory(:area, :name=>'T1')
-        @child1 = find_or_factory(:area, :name=>'T1R1')
-        @child2 = find_or_factory(:area, :name=>'T1R2')
-        @child3 = find_or_factory(:area, :name=>'T2R1')
+        @ancestor = find_or_factory(:area, :name=>'Test1')
+        @child1 = find_or_factory(:area, :name=>'Test1R1')
+        @child2 = find_or_factory(:area, :name=>'Test1R2')
+        @child3 = find_or_factory(:area, :name=>'Test2R1')
         @child1.move_to_child_of(@ancestor)
         @child2.move_to_child_of(@ancestor)
       end
@@ -66,7 +66,7 @@ describe Area do
       context 'coalesing area' do
 
         it 'should return the ancestor'  do
-          assert_equal @ancestor, Area.coalese([@child1, @child2]) 
+          assert_equal [@ancestor], Area.coalese([@child1, @child2])
         end
       end
     end
@@ -131,11 +131,6 @@ describe Area do
 
     it "should return area T1R1 (among others) when given 'T1' to parse" do
       areas = Area.parse('T1')
-      assert areas.any? {|a| a.name = 'T1R1'}
-    end
-
-    it "should return area T1R1 (among others) when given 'T*R1' to parse" do
-      areas = Area.parse('T*R1')
       assert areas.any? {|a| a.name = 'T1R1'}
     end
 
@@ -315,9 +310,9 @@ describe Area do
           "B1 B2R1",
           "T1R1 T1R2 T1R3",
           "B1R1 B1R2 B1R3",
-          # "F1",
-          # "iF1",
-          # "REPT1",
+          "F1",
+          "iF1",
+          #"REPT1",
           "T1" # tidy end for comma list
         ]
       test_strings.each do |s|
@@ -391,11 +386,11 @@ describe Area do
   private
 
   def parse_reverse(test_string)
-  	areas = Area.parse(test_string)
+    areas = Area.parse(test_string)
     areas.should be_a Array
     areas.should_not be_empty
-  	unparsed_area_string = Area.unparse(areas)
-  	assert_equal test_string.upcase.split.sort.join(' '), unparsed_area_string.split.sort.join(' ')
+    unparsed_area_string = Area.unparse(areas)
+    assert_equal test_string.upcase.split.sort.join(' '), unparsed_area_string.upcase.split.sort.join(' ')
   end
 
   def find_by_study_and_treatment_number(study, treatment_number)
