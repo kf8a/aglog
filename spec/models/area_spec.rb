@@ -50,10 +50,10 @@ describe Area do
   describe 'expanding and coalesing Areas' do
     context 'a plot with children' do
       before(:each) do
-        @ancestor = find_or_factory(:area, :name=>'T1')
-        @child1 = find_or_factory(:area, :name=>'T1R1')
-        @child2 = find_or_factory(:area, :name=>'T1R2')
-        @child3 = find_or_factory(:area, :name=>'T2R1')
+        @ancestor = find_or_factory(:area, :name=>'Test1')
+        @child1 = find_or_factory(:area, :name=>'Test1R1')
+        @child2 = find_or_factory(:area, :name=>'Test1R2')
+        @child3 = find_or_factory(:area, :name=>'Test2R1')
         @child1.move_to_child_of(@ancestor)
         @child2.move_to_child_of(@ancestor)
       end
@@ -66,7 +66,7 @@ describe Area do
       context 'coalesing area' do
 
         it 'should return the ancestor'  do
-          assert_equal @ancestor, Area.coalese([@child1, @child2])
+          assert_equal [@ancestor], Area.coalese([@child1, @child2])
         end
       end
     end
