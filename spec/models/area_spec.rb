@@ -134,11 +134,6 @@ describe Area do
       assert areas.any? {|a| a.name = 'T1R1'}
     end
 
-    it "should return area T1R1 (among others) when given 'T*R1' to parse" do
-      areas = Area.parse('T*R1')
-      assert areas.any? {|a| a.name = 'T1R1'}
-    end
-
     it "should correctly parse 'T2 T4'" do
       areas = Area.parse("T2 T4")
       assert areas.all? {|x| x.class.name == 'Area'}
