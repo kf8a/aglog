@@ -34,12 +34,26 @@ class Area < ActiveRecord::Base
   end
 
   def expand
-    leaves
+    leaf? ? self : leaves
   end
 
   def Area.coalese(areas = [])
     # need to check if one or more ancestors are complete
-    
+
+    real_parents = []
+
+    areas.each do |area|
+      if areas.contains?(area.siblings.all)
+        real_parents << area.parent
+      end
+    end
+
+    real_parents.uniq!
+    replacable_children = real_parents.collect { |father| father.descendants }.flatten.uniq
+    areas -= replacable_children
+    areas += real_parents
+
+    areas
   end
 
   def Area.index_areas(observation_id)
@@ -73,7 +87,7 @@ class Area < ActiveRecord::Base
       areas = []
       invalid_tokens = []
       tokens.each.with_index do |token, index|
-        if area = Area.find_by_name(token)
+        if area = Area.find_by_name_and_company_id(token, company)
           areas << area.expand
         else
           invalid_tokens << index
@@ -105,6 +119,13 @@ class Area < ActiveRecord::Base
   # @return [String] a list of area names and study names if a whole study's
   #   areas are included (and treatment names for the same reason)
   def Area.unparse(areas = [])
+    ready_to_stop = false
+    areas = areas.collect{ |area| area.leaf? ? area : area.leaves.all }.flatten.uniq
+    until ready_to_stop
+      compact_areas = Area.coalese(areas)
+      ready_to_stop = (compact_areas == areas)
+      areas = compact_areas
+    end
     names = areas.collect { |area| area.name }.uniq
 
     names.sort.join(' ')
@@ -190,7 +211,7 @@ class Area < ActiveRecord::Base
 end
 
 class Array
-  def contains(other_array)
+  def contains?(other_array)
     [] == other_array - self
   end
 
