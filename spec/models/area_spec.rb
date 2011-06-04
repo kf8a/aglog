@@ -315,9 +315,9 @@ describe Area do
           "B1 B2R1",
           "T1R1 T1R2 T1R3",
           "B1R1 B1R2 B1R3",
-          # "F1",
-          # "iF1",
-          # "REPT1",
+          "F1",
+          "iF1",
+          #"REPT1",
           "T1" # tidy end for comma list
         ]
       test_strings.each do |s|
