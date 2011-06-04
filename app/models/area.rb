@@ -87,6 +87,21 @@ class Area < ActiveRecord::Base
       areas = []
       invalid_tokens = []
       tokens.each.with_index do |token, index|
+        if token.include?('-')
+          token = token.partition('-')
+          first_number_part = second_number_part = ''
+          until token[0][-1].to_i == 0
+            first_number_part = token[0][-1] + first_number_part
+            token[0].chop!
+          end
+          until token[-1][-1].to_i == 0
+            second_number_part = token[-1][-1] + second_number_part
+            token[-1].chop!
+          end
+          first_part = token[0] + first_number_part
+          second_part = token[0] + second_number_part
+          token = first_part..second_part
+        end
         if area = Area.find_by_name_and_company_id(token, company)
           areas << area.expand
         else
