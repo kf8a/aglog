@@ -22,7 +22,7 @@ class Area < ActiveRecord::Base
 
   acts_as_nested_set
 
-  # returns a name that has the propper indentation 
+  # returns a name that has the propper indentation
   # for displaying in a tree view
   def tree_name
     '-' * level + ' ' + name
@@ -39,7 +39,7 @@ class Area < ActiveRecord::Base
 
   def Area.coalese(areas = [])
     # need to check if one or more ancestors are complete
-
+    
   end
 
   def Area.index_areas(observation_id)
@@ -66,18 +66,28 @@ class Area < ActiveRecord::Base
     return [] if areas_as_text.strip.empty?
 
     company = options[:company] || 1
-    begin
-      area_tokens = transform_text_to_tokens(areas_as_text)
-      areas, invalid_tokens = search_with_tokens(area_tokens, company)
+#    begin
+      #area_tokens = transform_text_to_tokens(areas_as_text)
+      #areas, invalid_tokens = search_with_tokens(area_tokens, company)
+      tokens = areas_as_text.split(/[ |,]+/)
+      areas = []
+      invalid_tokens = []
+      tokens.each.with_index do |token, index|
+        if area = Area.find_by_name(token)
+          areas << area.expand
+        else
+          invalid_tokens << index
+        end
+      end
       if invalid_tokens.empty?
         areas.flatten
       else
         mark_invalid_tokens(invalid_tokens, areas_as_text)
       end
 
-    rescue Parslet::ParseFailed => error
-      bad_ones_marked(areas_as_text)
-    end
+#    rescue Parslet::ParseFailed => error
+ #     bad_ones_marked(areas_as_text)
+  #  end
   end
 
   def Area.check_parse(areas_as_text)
@@ -95,9 +105,8 @@ class Area < ActiveRecord::Base
   # @return [String] a list of area names and study names if a whole study's
   #   areas are included (and treatment names for the same reason)
   def Area.unparse(areas = [])
-    names, areas = replace_class_areas_by_class([], areas, 'Study')
-    names, areas = replace_class_areas_by_class(names, areas, 'Treatment')
-    names += areas.uniq.collect { |area| area.name }
+    names = areas.collect { |area| area.name }.uniq
+
     names.sort.join(' ')
   end
 
