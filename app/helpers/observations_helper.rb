@@ -24,8 +24,7 @@ module ObservationsHelper
     If you type: <b>G2R3, G3R3</b><br />
     Then you will get both areas G2R3 and G3R3<br />
     If you just type <b>G2</b>, you will get all of the G2 areas<br />
-    You can also specify a range: <b>T1-4</b><br />
-    Finally, you may also use * as a wildcard: <b>G*R1</b>".html_safe
+    You can also specify a range: <b>T1-4</b><br />".html_safe
   end
 
 end
