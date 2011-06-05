@@ -13,7 +13,7 @@ describe AreasController do
         get :index
       end
 
-      it { should render_template 'index' }
+      it { should render_template 'unauthorized_index' }
       it { should assign_to :areas }
     end
 
@@ -96,7 +96,7 @@ describe AreasController do
         get :index
       end
 
-      it { should render_template 'index' }
+      it { should render_template 'authorized_index' }
       it { should assign_to :areas }
     end
 
