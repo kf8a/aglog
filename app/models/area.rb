@@ -80,43 +80,41 @@ class Area < ActiveRecord::Base
     return [] if areas_as_text.strip.empty?
 
     company = options[:company] || 1
-#    begin
-      #area_tokens = transform_text_to_tokens(areas_as_text)
-      #areas, invalid_tokens = search_with_tokens(area_tokens, company)
-      tokens = areas_as_text.split(/[ |,]+/)
-      areas = []
-      invalid_tokens = []
-      tokens.each.with_index do |token, index|
-        if token.include?('-')
-          token = token.partition('-')
-          first_number_part = second_number_part = ''
-          until token[0][-1].to_i == 0
-            first_number_part = token[0][-1] + first_number_part
-            token[0].chop!
-          end
-          until token[-1][-1].to_i == 0
-            second_number_part = token[-1][-1] + second_number_part
-            token[-1].chop!
-          end
-          first_part = token[0] + first_number_part
-          second_part = token[0] + second_number_part
-          token = first_part..second_part
-        end
-        if area = Area.find_by_name_and_company_id(token, company)
-          areas << area.expand
-        else
-          invalid_tokens << index
-        end
+    tokens = areas_as_text.split(/[ |,]+/)
+    areas = []
+    invalid_tokens = []
+    tokens.each.with_index do |token, index|
+      if token.include?('-')
+        token = token_as_range(token)
       end
-      if invalid_tokens.empty?
-        areas.flatten
+      if area = Area.find_by_name_and_company_id(token, company)
+        areas << area.expand
       else
-        mark_invalid_tokens(invalid_tokens, areas_as_text)
+        invalid_tokens << index
       end
+    end
+    if invalid_tokens.empty?
+      areas.flatten
+    else
+      mark_invalid_tokens(invalid_tokens, areas_as_text)
+    end
+  end
 
-#    rescue Parslet::ParseFailed => error
- #     bad_ones_marked(areas_as_text)
-  #  end
+  def Area.token_as_range(token)
+    token_parts = token.partition('-')
+    first_number_part = second_number_part = ''
+    until token_parts[0][-1].to_i == 0
+      first_number_part = token_parts[0][-1] + first_number_part
+      token_parts[0].chop!
+    end
+    until token_parts[-1][-1].to_i == 0
+      second_number_part = token_parts[-1][-1] + second_number_part
+      token_parts[-1].chop!
+    end
+    first_part = token_parts[0] + first_number_part
+    second_part = token_parts[0] + second_number_part
+
+    first_part..second_part
   end
 
   def Area.check_parse(areas_as_text)
