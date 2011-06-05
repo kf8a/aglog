@@ -225,7 +225,7 @@ describe AreasController do
       end
     end
 
-    describe 'GET :index (js)' do
+    describe 'GET :index (json)' do
       before(:each) do
         get :index, :q => 't', :format => 'json'
       end
