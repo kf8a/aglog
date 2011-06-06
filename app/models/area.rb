@@ -133,44 +133,6 @@ class Area < ActiveRecord::Base
 
   private##########################################
 
-  def Area.transform_text_to_tokens(areas_as_text)
-    parser, transformer = AreaParser.new, AreaParserTransform.new
-    transformer.apply(parser.parse(areas_as_text.upcase))
-  end
-
-  def Area.search_with_tokens(area_tokens, company, invalid_tokens = [])
-    areas = area_tokens.collect.with_index do |token, index|
-      area = Area.joins(:treatment, :study)\
-                   .where(:company_id => company)\
-                   .send(:where, token[:where])\
-                   .all
-      invalid_tokens << index if area.empty?
-      area
-    end
-
-    [areas, invalid_tokens]
-  end
-
-  def Area.bad_ones_marked(areas_as_text)
-    area_parts = areas_as_text.sub(',', ' ').split
-    if area_parts.count == 1
-      '*' + area_parts[0] + '*'
-    else
-      parse_individual_pieces(area_parts)
-    end
-  end
-
-  def Area.parse_individual_pieces(area_parts)
-    area_parts.collect do |area_part|
-      parsed_part = parse(area_part)
-      if parsed_part.class == String
-        parsed_part
-      else
-        area_part
-      end
-    end.join(' ')
-  end
-
   def Area.mark_invalid_tokens(invalid_tokens, areas_as_text)
     tokens = areas_as_text.split(/[ |,]+/)
     invalid_tokens.each do |index|
