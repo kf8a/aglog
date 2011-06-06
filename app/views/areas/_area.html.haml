@@ -1,18 +1,10 @@
-%tr(id="#{area.name}")
-  %td
-    = area.tree_name
-  %td
-    = area.description
-  %td
-    = area.study_name
-  %td
-    = link_to 'Show', area
-
-  - if signed_in?
-    %td
-      = link_to 'Edit', edit_area_path(area)
-    %td
-      = link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
+%li{:id=>"area_#{area.id}", :draggable=>'true'}
+  = area.tree_name
+  = area.description
+  -# = link_to 'Show', area
+  -# = link_to 'Edit', edit_area_path(area)
+  -# = link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
 
 - unless area.children.empty?
-  = render area.children
+  %ul
+    = render area.children

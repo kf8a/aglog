@@ -11,6 +11,10 @@ a img { border: none;
 		text-decoration: none;
 }
 
+.drag-over {
+  background-color: #FCF;
+}
+
 error { 
 	background-color:yellow
 }
