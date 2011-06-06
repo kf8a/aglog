@@ -170,3 +170,13 @@ wicst = Area.find_or_create_by_name(:name => "WICST", :study_id => 8, :company_i
     area.move_to_child_of(treatment_area)
   end
 end
+
+#For some reason company is not being set in the above methods
+
+company = Company.find_by_name('lter')
+Area.all.each do |area|
+  unless area.company
+    area.company = company
+    area.save
+  end
+end
