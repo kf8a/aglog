@@ -6,6 +6,9 @@ Aglog::Application.routes.draw do
 
   resources :hazards
   resources :areas do
+    member do
+      put :to
+    end
     collection do
       get :check_parsing
     end

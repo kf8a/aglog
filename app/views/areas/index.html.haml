@@ -2,10 +2,6 @@
 
 = link_to 'New area', new_area_path
 
-%table
-  %tr
-    %th Area
-    %th Description
-
+%ul
   - @areas.each do |area|
     = render area
