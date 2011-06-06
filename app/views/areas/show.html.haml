@@ -1,4 +1,6 @@
-= link_to 'Edit', edit_area_path(@area)
+-if signed_in?
+  = link_to 'Edit', edit_area_path(@area)
+
 = link_to 'Back', areas_path
 
 %p
@@ -14,5 +16,7 @@
     %th Material
   = render @observations
 
-= link_to 'Edit', edit_area_path(@area)
+-if signed_in?
+  = link_to 'Edit', edit_area_path(@area)
+
 = link_to 'Back', areas_path

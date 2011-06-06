@@ -35,9 +35,7 @@ class AreasController < ApplicationController
         {:setups => [:equipment,
                     {:material_transactions => [:material, :unit]}]}).all
 
-    respond_with @area do |format|
-      format.html { render_by_authorization('show') }
-    end
+    respond_with @area
   end
 
   def query

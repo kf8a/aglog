@@ -48,7 +48,7 @@ describe AreasController do
           get :show, :id => @area.id
         end
 
-        it { should render_template 'unauthorized_show' }
+        it { should render_template 'show' }
         it { should assign_to(:area).with(@area) }
         it { should assign_to(:observations) }
       end
@@ -152,7 +152,7 @@ describe AreasController do
           get :show, :id => @area.id
         end
 
-        it { should render_template 'authorized_show' }
+        it { should render_template 'show' }
         it { should assign_to(:area).with(@area) }
         it { should assign_to(:observations) }
       end
