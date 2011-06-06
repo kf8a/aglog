@@ -119,13 +119,7 @@ class Area < ActiveRecord::Base
   # @return [String] a list of area names and study names if a whole study's
   #   areas are included (and treatment names for the same reason)
   def Area.unparse(areas = [])
-    ready_to_stop = false
-    areas = areas.collect{ |area| area.leaf? ? area : area.leaves.all }.flatten.uniq
-    until ready_to_stop
-      compact_areas = Area.coalese(areas)
-      ready_to_stop = (compact_areas == areas)
-      areas = compact_areas
-    end
+    areas = compact(areas)
     names = areas.collect { |area| area.name }.uniq
 
     names.sort.join(' ')
