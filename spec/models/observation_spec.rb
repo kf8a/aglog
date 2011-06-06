@@ -4,63 +4,63 @@ describe Observation do
   it 'should not create observation' do
     old_count =  Observation.count
     num_activities = Activity.count
-    
+
     # no observation without created_on date
-    o = Observation.new({:created_on => 'nodate'})  
+    o = Observation.new({:created_on => 'nodate'})
     assert !o.save
     assert_equal old_count, Observation.count
     assert_equal num_activities, Activity.count
-    
+
     # observation without valid activity
     o = Observation.new({:created_on => Date.today})
     a = Activity.new()
     o.activities << a
-    
+
     assert !o.save
     assert_equal old_count, Observation.count
     assert_equal num_activities, Activity.count
   end
-  
+
   it 'should work normally with a simple observation' do
     o = create_simple_observation
-    assert o.save 
+    assert o.save
     assert_equal  1, o.activities.size
     activity = o.activities[0]
     assert_equal 1, activity.setups.size
     setup =  activity.setups[0]
     assert_equal  2, setup.material_transactions.size
   end
-  
+
   it 'should delete material' do
     o = create_simple_observation
     activity = o.activities[0]
     setup =  activity.setups[0]
     material_transaction = setup.material_transactions[0]
     assert_equal 2, setup.material_transactions.size
-    
+
     setup.material_transactions.delete(material_transaction)
     assert_equal 1, setup.material_transactions.size
   end
-  
+
   it 'should delete setup' do
     o = create_simple_observation
     activity = o.activities[0]
-    setup =  activity.setups[0]    
+    setup =  activity.setups[0]
     assert_equal 1, activity.setups.size
-    
+
     activity.setups.delete(setup)
-    assert_equal 0, activity.setups.size    
+    assert_equal 0, activity.setups.size
   end
-  
+
   it 'should delete activity' do
     o = create_simple_observation
-    activity = o.activities[0]    
+    activity = o.activities[0]
     assert_equal 1, o.activities.size
-    
+
     o.activities.delete(activity)
     assert_equal 0, o.activities.size
   end
-  
+
   it 'should get review status' do
     o = create_simple_observation
     assert_equal false, o.in_review
@@ -73,7 +73,7 @@ describe Observation do
     o.in_review = "1"
     assert_equal true, o.in_review
   end
-  
+
   it 'should set review status to published from in review' do
     o = create_simple_observation
     assert o.save
@@ -88,7 +88,7 @@ describe Observation do
     o.in_review = "0"
     assert o.state != 'published'
   end
-  
+
   it 'should not be valid if it has error areas' do
     o = create_simple_observation
     assert o.save
@@ -110,7 +110,7 @@ describe Observation do
     another_setup.save
     assert_equal "Equipment2, Another Equipment", o.equipment_names
   end
-  
+
   it 'should get the right materials_with_rates' do
     o = create_simple_observation
     activity = Factory.create(:activity, :observation_id => o.id)
@@ -158,6 +158,15 @@ describe Observation do
     text_areas = 'LYSIMETER_FIELD'
     o.areas_as_text = text_areas
     assert_equal text_areas, o.areas_as_text
+  end
+
+  it 'should accept token ids in areas_as_text' do
+    o = create_simple_observation
+    text_areas = '2,414'
+    o.areas_as_text = text_areas
+    o.save
+    assert o.areas.include?(Area.find(2))
+    assert o.areas.include?(Area.find(414))
   end
 
   it "should give the right material_names" do
@@ -218,9 +227,9 @@ describe Observation do
     assert trans_0.save
     assert_equal ['Unit3', 'Unit4'], o.unit_names
   end
-  
+
   private
-  
+
   def create_simple_observation
     type = ObservationType.find_by_name('Soil Preparation')
     assert type
@@ -244,4 +253,3 @@ describe Observation do
     return observation
   end
 end
-
