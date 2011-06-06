@@ -84,10 +84,9 @@ class Area < ActiveRecord::Base
     areas = []
     invalid_tokens = []
     tokens.each.with_index do |token, index|
-      if token.include?('-')
-        token = token_as_range(token)
-      end
-      if area = Area.find_by_name_and_company_id(token, company)
+      area_token = AreaToken.new(token)
+      area_token = area_token.to_range if area_token.include?('-')
+      if area = Area.find_by_name_and_company_id(area_token, company).presence
         areas << area.expand
       else
         invalid_tokens << index
@@ -98,27 +97,6 @@ class Area < ActiveRecord::Base
     else
       mark_invalid_tokens(invalid_tokens, areas_as_text)
     end
-  end
-
-  def Area.token_as_range(token)
-    first_part, dash_part, second_part = token.partition('-')
-    first_number_part = second_number_part = ''
-    base_part, first_number_part = dissect_part(first_part)
-    second_number_part = dissect_part(second_part).last
-    first_part  = first_part + first_number_part
-    second_part = base_part + second_number_part
-
-    first_part..second_part
-  end
-
-  def Area.dissect_part(part)
-    number_part = ''
-    until part[-1].to_i == 0
-      number_part = part[-1] + number_part
-      part.chop!
-    end
-
-    [part, number_part]
   end
 
   def Area.check_parse(areas_as_text)
