@@ -10,27 +10,27 @@ Feature: Manage observations
       And I should not see "Edit"
       And I should not see "Destroy"
 
-    When I follow "Show" within "tr#cool_area"
-      Then I should see "Name: cool_area"
+    #When I follow "Show" within "tr#cool_area"
+    #  Then I should see "Name: cool_area"
 
   Scenario: Index and show and edit and update as logged-in-user
     Given an area exists with a name of "cool_area"
       And I am signed in
       And I am on the areas page
     Then I should see "cool_area"
-      And I should see "Edit"
-      And I should see "Destroy"
+    #  And I should see "Edit"
+    #  And I should see "Destroy"
 
-    When I follow "Show" within "tr#cool_area"
-    Then I should see "Name: cool_area"
-      And I should see "Edit"
+    #When I follow "Show" within "tr#cool_area"
+    #Then I should see "Name: cool_area"
+    #  And I should see "Edit"
 
-    When I follow "Edit"
-    Then I should see "Editing area"
+    #When I follow "Edit"
+    #Then I should see "Editing area"
 
-    When I fill in "Name" with "cooler_area"
-      And I press "Update Area"
-    Then I should see "Name: cooler_area"
+    #When I fill in "Name" with "cooler_area"
+    #  And I press "Update Area"
+    #Then I should see "Name: cooler_area"
 
   Scenario: New area created and deleted as a logged-in-user
     Given I am signed in
@@ -47,5 +47,5 @@ Feature: Manage observations
     When I follow "Back"
       Then I should see "brand_new_area"
 
-    When I follow "Destroy" within "tr#brand_new_area"
-      Then I should not see "brand_new_area"
+    #When I follow "Destroy" within "tr#brand_new_area"
+    #  Then I should not see "brand_new_area"
