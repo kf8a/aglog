@@ -1,4 +1,5 @@
 require 'date'
+require 'set'
 
 # Represents a location where observations are done.
 class Area < ActiveRecord::Base
@@ -42,8 +43,9 @@ class Area < ActiveRecord::Base
 
     real_parents = []
 
-    areas.each do |area|
-      if areas.contains?(area.siblings.all)
+    area_set = areas.to_set
+    area_set.each do |area|
+      if area_set.superset?(area.siblings.all.to_set)
         real_parents << area.parent
       end
     end
@@ -163,10 +165,4 @@ class Area < ActiveRecord::Base
     errors.add(:base, 'names should not contain spaces') if name.to_s.include?(' ')
   end
 
-end
-
-class Array
-  def contains?(other_array)
-    [] == other_array - self
-  end
 end
