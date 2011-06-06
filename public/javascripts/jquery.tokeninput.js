@@ -1,255 +1,255 @@
 /*
- * jQuery Plugin: Tokenizing Autocomplete Text Entry
- * Version 1.4.2
- *
- * Copyright (c) 2009 James Smith (http://loopj.com)
- * Licensed jointly under the GPL and MIT licenses,
- * choose which one suits your project best!
- *
- */
+* jQuery Plugin: Tokenizing Autocomplete Text Entry
+* Version 1.4.2
+*
+* Copyright (c) 2009 James Smith (http://loopj.com)
+* Licensed jointly under the GPL and MIT licenses,
+* choose which one suits your project best!
+*
+*/
 
 (function ($) {
 // Default settings
 var DEFAULT_SETTINGS = {
-    hintText: "Type in a search term",
-    noResultsText: "No results",
-    searchingText: "Searching...",
-    deleteText: "&times;",
-    searchDelay: 300,
-    minChars: 1,
-    tokenLimit: null,
-    jsonContainer: null,
-    method: "GET",
-    contentType: "json",
-    queryParam: "q",
-    tokenDelimiter: ",",
-    preventDuplicates: false,
-    prePopulate: null,
-    animateDropdown: true,
-    onResult: null,
-    onAdd: null,
-    onDelete: null
+hintText: "Type in a search term",
+noResultsText: "No results",
+searchingText: "Searching...",
+deleteText: "&times;",
+searchDelay: 300,
+minChars: 1,
+tokenLimit: null,
+jsonContainer: null,
+method: "GET",
+contentType: "json",
+queryParam: "q",
+tokenDelimiter: ",",
+preventDuplicates: false,
+prePopulate: null,
+animateDropdown: true,
+onResult: null,
+onAdd: null,
+onDelete: null
 };
 
 // Default classes to use when theming
 var DEFAULT_CLASSES = {
-    tokenList: "token-input-list",
-    token: "token-input-token",
-    tokenDelete: "token-input-delete-token",
-    selectedToken: "token-input-selected-token",
-    highlightedToken: "token-input-highlighted-token",
-    dropdown: "token-input-dropdown",
-    dropdownItem: "token-input-dropdown-item",
-    dropdownItem2: "token-input-dropdown-item2",
-    selectedDropdownItem: "token-input-selected-dropdown-item",
-    inputToken: "token-input-input-token"
+tokenList: "token-input-list",
+token: "token-input-token",
+tokenDelete: "token-input-delete-token",
+selectedToken: "token-input-selected-token",
+highlightedToken: "token-input-highlighted-token",
+dropdown: "token-input-dropdown",
+dropdownItem: "token-input-dropdown-item",
+dropdownItem2: "token-input-dropdown-item2",
+selectedDropdownItem: "token-input-selected-dropdown-item",
+inputToken: "token-input-input-token"
 };
 
 // Input box position "enum"
 var POSITION = {
-    BEFORE: 0,
-    AFTER: 1,
-    END: 2
+BEFORE: 0,
+AFTER: 1,
+END: 2
 };
 
 // Keys "enum"
 var KEY = {
-    BACKSPACE: 8,
-    TAB: 9,
-    ENTER: 13,
-    ESCAPE: 27,
-    SPACE: 32,
-    PAGE_UP: 33,
-    PAGE_DOWN: 34,
-    END: 35,
-    HOME: 36,
-    LEFT: 37,
-    UP: 38,
-    RIGHT: 39,
-    DOWN: 40,
-    NUMPAD_ENTER: 108,
-    COMMA: 188
+BACKSPACE: 8,
+TAB: 9,
+ENTER: 13,
+ESCAPE: 27,
+SPACE: 32,
+PAGE_UP: 33,
+PAGE_DOWN: 34,
+END: 35,
+HOME: 36,
+LEFT: 37,
+UP: 38,
+RIGHT: 39,
+DOWN: 40,
+NUMPAD_ENTER: 108,
+COMMA: 188
 };
 
 
 // Expose the .tokenInput function to jQuery as a plugin
 $.fn.tokenInput = function (url_or_data, options) {
-    var settings = $.extend({}, DEFAULT_SETTINGS, options || {});
+var settings = $.extend({}, DEFAULT_SETTINGS, options || {});
 
-    return this.each(function () {
-        new $.TokenList(this, url_or_data, settings);
-    });
+return this.each(function () {
+    new $.TokenList(this, url_or_data, settings);
+});
 };
 
 
 // TokenList class for each input
 $.TokenList = function (input, url_or_data, settings) {
-    //
-    // Initialization
-    //
+//
+// Initialization
+//
 
-    // Configure the data source
-    if($.type(url_or_data) === "string") {
-        // Set the url to query against
-        settings.url = url_or_data;
+// Configure the data source
+if($.type(url_or_data) === "string") {
+    // Set the url to query against
+    settings.url = url_or_data;
 
-        // Make a smart guess about cross-domain if it wasn't explicitly specified
-        if(settings.crossDomain === undefined) {
-            if(settings.url.indexOf("://") === -1) {
-                settings.crossDomain = false;
-            } else {
-                settings.crossDomain = (location.href.split(/\/+/g)[1] !== settings.url.split(/\/+/g)[1]);
-            }
+    // Make a smart guess about cross-domain if it wasn't explicitly specified
+    if(settings.crossDomain === undefined) {
+        if(settings.url.indexOf("://") === -1) {
+            settings.crossDomain = false;
+        } else {
+            settings.crossDomain = (location.href.split(/\/+/g)[1] !== settings.url.split(/\/+/g)[1]);
         }
-    } else if($.type(url_or_data) === "array") {
-        // Set the local data to search through
-        settings.local_data = url_or_data;
     }
+} else if($.type(url_or_data) === "array") {
+    // Set the local data to search through
+    settings.local_data = url_or_data;
+}
 
-    // Build class names
-    if(settings.classes) {
-        // Use custom class names
-        settings.classes = $.extend({}, DEFAULT_CLASSES, settings.classes);
-    } else if(settings.theme) {
-        // Use theme-suffixed default class names
-        settings.classes = {};
-        $.each(DEFAULT_CLASSES, function(key, value) {
-            settings.classes[key] = value + "-" + settings.theme;
-        });
-    } else {
-        settings.classes = DEFAULT_CLASSES;
-    }
+// Build class names
+if(settings.classes) {
+    // Use custom class names
+    settings.classes = $.extend({}, DEFAULT_CLASSES, settings.classes);
+} else if(settings.theme) {
+    // Use theme-suffixed default class names
+    settings.classes = {};
+    $.each(DEFAULT_CLASSES, function(key, value) {
+        settings.classes[key] = value + "-" + settings.theme;
+    });
+} else {
+    settings.classes = DEFAULT_CLASSES;
+}
 
 
-    // Save the tokens
-    var saved_tokens = [];
+// Save the tokens
+var saved_tokens = [];
 
-    // Keep track of the number of tokens in the list
-    var token_count = 0;
+// Keep track of the number of tokens in the list
+var token_count = 0;
 
-    // Basic cache to save on db hits
-    var cache = new $.TokenList.Cache();
+// Basic cache to save on db hits
+var cache = new $.TokenList.Cache();
 
-    // Keep track of the timeout, old vals
-    var timeout;
-    var input_val;
+// Keep track of the timeout, old vals
+var timeout;
+var input_val;
 
-    // Create a new text input an attach keyup events
-    var input_box = $("<input type=\"text\"  autocomplete=\"off\">")
-        .css({
-            outline: "none"
-        })
-        .focus(function () {
-            if (settings.tokenLimit === null || settings.tokenLimit !== token_count) {
-                show_dropdown_hint();
-            }
-        })
-        .blur(function () {
-            hide_dropdown();
-        })
-        .bind("keyup keydown blur update", resize_input)
-        .keydown(function (event) {
-            var previous_token;
-            var next_token;
+// Create a new text input an attach keyup events
+var input_box = $("<input type=\"text\"  autocomplete=\"off\">")
+    .css({
+        outline: "none"
+    })
+    .focus(function () {
+        if (settings.tokenLimit === null || settings.tokenLimit !== token_count) {
+            show_dropdown_hint();
+        }
+    })
+    .blur(function () {
+        hide_dropdown();
+    })
+    .bind("keyup keydown blur update", resize_input)
+    .keydown(function (event) {
+        var previous_token;
+        var next_token;
 
-            switch(event.keyCode) {
-                case KEY.LEFT:
-                case KEY.RIGHT:
-                case KEY.UP:
-                case KEY.DOWN:
-                    if(!$(this).val()) {
-                        previous_token = input_token.prev();
-                        next_token = input_token.next();
-
-                        if((previous_token.length && previous_token.get(0) === selected_token) || (next_token.length && next_token.get(0) === selected_token)) {
-                            // Check if there is a previous/next token and it is selected
-                            if(event.keyCode === KEY.LEFT || event.keyCode === KEY.UP) {
-                                deselect_token($(selected_token), POSITION.BEFORE);
-                            } else {
-                                deselect_token($(selected_token), POSITION.AFTER);
-                            }
-                        } else if((event.keyCode === KEY.LEFT || event.keyCode === KEY.UP) && previous_token.length) {
-                            // We are moving left, select the previous token if it exists
-                            select_token($(previous_token.get(0)));
-                        } else if((event.keyCode === KEY.RIGHT || event.keyCode === KEY.DOWN) && next_token.length) {
-                            // We are moving right, select the next token if it exists
-                            select_token($(next_token.get(0)));
-                        }
-                    } else {
-                        var dropdown_item = null;
-
-                        if(event.keyCode === KEY.DOWN || event.keyCode === KEY.RIGHT) {
-                            dropdown_item = $(selected_dropdown_item).next();
-                        } else {
-                            dropdown_item = $(selected_dropdown_item).prev();
-                        }
-
-                        if(dropdown_item.length) {
-                            select_dropdown_item(dropdown_item);
-                        }
-                        return false;
-                    }
-                    break;
-
-                case KEY.BACKSPACE:
+        switch(event.keyCode) {
+            case KEY.LEFT:
+            case KEY.RIGHT:
+            case KEY.UP:
+            case KEY.DOWN:
+                if(!$(this).val()) {
                     previous_token = input_token.prev();
+                    next_token = input_token.next();
 
-                    if(!$(this).val().length) {
-                        if(selected_token) {
-                            delete_token($(selected_token));
-                        } else if(previous_token.length) {
-                            select_token($(previous_token.get(0)));
+                    if((previous_token.length && previous_token.get(0) === selected_token) || (next_token.length && next_token.get(0) === selected_token)) {
+                        // Check if there is a previous/next token and it is selected
+                        if(event.keyCode === KEY.LEFT || event.keyCode === KEY.UP) {
+                            deselect_token($(selected_token), POSITION.BEFORE);
+                        } else {
+                            deselect_token($(selected_token), POSITION.AFTER);
                         }
+                    } else if((event.keyCode === KEY.LEFT || event.keyCode === KEY.UP) && previous_token.length) {
+                        // We are moving left, select the previous token if it exists
+                        select_token($(previous_token.get(0)));
+                    } else if((event.keyCode === KEY.RIGHT || event.keyCode === KEY.DOWN) && next_token.length) {
+                        // We are moving right, select the next token if it exists
+                        select_token($(next_token.get(0)));
+                    }
+                } else {
+                    var dropdown_item = null;
 
-                        return false;
-                    } else if($(this).val().length === 1) {
-                        hide_dropdown();
+                    if(event.keyCode === KEY.DOWN || event.keyCode === KEY.RIGHT) {
+                        dropdown_item = $(selected_dropdown_item).next();
                     } else {
-                        // set a timeout just long enough to let this function finish.
-                        setTimeout(function(){do_search();}, 5);
+                        dropdown_item = $(selected_dropdown_item).prev();
                     }
-                    break;
 
-                case KEY.TAB:
-                case KEY.ENTER:
-                case KEY.NUMPAD_ENTER:
-                case KEY.COMMA:
-                  if(selected_dropdown_item) {
-                    add_token($(selected_dropdown_item));
+                    if(dropdown_item.length) {
+                        select_dropdown_item(dropdown_item);
+                    }
                     return false;
-                  }
-                  break;
+                }
+                break;
 
-                case KEY.ESCAPE:
-                  hide_dropdown();
-                  return true;
+            case KEY.BACKSPACE:
+                previous_token = input_token.prev();
 
-                default:
-                    if(String.fromCharCode(event.which)) {
-                        // set a timeout just long enough to let this function finish.
-                        setTimeout(function(){do_search();}, 5);
+                if(!$(this).val().length) {
+                    if(selected_token) {
+                        delete_token($(selected_token));
+                    } else if(previous_token.length) {
+                        select_token($(previous_token.get(0)));
                     }
-                    break;
-            }
-        });
 
-    // Keep a reference to the original input box
-    var hidden_input = $(input)
-                           .hide()
-                           .val("")
-                           .focus(function () {
-                               input_box.focus();
-                           })
-                           .blur(function () {
-                               input_box.blur();
-                           });
+                    return false;
+                } else if($(this).val().length === 1) {
+                    hide_dropdown();
+                } else {
+                    // set a timeout just long enough to let this function finish.
+                    setTimeout(function(){do_search();}, 5);
+                }
+                break;
 
-    // Keep a reference to the selected token and dropdown item
-    var selected_token = null;
-    var selected_dropdown_item = null;
+            case KEY.TAB:
+            case KEY.ENTER:
+            case KEY.NUMPAD_ENTER:
+            case KEY.COMMA:
+              if(selected_dropdown_item) {
+                add_token($(selected_dropdown_item));
+                return false;
+              }
+              break;
 
-    // The list to store the token items in
-    var token_list = $("<ul />")
+            case KEY.ESCAPE:
+              hide_dropdown();
+              return true;
+
+            default:
+                if(String.fromCharCode(event.which)) {
+                    // set a timeout just long enough to let this function finish.
+                    setTimeout(function(){do_search();}, 5);
+                }
+                break;
+        }
+    });
+
+// Keep a reference to the original input box
+var hidden_input = $(input)
+                       .hide()
+                       .val("")
+                       .focus(function () {
+                           input_box.focus();
+                       })
+                       .blur(function () {
+                           input_box.blur();
+                       });
+
+// Keep a reference to the selected token and dropdown item
+var selected_token = null;
+var selected_dropdown_item = null;
+
+// The list to store the token items in
+var token_list = $("<fieldset><ul /></fieldset>")
         .addClass(settings.classes.tokenList)
         .click(function (event) {
             var li = $(event.target).closest("li");
