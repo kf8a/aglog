@@ -3,7 +3,7 @@ $(document).ready(function() {
     // Put cursor on first text input of form
     $('.autofocus:first').focus();
     $('input.ui-date-picker').datepicker();
-    $('#observation_areas_as_text').tokenInput('/areas');
+    $('#observation_areas_as_text').tokenInput('/areas', {theme:'facebook'} );
 
 
 //    // All links with data_popup make a small popup window of what they link to.

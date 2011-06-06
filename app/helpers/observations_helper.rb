@@ -23,8 +23,7 @@ module ObservationsHelper
     "Areas separated by commas. For example:<br />
     If you type: <b>G2R3, G3R3</b><br />
     Then you will get both areas G2R3 and G3R3<br />
-    If you just type <b>G2</b>, you will get all of the G2 areas<br />
-    You can also specify a range: <b>T1-4</b><br />".html_safe
+    If you just type <b>G2</b>, you will get all of the G2 areas<br />".html_safe
   end
 
 end
