@@ -165,8 +165,10 @@ describe Observation do
     text_areas = '2,414'
     o.areas_as_text = text_areas
     o.save
-    assert o.areas.include?(Area.find(2))
-    assert o.areas.include?(Area.find(414))
+    a_leaf = Area.find(2).expand.first
+    b_leaf = Area.find(414).expand.first
+    assert o.areas.include?(a_leaf)
+    assert o.areas.include?(b_leaf)
   end
 
   it "should give the right material_names" do

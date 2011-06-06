@@ -84,12 +84,17 @@ class Area < ActiveRecord::Base
     areas = []
     invalid_tokens = []
     tokens.each.with_index do |token, index|
-      area_token = AreaToken.new(token)
-      area_token = area_token.to_range if area_token.include?('-')
-      if area = Area.find_by_name_and_company_id(area_token, company).presence
-        areas << area.expand
+      if token.to_i == 0
+        area_token = AreaToken.new(token)
+        area_token = area_token.to_range if area_token.include?('-')
+        if area = Area.find_by_name_and_company_id(area_token, company).presence
+          areas << area.expand
+        else
+          invalid_tokens << index
+        end
       else
-        invalid_tokens << index
+        area = Area.find(token.to_i)
+        areas << area.expand
       end
     end
     if invalid_tokens.empty?
