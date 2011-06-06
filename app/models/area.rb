@@ -152,19 +152,6 @@ class Area < ActiveRecord::Base
     tokens.join(' ')
   end
 
-  def Area.replace_class_areas_by_class(names, areas, class_name)
-    id_method = class_name.foreign_key
-    areas.member_ids(id_method).each do |member_id|
-      member_areas = Area.where(id_method => member_id).all
-      if areas.contains(member_areas)
-        areas -= member_areas
-        names << class_name.constantize.find(member_id).name
-      end
-    end
-
-    [names, areas]
-  end
-
   def treatment_is_part_of_study
     # if treatment exists then it must belong to correct study
     if treatment && (treatment.study_id != study_id)
@@ -181,24 +168,5 @@ end
 class Array
   def contains?(other_array)
     [] == other_array - self
-  end
-
-  #Gathers the range of ids (e.g. study_ids) that an array has.
-  # id_method should be a string, like 'study_id' or 'treatment_id'
-  def member_ids(id_method)
-    collect { |member| member.send(id_method) }.compact.uniq
-  end
-end
-
-class String
-  def overlap(other_string)
-    id = 0
-    overlap = ''
-    while self[id] && (self[id] == other_string[id])
-      overlap += self[id..id].to_s #id..id gives letter in 1.8.7; just id gives char number
-      id += 1
-    end
-
-    overlap
   end
 end
