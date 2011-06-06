@@ -47,16 +47,3 @@ function add_fields(link, association, content) {
   var replaced = jQuery(link).prev().append(content.replace(regexp, new_id));
   $(replaced).find(':input').first().focus();
 }
-
-function showResults(data) {
-    var resultHtml = data;
-    //$.each(data, function(i,item){
-    //    resultHtml+='<div class="result">';
-    //    resultHtml+='<h2><a href="#">'+item.title+'</a></h2>';
-    //    resultHtml+='<p>'+item.post.replace(highlight, '<span class="highlight">'+highlight+'</span>')+'</p>';
-    //    resultHtml+='<a href="#" class="readMore">Read more..</a>'
-    //    resultHtml+='</div>';
-    //});
-
-    $('div#results').html(data);
-}
