@@ -72,7 +72,7 @@ class Observation < ActiveRecord::Base
   end
 
   def prepopulated_area_tokens
-    Area.compact(areas).map(&:attributes).to_json
+    Area.coalese(areas).map(&:attributes).to_json
   end
 
   def areas_as_text=(areas_as_text)

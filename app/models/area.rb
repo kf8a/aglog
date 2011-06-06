@@ -41,21 +41,20 @@ class Area < ActiveRecord::Base
   def Area.coalese(areas = [])
     # need to check if one or more ancestors are complete
 
-    real_parents = []
-
-    area_set = areas.to_set
-    area_set.each do |area|
-      if area_set.superset?(area.siblings.all.to_set)
-        real_parents << area.parent
+    areas = areas.collect{ |area| area.leaf? ? area : area.leaves.all }.flatten.to_set
+    areas_to_check = areas
+    while areas_to_check.present?
+      area = areas_to_check.first
+      if areas_to_check.superset?(area.siblings.all.to_set)
+        areas += [area.parent]
+        areas -= area.parent.descendants
+        areas_to_check += [area.parent]
+        areas_to_check -= area.parent.descendants
       end
+      areas_to_check -= [area]
     end
 
-    real_parents.uniq!
-    replacable_children = real_parents.collect { |father| father.descendants }.flatten.uniq
-    areas -= replacable_children
-    areas += real_parents
-
-    areas
+    areas.to_a
   end
 
   def Area.index_areas(observation_id)
@@ -121,22 +120,10 @@ class Area < ActiveRecord::Base
   # @return [String] a list of area names and study names if a whole study's
   #   areas are included (and treatment names for the same reason)
   def Area.unparse(areas = [])
-    areas = compact(areas)
+    areas = coalese(areas)
     names = areas.collect { |area| area.name }.uniq
 
     names.sort.join(' ')
-  end
-
-  def Area.compact(areas)
-    ready_to_stop = false
-    areas = areas.collect{ |area| area.leaf? ? area : area.leaves.all }.flatten.uniq
-    until ready_to_stop
-      compact_areas = Area.coalese(areas)
-      ready_to_stop = (compact_areas == areas)
-      areas = compact_areas
-    end
-
-    areas
   end
 
   def study_name
