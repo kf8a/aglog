@@ -25,9 +25,7 @@ class AreasController < ApplicationController
         end
         @areas = @areas.collect {|x| {:id=>x.id, :name=>x.name}}
     end
-    respond_with @areas do |format|
-      format.html { render_by_authorization('index') }
-    end
+    respond_with @areas
   end
 
   def show
