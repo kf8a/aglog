@@ -8,9 +8,7 @@ class EquipmentController < ApplicationController
       @equipment = Equipment.ordered.all
     end
 
-    respond_with @equipment do |format|
-      format.html { render_by_authorization('index') }
-    end
+    respond_with @equipment
   end
 
   def show

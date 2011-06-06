@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe EquipmentController do
   render_views
-  
+
   describe 'Not signed in. ' do
     before(:each) do
       sign_out
@@ -13,7 +13,7 @@ describe EquipmentController do
         get :index
       end
 
-      it { should render_template 'unauthorized_index' }
+      it { should render_template 'index' }
       it { should assign_to :equipment }
     end
 
@@ -85,7 +85,7 @@ describe EquipmentController do
     before(:all) do
       company_2 = Factory.create(:company, :name => 'glbrc')
 
-      @equipment_2 = Factory.create(:equipment, :name=>'glbrc_tractor', 
+      @equipment_2 = Factory.create(:equipment, :name=>'glbrc_tractor',
                                     :company => company_2)
     end
 
@@ -93,7 +93,7 @@ describe EquipmentController do
       sign_in_as_normal_user
 
       @company_1 = @user.company
-      @equipment_1 = find_or_factory(:equipment, :name =>'lter_tractor', 
+      @equipment_1 = find_or_factory(:equipment, :name =>'lter_tractor',
                                      :company_id => @company_1.id)
     end
 
@@ -108,7 +108,7 @@ describe EquipmentController do
         get :index
       end
 
-      it { should render_template 'authorized_index' }
+      it { should render_template 'index' }
       it { should assign_to(:equipment) }
 
       it 'should only show equipment for the company of the current user' do
@@ -205,7 +205,7 @@ describe EquipmentController do
       #TODO is this just testing the validates helper again?
       describe "PUT :update the equipment with invalid attributes" do
         before(:each) do
-          find_or_factory(:equipment, :name => "Repeat_name", 
+          find_or_factory(:equipment, :name => "Repeat_name",
                           :company_id=>@user.company.id)
           put :update, :id => @equipment, :equipment => { :name => "Repeat_name"}
         end
