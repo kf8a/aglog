@@ -41,11 +41,11 @@ class Area < ActiveRecord::Base
   def Area.coalese(areas = [])
     # need to check if one or more ancestors are complete
 
-    areas = areas.collect{ |area| area.leaf? ? area : area.leaves.all }.flatten.to_set
+    areas = areas.collect{ |area| area.expand }.flatten.to_set
     areas_to_check = areas
     while areas_to_check.present?
       area = areas_to_check.first
-      if areas_to_check.superset?(area.siblings.all.to_set)
+      if areas_to_check.superset?(area.siblings.to_set)
         areas += [area.parent]
         areas -= area.parent.descendants
         areas_to_check += [area.parent]
