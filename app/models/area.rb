@@ -131,6 +131,18 @@ class Area < ActiveRecord::Base
     names.sort.join(' ')
   end
 
+  def Area.compact(areas)
+    ready_to_stop = false
+    areas = areas.collect{ |area| area.leaf? ? area : area.leaves.all }.flatten.uniq
+    until ready_to_stop
+      compact_areas = Area.coalese(areas)
+      ready_to_stop = (compact_areas == areas)
+      areas = compact_areas
+    end
+
+    areas
+  end
+
   def study_name
     self.study.try(:name)
   end

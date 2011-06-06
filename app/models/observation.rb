@@ -71,6 +71,10 @@ class Observation < ActiveRecord::Base
     @error_areas || Area.unparse(areas)
   end
 
+  def prepopulated_area_tokens
+    Area.compact(areas)
+  end
+
   def areas_as_text=(areas_as_text)
     @error_areas =  nil
     new_areas = Area.parse(areas_as_text)
