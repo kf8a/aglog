@@ -31,7 +31,7 @@ class Area < ActiveRecord::Base
 
   def Area.find_with_name_like(query)
     query = query.downcase + '%'
-    Area.where('lower(name) like ?', query).all
+    areas = Area.where('lower(name) like ?', query).all.sort
   end
 
   def expand
@@ -128,6 +128,15 @@ class Area < ActiveRecord::Base
 
   def study_name
     self.study.try(:name)
+  end
+
+  def <=>(other_area)
+    comp = self.level <=> other_area.level
+    if comp == 0
+      comp = self.name <=> other_area.name
+    end
+
+    comp
   end
 
 
