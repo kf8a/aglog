@@ -10,7 +10,8 @@ class AreasController < ApplicationController
 
     @areas =
         if company
-          Area.index_areas_by_company_and_observation(company, observation_id)
+          Area.roots.by_company(company)
+#          Area.index_areas_by_company_and_observation(company, observation_id)
         else
 #          Area.index_areas(observation_id)
           Area.roots
@@ -41,6 +42,13 @@ class AreasController < ApplicationController
   def query
     company = current_user.try(:company)
     respond_with @areas
+  end
+
+  def move_to
+    area= Area.find(params[:parent_id])
+    child = Area.find(params[:id])
+    child.move_to_child_of(area)
+    render :partial =>'area', :locals => {:area => area}
   end
 
   def new

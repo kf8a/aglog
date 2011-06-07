@@ -5,10 +5,9 @@ Aglog::Application.routes.draw do
   match '/logout' => 'person_sessions#destroy'
 
   resources :hazards
+
+  post '/areas/:id/move_to/:parent_id' => 'areas#move_to'
   resources :areas do
-    member do
-      put :to
-    end
     collection do
       get :check_parsing
     end

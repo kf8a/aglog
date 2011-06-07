@@ -17,10 +17,9 @@ a img { border: none;
   cursor: move;
 }
 
-*:-khtml-drag {
-  background-color: rgba(238,238,238, 0.5);
+.hovered {
+  background-color: grey;
 }
-
 
 error { 
 	background-color:yellow

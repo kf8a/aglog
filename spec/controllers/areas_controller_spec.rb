@@ -17,6 +17,14 @@ describe AreasController do
       it { should assign_to :areas }
     end
 
+    describe 'POST :move_to' do
+      before(:each) do 
+        post :move_to, {:id=> 1, :parent_id => 2}
+      end
+
+      it {should redirect_to new_person_session_path }
+    end
+
     describe 'GET :new' do
       before(:each) do
         get :new

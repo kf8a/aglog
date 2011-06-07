@@ -4,5 +4,5 @@ class Hazard < ActiveRecord::Base
                   :notification, :exclusion_time_days
 
   has_and_belongs_to_many :materials
-  has_and_belongs_to_many :people
+#  has_and_belongs_to_many :people
 end
