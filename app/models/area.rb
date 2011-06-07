@@ -38,15 +38,7 @@ class Area < ActiveRecord::Base
     areas_to_check = areas
     areas = areas.collect{ |area| area.expand }.flatten.to_set
     while areas_to_check.present?
-      area = areas_to_check.pop
-      if areas.superset?(area.siblings.to_set)
-        father = area.parent
-        kids = father.descendants
-        areas += [father]
-        areas -= kids
-        areas_to_check += [father]
-        areas_to_check -= kids
-      end
+      areas_to_check, areas = replace_full_family_with_parent(areas_to_check, areas)
     end
 
     areas.to_a
@@ -143,6 +135,18 @@ class Area < ActiveRecord::Base
       tokens[index] = '*' + tokens[index] + '*'
     end
     tokens.join(' ')
+  end
+
+  def Area.replace_full_family_with_parent(areas_to_check, areas)
+    area = areas_to_check.pop
+    if areas.superset?(area.siblings.to_set)
+      father = area.parent
+      kids = father.descendants
+      areas          = areas + [father] - kids
+      areas_to_check = areas_to_check + [father] - kids
+    end
+
+    [areas_to_check, areas]
   end
 
   def treatment_is_part_of_study
