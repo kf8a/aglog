@@ -1,10 +1,11 @@
-%li{:id=>"#{area.id}", :draggable=>'true'}
-  = area.name
-  = area.description
-  -# = link_to 'Show', area
-  -# = link_to 'Edit', edit_area_path(area)
-  -# = link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
+%li
+  %span{:id=>"#{area.id}", :draggable=>'true'}
+    = area.name
+    = area.description
+    -# = link_to 'Show', area
+    -# = link_to 'Edit', edit_area_path(area)
+    -# = link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
 
-- unless area.children.empty?
-  %ul
-    = render area.children
+  - unless area.children.empty?
+    %ul
+      = render area.children

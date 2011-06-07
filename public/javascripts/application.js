@@ -6,22 +6,27 @@ $(document).ready(function() {
   $('#observation_areas_as_text').tokenInput('/areas', {theme:'facebook', preventDuplicates:true} );
 
 
-  $('li[draggable=true]').draggable( {revert: 'invalid' });
-  $('li[draggable=true]').droppable({hoverClass: 'hovered', drop: function(event, ui) {
+  $('span[draggable=true]').draggable( {revert: 'invalid' });
+  $('span[draggable=true]').droppable({hoverClass: 'hovered', drop: handleDrop });
+  
+  function handleDrop(event, ui) {
     var dragged = ui.draggable;
     var dragged_id = dragged.attr('id');
     var dropTarget = this;
     var target_id = this.id;
 
     $.post('/areas/' + dragged_id + '/move_to/' + target_id, function(data) {
-      $(dropTarget).html(data);
-      $(dragged).fadeOut();
-      $(dropTaget).children('li[draggable=true]').draggable({revert: 'invalid'})
-     });
-    }});
-     function handleDrop(data) {
-
-     }
+      var original = $(dropTarget).parent();
+      var newContent = original.before(data);
+      
+      $(dragged).parent().fadeOut();
+      $(dragged).parent().remove();
+      $(newContent).find('span[draggable=true]').draggable({revert: 'invalid'});
+      $(newContent).find('span[draggable=true]').droppable({hoverClass: 'hovered', drop: handleDrop });
+      original.fadeOut();
+      original.remove();
+    });
+  };
 
 //    // All links with data_popup make a small popup window of what they link to.
 //    $('.data_popup').live('click', function(e) {
