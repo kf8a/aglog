@@ -31,7 +31,7 @@ class Area < ActiveRecord::Base
 
   def Area.find_with_name_like(query)
     query = query.downcase + '%'
-    areas = Area.where('lower(name) like ?', query).all.sort
+    Area.where('lower(name) like ?', query).all.sort
   end
 
   def expand
