@@ -8,23 +8,24 @@ class AreasController < ApplicationController
     observation_id = params[:observation_id]
     query = params[:q]
 
-    @areas =
-        if company
-          Area.index_areas_by_company_and_observation(company, observation_id)
-        else
-#          Area.index_areas(observation_id)
-          Area.roots
-        end
-
     if query
-      @areas =  
+      @areas =
         if company
           Area.by_company(company).find_with_name_like(query)
         else
           Area.find_with_name_like(query)
         end
         @areas = @areas.collect {|x| {:id=>x.id, :name=>x.name}}
+    else
+      @areas =
+        if company
+          Area.index_areas_by_company_and_observation(company, observation_id)
+        else
+#          Area.index_areas(observation_id)
+          Area.roots
+        end
     end
+    
     respond_with @areas
   end
 
