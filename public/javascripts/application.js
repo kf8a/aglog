@@ -17,12 +17,13 @@ $(document).ready(function() {
 
     $.post('/areas/' + dragged_id + '/move_to/' + target_id, function(data) {
       var original = $(dropTarget).parent();
-      var newContent = original.before(data);
+      original.empty();
+      original.before(data);
       
       $(dragged).parent().fadeOut();
       $(dragged).parent().remove();
-      $(newContent).find('span[draggable=true]').draggable({revert: 'invalid'});
-      $(newContent).find('span[draggable=true]').droppable({hoverClass: 'hovered', drop: handleDrop });
+      $(original).prev().find('span[draggable=true]').draggable({revert: 'invalid'});
+      $(original).prev().find('span[draggable=true]').droppable({hoverClass: 'hovered', drop: handleDrop });
       original.fadeOut();
       original.remove();
     });
