@@ -6,13 +6,28 @@ $(document).ready(function() {
   $('#observation_areas_as_text').tokenInput('/areas', {theme:'facebook', preventDuplicates:true} );
 
 
-  $('li[draggable=true]').draggable();
-  $('li[draggable=true]').droppable({drop: function(event, ui) {
-    $.post('areas/5/to/4');
-    //areas
-    console.log(event.srcElement);
-    console.log(event.target);
-  }});
+  $('span[draggable=true]').draggable( {revert: 'invalid' });
+  $('span[draggable=true]').droppable({hoverClass: 'hovered', drop: handleDrop });
+  
+  function handleDrop(event, ui) {
+    var dragged = ui.draggable;
+    var dragged_id = dragged.attr('id');
+    var dropTarget = this;
+    var target_id = this.id;
+
+    $.post('/areas/' + dragged_id + '/move_to/' + target_id, function(data) {
+      var original = $(dropTarget).parent();
+      original.empty();
+      original.before(data);
+      
+      $(dragged).parent().fadeOut();
+      $(dragged).parent().remove();
+      $(original).prev().find('span[draggable=true]').draggable({revert: 'invalid'});
+      $(original).prev().find('span[draggable=true]').droppable({hoverClass: 'hovered', drop: handleDrop });
+      original.fadeOut();
+      original.remove();
+    });
+  };
 
 //    // All links with data_popup make a small popup window of what they link to.
 //    $('.data_popup').live('click', function(e) {
@@ -43,6 +58,7 @@ $(document).ready(function() {
 //    });
 
 });
+
 
 function remove_fields(link) {
   jQuery(link).prev("input[type=hidden]").val("1");
