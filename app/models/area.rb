@@ -67,23 +67,13 @@ class Area < ActiveRecord::Base
   def Area.parse(areas_as_text, options={})
     return [] if areas_as_text.strip.empty?
 
-    company = options[:company] || 1
     tokens = areas_as_text.split(/[ |,]+/)
     areas = []
     invalid_tokens = []
     tokens.each.with_index do |token, index|
-      if token.to_i == 0
-        area_token = AreaToken.new(token)
-        area_token = area_token.to_range if area_token.include?('-')
-        if area = Area.find_by_name_and_company_id(area_token, company).presence
-          areas << area.expand
-        else
-          invalid_tokens << index
-        end
-      else
-        area = Area.find(token.to_i)
-        areas << area.expand
-      end
+      area_token = AreaToken.new(token, options[:company])
+      area = area_token.to_area
+      area.presence ? areas << area.expand : invalid_tokens << index
     end
     if invalid_tokens.empty?
       areas.flatten
