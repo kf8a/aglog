@@ -66,15 +66,13 @@ class Area < ActiveRecord::Base
   #   Area.parse('T1R1 R11') #=> "T1R1 *R11*"
   def Area.parse(areas_as_text, options={})
     tokens = areas_as_text.split(/[ |,]+/)
-    areas = []
-    invalid_tokens = []
-    tokens.each.with_index do |token, index|
-      area_token = AreaToken.new(token, options[:company])
-      area = area_token.to_area
-      area.presence ? areas << area.expand : invalid_tokens << index
-    end
+    return [] unless tokens.present?
+    areas, invalid_tokens = tokens.collect.with_index do |token, index|
+      area = AreaToken.new(token, options[:company]).to_area
+      area.present? ? [area.expand, nil] : [nil, index]
+    end.transpose
 
-    invalid_tokens.any? ? mark_tokens(invalid_tokens, tokens) : areas.flatten
+    invalid_tokens.compact.present? ? mark_tokens(invalid_tokens, tokens) : areas.flatten
   end
 
   def Area.check_parse(areas_as_text)
@@ -115,7 +113,7 @@ class Area < ActiveRecord::Base
   private##########################################
 
   def Area.mark_tokens(invalid_tokens, tokens)
-    invalid_tokens.each do |index|
+    invalid_tokens.compact.each do |index|
       tokens[index] = '*' + tokens[index] + '*'
     end
     tokens.join(' ')
