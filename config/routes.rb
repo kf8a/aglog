@@ -7,6 +7,7 @@ Aglog::Application.routes.draw do
   resources :hazards
 
   post '/areas/:id/move_to/:parent_id' => 'areas#move_to'
+  post '/areas/:id/move_before/:parent_id' => 'areas#move_before'
   resources :areas do
     collection do
       get :check_parsing
