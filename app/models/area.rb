@@ -65,8 +65,6 @@ class Area < ActiveRecord::Base
   # @example Parse a string which has no area with that name
   #   Area.parse('T1R1 R11') #=> "T1R1 *R11*"
   def Area.parse(areas_as_text, options={})
-    #return [] if areas_as_text.strip.empty?
-
     tokens = areas_as_text.split(/[ |,]+/)
     areas = []
     invalid_tokens = []
@@ -75,11 +73,8 @@ class Area < ActiveRecord::Base
       area = area_token.to_area
       area.presence ? areas << area.expand : invalid_tokens << index
     end
-    if invalid_tokens.empty?
-      areas.flatten
-    else
-      mark_invalid_tokens(invalid_tokens, areas_as_text)
-    end
+
+    invalid_tokens.any? ? mark_tokens(invalid_tokens, tokens) : areas.flatten
   end
 
   def Area.check_parse(areas_as_text)
@@ -119,8 +114,7 @@ class Area < ActiveRecord::Base
 
   private##########################################
 
-  def Area.mark_invalid_tokens(invalid_tokens, areas_as_text)
-    tokens = areas_as_text.split(/[ |,]+/)
+  def Area.mark_tokens(invalid_tokens, tokens)
     invalid_tokens.each do |index|
       tokens[index] = '*' + tokens[index] + '*'
     end
