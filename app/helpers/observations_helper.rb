@@ -20,10 +20,11 @@ module ObservationsHelper
   end
 
   def area_help_text
-    "Areas separated by commas. For example:<br />
-    If you type: <b>G2R3, G3R3</b><br />
-    Then you will get both areas G2R3 and G3R3<br />
-    If you just type <b>G2</b>, you will get all of the G2 areas<br />".html_safe
+    "Use TAB to enter additional areas<br />
+    For example:<br />
+    If you type: <b>G2R3 TAB</b><br />
+    Then you will get both areas G2R3 <br />
+    If you just type <b>G2 TAB</b>, you will get all of the G2 areas<br />".html_safe
   end
 
 end
