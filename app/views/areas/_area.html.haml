@@ -5,9 +5,10 @@
     = area.description
   %span
     = link_to 'Show', area
-    = link_to 'Edit', edit_area_path(area)
-    = link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
+    -if signed_in?
+      = link_to 'Edit', edit_area_path(area)
+      = link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
 
-  - unless area.children.empty?
+  - if area.children.present?
     %ul
       = render area.children
