@@ -133,7 +133,7 @@ class Area < ActiveRecord::Base
 
   def treatment_is_part_of_study
     # if treatment exists then it must belong to correct study
-    if treatment && (treatment.study_id != study_id)
+    if treatment_id && (treatment.try(:study_id) != study_id)
       errors.add(:base, 'inconsistent study and treatment combination')
     end
   end
