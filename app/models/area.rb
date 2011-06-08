@@ -67,10 +67,7 @@ class Area < ActiveRecord::Base
   def Area.parse(areas_as_text, options={})
     tokens = areas_as_text.split(/[ |,]+/)
     return [] unless tokens.present?
-    areas, invalid_tokens = tokens.collect.with_index do |token, index|
-      area = AreaToken.new(token, options[:company]).to_area
-      area.present? ? [area.expand, nil] : [nil, index]
-    end.transpose
+    areas, invalid_tokens = AreaToken.tokens_to_areas(tokens, options[:company])
 
     invalid_tokens.compact.present? ? mark_tokens(invalid_tokens, tokens) : areas.flatten
   end

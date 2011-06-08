@@ -1,5 +1,12 @@
 class AreaToken < String
 
+  def AreaToken.tokens_to_areas(tokens, company = 1)
+    tokens.collect.with_index do |token, index|
+      area = new(token, company).to_area
+      area.present? ? [area.expand, nil] : [nil, index]
+    end.transpose
+  end
+
   def initialize(contents = '', company = 1)
     @company = company.presence || 1
     super(contents)
