@@ -21,6 +21,10 @@ a img { border: none;
   background-color: grey;
 }
 
+div.droppable {
+  height: 2px;
+}
+
 error { 
 	background-color:yellow
 }

@@ -52,6 +52,13 @@ class AreasController < ApplicationController
     render :partial =>'area', :locals => {:area => area}
   end
 
+  def move_before
+    area = Area.find(params[:parent_id])
+    child = Area.find(params[:id])
+    child.move_to_right_of(area)
+    render :partial => 'area', :locals => {:area => area.parent}
+  end
+
   def new
     @area = Area.new
     respond_with @area

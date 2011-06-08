@@ -8,6 +8,7 @@ $(document).ready(function() {
 
   $('span[draggable=true]').draggable( {revert: 'invalid' });
   $('span[draggable=true]').droppable({hoverClass: 'hovered', drop: handleDrop });
+  $('div.droppable').droppable({hoverClass: 'hovered', drop: sortedDrop });
   
   function handleDrop(event, ui) {
     var dragged = ui.draggable;
@@ -29,6 +30,16 @@ $(document).ready(function() {
     });
   };
 
+  function sortedDrop(event, ui) {
+    var dragged = ui.draggable;
+    var dragged_id = dragged.attr('id');
+    var dropTarget = this;
+    var target_id = this.id;
+
+    $.post('/areas/' + dragged_id + '/move_before/' + target_id, function(data) {
+      
+    });
+  };
 //    // All links with data_popup make a small popup window of what they link to.
 //    $('.data_popup').live('click', function(e) {
 //        e.preventDefault();
