@@ -1,3 +1,4 @@
+# Deals with parsing Areas from a string or token_id
 class AreaToken < String
 
   def AreaToken.tokens_to_areas(tokens, company = 1)
@@ -15,21 +16,21 @@ class AreaToken < String
   def to_range
     first_part, dash_part, second_part = self.partition('-')
     first_number_part = second_number_part = ''
-    base_part, first_number_part = dissect_part(first_part)
-    second_number_part = dissect_part(second_part).last
-    first_part  = first_part + first_number_part
+    base_part, first_number_part = first_part.dissect
+    second_number_part = second_part.dissect.last
+    first_part  = base_part + first_number_part
     second_part = base_part + second_number_part
 
     first_part..second_part
   end
 
-  def dissect_part(part)
+  def dissect
     number_part = ''
-    until part[-1].to_i == 0
-      number_part = part.slice!(-1) + number_part
+    until self[-1].to_i == 0
+      number_part = self.slice!(-1) + number_part
     end
 
-    [part, number_part]
+    [self, number_part]
   end
 
   def number_token?
