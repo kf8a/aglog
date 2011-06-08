@@ -65,7 +65,7 @@ class Area < ActiveRecord::Base
   # @example Parse a string which has no area with that name
   #   Area.parse('T1R1 R11') #=> "T1R1 *R11*"
   def Area.parse(areas_as_text, options={})
-    return [] if areas_as_text.strip.empty?
+    #return [] if areas_as_text.strip.empty?
 
     tokens = areas_as_text.split(/[ |,]+/)
     areas = []

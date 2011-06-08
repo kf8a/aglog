@@ -246,6 +246,10 @@ describe Area do
       assert_equal [], (areas - real_areas)
     end
 
+    it 'should return an empty array if given nothing to parse' do
+      assert_equal [], Area.parse('')
+    end
+
     describe 'areas with the same name from different company' do
       before(:each) do
         @area = Area.find_by_name('T1R1')
