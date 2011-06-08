@@ -33,11 +33,19 @@ $(document).ready(function() {
   function sortedDrop(event, ui) {
     var dragged = ui.draggable;
     var dragged_id = dragged.attr('id');
-    var dropTarget = this;
-    var target_id = this.id;
+    var dropTarget = $(this).next().find('span[draggable=true]');
+    var target_id = dropTarget.attr('id');
 
     $.post('/areas/' + dragged_id + '/move_before/' + target_id, function(data) {
-      
+      var original = $(dropTarget).parent().parent();
+      original.empty();
+      original.html(data);
+
+      $(dragged).parent().fadeOut();
+      $(dragged).parent().remove();
+    
+      original.fadeOut();
+      original.remove();
     });
   };
 //    // All links with data_popup make a small popup window of what they link to.
