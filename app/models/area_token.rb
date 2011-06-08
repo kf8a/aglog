@@ -15,13 +15,10 @@ class AreaToken < String
 
   def to_range
     first_part, dash_part, second_part = self.partition('-')
-    first_number_part = second_number_part = ''
     base_part, first_number_part = first_part.dissect
     second_number_part = second_part.dissect.last
-    first_part  = base_part + first_number_part
-    second_part = base_part + second_number_part
 
-    first_part..second_part
+    (base_part + first_number_part)..(base_part + second_number_part)
   end
 
   def dissect
