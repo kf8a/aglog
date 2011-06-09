@@ -15,7 +15,6 @@ gem 'omniauth'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'thin'
 gem 'haml'
-gem 'parslet'
 
 gem 'chronic'
 
