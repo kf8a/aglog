@@ -119,13 +119,17 @@ class Area < ActiveRecord::Base
   def Area.replace_full_family_with_parent(areas_to_check, areas)
     area = areas_to_check.pop
     if areas.superset?(area.siblings.to_set)
-      father = area.parent
-      kids = father.descendants
-      areas          = areas + [father] - kids
-      areas_to_check = areas_to_check + [father] - kids
+      areas          = adjust_collection(areas, area)
+      areas_to_check = adjust_collection(areas_to_check, area)
     end
 
     [areas_to_check, areas]
+  end
+
+  def Area.adjust_collection(collection, area)
+    father = area.parent
+    kids = father.descendants
+    collection = collection + [father] - kids
   end
 
   def treatment_is_part_of_study
