@@ -9,7 +9,7 @@ $(document).ready(function() {
   $('span[draggable=true]').draggable( {revert: 'invalid' });
   $('span[draggable=true]').droppable({hoverClass: 'hovered', drop: handleDrop });
   $('div.droppable').droppable({hoverClass: 'hovered', drop: sortedDrop });
-  
+
   function handleDrop(event, ui) {
     var dragged = ui.draggable;
     var dragged_id = dragged.attr('id');
@@ -20,7 +20,7 @@ $(document).ready(function() {
       var original = $(dropTarget).parent();
       original.empty();
       original.before(data);
-      
+
       $(dragged).parent().fadeOut();
       $(dragged).parent().remove();
       $(original).prev().find('span[draggable=true]').draggable({revert: 'invalid'});
@@ -37,13 +37,13 @@ $(document).ready(function() {
     var target_id = dropTarget.attr('id');
 
     $.post('/areas/' + dragged_id + '/move_before/' + target_id, function(data) {
-      var original = $(dropTarget).parent().parent();
+      var original = $(dropTarget).parent().parent().parent();
       original.empty();
-      original.html(data);
+      original.before(data);
 
       $(dragged).parent().fadeOut();
       $(dragged).parent().remove();
-    
+
       original.fadeOut();
       original.remove();
     });

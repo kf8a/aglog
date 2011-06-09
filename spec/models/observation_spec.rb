@@ -162,11 +162,11 @@ describe Observation do
 
   it 'should accept token ids in areas_as_text' do
     o = create_simple_observation
-    text_areas = '2,414'
+    text_areas = '3,415'
     o.areas_as_text = text_areas
     o.save
-    a_leaf = Area.find(2).expand.first
-    b_leaf = Area.find(414).expand.first
+    a_leaf = Area.find(3).expand.first
+    b_leaf = Area.find(415).expand.first
     assert o.areas.include?(a_leaf)
     assert o.areas.include?(b_leaf)
   end

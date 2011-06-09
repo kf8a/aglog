@@ -53,8 +53,9 @@ class AreasController < ApplicationController
   def move_before
     area = Area.find(params[:parent_id])
     child = Area.find(params[:id])
-    child.move_to_right_of(area)
-    render :partial => 'area', :locals => {:area => area.parent}
+    father = area.parent
+    child.move_to_left_of(area)
+    render :partial => 'area', :locals => {:area => father}
   end
 
   def new
