@@ -15,14 +15,12 @@ class AreasController < ApplicationController
         else
           Area.find_with_name_like(query)
         end
-        @areas = @areas.collect {|x| {:id=>x.id, :name=>x.name}}
+        @areas = @areas.collect {|area| {:id=>area.id, :name=>area.name}}
     else
       @areas =
         if company
           Area.roots.by_company(company)
-#          Area.index_areas_by_company_and_observation(company, observation_id)
         else
-#          Area.index_areas(observation_id)
           Area.roots
         end
     end
