@@ -44,18 +44,6 @@ class Area < ActiveRecord::Base
     areas.to_a
   end
 
-  def Area.index_areas(observation_id)
-    observation = Observation.find_by_id(observation_id)
-    broad_scope = observation.try(:areas) || Area
-    broad_scope.order('study_id, name').includes(:study).all
-  end
-
-  def Area.index_areas_by_company_and_observation(company, observation_id)
-    observation = Observation.find_by_id(observation_id)
-    broad_scope = observation.try(:areas) || Area
-    broad_scope.by_company(company).order('study_id, name').includes(:study).all
-  end
-
   # Tries to find areas by their names.
   # @param [String] areas_as_text a string containing area names
   # @return [String or Array] the original string with errors highlighted or
