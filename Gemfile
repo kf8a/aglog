@@ -50,4 +50,5 @@ group :test do
   gem 'launchy'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'evergreen', :require => 'evergreen/rails'
 end
