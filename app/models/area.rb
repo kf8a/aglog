@@ -18,7 +18,7 @@ class Area < ActiveRecord::Base
                                     :scope => :company_id }
   validates :study, :presence => { :if => :study_id }
 
-  validate :treatment_is_part_of_study
+  #validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
   acts_as_nested_set
