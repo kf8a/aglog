@@ -95,28 +95,28 @@ describe Area do
     end
   end
 
-  describe "requires the study of the treatment if it has a treatment: " do
-    before(:each) do
-      @study = find_or_factory(:study)
-      @another_study = Factory.create(:study, :name => 'another_study')
-      @treatment = find_or_factory(:treatment, :study_id => @study.id)
-    end
-
-    describe "an area with a treatment and a consistent study" do
-      subject { Area.new(:study_id => @study.id, :treatment_id => @treatment.id, :name => 'consistent_area') }
-      it { should be_valid }
-    end
-
-    describe "an area with a treatment and no study" do
-      subject { Area.new(:study_id => nil, :treatment_id => @treatment.id, :name => 'no_study_area') }
-      it { should_not be_valid }
-    end
-
-    describe "an area with a treatment and an inconsistent study" do
-      subject { Area.new(:study_id => @another_study.id, :treatment_id => @treatment.id, :name => 'inconsistent_area')}
-      it { should_not be_valid }
-    end
-  end
+  #describe "requires the study of the treatment if it has a treatment: " do
+  #  before(:each) do
+  #    @study = find_or_factory(:study)
+  #    @another_study = Factory.create(:study, :name => 'another_study')
+  #    @treatment = find_or_factory(:treatment, :study_id => @study.id)
+  #  end
+  #
+  #  describe "an area with a treatment and a consistent study" do
+  #    subject { Area.new(:study_id => @study.id, :treatment_id => @treatment.id, :name => 'consistent_area') }
+  #    it { should be_valid }
+  #  end
+  #
+  #  describe "an area with a treatment and no study" do
+  #    subject { Area.new(:study_id => nil, :treatment_id => @treatment.id, :name => 'no_study_area') }
+  #    it { should_not be_valid }
+  #  end
+  #
+  #  describe "an area with a treatment and an inconsistent study" do
+  #    subject { Area.new(:study_id => @another_study.id, :treatment_id => @treatment.id, :name => 'inconsistent_area')}
+  #    it { should_not be_valid }
+  #  end
+  #end
 
   describe "self.parse should parse strings into areas: " do
     it "should highlight non-existent areas and return string" do
