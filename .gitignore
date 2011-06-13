@@ -10,3 +10,4 @@ vendor/gems/doc
 vendor/gems/environment.rb
 .bundle
 nbproject/*
+public/coffeescripts/
