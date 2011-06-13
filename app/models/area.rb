@@ -29,7 +29,7 @@ class Area < ActiveRecord::Base
   end
 
   def expand
-    leaf? ? self : leaves
+    leaf? ? self : leaves.keep_if {|area| area.company_id == self.company_id}
   end
 
   def Area.coalese(areas = [])
