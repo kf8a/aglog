@@ -46,7 +46,7 @@ class AreasController < ApplicationController
   def move_to
     area= Area.find(params[:parent_id])
     child = Area.find(params[:id])
-    child.move_to_child_of(area)
+    child.move_to_child_of(area) unless child == area
     render :partial =>'area', :locals => {:area => area}
   end
 
@@ -54,7 +54,7 @@ class AreasController < ApplicationController
     area = Area.find(params[:parent_id])
     child = Area.find(params[:id])
     father = area.parent
-    child.move_to_left_of(area)
+    child.move_to_left_of(area) unless child == area
     render :partial => 'area', :locals => {:area => father}
   end
 
