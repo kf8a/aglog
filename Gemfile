@@ -30,6 +30,10 @@ gem 'awesome_nested_set'
 
 gem 'seedbed'
 
+#for coffeescript
+gem 'therubyracer', :require => false
+gem 'barista'
+
 group :development do
   gem 'metric_fu'
 end
