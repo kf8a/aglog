@@ -1,5 +1,5 @@
 
-$(document).ready(function() {
+`$(document).ready(function() {
     // Put cursor on first text input of form
   $('.autofocus:first').focus();
   $('input.ui-date-picker').datepicker();
@@ -93,4 +93,4 @@ function add_fields(link, association, content) {
   var regexp = new RegExp("new_" + association, "g")
   var replaced = jQuery(link).prev().append(content.replace(regexp, new_id));
   $(replaced).find(':input').first().focus();
-}
+}`
