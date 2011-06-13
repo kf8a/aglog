@@ -25,6 +25,7 @@ $(document).ready(function() {
       $(dragged).parent().remove();
       $(original).prev().find('span[draggable=true]').draggable({revert: 'invalid'});
       $(original).prev().find('span[draggable=true]').droppable({hoverClass: 'hovered', drop: handleDrop });
+      $('div.droppable').droppable({hoverClass: 'hovered', drop: sortedDrop });
       original.fadeOut();
       original.remove();
     });
@@ -43,6 +44,9 @@ $(document).ready(function() {
 
       $(dragged).parent().fadeOut();
       $(dragged).parent().remove();
+      $(original).prev().find('span[draggable=true]').draggable({revert: 'invalid'});
+      $(original).prev().find('span[draggable=true]').droppable({hoverClass: 'hovered', drop: handleDrop });
+      $('div.droppable').droppable({hoverClass: 'hovered', drop: sortedDrop });
 
       original.fadeOut();
       original.remove();
