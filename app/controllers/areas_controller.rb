@@ -87,11 +87,6 @@ class AreasController < ApplicationController
     respond_with @area
   end
 
-  def check_parsing
-    @areas = Area.check_parse(params[:areas_as_text])
-    render :text => @areas
-  end
-
   private###################################
 
   def company

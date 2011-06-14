@@ -211,36 +211,5 @@ describe AreasController do
         end
       end
     end
-
-    describe 'GET :check_parsing (js)' do
-      before(:each) do
-        get :check_parsing, :areas_as_text => 'G1', :format => 'js'
-      end
-
-      it 'should give the right response' do
-        response.body.should == 'G1R1, G1R2, G1R3, G1R4, G1R5'
-      end
-      it { should assign_to :areas }
-    end
-
-    describe 'GET :check_parsing (js) with failed parsing' do
-      before(:each) do
-        get :check_parsing, :areas_as_text => 'V7', :format => 'js'
-      end
-
-      it 'should give the right message' do
-        response.body.should == 'Parsing failed; invalid parts are marked: *V7*'
-      end
-    end
-
-    describe 'GET :index (json)' do
-      before(:each) do
-        get :index, :q => 't', :format => 'json'
-      end
-
-      it 'should give the right response' do
-        response.body.should be_json_eql("[{\"id\":3,\"name\":\"T\"},{\"id\":4,\"name\":\"T1\"},{\"id\":6,\"name\":\"T2\"},{\"id\":8,\"name\":\"T3\"},{\"id\":10,\"name\":\"T4\"},{\"id\":12,\"name\":\"T5\"},{\"id\":14,\"name\":\"T6\"},{\"id\":16,\"name\":\"T7\"},{\"id\":18,\"name\":\"T8\"},{\"id\":5,\"name\":\"T1R1\"},{\"id\":20,\"name\":\"T1R2\"},{\"id\":28,\"name\":\"T1R3\"},{\"id\":36,\"name\":\"T1R4\"},{\"id\":44,\"name\":\"T1R5\"},{\"id\":52,\"name\":\"T1R6\"},{\"id\":7,\"name\":\"T2R1\"},{\"id\":21,\"name\":\"T2R2\"},{\"id\":29,\"name\":\"T2R3\"},{\"id\":37,\"name\":\"T2R4\"},{\"id\":45,\"name\":\"T2R5\"},{\"id\":53,\"name\":\"T2R6\"},{\"id\":9,\"name\":\"T3R1\"},{\"id\":22,\"name\":\"T3R2\"},{\"id\":30,\"name\":\"T3R3\"},{\"id\":38,\"name\":\"T3R4\"},{\"id\":46,\"name\":\"T3R5\"},{\"id\":54,\"name\":\"T3R6\"},{\"id\":11,\"name\":\"T4R1\"},{\"id\":23,\"name\":\"T4R2\"},{\"id\":31,\"name\":\"T4R3\"},{\"id\":39,\"name\":\"T4R4\"},{\"id\":47,\"name\":\"T4R5\"},{\"id\":55,\"name\":\"T4R6\"},{\"id\":13,\"name\":\"T5R1\"},{\"id\":24,\"name\":\"T5R2\"},{\"id\":32,\"name\":\"T5R3\"},{\"id\":40,\"name\":\"T5R4\"},{\"id\":48,\"name\":\"T5R5\"},{\"id\":56,\"name\":\"T5R6\"},{\"id\":15,\"name\":\"T6R1\"},{\"id\":25,\"name\":\"T6R2\"},{\"id\":33,\"name\":\"T6R3\"},{\"id\":41,\"name\":\"T6R4\"},{\"id\":49,\"name\":\"T6R5\"},{\"id\":57,\"name\":\"T6R6\"},{\"id\":17,\"name\":\"T7R1\"},{\"id\":26,\"name\":\"T7R2\"},{\"id\":34,\"name\":\"T7R3\"},{\"id\":42,\"name\":\"T7R4\"},{\"id\":50,\"name\":\"T7R5\"},{\"id\":58,\"name\":\"T7R6\"},{\"id\":19,\"name\":\"T8R1\"},{\"id\":27,\"name\":\"T8R2\"},{\"id\":35,\"name\":\"T8R3\"},{\"id\":43,\"name\":\"T8R4\"},{\"id\":51,\"name\":\"T8R5\"},{\"id\":59,\"name\":\"T8R6\"}]")
-      end
-    end
   end
 end

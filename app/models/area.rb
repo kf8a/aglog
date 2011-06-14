@@ -60,16 +60,7 @@ class Area < ActiveRecord::Base
     invalid_tokens.compact.present? ? mark_tokens(invalid_tokens, tokens) : areas.flatten
   end
 
-  def Area.check_parse(areas_as_text)
-    parsing_result = parse(areas_as_text)
-    if parsing_result.class == String #failed parse
-      'Parsing failed; invalid parts are marked: ' + parsing_result
-    else
-      parsing_result.collect { |area| area.name }.join(', ')
-    end
-  end
-
-    # Transforms an array of areas into a list of area names and study names if a
+  # Transforms an array of areas into a list of area names and study names if a
   # whole study's areas are included.
   # @param [Array] areas an array of areas
   # @return [String] a list of area names and study names if a whole study's
