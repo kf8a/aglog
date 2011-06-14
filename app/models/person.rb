@@ -19,6 +19,10 @@ class Person < ActiveRecord::Base
   scope :ordered, order('sur_name, given_name')
   scope :by_company, lambda {|company| where(:company_id => company)}
 
+  def to_label
+    name
+  end
+
   def name_must_be_unique
     person = Person.where([ "lower(given_name) = ?", given_name.try(:downcase) ]).where([ "lower(sur_name) = ?", sur_name.try(:downcase) ]).all - [self]
     errors.add(:base, "Name must be unique") if person.present?

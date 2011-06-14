@@ -5,7 +5,7 @@
   <%= form.input :observation_types, :as=>:check_boxes, :multiple=>true%>
 
 
-  <div class='actvities'>
+  <div class='activities'>
     <%= form.inputs :for => :activities do |builder| %>
       <%= render 'activity_fields', :f => builder, :only_current => only_current %>
     <% end %>
