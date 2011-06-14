@@ -51,8 +51,10 @@
 			    <% end %>
 		    </td>
         <td><%= link_to 'Show', observation_path(observation) %></td>
-        <td><%= link_to 'Edit', edit_observation_path(observation)%></td>
-        <td><%= link_to 'Destroy', observation_path(observation), :confirm => 'Are you sure?', :method => :delete %></td>
+	<% if signed_in? %>
+	  <td><%= link_to 'Edit', edit_observation_path(observation)%></td>
+	  <td><%= link_to 'Destroy', observation_path(observation), :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
       </tr>
     <% end %>
   </table>
