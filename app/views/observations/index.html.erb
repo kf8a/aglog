@@ -21,35 +21,35 @@
       <th>Date</th>
       <th>Site</th>
       <th>Observation Type</th>
-	    <th>Comment</th>
+      <th>Comment</th>
       <th><%= link_to 'Areas', areas_path %></th>
-	    <th><%= link_to 'Material', materials_path %></th>
+      <th><%= link_to 'Material', materials_path %></th>
     </tr>
 
     <% @observations.each do |observation| %>
       <tr valign='top'>
-		    <td><%= observation.obs_date %> </td>
+	<td><%= observation.obs_date %> </td>
         <td><%= observation.company_name %></td>
-		    <td>
-			    <% observation.observation_types.each do |type| %>
-			      <%= type.name %>
-			    <% end %>
-		    </td>
-		    <td><%= truncate(observation.comment.to_s) %></td>
-		    <td><%= observation.areas_as_text %></td>
-		    <td>
-			    <% observation.activities.each do |activity| %>
-				    <% activity.setups.each do |setup| %>
-					    <table>
-					      <% setup.material_transactions.each do |m| %>
-						      <tr>
-							      <td><%= m.material.name if m %></td>
-    						  </tr>
-	    				  <% end %>
-					    </table>
-				    <% end %>
-			    <% end %>
-		    </td>
+	<td>
+	  <% observation.observation_types.each do |type| %>
+	    <%= type.name %>
+	  <% end %>
+	</td>
+	<td><%= truncate(observation.comment.to_s) %></td>
+	<td><%= observation.areas_as_text %></td>
+	<td>
+	  <% observation.activities.each do |activity| %>
+	    <% activity.setups.each do |setup| %>
+	      <table>
+		<% setup.material_transactions.each do |m| %>
+		  <tr>
+		    <td><%= m.material.name if m %></td>
+		  </tr>
+		<% end %>
+	      </table>
+	    <% end %>
+	  <% end %>
+        </td>
         <td><%= link_to 'Show', observation_path(observation) %></td>
 	<% if signed_in? %>
 	  <td><%= link_to 'Edit', edit_observation_path(observation)%></td>
