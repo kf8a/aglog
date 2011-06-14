@@ -2,7 +2,7 @@ $(document).ready ->
   # Put cursor on first text input of form
   $('.autofocus:first').focus()
   $('input.ui-date-picker').datepicker()
-  $('#observation_areas_as_text').tokenInput('/areas', {theme:'facebook', preventDuplicates:true} );
+  $('#observation_areas_as_text').tokenInput('/areas', {theme:'facebook', preventDuplicates:true} )
 
   sortedDrop = (event, ui) ->
     dragged = ui.draggable
@@ -43,7 +43,7 @@ $(document).ready ->
       $('div.droppable').droppable hoverClass: 'hovered', drop: sortedDrop
       original.fadeOut()
       original.remove()
-    );
+    )
 
   $('span[draggable=true]').draggable revert: 'invalid'
   $('span[draggable=true]').droppable hoverClass: 'hovered', drop: handleDrop
