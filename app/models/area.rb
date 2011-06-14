@@ -25,7 +25,11 @@ class Area < ActiveRecord::Base
 
   def Area.find_with_name_like(query)
     query = query.downcase + '%'
-    Area.where('lower(name) like ?', query).all.sort
+    Area.where('lower(name) like ?', query)
+  end
+
+  def Area.to_jquery_tokens
+    all.sort.collect {|area| {:id=>area.id, :name=>area.name}}
   end
 
   def expand
@@ -45,7 +49,7 @@ class Area < ActiveRecord::Base
   end
 
   # Tries to find areas by their names.
-  # @param [String] areas_as_text a string containing area names
+  # @param [String] areas_as_text a string containing area names and tokens
   # @return [String or Array] the original string with errors highlighted or
   #   an array of areas
   # @example Parse a string of actual area names
@@ -60,11 +64,9 @@ class Area < ActiveRecord::Base
     invalid_tokens.compact.present? ? mark_tokens(invalid_tokens, tokens) : areas.flatten
   end
 
-  # Transforms an array of areas into a list of area names and study names if a
-  # whole study's areas are included.
+  # Transforms an array of areas into a list of area names, contracted if possible.
   # @param [Array] areas an array of areas
-  # @return [String] a list of area names and study names if a whole study's
-  #   areas are included (and treatment names for the same reason)
+  # @return [String] a list of area names, as close as possible to roots.
   def Area.unparse(areas = [])
     areas = coalese(areas)
     names = areas.collect { |area| area.name }.uniq

@@ -4,24 +4,13 @@ class AreasController < ApplicationController
   respond_to :html, :json
 
   def index
-    observation_id = params[:observation_id]
     query = params[:q]
+    @areas = company.try(:areas) || Area.scoped
 
     if query
-      @areas =
-        if company
-          Area.by_company(company).find_with_name_like(query)
-        else
-          Area.find_with_name_like(query)
-        end
-        @areas = @areas.collect {|area| {:id=>area.id, :name=>area.name}}
+      @areas = @areas.find_with_name_like(query).to_jquery_tokens
     else
-      @areas =
-        if company
-          Area.roots.by_company(company)
-        else
-          Area.roots
-        end
+      @areas = @areas.roots
     end
 
     respond_with @areas
