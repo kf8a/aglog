@@ -4,7 +4,6 @@ class AreasController < ApplicationController
   respond_to :html, :json
 
   def index
-    company = current_user.try(:company)
     observation_id = params[:observation_id]
     query = params[:q]
 
@@ -39,7 +38,6 @@ class AreasController < ApplicationController
   end
 
   def query
-    company = current_user.try(:company)
     respond_with @areas
   end
 
@@ -65,7 +63,7 @@ class AreasController < ApplicationController
 
   def create
     @area = Area.new(params[:area])
-    @area.company = current_user.company
+    @area.company = company
     if @area.save
       flash[:notice] = 'Area was successfully created.'
     end
@@ -73,12 +71,12 @@ class AreasController < ApplicationController
   end
 
   def edit
-    @area = Area.by_company(current_user.company).find(params[:id])
+    @area = Area.by_company(company).find(params[:id])
     respond_with @area
   end
 
   def update
-    @area = Area.by_company(current_user.company).find(params[:id])
+    @area = Area.by_company(company).find(params[:id])
     @area.update_attributes(params[:area])
     respond_with @area
   end
@@ -92,6 +90,12 @@ class AreasController < ApplicationController
   def check_parsing
     @areas = Area.check_parse(params[:areas_as_text])
     render :text => @areas
+  end
+
+  private###################################
+
+  def company
+    current_user.try(:company)
   end
 
 end
