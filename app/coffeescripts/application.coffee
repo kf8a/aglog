@@ -7,7 +7,7 @@ $(document).ready ->
   sortedDrop = (event, ui) ->
     dragged = ui.draggable
     dragged_id = dragged.attr('id')
-    dropTarget = $(this).next().find('span[draggable=true]')
+    dropTarget = $(this).parent().find('span[draggable=true]')
     target_id = dropTarget.attr('id')
 
     $.post('/areas/' + dragged_id + '/move_before/' + target_id, (data) ->

@@ -1,6 +1,6 @@
-- unless area.root?
-  %div.droppable
 %li
+  - unless area.root?
+    %div.droppable
   %span{:id=>"#{area.id}", :draggable=>'true'}
     = area.name
     = area.description
