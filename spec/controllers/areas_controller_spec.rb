@@ -61,6 +61,23 @@ describe AreasController do
         it { should assign_to(:observations) }
       end
 
+      describe 'The area is a branch with leaves that have observations. ' do
+        before(:each) do
+          @area1 = Factory.create(:area)
+          @area1.observations << Factory.create(:observation)
+          @area1.move_to_child_of(@area)
+          assert @area.leaves.include?(@area1)
+        end
+
+        describe 'GET :show the area' do
+          before(:each) do
+            get :show, :id => @area.id
+          end
+
+          it { should assign_to(:observations).with(@area1.observations) }
+        end
+      end
+
       describe 'GET :edit the area' do
         before(:each) do
           get :edit, :id => @area.id

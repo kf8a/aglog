@@ -18,10 +18,7 @@ class AreasController < ApplicationController
 
   def show
     @area = Area.find(params[:id])
-    @observations = @area.observations.includes(
-        :observation_types,
-        {:setups => [:equipment,
-                    {:material_transactions => [:material, :unit]}]}).all
+    @observations = @area.leaf_observations
 
     respond_with @area
   end
