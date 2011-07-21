@@ -2,6 +2,5 @@
 
 = link_to 'New area', new_area_path
 
-%ul
-  - @areas.each do |area|
-    = render area
+%div
+  = render 'area_list', :area_roots => @areas

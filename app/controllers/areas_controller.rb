@@ -39,7 +39,11 @@ class AreasController < ApplicationController
     child = Area.find(params[:id])
     father = area.parent
     child.move_to_left_of(area) unless child == area
-    render :partial => 'area', :locals => {:area => father}
+    if area.root?
+      render :partial => 'area_list', :locals => {:area_roots => Area.roots}
+    else
+      render :partial => 'area', :locals => {:area => father}
+    end
   end
 
   def new
