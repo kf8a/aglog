@@ -1,16 +1,12 @@
-root_area = Area.find_or_create_by_name_and_company_id(:name => "LTER", :company_id => 1)
-
 #Lysimeter field
 t =Treatment.find_or_create_by_name(:name=>'LYSIMETER_FIELD', :study_id=>9)
 lys_field = Area.find_or_create_by_name(:name=>'LYSIMETER_FIELD',
                             :treatment_id => t,
                             :study_id=>9,
                             :company_id=>1)
-lys_field.move_to_child_of(root_area)
 
 # Main Site
 main = Area.find_or_create_by_name(:name => "T", :study_id => 1, :company_id => 1)
-main.move_to_child_of(root_area)
 1.upto(6) do |rep|
   1.upto(8) do |treat|
     t = Treatment.find_or_create_by_name(:name => "T#{treat}",
@@ -37,7 +33,6 @@ end
 
 #add biodiversity
 biodiversity = Area.find_or_create_by_name(:name => 'B', :study_id => 2, :company_id => 1)
-biodiversity.move_to_child_of(root_area)
 1.upto(4) do |rep|
   1.upto(21) do |treat|
     t = Treatment.find_or_create_by_name(:name=>"B#{treat}",
@@ -63,7 +58,6 @@ end
 
 #add N rate study
 n_rate = Area.find_or_create_by_name(:name => "F", :study_id => 3, :company_id => 1)
-n_rate.move_to_child_of(root_area)
 1.upto(4) do |rep|
   1.upto(9) do |treat|
     t = Treatment.find_or_create_by_name(:name => "F#{treat}",
@@ -87,7 +81,6 @@ end
 
 #add irrigated N rate study
 irrigated_n_rate = Area.find_or_create_by_name(:name => "iF", :study_id => 4, :company_id => 1)
-irrigated_n_rate.move_to_child_of(root_area)
 1.upto(4) do |rep|
   1.upto(9) do |treat|
     t = Treatment.find_or_create_by_name(:name=>"iF#{treat}",
@@ -111,7 +104,6 @@ end
 
 #GLBRC study
 glbrc = Area.find_or_create_by_name(:name => "G", :study_id => 6, :company_id => 1)
-glbrc.move_to_child_of(root_area)
 1.upto(5) do |rep|
   1.upto(10) do |trt|
     t = Treatment.find_or_create_by_name(:name=>"G#{trt}",
@@ -136,7 +128,6 @@ end
 
 #CES study
 ces = Area.find_or_create_by_name(:name => "CE", :study_id => 7, :company_id => 1)
-ces.move_to_child_of(root_area)
 1.upto(4) do |rep|
   plot = rep * 100
   1.upto(19) do |trt|
@@ -161,7 +152,6 @@ ces.move_to_child_of(root_area)
 end
 
 wicst = Area.find_or_create_by_name(:name => "WICST", :study_id => 8, :company_id => 1)
-wicst.move_to_child_of(root_area)
 ['ldp', 'hdp', 'sg'].each do |treatment_name|
   t = Treatment.find_or_create_by_name(:name=>treatment_name,
                                        :study_id => 8)
