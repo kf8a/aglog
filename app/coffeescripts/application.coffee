@@ -4,10 +4,13 @@ $(document).ready ->
   $('input.ui-date-picker').datepicker()
   $('#observation_areas_as_text').tokenInput('/areas', {theme:'facebook', preventDuplicates:true} )
 
+  drag_selector = 'span[draggable=true]'
+  drop_selector = 'div.droppable'
+
   sortedDrop = (event, ui) ->
     dragged = ui.draggable
     dragged_id = dragged.attr('id')
-    dropTarget = $(this).parent().find('span[draggable=true]')
+    dropTarget = $(this).parent().find(drag_selector)
     target_id = dropTarget.attr('id')
 
     $.post('/areas/' + dragged_id + '/move_before/' + target_id, (data) ->
@@ -17,9 +20,9 @@ $(document).ready ->
 
       $(dragged).parent().fadeOut()
       $(dragged).parent().remove()
-      $(original).prev().find('span[draggable=true]').draggable revert: 'invalid'
-      $(original).prev().find('span[draggable=true]').droppable hoverClass: 'hovered', drop: handleDrop
-      $('div.droppable').droppable hoverClass: 'hovered', drop: sortedDrop
+      $(original).prev().find(drag_selector).draggable revert: 'invalid'
+      $(original).prev().find(drag_selector).droppable hoverClass: 'hovered', drop: handleDrop
+      $(drop_selector).droppable hoverClass: 'hovered', drop: sortedDrop
 
       original.fadeOut()
       original.remove()
@@ -29,7 +32,7 @@ $(document).ready ->
     dragged = ui.draggable
     dragged_id = dragged.attr('id')
     dropTarget = this
-    target_id = this.id
+    target_id = @id
 
     $.post('/areas/' + dragged_id + '/move_to/' + target_id, (data) ->
       original = $(dropTarget).parent()
@@ -38,13 +41,13 @@ $(document).ready ->
 
       $(dragged).parent().fadeOut()
       $(dragged).parent().remove()
-      $(original).prev().find('span[draggable=true]').draggable revert: 'invalid'
-      $(original).prev().find('span[draggable=true]').droppable hoverClass: 'hovered', drop: handleDrop
-      $('div.droppable').droppable hoverClass: 'hovered', drop: sortedDrop
+      $(original).prev().find(drag_selector).draggable revert: 'invalid'
+      $(original).prev().find(drag_selector).droppable hoverClass: 'hovered', drop: handleDrop
+      $(drop_selector).droppable hoverClass: 'hovered', drop: sortedDrop
       original.fadeOut()
       original.remove()
     )
 
-  $('span[draggable=true]').draggable revert: 'invalid'
-  $('span[draggable=true]').droppable hoverClass: 'hovered', drop: handleDrop
-  $('div.droppable').droppable hoverClass: 'hovered', drop: sortedDrop
+  $(drag_selector).draggable revert: 'invalid'
+  $(drag_selector).droppable hoverClass: 'hovered', drop: handleDrop
+  $(drop_selector).droppable hoverClass: 'hovered', drop: sortedDrop
