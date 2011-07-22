@@ -4,6 +4,9 @@ $(document).ready ->
   $('input.ui-date-picker').datepicker()
   $('#observation_areas_as_text').tokenInput('/areas', {theme:'facebook', preventDuplicates:true} )
 
+  $('.hider').click ->
+    $(this).next().toggle('slow')
+
   drag_selector = 'span[draggable=true]'
   drop_selector = 'div.droppable'
 
