@@ -23,10 +23,6 @@ class AreasController < ApplicationController
     respond_with @area
   end
 
-  def query
-    respond_with @areas
-  end
-
   def move_to
     area= Area.find(params[:parent_id])
     child = Area.find(params[:id])
