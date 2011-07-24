@@ -7,17 +7,15 @@ class Observation < ActiveRecord::Base
 
   attr :observation_date
 
-  acts_as_state_machine :initial => :published
-
-  state  :published
-  state  :in_review
-
-  event :review do
-    transitions :from => :published, :to => :in_review
-  end
-
-  event :publish do
-    transitions :from => :in_review, :to => :published
+  include Workflow
+  workflow_column :state
+  workflow do
+    state :published do
+      event :review, :transitions_to => :in_review
+    end
+    state :in_review do
+      event :publish, :transitions_to => :published
+    end
   end
 
   has_many :activities, :dependent => :destroy

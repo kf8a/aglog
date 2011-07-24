@@ -34,6 +34,8 @@ gem 'seedbed'
 gem 'therubyracer', :require => false
 gem 'barista'
 
+gem 'workflow'
+
 group :development do
   gem 'metric_fu'
 end
