@@ -16,8 +16,6 @@ gem 'will_paginate', "~> 3.0.pre2"
 gem 'thin'
 gem 'haml'
 
-gem 'chronic'
-
 #Uses jquery instead of prototype in rails
 gem 'jquery-rails', '>= 0.2.6'
 

@@ -302,7 +302,6 @@ DEPENDENCIES
   awesome_nested_set
   barista
   capybara
-  chronic
   cucumber-rails
   database_cleaner
   delocalize
