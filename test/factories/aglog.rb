@@ -1,73 +1,72 @@
-if Factory.factories.blank? #prevent redefining these factories
+FactoryGirl.define do
 
   #Independent Factories
 
-  Factory.define :hazard do |h|
+  factory :hazard do
 
   end
 
-  Factory.define :material_type do |m|
+  factory :material_type do
 
   end
 
-  Factory.define :observation_type do |o|
-    o.name    "Default"
+  factory :observation_type do
+    name  "Default"
   end
 
-  Factory.define :company do |c|
-    c.name    'lter'
+  factory :company do
+    name  "lter"
   end
 
-  Factory.define :study do |s|
-
-  end
-
-  Factory.define :treatment do |t|
+  factory :study do
 
   end
 
-  Factory.define :unit do |u|
+  factory :treatment do
+
+  end
+
+  factory :unit do
 
   end
 
 
   #Dependent Factories
 
-  Factory.define :person do |p|
-    p.given_name  "Bob"
-    p.sur_name    "Dobolina"
-    p.company  Company.first || Factory.create(:company)
+  factory :person do
+    given_name  "Bob"
+    sur_name    "Dobolina"
+    company     Company.first || FactoryGirl.create(:company)
   end
 
-  Factory.define :area do |a|
-    a.company  Company.first || Factory.create(:company)
+  factory :area do
+    company     Company.first || FactoryGirl.create(:company)
   end
 
-  Factory.define :material do |m|
-    m.company  Company.first || Factory.create(:company)
+  factory :material do
+    company     Company.first || FactoryGirl.create(:company)
   end
 
-  Factory.define :equipment do |e|
-    e.association  :company
+  factory :equipment do
+    company
   end
 
-  Factory.define :material_transaction do |m|
-    m.material          Material.first || Factory.create(:material)
+  factory :material_transaction do
+    material    Material.first || FactoryGirl.create(:material)
   end
 
-  Factory.define :observation do |o|
-    o.obs_date            Date.today
-    o.observation_types   [ObservationType.first || Factory.create(:observation_type)]
-    o.person              Person.first || Factory.create(:person)
+  factory :observation do
+    obs_date            Date.today
+    observation_types   [ObservationType.first || FactoryGirl.create(:observation_type)]
+    person              Person.first || FactoryGirl.create(:person)
   end
 
-  Factory.define :activity do |a|
-    a.observation         Observation.first || Factory.create(:observation)
-    a.person              Person.first || Factory.create(:person)
+  factory :activity do
+    observation         Observation.first || FactoryGirl.create(:observation)
+    person              Person.first || FactoryGirl.create(:person)
   end
 
-  Factory.define :setup do |s|
-    s.association :equipment, :factory => :equipment
+  factory :setup do
+    equipment
   end
-
 end
