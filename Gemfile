@@ -11,7 +11,7 @@ gem 'pg'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
-gem 'omniauth'
+gem 'omniauth', ">= 0.2.6"
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'thin'
 gem 'haml'
