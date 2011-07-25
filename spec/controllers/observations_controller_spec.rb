@@ -22,7 +22,7 @@ describe ObservationsController do
         @observation = Factory.create(:observation, :company_id=>1)
         put :update, :id => @observation.id, :observation => {}
       end
-      
+
       it { should redirect_to new_person_session_path }
     end
   end
@@ -62,13 +62,13 @@ describe ObservationsController do
     describe "GET :index, with observation type selected" do
       before(:each) do
         right_type= find_or_factory(:observation_type)
-        @correct_type_observation = Factory.create(:observation, 
+        @correct_type_observation = Factory.create(:observation,
                                                    :company_id => @user.company.id)
         @correct_type_observation.observation_types << right_type
-        @correct_type_observation.save 
-        wrong_type = find_or_factory(:observation_type, 
+        @correct_type_observation.save
+        wrong_type = find_or_factory(:observation_type,
                                      :name => 'wrong_type')
-        @wrong_type_observation = Factory.create(:observation, 
+        @wrong_type_observation = Factory.create(:observation,
                                                  :company_id => @user.company.id)
         @wrong_type_observation.observation_types = [wrong_type]
         @wrong_type_observation.save
@@ -195,6 +195,14 @@ describe ObservationsController do
         end
 
         it { should redirect_to observations_path }
+      end
+
+      describe "GET :related" do
+        before(:each) do
+          get :related, :id => @observation.id
+        end
+
+        it { should render_template 'related' }
       end
     end
 

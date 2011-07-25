@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PeopleController do
   render_views
-  
+
   before(:each) do
     sign_in_as_normal_user
     @person = find_or_factory(:person)
@@ -12,6 +12,15 @@ describe PeopleController do
     get :index
     assert_response :success
     assert assigns(:people)
+  end
+
+  describe "get :index when not signed in" do
+    before(:each) do
+      sign_out
+      get :index
+    end
+
+    it { should assign_to :people }
   end
 
   it "should get new" do
@@ -69,4 +78,3 @@ describe PeopleController do
     assert_redirected_to people_path
   end
 end
-

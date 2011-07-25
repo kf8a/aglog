@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe HazardsController do
   render_views
-  
+
   before(:each) do
     sign_in_as_normal_user
     @hazard = Factory.create(:hazard)
@@ -15,6 +15,15 @@ describe HazardsController do
 
     it { should respond_with :success }
     it { should assign_to :hazards }
+  end
+
+  describe "get :index when signed_out" do
+    before(:each) do
+      sign_out
+      get :index
+    end
+
+    it { should render_template 'unauthorized_index' }
   end
 
   describe "get :new" do
