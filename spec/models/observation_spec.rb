@@ -230,6 +230,13 @@ describe Observation do
     assert_equal ['Unit3', 'Unit4'], o.unit_names
   end
 
+  it "should allow observation date to be set easily" do
+    o = create_simple_observation
+    old_date = o.obs_date
+    o.observation_date = "yesterday"
+    assert_equal Date.today - 1.day, o.obs_date.to_date
+  end
+
   private
 
   def create_simple_observation
