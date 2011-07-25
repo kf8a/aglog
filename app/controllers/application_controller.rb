@@ -35,14 +35,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def model_name
-    self.controller_name.singularize
-  end
-
-  def model
-    model_name.capitalize.constantize
-  end
-
   def require_user
     unless signed_in?
       store_location
