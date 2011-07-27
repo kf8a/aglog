@@ -42,8 +42,8 @@ class Observation < ActiveRecord::Base
     self.obs_date
   end
 
-  def Observation.by_state_and_page(state, page)
-    by_state(state).ordered_by_date.includes_everything.paginate :page => page
+  def Observation.by_page(page)
+    ordered_by_date.includes_everything.paginate :page => page
   end
 
   def Observation.includes_everything

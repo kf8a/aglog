@@ -6,11 +6,10 @@ class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.xml
   def index
-    state = params[:in_review] ? "in_review" : "published"
     obstype = ObservationType.find_by_id(params[:obstype])
     @observations = obstype.try(:observations) || Observation.scoped
     @observations = @observations.by_company(current_user.company) if signed_in?
-    @observations = @observations.by_state_and_page(state, params[:page])
+    @observations = @observations.by_page(params[:page])
 
     respond_with @observations do |format|
       format.salus_xml { render 'index.salus_xml' }
