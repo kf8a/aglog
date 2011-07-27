@@ -7,17 +7,6 @@ class Observation < ActiveRecord::Base
 
   attr :observation_date
 
-  include Workflow
-  workflow_column :state
-  workflow do
-    state :published do
-      event :review, :transitions_to => :in_review
-    end
-    state :in_review do
-      event :publish, :transitions_to => :published
-    end
-  end
-
   has_many :activities, :dependent => :destroy
   has_many :setups, :through => :activities
   has_and_belongs_to_many :areas

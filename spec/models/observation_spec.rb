@@ -61,34 +61,6 @@ describe Observation do
     assert_equal 0, o.activities.size
   end
 
-  it 'should get review status' do
-    o = create_simple_observation
-    assert_equal false, o.in_review
-  end
-
-  it 'should set review status to review' do
-    o = create_simple_observation
-    assert o.save
-    assert_equal false, o.in_review
-    o.in_review = "1"
-    assert_equal true, o.in_review
-  end
-
-  it 'should set review status to published from in review' do
-    o = create_simple_observation
-    assert o.save
-    o.in_review = "1"
-    assert_equal o.state, 'in_review'
-    o.in_review = "0"
-    assert_equal o.state, 'published'
-  end
-
-  it 'should should not set review status for new records' do
-    o = Observation.new
-    o.in_review = "0"
-    assert o.state != 'published'
-  end
-
   it 'should not be valid if it has error areas' do
     o = create_simple_observation
     assert o.save

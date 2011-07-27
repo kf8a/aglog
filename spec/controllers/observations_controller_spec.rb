@@ -61,7 +61,7 @@ describe ObservationsController do
 
     describe "GET :index, with observation type selected" do
       before(:each) do
-        right_type= find_or_factory(:observation_type)
+        right_type = find_or_factory(:observation_type)
         @correct_type_observation = Factory.create(:observation,
                                                    :company_id => @user.company.id)
         @correct_type_observation.observation_types << right_type
