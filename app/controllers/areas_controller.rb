@@ -36,7 +36,8 @@ class AreasController < ApplicationController
     father = area.parent
     child.move_to_left_of(area) unless child == area
     if area.root?
-      render :partial => 'area_list', :locals => {:area_roots => Area.roots}
+      areas = company.try(:areas) || Area.scoped
+      render :partial => 'area_list', :locals => {:area_roots => areas.roots}
     else
       render :partial => 'area', :locals => {:area => father}
     end
