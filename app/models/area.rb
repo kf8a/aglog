@@ -88,7 +88,7 @@ class Area < ActiveRecord::Base
   end
 
   def leaf_observations
-    leaf? ? observations : leaves.collect{ |leaf| leaf.observations }.flatten.compact.uniq.sort
+    leaf? ? observations : leaves.collect{ |leaf| leaf.observations }.flatten.compact.uniq
   end
 
 
