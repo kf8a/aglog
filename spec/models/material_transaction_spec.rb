@@ -96,7 +96,7 @@ describe MaterialTransaction do
 
       context 'The material is hazardous.' do
         before(:each) do
-          @material.hazards << Factory.create(:hazard)
+          @material.hazards << FactoryGirlcreate(:hazard)
         end
 
         describe 'The hazardous transaction' do

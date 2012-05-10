@@ -76,8 +76,8 @@ describe Observation do
 
   it 'should have the right equipment_names' do
     o = create_simple_observation
-    another_equipment = Factory.create(:equipment, :name => "Another Equipment")
-    evil_equipment = Factory.create(:equipment, :name => "Evil Equipment")
+    another_equipment = FactoryGirl.create(:equipment, :name => "Another Equipment")
+    evil_equipment = FactoryGirl.create(:equipment, :name => "Evil Equipment")
     another_setup = o.setups.new(:equipment_id => another_equipment.id)
     another_setup.save
     assert_equal "Equipment2, Another Equipment", o.equipment_names
@@ -85,12 +85,12 @@ describe Observation do
 
   it 'should get the right materials_with_rates' do
     o = create_simple_observation
-    activity = Factory.create(:activity, :observation_id => o.id)
-    equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
+    activity = FactoryGirl.create(:activity, :observation_id => o.id)
+    equipment = Equipment.find_by_name("Another Equipment") || FactoryGirl.create(:equipment, :name => "Another Equipment")
     setup = activity.setups.new(:equipment_id => equipment.id)
     assert setup.save
-    material = Material.find_by_name("Material4") || Factory.create(:material, :name => "Material4")
-    unit = Unit.find_by_name("Unit4") || Factory.create(:unit, :name => "Unit4")
+    material = Material.find_by_name("Material4") || FactoryGirl.create(:material, :name => "Material4")
+    unit = Unit.find_by_name("Unit4") || FactoryGirl.create(:unit, :name => "Unit4")
     trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
     assert trans_0.save
     assert_equal "Material3: 4.0 Unit3s per acre, Material4: 5.0 Unit4s per acre", o.materials_with_rates
@@ -145,12 +145,12 @@ describe Observation do
 
   it "should give the right material_names" do
     o = create_simple_observation
-    activity = Factory.create(:activity, :observation_id => o.id)
-    equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
+    activity = FactoryGirl.create(:activity, :observation_id => o.id)
+    equipment = Equipment.find_by_name("Another Equipment") || FactoryGirl.create(:equipment, :name => "Another Equipment")
     setup = activity.setups.new(:equipment_id => equipment.id)
     assert setup.save
-    material = Material.find_by_name("Material4") || Factory.create(:material, :name => "Material4")
-    unit = Unit.find_by_name("Unit4") || Factory.create(:unit, :name => "Unit4")
+    material = Material.find_by_name("Material4") || FactoryGirl.create(:material, :name => "Material4")
+    unit = Unit.find_by_name("Unit4") || FactoryGirl.create(:unit, :name => "Unit4")
     trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
     assert trans_0.save
     assert_equal ["Material3", "Material4"], o.material_names
@@ -159,12 +159,12 @@ describe Observation do
   #TODO This test, material_names, and materials_with_rates should be refactored
   it "should give the right n_contents" do
     o = create_simple_observation
-    activity = Factory.create(:activity, :observation_id => o.id)
-    equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
+    activity = FactoryGirl.create(:activity, :observation_id => o.id)
+    equipment = Equipment.find_by_name("Another Equipment") || FactoryGirl.create(:equipment, :name => "Another Equipment")
     setup = activity.setups.new(:equipment_id => equipment.id)
     assert setup.save
-    material = Material.find_by_name("Material4") || Factory.create(:material, :name => "Material4")
-    unit = Unit.find_by_name("Unit4") || Factory.create(:unit, :name => "Unit4")
+    material = Material.find_by_name("Material4") || FactoryGirl.create(:material, :name => "Material4")
+    unit = Unit.find_by_name("Unit4") || FactoryGirl.create(:unit, :name => "Unit4")
     trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
     assert trans_0.save
     material = Material.find_by_name("Material3")
@@ -178,12 +178,12 @@ describe Observation do
 
   it "should give the right rates" do
     o = create_simple_observation
-    activity = Factory.create(:activity, :observation_id => o.id)
-    equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
+    activity = FactoryGirl.create(:activity, :observation_id => o.id)
+    equipment = Equipment.find_by_name("Another Equipment") || FactoryGirl.create(:equipment, :name => "Another Equipment")
     setup = activity.setups.new(:equipment_id => equipment.id)
     assert setup.save
-    material = Material.find_by_name("Material4") || Factory.create(:material, :name => "Material4")
-    unit = Unit.find_by_name("Unit4") || Factory.create(:unit, :name => "Unit4")
+    material = Material.find_by_name("Material4") || FactoryGirl.create(:material, :name => "Material4")
+    unit = Unit.find_by_name("Unit4") || FactoryGirl.create(:unit, :name => "Unit4")
     trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
     assert trans_0.save
     assert_equal [4.0, 5.0], o.rates
@@ -191,12 +191,12 @@ describe Observation do
 
   it "should give the right unit_names" do
     o = create_simple_observation
-    activity = Factory.create(:activity, :observation_id => o.id)
-    equipment = Equipment.find_by_name("Another Equipment") || Factory.create(:equipment, :name => "Another Equipment")
+    activity = FactoryGirl.create(:activity, :observation_id => o.id)
+    equipment = Equipment.find_by_name("Another Equipment") || FactoryGirl.create(:equipment, :name => "Another Equipment")
     setup = activity.setups.new(:equipment_id => equipment.id)
     assert setup.save
-    material = Material.find_by_name("Material4") || Factory.create(:material, :name => "Material4")
-    unit = Unit.find_by_name("Unit4") || Factory.create(:unit, :name => "Unit4")
+    material = Material.find_by_name("Material4") || FactoryGirl.create(:material, :name => "Material4")
+    unit = Unit.find_by_name("Unit4") || FactoryGirl.create(:unit, :name => "Unit4")
     trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
     assert trans_0.save
     assert_equal ['Unit3', 'Unit4'], o.unit_names
@@ -214,17 +214,17 @@ describe Observation do
   def create_simple_observation
     type = ObservationType.find_by_name('Soil Preparation')
     assert type
-    person1 = Person.find_by_sur_name("Sur1") || Factory.create(:person, :sur_name => "Sur1")
+    person1 = Person.find_by_sur_name("Sur1") || FactoryGirl.create(:person, :sur_name => "Sur1")
     observation = Observation.new(:obs_date => "June 14, 2007", :person_id => person1.id, :observation_type_ids => [type.id])
     assert observation.save
-    person2 = Person.find_by_sur_name("Sur2") || Factory.create(:person, :sur_name => "Sur2")
+    person2 = Person.find_by_sur_name("Sur2") || FactoryGirl.create(:person, :sur_name => "Sur2")
     activity = observation.activities.new(:hours => 1, :person_id => person2.id)
     assert activity.save
-    equipment = Equipment.find_by_name("Equipment2") || Factory.create(:equipment, :name => "Equipment2")
+    equipment = Equipment.find_by_name("Equipment2") || FactoryGirl.create(:equipment, :name => "Equipment2")
     setup = activity.setups.new(:equipment_id => equipment.id)
     assert setup.save
-    material = Material.find_by_name("Material3") || Factory.create(:material, :name => "Material3")
-    unit = Unit.find_by_name("Unit3") || Factory.create(:unit, :name => "Unit3")
+    material = Material.find_by_name("Material3") || FactoryGirl.create(:material, :name => "Material3")
+    unit = Unit.find_by_name("Unit3") || FactoryGirl.create(:unit, :name => "Unit3")
     trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 4, :unit_id => unit.id)
     assert trans_0.save
     trans_1 = setup.material_transactions.new(:material_id => material.id, :rate => 4, :unit_id => unit.id)

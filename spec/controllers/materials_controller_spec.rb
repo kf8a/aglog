@@ -29,7 +29,7 @@ describe MaterialsController do
 
   describe "POST :create with invalid attributes" do
     before(:each) do
-      Factory.create(:material, :name => "repeat_name")
+      FactoryGirl.create(:material, :name => "repeat_name")
       post :create, :material => { :name => "repeat_name" }
     end
 
@@ -71,7 +71,7 @@ describe MaterialsController do
 
     describe "PUT :update with invalid attributes" do
       before(:each) do
-        Factory.create(:material, :name => "repeat_name")
+        FactoryGirl.create(:material, :name => "repeat_name")
         put :update, :id => @material.id, :material => { :name => "repeat_name" }
       end
 

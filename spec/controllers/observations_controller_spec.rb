@@ -19,7 +19,7 @@ describe ObservationsController do
 
     describe 'PUT :update' do
       before(:each) do
-        @observation = Factory.create(:observation, :company_id=>1)
+        @observation = FactoryGirl.create(:observation, :company_id=>1)
         put :update, :id => @observation.id, :observation => {}
       end
 
@@ -29,7 +29,7 @@ describe ObservationsController do
 
   describe 'as an authenticated user' do
     before(:each) do
-      @company2 = Factory.create(:company)
+      @company2 = FactoryGirl.create(:company)
 
     end
   end
@@ -40,16 +40,16 @@ describe ObservationsController do
     before(:each) do
       sign_in_as_normal_user
       Equipment.find_by_id(2) or 2.times do |num|
-        Factory.create(:equipment, :name => "Equipment#{num}")
+        FactoryGirl.create(:equipment, :name => "Equipment#{num}")
       end
       Material.find_by_id(3) or 3.times do |num|
-        Factory.create(:material, :name => "Material#{num}")
+        FactoryGirl.create(:material, :name => "Material#{num}")
       end
       Unit.find_by_id(3) or 3.times do |num|
-        Factory.create(:unit, :name => "Unit#{num}")
+        FactoryGirl.create(:unit, :name => "Unit#{num}")
       end
       Person.find_by_id(2) or 2.times do |num|
-        Factory.create(:person, :sur_name => "Sur#{num}")
+        FactoryGirl.create(:person, :sur_name => "Sur#{num}")
       end
     end
 
@@ -62,13 +62,13 @@ describe ObservationsController do
     describe "GET :index, with observation type selected" do
       before(:each) do
         right_type = find_or_factory(:observation_type)
-        @correct_type_observation = Factory.create(:observation,
+        @correct_type_observation = FactoryGirl.create(:observation,
                                                    :company_id => @user.company.id)
         @correct_type_observation.observation_types << right_type
         @correct_type_observation.save
         wrong_type = find_or_factory(:observation_type,
                                      :name => 'wrong_type')
-        @wrong_type_observation = Factory.create(:observation,
+        @wrong_type_observation = FactoryGirl.create(:observation,
                                                  :company_id => @user.company.id)
         @wrong_type_observation.observation_types = [wrong_type]
         @wrong_type_observation.save
@@ -146,7 +146,7 @@ describe ObservationsController do
 
     describe "An observation exists. " do
       before(:each) do
-        @observation = Factory.create(:observation, :company_id=>@user.company.id)
+        @observation = FactoryGirl.create(:observation, :company_id=>@user.company.id)
       end
 
       describe "GET :show the observation" do

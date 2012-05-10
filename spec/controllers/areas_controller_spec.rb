@@ -48,7 +48,7 @@ describe AreasController do
 
     describe 'An area exists. ' do
       before(:each) do
-        @area = Factory.create(:area, :name => 'standard_area')
+        @area = FactoryGirl.create(:area, :name => 'standard_area')
       end
 
       describe 'GET :show the area' do
@@ -63,8 +63,8 @@ describe AreasController do
 
       describe 'The area is a branch with leaves that have observations. ' do
         before(:each) do
-          @area1 = Factory.create(:area)
-          @area1.observations << Factory.create(:observation)
+          @area1 = FactoryGirl.create(:area)
+          @area1.observations << FactoryGirl.create(:observation)
           @area1.move_to_child_of(@area)
           assert @area.leaves.include?(@area1)
         end

@@ -98,7 +98,7 @@ describe Area do
   #describe "requires the study of the treatment if it has a treatment: " do
   #  before(:each) do
   #    @study = find_or_factory(:study)
-  #    @another_study = Factory.create(:study, :name => 'another_study')
+  #    @another_study = FactoryGirl.create(:study, :name => 'another_study')
   #    @treatment = find_or_factory(:treatment, :study_id => @study.id)
   #  end
   #
@@ -371,15 +371,15 @@ describe Area do
 
   context 'An area with a study' do
     before(:each) do
-      @study = Factory.create(:study, :name => 'Name of Study')
+      @study = FactoryGirl.create(:study, :name => 'Name of Study')
     end
 
-    subject { Factory.create(:area, :study_id => @study.id) }
+    subject { FactoryGirl.create(:area, :study_id => @study.id) }
     its(:study_name) { should match 'Name of Study' }
   end
 
   describe 'An area with no study' do
-    subject { Factory.create(:area, :study_id => nil) }
+    subject { FactoryGirl.create(:area, :study_id => nil) }
     its(:study_name) { should be_nil }
   end
 

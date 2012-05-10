@@ -5,7 +5,7 @@ describe HazardsController do
 
   before(:each) do
     sign_in_as_normal_user
-    @hazard = Factory.create(:hazard)
+    @hazard = FactoryGirl.create(:hazard)
   end
 
   describe "get :index" do

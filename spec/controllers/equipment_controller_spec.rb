@@ -83,9 +83,9 @@ describe EquipmentController do
 
   describe "Signed in as a normal user. " do
     before(:all) do
-      company_2 = Factory.create(:company, :name => 'glbrc')
+      company_2 = FactoryGirl.create(:company, :name => 'glbrc')
 
-      @equipment_2 = Factory.create(:equipment, :name=>'glbrc_tractor',
+      @equipment_2 = FactoryGirl.create(:equipment, :name=>'glbrc_tractor',
                                     :company => company_2)
     end
 

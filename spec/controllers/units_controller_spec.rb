@@ -56,7 +56,7 @@ describe UnitsController do
 
     describe "A unit exists. " do
       before(:each) do
-        @unit = Factory.create(:unit)
+        @unit = FactoryGirl.create(:unit)
       end
 
       describe "GET :edit the unit" do
@@ -90,7 +90,7 @@ describe UnitsController do
 
       describe "PUT :update the unit with invalid attributes" do
         before(:each) do
-          Factory.create(:unit, :name => "repeat_name")
+          FactoryGirl.create(:unit, :name => "repeat_name")
           put :update, :id => @unit.id, :unit => {:name => "repeat_name"}
         end
 

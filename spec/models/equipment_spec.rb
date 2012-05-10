@@ -14,7 +14,7 @@ describe Equipment do
     equipment = find_or_factory(:equipment, :name => name, :company_id => company)
 
     equipment_with_same_name_and_company = company.equipment.new(:name=>name.upcase)
-    equipment_with_same_name_different_company = Equipment.new(:name=>name, :company => Factory.create(:company))
+    equipment_with_same_name_different_company = Equipment.new(:name=>name, :company => FactoryGirl.create(:company))
 
     equipment_with_same_name_different_company.save
     equipment_with_same_name_and_company.save
@@ -26,18 +26,18 @@ describe Equipment do
   it 'should grab all and only the right its own observations with self.observations' do
     @equipment = find_or_factory(:equipment, :name => 'correct equipment')
 
-    included_observation_first = Factory.create(:observation)
-    activity = Factory.create(:activity, :observation_id => included_observation_first.id)
-    Factory.create(:setup, :activity_id => activity.id, :equipment_id => @equipment.id)
+    included_observation_first = FactoryGirl.create(:observation)
+    activity = FactoryGirl.create(:activity, :observation_id => included_observation_first.id)
+    FactoryGirl.create(:setup, :activity_id => activity.id, :equipment_id => @equipment.id)
 
-    included_observation_second = Factory.create(:observation)
-    activity = Factory.create(:activity, :observation_id => included_observation_second.id)
-    Factory.create(:setup, :activity_id => activity.id, :equipment_id => @equipment.id)
+    included_observation_second = FactoryGirl.create(:observation)
+    activity = FactoryGirl.create(:activity, :observation_id => included_observation_second.id)
+    FactoryGirl.create(:setup, :activity_id => activity.id, :equipment_id => @equipment.id)
 
-    equipment_2 = Factory.create(:equipment, :name => 'evil equipment')
-    not_included_observation = Factory.create(:observation)
-    activity = Factory.create(:activity, :observation_id => not_included_observation.id)
-    Factory.create(:setup, :activity_id => activity.id, :equipment_id => equipment_2.id)
+    equipment_2 = FactoryGirl.create(:equipment, :name => 'evil equipment')
+    not_included_observation = FactoryGirl.create(:observation)
+    activity = FactoryGirl.create(:activity, :observation_id => not_included_observation.id)
+    FactoryGirl.create(:setup, :activity_id => activity.id, :equipment_id => equipment_2.id)
 
     @equipment.reload
     assert @equipment.observations.include?(included_observation_first)

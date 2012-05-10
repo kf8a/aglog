@@ -23,12 +23,12 @@ describe MaterialTransactionsController do
 
     describe "A material transaction exists. " do
       before(:each) do
-        @transaction = Factory.create(:material_transaction)
+        @transaction = FactoryGirl.create(:material_transaction)
       end
 
       describe "PUT :update the transaction" do
         before(:each) do
-          @new_setup = Factory.create(:setup)
+          @new_setup = FactoryGirl.create(:setup)
           put :update, :id => @transaction.id, :material_transaction => { :setup_id => @new_setup.id }
         end
 
@@ -83,8 +83,8 @@ describe MaterialTransactionsController do
 
     describe "PUT :update the transaction" do
       before(:each) do
-        @transaction = Factory.create(:material_transaction)
-        @new_setup = Factory.create(:setup)
+        @transaction = FactoryGirl.create(:material_transaction)
+        @new_setup = FactoryGirl.create(:setup)
         put :update, :id => @transaction.id, :material_transaction => { :setup_id => @new_setup.id }
       end
 
@@ -95,7 +95,7 @@ describe MaterialTransactionsController do
 
     describe "DELETE :destroy a material transaction" do
       before(:each) do
-        @transaction = Factory.create(:material_transaction)
+        @transaction = FactoryGirl.create(:material_transaction)
         delete :destroy, :id => @transaction.id
       end
 

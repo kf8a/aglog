@@ -43,23 +43,23 @@ describe Material do
   end
 
   it 'should grab all and only the right its own observations with self.observations' do
-    @material = Factory.create(:material, :name => 'correct material')
+    @material = FactoryGirl.create(:material, :name => 'correct material')
 
-    included_observation_first = Factory.create(:observation)
-    activity = Factory.create(:activity, :observation_id => included_observation_first.id)
-    setup = Factory.create(:setup, :activity_id => activity.id)
-    Factory.create(:material_transaction, :setup_id => setup.id, :material_id => @material.id)
+    included_observation_first = FactoryGirl.create(:observation)
+    activity = FactoryGirl.create(:activity, :observation_id => included_observation_first.id)
+    setup = FactoryGirl.create(:setup, :activity_id => activity.id)
+    FactoryGirl.create(:material_transaction, :setup_id => setup.id, :material_id => @material.id)
 
-    included_observation_second = Factory.create(:observation)
-    activity = Factory.create(:activity, :observation_id => included_observation_second.id)
-    setup = Factory.create(:setup, :activity_id => activity.id)
-    Factory.create(:material_transaction, :setup_id => setup.id, :material_id => @material.id)
+    included_observation_second = FactoryGirl.create(:observation)
+    activity = FactoryGirl.create(:activity, :observation_id => included_observation_second.id)
+    setup = FactoryGirl.create(:setup, :activity_id => activity.id)
+    FactoryGirl.create(:material_transaction, :setup_id => setup.id, :material_id => @material.id)
 
-    evil_material = Factory.create(:material, :name => 'evil material')
-    not_included_observation = Factory.create(:observation)
-    activity = Factory.create(:activity, :observation_id => not_included_observation.id)
-    setup = Factory.create(:setup, :activity_id => activity.id)
-    Factory.create(:material_transaction, :setup_id => setup.id, :material_id => evil_material.id)
+    evil_material = FactoryGirl.create(:material, :name => 'evil material')
+    not_included_observation = FactoryGirl.create(:observation)
+    activity = FactoryGirl.create(:activity, :observation_id => not_included_observation.id)
+    setup = FactoryGirl.create(:setup, :activity_id => activity.id)
+    FactoryGirl.create(:material_transaction, :setup_id => setup.id, :material_id => evil_material.id)
 
     @material.reload
     assert @material.observations.include?(included_observation_first)
@@ -69,7 +69,7 @@ describe Material do
 
   describe 'A material with a material type' do
     before(:each) do
-      @material_type = Factory.create(:material_type, :name => 'Testable Name')
+      @material_type = FactoryGirl.create(:material_type, :name => 'Testable Name')
       @material = find_or_factory(:material, :name => 'material_type_material', :material_type_id => @material_type.id)
     end
 
@@ -79,7 +79,7 @@ describe Material do
   end
 
   describe 'An area with no study' do
-    subject { Factory.create(:area, :study_id => nil) }
+    subject { FactoryGirl.create(:area, :study_id => nil) }
     its(:study_name) { should be_nil }
   end
 end

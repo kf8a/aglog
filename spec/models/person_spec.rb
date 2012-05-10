@@ -13,7 +13,7 @@ describe Person do
       sur_name = 'Simmons'
 
       company = Company.new
-      @decoy_person = Factory.create(:person, :given_name=>given_name, :sur_name => sur_name,
+      @decoy_person = FactoryGirl.create(:person, :given_name=>given_name, :sur_name => sur_name,
                                     :company_id => 1)
       @decoy_person.company = company
       assert @decoy_person.save
