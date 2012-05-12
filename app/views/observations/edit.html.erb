@@ -5,7 +5,7 @@ Created on: <%= @observation.created_on  %>
 <%= semantic_form_for @observation do |form| %>
 
   <%= render :partial => 'form', :locals => {:form => form, :only_current => false } %>
-  <%= form.buttons %>
+  <%= form.actions %>
 <% end %>
 
 
