@@ -34,8 +34,4 @@ describe ReportsController do
     assert_response :success
   end
 
-  it "GET :index, ordered by something_else" do
-    get :index, :order => 'something_else'
-    assert_response :success
-  end
 end

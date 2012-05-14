@@ -16,7 +16,7 @@ class ReportsController < ApplicationController
 
      session[:current_order] = order
 
-     @transactions = MaterialTransaction.includes(:material, :unit, :setup => {:activity => :observation}).find_fertilizations(order)
+     @transactions = MaterialTransaction.includes(:observations, :areas, :material, :unit, :setup => {:activity => :observation}).find_fertilizations(order)
 
      respond_to do |format|
        format.html
@@ -35,7 +35,7 @@ class ReportsController < ApplicationController
   end
 
   def by_area_name
-    'areas.name, obs_date desc, materials.name'
+    'areas.name, observations.obs_date desc, materials.name'
   end
 
   def by_area_name_desc
