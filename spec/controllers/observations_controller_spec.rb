@@ -129,7 +129,7 @@ describe ObservationsController do
       old_count = Observation.count
       num_activities =  Activity.count
 
-      xhr(:post, :create, :commit => "Create Observation", :observation => {:created_on => 'nodate'})
+      xhr(:post, :create, :commit => "Create Observation", :observation => {})
       assert_equal old_count, Observation.count
       assert_equal num_activities, Activity.count
       assert_response :success
@@ -146,7 +146,9 @@ describe ObservationsController do
 
     describe "An observation exists. " do
       before(:each) do
-        @observation = FactoryGirl.create(:observation, :company_id=>@user.company.id)
+        @observation = FactoryGirl.create(:observation)
+        @observation.company = @user.company
+        @observation.save
       end
 
       describe "GET :show the observation" do
@@ -174,18 +176,6 @@ describe ObservationsController do
         it "should update the observation" do
           @observation.reload
           assert_equal @current_obs_date - 1, @observation.obs_date
-        end
-      end
-
-      describe "PUT :update with invalid attributes" do
-        before(:each) do
-          @current_obs_date = @observation.obs_date
-          xhr(:put, :update, :id => @observation.id, :commit => "Update Observation", :observation => { :person_id => nil, :obs_date => @current_obs_date - 1 })
-        end
-
-        it "should not update the observation" do
-          @observation.reload
-          assert_equal @current_obs_date, @observation.obs_date
         end
       end
 

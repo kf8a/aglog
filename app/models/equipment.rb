@@ -1,6 +1,7 @@
 # Represents equipment used during an activity, like a plow or tractor.
 class Equipment < ActiveRecord::Base
   attr_accessible :name, :use_material, :is_tractor, :description, :archived
+  attr_accessible :company_id if Rails.env == 'test'
 
   has_many                :setups
   has_and_belongs_to_many :materials

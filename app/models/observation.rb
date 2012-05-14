@@ -4,6 +4,7 @@ require 'csv'
 # The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
   attr_protected :company_id unless Rails.env == 'test'
+  attr_accessible :obs_date, :comment, :observation_type_ids
 
   attr :observation_date
 

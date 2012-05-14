@@ -10,7 +10,6 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 #gem 'omniauth', ">= 0.2.6"
 gem 'will_paginate' #, "~> 3.0.pre2"
-gem 'thin'
 gem 'haml'
 
 gem 'chronic'
@@ -29,9 +28,21 @@ gem 'cancan'
 
 gem 'seedbed'
 
-#for coffeescript
-gem 'therubyracer', :require => false
 gem 'barista'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'therubyracer', :require => 'v8'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+#  gem 'twitter-bootstrap-rails'
+end
+
+group :production do
+  gem 'unicorn'
+end
 
 #group :development do
 #  gem 'metric_fu'
@@ -46,9 +57,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'single_test'
-#  gem 'simplecov', '>= 0.3.5', :require => false
-  gem 'cucumber-rails'
-#  gem 'spork'
+  gem 'cucumber-rails', :require => false
   gem 'launchy'
   gem 'capybara'
   gem 'database_cleaner'

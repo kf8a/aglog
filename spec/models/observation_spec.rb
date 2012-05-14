@@ -6,13 +6,13 @@ describe Observation do
     num_activities = Activity.count
 
     # no observation without created_on date
-    o = Observation.new({:created_on => 'nodate'})
+    o = Observation.new()
     assert !o.save
     assert_equal old_count, Observation.count
     assert_equal num_activities, Activity.count
 
     # observation without valid activity
-    o = Observation.new({:created_on => Date.today})
+    o = Observation.new()
     a = Activity.new()
     o.activities << a
 
@@ -23,7 +23,6 @@ describe Observation do
 
   it 'should work normally with a simple observation' do
     o = create_simple_observation
-    assert o.save
     assert_equal  1, o.activities.size
     activity = o.activities[0]
     assert_equal 1, activity.setups.size
@@ -101,9 +100,10 @@ describe Observation do
     assert_equal "Soil Preparation", o.observation_type
   end
 
+  #TODO: you should only be allowed to put an observation_type in once
   it "should give all of the right observation_type_names" do
     o = create_simple_observation
-    another_type = ObservationType.new(:name => "Another Type", :observations => [o])
+    another_type = ObservationType.new(:name => "Another Type") #, :observations => [o])
     assert another_type.save
     o.observation_types << another_type
     assert o.save
@@ -215,13 +215,16 @@ describe Observation do
     type = ObservationType.find_by_name('Soil Preparation')
     assert type
     person1 = Person.find_by_sur_name("Sur1") || FactoryGirl.create(:person, :sur_name => "Sur1")
-    observation = Observation.new(:obs_date => "June 14, 2007", :person_id => person1.id, :observation_type_ids => [type.id])
+    observation = Observation.new(:obs_date => "June 14, 2007")
+    observation.person = person1 
+    observation.observation_types <<  type
     assert observation.save
     person2 = Person.find_by_sur_name("Sur2") || FactoryGirl.create(:person, :sur_name => "Sur2")
     activity = observation.activities.new(:hours => 1, :person_id => person2.id)
     assert activity.save
     equipment = Equipment.find_by_name("Equipment2") || FactoryGirl.create(:equipment, :name => "Equipment2")
-    setup = activity.setups.new(:equipment_id => equipment.id)
+    setup = activity.setups.new
+    setup.equipment = equipment
     assert setup.save
     material = Material.find_by_name("Material3") || FactoryGirl.create(:material, :name => "Material3")
     unit = Unit.find_by_name("Unit3") || FactoryGirl.create(:unit, :name => "Unit3")

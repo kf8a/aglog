@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Activity do
   describe "an activity with a valid user" do
     person = find_or_factory(:person)
+    person.save
     subject { Activity.new(:person => person) }
     it { should be_valid }
   end

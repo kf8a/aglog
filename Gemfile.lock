@@ -46,6 +46,9 @@ GEM
     childprocess (0.3.2)
       ffi (~> 1.0.6)
     chronic (0.6.7)
+    coffee-rails (3.2.2)
+      coffee-script (>= 2.2.0)
+      railties (~> 3.2.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -59,13 +62,11 @@ GEM
       capybara (>= 1.1.2)
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
-    daemons (1.1.8)
     database_cleaner (0.7.2)
     delocalize (0.3.1)
       rails (>= 3.0)
     diff-lcs (1.1.3)
     erubis (2.7.0)
-    eventmachine (0.12.10)
     evergreen (1.0.0)
       capybara (~> 1.0)
       coffee-script
@@ -93,6 +94,7 @@ GEM
       thor (~> 0.14)
     json (1.7.1)
     json_pure (1.7.1)
+    kgio (2.7.4)
     launchy (2.1.0)
       addressable (~> 2.2.6)
     libv8 (3.3.10.4)
@@ -131,6 +133,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (~> 0.14.6)
+    raindrops (0.8.1)
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
@@ -148,6 +151,11 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.10.0)
     rubyzip (0.9.8)
+    sass (3.1.18)
+    sass-rails (3.2.5)
+      railties (~> 3.2.0)
+      sass (>= 3.1.10)
+      tilt (~> 1.3)
     seedbed (1.1.1)
     selenium-webdriver (2.21.2)
       childprocess (>= 0.2.5)
@@ -175,16 +183,19 @@ GEM
       sqlite3 (>= 1.3.3)
     therubyracer (0.10.1)
       libv8 (~> 3.3.10)
-    thin (1.3.1)
-      daemons (>= 1.0.9)
-      eventmachine (>= 0.12.6)
-      rack (>= 1.0.0)
     thor (0.14.6)
     tilt (1.3.3)
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.33)
+    uglifier (1.2.4)
+      execjs (>= 0.3.0)
+      multi_json (>= 1.0.2)
+    unicorn (4.3.1)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     will_paginate (3.0.3)
     xpath (0.1.4)
       nokogiri (~> 1.3)
@@ -198,6 +209,7 @@ DEPENDENCIES
   cancan
   capybara
   chronic
+  coffee-rails
   cucumber-rails
   database_cleaner
   delocalize
@@ -211,10 +223,12 @@ DEPENDENCIES
   rails (~> 3.2.0)
   rake
   rspec-rails
+  sass-rails
   seedbed
   shoulda
   single_test
   sqlite3-ruby
   therubyracer
-  thin
+  uglifier
+  unicorn
   will_paginate
