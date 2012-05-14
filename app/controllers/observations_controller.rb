@@ -12,8 +12,8 @@ class ObservationsController < ApplicationController
     @observations = @observations.by_page(params[:page])
 
     respond_with @observations do |format|
-      format.salus_xml { render 'index.salus_xml' }
-      format.salus_csv { render 'index.salus_csv' }
+      format.salus_xml { render 'index', :formats => [:salus_xml] }
+      format.salus_csv { render 'index', :formats => [:salus_csv] }
     end
   end
 
