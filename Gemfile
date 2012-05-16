@@ -8,6 +8,8 @@ gem 'pg'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
+gem 'devise'
+
 #gem 'omniauth', ">= 0.2.6"
 gem 'will_paginate' #, "~> 3.0.pre2"
 gem 'haml'
@@ -43,10 +45,6 @@ end
 group :production do
   gem 'unicorn'
 end
-
-#group :development do
-#  gem 'metric_fu'
-#end
 
 group :development, :test do
   #gem 'silent-postgres'

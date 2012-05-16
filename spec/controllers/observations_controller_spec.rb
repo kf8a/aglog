@@ -23,7 +23,7 @@ describe ObservationsController do
         put :update, :id => @observation.id, :observation => {}
       end
 
-      it { should redirect_to new_person_session_path }
+      it { should redirect_to new_user_session_path }
     end
   end
 
@@ -121,7 +121,7 @@ describe ObservationsController do
       end
 
       it "should assign the current user as the observation's person" do
-        assert_equal @user.id, assigns(:observation).person_id
+        assert_equal @user.person.id, assigns(:observation).person_id
       end
     end
 

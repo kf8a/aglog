@@ -4,9 +4,6 @@ describe MaterialTransactionsController do
   render_views
 
   describe "Not signed in. " do
-    before(:each) do
-      sign_out
-    end
 
     describe "POST :create" do
       before(:each) do

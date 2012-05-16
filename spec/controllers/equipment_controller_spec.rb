@@ -4,9 +4,6 @@ describe EquipmentController do
   render_views
 
   describe 'Not signed in. ' do
-    before(:each) do
-      sign_out
-    end
 
     describe 'GET :index' do
       before(:each) do
@@ -22,7 +19,7 @@ describe EquipmentController do
         get :new
       end
 
-      it { should redirect_to new_person_session_path }
+      it { should redirect_to new_user_session_path }
     end
 
     describe 'POST :create' do
@@ -31,7 +28,7 @@ describe EquipmentController do
         post :create, :equipment => { :name => 'Controller Creation' }
       end
 
-      it { should redirect_to new_person_session_path }
+      it { should redirect_to new_user_session_path }
     end
 
     describe 'An equipment exists. ' do
@@ -53,7 +50,7 @@ describe EquipmentController do
           get :edit, :id => @equipment.id
         end
 
-        it { should redirect_to new_person_session_path }
+        it { should redirect_to new_user_session_path }
       end
 
       describe 'PUT :update the equipment' do
@@ -61,7 +58,7 @@ describe EquipmentController do
           put :update, :id => @equipment.id, :area => { :name => 'new_equipment'}
         end
 
-        it { should redirect_to new_person_session_path }
+        it { should redirect_to new_user_session_path }
         it "should not change the equipment" do
           @equipment.reload
           @equipment.name.should_not be_eql('new_equipment')
@@ -73,7 +70,7 @@ describe EquipmentController do
           delete :destroy, :id => @equipment.id
         end
 
-        it { should redirect_to new_person_session_path }
+        it { should redirect_to new_user_session_path }
         it "should not destroy the equipment" do
           Equipment.exists?(@equipment.id).should be_true
         end

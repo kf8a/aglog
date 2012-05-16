@@ -1,7 +1,7 @@
 # encoding: UTF-8
 # Allows modification and viewing of observations
 class ObservationsController < ApplicationController
-  before_filter :require_user, :except => [:index, :show, :related]
+#  before_filter :require_user, :except => [:index, :show, :related]
 
   # GET /observations
   # GET /observations.xml
@@ -34,7 +34,7 @@ class ObservationsController < ApplicationController
   # POST /observations
   # POST /observations.xml
   def create
-    user = current_user
+    user = current_user.person
     @observation = user.observations.new(params[:observation])
     @observation.company = user.company
     logger.info user.name

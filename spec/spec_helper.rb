@@ -20,13 +20,9 @@ end
 
 def sign_in_as_normal_user(c=nil)
   company = c || Company.find_by_name('lter')
-  @user = find_or_factory(:person)
+  @user = find_or_factory(:user)
   @user.company = company unless company.nil?
-  session[:user_id] = @user.id
-end
-
-def sign_out
-  session[:user_id] = nil
+  sign_in @user
 end
 
 RSpec.configure do |config|

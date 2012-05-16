@@ -1,8 +1,5 @@
 Aglog::Application.routes.draw do
-  resources :person_sessions
-  match '/auth/:provider/callback' => 'person_sessions#create'
-  match '/auth/failure' => 'person_sessions#new'
-  match '/logout' => 'person_sessions#destroy'
+  devise_for :users
 
   resources :hazards
 
@@ -31,7 +28,8 @@ Aglog::Application.routes.draw do
     end
   end
 
-  match '/' => 'observations#index'
+#  match '/' => 'observations#index'
+  root :to => "observations#index"
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'

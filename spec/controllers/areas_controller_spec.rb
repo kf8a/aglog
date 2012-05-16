@@ -4,9 +4,6 @@ describe AreasController do
   render_views
 
   describe 'Not signed in. ' do
-    before(:each) do
-      sign_out
-    end
 
     describe 'GET :index' do
       before(:each) do
@@ -22,7 +19,7 @@ describe AreasController do
         post :move_to, {:id=> 1, :parent_id => 2}
       end
 
-      it {should redirect_to new_person_session_path }
+      it {should redirect_to new_user_session_path }
     end
 
     describe 'GET :new' do
@@ -30,7 +27,7 @@ describe AreasController do
         get :new
       end
 
-      it { should redirect_to new_person_session_path }
+      it { should redirect_to new_user_session_path }
     end
 
     describe 'POST :create' do
@@ -39,7 +36,7 @@ describe AreasController do
         post :create, :area => { :name => 'T2R22' }
       end
 
-      it { should redirect_to new_person_session_path }
+      it { should redirect_to new_user_session_path }
 
       it "should not create an area" do
         Area.exists?(:name => 'T2R22').should be_false
@@ -83,7 +80,7 @@ describe AreasController do
           get :edit, :id => @area.id
         end
 
-        it { should redirect_to new_person_session_path }
+        it { should redirect_to new_user_session_path }
       end
 
       describe 'PUT :update the area' do
@@ -91,7 +88,7 @@ describe AreasController do
           put :update, :id => @area.id, :area => { :name => 'new_area' }
         end
 
-        it { should redirect_to new_person_session_path }
+        it { should redirect_to new_user_session_path }
         it "should not change the area" do
           @area.reload
           @area.name.should_not match 'new_area'
@@ -103,7 +100,7 @@ describe AreasController do
           delete :destroy, :id => @area.id
         end
 
-        it { should redirect_to new_person_session_path }
+        it { should redirect_to new_user_session_path }
         it "should not destroy the area" do
           Area.exists?(@area.id).should be_true
         end

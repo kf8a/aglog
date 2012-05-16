@@ -19,11 +19,10 @@ describe HazardsController do
 
   describe "get :index when signed_out" do
     before(:each) do
-      sign_out
       get :index
     end
 
-    it { should render_template 'unauthorized_index' }
+    it { should render_template 'index' }
   end
 
   describe "get :new" do

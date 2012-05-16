@@ -6,6 +6,7 @@ class Person < ActiveRecord::Base
   has_many :observations
   has_many :activities
   belongs_to :company
+  belongs_to :user
 
 #  has_and_belongs_to_many :hazards
 

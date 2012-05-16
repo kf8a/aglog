@@ -30,13 +30,19 @@ FactoryGirl.define do
 
   end
 
-
   #Dependent Factories
 
   factory :person do
     given_name  "Bob"
     sur_name    "Dobolina"
     company     Company.first || FactoryGirl.create(:company)
+  end
+
+  factory :user do
+    email    'bob@nospam.com'
+    password 'testing'
+    company   Company.first || FactoryGirl.create(:company)
+    person    Person.first || FactoryGirl.create(:person)
   end
 
   factory :area do

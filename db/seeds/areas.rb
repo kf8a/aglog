@@ -10,11 +10,9 @@ main = Area.find_or_create_by_name(:name => "T", :study_id => 1, :company_id => 
 1.upto(6) do |rep|
   1.upto(8) do |treat|
     t = Treatment.find_or_create_by_name(:name => "T#{treat}",
-                                         :treatment_number => treat,
                                          :study_id => 1)
 
     treatment_area = Area.find_or_create_by_name(:name => "T#{treat}",
-                                                 :treatment_number => treat,
                                                  :treatment_id => t.id,
                                                  :company_id => 1,
                                                  :study_id => 1)
@@ -40,7 +38,6 @@ biodiversity = Area.find_or_create_by_name(:name => 'B', :study_id => 2, :compan
                                          :study_id => 2)
 
     treatment_area = Area.find_or_create_by_name(:name => "B#{treat}",
-                                                 :treatment_number => treat,
                                                  :treatment_id => t.id,
                                                  :company_id => 1,
                                                  :study_id => 2)
@@ -61,10 +58,8 @@ n_rate = Area.find_or_create_by_name(:name => "F", :study_id => 3, :company_id =
 1.upto(4) do |rep|
   1.upto(9) do |treat|
     t = Treatment.find_or_create_by_name(:name => "F#{treat}",
-                                         :treatment_number => treat,
                                         :study_id => 3)
     treatment_area = Area.find_or_create_by_name(:name => "F#{treat}",
-                                                 :treatment_number => treat,
                                                  :treatment_id => t.id,
                                                  :company_id => 1,
                                                  :study_id => 3)
@@ -84,10 +79,8 @@ irrigated_n_rate = Area.find_or_create_by_name(:name => "iF", :study_id => 4, :c
 1.upto(4) do |rep|
   1.upto(9) do |treat|
     t = Treatment.find_or_create_by_name(:name=>"iF#{treat}",
-                                         :treatment_number => treat,
                                         :study_id => 4)
     treatment_area = Area.find_or_create_by_name(:name => "iF#{treat}",
-                                                 :treatment_number => treat,
                                                  :treatment_id => t.id,
                                                  :company_id => 1,
                                                  :study_id => 4)
@@ -107,10 +100,8 @@ glbrc = Area.find_or_create_by_name(:name => "G", :study_id => 6, :company_id =>
 1.upto(5) do |rep|
   1.upto(10) do |trt|
     t = Treatment.find_or_create_by_name(:name=>"G#{trt}",
-                                         :treatment_number => trt,
                                          :study_id => 6)
     treatment_area = Area.find_or_create_by_name(:name => "G#{trt}",
-                                                 :treatment_number => trt,
                                                  :treatment_id => t.id,
                                                  :company_id => 1,
                                                  :study_id => 6)
@@ -132,10 +123,8 @@ ces = Area.find_or_create_by_name(:name => "CE", :study_id => 7, :company_id => 
   plot = rep * 100
   1.upto(19) do |trt|
     t = Treatment.find_or_create_by_name(:name=>"CE#{trt}",
-                                         :treatment_number => trt,
                                          :study_id => 7)
     treatment_area = Area.find_or_create_by_name(:name => "CE#{trt}",
-                                                 :treatment_number => trt,
                                                  :treatment_id => t.id,
                                                  :company_id => 1,
                                                  :study_id => 7)

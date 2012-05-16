@@ -16,7 +16,6 @@ describe PeopleController do
 
   describe "get :index when not signed in" do
     before(:each) do
-      sign_out
       get :index
     end
 
