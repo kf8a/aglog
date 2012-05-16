@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20120515132059) do
 
   create_table "activities", :force => true do |t|
     t.integer "person_id"
-    t.integer "observation_id",    :null => false
+    t.integer "observation_id"
     t.integer "operation_type_id"
     t.text    "comment"
     t.float   "hours"
@@ -33,12 +33,12 @@ ActiveRecord::Schema.define(:version => 20120515132059) do
     t.integer "parent_id"
   end
 
+  add_index "areas", ["name"], :name => "area_names", :unique => true
+
   create_table "areas_observations", :id => false, :force => true do |t|
     t.integer "observation_id"
     t.integer "area_id"
   end
-
-  add_index "areas_observations", ["observation_id", "area_id"], :name => "areas_observation_idx", :unique => true
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20120515132059) do
   end
 
   create_table "material_transactions", :force => true do |t|
-    t.integer  "material_id",                  :null => false
+    t.integer  "material_id"
     t.integer  "unit_id"
     t.integer  "setup_id"
     t.float    "rate"
@@ -144,20 +144,23 @@ ActiveRecord::Schema.define(:version => 20120515132059) do
     t.string  "salt",       :null => false
   end
 
+  create_table "open_id_authentication_settings", :force => true do |t|
+    t.string "setting"
+    t.binary "value"
+  end
+
   create_table "people", :force => true do |t|
     t.string   "given_name"
     t.string   "sur_name"
     t.string   "openid_identifier"
+    t.string   "persistence_token"
     t.string   "password_salt"
     t.datetime "last_request_at"
-    t.string   "persistence_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "company_id"
     t.boolean  "archived",          :default => false
     t.integer  "user_id"
-  end
-
-  create_table "schema_info", :id => false, :force => true do |t|
-    t.integer "version"
   end
 
   create_table "sessions", :force => true do |t|
