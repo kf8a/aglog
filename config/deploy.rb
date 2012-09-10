@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+load 'deploy/assets'
 set :application, "aglog"
 set :repository,  "/Users/bohms/code/aglog"
 set :scm, :git
@@ -58,11 +59,11 @@ namespace :deploy do
       deploy.thin.stop
     end
 
-  after "deploy:update_code", :link_production_db
+    before "deploy:assets:precompile", "link_production_db"
 end
 
 # database.yml task
 desc "Link in the production database.yml"
 task :link_production_db do
-  run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+  run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
 end
