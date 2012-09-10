@@ -21,6 +21,7 @@ gem 'chronic'
 gem 'jquery-rails' #, '>= 0.2.6'
 
 gem 'formtastic'
+gem 'formtastic-bootstrap'
 #gem 'formtastic_datepicker_inputs'
 
 gem 'delocalize'
