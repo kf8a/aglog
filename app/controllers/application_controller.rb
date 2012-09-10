@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   respond_to :html, :xml
 
-  before_filter :authenticate_user!, :except => [:index, :show] unless Rails.env() == 'development'
+  before_filter :authenticate_user!, :except => [:index, :show] # unless Rails.env() == 'development'
 
   # layout :site_layout
 

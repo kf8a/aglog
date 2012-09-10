@@ -1,5 +1,5 @@
 <%= form.inputs do %>
-  <%= form.input :observation_date, :start_year=>1988, :as=>:date_picker %>
+  <%= form.input :observation_date, :start_year=>1988, :class=>'date-picker' %>
   <%= form.input :comment, :input_html=>{:class => 'autofocus'} %>
   <%= form.input :areas_as_text, :hint=> area_help_text, :input_html => {'data-pre' => @observation.prepopulated_area_tokens} %>
   <%= form.input :observation_types, :as=>:check_boxes, :multiple=>true%>
