@@ -12,6 +12,7 @@ gem 'devise'
 
 #gem 'omniauth', ">= 0.2.6"
 gem 'will_paginate' #, "~> 3.0.pre2"
+gem 'will_paginate-bootstrap'
 gem 'haml'
 
 gem 'chronic'

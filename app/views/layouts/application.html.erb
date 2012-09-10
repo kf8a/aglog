@@ -21,12 +21,12 @@
         <a class="brand" href="#">Aglog</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to 'Observations', observations_path %></li>
-            <li><%= link_to 'People', people_path, :accesskey => 'P' %></li>
-            <li><%= link_to 'Material', materials_path, :accesskey =>'M' %></li>
-            <li><%= link_to 'Equipment', equipment_index_path, :accesskey => 'E' %></li>
-            <li><%= link_to 'Units', units_path, :accesskey => 'U' %></li>
-            <li><%= link_to 'Areas', areas_path, :accesskey => 'A' %></li>
+            <li <%= "class=active" if controller.controller_name == 'observations' %>><%= link_to 'Observations', observations_path %></li>
+            <li <%= "class=active" if controller.controller_name == 'people' %>><%= link_to 'People', people_path, :accesskey => 'P' %></li>
+            <li <%= "class=active" if controller.controller_name == 'materials'%>><%= link_to 'Material', materials_path, :accesskey =>'M' %></li>
+            <li <%= "class=active" if controller.controller_name == 'equipment' %>><%= link_to 'Equipment', equipment_index_path, :accesskey => 'E' %></li>
+            <li <%= "class=active" if controller.controller_name == 'units' %>><%= link_to 'Units', units_path, :accesskey => 'U' %></li>
+            <li <%= "class=active" if controller.controller_name == 'areas' %>><%= link_to 'Areas', areas_path, :accesskey => 'A' %></li>
             <% if user_signed_in? %>
               <li><%= link_to 'Sign Out', destroy_user_session_path %></li>
             <% else %>
