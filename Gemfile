@@ -19,10 +19,9 @@ gem 'chronic'
 
 #Uses jquery instead of prototype in rails
 gem 'jquery-rails' #, '>= 0.2.6'
+gem 'jquery-ui-rails'
 
 gem 'formtastic'
-gem 'formtastic-bootstrap'
-#gem 'formtastic_datepicker_inputs'
 
 gem 'delocalize'
 

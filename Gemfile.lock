@@ -92,9 +92,6 @@ GEM
     ffi (1.1.5)
     formtastic (2.2.1)
       actionpack (>= 3.0)
-    formtastic-bootstrap (2.0.0)
-      formtastic (~> 2.2)
-      formtastic-bootstrap
     gherkin (2.11.2)
       json (>= 1.4.6)
     haml (3.1.7)
@@ -104,6 +101,9 @@ GEM
     jquery-rails (2.1.2)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
+    jquery-ui-rails (2.0.0)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.7.5)
     json_pure (1.7.5)
     launchy (2.1.2)
@@ -242,9 +242,9 @@ DEPENDENCIES
   evergreen
   factory_girl_rails
   formtastic
-  formtastic-bootstrap
   haml
   jquery-rails
+  jquery-ui-rails
   launchy
   pg
   rails (~> 3.2.8)
