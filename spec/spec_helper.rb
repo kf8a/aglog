@@ -21,7 +21,7 @@ end
 def sign_in_as_normal_user(c=nil)
   company = c || Company.find_by_name('lter')
   @user = find_or_factory(:user)
-  @user.company = company unless company.nil?
+#  @user.company = company unless company.nil?
   sign_in @user
 end
 

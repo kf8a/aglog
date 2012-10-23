@@ -41,7 +41,6 @@ FactoryGirl.define do
   factory :user do
     email    'bob@nospam.com'
     password 'testing'
-    company   Company.first || FactoryGirl.create(:company)
     person    Person.first || FactoryGirl.create(:person)
   end
 

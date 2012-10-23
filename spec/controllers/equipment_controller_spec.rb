@@ -166,7 +166,7 @@ describe EquipmentController do
 
     describe "An equipment exists. " do
       before(:each) do
-        @equipment = find_or_factory(:equipment, :company_id => @user.company_id)
+        @equipment = find_or_factory(:equipment, :company_id => @user.company.id)
       end
 
       describe "GET :show the equipment" do

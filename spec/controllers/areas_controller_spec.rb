@@ -211,7 +211,7 @@ describe AreasController do
       describe "PUT :update with invalid attributes" do
         before(:each) do
           find_or_factory(:area, :name => 'repeat_name',
-                          :company_id => @user.company_id)
+                          :company_id => @user.company.id)
           put :update, :id => @area.id, :area => { :name => 'repeat_name' }
         end
 
