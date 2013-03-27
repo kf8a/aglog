@@ -1,12 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2.12'
+gem 'rails', '~> 3.2.13'
 
 gem 'rake'
 
 gem 'pg'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'devise'
 
@@ -50,6 +49,7 @@ end
 group :development, :test do
   #gem 'silent-postgres'
   gem 'rspec-rails'
+  gem 'sqlite3-ruby'
 end
 
 group :test do
