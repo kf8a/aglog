@@ -4,7 +4,7 @@ require 'csv'
 # The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
   attr_protected :company_id unless Rails.env == 'test'
-  attr_accessible :obs_date, :comment, :observation_type_ids , :areas_as_text, :activities_attributes
+  attr_accessible :observation_date, :comment, :observation_type_ids , :areas_as_text, :activities_attributes
 
   attr :observation_date
 
@@ -34,9 +34,7 @@ class Observation < ActiveRecord::Base
   end
 
   def observation_date=(date_string)
-    logger.info date_string
     self.obs_date = Chronic.parse(date_string)
-    logger.info obs_date
   end
 
   def observation_date

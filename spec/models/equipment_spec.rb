@@ -11,7 +11,7 @@ describe Equipment do
   it 'should validate the uniqueness of the case insensitive name by scope' do
     name = 'tractor'
     company = find_or_factory(:company)
-    equipment = find_or_factory(:equipment, :name => name, :company_id => company)
+    equipment = find_or_factory(:equipment, :name => name, :company_id => company.id)
 
     equipment_with_same_name_and_company = company.equipment.new(:name=>name.upcase)
     equipment_with_same_name_different_company = Equipment.new(:name=>name)
