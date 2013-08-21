@@ -17,7 +17,7 @@ class Person < ActiveRecord::Base
   validates_presence_of :company
 
   scope :current, where(:archived => false)
-  scope :ordered, order('sur_name, given_name')
+  scope :ordered, order('given_name, sur_name')
   scope :by_company, lambda {|company| where(:company_id => company)}
 
   def to_label
