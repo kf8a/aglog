@@ -18,7 +18,7 @@ class AreasController < ApplicationController
 
   def show
     @area = Area.find(params[:id])
-    @observations = @area.leaf_observations
+    @observations = @area.leaf_observations.sort {|a,b| b.obs_date <=> a.obs_date }
 
     respond_with @area
   end
