@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require angular
+//= require angular-resource
 //= require twitter/bootstrap
 //= require jquery.tokeninput
 //= require form_functions

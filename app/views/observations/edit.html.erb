@@ -2,11 +2,88 @@
 
 Created on: <%= @observation.created_on  %>
 
-<%= semantic_form_for @observation do |form| %>
+ <div ng-app='Aglog' data-observation-id = <%= observation.id %> >
 
-  <%= render :partial => 'form', :locals => {:form => form, :only_current => false } %>
-  <%= form.actions %>
-<% end %>
+  <div ng-controller='NewCtrl' data-observation-id = <%= observation.id %> >
+  <form action='new' method='post'>
+    <label>Observation Date</label>
+    <input type="text" datepicker-popup="dd-MMMM-yyyy" ng-model="obs.obs_date"
+      ng-required=true show-weeks=false is-open="opened" datepicker-options="dateOptions" />
+
+    <label>Observation</label>
+    <textarea class='span6' ng-model='obs.comment' placeholder='describe what happened'></textarea>
+
+    <label>Areas</label>
+    <select ui-select2 ng-model='selectedArea' class='input-large' placeholder='select an area' ng-change='updateAreaTags()'>
+      <option value=''></option>
+      <option ng-repeat='area in areas' value={{area.id}}>{{area.text}}</option>
+    </select>
+    <input id='areaSelect' type="text"  ui-select2="tagAllOptions" ng-model="tagsSelection" class="input-xlarge"/>
+
+    <label id='observation-type-label' class='clearfix'>Observation Type</label>
+    <ul class='unstyled'>
+      <% ObservationType.all.each do |type| %>
+      <li>
+      <label class='checkbox'>
+        <input type='checkbox' id=<%=type.id %> value='1'><%= type.name %></input>
+      </label>
+      </li>
+    <% end %>
+    </ul>
+
+    <ul class='unstyled'>
+      <li class='well' ng-repeat="activity in observation.activities">
+      <button ng-click="removeActivity($index)" class="close">&times;</button>
+      <label>Person</label>
+      <select ng-model="activity.person">
+        <% Person.all.each do |person| %>
+          <option id=1>testing</option>
+        <% end %>
+      </select>
+      <div>
+        <ul class='unstyled'>
+          <li class='well' ng-repeat="equipment in activity.equipments">
+          <button ng-click="removeEquipment(activity, $index)" class="close">&times;</button>
+
+          <label>Equipment</label>
+          <select ng-model='equipment.name'>
+            <option>Tractor</option>
+            <option>Plow</option>
+          </select>
+          <div>
+            <ul class='unstyled'>
+              <li ng-repeat="material in equipment.materials">
+              <div class='well well-small form-inline'>
+                <button ng-click="removeMaterial(equipment, $index)" class="close">&times;</button>
+                <label>Material</label>
+                <select ng-model='material.name'>
+                  <option>Gas</option>
+                  <option>2,4 D</option>
+                </select>
+                <input type='number' class='input-mini' ng-model='material.amount'></input>
+                <select ng-model='material.unit'>
+                  <option>pounds</option>
+                  <option>stones</option>
+                </select>
+                <label>per Acre</label>
+              </div>
+              </li>
+            </ul>
+          </div>
+          <button ng-click="addMaterial(equipment)">Add Material</button>
+          </li>
+        </ul>
+      </div>
+      <button ng-click="addEquipment(activity)">Add Equipment</button>
+      </li>
+    </ul>
+
+    <button ng-click="addActivity()">Add Activity</button>
+    <button ng-click='addFile()'>Add File</button>
+    <button type='submit' ng-submit>Submit</button>
+  </form>
+</div>
+<div>
 
 
 <%= link_to 'Show', observation_path(@observation) %> |

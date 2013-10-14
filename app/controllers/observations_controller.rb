@@ -3,6 +3,7 @@
 class ObservationsController < ApplicationController
 #  before_filter :require_user, :except => [:index, :show, :related]
   helper_method :observation
+  respond_to :json, :html
 
   # GET /observations
   # GET /observations.xml
