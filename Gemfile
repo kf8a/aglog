@@ -40,6 +40,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'twitter-bootstrap-rails'
+  gem 'angularjs-rails'
 end
 
 group :production do
