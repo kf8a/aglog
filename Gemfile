@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2.13'
+gem 'rails', '~> 3.2'
 
 gem 'rake'
 
@@ -9,7 +9,6 @@ gem 'pg'
 
 gem 'devise'
 
-#gem 'omniauth', ">= 0.2.6"
 gem 'will_paginate' #, "~> 3.0.pre2"
 gem 'will_paginate-bootstrap'
 gem 'haml'
@@ -31,6 +30,8 @@ gem 'cancan'
 gem 'seedbed'
 
 gem 'barista'
+
+gem 'jbuilder'
 
 # Gems used only for assets and not required
 # in production environments by default.
