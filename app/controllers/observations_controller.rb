@@ -2,7 +2,7 @@
 # Allows modification and viewing of observations
 class ObservationsController < ApplicationController
 #  before_filter :require_user, :except => [:index, :show, :related]
-  helper_method :observation
+  # helper_method :observation
   respond_to :json, :html
 
   # GET /observations
@@ -25,7 +25,7 @@ class ObservationsController < ApplicationController
                                                                     {:setups => [:equipment, 
                                                                       {:material_transactions => [{:material => :hazards}, :unit]}]}]}).first
     @areas_as_text = @observation.areas_as_text
-    respond_with @observation
+    respond_with @observation 
   end
 
   def new
@@ -68,8 +68,8 @@ class ObservationsController < ApplicationController
     @observation = Observation.where(:id => params[:id]).includes(:areas => :observations).first
   end
 
-  def observation
-    Observation.find(params[:id])
-  end
+  # def observation
+  #   Observation.find(params[:id])
+  # end
 
 end
