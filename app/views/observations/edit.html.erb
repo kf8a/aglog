@@ -27,14 +27,11 @@ Created on: <%= @observation.created_on  %>
     </label>
 
     <ul class='unstyled'>
-      <li class='well' ng-repeat="activity in observation.activities">
+      <li class='well' ng-repeat="activity in obs.activities">
       <button ng-click="removeActivity($index)" class="close">&times;</button>
       <label>Person</label>
-      <select ng-model="activity.person">
-        <% Person.all.each do |person| %>
-          <option id=1>testing</option>
-        <% end %>
-      </select>
+      <select ng-model="activity.person" ng-options="person.id as person.name for person in obs.people track by person.id">
+        </select>
       <div>
         <ul class='unstyled'>
           <li class='well' ng-repeat="equipment in activity.equipments">

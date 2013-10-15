@@ -16,11 +16,19 @@ json.areas @observation.areas do |area|
 end
 json.activities @observation.activities do |activity|
   json.activity activity
-  json.person activity.person
+  json.person do 
+    json.id activity.person.id
+    json.name activity.person.name
+  end
   json.setups activity.setups do |setup|
     json.equipment setup.equipment
     json.material_transactions setup.material_transactions do |transaction|
       json.material transaction.material
     end
   end
+end
+
+json.people Person.all.each do |person|
+  json.id person.id
+  json.name person.name
 end

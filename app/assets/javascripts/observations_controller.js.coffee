@@ -1,13 +1,11 @@
 app = angular.module('Aglog', ['ngResource'])
 
 @NewCtrl = ($scope, $filter, $resource, $rootElement ) ->
-  Observation = $resource("/observations/:id", {id: "@id"}, {update: {method: "PUT"}})
+  Observation = $resource("/observations/:id.json", {id: "@id"}, {update: {method: "PUT"}})
 
   id = $rootElement.data('observation-id')
   $scope.obs = Observation.get({id: id})
   console.log($scope.obs)
-
-  $scope.activities = $scope.obs.activities
 
   $scope.dt = $filter('date')(new Date(), 'longDate')
 
