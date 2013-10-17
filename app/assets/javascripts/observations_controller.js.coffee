@@ -95,11 +95,10 @@ app.factory "Observation", ($resource) ->
       $('#areaSelect').select2({multiple: true, data: $scope.areaTags()}).trigger('change')
 
     $scope.addActivity = ->
-      console.log($scope.obs)
       $scope.obs.activities.push({person: null, hours: 0, setups: []})
 
     $scope.addEquipment = (activity) ->
-      activity.equipments.push({equipment: null, materials: []})
+      activity.setups.push({equipment: null, material_transactions: []})
 
     $scope.addMaterial = (equipment) ->
       equipment.materials.push({name: null, amount: 0, unit: null})
@@ -108,7 +107,7 @@ app.factory "Observation", ($resource) ->
       equipment.materials.splice(idx, 1)
 
     $scope.removeEquipment = (activity, idx) ->
-      activity.equipments.splice(idx, 1)
+      activity.setups.splice(idx, 1)
 
     $scope.removeActivity = (idx) ->
-      $scope.activities.splice(idx, 1)
+      $scope.obs.activities.splice(idx, 1)

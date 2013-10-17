@@ -38,7 +38,7 @@ Created on: <%= @observation.created_on  %>
           <button ng-click="removeEquipment(activity, $index)" class="close">&times;</button>
 
           <label>Equipment</label>
-          <select ng-model='setup.equipment' ng-options="equip.id as equip.name for equip in obs.equipment track by equip.id">
+          <select ng-model='setup.equipment' ng-options="equip as equip.name for equip in obs.equipment track by equip.id">
           </select>
           <div>
             <ul class='unstyled'>
