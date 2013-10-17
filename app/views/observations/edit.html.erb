@@ -5,7 +5,7 @@ Created on: <%= @observation.created_on  %>
  <div ng-app='Aglog' data-observation-id = <%= @observation.id %> >
 
   <div ng-controller='NewCtrl' data-observation-id = <%= @observation.id %> >
-  <form action='new' method='post'>
+    <form> 
     <label>Observation Date</label>
     <input type="text" datepicker-popup="dd-MMMM-yyyy" ng-model="obs.obs_date"
       ng-required=true show-weeks=false is-open="opened" datepicker-options="dateOptions" />
@@ -30,27 +30,23 @@ Created on: <%= @observation.created_on  %>
       <li class='well' ng-repeat="activity in obs.activities">
       <button ng-click="removeActivity($index)" class="close">&times;</button>
       <label>Person</label>
-      <select ng-model="activity.person" ng-options="person.id as person.name for person in obs.people track by person.id">
+      <select ng-model="activity.person" ng-selected="0" ng-options="person as person.name for person in obs.people track by person.id">
         </select>
       <div>
         <ul class='unstyled'>
-          <li class='well' ng-repeat="equipment in activity.equipments">
+          <li class='well' ng-repeat="setup in activity.setups">
           <button ng-click="removeEquipment(activity, $index)" class="close">&times;</button>
 
           <label>Equipment</label>
-          <select ng-model='equipment.name'>
-            <option>Tractor</option>
-            <option>Plow</option>
+          <select ng-model='setup.equipment' ng-options="equip.id as equip.name for equip in obs.equipment track by equip.id">
           </select>
           <div>
             <ul class='unstyled'>
-              <li ng-repeat="material in equipment.materials">
+              <li ng-repeat="material in setup.materials">
               <div class='well well-small form-inline'>
                 <button ng-click="removeMaterial(equipment, $index)" class="close">&times;</button>
                 <label>Material</label>
-                <select ng-model='material.name'>
-                  <option>Gas</option>
-                  <option>2,4 D</option>
+                <select ng-model='setup.material' ng-options='material.id as material.name for material in obs.material track by material.id">
                 </select>
                 <input type='number' class='input-mini' ng-model='material.amount'></input>
                 <select ng-model='material.unit'>

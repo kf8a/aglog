@@ -1,13 +1,15 @@
 app = angular.module('Aglog', ['ngResource'])
 
-@NewCtrl = ($scope, $filter, $resource, $rootElement ) ->
-  Observation = $resource("/observations/:id.json", {id: "@id"}, {update: {method: "PUT"}})
+app.factory "Observation", ($resource) ->
+  $resource("/observations/:id.json", {id: "@id"}, {update: {method: "PUT"}})
+
+@NewCtrl = ($scope, $filter, $resource, $rootElement, Observation ) ->
+  # Observation = $resource("/observations/:id.json", {id: "@id"}, {update: {method: "PUT"}})
 
   id = $rootElement.data('observation-id')
   $scope.obs = Observation.get({id: id})
-  console.log($scope.obs)
 
-  $scope.dt = $filter('date')(new Date(), 'longDate')
+  console.log($scope.obs)
 
   $scope.areas = [
       {id: '1', text: 'lter', areas: [
@@ -93,7 +95,8 @@ app = angular.module('Aglog', ['ngResource'])
       $('#areaSelect').select2({multiple: true, data: $scope.areaTags()}).trigger('change')
 
     $scope.addActivity = ->
-      $scope.activities.push({person: null, hours: 0, equipments: []})
+      console.log($scope.obs)
+      $scope.obs.activities.push({person: null, hours: 0, setups: []})
 
     $scope.addEquipment = (activity) ->
       activity.equipments.push({equipment: null, materials: []})

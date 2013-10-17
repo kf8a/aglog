@@ -15,8 +15,7 @@ json.areas @observation.areas do |area|
   json.id = area.id
 end
 json.activities @observation.activities do |activity|
-  json.activity activity
-  json.person do 
+  json.person do
     json.id activity.person.id
     json.name activity.person.name
   end
@@ -28,7 +27,13 @@ json.activities @observation.activities do |activity|
   end
 end
 
+# TODO scope by company id
 json.people Person.all.each do |person|
   json.id person.id
   json.name person.name
+end
+
+json.equipment Equipment.all.each do |e|
+  json.id e.id
+  json.name e.name
 end
