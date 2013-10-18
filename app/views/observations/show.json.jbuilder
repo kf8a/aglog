@@ -20,12 +20,18 @@ json.activities @observation.activities do |activity|
     json.name activity.person.name
   end
   json.setups activity.setups do |setup|
+    json.id setup.id
     json.equipment setup.equipment
     json.material_transactions setup.material_transactions do |transaction|
+      json.id transaction.id
+      json.amount transaction.rate
       json.material transaction.material
+      json.unit transaction.unit
     end
   end
 end
+
+# should I create new templates here?
 
 # TODO scope by company id
 json.people Person.all.each do |person|
