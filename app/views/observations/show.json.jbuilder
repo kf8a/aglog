@@ -37,3 +37,13 @@ json.equipment Equipment.all.each do |e|
   json.id e.id
   json.name e.name
 end
+
+json.materials Material.all.each do |m|
+  json.id m.id
+  json.name m.name
+end
+
+json.units Unit.all.each do |u|
+  json.id u.id
+  json.name u.name
+end

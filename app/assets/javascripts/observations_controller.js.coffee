@@ -101,10 +101,11 @@ app.factory "Observation", ($resource) ->
       activity.setups.push({equipment: null, material_transactions: []})
 
     $scope.addMaterial = (equipment) ->
-      equipment.materials.push({name: null, amount: 0, unit: null})
+      equipment.material_transactions.push({name: null, amount: 0, unit: null})
 
     $scope.removeMaterial = (equipment, idx) ->
-      equipment.materials.splice(idx, 1)
+      console.log(equipment)
+      equipment.material_transactions.splice(idx, 1)
 
     $scope.removeEquipment = (activity, idx) ->
       activity.setups.splice(idx, 1)
