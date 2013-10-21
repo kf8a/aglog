@@ -5,13 +5,13 @@ Created on: <%= @observation.created_on  %>
  <div ng-app='Aglog' data-observation-id = <%= @observation.id %> >
 
   <div ng-controller='NewCtrl' data-observation-id = <%= @observation.id %> >
-    <form> 
+    <%= form_for @observation, :method=>:put  do |form| %>
     <label>Observation Date</label>
-    <input type="text" datepicker-popup="dd-MMMM-yyyy" ng-model="obs.obs_date"
+    <input type="text" name='observation[observation_date]' datepicker-popup="dd-MMMM-yyyy" ng-model="obs.obs_date"
       ng-required=true show-weeks=false is-open="opened" datepicker-options="dateOptions" />
 
     <label>Observation</label>
-    <textarea class='span6' ng-model='obs.comment' placeholder='describe what happened'></textarea>
+    <textarea id='observation_comment' name='observation[comment]' class='span6' ng-model='obs.comment' placeholder='describe what happened'></textarea>
 
     <label>Areas</label>
     <select ui-select2 ng-model='selectedArea' class='input-large' placeholder='select an area' ng-change='updateAreaTags()'>
@@ -21,21 +21,22 @@ Created on: <%= @observation.created_on  %>
     <input id='areaSelect' type="text"  ui-select2="tagAllOptions" ng-model="tagsSelection" class="input-xlarge"/>
 
     <label id='observation-type-label' class='clearfix'>Observation Type</label>
+
     <label ng-repeat='observation_type in obs.observation_types'>
-      <input type='checkbox' name='observation_types[]' value='{{observation_type.name}}' ng-model="observation_type.checked"/>
+      <input type='checkbox' name='observation[observation_type_ids][]' value='{{observation_type.id}}' ng-model="observation_type.checked"/>
       <span>{{observation_type.name}}</span>
     </label>
 
     <ul class='unstyled'>
       <li class='well' ng-repeat="activity in obs.activities">
-      <button ng-click="removeActivity($index)" class="close">&times;</button>
+      <button type='button' ng-click="removeActivity($index)" class="close">&times;</button>
       <label>Person</label>
-      <select ng-model="activity.person" ng-selected="0" ng-options="person as person.name for person in obs.people track by person.id">
+      <select name='observation[activities_attributes][][person_id]' ng-model="activity.person" ng-selected="0" ng-options="person as person.name for person in obs.people track by person.id">
         </select>
       <div>
         <ul class='unstyled'>
           <li class='well' ng-repeat="setup in activity.setups">
-          <button ng-click="removeEquipment(activity, $index)" class="close">&times;</button>
+          <button type='button' ng-click="removeEquipment(activity, $index)" class="close">&times;</button>
 
           <label>Equipment</label>
           <select ng-model='setup.equipment' ng-options="equip as equip.name for equip in obs.equipment track by equip.id">
@@ -44,7 +45,7 @@ Created on: <%= @observation.created_on  %>
             <ul class='unstyled'>
               <li ng-repeat="material in setup.material_transactions">
               <div class='well well-small form-inline'>
-                <button ng-click="removeMaterial(setup, $index)" class="close">&times;</button>
+                <button type='button' ng-click="removeMaterial(setup, $index)" class="close">&times;</button>
                 <label>Material</label>
                 <select ng-model='material.material' ng-options="m as m.name for m in obs.materials track by m.id">
                 </select>
@@ -56,18 +57,18 @@ Created on: <%= @observation.created_on  %>
               </li>
             </ul>
           </div>
-          <button ng-click="addMaterial(setup)">Add Material</button>
+          <button type='button' ng-click="addMaterial(setup)">Add Material</button>
           </li>
         </ul>
       </div>
-      <button ng-click="addEquipment(activity)">Add Equipment</button>
+      <button type='button' ng-click="addEquipment(activity)">Add Equipment</button>
       </li>
     </ul>
 
-    <button ng-click="addActivity()">Add Activity</button>
-    <button ng-click='addFile()'>Add File</button>
-    <button type='submit' ng-submit>Submit</button>
-  </form>
+    <button type='button' ng-click="addActivity()">Add Activity</button>
+    <button type='button' ng-click='addFile()'>Add File</button>
+    <button type='submit'>Submit</button>
+  <% end %>
 </div>
 <div>
 
