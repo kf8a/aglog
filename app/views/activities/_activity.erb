@@ -6,7 +6,7 @@
       <%= f.input :hours, :input_html => {  :size => 10 } %>
      <% end %>
   <% unless activity.new_record? %>
-    
+
     <fieldset id='setups'>
       <legend>Setups</legend>
         <%= render activity.setups %>
