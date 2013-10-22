@@ -12,9 +12,10 @@ end
 json.areas_as_text @areas_as_text
 json.areas @observation.areas do |area|
   json.area area
-  json.id = area.id
+  json.id area.id
 end
 json.activities @observation.activities do |activity|
+  json.id activity.id
   json.person do
     json.id activity.person.id
     json.name activity.person.name

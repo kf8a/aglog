@@ -5,13 +5,12 @@ Created on: <%= @observation.created_on  %>
  <div ng-app='Aglog' data-observation-id = <%= @observation.id %> >
 
   <div ng-controller='NewCtrl' data-observation-id = <%= @observation.id %> >
-    <%= form_for @observation, :method=>:put  do |form| %>
+    <%= form_for @observation, :method=>:put  do |f| %>
     <label>Observation Date</label>
-    <input type="text" name='observation[observation_date]' datepicker-popup="dd-MMMM-yyyy" ng-model="obs.obs_date"
-      ng-required=true show-weeks=false is-open="opened" datepicker-options="dateOptions" />
+    <%= f.text_field :observation_date, {:'ng-model' => 'obs.obs_date', :'ng-required' => true} %>
 
     <label>Observation</label>
-    <textarea id='observation_comment' name='observation[comment]' class='span6' ng-model='obs.comment' placeholder='describe what happened'></textarea>
+    <%= f.text_area :comment, {class: 'span6', :'ng-model' => 'obs.comment', placeholder: 'describe what happened'} %>
 
     <label>Areas</label>
     <select ui-select2 ng-model='selectedArea' class='input-large' placeholder='select an area' ng-change='updateAreaTags()'>
@@ -31,22 +30,27 @@ Created on: <%= @observation.created_on  %>
       <li class='well' ng-repeat="activity in obs.activities">
       <button type='button' ng-click="removeActivity($index)" class="close">&times;</button>
       <label>Person</label>
-      <select name='observation[activities_attributes][][person_id]' ng-model="activity.person" ng-selected="0" ng-options="person as person.name for person in obs.people track by person.id">
-        </select>
+      <input id="observation_activities_attributes_{{$index}}_id" name="observation[activities_attributes][{{$index}}][id]" type="hidden" value="{{activity.id}}">
+      <select id="observation_activities_attributes_{{$index}}_person_id" name="observation[activities_attributes][{{$index}}][person_id]" ng-model="activity.person" 
+        ng-selected="0" ng-options="person as person.name for person in obs.people track by person.id">
+      </select>
       <div>
         <ul class='unstyled'>
           <li class='well' ng-repeat="setup in activity.setups">
           <button type='button' ng-click="removeEquipment(activity, $index)" class="close">&times;</button>
 
-          <label>Equipment</label>
-          <select ng-model='setup.equipment' ng-options="equip as equip.name for equip in obs.equipment track by equip.id">
+          <label>Equipment{{$index}}</label>
+          <input id="observation_activities_attributes_{{$parent.$index}}_setups_attributes_{{$index}}_id" 
+          name="observation[activities_attributes][{{$parent.$index}}][setups_attributes][{{$index}}][id]" type="hidden" value="{{setup.id}}">
+          <select name='observation[activities_attributes][{{$parent.$index}}][setups_attributes][{{$index}}][equipment_id]' ng-model='setup.equipment' 
+            ng-options="equip as equip.name for equip in obs.equipment track by equip.id">
           </select>
           <div>
             <ul class='unstyled'>
               <li ng-repeat="material in setup.material_transactions">
               <div class='well well-small form-inline'>
                 <button type='button' ng-click="removeMaterial(setup, $index)" class="close">&times;</button>
-                <label>Material</label>
+                <label>Material{{$index}}</label>
                 <select ng-model='material.material' ng-options="m as m.name for m in obs.materials track by m.id">
                 </select>
                 <input type='number' step='0.01' class='input-mini' ng-model='material.amount'></input>
