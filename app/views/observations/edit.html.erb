@@ -27,21 +27,22 @@ Created on: <%= @observation.created_on  %>
     </label>
 
     <ul class='unstyled'>
-      <li class='well' ng-repeat="activity in obs.activities">
-      <button type='button' ng-click="removeActivity($index)" class="close">&times;</button>
+      <li class='well' ng-repeat="activity in obs.activities" data-ng-hide="activity.destroy">
+      <button type='button' ng-click="removeActivity(activity)" class="close">&times;</button>
       <label>Person</label>
-      <input id="observation_activities_attributes_{{$index}}_id" name="observation[activities_attributes][{{$index}}][id]" type="hidden" value="{{activity.id}}">
+      <%= hidden_field_tag "observation[activities_attributes][{{$index}}][id]", "{{activity.id}}" %>
+      <%= hidden_field_tag "observation[activities_attributes][{{$index}}][_destroy]", "{{activity.destroy}}" %>
       <select id="observation_activities_attributes_{{$index}}_person_id" name="observation[activities_attributes][{{$index}}][person_id]" ng-model="activity.person" 
         ng-selected="0" ng-options="person as person.name for person in obs.people track by person.id">
       </select>
       <div>
         <ul class='unstyled'>
           <li class='well' ng-repeat="setup in activity.setups">
-          <button type='button' ng-click="removeEquipment(activity, $index)" class="close">&times;</button>
+          <button type='button' ng-click="removeSetup(activity, setup)" class="close">&times;</button>
 
           <label>Equipment{{$index}}</label>
-          <input id="observation_activities_attributes_{{$parent.$index}}_setups_attributes_{{$index}}_id" 
-          name="observation[activities_attributes][{{$parent.$index}}][setups_attributes][{{$index}}][id]" type="hidden" value="{{setup.id}}">
+          <%= hidden_field_tag "observation[activities_attributes][{{$parent.$index}}][setups_attributes][{{$index}}][id]", "{{setup.id}}" %>
+          <%= hidden_field_tag "observation[activities_attributes][{{$parent.$index}}][setups_attributes][{{$index}}][_destroy]", "{{setup.destroy}}" %>
           <select name='observation[activities_attributes][{{$parent.$index}}][setups_attributes][{{$index}}][equipment_id]' ng-model='setup.equipment' 
             ng-options="equip as equip.name for equip in obs.equipment track by equip.id">
           </select>

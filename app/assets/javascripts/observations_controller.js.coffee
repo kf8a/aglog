@@ -104,11 +104,16 @@ app.factory "Observation", ($resource) ->
       equipment.material_transactions.push({name: null, amount: 0, unit: null})
 
     $scope.removeMaterial = (equipment, idx) ->
-      console.log(equipment)
       equipment.material_transactions.splice(idx, 1)
 
-    $scope.removeEquipment = (activity, idx) ->
-      activity.setups.splice(idx, 1)
+    $scope.removeSetup = (activity, setup) ->
+      if setup.id
+        setup.destroy = 1
+      else
+        activity.setups.splice($.inArray(setup, $scope.obs.activity.setups), 1)
 
-    $scope.removeActivity = (idx) ->
-      $scope.obs.activities.splice(idx, 1)
+    $scope.removeActivity = (activity) ->
+      if activity.id
+        activity.destroy = 1
+      else
+        $scope.obs.activities.splice($.inArray(activity, $scope.obs.activities), 1)
