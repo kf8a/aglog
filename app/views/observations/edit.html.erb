@@ -37,7 +37,7 @@ Created on: <%= @observation.created_on  %>
       </select>
       <div>
         <ul class='unstyled'>
-          <li class='well' ng-repeat="setup in activity.setups">
+          <li class='well' ng-repeat="setup in activity.setups" data-ng-hide="setup.destroy">
           <button type='button' ng-click="removeSetup(activity, setup)" class="close">&times;</button>
 
           <label>Equipment{{$index}}</label>
@@ -48,14 +48,16 @@ Created on: <%= @observation.created_on  %>
           </select>
           <div>
             <ul class='unstyled'>
-              <li ng-repeat="material in setup.material_transactions">
+              <li ng-repeat="material in setup.material_transactions" data-ng-hide="material.destroy">
               <div class='well well-small form-inline'>
-                <button type='button' ng-click="removeMaterial(setup, $index)" class="close">&times;</button>
+                <%= hidden_field_tag "observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][id]", "{{material.id}}" %>
+                <%= hidden_field_tag "observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][_destroy]", "{{material.destroy}}" %>
+                <button type='button' ng-click="removeMaterial(setup, material)" class="close">&times;</button>
                 <label>Material{{$index}}</label>
-                <select ng-model='material.material' ng-options="m as m.name for m in obs.materials track by m.id">
+                <select name="observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][material_id]" ng-model='material.material' ng-options="m as m.name for m in obs.materials track by m.id">
                 </select>
-                <input type='number' step='0.01' class='input-mini' ng-model='material.amount'></input>
-                <select ng-model='material.unit' ng-options="unit as unit.name for unit in obs.units track by unit.id">
+                <input name="observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][rate]" type='number' step='0.01' class='input-mini' ng-model='material.amount'></input>
+                <select name=" observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][unit_id]" ng-model='material.unit' ng-options="unit as unit.name for unit in obs.units track by unit.id">
                 </select>
                 <label>per Acre</label>
               </div>
