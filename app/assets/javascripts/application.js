@@ -3,7 +3,8 @@
 //= require jquery.ui.all
 //= require angular
 //= require angular-resource
-//= require twitter/bootstrap
+//= require select2/select2
+//= require select2
 //= require jquery.tokeninput
 //= require form_functions
 //= require_tree .
