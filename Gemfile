@@ -41,7 +41,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'twitter-bootstrap-rails'
-  gem 'angularjs-rails',  "~> 1.2.0.rc2"
+  gem 'angularjs-rails' #,  "~> 1.2.0.rc2"
 end
 
 group :production do
