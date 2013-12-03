@@ -1,10 +1,9 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery.tokeninput
+//= require select2/select2
 //= require angular
 //= require angular-resource
-//= require select2/select2
-//= require select2
-//= require jquery.tokeninput
+//= require angular-ui-select2
 //= require form_functions
 //= require_tree .

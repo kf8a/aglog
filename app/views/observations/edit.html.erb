@@ -12,14 +12,12 @@ Created on: <%= @observation.created_on  %>
     <label>Observation</label>
     <%= f.text_area :comment, {class: 'span6', :'ng-model' => 'obs.comment', placeholder: 'describe what happened'} %>
 
+    <div id=areaSelector')
     <label>Areas</label>
-    <select ui-select2 ng-model='selectedArea' class='input-large' placeholder='select an area' ng-change='updateAreaTags()'>
-      <option value=''></option>
-      <option ng-repeat='area in areas' value={{area.id}}>{{area.text}}</option>
-    </select>
-    <input id='areaSelect' type="text"  ui-select2="tagAllOptions" ng-model="tagsSelection" class="input-xlarge"/>
+    <%= f.text_field :areas_as_text, {:class=>'token-input','data-pre' => @observation.prepopulated_area_tokens} %>
 
     <label id='observation-type-label' class='clearfix'>Observation Type</label>
+  </div>
 
     <label ng-repeat='observation_type in obs.observation_types'>
       <input type='checkbox' name='observation[observation_type_ids][]' value='{{observation_type.id}}' ng-model="observation_type.checked"/>
@@ -53,7 +51,7 @@ Created on: <%= @observation.created_on  %>
                 <%= hidden_field_tag "observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][id]", "{{material.id}}" %>
                 <%= hidden_field_tag "observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][_destroy]", "{{material.destroy}}" %>
                 <button type='button' ng-click="removeMaterial(setup, material)" class="close">&times;</button>
-                <label>Material{{$index}}</label>
+                <label>Material</label>
                 <select name="observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][material_id]" ng-model='material.material' ng-options="m as m.name for m in obs.materials track by m.id">
                 </select>
                 <input name="observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][rate]" type='number' step='0.01' class='input-mini' ng-model='material.amount'></input>
