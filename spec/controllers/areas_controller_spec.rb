@@ -11,7 +11,6 @@ describe AreasController do
       end
 
       it { should render_template 'index' }
-      it { should assign_to :areas }
     end
 
     describe 'POST :move_to' do
@@ -54,8 +53,6 @@ describe AreasController do
         end
 
         it { should render_template 'show' }
-        it { should assign_to(:area).with(@area) }
-        it { should assign_to(:observations) }
       end
 
       describe 'The area is a branch with leaves that have observations. ' do
@@ -71,7 +68,6 @@ describe AreasController do
             get :show, :id => @area.id
           end
 
-          it { should assign_to(:observations).with(@area1.observations) }
         end
       end
 
@@ -119,7 +115,6 @@ describe AreasController do
       end
 
       it { should render_template 'index' }
-      it { should assign_to :areas }
     end
 
     describe 'GET :index with :q => "T" as json' do
@@ -127,7 +122,6 @@ describe AreasController do
         get :index, :q => "T", :format => :json
       end
 
-      it { should assign_to(:areas).with([{:id=>2, :name=>"T"}, {:id=>3, :name=>"T1"}, {:id=>5, :name=>"T2"}, {:id=>7, :name=>"T3"}, {:id=>9, :name=>"T4"}, {:id=>11, :name=>"T5"}, {:id=>13, :name=>"T6"}, {:id=>15, :name=>"T7"}, {:id=>17, :name=>"T8"}, {:id=>4, :name=>"T1R1"}, {:id=>19, :name=>"T1R2"}, {:id=>27, :name=>"T1R3"}, {:id=>35, :name=>"T1R4"}, {:id=>43, :name=>"T1R5"}, {:id=>51, :name=>"T1R6"}, {:id=>6, :name=>"T2R1"}, {:id=>20, :name=>"T2R2"}, {:id=>28, :name=>"T2R3"}, {:id=>36, :name=>"T2R4"}, {:id=>44, :name=>"T2R5"}, {:id=>52, :name=>"T2R6"}, {:id=>8, :name=>"T3R1"}, {:id=>21, :name=>"T3R2"}, {:id=>29, :name=>"T3R3"}, {:id=>37, :name=>"T3R4"}, {:id=>45, :name=>"T3R5"}, {:id=>53, :name=>"T3R6"}, {:id=>10, :name=>"T4R1"}, {:id=>22, :name=>"T4R2"}, {:id=>30, :name=>"T4R3"}, {:id=>38, :name=>"T4R4"}, {:id=>46, :name=>"T4R5"}, {:id=>54, :name=>"T4R6"}, {:id=>12, :name=>"T5R1"}, {:id=>23, :name=>"T5R2"}, {:id=>31, :name=>"T5R3"}, {:id=>39, :name=>"T5R4"}, {:id=>47, :name=>"T5R5"}, {:id=>55, :name=>"T5R6"}, {:id=>14, :name=>"T6R1"}, {:id=>24, :name=>"T6R2"}, {:id=>32, :name=>"T6R3"}, {:id=>40, :name=>"T6R4"}, {:id=>48, :name=>"T6R5"}, {:id=>56, :name=>"T6R6"}, {:id=>16, :name=>"T7R1"}, {:id=>25, :name=>"T7R2"}, {:id=>33, :name=>"T7R3"}, {:id=>41, :name=>"T7R4"}, {:id=>49, :name=>"T7R5"}, {:id=>57, :name=>"T7R6"}, {:id=>18, :name=>"T8R1"}, {:id=>26, :name=>"T8R2"}, {:id=>34, :name=>"T8R3"}, {:id=>42, :name=>"T8R4"}, {:id=>50, :name=>"T8R5"}, {:id=>58, :name=>"T8R6"}]) }
     end
 
     describe 'GET :new' do
@@ -136,7 +130,6 @@ describe AreasController do
       end
 
       it { should render_template 'new' }
-      it { should assign_to(:area).with_kind_of(Area) }
     end
 
     describe 'POST :create' do
@@ -150,15 +143,6 @@ describe AreasController do
         Area.exists?(:name => 'T2R22').should be_true
       end
       it { should set_the_flash }
-    end
-
-    describe "POST :create with xml format" do
-      before(:each) do
-        post :create, :area => { :name => 'XMLTEST' }, :format => 'xml'
-      end
-
-      it { should respond_with(201) }
-      it { should respond_with_content_type(:xml) }
     end
 
     describe "POST :create with invalid attributes" do
@@ -183,8 +167,6 @@ describe AreasController do
         end
 
         it { should render_template 'show' }
-        it { should assign_to(:area).with(@area) }
-        it { should assign_to(:observations) }
       end
 
       describe "GET :edit the area" do
@@ -193,7 +175,6 @@ describe AreasController do
         end
 
         it { should render_template 'edit' }
-        it { should assign_to(:area).with(@area) }
       end
 
       describe "PUT :update the area with valid attributes" do
