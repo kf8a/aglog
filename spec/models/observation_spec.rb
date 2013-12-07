@@ -215,7 +215,7 @@ describe Observation do
     type = ObservationType.find_by_name('Soil Preparation')
     assert type
     person1 = Person.find_by_sur_name("Sur1") || FactoryGirl.create(:person, :sur_name => "Sur1")
-    observation = Observation.new(:obs_date => "June 14, 2007")
+    observation = Observation.new(:observation_date => "June 14, 2007")
     observation.person = person1 
     observation.observation_types <<  type
     assert observation.save
