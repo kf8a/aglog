@@ -6,10 +6,9 @@ gem 'rake'
 
 gem 'pg'
 
-
 gem 'devise'
 
-gem 'will_paginate' #, "~> 3.0.pre2"
+gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'haml'
 
@@ -33,6 +32,10 @@ gem 'barista'
 
 gem 'jbuilder'
 
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -41,7 +44,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'twitter-bootstrap-rails'
-  gem 'angularjs-rails' #,  "~> 1.2.0.rc2"
+  gem 'angularjs-rails'
 end
 
 group :production do
@@ -49,7 +52,6 @@ group :production do
 end
 
 group :development, :test do
-  #gem 'silent-postgres'
   gem 'rspec-rails'
   #gem 'sqlite3-ruby'
   gem 'sqlite3'
