@@ -89,7 +89,9 @@ describe ObservationsController do
         get :index, :format => 'salus_xml'
       end
 
-      it { should respond_with_content_type('text/xml') }
+			it 'shour respond with content type text/xml' do
+				response.content_type.should == 'text/xml'
+			end
     end
 
     describe "GET :index in salus_csv format" do
@@ -97,7 +99,9 @@ describe ObservationsController do
         get :index, :format => 'salus_csv'
       end
 
-      it { should respond_with_content_type('text/text') }
+			it 'should respond with content type test/text' do
+				response.content_type.should == 'text/text'
+			end
     end
 
     describe "GET :new" do
@@ -112,7 +116,7 @@ describe ObservationsController do
       before(:each) do
         @observation_count = Observation.count
         observation_type_id = ObservationType.first.id
-        post :create, :observation => { :obs_date => Date.today,
+        post :create, :observation => { :observation_date => Date.today,
           :observation_type_ids => [observation_type_id] }
       end
 
@@ -134,10 +138,10 @@ describe ObservationsController do
       assert_equal num_activities, Activity.count
       assert_response :success
 
-      xhr(:post, :create, :commit => "Create Observation", :observation => {:obs_date => 'nodate'})
+      xhr(:post, :create, :commit => "Create Observation", :observation => {:observation_date => 'nodate'})
       assert_equal old_count, Observation.count
 
-      xhr(:post, :create, :commit => "Create Observation", :observation => {:obs_date => Date.today},
+      xhr(:post, :create, :commit => "Create Observation", :observation => {:observation_date => Date.today},
           :activity => {0 => {:user_id => 50}})
       assert_equal old_count, Observation.count
       assert_equal num_activities, Activity.count
@@ -170,7 +174,7 @@ describe ObservationsController do
       describe "PUT :update the observation" do
         before(:each) do
           @current_obs_date = @observation.obs_date
-          xhr(:put, :update, :id => @observation.id, :commit => "Update Observation", :observation => { :obs_date => @current_obs_date - 1 })
+          xhr(:put, :update, :id => @observation.id, :commit => "Update Observation", :observation => { :observation_date => @current_obs_date - 1 })
         end
 
         it "should update the observation" do
