@@ -14,13 +14,6 @@ describe PeopleController do
     assert assigns(:people)
   end
 
-  describe "get :index when not signed in" do
-    before(:each) do
-      get :index
-    end
-
-    it { should assign_to :people }
-  end
 
   it "should get new" do
     get :new
