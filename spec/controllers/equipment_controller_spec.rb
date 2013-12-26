@@ -11,7 +11,6 @@ describe EquipmentController do
       end
 
       it { should render_template 'index' }
-      it { should assign_to :equipment }
     end
 
     describe 'GET :new' do
@@ -42,7 +41,6 @@ describe EquipmentController do
         end
 
         it { should render_template 'show' }
-        it { should assign_to(:equipment).with(@equipment) }
       end
 
       describe 'GET :edit the area' do
@@ -106,7 +104,6 @@ describe EquipmentController do
       end
 
       it { should render_template 'index' }
-      it { should assign_to(:equipment) }
 
       it 'should only show equipment for the company of the current user' do
         assert assigns(:equipment).include?(@equipment_1)
@@ -123,7 +120,6 @@ describe EquipmentController do
       end
 
       it { should render_template 'new' }
-      it { should assign_to(:equipment).with_kind_of(Equipment) }
     end
 
     describe "POST :create" do
@@ -161,7 +157,9 @@ describe EquipmentController do
           :equipment => { }
       end
 
-      it { should respond_with_content_type(:xml) }
+			it 'should respond with content type test/xml' do
+				response.content_type.should == 'application/xml'
+			end
     end
 
     describe "An equipment exists. " do
@@ -175,7 +173,6 @@ describe EquipmentController do
         end
 
         it { should render_template 'show' }
-        it { should assign_to(:equipment).with(@equipment) }
       end
 
       describe "GET :edit the equipment" do
@@ -184,7 +181,6 @@ describe EquipmentController do
         end
 
         it { should render_template 'edit' }
-        it { should assign_to(:equipment).with(@equipment) }
       end
 
       describe "PUT :update the equipment with valid attributes" do
@@ -208,7 +204,6 @@ describe EquipmentController do
         end
 
         it { should render_template :edit }
-        it { should assign_to(:equipment).with(@equipment) }
         it 'should not change the equipment' do
           @equipment.reload
           @equipment.name.should_not be_eql('Repeat Name')
