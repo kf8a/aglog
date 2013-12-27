@@ -44,7 +44,7 @@ describe AreasController do
 
     describe 'An area exists. ' do
       before(:each) do
-        @area = FactoryGirl.create(:area, :name => 'standard_area')
+        @area = FactoryGirl.create(:area, :name => 'standard_area', company_id: 1)
       end
 
       describe 'GET :show the area' do
@@ -57,7 +57,7 @@ describe AreasController do
 
       describe 'The area is a branch with leaves that have observations. ' do
         before(:each) do
-          @area1 = FactoryGirl.create(:area)
+          @area1 = FactoryGirl.create(:area, company_id: 1)
           @area1.observations << FactoryGirl.create(:observation)
           @area1.move_to_child_of(@area)
           assert @area.leaves.include?(@area1)
@@ -157,8 +157,8 @@ describe AreasController do
 
     describe "An area exists. " do
       before(:each) do
-        @area = find_or_factory(:area, :name => 'existing_area',
-                               :company_id=>@user.company_id)
+        @area = find_or_factory(:area, {:name => 'existing_area',
+                               :company_id=>@user.company_id})
       end
 
       describe "GET :show the area" do
@@ -191,8 +191,8 @@ describe AreasController do
 
       describe "PUT :update with invalid attributes" do
         before(:each) do
-          find_or_factory(:area, :name => 'repeat_name',
-                          :company_id => @user.company.id)
+          find_or_factory(:area, {:name => 'repeat_name',
+                          :company_id => @user.company.id})
           put :update, :id => @area.id, :area => { :name => 'repeat_name' }
         end
 
