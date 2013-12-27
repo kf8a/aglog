@@ -14,7 +14,6 @@ describe HazardsController do
     end
 
     it { should respond_with :success }
-    it { should assign_to :hazards }
   end
 
   describe "get :index when signed_out" do

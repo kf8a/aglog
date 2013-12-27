@@ -43,7 +43,9 @@ describe MaterialsController do
     end
 
     it { should respond_with(201) }
-    it { should respond_with_content_type(:xml) }
+		it 'should respond with content type application/xml' do
+			response.content_type.should == 'application/xml'
+		end
   end
 
   context 'a material exists' do
@@ -94,7 +96,6 @@ describe MaterialsController do
     end
 
     it { should render_template :get_hazards }
-    it { should assign_to(:material).with(Material.find(@material_id)) }
   end
 
   describe "GET :get_hazards with a material that does not exist" do

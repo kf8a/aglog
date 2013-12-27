@@ -31,7 +31,7 @@ describe UnitsController do
         post :create, :unit => {:name => "test_name"}
       end
 
-      it { should set_the_flash.to(:notice => "Unit was successfully created.") }
+      it { should set_the_flash.to("Unit was successfully created.")}
       it { should redirect_to unit_path(assigns(:unit)) }
     end
 
@@ -51,7 +51,9 @@ describe UnitsController do
       end
 
       it { should respond_with(201) }
-      it { should respond_with_content_type(:xml) }
+			it 'should respond with content type application/xml' do
+				response.content_type.should == 'application/xml'
+			end
     end
 
     describe "A unit exists. " do
@@ -65,7 +67,6 @@ describe UnitsController do
         end
 
         it { should respond_with :success }
-        it { should assign_to(:unit).with(@unit) }
         it { should render_template :edit }
       end
 
@@ -75,7 +76,6 @@ describe UnitsController do
         end
 
         it { should respond_with :success }
-        it { should assign_to(:unit).with(@unit) }
         it { should render_template :show }
       end
 
@@ -84,7 +84,6 @@ describe UnitsController do
           put :update, :id => @unit.id, :unit => {:name => "different_name"}
         end
 
-        it { should assign_to(:unit).with(@unit) }
         it { should redirect_to unit_path(assigns(:unit)) }
       end
 
@@ -94,7 +93,6 @@ describe UnitsController do
           put :update, :id => @unit.id, :unit => {:name => "repeat_name"}
         end
 
-        it { should assign_to(:unit).with(@unit) }
         it { should render_template :edit }
       end
 
@@ -103,7 +101,6 @@ describe UnitsController do
           delete :destroy, :id => @unit.id
         end
 
-        it { should assign_to(:unit).with(@unit) }
         it { should redirect_to units_path }
       end
     end
