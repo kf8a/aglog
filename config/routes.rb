@@ -20,7 +20,7 @@ Aglog::Application.routes.draw do
   resources :reports
   resources :materials do
     member do
-      put :put_hazards
+      patch :put_hazards
       get :get_hazards
     end
     collection do
@@ -30,8 +30,4 @@ Aglog::Application.routes.draw do
 
 #  match '/' => 'observations#index'
   root :to => "observations#index"
-
-  # Allow downloading Web Service WSDL as a file with an extension
-  # instead of a file named 'wsdl'
-  match ':controller/service.wsdl' => '#wsdl'
 end

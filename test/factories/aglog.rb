@@ -3,11 +3,9 @@ FactoryGirl.define do
   #Independent Factories
 
   factory :hazard do
-
   end
 
   factory :material_type do
-
   end
 
   factory :observation_type do
@@ -19,15 +17,12 @@ FactoryGirl.define do
   end
 
   factory :study do
-
   end
 
   factory :treatment do
-
   end
 
   factory :unit do
-
   end
 
   #Dependent Factories
@@ -35,43 +30,43 @@ FactoryGirl.define do
   factory :person do
     given_name  "Bob"
     sur_name    "Dobolina"
-    company     Company.first || FactoryGirl.create(:company)
+    association :company, factory: :company
   end
 
   factory :user do
     email    'bob@nospam.com'
     password 'testing'
-    person    Person.first || FactoryGirl.create(:person)
+    association :person, factory: :person
   end
 
   factory :area do
-    company     Company.first || FactoryGirl.create(:company)
+    association :company, factory: :company
   end
 
   factory :material do
-    company     Company.first || FactoryGirl.create(:company)
+    association :company, factory: :company
   end
 
   factory :equipment do
-    company
+    association :company, factory: :company
   end
 
   factory :material_transaction do
-    material    Material.first || FactoryGirl.create(:material)
+    association :material, factory: :material
   end
 
   factory :observation do
-    obs_date            Date.today
-    observation_types   [ObservationType.first || FactoryGirl.create(:observation_type)]
-    person              Person.first || FactoryGirl.create(:person)
+    obs_date    Date.today
+    association :observation_types, factory: :observation_type
+    association :person,            factory: :person
   end
 
   factory :activity do
-    observation         Observation.first || FactoryGirl.create(:observation)
-    person              Person.first || FactoryGirl.create(:person)
+    association :observation, factory: :observation
+    association :person,      factory: :person
   end
 
   factory :setup do
-    equipment
+    association :equipment, factory: :equipemnt
   end
 end
