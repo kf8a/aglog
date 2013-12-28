@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2'
+gem 'rails', '~> 4.0'
 
 gem 'rake'
 
@@ -20,7 +20,10 @@ gem 'jquery-ui-rails'
 
 gem 'formtastic'
 
-gem 'delocalize'
+#TODO remove and use strong parameters
+gem 'protected_attributes'
+
+# gem 'delocalize'
 
 gem 'awesome_nested_set'
 
@@ -36,16 +39,12 @@ gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'therubyracer', :require => 'v8'
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem 'twitter-bootstrap-rails'
-  gem 'angularjs-rails'
-end
+gem 'therubyracer', :require => 'v8'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+gem 'twitter-bootstrap-rails'
+gem 'angularjs-rails'
 
 group :production do
   gem 'thin'
@@ -53,7 +52,6 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  #gem 'sqlite3-ruby'
   gem 'sqlite3'
 end
 
