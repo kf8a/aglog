@@ -21,11 +21,11 @@ gem 'jquery-ui-rails'
 gem 'formtastic'
 
 #TODO remove and use strong parameters
-gem 'protected_attributes'
+#gem 'protected_attributes'
 
 # gem 'delocalize'
 
-gem 'awesome_nested_set'
+gem 'awesome_nested_set', git: 'https://github.com/collectiveidea/awesome_nested_set.git'
 
 gem 'cancan'
 
