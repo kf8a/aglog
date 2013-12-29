@@ -1,7 +1,7 @@
 # A person is both someone who performs activities, and (with an open id) a
 # user of the web application.
 class Person < ActiveRecord::Base
-  attr_accessible :given_name, :sur_name, :openid_identifier, :company_id, :archived
+  # attr_accessible :given_name, :sur_name, :openid_identifier, :company_id, :archived
 
   has_many :observations
   has_many :activities
@@ -16,8 +16,8 @@ class Person < ActiveRecord::Base
   validate :name_must_be_unique
   validates_presence_of :company
 
-  scope :current, where(:archived => false)
-  scope :ordered, order('given_name, sur_name')
+  scope :current, -> {where(:archived => false)}
+  scope :ordered, -> {order('given_name, sur_name')}
   scope :by_company, lambda {|company| where(:company_id => company)}
 
   def to_label
@@ -25,7 +25,7 @@ class Person < ActiveRecord::Base
   end
 
   def name_must_be_unique
-    person = Person.where([ "lower(given_name) = ?", given_name.try(:downcase) ]).where([ "lower(sur_name) = ?", sur_name.try(:downcase) ]).all - [self]
+    person = Person.where([ "lower(given_name) = ?", given_name.try(:downcase) ]).where([ "lower(sur_name) = ?", sur_name.try(:downcase) ]).to_a - [self]
     errors.add(:base, "Name must be unique") if person.present?
 
   end
