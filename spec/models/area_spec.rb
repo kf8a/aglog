@@ -183,50 +183,50 @@ describe Area do
     it "should correctly parse a treatment range ('T1-4')" do
       areas = Area.parse('T1-4')
       real_areas = ['T1','T2','T3','T4'].collect do |name|
-        Treatment.find_by_name(name).areas
+        Treatment.where(name: name).areas
       end.flatten
       assert_equal [], (areas - real_areas)
     end
 
     it "should correctly parse Fertility Gradient areas" do
       areas = Area.parse('F')
-      real_areas = Area.find_all_by_study_id(3)
+      real_areas = Area.where(study_id: 3)
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('F4')
-      real_areas = Treatment.find_by_name('F4').areas
+      real_areas = Treatment.where(name: 'F4').areas
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('F2-3')
       real_areas = ['F2','F3'].collect do |name|
-        Treatment.find_by_name(name).areas
+        Treatment.where(name: name).areas
       end.flatten
       assert_equal [], (areas - real_areas)
     end
 
     it "should correctly parse Irrigated Fertility Gradient areas" do
       areas = Area.parse('iF')
-      real_areas = Area.find_all_by_study_id(4)
+      real_areas = Area.where(study_id: 4)
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('iF7')
-      real_areas = Treatment.find_by_name('iF7').areas.flatten
+      real_areas = Treatment.where(name: 'iF7').areas.flatten
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse("iF1-4")
       real_areas = ['iF1','iF2','iF3','iF4'].collect do |name|
-        Treatment.find_by_name(name).areas
+        Treatment.where(name: name).areas
       end.flatten
       assert_equal [], (areas - real_areas)
     end
 
     it 'should correctly parse CE areas' do
       areas = Area.parse('CE')
-      real_areas = Area.find_all_by_study_id(7)
+      real_areas = Area.where(study_id: 7)
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('CE1')
-      real_areas = Treatment.find_by_name('CE1').areas
+      real_areas = Treatment.where(name: 'CE1').areas
       assert_equal [], (areas - real_areas)
 
       #TODO CE1 is not treatment 1
@@ -242,20 +242,20 @@ describe Area do
 
     it 'should correctly parse GLBRC areas' do
       areas = Area.parse('G1')
-      real_areas = Area.find_all_by_study_id(6)
+      real_areas = Area.where(study_id: 6)
       assert_equal [], (areas - real_areas)
     end
 
     it 'should correctly parse LYSIMETER field' do
       areas = Area.parse('LYSIMETER_FIELD')
-      real_areas = Area.find_all_by_study_id(9)
+      real_areas = Area.where(study_id: 9)
       assert_kind_of Array, areas
       assert_equal [], (areas - real_areas)
     end
 
     describe 'areas with the same name from different company' do
       before(:each) do
-        @area = Area.find_by_name('T1R1')
+        @area = Area.where(name: 'T1R1')
         @area.company_id = 1
         @area.save
       end
@@ -272,7 +272,7 @@ describe Area do
 
   describe "self.unparse should consolidate a list of areas into a string: " do
     it "should return 'T1' when given an array of all the T1 areas" do
-      areas  = Treatment.find_by_name('T1').areas.flatten
+      areas  = Treatment.where(name: 'T1').areas.flatten
       area_string = Area.unparse(areas)
       assert_equal 'T1', area_string
     end
