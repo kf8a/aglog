@@ -1,7 +1,7 @@
 # Represents equipment used during an activity, like a plow or tractor.
 class Equipment < ActiveRecord::Base
-  attr_accessible :name, :use_material, :is_tractor, :description, :archived
-  attr_accessible :company_id if Rails.env == 'test'
+  # attr_accessible :name, :use_material, :is_tractor, :description, :archived
+  # attr_accessible :company_id if Rails.env == 'test'
 
   has_many                :setups
   has_and_belongs_to_many :materials
@@ -12,8 +12,8 @@ class Equipment < ActiveRecord::Base
   validates :name, :uniqueness => { :case_sensitive => false, 
                                     :scope => :company_id }
 
-  scope :current, where(:archived => false)
-  scope :ordered, order('name')
+  scope :current, -> { where(:archived => false)}
+  scope :ordered, -> { order('name')}
   scope :by_company, lambda {|company| where(:company_id => company) }
 
   def observations
