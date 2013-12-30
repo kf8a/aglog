@@ -28,8 +28,9 @@ describe Activity do
 
   describe "a valid activity with a person named 'Cool Name'" do
     person = find_or_factory(:person, :given_name => "Cool", :sur_name => "Name")
-    subject { FactoryGirl.create(:activity, :person_id => person.id) }
-    its(:person_name) { should match('Cool Name') }
+    activity = Activity.new
+    activity.person = person
+    activity.person.should == person
   end
 
   describe "a valid activity with hours inputted as '1,000'" do
