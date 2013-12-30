@@ -4,8 +4,8 @@ describe PeopleController do
   render_views
 
   before(:each) do
-    sign_in_as_normal_user
     @person = find_or_factory(:person)
+    sign_in_as_normal_user(@person.company.name)
   end
 
   it "should get index" do
@@ -44,6 +44,7 @@ describe PeopleController do
   end
 
   it "should get edit" do
+    p @person
     get :edit, :id => @person.id
     assert_response :success
   end
