@@ -1,3 +1,4 @@
+company = Company.find_or_create_by_name(:name=>'lter')
 #Lysimeter field
 t =Treatment.find_or_create_by_name(:name=>'LYSIMETER_FIELD', :study_id=>9)
 lys_field = Area.find_or_create_by_name(:name=>'LYSIMETER_FIELD',
@@ -162,10 +163,10 @@ end
 
 #For some reason company is not being set in the above methods
 
-company = Company.find_by_name('lter')
-Area.all.each do |area|
-  unless area.company
-    area.company = company
-    area.save
-  end
-end
+# company = Company.find_by_name('lter')
+# Area.all.each do |area|
+#   unless area.company
+#     area.company = company
+#     area.save
+#   end
+# end
