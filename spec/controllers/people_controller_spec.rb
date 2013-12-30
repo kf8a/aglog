@@ -44,7 +44,6 @@ describe PeopleController do
   end
 
   it "should get edit" do
-    p @person
     get :edit, :id => @person.id
     assert_response :success
   end
