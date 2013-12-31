@@ -77,9 +77,4 @@ describe Material do
       assert_equal @material_type.name, @material.material_type_name
     end
   end
-
-  describe 'An area with no study' do
-    subject { FactoryGirl.create(:area, :study_id => nil) }
-    its(:study_name) { should be_nil }
-  end
 end
