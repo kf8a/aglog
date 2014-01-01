@@ -1,21 +1,25 @@
 require 'spec_helper'
 
 describe Unit do
-  it "should require unique name" do
-    num_of_items =  Unit.count()
-    test_name = 'ounce'
-    a  = Unit.new(:name => test_name) # is in fixture already
-    assert !a.save
-    assert !a.errors.empty?
+  describe 'name validations' do
+      before(:each) do
+        @test_name = 'ounce'
+        @unit = Unit.new
+      end
 
-    a  = Unit.new(:name => test_name.upcase) # case insensitive
-    assert !a.save
-    assert !a.errors.empty?
+      it 'should not allow the same name' do
+        @unit.name  = @test_name
+        @unit.should_not be_valid
+      end
 
-    a = Unit.new(:name => 'A New Unit') # is new name
-    assert a.save
-    assert a.errors.empty?
-    assert_equal num_of_items + 1, Unit.count
+      it 'should be case insensitive' do
+        @unit.name = @test_name.upcase
+        @unit.should_not be_valid
+      end
+
+      it 'allows different names' do
+        @unit.name = 'a new unit'
+        @unit.should be_valid
+      end
   end
 end
-
