@@ -30,9 +30,9 @@ describe Material do
     end
   end
 
-  context "A material exists that is liquid. " do
+  describe "A material exists that is liquid. " do
     before(:each) do
-      @material = find_or_factory(:material, :name => 'liquid_material', :liquid => true)
+      @material = Material.new(:name => 'liquid_material', :liquid => true)
     end
 
     context "to_mass(amount)" do
@@ -68,13 +68,10 @@ describe Material do
   end
 
   describe 'A material with a material type' do
-    before(:each) do
-      @material_type = FactoryGirl.create(:material_type, :name => 'Testable Name')
-      @material = find_or_factory(:material, :name => 'material_type_material', :material_type_id => @material_type.id)
-    end
-
     it 'should return the name of the material type on material_type_name' do
-      assert_equal @material_type.name, @material.material_type_name
+      material_type = FactoryGirl.create(:material_type, :name => 'Testable Name')
+      material = Material.new(:name => 'material_type_material', :material_type_id => material_type.id)
+      material_type.name.should ==  material.material_type_name
     end
   end
 end
