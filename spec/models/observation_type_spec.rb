@@ -1,21 +1,24 @@
 require 'spec_helper'
 
 describe ObservationType do
-  it "should require a unique name" do
-    num_of_items =  ObservationType.count()
-    test_name = 'Harvest'
-    a  = ObservationType.new(:name => test_name) # is in fixture already
-    assert !a.save
-    assert !a.errors.empty?
+  context 'require unique name' do
+    before do
+      @test_name = 'Harvest'
+    end
 
-    a  = ObservationType.new(:name => test_name.upcase) # case insensitive
-    assert !a.save
-    assert !a.errors.empty?
+    it "does not allow a duplicate name" do
+      observation  = ObservationType.new(:name => @test_name) # is in fixture already
+      observation.should_not be_valid
+    end
 
-    a = ObservationType.new(:name => 'A New ObservationType') # is new name
-    assert a.save
-    assert a.errors.empty?
-    assert_equal num_of_items + 1, ObservationType.count
+    it 'does not allow a duplicate case different name' do
+      observation  = ObservationType.new(:name => @test_name.upcase) # case insensitive
+      observation.should_not be_valid
+    end
+
+    it 'allows a different name' do
+      observation = ObservationType.new(:name => 'A New ObservationType') # is new name
+      observation.should be_valid
+    end
   end
 end
-
