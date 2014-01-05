@@ -11,22 +11,22 @@ describe Material do
 
     describe 'an archived material' do
       subject { Material.new(:name => 'deprecated', :archived=> true) }
-        it {should be_valid}
+        it { expect(subject).to be_valid}
     end
 
     describe 'a material with the same name as another' do
       subject { Material.new(:name => @repeat_name) }
-      it { should_not be_valid }
+      it { expect(subject).to_not be_valid }
     end
 
     describe 'a material with the same name, different case as another' do
       subject { Material.new(:name => @repeat_name.upcase) }
-      it { should_not be_valid }
+      it { expect(subject).to_not be_valid }
     end
 
     describe 'a material with a different name' do
       subject { Material.new(:name => 'A New Material') }
-      it { should be_valid }
+      it { expect(subject).to be_valid() }
     end
   end
 
@@ -37,7 +37,7 @@ describe Material do
 
     context "to_mass(amount)" do
       it "should be the right number" do
-        assert_equal 4000, @material.to_mass(4)
+        expect(@material.to_mass(4)).to eq(4000)
       end
     end
   end
