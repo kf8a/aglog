@@ -66,12 +66,4 @@ describe Material do
     assert @material.observations.include?(included_observation_second)
     assert !@material.observations.include?(not_included_observation)
   end
-
-  describe 'A material with a material type' do
-    it 'should return the name of the material type on material_type_name' do
-      material_type = FactoryGirl.create(:material_type, :name => 'Testable Name')
-      material = Material.new(:name => 'material_type_material', :material_type_id => material_type.id)
-      material_type.name.should ==  material.material_type_name
-    end
-  end
 end
