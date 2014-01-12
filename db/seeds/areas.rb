@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-company = Company.find_or_create_by_name(:name=>'lter')
-=======
 company = Company.find_or_create_by(name: 'lter')
->>>>>>> moved company createion
 #Lysimeter field
 t =Treatment.find_or_create_by(:name=>'LYSIMETER_FIELD', :study_id=>9)
 lys_field = Area.find_or_create_by(:name=>'LYSIMETER_FIELD',
