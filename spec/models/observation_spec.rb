@@ -1,25 +1,9 @@
 require 'spec_helper'
 
 describe Observation do
-  it 'should not create observation' do
-    old_count =  Observation.count
-    num_activities = Activity.count
-
-    # no observation without created_on date
-    o = Observation.new()
-    assert !o.save
-    assert_equal old_count, Observation.count
-    assert_equal num_activities, Activity.count
-
-    # observation without valid activity
-    o = Observation.new()
-    a = Activity.new()
-    o.activities << a
-
-    assert !o.save
-    assert_equal old_count, Observation.count
-    assert_equal num_activities, Activity.count
-  end
+  it {should validate_presence_of :obs_date}
+  it {should validate_presence_of :person_id}
+  it {should validate_presence_of :observation_types}
 
   it 'should work normally with a simple observation' do
     o = create_simple_observation
@@ -218,6 +202,7 @@ describe Observation do
     observation = Observation.new(:observation_date => "June 14, 2007")
     observation.person = person1 
     observation.observation_types <<  type
+    observation.should be_valid
     assert observation.save
     person2 = Person.find_by_sur_name("Sur2") || FactoryGirl.create(:person, :sur_name => "Sur2")
     activity = observation.activities.new(:hours => 1, :person_id => person2.id)
