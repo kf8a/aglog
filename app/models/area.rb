@@ -7,7 +7,7 @@ class Area < ActiveRecord::Base
   #                 :treatment_id, :description
   # attr_accessible :company_id if Rails.env == 'test'
 
-  has_and_belongs_to_many :observations, :order => 'obs_date desc'
+  has_and_belongs_to_many :observations, -> {order('obs_date desc')}
   belongs_to :study
   belongs_to :treatment
   belongs_to :company
