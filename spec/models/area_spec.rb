@@ -126,7 +126,7 @@ describe Area do
     end
 
     it 'should return T1R1 when given T1R1 to parse'do
-      assert_equal 'T1R1', Area.parse('T1R1')[0].name
+      Area.parse('T1R1')[0].name.should == 'T1R1'
     end
 
     it "should return area T1R1 (among others) when given 'T1' to parse" do
@@ -154,7 +154,7 @@ describe Area do
     end
 
     it "should correctly parse 'B31' as a String (there is no B31 area)" do
-      assert_equal '*B31*', Area.parse('B31')
+      Area.parse('B31').should == '*B31*'
     end
 
     it "should return an empty array when given '' to parse" do
@@ -230,13 +230,13 @@ describe Area do
       assert_equal [], (areas - real_areas)
 
       #TODO CE1 is not treatment 1
-      # areas = Area.parse('CE1-3')
-      # real_areas = ['CE1','CE2','CE3'].collect do |name|
-      #   Treatment.find_by_name(name).areas
-      # end.flatten
-      # assert_not_equal [], real_areas
-      # assert_not_equal [], areas
-      # assert_equal [], (areas - real_areas)
+      areas = Area.parse('CE1-3')
+      real_areas = ['CE1','CE2','CE3'].collect do |name|
+        Treatment.find_by_name(name).areas
+      end.flatten
+      assert_not_equal [], real_areas
+      assert_not_equal [], areas
+      assert_equal [], (areas - real_areas)
 
     end
 
