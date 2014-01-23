@@ -52,18 +52,22 @@ FactoryGirl.define do
   end
 
   factory :material_transaction do
-    association :material, factory: :material
+    material
+    # association :material, factory: :material
   end
 
   factory :observation do
     obs_date    Date.today
     association :observation_types, factory: :observation_type
-    association :person,            factory: :person
+    person
+    # association :person,            factory: :person
   end
 
   factory :activity do
-    association :observation, factory: :observation
-    association :person,      factory: :person
+    observation
+    # person
+    # association :observation, factory: :observation
+    # association :person,      factory: :person
   end
 
   factory :setup do

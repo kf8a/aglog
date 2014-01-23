@@ -11,7 +11,7 @@ describe MaterialTransaction do
 
   context "A material transaction exists. " do
     before(:each) do
-      @transaction = find_or_factory(:material_transaction)
+      @transaction = MaterialTransaction.new #find_or_factory(:material_transaction)
     end
 
     context "The transaction has rate and n_content and conversion_factor. " do
