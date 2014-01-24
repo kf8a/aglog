@@ -7,11 +7,11 @@ describe Observation do
 
   it 'should work normally with a simple observation' do
     o = create_simple_observation
-    assert_equal  1, o.activities.size
+    o.activities.size.should == 1
     activity = o.activities[0]
-    assert_equal 1, activity.setups.size
+    activity.setups.size.should == 1
     setup =  activity.setups[0]
-    assert_equal  2, setup.material_transactions.size
+    setup.material_transactions.size.should == 2
   end
 
   it 'should delete material' do
@@ -19,29 +19,29 @@ describe Observation do
     activity = o.activities[0]
     setup =  activity.setups[0]
     material_transaction = setup.material_transactions[0]
-    assert_equal 2, setup.material_transactions.size
+    setup.material_transactions.size.should == 2
 
     setup.material_transactions.delete(material_transaction)
-    assert_equal 1, setup.material_transactions.size
+    setup.material_transactions.size.should == 1
   end
 
   it 'should delete setup' do
     o = create_simple_observation
     activity = o.activities[0]
     setup =  activity.setups[0]
-    assert_equal 1, activity.setups.size
+    activity.setups.size.should == 1
 
     activity.setups.delete(setup)
-    assert_equal 0, activity.setups.size
+    activity.setups.size.should == 0
   end
 
   it 'should delete activity' do
     o = create_simple_observation
     activity = o.activities[0]
-    assert_equal 1, o.activities.size
+    o.activities.size.should == 1
 
     o.activities.delete(activity)
-    assert_equal 0, o.activities.size
+    o.activities.size.should == 0
   end
 
   it 'should not be valid if it has error areas' do
@@ -51,8 +51,8 @@ describe Observation do
     fake_areas = "NoArea"
     o.areas_as_text = fake_areas
     o.reload
-    assert_equal original_areas, o.areas
-    assert_equal "*NoArea*", o.areas_as_text
+    o.areas.should == original_areas
+    o.areas_as_text.should == '*NoArea*'
     assert !o.save
     assert_equal ["invalid areas"],  o.errors[:base]
   end
@@ -63,7 +63,7 @@ describe Observation do
     evil_equipment = FactoryGirl.create(:equipment, :name => "Evil Equipment")
     another_setup = o.setups.new(:equipment_id => another_equipment.id)
     another_setup.save
-    assert_equal "Equipment2, Another Equipment", o.equipment_names
+    o.equipment_names.should == "Equipment2, Another Equipment"
   end
 
   it 'should get the right materials_with_rates' do
