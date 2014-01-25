@@ -95,27 +95,6 @@ describe Observation do
     assert_equal "Soil Preparation, Another Type", o.observation_type_names
   end
 
-  it "should give the right areas_as_text" do
-    o = create_simple_observation
-    text_areas =  "T"
-    o.areas_as_text = text_areas
-    assert_equal text_areas, o.areas_as_text
-  end
-
-  it 'should accept CE1 as an area' do
-    o = create_simple_observation
-    text_areas = 'CE1'
-    o.areas_as_text = text_areas
-    assert_equal text_areas, o.areas_as_text
-  end
-
-  it 'should accept LYSIMETER_FIELD as an area' do
-    o = create_simple_observation
-    text_areas = 'LYSIMETER_FIELD'
-    o.areas_as_text = text_areas
-    assert_equal text_areas, o.areas_as_text
-  end
-
   it 'should accept token ids in areas_as_text' do
     o = create_simple_observation
     text_areas = '3,415'
