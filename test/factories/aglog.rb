@@ -1,5 +1,8 @@
 FactoryGirl.define do
 
+  sequence :name do |n|
+    "Doboline#{n}"
+  end
   #Independent Factories
 
   factory :hazard do
@@ -29,8 +32,8 @@ FactoryGirl.define do
 
   factory :person do
     given_name  "Bob"
-    sur_name    "Dobolina"
-    association :company, factory: :company
+    sur_name    :name
+    company
   end
 
   factory :user do
@@ -65,7 +68,7 @@ FactoryGirl.define do
 
   factory :activity do
     observation
-    # person
+    person
     # association :observation, factory: :observation
     # association :person,      factory: :person
   end
