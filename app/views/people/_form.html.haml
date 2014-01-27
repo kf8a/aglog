@@ -1,7 +1,6 @@
 = render "shared/error_messages", :target => person 
-= semantic_form_for person do |form|
-  = form.inputs do
-    = form.input :given_name, :input_html => { :id => 'focus_here' }
-    = form.input :sur_name
-    = form.input :archived
-  = form.actions
+= simple_form_for person do |form|
+  = form.input :given_name, :input_html => { :id => 'focus_here' }
+  = form.input :sur_name
+  = form.input :archived
+  = form.button :submit

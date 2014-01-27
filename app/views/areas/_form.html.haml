@@ -1,4 +1,8 @@
 = render "shared/error_messages", :target => area
-= semantic_form_for area do |form|
-  = form.inputs :name, :description, :study, :treatment, :replicate
-  = form.actions
+= simple_form_for area do |form|
+  = form.input :name
+  = form.input :description
+  = form.input :study
+  = form.input :treatment
+  = form.input :replicate
+  = form.button :submit

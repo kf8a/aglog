@@ -1,8 +1,8 @@
 <h1>New Observation</h1>
 
-<%= semantic_form_for @observation do |form| %>
+<%= simple_form_for @observation do |form| %>
   <%= render :partial => 'form', :locals => {:form => form, :only_current => true } %>
-  <%= form.actions %>
+  <%= form.button :submit %>
 <% end %>
 			
 <%= link_to 'List Observations', observations_path %>
