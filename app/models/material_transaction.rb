@@ -1,8 +1,5 @@
 # A class for working with materials and units together.
 class MaterialTransaction < ActiveRecord::Base
-  # attr_accessible :material_id, :unit_id, :setup_id, :rate, :cents,
-  #                 :material_transaction_type_id, :transaction_datetime
-
   belongs_to :material
   belongs_to :setup
   belongs_to :unit

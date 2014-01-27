@@ -1,8 +1,5 @@
 # Represents what is being worked on and measured: alfalfa, wheat, corn, etc.
 class Material < ActiveRecord::Base
-  # attr_accessible :name, :operation_type_id, :material_type_id, :n_content,
-  #                 :p_content, :k_content, :specific_weight, :liquid,
-  #                 :archived
 
   has_and_belongs_to_many :equipment
   has_and_belongs_to_many :hazards

@@ -45,7 +45,6 @@ class UnitsController < ApplicationController
 
   private
 
-  # attr_accessible :name, :si_unit_id, :conversion_factor
   def unit_params
     params.require(:unit).permit(:name, :si_unit_id, :conversion_factor)
   end
