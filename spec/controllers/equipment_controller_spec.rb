@@ -154,7 +154,7 @@ describe EquipmentController do
       before(:each) do
         post :create,
           :format => 'xml',
-          :equipment => { }
+          :equipment => {:name => '1' }
       end
 
 			it 'should respond with content type test/xml' do
