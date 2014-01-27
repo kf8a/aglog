@@ -2,12 +2,11 @@ require 'spec_helper'
 
 describe Equipment do
 
-  before(:each) do
-    find_or_factory(:equipment)
-  end
-
+  it {should have_many(:setups) }
+  it {should have_and_belong_to_many(:materials) }
   it { should belong_to :company }
   it { should validate_presence_of :company}
+
   it 'should validate the uniqueness of the case insensitive name by scope' do
     name = 'tractor'
     company = find_or_factory(:company)
@@ -24,25 +23,4 @@ describe Equipment do
     equipment_with_same_name_different_company.errors[:name][0].should be_nil
   end
 
-  it 'should grab all and only the right its own observations with self.observations' do
-    @equipment = find_or_factory(:equipment, :name => 'correct equipment')
-
-    included_observation_first = FactoryGirl.create(:observation)
-    activity = FactoryGirl.create(:activity, :observation_id => included_observation_first.id)
-    FactoryGirl.create(:setup, :activity_id => activity.id, :equipment_id => @equipment.id)
-
-    included_observation_second = FactoryGirl.create(:observation)
-    activity = FactoryGirl.create(:activity, :observation_id => included_observation_second.id)
-    FactoryGirl.create(:setup, :activity_id => activity.id, :equipment_id => @equipment.id)
-
-    equipment_2 = FactoryGirl.create(:equipment, :name => 'evil equipment')
-    not_included_observation = FactoryGirl.create(:observation)
-    activity = FactoryGirl.create(:activity, :observation_id => not_included_observation.id)
-    FactoryGirl.create(:setup, :activity_id => activity.id, :equipment_id => equipment_2.id)
-
-    @equipment.reload
-    assert @equipment.observations.include?(included_observation_first)
-    assert @equipment.observations.include?(included_observation_second)
-    assert !@equipment.observations.include?(not_included_observation)
-  end
 end
