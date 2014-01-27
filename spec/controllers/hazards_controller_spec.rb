@@ -21,7 +21,7 @@ describe HazardsController do
       get :index
     end
 
-    it { should render_template 'index' }
+    it { should render_template 'authorized_index' }
   end
 
   describe "get :new" do

@@ -9,7 +9,8 @@
 		<td><%=h person.name  %></td>
     <td><%= link_to 'Show', person_path(person) %></td>
     <td><%= link_to 'Edit', edit_person_path(person) if current_user %></td>
-    <td><%= link_to 'Destroy', person_path(person), :confirm => 'Are you sure?', :method => :delete if current_user %></td>
+    <td><%= link_to 'Destroy', person_path(person), 
+      :data => {:confirm => "Are you sure you want to delete #{person.full_name}?"}, :method => :delete if current_user %></td>
   </tr>
 <% end %>
 </table>

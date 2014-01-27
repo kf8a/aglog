@@ -22,7 +22,7 @@
       %td
         = link_to 'Edit', edit_hazard_path(hazard)
       %td
-        = link_to 'Destroy', hazard, :confirm => 'Are you sure?', :method => :delete
+        = link_to 'Destroy', hazard, :data => {:confirm => "Are you sure you want to delete this?"}, :method => :delete
 
 %br
 
