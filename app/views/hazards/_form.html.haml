@@ -1,9 +1,0 @@
-= render "shared/error_messages", :target => hazard
-= simple_form_for hazard do |form|
-  = form.input :name
-  = form.input :hazard_type
-  = form.input :chemical_name
-  = form.input :description, :as => :text, :input_html => { :rows => 3, :cols => 70 }
-  = form.input :notification, :as => :text, :input_html => { :rows => 3, :cols => 70 }
-  = form.input :exclusion_time_days, :label => 'Exclusion Time (Days)'
-  = form.button :submit
