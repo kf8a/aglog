@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Observation do
   it {should validate_presence_of :obs_date}
-  it {should validate_presence_of :person_id}
+  it {should validate_presence_of :person}
   it {should validate_presence_of :observation_types}
 
   it 'should work normally with a simple observation' do
@@ -178,7 +178,8 @@ describe Observation do
     type = ObservationType.find_by_name('Soil Preparation')
     assert type
     person1 = Person.find_by_sur_name("Sur1") || FactoryGirl.create(:person, :sur_name => "Sur1")
-    observation = Observation.new(:observation_date => "June 14, 2007")
+    company = find_or_factory(:company)
+    observation = Observation.new(:observation_date => "June 14, 2007", :company_id => company.id)
     observation.person = person1 
     observation.observation_types <<  type
     observation.should be_valid

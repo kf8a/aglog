@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  sequence :name do |n|
+  sequence :sur_name do |n|
     "Doboline#{n}"
   end
   #Independent Factories
@@ -32,14 +32,14 @@ FactoryGirl.define do
 
   factory :person do
     given_name  "Bob"
-    sur_name    :name
+    sur_name
     company
   end
 
   factory :user do
     email    'bob@nospam.com'
     password 'testing'
-    association :person, factory: :person
+    person
   end
 
   factory :area do
@@ -61,16 +61,14 @@ FactoryGirl.define do
 
   factory :observation do
     obs_date    Date.today
-    association :observation_types, factory: :observation_type
+    observation_type
     person
-    # association :person,            factory: :person
+    company
   end
 
   factory :activity do
     observation
     person
-    # association :observation, factory: :observation
-    # association :person,      factory: :person
   end
 
   factory :setup do

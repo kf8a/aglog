@@ -3,7 +3,7 @@
 class Person < ActiveRecord::Base
   # attr_accessible :given_name, :sur_name, :openid_identifier, :company_id, :archived
 
-  has_many :observations
+  has_many :observations, inverse_of: :person
   has_many :activities
   belongs_to :company
   belongs_to :user
