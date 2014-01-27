@@ -18,7 +18,8 @@ gem 'chronic'
 gem 'jquery-rails' #, '>= 0.2.6'
 gem 'jquery-ui-rails'
 
-gem 'formtastic'
+#gem 'formtastic'
+gem 'simple_form'
 
 #TODO remove and use strong parameters
 #gem 'protected_attributes'
@@ -45,6 +46,8 @@ gem 'coffee-rails'
 gem 'uglifier'
 gem 'twitter-bootstrap-rails'
 gem 'angularjs-rails'
+
+gem 'less-rails'
 
 group :production do
   gem 'thin'
