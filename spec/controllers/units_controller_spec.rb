@@ -2,7 +2,15 @@ require 'spec_helper'
 
 describe UnitsController do
   render_views
-  
+
+  let(:unit) { build_stubbed(:unit, name: 'custom unit')}
+
+  before :each do
+    Unit.stub(:persisted?).and_return(true)
+    Unit.stub(:find).with(unit.id.to_s).and_return(unit)
+    unit.stub(:save).and_return(true)
+  end
+
   describe "Signed in as a normal user. " do
     before(:each) do
       sign_in_as_normal_user
@@ -31,18 +39,8 @@ describe UnitsController do
         post :create, :unit => {:name => "test_name"}
       end
 
-      it { should set_the_flash.to("Unit was successfully created.")}
       it { should redirect_to unit_path(assigns(:unit)) }
-    end
-
-    describe "POST :create with invalid parameters" do
-      before(:each) do
-        find_or_factory(:unit, :name => 'repeat_name')
-        post :create, :unit => { :name => 'repeat_name' }
-      end
-
-      it { should_not set_the_flash }
-      it { should render_template :new }
+      it { should set_the_flash.to("Unit was successfully created.")}
     end
 
     describe "POST :create in XML format" do
@@ -57,13 +55,14 @@ describe UnitsController do
     end
 
     describe "A unit exists. " do
-      before(:each) do
-        @unit = FactoryGirl.create(:unit)
-      end
 
       describe "GET :edit the unit" do
         before(:each) do
-          get :edit, :id => @unit.id
+          get :edit, :id => unit
+        end
+
+        it  'should assign the requested unit to @unit' do
+          expect(assigns(:unit)).to eq unit 
         end
 
         it { should respond_with :success }
@@ -72,7 +71,11 @@ describe UnitsController do
 
       describe "GET :show the unit" do
         before(:each) do
-          get :show, :id => @unit.id
+          get :show, :id => unit
+        end
+
+        it 'should assign the requested unit to @unit' do
+          expect(assigns(:unit)).to eq unit
         end
 
         it { should respond_with :success }
@@ -81,29 +84,49 @@ describe UnitsController do
 
       describe "PUT :update the unit with valid attributes" do
         before(:each) do
-          put :update, :id => @unit.id, :unit => {:name => "different_name"}
+          unit.stub(:update_attributes).and_return(true)
+          put :update, :id => unit, :unit => {:name => "different_name"}
         end
 
-        it { should redirect_to unit_path(assigns(:unit)) }
+        it 'assings the unit to @unit' do
+          expect(assigns(:unit)).to eq(unit)
+        end
+
+        it 'redirects to the show page' do
+          expect(response).to redirect_to unit_path(assigns(:unit))
+        end
       end
 
       describe "PUT :update the unit with invalid attributes" do
         before(:each) do
-          FactoryGirl.create(:unit, :name => "repeat_name")
-          put :update, :id => @unit.id, :unit => {:name => "repeat_name"}
+          unit.stub(:update_attributes).and_return(false)
+          put :update, :id => unit, :unit => {:name => "repeat_name"}
         end
 
-        it { should render_template :edit }
+        it 'locates the requested @unit' do
+          expect(assigns(:unit)).to eq(unit)
+        end
+
+        it 'should render the edit template' do
+          expect(response).to render_template :edit
+        end
       end
 
       describe "DELETE :destroy the unit" do
         before(:each) do
-          delete :destroy, :id => @unit.id
+          unit.stub(:destroy).and_return(true)
+          delete :destroy, :id => unit
         end
 
-        it { should redirect_to units_path }
+        it 'deletes the unit' do
+          expect(Unit.exists?(unit)).to be_false
+        end
+
+        it 'redirects to index' do
+          expect(response).to redirect_to units_url
+        end
       end
+
     end
   end
 end
-

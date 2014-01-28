@@ -33,14 +33,17 @@ class UnitsController < ApplicationController
     @unit = Unit.find(params[:id])
     if @unit.update_attributes(unit_params)
       flash[:notice] = 'Unit was successfully updated.'
+      respond_with @unit
+    else
+      render :edit
     end
-    respond_with @unit
   end
 
   def destroy
     @unit = Unit.find(params[:id])
     @unit.destroy
-    respond_with @unit
+    redirect_to units_url
+    # respond_with @unit
   end
 
   private
