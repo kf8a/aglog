@@ -5,9 +5,9 @@ class PeopleController < ApplicationController
   # GET /people.xml
   def index
     if current_user
-      @people = Person.by_company(current_user.company).ordered.all
+      @people = Person.by_company(current_user.company).ordered
     else
-      @people = Person.ordered.all
+      @people = Person.ordered
     end 
     respond_with @people
   end
@@ -28,17 +28,19 @@ class PeopleController < ApplicationController
   end
 
   def create
-    @person = Person.new(params[:person])
+    @person = Person.new(person_params)
     @person.company = current_user.company
     if @person.save
       flash[:notice] = 'Person was successfully created.'
+      respond_with @person
+    else
+      render :new
     end
-    respond_with @person
   end
 
   def update
     @person = Person.by_company(current_user.company).find(params[:id])
-    if @person.update_attributes(params[:person])
+    if @person.update_attributes(person_params)
       flash[:notice] = 'Person was successfully updated.'
     end
     respond_with @person
@@ -47,7 +49,12 @@ class PeopleController < ApplicationController
   def destroy
     @person = Person.find(params[:id])
     @person.destroy
-    respond_with @person
+    redirect_to people_url
   end
 
+  private
+
+  def person_params
+    params.require(:person).permit(:given_name, :sur_name, :company_id, :archived)
+  end
 end
