@@ -12,8 +12,7 @@ class MaterialsController < ApplicationController
   end
 
   def show
-    @material = Material.where(:id => params[:id]).includes(:material_transactions, :setups => {:observation => :observation_types}).first
-    p @material
+    @material = Material.find_with_children(params[:id])
     respond_with @material
   end
 

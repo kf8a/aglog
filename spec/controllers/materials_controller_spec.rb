@@ -63,9 +63,9 @@ describe MaterialsController do
 		end
   end
 
-  #TODO this uses where and and include in the action maybe some of that should be in the model
   describe 'GET show' do
     before(:each) do
+      Material.should_receive(:find_with_children).with(material.id.to_s).and_return(material)
       get :show, :id => material
     end
 
