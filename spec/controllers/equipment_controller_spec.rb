@@ -3,44 +3,44 @@ require 'spec_helper'
 describe EquipmentController do
   render_views
 
-  # describe 'Not signed in. ' do
+  describe 'Not signed in. ' do
 
-  #   it 'renders the index' do
-  #     get :index
-  #     response.should render_template 'index'
-  #   end
+    it 'renders the index' do
+      get :index
+      response.should render_template 'index'
+    end
 
-  #   it 'does not allow new' do
-  #     get :new
-  #     response.should redirect_to new_user_session_path
-  #   end
+    it 'does not allow new' do
+      get :new
+      response.should redirect_to new_user_session_path
+    end
 
-  #   it 'does not allow create' do
-  #     post :create, :equipment => { :name => 'Controller Creation' }
-  #     response.should redirect_to new_user_session_path
-  #   end
+    it 'does not allow create' do
+      post :create, :equipment => { :name => 'Controller Creation' }
+      response.should redirect_to new_user_session_path
+    end
 
-  #   it 'shows equipment' do
-  #     get :show, :id => 1
-  #     response.should render_template 'show'
-  #   end
+    it 'shows equipment' do
+      get :show, :id => 1
+      response.should render_template 'show'
+    end
 
-  #   it 'does now allow edit' do
-  #     get :edit, :id => 1
-  #     response.should redirect_to new_user_session_path
-  #   end
+    it 'does now allow edit' do
+      get :edit, :id => 1
+      response.should redirect_to new_user_session_path
+    end
 
-  #   it 'does not allow updates' do
-  #     put :update, :id => 1, :area => { :name => 'new_equipment'}
-  #     response.should redirect_to new_user_session_path
-  #   end
+    it 'does not allow updates' do
+      put :update, :id => 1, :area => { :name => 'new_equipment'}
+      response.should redirect_to new_user_session_path
+    end
 
-  #   it 'does not allow deletes' do
-  #     delete :destroy, :id => 1
-  #     response.should redirect_to new_user_session_path
-  #   end
+    it 'does not allow deletes' do
+      delete :destroy, :id => 1
+      response.should redirect_to new_user_session_path
+    end
 
-  # end
+  end
 
   describe "Signed in as a normal user. " do
     before(:all) do
@@ -96,14 +96,10 @@ describe EquipmentController do
         response.should redirect_to equipment_path(assigns(:equipment))
       end
 
-      # before(:each) do
-      #   Equipment.exists?(:name => 'Controller Creation').should be_false
-      #   post :create, :equipment => { :name => 'Controller Creation' }
-      # end
-
-      # it 'should assign the current company to the equipment' do
-      #   assigns(:equipment).company.should == @company_1
-      # end
+      it 'assigns the current users company id' do
+        Equipment.any_instance.should_receive(:company=).with(controller.current_user.company)
+        post :create, :equipment => { :name => 'Controller Creation' }
+      end
 
       # it { should set_the_flash }
     end
