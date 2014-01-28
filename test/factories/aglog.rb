@@ -3,6 +3,10 @@ FactoryGirl.define do
   sequence :sur_name do |n|
     "Doboline#{n}"
   end
+  
+  sequence :unit_name do |n|
+    "Unit#{n}"
+  end
   #Independent Factories
 
   factory :hazard do
@@ -26,6 +30,7 @@ FactoryGirl.define do
   end
 
   factory :unit do
+    name  {generate(:unit_name)}
   end
 
   #Dependent Factories
@@ -43,25 +48,24 @@ FactoryGirl.define do
   end
 
   factory :area do
-    association :company, factory: :company
+    company
   end
 
   factory :material do
-    association :company, factory: :company
+    company
   end
 
   factory :equipment do
-    association :company, factory: :company
+    company
   end
 
   factory :material_transaction do
     material
-    # association :material, factory: :material
   end
 
   factory :observation do
     obs_date    Date.today
-    observation_type
+    # observation_types
     person
     company
   end
@@ -72,6 +76,6 @@ FactoryGirl.define do
   end
 
   factory :setup do
-    association :equipment, factory: :equipemnt
+    equipment
   end
 end
