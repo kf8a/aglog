@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Material do
   it {should have_many(:setups) }
   it {should have_many(:material_transactions) }
+  it {should validate_presence_of :name }
 
   describe "requires unique name: " do
     before(:each) do

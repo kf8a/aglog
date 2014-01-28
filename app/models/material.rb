@@ -2,7 +2,6 @@
 class Material < ActiveRecord::Base
 
   has_and_belongs_to_many :equipment
-  has_and_belongs_to_many :hazards
   has_many :material_transactions
   has_many :setups, :through => :material_transactions
   belongs_to :material_type
@@ -12,6 +11,7 @@ class Material < ActiveRecord::Base
   scope :ordered, -> { order('name') }
   scope :by_company, lambda {|company| where(:company_id => company)}
 
+  validates_presence_of :name
   validates :name, :uniqueness => { :case_sensitive => false }
 
   # Converts liquids from liters to grams.
