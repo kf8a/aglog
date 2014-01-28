@@ -21,10 +21,6 @@ class MaterialTransaction < ActiveRecord::Base
     content && self.rate && self.unit.conversion_factor
   end
 
-  def hazardous?
-    self.material.hazards.present?
-  end
-
   def n_content_to_kg_ha
     to_kg_ha(self.n_content)
   end

@@ -9,7 +9,7 @@ class ObservationsController < ApplicationController
   # GET /observations.xml
   def index
     obstype = ObservationType.find_by_id(params[:obstype])
-    @observations = obstype.try(:observations) || Observation.scoped
+    @observations = obstype.try(:observations) || Observation.all
     @observations = @observations.by_company(current_user.company) if signed_in?
     @observations = @observations.by_page(params[:page])
 
@@ -38,7 +38,7 @@ class ObservationsController < ApplicationController
   # POST /observations.xml
   def create
     user = current_user.person
-    @observation = user.observations.new(params[:observation])
+    @observation = user.observations.new(observation_params)
     @observation.company = user.company
     logger.info user.name
     flash[:form] = @observation.save ? 'Observation was successfully created.' : "Creation failed"
@@ -52,7 +52,7 @@ class ObservationsController < ApplicationController
 
   def update
     @observation = Observation.where(:id => params[:id]).includes(:observation_types, {:activities => {:setups => :material_transactions}}).first
-    if @observation.update_attributes(params[:observation])
+    if @observation.update_attributes(observation_params)
       flash[:notice] = "Observation was successfully updated."
     end
     respond_with @observation
@@ -61,7 +61,7 @@ class ObservationsController < ApplicationController
   def destroy
     @observation = Observation.find(params[:id])
     @observation.destroy
-    respond_with @observation
+    redirect_to observations_url
   end
 
   def related
@@ -72,4 +72,10 @@ class ObservationsController < ApplicationController
   #   Observation.find(params[:id])
   # end
 
+  private
+
+  def observation_params
+    params.require(:observation).permit(:observation_date, :comment, :observation_type_ids, 
+                                        :areas_as_text, :activities_attributes)
+  end
 end

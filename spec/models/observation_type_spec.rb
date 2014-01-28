@@ -3,8 +3,7 @@ require 'spec_helper'
 describe ObservationType do
   context 'require unique name' do
     before do
-      @test_name = 'Harvest'
-      FactoryGirl.create(:observation_type, :name => @test_name)
+      @test_name = 'Harvest' # in the fixure
     end
 
     it "does not allow a duplicate name" do

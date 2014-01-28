@@ -5,32 +5,23 @@ describe EquipmentController do
 
   describe 'Not signed in. ' do
 
-    describe 'GET :index' do
-      before(:each) do
-        get :index
-      end
-
-      it { should render_template 'index' }
+    it 'renders the index' do
+      get :index
+      response.should render_template 'index'
     end
 
-    describe 'GET :new' do
-      before(:each) do
-        get :new
-      end
-
-      it { should redirect_to new_user_session_path }
+    it 'redirects to the login on new' do
+      get :new
+      response.should redirect_to new_user_session_path 
     end
 
-    describe 'POST :create' do
-      before(:each) do
-        Equipment.exists?(:name => 'Controller Creation').should be_false
+    it 'redirects to login on post' do
         post :create, :equipment => { :name => 'Controller Creation' }
-      end
-
-      it { should redirect_to new_user_session_path }
+        response.should redirect_to new_user_session_path
     end
 
     describe 'An equipment exists. ' do
+
       before(:each) do
         @equipment = find_or_factory(:equipment)
       end
@@ -51,28 +42,16 @@ describe EquipmentController do
         it { should redirect_to new_user_session_path }
       end
 
-      describe 'PUT :update the equipment' do
-        before(:each) do
-          put :update, :id => @equipment.id, :area => { :name => 'new_equipment'}
-        end
-
-        it { should redirect_to new_user_session_path }
-        it "should not change the equipment" do
-          @equipment.reload
-          @equipment.name.should_not be_eql('new_equipment')
-        end
+      it 'does not allow updates' do
+        put :update, :id => 1, :area => { :name => 'new_equipment'}
+        response.should redirect_to new_user_session_path
       end
 
-      describe 'DELETE :destroy the equipment' do
-        before(:each) do
-          delete :destroy, :id => @equipment.id
-        end
-
-        it { should redirect_to new_user_session_path }
-        it "should not destroy the equipment" do
-          Equipment.exists?(@equipment.id).should be_true
-        end
+      it 'does not allow deletes' do
+        delete :destroy, :id => 1
+        response.should redirect_to new_user_session_path
       end
+
     end
   end
 
@@ -123,6 +102,11 @@ describe EquipmentController do
     end
 
     describe "POST :create" do
+      # it 'create new equpment' do
+      #   Equipment.should_receive(:new).with("name" => "Controller Creation")
+      #   post :create, :equipment => { :name => 'Controller Creation' }
+      # end
+
       before(:each) do
         Equipment.exists?(:name => 'Controller Creation').should be_false
         post :create, :equipment => { :name => 'Controller Creation' }
