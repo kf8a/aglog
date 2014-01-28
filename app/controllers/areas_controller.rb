@@ -49,12 +49,14 @@ class AreasController < ApplicationController
   end
 
   def create
-    @area = Area.new(params[:area])
+    @area = Area.new(area_params)
     @area.company = company
     if @area.save
       flash[:notice] = 'Area was successfully created.'
+      respond_with @area
+    else
+      render :new
     end
-    respond_with @area
   end
 
   def edit
@@ -64,14 +66,17 @@ class AreasController < ApplicationController
 
   def update
     @area = Area.by_company(company).find(params[:id])
-    @area.update_attributes(params[:area])
-    respond_with @area
+    if @area.update_attributes(area_params)
+      respond_with @area
+    else
+      render :edit
+    end
   end
 
   def destroy
     @area = Area.find(params[:id])
     @area.destroy
-    respond_with @area
+    redirect_to areas_url
   end
 
   private###################################
@@ -80,4 +85,8 @@ class AreasController < ApplicationController
     current_user.try(:company)
   end
 
+  def area_params
+    params.require(:area).permit(:name, :replicate, :study_id, :treatment_id, :description)
+
+  end
 end
