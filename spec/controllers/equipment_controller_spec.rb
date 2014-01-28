@@ -3,78 +3,44 @@ require 'spec_helper'
 describe EquipmentController do
   render_views
 
-  describe 'Not signed in. ' do
+  # describe 'Not signed in. ' do
 
-    describe 'GET :index' do
-      before(:each) do
-        get :index
-      end
+  #   it 'renders the index' do
+  #     get :index
+  #     response.should render_template 'index'
+  #   end
 
-      it { should render_template 'index' }
-    end
+  #   it 'does not allow new' do
+  #     get :new
+  #     response.should redirect_to new_user_session_path
+  #   end
 
-    describe 'GET :new' do
-      before(:each) do
-        get :new
-      end
+  #   it 'does not allow create' do
+  #     post :create, :equipment => { :name => 'Controller Creation' }
+  #     response.should redirect_to new_user_session_path
+  #   end
 
-      it { should redirect_to new_user_session_path }
-    end
+  #   it 'shows equipment' do
+  #     get :show, :id => 1
+  #     response.should render_template 'show'
+  #   end
 
-    describe 'POST :create' do
-      before(:each) do
-        Equipment.exists?(:name => 'Controller Creation').should be_false
-        post :create, :equipment => { :name => 'Controller Creation' }
-      end
+  #   it 'does now allow edit' do
+  #     get :edit, :id => 1
+  #     response.should redirect_to new_user_session_path
+  #   end
 
-      it { should redirect_to new_user_session_path }
-    end
+  #   it 'does not allow updates' do
+  #     put :update, :id => 1, :area => { :name => 'new_equipment'}
+  #     response.should redirect_to new_user_session_path
+  #   end
 
-    describe 'An equipment exists. ' do
-      before(:each) do
-        @equipment = find_or_factory(:equipment)
-      end
+  #   it 'does not allow deletes' do
+  #     delete :destroy, :id => 1
+  #     response.should redirect_to new_user_session_path
+  #   end
 
-      describe 'GET :show the equipment' do
-        before(:each) do
-          get :show, :id => @equipment.id
-        end
-
-        it { should render_template 'show' }
-      end
-
-      describe 'GET :edit the area' do
-        before(:each) do
-          get :edit, :id => @equipment.id
-        end
-
-        it { should redirect_to new_user_session_path }
-      end
-
-      describe 'PUT :update the equipment' do
-        before(:each) do
-          put :update, :id => @equipment.id, :area => { :name => 'new_equipment'}
-        end
-
-        it { should redirect_to new_user_session_path }
-        it "should not change the equipment" do
-          @equipment.reload
-          @equipment.name.should_not be_eql('new_equipment')
-        end
-      end
-
-      describe 'DELETE :destroy the equipment' do
-        before(:each) do
-          delete :destroy, :id => @equipment.id
-        end
-
-        it { should redirect_to new_user_session_path }
-        it "should not destroy the equipment" do
-          Equipment.exists?(@equipment.id).should be_true
-        end
-      end
-    end
-  end
+  # end
 
   describe "Signed in as a normal user. " do
     before(:all) do
@@ -114,31 +80,32 @@ describe EquipmentController do
       end
     end
 
-    describe 'GET :new' do
-      before(:each) do
-        get :new
-      end
-
-      it { should render_template 'new' }
+    it 'allows new' do
+      get :new
+      response.should render_template 'new'
     end
 
     describe "POST :create" do
-      before(:each) do
-        Equipment.exists?(:name => 'Controller Creation').should be_false
+      it 'should create an equipment' do
+        Equipment.should_receive(:new).with("name" => "Controller Creation").and_call_original
         post :create, :equipment => { :name => 'Controller Creation' }
       end
 
-      it { should redirect_to equipment_path(assigns(:equipment)) }
-
-      it 'should create an equipment' do
-        Equipment.exists?(:name => 'Controller Creation').should be_true
+      it 'redirects to the new equipment' do
+        post :create, :equipment => { :name => 'Controller Creation' }
+        response.should redirect_to equipment_path(assigns(:equipment))
       end
 
-      it 'should assign the current company to the equipment' do
-        assigns(:equipment).company.should == @company_1
-      end
+      # before(:each) do
+      #   Equipment.exists?(:name => 'Controller Creation').should be_false
+      #   post :create, :equipment => { :name => 'Controller Creation' }
+      # end
 
-      it { should set_the_flash }
+      # it 'should assign the current company to the equipment' do
+      #   assigns(:equipment).company.should == @company_1
+      # end
+
+      # it { should set_the_flash }
     end
 
     describe "POST :create with invalid attributes" do
