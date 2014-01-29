@@ -16,7 +16,9 @@
       %td
         = link_to 'Edit', edit_material_path(material)
       %td
-        = link_to 'Destroy', material, :confirm => 'Are you sure?', :method => :delete
+        = link_to 'Destroy', material, 
+          :data => {:confirm => "Are you sure you want to delete #{material.name}?"}, 
+          :method => :delete
 
 %br
 

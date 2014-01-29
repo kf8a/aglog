@@ -2,5 +2,5 @@
 class MaterialType < ActiveRecord::Base
   # attr_accessible :name
 
-  has_many :materials, :order => 'name'
+  has_many :materials, :conditions => {:order => 'name'}
 end

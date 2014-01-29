@@ -6,7 +6,7 @@ class MaterialsController < ApplicationController
   def index
     company = current_user.try(:company)
     broad_scope = company ? Material.by_company(company) : Material
-    @materials = broad_scope.order('material_type_id, name').includes(:material_type).all
+    @materials = broad_scope.order('material_type_id, name').includes(:material_type)
 
     respond_with @materials
   end
