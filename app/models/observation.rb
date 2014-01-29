@@ -3,8 +3,8 @@ require 'csv'
 
 # The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
-  attr_protected :company_id unless Rails.env == 'test'
-  attr_accessible :observation_date, :comment, :observation_type_ids , :areas_as_text, :activities_attributes
+  # attr_protected :company_id unless Rails.env == 'test'
+  # attr_accessible :observation_date, :comment, :observation_type_ids , :areas_as_text, :activities_attributes
 
   attr :observation_date
 
@@ -12,12 +12,13 @@ class Observation < ActiveRecord::Base
   has_many :setups, :through => :activities
   has_and_belongs_to_many :areas
   has_and_belongs_to_many :observation_types
-  belongs_to :person
+  belongs_to :person, inverse_of: :observations
   belongs_to :company
 
   validates :obs_date,          :presence => true
   validates :observation_types, :presence => true
-  validates :person_id,         :presence => true
+  validates :person,            :presence => true
+  validates :company,           :presence => true
   validate :no_invalid_areas
 
   scope :by_company, lambda {|company| where(:company_id => company)}

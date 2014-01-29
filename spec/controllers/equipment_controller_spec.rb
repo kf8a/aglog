@@ -39,7 +39,6 @@ describe EquipmentController do
       delete :destroy, :id => 1
       response.should redirect_to new_user_session_path
     end
-
   end
 
   describe "Signed in as a normal user. " do
@@ -86,8 +85,18 @@ describe EquipmentController do
     end
 
     describe "POST :create" do
+<<<<<<< HEAD
       it 'should create an equipment' do
         Equipment.should_receive(:new).with("name" => "Controller Creation").and_call_original
+=======
+      # it 'create new equpment' do
+      #   Equipment.should_receive(:new).with("name" => "Controller Creation")
+      #   post :create, :equipment => { :name => 'Controller Creation' }
+      # end
+
+      before(:each) do
+        Equipment.exists?(:name => 'Controller Creation').should be_false
+>>>>>>> rails4
         post :create, :equipment => { :name => 'Controller Creation' }
       end
 
@@ -117,7 +126,7 @@ describe EquipmentController do
       before(:each) do
         post :create,
           :format => 'xml',
-          :equipment => { }
+          :equipment => {:name => '1' }
       end
 
 			it 'should respond with content type test/xml' do

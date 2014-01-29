@@ -20,7 +20,9 @@
         %td
           = link_to 'Edit', edit_equipment_path(equipment)
         %td
-          = link_to 'Destroy', equipment_path(equipment), :confirm => 'Are you sure?', :method => :delete
+          = link_to 'Destroy', equipment_path(equipment), 
+            :data => {:confirm => "Are you sure you want to delete #{equipment.name}?"}, 
+            :method => :delete
 %br
 
 -if signed_in?

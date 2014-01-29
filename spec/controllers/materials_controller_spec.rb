@@ -3,7 +3,15 @@ require 'spec_helper'
 describe MaterialsController do
   render_views
 
-  before(:each) do
+  let(:material) { FactoryGirl.build_stubbed(:material, name: "custom material")}
+
+  before :each do
+    material.stub(:save).and_return(true)
+    Material.stub(:persisted?).and_return(true)
+    Material.stub(:find).with(material.id.to_s).and_return(material)
+    Material.stub(:by_company).and_return(Material)
+    # material.stub(:errors).and_return('')
+
     sign_in_as_normal_user
   end
 
@@ -13,24 +21,31 @@ describe MaterialsController do
     assert assigns(:materials)
   end
 
-  it "should get new" do
-    get :new
-    assert_response :success
+  describe 'GET new' do
+    it "should render new" do
+      get :new
+      expect(response).to render_template :new
+    end
   end
 
-  it "should create material" do
-    old_count = Material.count
-    assert !Material.exists?(:name => 'NewName')
-    post :create, :material => { :name => 'NewName' }
-    assert_equal old_count+1, Material.count
+  describe "POST: create with valid attributes" do
+    before(:each) do
+      post :create, :material => { :name => 'NewName' }
+    end
 
-    assert_redirected_to material_path(assigns(:material))
+    it 'create the material' do
+      expect(Material.exists?(assigns[:material])).to be_true
+    end
+
+    it 'redirects to new material' do
+      expect(response).to redirect_to material_url(assigns(:material))
+    end
+
   end
 
   describe "POST :create with invalid attributes" do
     before(:each) do
-      FactoryGirl.create(:material, :name => "repeat_name")
-      post :create, :material => { :name => "repeat_name" }
+      post :create, :material => { :other => 'test'}
     end
 
     it { should render_template :new }
@@ -48,85 +63,64 @@ describe MaterialsController do
 		end
   end
 
-  context 'a material exists' do
+  describe 'GET show' do
     before(:each) do
-      @material = find_or_factory(:material)
-      @material.company = @user.company
-      @material.save
+      Material.should_receive(:find_with_children).with(material.id.to_s).and_return(material)
+      get :show, :id => material
     end
 
-    it "should show material" do
-      get :show, :id => @material.id
-      assert_response :success
+    it 'renders the show template' do
+      expect(response).to render_template :show
     end
 
-    it "should get edit" do
-      get :edit, :id => @material.id
-      assert_response :success
+    it "should assign the right material to @material" do
+      expect(assigns(:material)).to eq material
+    end
+  end
+
+  describe 'GET #edit' do
+    it 'assigns the right material to @material' do
+      get :edit, :id => material
+      expect(assigns(:material)).to eq material
     end
 
-    it "should update material" do
-      put :update, :id => @material.id, :material => { :name => 'updated_name' }
-      assert_redirected_to material_path(assigns(:material))
+    it 'renders template edit' do
+      get :edit, :id => material
+      expect(response).to render_template :edit
+    end 
+  end
+
+  it "should update material" do
+    put :update, :id => material, :material => { :name => 'updated_name' }
+    assert_redirected_to material_path(assigns(:material))
+  end
+
+
+  describe "PUT :update with invalid attributes" do
+    before(:each) do
+      material.stub(:update_attributes).and_return(false)
+      put :update, :id => material, :material => { :name => "repeat_name" }
     end
 
+    it 'assigns to the right material' do
+      expect(assigns(:material)).to eq material
+    end
 
-    describe "PUT :update with invalid attributes" do
-      before(:each) do
-        FactoryGirl.create(:material, :name => "repeat_name")
-        put :update, :id => @material.id, :material => { :name => "repeat_name" }
-      end
+    it { should render_template :edit }
+  end
 
-      it { should render_template :edit }
+  describe 'DESTROY' do
+    before(:each) do
+      material.stub(:destroy).and_return(true)
+      delete :destroy, :id => material
     end
 
     it "should destroy material" do
-      old_count = Material.count
-      delete :destroy, :id => @material.id
-      assert_equal old_count-1, Material.count
-
-      assert_redirected_to materials_path
-    end
-  end
-  
-  describe "GET :get_hazards with a material that exists" do
-    before(:each) do
-      @material_id = Material.last.id
-      get :get_hazards, :id => @material_id
+      expect(Material.exists?(material)).to be_false
     end
 
-    it { should render_template :get_hazards }
-  end
-
-  describe "GET :get_hazards with a material that does not exist" do
-    before(:each) do
-      material_id = Material.last.id + 1
-      assert_nil Material.find_by_id(material_id)
-      get :get_hazards, :id => material_id
+    it 'redirects to index' do
+      expect(response).to redirect_to materials_url
     end
-
-    it { should render_template :get_hazards }
-    it "should return a new material object" do
-      assert assigns(:material).new_record?
-    end
-  end
-
-  describe "PUT :put_hazards with a valid material id" do
-    before(:each) do
-      @material_id = Material.last.id
-      put :put_hazards, :id => @material_id
-    end
-
-    it { should redirect_to edit_material_path(@material_id) }
-  end
-
-  describe "PUT :put_hazards with invalid material id" do
-    before(:each) do
-      material_id = Material.last.id + 1
-      put :put_hazards, :id => material_id
-    end
-
-    it { should redirect_to new_material_path }
   end
 end
-

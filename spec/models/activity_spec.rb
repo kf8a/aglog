@@ -26,8 +26,7 @@ describe Activity do
   end
 
   describe "a valid activity with hours inputted as '1,000'" do
-    subject { FactoryGirl.create(:activity, :hours => '1,000') }
-    its(:hours) { should == 1000 }
+    pending 'this should be handled in the view layer'
   end
 end
 

@@ -3,46 +3,31 @@ require 'spec_helper'
 describe MaterialTransactionsController do
   render_views
 
+  let(:material_transaction) { FactoryGirl.build_stubbed(:material_transaction) }
+  let(:material)             { FactoryGirl.build_stubbed(:material) }
+
+  before :each do
+    material_transaction.stub(:save).and_return(true)
+    MaterialTransaction.stub(:persisted?).and_return(true)
+    MaterialTransaction.stub(:find).with(material_transaction.id.to_s).and_return(material_transaction)
+    MaterialTransaction.stub(:by_company).and_return(MaterialTransaction)
+  end
+
   describe "Not signed in. " do
 
-    describe "POST :create" do
-      before(:each) do
-        @material = find_or_factory(:material)
-        @old_count = @material.material_transactions.count
-        post :create, :material_transaction => { :material_id => @material.id }
-      end
-
-      it "should not create a material transaction" do
-        new_count = @material.material_transactions.count
-        new_count.should equal @old_count
-      end
+    it 'does not allow POST :create' do
+        post :create, :material_transaction => { :material_id => material }
+        expect(response).to redirect_to new_user_session_path
     end
 
-    describe "A material transaction exists. " do
-      before(:each) do
-        @transaction = find_or_factory(:material_transaction)
-      end
+    it 'does not allow PUT :update' do
+      put :update, :id => material_transaction, :material_transaction => { :material_id => material}
+      expect(response).to redirect_to new_user_session_path
+    end
 
-      describe "PUT :update the transaction" do
-        before(:each) do
-          @new_setup = find_or_factory(:setup)
-          put :update, :id => @transaction.id, :material_transaction => { :setup_id => @new_setup.id }
-        end
-
-        it "should not update the transaction" do
-          assert_nil MaterialTransaction.find_by_setup_id(@new_setup.id)
-        end
-      end
-
-      describe "DELETE :destroy the transaction" do
-        before(:each) do
-          delete :destroy, :id => @transaction.id
-        end
-
-        it "should not delete the transaction" do
-          assert MaterialTransaction.find_by_id(@transaction.id)
-        end
-      end
+    it 'does not allow DESTROY' do
+      delete :destroy, :id => material_transaction
+      expect(response).to redirect_to new_user_session_path
     end
   end
 
@@ -53,51 +38,68 @@ describe MaterialTransactionsController do
 
     describe "POST :create" do
       before(:each) do
-        @material = find_or_factory(:material)
-        @old_count = @material.material_transactions.count
-        post :create, :material_transaction => { :material_id => @material.id }
+        post :create, :material_transaction => { :material_id => material }
       end
 
       it "should create a material transaction" do
-        new_count = @material.material_transactions.count
-        new_count.should == @old_count + 1
+        expect(MaterialTransaction.exists?(assigns[:transaction])).to be_true
       end
     end
 
     describe "POST :create with a setup" do
-      before(:each) do
-        @setup = find_or_factory(:setup)
-        @material = find_or_factory(:material)
-        @old_count = MaterialTransaction.where(:setup_id => @setup.id, :material_id => @material.id).count
-        post :create, :material_transaction => { :setup_id => @setup.id, :material_id => @material.id }
+      context 'with valid attributes' do
+        before(:each) do
+          post :create, :material_transaction => { :setup_id => 1, :material_id => material }
+        end
+
+        it 'creates a new material_transaction' do
+          expect(MaterialTransaction.exists?(assigns[:transaction])).to be_true
+        end
       end
 
-      it "should create a material transaction for that setup" do
-        new_count = MaterialTransaction.where(:setup_id => @setup.id, :material_id => @material.id).count
-        new_count.should == @old_count + 1
+      context "with invalid attributes" do
+        before(:each) do
+          post :create, :material_transaction => { :setup_id => 1 }
+        end
+
+        it 'creates a new material_transaction' do
+          expect(MaterialTransaction.exists?(assigns[:transaction])).to be_false
+        end
       end
     end
 
     describe "PUT :update the transaction" do
-      before(:each) do
-        @transaction = find_or_factory(:material_transaction)
-        @new_setup = find_or_factory(:setup)
-        put :update, :id => @transaction.id, :material_transaction => { :setup_id => @new_setup.id }
-      end
 
-      it "should update the transaction" do
-        assert MaterialTransaction.find_by_setup_id(@new_setup.id)
+      context 'valid attributes' do
+        it "locates the reqested material_transaction" do
+          material_transaction.should_receive(:update_attributes).with({"setup_id" => "1"}).and_return(true)
+          put :update, :id => material_transaction, :material_transaction => { :setup_id => 1}
+          expect(assigns[:transaction]).to eq material_transaction
+        end
+      end
+      context 'invalid attributes' do
+        before(:each) do
+          material_transaction.should_receive(:update_attributes).and_return(false)
+          put :update, :id => material_transaction, :material_transaction => { :setup_id => 1}
+        end
+        it 'should locate the requested material_transaction' do
+          expect(assigns[:transaction]).to eq material_transaction
+        end
+
+        it 'should not update the material_transaction' do
+          expect(assigns[:transaction]).to_not be_valid
+        end
       end
     end
 
     describe "DELETE :destroy a material transaction" do
       before(:each) do
-        @transaction = find_or_factory(:material_transaction)
-        delete :destroy, :id => @transaction.id
+        material_transaction.stub(:destroy).and_return(true)
+        delete :destroy, :id => material_transaction
       end
 
       it "should delete the transaction" do
-        assert_nil MaterialTransaction.find_by_id(@transaction.id)
+        expect(MaterialTransaction.exists?(material_transaction)).to be_false
       end
     end
   end

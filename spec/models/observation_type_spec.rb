@@ -3,16 +3,16 @@ require 'spec_helper'
 describe ObservationType do
   context 'require unique name' do
     before do
-      @test_name = 'Harvest'
+      @test_name = 'Harvest' # in the fixure
     end
 
     it "does not allow a duplicate name" do
-      observation  = ObservationType.new(:name => @test_name) # is in fixture already
+      observation  = ObservationType.new(:name => @test_name)
       observation.should_not be_valid
     end
 
     it 'does not allow a duplicate case different name' do
-      observation  = ObservationType.new(:name => @test_name.upcase) # case insensitive
+      observation  = ObservationType.new(:name => @test_name.upcase)
       observation.should_not be_valid
     end
 

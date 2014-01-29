@@ -2,7 +2,7 @@
 class UnitsController < ApplicationController
 
   def index
-    @units = Unit.ordered.all
+    @units = Unit.ordered
     respond_with @units
   end
 
@@ -22,7 +22,7 @@ class UnitsController < ApplicationController
   end
 
   def create
-    @unit = Unit.new(params[:unit])
+    @unit = Unit.new(unit_params)
     if @unit.save
       flash[:notice] = 'Unit was successfully created.'
     end
@@ -31,16 +31,24 @@ class UnitsController < ApplicationController
 
   def update
     @unit = Unit.find(params[:id])
-    if @unit.update_attributes(params[:unit])
+    if @unit.update_attributes(unit_params)
       flash[:notice] = 'Unit was successfully updated.'
+      respond_with @unit
+    else
+      render :edit
     end
-    respond_with @unit
   end
 
   def destroy
     @unit = Unit.find(params[:id])
     @unit.destroy
-    respond_with @unit
+    redirect_to units_url
+    # respond_with @unit
   end
 
+  private
+
+  def unit_params
+    params.require(:unit).permit(:name, :si_unit_id, :conversion_factor)
+  end
 end

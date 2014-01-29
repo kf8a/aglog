@@ -1,20 +1,11 @@
 = render "shared/error_messages", :target => material
-= semantic_form_for material do |form|
-  = form.inputs do
-    = form.input :name, :input_html => { :id => 'focus_here' }
-    = form.input :archived
-    = form.input :liquid, :label => 'Liquid?'
-    = form.input :material_type, :as => :select, :input_html => { :size => 6 }
-    - unless material.new_record?
-      %p
-        #hazards
-          = render 'hazards', :hazards => hazards
-        = link_to 'Set Hazards',
-            { :controller => 'materials', :action => 'get_hazards' },
-            :class => 'data_popup'
-        <input type="button" id="refresh_hazards" value="Refresh Hazards" />
-    = form.input :n_content, :label => 'N(%)'
-    = form.input :p_content, :label => 'P(%)'
-    = form.input :k_content, :label => 'K(%)'
-    = form.input :specific_weight, :label => 'Specific Weight (kg/l)'
-  = form.actions
+= simple_form_for material do |form|
+  = form.input :name, :input_html => { :id => 'focus_here' }
+  = form.input :archived
+  = form.input :liquid, :label => 'Liquid?'
+  = form.input :material_type, :as => :select, :input_html => { :size => 6 }
+  = form.input :n_content, :label => 'N(%)'
+  = form.input :p_content, :label => 'P(%)'
+  = form.input :k_content, :label => 'K(%)'
+  = form.input :specific_weight, :label => 'Specific Weight (kg/l)'
+  = form.button :submit

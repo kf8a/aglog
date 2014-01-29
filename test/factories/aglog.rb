@@ -1,13 +1,18 @@
 FactoryGirl.define do
 
+  sequence :sur_name do |n|
+    "Doboline#{n}"
+  end
+  
+  sequence :unit_name do |n|
+    "Unit#{n}"
+  end
   #Independent Factories
 
   factory :hazard do
-
   end
 
   factory :material_type do
-
   end
 
   factory :observation_type do
@@ -19,37 +24,35 @@ FactoryGirl.define do
   end
 
   factory :study do
-
   end
 
   factory :treatment do
-
   end
 
   factory :unit do
-
+    name  {generate(:unit_name)}
   end
 
   #Dependent Factories
 
   factory :person do
     given_name  "Bob"
-    sur_name    "Dobolina"
-    company     Company.first || FactoryGirl.create(:company)
+    sur_name
+    company
   end
 
   factory :user do
     email    'bob@nospam.com'
     password 'testing'
-    person    Person.first || FactoryGirl.create(:person)
+    person
   end
 
   factory :area do
-    company     Company.first || FactoryGirl.create(:company)
+    company
   end
 
   factory :material do
-    company     Company.first || FactoryGirl.create(:company)
+    company
   end
 
   factory :equipment do
@@ -57,18 +60,19 @@ FactoryGirl.define do
   end
 
   factory :material_transaction do
-    material    Material.first || FactoryGirl.create(:material)
+    material
   end
 
   factory :observation do
-    obs_date            Date.today
-    observation_types   [ObservationType.first || FactoryGirl.create(:observation_type)]
-    person              Person.first || FactoryGirl.create(:person)
+    obs_date    Date.today
+    # observation_types
+    person
+    company
   end
 
   factory :activity do
-    observation         Observation.first || FactoryGirl.create(:observation)
-    person              Person.first || FactoryGirl.create(:person)
+    observation
+    person
   end
 
   factory :setup do

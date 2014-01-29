@@ -12,13 +12,12 @@ class MaterialsController < ApplicationController
   end
 
   def show
-    @material = Material.where(:id => params[:id]).includes(:hazards, :material_transactions, :setups => {:observation => :observation_types}).first
+    @material = Material.find_with_children(params[:id])
     respond_with @material
   end
 
   def edit
     @material = Material.by_company(current_user.company).find(params[:id])
-    @hazards = @material.hazards.all
     respond_with @material
   end
 
@@ -28,7 +27,7 @@ class MaterialsController < ApplicationController
   end
 
   def create
-    @material = Material.new(params[:material])
+    @material = Material.new(material_params)
     @material.company = current_user.company
     if @material.save
       flash[:notice] = 'Material was successfully created.'
@@ -38,41 +37,25 @@ class MaterialsController < ApplicationController
 
   def update
     @material = Material.find(params[:id])
-    if @material.update_attributes(params[:material])
+    if @material.update_attributes(material_params)
       flash[:notice] = 'Material was successfully updated.'
+      respond_with @material
+    else
+      render :edit
     end
-    @hazards = @material.hazards.all
-    respond_with @material
   end
 
   def destroy
     @material = Material.find(params[:id])
     @material.destroy
-    respond_with @material
+    redirect_to materials_url
   end
 
-  # GET /materials/1/get_hazards
-  def get_hazards
-    @material = Material.find_by_id(params[:id]) || Material.new
-    @current_hazards = @material.hazards.all
+  private
+
+  def material_params
+    params.require(:material).permit(:name, :operation_type_id, :material_type_id, :n_content, 
+                                     :p_content, :k_content, :specific_weight,
+                                     :liquid, :archived)
   end
-
-  # PUT /materials/1/put_hazards
-  def put_hazards
-    @material = Material.find_by_id(params[:id])
-    if @material
-      values = params[:hazards].try(:values).to_a # If nil, we get []
-      @material.hazards = values.collect { |value| Hazard.find(value) }
-
-      redirect_to :action => "edit"
-    else
-      redirect_to :action => "new"
-    end
-	end
-
-	# POST /materials/new_hazards
-	def new_hazards
-
-	end
-
 end

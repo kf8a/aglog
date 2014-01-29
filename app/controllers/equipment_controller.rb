@@ -5,7 +5,7 @@ class EquipmentController < ApplicationController
     if current_user
       @equipment = Equipment.by_company(current_user.company).ordered
     else
-      @equipment = Equipment.ordered.all
+      @equipment = Equipment.ordered
     end
 
     respond_with @equipment
@@ -21,7 +21,7 @@ class EquipmentController < ApplicationController
   end
 
   def create
-    @equipment = Equipment.new(params[:equipment])
+    @equipment = Equipment.new(equipment_params)
     @equipment.company = current_user.company
     if @equipment.save
       flash[:notice] = 'Equipment was successfully created.'
@@ -36,7 +36,7 @@ class EquipmentController < ApplicationController
 
   def update
     @equipment = Equipment.by_company(current_user.company).find(params[:id])
-    @equipment.update_attributes(params[:equipment])
+    @equipment.update_attributes(equipment_params)
     respond_with @equipment
   end
 
@@ -46,4 +46,10 @@ class EquipmentController < ApplicationController
     respond_with @equipment
   end
 
+  private
+
+  def equipment_params
+    params.require(:equipment).permit(:name, :use_material, :is_tractor, :description,
+                                     :archived)
+  end
 end

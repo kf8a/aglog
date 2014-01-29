@@ -6,3 +6,4 @@ TODO: irregular areas like the LYSIMETER field which does not have a treatment
       treatment and areas table. I think they should just have an area entry
       and the Area.parse should search on area.name, but I don't know how to
       distinguish study names from irregular area names.
+TODO: units controller should show si units not unit ids.

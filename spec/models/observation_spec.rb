@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Observation do
   it {should validate_presence_of :obs_date}
-  it {should validate_presence_of :person_id}
+  it {should validate_presence_of :person}
   it {should validate_presence_of :observation_types}
 
   it 'should work normally with a simple observation' do
@@ -95,27 +95,6 @@ describe Observation do
     assert_equal "Soil Preparation, Another Type", o.observation_type_names
   end
 
-  it "should give the right areas_as_text" do
-    o = create_simple_observation
-    text_areas =  "T"
-    o.areas_as_text = text_areas
-    assert_equal text_areas, o.areas_as_text
-  end
-
-  it 'should accept CE1 as an area' do
-    o = create_simple_observation
-    text_areas = 'CE1'
-    o.areas_as_text = text_areas
-    assert_equal text_areas, o.areas_as_text
-  end
-
-  it 'should accept LYSIMETER_FIELD as an area' do
-    o = create_simple_observation
-    text_areas = 'LYSIMETER_FIELD'
-    o.areas_as_text = text_areas
-    assert_equal text_areas, o.areas_as_text
-  end
-
   it 'should accept token ids in areas_as_text' do
     o = create_simple_observation
     text_areas = '3,415'
@@ -199,7 +178,8 @@ describe Observation do
     type = ObservationType.find_by_name('Soil Preparation')
     assert type
     person1 = Person.find_by_sur_name("Sur1") || FactoryGirl.create(:person, :sur_name => "Sur1")
-    observation = Observation.new(:observation_date => "June 14, 2007")
+    company = find_or_factory(:company)
+    observation = Observation.new(:observation_date => "June 14, 2007", :company_id => company.id)
     observation.person = person1 
     observation.observation_types <<  type
     observation.should be_valid

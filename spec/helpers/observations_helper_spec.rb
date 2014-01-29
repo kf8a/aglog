@@ -3,14 +3,14 @@ require 'spec_helper'
 describe ObservationsHelper do
   describe "#initialize_arrays" do
     it "should give the right results" do
-      js_stuff = "<script type=\"text/javascript\">\n//<![CDATA[\narrayActivityIndexes = []; arraySetupIndexes=[];\n//]]>\n</script>"
+      js_stuff = "<script>\n//<![CDATA[\narrayActivityIndexes = []; arraySetupIndexes=[];\n//]]>\n</script>"
       helper.initialize_arrays.should eq(js_stuff)
     end
   end
 
   describe "#observation_type_ids" do
     it "should give an array of observation types" do
-      correct_ones = [["Default", 1], ["Soil Preparation", 2], ["Harvest", 3], ["Planting", 4], ["Fertilizer application", 5], ["Pesticide application", 6], ["Herbicide application", 7]]
+      correct_ones = [["Soil Preparation", 1], ["Harvest", 2], ["Planting", 3], ["Fertilizer application", 4], ["Pesticide application", 5], ["Herbicide application", 6]]
       helper.observation_type_ids.should eq(correct_ones)
     end
   end

@@ -3,11 +3,7 @@ require 'set'
 
 # Represents a location where observations are done.
 class Area < ActiveRecord::Base
-  attr_accessible :name, :replicate, :study_id,
-                  :treatment_id, :description
-  attr_accessible :company_id if Rails.env == 'test'
-
-  has_and_belongs_to_many :observations, :order => 'obs_date desc'
+  has_and_belongs_to_many :observations, -> {order('obs_date desc')}
   belongs_to :study
   belongs_to :treatment
   belongs_to :company

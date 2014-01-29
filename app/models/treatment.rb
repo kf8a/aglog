@@ -1,6 +1,6 @@
 # A grouping of areas within a study.
 class Treatment < ActiveRecord::Base
-  attr_accessible :name, :study_id, :treatment_number
+  # attr_accessible :name, :study_id, :treatment_number
 
   has_many :areas
   belongs_to :study
