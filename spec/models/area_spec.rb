@@ -58,12 +58,14 @@ describe Area do
         @child2.move_to_child_of(@ancestor)
         @ancestor.save
       end
-      it 'should expand  to an array of children' do
-        p @ancestor.expand
-        p @child1
-        assert @ancestor.expand.include?(@child1)
-        assert @ancestor.expand.include?(@child2)
-        assert !@ancestor.expand.include?(@child3)
+      it 'should include child1' do
+        expect(@ancestor.descendants).to include @child1
+      end
+      it 'should include child2' do
+        expect(@ancestor.descendants).to include @child2
+      end
+      it 'should not include child3' do
+        expect(@ancestor.descendants).to_not include @child3
       end
 
       context 'coalesing area' do
