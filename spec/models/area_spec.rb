@@ -71,7 +71,13 @@ describe Area do
       context 'coalesing area' do
 
         it 'should return the ancestor'  do
-          assert_equal [@ancestor], Area.coalese([@child1, @child2])
+          expect(Area.coalese([@child1, @child2])).to eq [@ancestor]
+        end
+        it 'should return the child for one child' do
+          expect(Area.coalese([@child1])).to eq [@child1]
+        end
+        it 'should return the ancestor when given the ancestor' do
+          expect(Area.coalese([@ancestor])).to eq [@ancestor]
         end
       end
     end

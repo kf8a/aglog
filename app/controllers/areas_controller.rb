@@ -5,7 +5,7 @@ class AreasController < ApplicationController
 
   def index
     query = params[:q]
-    @areas = company.try(:areas) || Area.scoped
+    @areas = company.try(:areas) || Area.all
 
     if query
       @areas = @areas.find_with_name_like(query).to_jquery_tokens

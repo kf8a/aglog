@@ -55,7 +55,7 @@ class Observation < ActiveRecord::Base
   end
 
   def areas_as_text
-    @error_areas || Area.unparse(areas)
+    @error_areas || Area.unparse(areas.to_a)
   end
 
   def prepopulated_area_tokens

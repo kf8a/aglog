@@ -23,7 +23,7 @@ class ObservationsController < ApplicationController
     @observation = Observation.where(:id => params[:id]).includes(:person, :observation_types,
                                                                   {:activities => [:person,
                                                                     {:setups => [:equipment, 
-                                                                      {:material_transactions => [{:material => :hazards}, :unit]}]}]}).first
+                                                                      {:material_transactions => [:material, :unit]}]}]}).first
     @areas_as_text = @observation.areas_as_text
     respond_with @observation 
   end
