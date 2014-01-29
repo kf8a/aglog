@@ -58,6 +58,7 @@ describe PeopleController do
 
     describe 'GET :index' do
       before(:each) do
+        Person.should_receive(:ordered_in_company).with(controller.current_user.company).and_return([person])
         get :index
       end
 
@@ -65,9 +66,9 @@ describe PeopleController do
         expect(assigns(:people)).to match_array [person]
       end
 
-      it 'does not show other companies users' do
-        expect(assigns(:people)).to_not  include [other_person]
-      end
+      # it 'does not show other companies users' do
+      #   expect(assigns(:people)).to_not include [other_person]
+      # end
 
       it 'renders the index template' do
         expect(response).to render_template 'index'
@@ -128,6 +129,7 @@ describe PeopleController do
 
     describe 'GET :edit' do
       before(:each) do
+        Person.should_receive(:find_in_company).with(controller.current_user.company, person.id.to_s).and_return(person)
         get :edit, :id => person
       end
 
@@ -143,13 +145,13 @@ describe PeopleController do
     describe 'PUT :update' do
       context 'with valid parameters' do
         before(:each) do
-          p person
+          Person.should_receive(:find_in_company).with(controller.current_user.company, person.id.to_s).and_return(person)
           person.should_receive(:update_attributes).with({'given_name' => 'Bob'}).and_return(true)
           put :update, :id => person, :person => {:given_name => 'Bob'}
         end
 
         it 'redirects to the person' do
-          expect(response).to redirect_to people_path(assigns(:person))
+          expect(response).to redirect_to person
         end
         # it {should set_the_flash}
       end

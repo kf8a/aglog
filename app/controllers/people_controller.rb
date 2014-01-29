@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
   # GET /people.xml
   def index
     if current_user
-      @people = Person.by_company(current_user.company).ordered
+      @people = Person.ordered_in_company(current_user.company)
     else
       @people = Person.ordered
     end 
@@ -23,7 +23,8 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    @person = Person.by_company(current_user.company).find(params[:id])
+    # @person = Person.by_company(current_user.company).find(params[:id])
+    @person = Person.find_in_company(current_user.company, params[:id])
     respond_with @person
   end
 
@@ -39,7 +40,7 @@ class PeopleController < ApplicationController
   end
 
   def update
-    @person = Person.by_company(current_user.company).find(params[:id])
+    @person = Person.find_in_company(current_user.company, params[:id])
     if @person.update_attributes(person_params)
       flash[:notice] = 'Person was successfully updated.'
     end

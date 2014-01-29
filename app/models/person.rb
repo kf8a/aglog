@@ -15,9 +15,23 @@ class Person < ActiveRecord::Base
   validate :name_must_be_unique
   validates_presence_of :company
 
-  scope :current, -> {where(:archived => false)}
-  scope :ordered, -> {order('given_name, sur_name')}
   scope :by_company, lambda {|company| where(:company_id => company)}
+
+  def self.current
+    where(:archived => false)
+  end
+
+  def self.ordered
+    order('given_name, sur_name')
+  end
+
+  def self.ordered_in_company(company)
+    by_company(company).ordered
+  end
+
+  def self.find_in_company(company, id)
+    by_company(company).find(id)
+  end
 
   def to_label
     name
@@ -31,5 +45,4 @@ class Person < ActiveRecord::Base
   def name
     [given_name, sur_name].join(' ')
   end
-
 end
