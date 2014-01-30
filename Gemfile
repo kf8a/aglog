@@ -8,7 +8,7 @@ gem 'pg'
 
 gem 'devise'
 
-gem 'will_paginate'
+# gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'haml'
 
@@ -18,11 +18,7 @@ gem 'chronic'
 gem 'jquery-rails' #, '>= 0.2.6'
 gem 'jquery-ui-rails'
 
-#gem 'formtastic'
 gem 'simple_form'
-
-#TODO remove and use strong parameters
-#gem 'protected_attributes'
 
 # gem 'delocalize'
 
@@ -44,8 +40,6 @@ gem 'therubyracer', :require => 'v8'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
-gem 'font-awesome-less'
-gem 'twitter-bootstrap-rails'
 gem 'angularjs-rails'
 
 gem 'less-rails'
