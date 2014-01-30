@@ -44,6 +44,7 @@ gem 'therubyracer', :require => 'v8'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
+gem 'font-awesome-less'
 gem 'twitter-bootstrap-rails'
 gem 'angularjs-rails'
 

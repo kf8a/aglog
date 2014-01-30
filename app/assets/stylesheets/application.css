@@ -12,5 +12,6 @@
  *= require aglog
  *= require formtastic
  *= require formtastic_changes
+ *= require font-awesome
  *= require_tree .
  */
