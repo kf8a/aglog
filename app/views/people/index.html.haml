@@ -1,0 +1,22 @@
+%h1 People
+
+%table.table
+  - @people.each do | person|
+    %tr
+      %td
+        =h person.given_name
+      %td
+        =h person.sur_name
+      - if signed_in?
+        %td
+          = link_to 'Show', person_path(person)
+        %td
+          = link_to 'Edit', edit_person_path(person)
+        %td
+          = link_to 'Destroy', person_path(person), 
+            :data => {:confirm => "Are you sure you want to delete #{person.name}?"}, 
+            :method => :delete 
+%br
+
+- if signed_in?
+  = link_to 'New person', new_person_path

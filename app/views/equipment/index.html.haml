@@ -1,8 +1,9 @@
 %h1 Listing equipment
 
-= link_to 'New equipment', new_equipment_path
+- if signed_in?
+  = link_to 'New equipment', new_equipment_path
 
-%table
+%table.table
   %tr
     %th(align="left") Name
     %th Use Material
