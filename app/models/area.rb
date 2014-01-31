@@ -19,6 +19,15 @@ class Area < ActiveRecord::Base
 
   acts_as_nested_set
 
+  def copy_to_company(company)
+    area = Area.create(name: self.name, company: company)
+    self.children.each do |child|
+      child_area = child.copy_to_company(company)
+      child_area.move_to_child_of(area)
+    end
+    area
+  end
+
   def Area.find_with_name_like(query)
     query = query.downcase + '%'
     Area.where('lower(name) like ?', query)
@@ -31,6 +40,7 @@ class Area < ActiveRecord::Base
   def expand
     leaf? ? self : leaves.keep_if {|area| area.company_id == self.company_id}
   end
+
 
   def Area.coalese(areas = [])
     areas_to_check = areas.to_a # make sure we have an array to work with

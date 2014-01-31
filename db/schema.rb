@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20120515132059) do
     t.integer "parent_id"
   end
 
-  add_index "areas", ["name"], :name => "area_names", :unique => true
+  add_index "areas", ["name", "company_id"], :name => "area_names", :unique => true
 
   create_table "areas_observations", :id => false, :force => true do |t|
     t.integer "observation_id"
