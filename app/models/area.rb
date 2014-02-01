@@ -19,15 +19,6 @@ class Area < ActiveRecord::Base
 
   acts_as_nested_set
 
-  def copy_to_company(company)
-    area = Area.create(name: self.name, company: company)
-    self.children.each do |child|
-      child_area = child.copy_to_company(company)
-      child_area.move_to_child_of(area)
-    end
-    area
-  end
-
   def Area.find_with_name_like(query)
     query = query.downcase + '%'
     Area.where('lower(name) like ?', query)
