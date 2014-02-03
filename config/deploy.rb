@@ -1,69 +1,58 @@
-require "bundler/capistrano"
-load 'deploy/assets'
-set :application, "aglog"
-set :repository,  "/Users/bohms/code/aglog"
+# config valid only for Capistrano 3.1
+lock '3.1.0'
+
+set :application, 'aglog'
+set :repo_url, 'https://github.com/kf8a/aglog.git'
+
+# Default branch is :master
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+
+# Default deploy_to directory is /var/www/my_app
+set :deploy_to, '/var/u/apps/aglog'
+
+# Default value for :scm is :git
 set :scm, :git
 
+# Default value for :format is :pretty
+# set :format, :pretty
 
-# If you aren't deploying to /u/apps/#{application} on the target
-# servers (which is the default), you can specify the actual location
-# via the :deploy_to variable:
-# set :deploy_to, "/var/www/#{application}"
-set :deploy_to, "/var/u/apps/#{application}"
+# Default value for :log_level is :debug
+# set :log_level, :debug
 
-set :user, 'deploy'
-set :use_sudo, false
+# Default value for :pty is false
+# set :pty, true
 
-set :branch, "master"
-set :deploy_via, :copy
-#set :git_enable_submodules,1
+# Default value for :linked_files is []
+set :linked_files, %w{config/database.yml .env}
 
+# Default value for linked_dirs is []
+# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-set :mongrel_conf, '/etc/mongrel_cluster/aglog.yml'
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
-role :app, "houghton.kbs.msu.edu"
-role :web, "houghton.kbs.msu.edu"
-role :db,  "houghton.kbs.msu.edu", :primary => true
+# Default value for keep_releases is 5
+# set :keep_releases, 5
 
 namespace :deploy do
-    namespace :thin do
-      [:stop, :start, :restart].each do |t|
-        desc "#{t.to_s.capitalize} the thin appserver"
-        task t, :roles => :app do
-          invoke_command "cd #{current_path}; bundle exec thin -C /etc/thin/aglog.yml #{t.to_s}"
-        end
-      end
-    end
-    namespace :mongrel do
-      [ :stop, :start, :restart ].each do |t|
-        desc "#{t.to_s.capitalize} the mongrel appserver"
-        task t, :roles => :app do
-          #invoke_command checks the use_sudo variable to determine how to run the mongrel_rails command
-          invoke_command "mongrel_rails cluster::#{t.to_s} -C #{mongrel_conf}" #, :via => run_method
-        end
-      end
-    end
 
-    desc "Custom restart task for thin cluster"
-    task :restart, :roles => :app, :except => { :no_release => true } do
-      deploy.thin.restart
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
     end
+  end
 
-    desc "Custom start task for thin cluster"
-    task :start, :roles => :app do
-      deploy.thin.start
+  after :publishing, :restart
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
     end
+  end
 
-    desc "Custom stop task for thin cluster"
-    task :stop, :roles => :app do
-      deploy.thin.stop
-    end
-
-    before "deploy:assets:precompile", "link_production_db"
-end
-
-# database.yml task
-desc "Link in the production database.yml"
-task :link_production_db do
-  run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
 end
