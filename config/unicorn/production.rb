@@ -8,8 +8,8 @@ listen 4060
 #listen "#{app_root}/shared/sockets/unicorn.sock", :backlog => 2048
 
 pid "#{app_root}/shared/pids/unicorn.pid"
-stderr_path "#{app_root}/log/unicorn.log"
-stdout_path "#{app_root}/log/unicorn.log"
+stderr_path "#{app_root}/current/log/unicorn.log"
+stdout_path "#{app_root}/current/log/unicorn.log"
 
 if GC.respond_to?(:copy_on_write_friendly=)
   GC.copy_on_write_friendly = true
