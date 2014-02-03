@@ -43,11 +43,12 @@ gem 'angularjs-rails'
 gem 'less-rails'
 
 group :production do
-  gem 'thin'
+  gem 'unicorn'
 end
 
 group :development do
   gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
   gem 'capistrano-rails'
 end
 
