@@ -19,6 +19,7 @@ gem 'jquery-rails' #, '>= 0.2.6'
 gem 'jquery-ui-rails'
 
 gem 'simple_form'
+gem 'dotenv-rails'
 
 # gem 'delocalize'
 
