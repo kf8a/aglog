@@ -33,9 +33,6 @@ gem 'barista'
 
 gem 'jbuilder'
 
-gem 'capistrano'
-gem 'capistrano-bundler'
-gem 'capistrano-rails'
 
 gem 'therubyracer', :require => 'v8'
 gem 'sass-rails'
@@ -47,6 +44,11 @@ gem 'less-rails'
 
 group :production do
   gem 'thin'
+end
+
+group :development do
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
 end
 
 group :development, :test do

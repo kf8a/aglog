@@ -246,7 +246,6 @@ DEPENDENCIES
   awesome_nested_set!
   barista
   cancan
-  capistrano
   capistrano-bundler
   capistrano-rails
   capybara
