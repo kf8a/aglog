@@ -1,6 +1,6 @@
 app_root = "/var/u/apps/aglog"
 
-worker_processes 10
+worker_processes 5
 working_directory "#{app_root}/current"
 preload_app true
 timeout 300
