@@ -1,6 +1,6 @@
-<li>
+<li class="draggable">
   <div class='droppable'></div>
-  <span id="<%= area.id %>" draggable='true'>
+  <span id="<%= area.id %>">
     <%= area.name %>
     <%= area.description %>
   </span>
@@ -12,7 +12,7 @@
     <% end %>
   </span>
   <% if area.children.present? %>
-    <span class='hider'>Collapse?</span>
+    <%# <span class='hider'>Collapse?</span> %>
     <ul>
       <%= render area.children %>
     </ul>
