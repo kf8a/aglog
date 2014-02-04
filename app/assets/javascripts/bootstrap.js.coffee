@@ -6,3 +6,6 @@ jQuery ->
     theme: 'facebook',
     preventDuplicates: true
   })
+  $('.draggable').draggable()
+  $('.droppable').droppable(
+  )
