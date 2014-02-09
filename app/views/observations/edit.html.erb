@@ -2,91 +2,11 @@
 
 Created on: <%= @observation.created_on  %>
 
- <div ng-app='Aglog' data-observation-id = <%= @observation.id %> >
-
-   <div ng-controller='NewCtrl' data-observation-id = <%= @observation.id %> >
-     <%= form_for @observation, { :method=>:put, role: 'form', class: 'form-horizontal'}  do |f| %>
-       <div class='form-group'>
-         <label class='col-sm-2 control-label'>Observation Date</label>
-         <%= f.text_field :observation_date, {:'ng-model' => 'obs.obs_date', :'ng-required' => true} %>
-       </div>
-
-       <div class='form-group clearfix'>
-         <label class='col-sm-2 control-label'>Observation</label>
-         <%= f.text_area :comment, {class: 'col-sm-6', :'ng-model' => 'obs.comment', placeholder: 'describe what happened'} %>
-       </div>
-
-       <div id=areaSelector' class='form-group'>
-         <label class='col-sm-2 control-label'>Areas</label>
-         <%= f.text_field :areas_as_text, {:class=>'col-sm-6 token-input','data-pre' => @observation.prepopulated_area_tokens} %>
-       </div>
+<%= form_for @observation, input_html: {class: "form-horizontal", role: "form"}  do |form| %>
+  <%= render :partial => 'form', :locals => {:form => form, :only_current => false } %>
+  <%= form.submit "Submit" %>
+<% end %>
 
 
-       <div class='form-group'>
-       <label id='observation-type-label'>Observation Type</label>
-         <div class='checkbox' ng-repeat='observation_type in obs.observation_types'>
-           <label>
-             <input type='checkbox' name='observation[observation_type_ids][]' value='{{observation_type.id}}' ng-model="observation_type.checked"/>
-             {{observation_type.name}}
-           </label>
-         </div>
-       </div>
-
-       <div class='form-group'>
-    <ul class='list-unstyled'>
-      <li class='well' ng-repeat="activity in obs.activities" data-ng-hide="activity.destroy">
-      <button type='button' ng-click="removeActivity(activity)" class="close">&times;</button>
-      <label>Person</label>
-      <%= hidden_field_tag "observation[activities_attributes][{{$index}}][id]", "{{activity.id}}" %>
-      <%= hidden_field_tag "observation[activities_attributes][{{$index}}][_destroy]", "{{activity.destroy}}" %>
-      <select id="observation_activities_attributes_{{$index}}_person_id" name="observation[activities_attributes][{{$index}}][person_id]" ng-model="activity.person" 
-        ng-selected="0" ng-options="person as person.name for person in obs.people track by person.id">
-      </select>
-      <div>
-        <ul class='list-unstyled'>
-          <li class='well' ng-repeat="setup in activity.setups" data-ng-hide="setup.destroy">
-          <button type='button' ng-click="removeSetup(activity, setup)" class="close">&times;</button>
-
-          <label>Equipment{{$index}}</label>
-          <%= hidden_field_tag "observation[activities_attributes][{{$parent.$index}}][setups_attributes][{{$index}}][id]", "{{setup.id}}" %>
-          <%= hidden_field_tag "observation[activities_attributes][{{$parent.$index}}][setups_attributes][{{$index}}][_destroy]", "{{setup.destroy}}" %>
-          <select name='observation[activities_attributes][{{$parent.$index}}][setups_attributes][{{$index}}][equipment_id]' ng-model='setup.equipment' 
-            ng-options="equip as equip.name for equip in obs.equipment track by equip.id">
-          </select>
-          <div>
-            <ul class='list-unstyled'>
-              <li ng-repeat="material in setup.material_transactions" data-ng-hide="material.destroy">
-              <div class='well well-small form-inline'>
-                <%= hidden_field_tag "observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][id]", "{{material.id}}" %>
-                <%= hidden_field_tag "observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][_destroy]", "{{material.destroy}}" %>
-                <button type='button' ng-click="removeMaterial(setup, material)" class="close">&times;</button>
-                <label>Material</label>
-                <select name="observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][material_id]" ng-model='material.material' ng-options="m as m.name for m in obs.materials track by m.id">
-                </select>
-                <input name="observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][rate]" type='number' step='0.01' class='input-mini' ng-model='material.amount'></input>
-                <select name=" observation[activities_attributes][{{$parent.$parent.$index}}][setups_attributes][{{$parent.$index}}][material_transactions_attributes][{{$index}}][unit_id]" ng-model='material.unit' ng-options="unit as unit.name for unit in obs.units track by unit.id">
-                </select>
-                <label>per Acre</label>
-              </div>
-              </li>
-            </ul>
-          </div>
-          <button type='button' ng-click="addMaterial(setup)">Add Material</button>
-          </li>
-        </ul>
-      </div>
-      <button type='button' ng-click="addEquipment(activity)">Add Equipment</button>
-      </li>
-    </ul>
-  </div>
-
-    <button type='button' ng-click="addActivity()">Add Activity</button>
-    <button type='button' ng-click='addFile()'>Add File</button>
-    <button type='submit'>Submit</button>
-  <% end %>
-</div>
-<div>
-
-
-<%= link_to 'Show', observation_path(@observation) %> |
-<%= link_to 'List Observations', observations_path %>
+<%= link_to "Show", observation_path(@observation) %> |
+<%= link_to "List Observations", observations_path %>

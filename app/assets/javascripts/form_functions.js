@@ -1,6 +1,8 @@
 function remove_fields(link) {
+  console.log(jQuery(link).parent(".inputs"));
+  console.log(jQuery(link).prev("input[type=hidden]"));
   jQuery(link).prev("input[type=hidden]").val("1");
-  jQuery(link).parent().parent(".inputs").first().hide();
+  jQuery(link).parent(".inputs").hide();
 }
 
 function add_fields(link, association, content) {

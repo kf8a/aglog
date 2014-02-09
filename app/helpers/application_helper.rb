@@ -1,10 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
-  def set_hazard_ids
-    @hazard_ids =  Hazard.all.collect {|hazard| [hazard.name, hazard.id]}
-  end
-
   def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
   end

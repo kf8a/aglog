@@ -38,6 +38,11 @@
             &#149 Material: <%= transaction.material_name %>
             @ <%= transaction.rate %>
             <%= transaction.unit_name %> per acre
+            <% if transaction.hazardous? %>
+              <span style="color: red"> ***
+                <%= link_to 'Hazard', material_path(transaction.material) %>
+              *** </span>
+            <% end %>
           <% end %>
         </div>
       <% end %>
