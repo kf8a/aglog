@@ -33,7 +33,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
-    angularjs-rails (1.2.10)
     arel (4.0.1)
     atomic (1.1.14)
     barista (1.3.0)
@@ -244,7 +243,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  angularjs-rails
   awesome_nested_set!
   barista
   cancan
