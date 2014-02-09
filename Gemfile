@@ -38,7 +38,7 @@ gem 'therubyracer', :require => 'v8'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
-gem 'angularjs-rails'
+#gem 'angularjs-rails'
 
 gem 'less-rails'
 
