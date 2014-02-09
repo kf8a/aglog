@@ -1,13 +1,15 @@
-<% if only_current %>
-  <%= f.input :person, :collection => Person.by_company(current_user.company).current.ordered, :include_blank=>false %>
-<% else %>
-  <%= f.input :person, :collection => Person.by_company(current_user.company).ordered, :include_blank=>false %>
-<% end %>
-<%= f.input :hours, :input_html=> {:size=>5} %>
-<div class='setup'>
-  <%= f.simple_fields_for :setups do |builder| %>
-    <%= render 'setup_fields', :f=>builder, :only_current => only_current %>
+<div class="form-group inputs">
+  <% if only_current %>
+    <%= f.select :person, Person.by_company(current_user.company).current.ordered.map {|person| [person.name, person.id]}, include_blank: false %>
+  <% else %>
+    <%= f.select :person, Person.by_company(current_user.company).ordered.map {|person| [person.name, person.id]}, include_blank: false %>
   <% end %>
+  <%= f.text_field :hours, input_html: {size: 5} %>
+  <div class="setup">
+    <%= f.fields_for :setups do |builder| %>
+      <%= render "setup_fields", f: builder, only_current: only_current %>
+    <% end %>
+  </div>
+  <%= link_to_add_fields "Add Equipment", f, :setups, only_current %>
+  <%= link_to_remove_fields "Remove Activity", f %>
 </div>
-<%= link_to_add_fields 'Add Equipment', f, :setups, only_current %>
-<%= link_to_remove_fields "Remove Activity", f %>

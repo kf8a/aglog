@@ -1,8 +1,10 @@
-<% if only_current %>
-  <%= f.input :material, :collection=>Material.by_company(current_user.company).current.ordered, :include_blank=>false %>
-<% else %>
-  <%= f.input :material, :collection=>Material.by_company(current_user.company).ordered, :include_blank=>false %>
-<% end %>
-<%= f.input :rate, :input_html => {:size => 10}%>
-<%= f.input :unit %> per acre
-<%= link_to_remove_fields "Remove", f %>
+<div class="form-group inputs">
+  <% if only_current %>
+    <%= f.select :material, Material.by_company(current_user.company).current.ordered.map {|m| [m.name, m.id]}, :include_blank=>false %>
+  <% else %>
+    <%= f.select :material, Material.by_company(current_user.company).ordered.map {|m| [m.name, m.id]}, :include_blank=>false %>
+  <% end %>
+  <%= f.text_field :rate, :input_html => {:size => 10}%>
+  <%= f.select :unit, Unit.all.map {|u| [u.name, u.id]}  %> per acre
+  <%= link_to_remove_fields "Remove", f %>
+</div>

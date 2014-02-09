@@ -1,12 +1,26 @@
-<%= form.input :observation_date, :start_year=>1988, :label=>'Observation Date', :input_html => {:class => 'datepicker' }%>
-<%= form.input :comment, :input_html=>{:class => 'autofocus'} %>
-<%= form.input :areas_as_text, :hint=> area_help_text, :input_html => {:class=>'token-input','data-pre' => @observation.prepopulated_area_tokens} %>
-<%= form.input :observation_types, :as=>:check_boxes, :multiple=>true%>
+<div class="form-group">
+  <label for="observation_observation_date" class="control-label col-sm-2">Observation Date</label>
+  <div class="col-sm-10">
+    <%= form.text_field :observation_date, input_html: {class: "datepicker" }%>
+  </div>
+</div>
+<div class="form-group">
+  <label for="observation_comment" class="control-label col-sm-2">Comment</label>
+  <div class="col-sm-10">
+    <%= form.text_area :comment, class: "autofocus form-control", rows: 3 %>
+  </div>
+</div>
+<div class="form-group">
+  <label for="observation_areas_as_text" class="control-label col-sm-2">Areas</label>
+  <%= form.text_field :areas_as_text, hint: area_help_text, input_html: {class: "token-input", 'data-pre' => @observation.prepopulated_area_tokens} %>
+</div>
+<div class="form-group">
+  <%= form.check_box :observation_types %>
+</div>
 
-
-<div class='activities'>
-  <%= form.simple_fields_for :activities do |builder| %>
-    <%= render 'activity_fields', :f => builder, :only_current => only_current %>
+<div class="activities">
+  <%= form.fields_for :activities do |builder| %>
+      <%= render 'activity_fields', :f => builder, only_current: only_current %>
   <% end %>
 </div>
 <%= link_to_add_fields "Add Activity", form, :activities, only_current %>
