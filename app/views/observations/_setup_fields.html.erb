@@ -1,4 +1,4 @@
-<div class='equipment form-group inputs">
+<div class="equipment form-group inputs">
   <% if only_current %>
     <%= f.select :equipment, Equipment.by_company(current_user.company).current.ordered.map {|eq| [eq.name, eq.id]}, :include_blank => false %>
   <% else %>
