@@ -25,7 +25,7 @@
   </div>
 <% end %>
 
-<div class="activities row">
+<div class="activities">
   <%= form.fields_for :activities do |builder| %>
       <%= render 'activity_fields', :f => builder, only_current: only_current %>
   <% end %>
