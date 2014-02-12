@@ -1,0 +1,8 @@
+<% unless flash.blank? %>
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-warning">
+      <a class="close" href="#">×</a>
+      <%= content_tag :p, msg %>
+    <% end %>
+  </div>
+<% end %>

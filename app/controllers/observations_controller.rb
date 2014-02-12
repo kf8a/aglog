@@ -81,9 +81,9 @@ class ObservationsController < ApplicationController
 
     params.require(:observation).permit(:observation_date, :comment, {observation_type_ids: []},
                                         :areas_as_text, 
-                                        {activities_attributes: [{person: :id}, :hours, :id, :_destroy,
-                                          {setups_attributes: [{equipment: [:id]}, :id, :_destroy, 
-                                            {material_transactions_attributes: [:id, {material: :id}, :rate, 
+                                        {activities_attributes: [{person: :id}, :person_id, :hours, :id, :_destroy,
+                                          {setups_attributes: [{equipment: [:id]}, :equipment_id, :id, :_destroy, 
+                                            {material_transactions_attributes: [:id, :material_id, {material: :id}, :rate, 
                                               {unit: :id}, :_destroy]}] } ]})
   end
 end
