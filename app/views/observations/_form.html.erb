@@ -14,16 +14,18 @@
   <label for="observation_areas_as_text" class="control-label col-sm-2">Areas</label>
   <%= form.text_field :areas_as_text, hint: area_help_text, input_html: {class: "token-input", 'data-pre' => @observation.prepopulated_area_tokens} %>
 </div>
+<label class="control-label">Observation Type</label>
 <% ObservationType.all.each do |obs_type| %>
   <div class="checkbox">
     <label>
-      <%= check_box_tag obs_type.id, @observation.observation_types.include?(obs_type)  %>
+      <%= check_box_tag "observation_observation_type_ids_#{obs_type.id}", obs_type.id, 
+        @observation.observation_types.include?(obs_type), name: "observation[observation_type_ids][]" %>
       <%= obs_type.name %>
     </label>
   </div>
 <% end %>
 
-<div class="activities">
+<div class="activities row">
   <%= form.fields_for :activities do |builder| %>
       <%= render 'activity_fields', :f => builder, only_current: only_current %>
   <% end %>
