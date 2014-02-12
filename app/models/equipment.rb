@@ -6,8 +6,7 @@ class Equipment < ActiveRecord::Base
 
   validates_presence_of :company
 
-  validates :name, :uniqueness => { :case_sensitive => false, 
-                                    :scope => :company_id }
+  validates :name, :uniqueness => { case_sensitive: false, scope: :company_id }
 
   scope :current, -> { where(:archived => false)}
   scope :ordered, -> { order('name')}

@@ -1,5 +1,7 @@
 <h1>Edit observation</h1>
 
+<%= render partial: 'flash_notice' %>
+
 Created on: <%= @observation.created_on  %>
 
 <%= form_for @observation, input_html: {class: "form-horizontal", role: "form"}  do |form| %>

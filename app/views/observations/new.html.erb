@@ -1,5 +1,7 @@
 <h1>New Observation</h1>
 
+<%= render partial: 'flash_notice' %>
+
 <%= form_for @observation, input_html: {class: "form", role: "form"}  do |form| %>
   <div class="row"
     <%= render :partial => 'form', :locals => {:form => form, :only_current => true } %>
