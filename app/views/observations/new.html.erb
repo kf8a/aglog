@@ -1,8 +1,10 @@
 <h1>New Observation</h1>
 
 <%= form_for @observation, input_html: {class: "form", role: "form"}  do |form| %>
-  <%= render :partial => 'form', :locals => {:form => form, :only_current => true } %>
-  <%= form.submit "Create" %>
+  <div class="row"
+    <%= render :partial => 'form', :locals => {:form => form, :only_current => true } %>
+  </div>
+  <%= form.submit "Create", class: "btn btn-primary" %>
 <% end %>
 			
 <%= link_to 'List Observations', observations_path %>

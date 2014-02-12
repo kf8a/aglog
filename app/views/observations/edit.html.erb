@@ -3,8 +3,10 @@
 Created on: <%= @observation.created_on  %>
 
 <%= form_for @observation, input_html: {class: "form-horizontal", role: "form"}  do |form| %>
+  <div class="row"
   <%= render :partial => 'form', :locals => {:form => form, :only_current => false } %>
-  <%= form.submit "Submit" %>
+</div>
+  <%= form.submit "Submit" , class: "btn btn-primary"%>
 <% end %>
 
 

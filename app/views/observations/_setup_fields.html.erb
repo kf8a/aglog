@@ -1,15 +1,18 @@
-<div class="equipment form-group inputs">
-  <% if only_current %>
-    <%= f.select :equipment, Equipment.by_company(current_user.company).current.ordered.map {|eq| [eq.name, eq.id]}, :include_blank => false %>
-  <% else %>
-    <%= f.select :equipment, Equipment.by_company(current_user.company).ordered.map {|eq| [eq.name, eq.id]} , :include_blank => false %>
-  <% end %>
-  <%= link_to_remove_fields 'Remove', f %>
-
-  <div class="input material-transaction">
-    <%= f.fields_for :material_transactions do |builder| %>
-        <%= render 'material_transaction_fields', :f => builder, :only_current => only_current %>
+<div class="equipment form-group inputs row">
+  <div class="col-sm-offset-1 col-sm-4">
+    <% if only_current %>
+      <%= f.select :equipment_id, Equipment.by_company(current_user.company).current.ordered.map {|eq| [eq.name, eq.id]},
+        {:include_blank => false}, {class: "form-control"} %>
+    <% else %>
+      <%= f.select :equipment_id, Equipment.by_company(current_user.company).ordered.map {|eq| [eq.name, eq.id]},
+        { :include_blank => false}, {class: "form-control"} %>
     <% end %>
+    <%= link_to_remove_fields 'Remove', f %>
   </div>
-  <%= link_to_add_fields 'Add Material', f, :material_transactions, only_current %>
 </div>
+<div class="input material-transaction">
+  <%= f.fields_for :material_transactions do |builder| %>
+    <%= render 'material_transaction_fields', :f => builder, :only_current => only_current %>
+  <% end %>
+</div>
+<%= link_to_add_fields 'Add Material', f, :material_transactions, only_current %>

@@ -1,10 +1,22 @@
-<div class="form-group inputs">
-  <% if only_current %>
-    <%= f.select :material, Material.by_company(current_user.company).current.ordered.map {|m| [m.name, m.id]}, :include_blank=>false %>
-  <% else %>
-    <%= f.select :material, Material.by_company(current_user.company).ordered.map {|m| [m.name, m.id]}, :include_blank=>false %>
-  <% end %>
-  <%= f.text_field :rate, :input_html => {:size => 10}%>
-  <%= f.select :unit, Unit.all.map {|u| [u.name, u.id]}  %> per acre
-  <%= link_to_remove_fields "Remove", f %>
+<div class="form-group inputs row">
+  <div class="col-sm-offset-2 col-sm-4">
+    <% if only_current %>
+      <%= f.select :material, Material.by_company(current_user.company).current.ordered.map {|m| [m.name, m.id]},
+        {:include_blank=>false}, {class: "form-control"} %>
+    <% else %>
+      <%= f.select :material, Material.by_company(current_user.company).ordered.map {|m| [m.name, m.id]},
+        {:include_blank=>false}, {class: "form-control"} %>
+    <% end %>
+  </div>
+  <div class="col-sm-1">
+    <%= f.text_field :rate, class: "form-control" %>
+  </div>
+  <div class="col-sm-2">
+    <%= f.select :unit, Unit.all.map {|u| [u.name, u.id]}, {}, {class: "form-control"}  %> 
+  </div>
+  <div class="col-sm-2">
+    per acre
+    <%= link_to_remove_fields "Remove", f %>
+  </div>
+  </div>
 </div>

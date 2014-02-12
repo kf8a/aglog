@@ -1,6 +1,8 @@
 # encoding: UTF-8
 # Allows modification and viewing of observations
 class ObservationsController < ApplicationController
+  # ActionController::Parameters.action_on_unpermitted_parameters = :raise
+
 #  before_filter :require_user, :except => [:index, :show, :related]
   # helper_method :observation
   respond_to :json, :html
@@ -52,6 +54,7 @@ class ObservationsController < ApplicationController
 
   def update
     @observation = Observation.where(:id => params[:id]).includes(:observation_types, {:activities => {:setups => :material_transactions}}).first
+    p observation_params
     if @observation.update_attributes(observation_params)
       flash[:notice] = "Observation was successfully updated."
     end
@@ -75,7 +78,12 @@ class ObservationsController < ApplicationController
   private
 
   def observation_params
-    params.require(:observation).permit(:observation_date, :comment, :observation_type_ids, 
-                                        :areas_as_text, :activities_attributes)
+
+    params.require(:observation).permit(:observation_date, :comment, {observation_type_ids: []},
+                                        :areas_as_text, 
+                                        {activities_attributes: [{person: :id}, :hours, :id, :_destroy,
+                                          {setups_attributes: [{equipment: [:id]}, :id, :_destroy, 
+                                            {material_transactions_attributes: [:id, {material: :id}, :rate, 
+                                              {unit: :id}, :_destroy]}] } ]})
   end
 end

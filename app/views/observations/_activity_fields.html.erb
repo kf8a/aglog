@@ -1,15 +1,21 @@
-<div class="form-group inputs">
-  <% if only_current %>
-    <%= f.select :person, Person.by_company(current_user.company).current.ordered.map {|person| [person.name, person.id]}, include_blank: false %>
-  <% else %>
-    <%= f.select :person, Person.by_company(current_user.company).ordered.map {|person| [person.name, person.id]}, include_blank: false %>
-  <% end %>
-  <%= f.text_field :hours, input_html: {size: 5} %>
-  <div class="setup">
+<div class="form-group inputs row">
+  <div class="col-sm-4">
+    <% if only_current %>
+      <%= f.select :person_id, Person.by_company(current_user.company).current.ordered.map {|person| [person.name, person.id]}, 
+        {include_blank: false}, {class: "form-control"} %>
+    <% else %>
+      <%= f.select :person_id, Person.by_company(current_user.company).ordered.map {|person| [person.name, person.id]}, 
+        { include_blank: false}, { class: "form-control"} %>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <%= f.text_field :hours, class: "form-control"  %>
+  </div>
+</div>
+  <div class="setup row">
     <%= f.fields_for :setups do |builder| %>
       <%= render "setup_fields", f: builder, only_current: only_current %>
     <% end %>
   </div>
   <%= link_to_add_fields "Add Equipment", f, :setups, only_current %>
   <%= link_to_remove_fields "Remove Activity", f %>
-</div>
