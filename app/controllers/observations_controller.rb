@@ -1,7 +1,7 @@
 # encoding: UTF-8
 # Allows modification and viewing of observations
 class ObservationsController < ApplicationController
-  # ActionController::Parameters.action_on_unpermitted_parameters = :raise
+  ActionController::Parameters.action_on_unpermitted_parameters = :raise
 
 #  before_filter :require_user, :except => [:index, :show, :related]
   # helper_method :observation
@@ -80,10 +80,10 @@ class ObservationsController < ApplicationController
   def observation_params
 
     params.require(:observation).permit(:observation_date, :comment, {observation_type_ids: []},
-                                        :areas_as_text, 
+                                        :areas_as_text, :note, :note_cache,
                                         {activities_attributes: [{person: :id}, :person_id, :hours, :id, :_destroy,
                                           {setups_attributes: [{equipment: [:id]}, :equipment_id, :id, :_destroy, 
                                             {material_transactions_attributes: [:id, :material_id, {material: :id}, :rate, 
-                                              {unit: :id}, :_destroy]}] } ]})
+                                              {unit: :id}, :unit_id, :_destroy]}] } ]})
   end
 end

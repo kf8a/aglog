@@ -4,7 +4,7 @@
 
 Created on: <%= @observation.created_on  %>
 
-<%= form_for @observation, input_html: {class: "form-horizontal", role: "form"}  do |form| %>
+<%= form_for @observation, html: {multipart: true, class: "form", role: "form"}  do |form| %>
   <div class="row"
   <%= render :partial => 'form', :locals => {:form => form, :only_current => false } %>
 </div>
