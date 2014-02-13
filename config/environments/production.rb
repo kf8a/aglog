@@ -32,7 +32,7 @@ Aglog::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
@@ -41,7 +41,7 @@ Aglog::Application.configure do
   # config.log_tags = [ :subdomain, :uuid ]
 
   # Use a different logger for distributed setups
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+  config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
