@@ -27,22 +27,27 @@
   <% end %>
 </p>
 <p>
-  <b>Activities: </b><br/>
-  <% @observation.activities.each do | activity | %>
-    <div>
-      Worker: <%= activity.person_name %><br/>
-      <% activity.setups.each do |setup| %>
-        <div class='indent'>
-          Equipment: <%= setup.equipment_name %>
-          <% setup.material_transactions.each do |transaction| %>
-            &#149 Material: <%= transaction.material_name %>
-            @ <%= transaction.rate %>
-            <%= transaction.unit_name %> per acre
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+<b>Activities: </b><br/>
+<% @observation.activities.each do | activity | %>
+  <div>
+    Worker: <%= activity.person_name %><br/>
+    <% activity.setups.each do |setup| %>
+      <div class='indent'>
+        Equipment: <%= setup.equipment_name %>
+        <% setup.material_transactions.each do |transaction| %>
+          &#149 Material: <%= transaction.material_name %>
+          @ <%= transaction.rate %>
+          <%= transaction.unit_name %> per acre
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+</p>
+
+<p>
+<b> Attachment:</b><br/>
+<%= link_to @observation.note.file.filename, @observation.note.url %>
 </p>
 
 <%= link_to 'Related Observations', related_observations_path(:id => @observation.id) %>

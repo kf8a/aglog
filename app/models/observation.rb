@@ -3,9 +3,6 @@ require 'csv'
 
 # The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
-  # attr_protected :company_id unless Rails.env == 'test'
-  # attr_accessible :observation_date, :comment, :observation_type_ids , :areas_as_text, :activities_attributes
-
   attr :observation_date
 
   has_many :activities, :dependent => :destroy
@@ -14,6 +11,8 @@ class Observation < ActiveRecord::Base
   has_and_belongs_to_many :observation_types
   belongs_to :person, inverse_of: :observations
   belongs_to :company
+
+  mount_uploader :note, NoteUploader
 
   validates :obs_date,          :presence => true
   validates :observation_types, :presence => true

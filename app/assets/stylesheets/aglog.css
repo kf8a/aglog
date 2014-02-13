@@ -3,10 +3,6 @@ h1 {
 	font: small-caps bold large "Lucida Grande", Lucida, Verdana, sans-serif;
 }
 
-legend {
-	font-weight: bold;
-}
-
 a img { border: none;
 		text-decoration: none;
 }
@@ -17,28 +13,12 @@ a img { border: none;
   cursor: move;
 }
 
-.hovered {
-  background-color: grey;
-}
-
 div.droppable {
   height: 4px;
 }
 
 error { 
 	background-color:yellow
-}
-
-label {
-	display: block;
-	font-weight: bold;
-}
-
-tr:hover {
-  background-color: #FCF;
-}
-dt {
-    font-weight: bold
 }
 
 #main_page {
@@ -66,14 +46,6 @@ dt {
 
 .material_transactions {
 	display:  inline;
-}
-
-.header_bar {
-	background-color: aqua;
-}
-
-.indent {
-	text-indent: 1em;
 }
 
 .flickr_pagination {
@@ -104,62 +76,3 @@ dt {
     margin-right: 1em; }
   .flickr_pagination .next_page {
     margin-left: 1em; }
-
-.authentications {
-  margin-bottom: 30px;
-}
-
-.authentication {
-  width: 130px;
-  float: left;
-  background-color: #EEE;
-  border: solid 1px #999;
-  padding: 5px 10px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  position: relative;
-  margin-right: 10px;
-}
-
-.authentication .remove {
-  text-decoration: none;
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  color: #333;
-  padding: 2px 4px;
-  font-size: 10px;
-}
-
-.authentication .remove:hover {
-  color: #CCC;
-  background-color: #777;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-}
-
-.authentication img {
-  float: left;
-  margin-right: 10px;
-}
-
-.authentication .provider {
-  font-weight: bold;
-}
-
-.authentication .uid {
-  color: #666;
-  font-size: 11px;
-}
-
-.auth_provider img {
-  display: block;
-}
-
-.auth_provider {
-  float: left;
-  text-decoration: none;
-  margin-right: 20px;
-  text-align: center;
-  margin-bottom: 10px;
-}
