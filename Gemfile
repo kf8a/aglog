@@ -8,7 +8,8 @@ gem 'pg'
 
 gem 'devise'
 
-# gem 'will_paginate'
+gem 'carrierwave'
+
 gem 'will_paginate-bootstrap'
 gem 'haml'
 
@@ -33,12 +34,10 @@ gem 'barista'
 
 gem 'jbuilder'
 
-
 gem 'therubyracer', :require => 'v8'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
-#gem 'angularjs-rails'
 
 gem 'less-rails'
 
