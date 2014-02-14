@@ -22,7 +22,7 @@ class Person < ActiveRecord::Base
   end
 
   def self.ordered
-    order('given_name, sur_name')
+    order('sur_name, given_name')
   end
 
   def self.ordered_in_company(company)
