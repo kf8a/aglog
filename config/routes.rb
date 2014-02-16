@@ -1,8 +1,6 @@
 Aglog::Application.routes.draw do
   devise_for :users
 
-  resources :hazards
-
   post '/areas/:id/move_to/:parent_id' => 'areas#move_to'
   post '/areas/:id/move_before/:parent_id' => 'areas#move_before'
   resources :areas
@@ -18,15 +16,7 @@ Aglog::Application.routes.draw do
   resources :units
   resources :people
   resources :reports
-  resources :materials do
-    member do
-      patch :put_hazards
-      get :get_hazards
-    end
-    collection do
-      post :new_hazards
-    end
-  end
+  resources :materials
 
 #  match '/' => 'observations#index'
   root :to => "observations#index"
