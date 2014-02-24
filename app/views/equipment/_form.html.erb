@@ -1,0 +1,23 @@
+<%= render "shared/error_messages", :target => equipment %>
+
+<%= form_for equipment, html: {class: 'form', role: "form"}  do |form| %>
+  <div class="form-group row">
+    <label class="control-label col-sm-2">Name</label>
+    <%= form.text_field :name , class: "col-sm-6"%>
+  </div>
+  <div class="form-group row">
+    <%= form.check_box :use_material %>
+    <label>Use Material</label>
+    <%= form.check_box :is_tractor %>
+    <label>Tractor</label>
+  </div>
+  <div class="form-group row">
+    <%= form.check_box:archived %>
+    <label>Archived?</label>
+  <div class="form-group row">
+    <label class="control-label col-sm-2">Description</label>
+    <%= form.text_area :description,class: "col-sm-9", rows: 10 %>
+  </div>
+
+  <%= form.button :submit, class: "btn btn-primary" %> 
+<% end %>

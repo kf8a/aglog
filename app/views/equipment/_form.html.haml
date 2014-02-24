@@ -1,8 +1,0 @@
-= render "shared/error_messages", :target => equipment
-= simple_form_for equipment do |form|
-  = form.input :name
-  = form.input :use_material
-  = form.input :is_tractor, :label => 'Tractor'
-  = form.input :archived
-  = form.input :description, :as => :text
-  = form.button :submit
