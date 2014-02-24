@@ -7,3 +7,5 @@ TODO: irregular areas like the LYSIMETER field which does not have a treatment
       distinguish study names from irregular area names.
 TODO: units controller should show si units not unit ids.
 TODO: check people edit submit
+TODO: increase size of equipment description box
+TODO: check that equipment description is text and has no restrictions 
