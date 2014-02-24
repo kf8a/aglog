@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213172751) do
+ActiveRecord::Schema.define(version: 20140224162352) do
 
   create_table "activities", force: true do |t|
     t.integer "person_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140213172751) do
     t.integer "replicate"
     t.integer "study_id"
     t.integer "treatment_id"
-    t.string  "description"
+    t.text    "description"
     t.integer "company_id"
     t.integer "lft"
     t.integer "rgt"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20140213172751) do
     t.boolean "use_material", default: false
     t.boolean "is_tractor",   default: false
     t.integer "company_id"
-    t.string  "description"
+    t.text    "description"
     t.boolean "archived"
   end
 
