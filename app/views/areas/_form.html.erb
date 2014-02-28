@@ -12,11 +12,11 @@
     </div>
     <div class="form-group">
       <label for="area_study" class="control-label">Study</label>
-      <%= form.select :study, Study.all.map {|study| [study.name, study.id]},  { include_blank: true }, class: "form-control" %>
+      <%= form.select :study_id, Study.all.map {|study| [study.name, study.id]},  { include_blank: true }, class: "form-control" %>
     </div>
     <div class="form-group">
       <label for="area_treatment" class="control-label">Treatment</label>
-      <%= form.select :treatment, Treatment.all.map {|trt| [trt.name, trt.id]}, { include_blank: true }, class: "form-control" %>
+      <%= form.select :treatment_id, Treatment.all.map {|trt| [trt.name, trt.id]}, { include_blank: true }, class: "form-control" %>
     </div>
     <%= form.submit :submit, class: "btn btn-primary" %>
   </div>
