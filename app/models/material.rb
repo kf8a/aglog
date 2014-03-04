@@ -15,7 +15,7 @@ class Material < ActiveRecord::Base
   validates :name, :uniqueness => { :case_sensitive => false }
 
   def self.find_with_children(id)
-    where(:id => params[:id]).includes(:material_transactions, :setups => {:observation => :observation_types}).first
+    where(:id => id).includes(:material_transactions, :setups => {:observation => :observation_types}).first
   end
 
   # Converts liquids from liters to grams.
