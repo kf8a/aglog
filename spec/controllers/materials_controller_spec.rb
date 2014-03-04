@@ -45,7 +45,7 @@ describe MaterialsController do
 
   describe "POST :create with invalid attributes" do
     before(:each) do
-      post :create, :material => { :other => 'test'}
+      post :create, :material => { :name => ''}
     end
 
     it { should render_template :new }
