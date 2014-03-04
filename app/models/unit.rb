@@ -7,6 +7,8 @@ class Unit < ActiveRecord::Base
   validates :name, :uniqueness => { :case_sensitive => false }
 
   def si_unit_name
-    Unit.find(si_unit_id).first.name
+    if self.si_unit_id
+      Unit.find(self.si_unit_id).name
+    end
   end
 end
