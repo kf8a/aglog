@@ -1,33 +1,38 @@
-%h1 Listing Units
+%h1 Available Units
 
 - if signed_in?
-  = link_to "New unit", new_unit_path
+  %div.row
+    = link_to "New Unit", new_unit_path
 
-%table.table
-  %tr
-    %th Name
-    %th S.I. Unit
-    %th Conversion Factor
-
-  - @units.each do |unit|
+%div.row.col-sm-8
+  %table.table
     %tr
-      %td
-        =h unit.name
-      %td
-        = unit.si_unit_name
-      %td
-        =h unit.conversion_factor
+      %th Name
+      %th Conversion Factor to
+      %th S.I. Unit
       -if signed_in?
-        %td
-          = link_to 'Show', unit_path(unit)
-        %td
-          = link_to 'Edit', edit_unit_path(unit)
-        %td
-          = link_to 'Destroy', unit_path(unit), 
-            :data => {:confirm => "Are you sure you want to delete #{unit.name}?"}, 
-            :method => :delete
+        %th
+        %th
+        %th
 
-%br
+    - @units.each do |unit|
+      %tr
+        %td
+          =h unit.name
+        %td
+          =h unit.conversion_factor
+        %td
+          = unit.si_unit_name
+        -if signed_in?
+          %td
+            = link_to 'Show', unit_path(unit)
+          %td
+            = link_to 'Edit', edit_unit_path(unit)
+          %td
+            = link_to 'Destroy', unit_path(unit), 
+              :data => {:confirm => "Are you sure you want to delete #{unit.name}?"}, 
+              :method => :delete
 
-- if signed_in?
-  = link_to 'New Unit', new_unit_path
+%div.row.col-sm-8
+  - if signed_in?
+    = link_to 'New Unit', new_unit_path
