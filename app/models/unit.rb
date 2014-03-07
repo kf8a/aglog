@@ -11,4 +11,8 @@ class Unit < ActiveRecord::Base
       Unit.find(self.si_unit_id).name
     end
   end
+
+  def self.si_units
+    where('is_si_unit is true')
+  end
 end
