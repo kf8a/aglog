@@ -1,5 +1,6 @@
 <h1>New Observation</h1>
 
+<div class="content"
 <%= render partial: 'flash_notice' %>
 
 <%= form_for @observation, html: {multipart: true, class: "form", role: "form"}  do |form| %>
@@ -9,4 +10,5 @@
   <%= form.submit "Create", class: "btn btn-primary" %>
 <% end %>
 			
-<%= link_to 'List Observations', observations_path %>
+<%= link_to 'List Observations', observations_path, class: "btn btn-default" %>
+</div>

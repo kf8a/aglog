@@ -9,6 +9,8 @@
   <%= link_to "Burning", {:obstype => 9} %>
 </div>
 
+<%= link_to 'New observation', new_observation_path, class: "btn btn-primary" %>
+
 <div class='flickr_pagination'>
   <div class="page_info">
     <%= page_entries_info @observations %>
@@ -59,4 +61,4 @@
   <br />
   <%= will_paginate @observations, :renderer => BootstrapPagination::Rails %>
 </div>
-<%= link_to 'New observation', new_observation_path %>
+<%= link_to 'New observation', new_observation_path, class: "btn btn-primary" %>

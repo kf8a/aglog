@@ -1,5 +1,6 @@
 <h1>Edit observation</h1>
 
+<div class="content">
 <%= render partial: 'flash_notice' %>
 
 Created on: <%= @observation.created_on  %>
@@ -12,5 +13,6 @@ Created on: <%= @observation.created_on  %>
 <% end %>
 
 
-<%= link_to "Show", observation_path(@observation) %> |
-<%= link_to "List Observations", observations_path %>
+<%= link_to "Show", observation_path(@observation), class: "btn btn-default" %>
+<%= link_to "List Observations", observations_path, class: "btn btn-default" %>
+</div>
