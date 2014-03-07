@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224162352) do
+ActiveRecord::Schema.define(version: 20140307132134) do
 
   create_table "activities", force: true do |t|
     t.integer "person_id"
@@ -201,6 +201,7 @@ ActiveRecord::Schema.define(version: 20140224162352) do
     t.string  "name"
     t.integer "si_unit_id"
     t.float   "conversion_factor"
+    t.boolean "is_si_unit",        default: false
   end
 
   create_table "users", force: true do |t|
