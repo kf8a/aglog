@@ -1,14 +1,14 @@
 <h1>New Observation</h1>
 
-<div class="content"
-<%= render partial: 'flash_notice' %>
+<div class="content">
+  <%= render partial: 'flash_notice' %>
 
-<%= form_for @observation, html: {multipart: true, class: "form", role: "form"}  do |form| %>
-  <div class="row"
-    <%= render :partial => 'form', :locals => {:form => form, :only_current => true } %>
-  </div>
-  <%= form.submit "Create", class: "btn btn-primary" %>
-<% end %>
-			
-<%= link_to 'List Observations', observations_path, class: "btn btn-default" %>
+  <%= form_for @observation, html: {multipart: true, class: "form", role: "form"}  do |form| %>
+    <div class="row">
+      <%= render :partial => 'form', :locals => {:form => form, :only_current => true } %>
+    </div>
+    <%= form.submit "Create", class: "btn btn-primary" %>
+  <% end %>
+
+    <%= link_to 'List Observations', observations_path %>
 </div>
