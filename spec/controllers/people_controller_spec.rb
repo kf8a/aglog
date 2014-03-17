@@ -114,17 +114,6 @@ describe PeopleController do
         end
       end
 
-      context 'with invalid parameters' do
-        before(:each) do
-          post :create, :person => {:testing => 'Brown' }
-        end
-        it 'does not create a new person' do
-          expect(Person.exists?(assigns(:person))).to be_false
-        end
-        it 'redirects back to new' do
-          expect(response).to render_template 'new'
-        end
-      end
     end
 
     describe 'GET :edit' do

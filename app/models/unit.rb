@@ -4,7 +4,7 @@ class Unit < ActiveRecord::Base
   has_many :material_transactions
 
   scope :ordered, -> { order('name')}
-  validates :name, :uniqueness => { :case_sensitive => false }
+  validates :name, uniqueness: { case_sensitive: false }
 
   def si_unit_name
     if self.si_unit_id
