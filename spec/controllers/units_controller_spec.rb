@@ -7,7 +7,7 @@ describe UnitsController do
 
   before :each do
     Unit.stub(:persisted?).and_return(true)
-    Unit.stub(:find).with(unit.id.to_s).and_return(unit)
+    Unit.stub(:find).and_return(unit)
     unit.stub(:save).and_return(true)
   end
 
