@@ -1,8 +1,11 @@
 # Represents equipment used during an activity, like a plow or tractor.
 class Equipment < ActiveRecord::Base
   has_many                :setups
+  has_many                :equipment_pictures
   has_and_belongs_to_many :materials
   belongs_to :company
+
+  accepts_nested_attributes_for  :equipment_pictures
 
   validates_presence_of :company
 
