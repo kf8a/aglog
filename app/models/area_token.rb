@@ -8,6 +8,7 @@ class AreaToken < String
     end.transpose
   end
 
+  # NOTE that we are assuming a company id of 1
   def initialize(contents = '', company = 1)
     @company = company.presence || 1
     super(contents)

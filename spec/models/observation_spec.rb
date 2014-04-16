@@ -175,7 +175,7 @@ describe Observation do
   private
 
   def create_simple_observation
-    type = ObservationType.find_by_name('Soil Preparation')
+    type = ObservationType.find_or_create_by(name: 'Soil Preparation')
     assert type
     person1 = Person.find_by_sur_name("Sur1") || FactoryGirl.create(:person, :sur_name => "Sur1")
     company = find_or_factory(:company)
