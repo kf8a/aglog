@@ -16,7 +16,7 @@ describe EquipmentController do
     end
 
     it 'does not allow create' do
-      post :create, :equipment => { :name => 'Controller Creation' }
+      post :create, :equipment => { :name => 'Controller Creation', equipment_pictures: [] }
       response.should redirect_to new_user_session_path
     end
 
@@ -112,18 +112,6 @@ describe EquipmentController do
       it { should_not set_the_flash }
     end
 
-    describe "POST :create in xml format" do
-      before(:each) do
-        post :create,
-          :format => 'xml',
-          :equipment => {:name => '1' }
-      end
-
-			it 'should respond with content type test/xml' do
-				response.content_type.should == 'application/xml'
-			end
-    end
-
     describe "An equipment exists. " do
       before(:each) do
         @equipment = find_or_factory(:equipment, :company_id => @user.company.id)
@@ -147,7 +135,7 @@ describe EquipmentController do
 
       describe "PUT :update the equipment with valid attributes" do
         before(:each) do
-          put :update, :id => @equipment, :equipment => { :name => 'New Name' }
+          put :update, :id => @equipment, :equipment => { :name => 'New Name'}
         end
 
         it { should redirect_to equipment_path(@equipment) }
