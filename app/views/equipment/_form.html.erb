@@ -1,6 +1,6 @@
 <%= render "shared/error_messages", :target => equipment %>
 
-<%= form_for equipment, html: {class: 'form', role: "form"}  do |form| %>
+<%= form_for equipment, html: {class: 'form', role: "form", html:{ multipart: true }}  do |form| %>
   <div class="form-group row">
     <label class="control-label col-sm-2">Name</label>
     <%= form.text_field :name , class: "col-sm-6"%>
@@ -18,6 +18,22 @@
     <label class="control-label col-sm-2">Description</label>
     <%= form.text_area :description,class: "col-sm-9", rows: 10 %>
   </div>
+
+  <div class="form-group row">
+  <%= form.fields_for :equipment_pictures do |p| %>
+    <div class="field">
+      <%= p.label :equipment_picture%><br>
+      <%= p.file_field :equipment_picture, :multiple => true, name: "equipment_pictures[equipment_picture][]" %>
+    </div>
+  <% end %>
+
+  <% if params[:controller] == "post" && params[:action] == "edit" %> 
+    <% @equipment.equipment_pictures.each do |p| %>
+      <%= image_tag p.equipment_picture, :size => "150x150" %>
+    <% end %>
+  <% end %>
+</div>
+
 
   <%= form.button :submit, class: "btn btn-primary" %> 
 <% end %>

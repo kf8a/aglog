@@ -13,17 +13,22 @@ class EquipmentController < ApplicationController
 
   def show
     @equipment = Equipment.where(:id => params[:id]).includes(:setups => {:observation => :observation_types}).first
+    @equipment_pictures = @equipment.equipment_pictures.all
     respond_with @equipment
   end
 
   def new
     @equipment = Equipment.new
+    @equipment_pictures = @equipment.equipment_pictures.build
   end
 
   def create
     @equipment = Equipment.new(equipment_params)
     @equipment.company = current_user.company
     if @equipment.save
+      params[:equipment_pictures]['equipment_picture'].each do |picture|
+        @equipment_picture = @equipment.equipment_pictures.create(equipment_picture: picture, equipment_id: @equipment.id)
+      end
       flash[:notice] = 'Equipment was successfully created.'
     end
     respond_with @equipment
@@ -31,12 +36,19 @@ class EquipmentController < ApplicationController
 
   def edit
     @equipment = Equipment.by_company(current_user.company).find(params[:id])
+    if @equipment.equipment_pictures.empty?
+      @equipment_pictures = @equipment.equipment_pictures.build
+    end
     respond_with @equipment
   end
 
   def update
     @equipment = Equipment.by_company(current_user.company).find(params[:id])
-    @equipment.update_attributes(equipment_params)
+    if @equipment.update(equipment_params)
+      params[:equipment_pictures]['equipment_picture'].each do |picture|
+        @equipment_picture = @equipment.equipment_pictures.create(equipment_picture: picture, equipment_id: @equipment.id)
+      end
+    end
     respond_with @equipment
   end
 
