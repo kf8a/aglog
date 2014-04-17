@@ -10,6 +10,11 @@
     %b Description:
     = @equipment.description
 
+  %ul
+  - @equipment.equipment_pictures.each do |picture|
+    %li
+      = image_tag(picture_url)
+
 - @equipment.observations.each do |observation|
   %p
     = link_to observation.obs_date, observation_path(observation)

@@ -6,6 +6,7 @@ describe Equipment do
   it {should have_and_belong_to_many(:materials) }
   it { should belong_to :company }
   it { should validate_presence_of :company}
+  it { should have_many(:equipment_pictures)}
 
   it 'should validate the uniqueness of the case insensitive name by scope' do
     name = 'tractor'
