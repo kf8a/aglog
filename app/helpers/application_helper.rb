@@ -2,16 +2,25 @@
 module ApplicationHelper
 
   def link_to_remove_fields(name, f)
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
+    f.hidden_field(:_destroy) + link_to(name, "remove_fields(this)")
   end
 
   def link_to_add_fields(name, f, association, only_current)
-    new_object = f.object.class.reflect_on_association(association).klass.new
-    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
-      render(association.to_s.singularize + "_fields", :f => builder, :only_current => only_current)
+    new_object = f.object.send(association).klass.new
+    id = new_object.object_id
+    fields = f.fields_for(association, new_object, child_index: id) do |builder|
+      render(association.to_s.singularize + "_fields", f: builder, only_current: only_current)
     end
-    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
+    link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  # def link_to_add_fields(name, f, association, only_current = nil)
+  #   new_object = f.object.class.reflect_on_association(association).klass.new
+  #   fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+  #     render(association.to_s.singularize + "_fields", :f => builder, :only_current => only_current)
+  #   end
+  #   link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
+  # end
 
   # https://gist.github.com/1205828
   # Based on https://gist.github.com/1182136
