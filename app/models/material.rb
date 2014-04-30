@@ -12,7 +12,7 @@ class Material < ActiveRecord::Base
   scope :by_company, lambda {|company| where(:company_id => company)}
 
   validates_presence_of :name
-  validates :name, :uniqueness => { :case_sensitive => false }
+  validates :name, uniqueness: { case_sensitive: false, scope: :company_id }
 
   def self.find_with_children(id)
     where(:id => id).includes(:material_transactions, :setups => {:observation => :observation_types}).first

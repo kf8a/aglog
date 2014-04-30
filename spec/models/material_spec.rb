@@ -8,35 +8,40 @@ describe Material do
   describe "requires unique name: " do
     before(:each) do
       @repeat_name = 'seed corn'
-      find_or_factory(:material, :name => @repeat_name)
+      find_or_factory(:material, name: @repeat_name, company_id: 1)
     end
 
     it {should belong_to :company}
 
     describe 'an archived material' do
-      subject { Material.new(:name => 'deprecated', :archived=> true) }
+      subject { Material.new(name: 'deprecated', archived: true) }
         it { expect(subject).to be_valid}
     end
 
     describe 'a material with the same name as another' do
-      subject { Material.new(:name => @repeat_name) }
+      subject { Material.new(name: @repeat_name) }
       it { expect(subject).to_not be_valid }
     end
 
     describe 'a material with the same name, different case as another' do
-      subject { Material.new(:name => @repeat_name.upcase) }
+      subject { Material.new(name: @repeat_name.upcase) }
       it { expect(subject).to_not be_valid }
     end
 
     describe 'a material with a different name' do
-      subject { Material.new(:name => 'A New Material') }
+      subject { Material.new(name: 'A New Material') }
       it { expect(subject).to be_valid() }
+    end
+
+    describe "a material in a different company" do
+      subject {Material.new(name: @repeat_name, company_id: 2) }
+      it {expect(subject).to be_valid }
     end
   end
 
   describe "A material exists that is liquid. " do
     before(:each) do
-      @material = Material.new(:name => 'liquid_material', :liquid => true)
+      @material = Material.new(name: 'liquid_material', liquid: true)
     end
 
     context "to_mass(amount)" do
