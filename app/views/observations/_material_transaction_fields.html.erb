@@ -12,9 +12,9 @@
   <div class="col-sm-2">
     <%= f.select :unit_id, Unit.all.map {|u| [u.name, u.id]}, {}, {class: "form-control"}  %> 
   </div>
-  <div class="col-sm-r42">
+  <div class="col-sm-2">
     per acre
   </div>
   <%= f.hidden_field :_destroy %>
-  <%= link_to "Remove", '#', class: "remove_fields" %>
+  <%= link_to "Remove Material", '#', class: "remove_fields" %>
 </fieldset>
