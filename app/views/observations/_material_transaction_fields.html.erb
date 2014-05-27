@@ -1,5 +1,5 @@
-<div class="form-group inputs row">
-  <div class="col-sm-offset-2 col-sm-4">
+<fieldset class="form-group inputs row">
+  <div class="col-sm-offset-2 col-sm-5">
     <% if only_current %>
       <%= f.select :material_id, Material.by_company(current_user.company).current.ordered.map {|m| [m.name, m.id]}, {:include_blank=>false}, {class: "form-control"} %>
     <% else %>
@@ -12,8 +12,9 @@
   <div class="col-sm-2">
     <%= f.select :unit_id, Unit.all.map {|u| [u.name, u.id]}, {}, {class: "form-control"}  %> 
   </div>
-  <div class="col-sm-2">
+  <div class="col-sm-r42">
     per acre
-    <%= link_to_remove_fields "Remove", f %>
   </div>
-</div>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "Remove", '#', class: "remove_fields" %>
+</fieldset>
