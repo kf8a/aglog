@@ -1,4 +1,4 @@
-<div class="form-group inputs row">
+<fieldset class="form-group inputs row">
   <div class="col-sm-4">
     <% if only_current %>
       <%= f.select :person_id, Person.by_company(current_user.company).current.ordered.map {|person| [person.name, person.id]}, {include_blank: false}, {class: "form-control"} %>
@@ -14,6 +14,7 @@
       <%= render "setup_fields", f: builder, only_current: only_current %>
     <% end %>
   </div>
+  <%= f.hidden_field :_destroy %>
   <%= link_to_add_fields "Add Equipment", f, :setups, only_current %>
-  <%= link_to_remove_fields "Remove Activity", f %>
-</div>
+  <%= link_to "Remove Activity", '#', class: 'remove_fields' %>
+</fieldset>
