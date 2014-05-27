@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.0'
+gem 'rails', '~> 4.1'
 
 gem 'rake'
 
@@ -35,7 +35,7 @@ gem 'barista'
 gem 'jbuilder'
 
 gem 'therubyracer', :require => 'v8'
-gem 'sass-rails'
+#gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
 
