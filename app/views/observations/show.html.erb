@@ -46,11 +46,14 @@
 </p>
 
 <p>
-<% unless @observation.note.file.nil? %>
-  <b> Attachment:</b><br/>
-  <%= link_to @observation.note.file.try(:filename), @observation.note.url %>
-  </p>
+<b>Files:</b><br/>
+<ul>
+<% @observation.observation_attachments.each do |p| %>
+  <li> <%= link_to p.attachment.file.filename, p.attachment_url %></li>
 <% end %>
+</ul>
+</p>
+<br/>
 
 <%= link_to 'Related Observations', related_observations_path(:id => @observation.id) %>
 <%= link_to 'New observation', new_observation_path %>

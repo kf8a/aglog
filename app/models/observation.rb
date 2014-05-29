@@ -12,7 +12,9 @@ class Observation < ActiveRecord::Base
   belongs_to :person, inverse_of: :observations
   belongs_to :company
 
-  mount_uploader :note, NoteUploader
+  has_many :observation_attachments
+
+  # mount_uploader :note, NoteUploader
 
   validates :obs_date,          :presence => true
   validates :observation_types, :presence => true
@@ -24,6 +26,7 @@ class Observation < ActiveRecord::Base
   scope :by_state, lambda {|state| where(:state=> state)}
 
   accepts_nested_attributes_for :activities, :allow_destroy => true
+  accepts_nested_attributes_for :observation_attachments
 
   def no_invalid_areas
     errors.add(:base, 'invalid areas') if @error_areas.present?
