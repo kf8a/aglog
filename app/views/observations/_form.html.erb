@@ -33,17 +33,9 @@
 <%= link_to_add_fields "Add Activity", form, :activities, only_current %>
 
 <div class='note form-group row'>
-  <%= form.fields_for :observation_attachments do |p| %>
-    <div class="field">
-      <%= p.label :attachment %><br>
-      <%= p.file_field :note, :multiple => true, name: "observation_attachments[attachment][]" %>
-    </div>
-  <% end %>
-
-  <% if params[:controller] == "observation" && params[:action] == "edit" %> 
-    <% @observation.observation_attachments.each do |p| %>
-      <%= link_to p.attachment.file.filename, p.attachment %>
-    <% end %>
-  <% end %>
-
+  <label class="control-label col-sm-2">Note</label>
+  <div class="col-sm-5 btn btn-file">
+    <%= form.file_field :note %>
+    <%= form.hidden_field :note_cache %>
+  </div>
 </div>
