@@ -33,7 +33,6 @@ class ObservationsController < ApplicationController
   def new
     @observation = Observation.new
     @observation.obs_date = Date.today
-    @observation_attachment = @observation.observation_attachments.build
     respond_with @observation
   end
 
@@ -43,25 +42,9 @@ class ObservationsController < ApplicationController
     user = current_user.person
     @observation = user.observations.new(observation_params)
     @observation.company = user.company
-    logger.info @observation.to_s
-    logger.info ['valid', @observation.valid?]
-    @observation.errors.each do |err|
-      logger.info err
-    end
-    respond_to do |format|
-      if @observation.save
-        flash[:form] = 'Observation was successfully created.'
-        params[:observation_attachments]['attachment'].each do |attachment|
-          attachment = ObservationAttachment.create!(attachment: attachment)
-          @observation.observation_attachments << attachment
-          attachment.save
-        end
-        format.html { redirect_to @observation }
-      else
-        flash[:form] = "Creation failed"
-        format.html { render action: 'new' }
-      end
-    end
+    logger.info user.name
+    flash[:form] = @observation.save ? 'Observation was successfully created.' : "Creation failed"
+    respond_with @observation
   end
 
   def edit
@@ -97,7 +80,7 @@ class ObservationsController < ApplicationController
   def observation_params
 
     params.require(:observation).permit(:observation_date, :comment, {observation_type_ids: []},
-                                        :areas_as_text, {observation_attachments_attributes: [:id, :observation_id, :attachment]},
+                                        :areas_as_text, :note, :note_cache,
                                         {activities_attributes: [{person: :id}, :person_id, :hours, :id, :_destroy,
                                           {setups_attributes: [{equipment: [:id]}, :equipment_id, :id, :_destroy, 
                                             {material_transactions_attributes: [:id, :material_id, {material: :id}, :rate, 
