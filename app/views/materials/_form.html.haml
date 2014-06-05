@@ -3,7 +3,7 @@
   = form.input :name, :input_html => { :id => 'focus_here' }
   = form.input :archived
   = form.input :liquid, :label => 'Liquid?'
-  = form.input :material_type, :as => :select, :input_html => { :size => 6 }
+  = form.input :material_type_id, label: 'Material Type',  collection: MaterialType.all.collect {|x| [x.name, x.id]}, :input_html => { :size => 6 }
   = form.input :n_content, :label => 'N(%)'
   = form.input :p_content, :label => 'P(%)'
   = form.input :k_content, :label => 'K(%)'
