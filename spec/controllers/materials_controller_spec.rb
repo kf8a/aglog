@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MaterialsController do
+describe MaterialsController, type: :controller do
   render_views
 
   let(:material) { FactoryGirl.build_stubbed(:material, name: "custom material")}

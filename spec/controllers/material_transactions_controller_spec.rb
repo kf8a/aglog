@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MaterialTransactionsController do
+describe MaterialTransactionsController, type: :controller  do
   render_views
 
   let(:material_transaction) { FactoryGirl.build_stubbed(:material_transaction) }
