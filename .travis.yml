@@ -1,0 +1,22 @@
+language: ruby
+rvm:
+  - 2.2.0
+
+bundler_args: --without production
+
+env:
+  DEVISE_SECRET="39bcedf487fe83bd4637dbaf5d738db0ce2a004e4ece7a5896b225e49101cce2fd0b73c8c95629c5d05e6c1f3869597d113bd11ce7f2bc37278923527406a845"
+  DEVISE_PEPPER="39bcedf487fe83ba4637dbaf5d338db0ce2a004e4e3e7a5896b265e49101ccc2fd0b73c8c9562fc5d05e6c1f3869547d113bd11ce7f2bce7278923527a091845"
+  APP_SECRET="39bcedf487fe83bd4637dbaf5d738db0ce2a004e4ece7a5896a265e49101cae2fd0b73c8c45629c5d05e6c1f3469597d113bd11ce7f2bc372789235274061845"
+
+addons:
+  postgresql: "9.3"
+
+script:
+  - bundle exec rake db:test:prepare
+  - bundle exec rake test
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.travis.yml config/database.yml
+
