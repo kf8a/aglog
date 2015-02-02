@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UnitsController do
+describe UnitsController, type: :controller  do
   render_views
 
   let(:unit) { FactoryGirl.build_stubbed(:unit, name: 'custom unit')}

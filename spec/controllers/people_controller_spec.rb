@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PeopleController do
+describe PeopleController, type: :controller  do
   render_views
 
   let(:person) { FactoryGirl.build_stubbed(:person, sur_name: 'hastings', given_name: 'bill')}

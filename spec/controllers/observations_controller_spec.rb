@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ObservationsController do
+describe ObservationsController, type: :controller  do
   render_views
 
   let(:observation) { FactoryGirl.build_stubbed(:observation)}

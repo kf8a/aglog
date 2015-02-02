@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe EquipmentController do
+describe EquipmentController, type: :controller  do
   render_views
 
   describe 'Not signed in. ' do

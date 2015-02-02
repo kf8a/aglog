@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AreasController do
+describe AreasController, type: :controller do
   render_views
 
   let(:area) { FactoryGirl.build_stubbed(:area, name: "custom area")}

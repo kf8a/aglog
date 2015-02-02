@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ReportsController do
+describe ReportsController, type: :controller  do
   render_views
 
   before(:each) do
