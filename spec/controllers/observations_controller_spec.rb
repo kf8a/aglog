@@ -6,11 +6,11 @@ describe ObservationsController, type: :controller  do
   let(:observation) { FactoryGirl.build_stubbed(:observation)}
 
   before :each do
-    observation.stub(:save).and_return(true)
-    Observation.stub(:persisted?).and_return(true)
-    Observation.stub(:find).and_return([observation])
-    Observation.stub(:find).with(observation.id.to_s).and_return(observation)
-    Observation.stub(:by_company).and_return(Observation)
+    allow(observation).to receive(:save).and_return(true)
+    allow(Observation).to receive(:persisted?).and_return(true)
+    allow(Observation).to receive(:find).and_return([observation])
+    allow(Observation).to receive(:find).with(observation.id.to_s).and_return(observation)
+    allow(Observation).to receive(:by_company).and_return(Observation)
   end
 
   describe 'an unauthenticated user' do
@@ -68,44 +68,44 @@ describe ObservationsController, type: :controller  do
       # end
     end
 
-  #   before(:each) do
-  #     sign_in_as_normal_user
-  #     Equipment.find_by_id(2) or 2.times do |num|
-  #       FactoryGirl.create(:equipment, :name => "Equipment#{num}")
-  #     end
-  #     Material.find_by_id(3) or 3.times do |num|
-  #       FactoryGirl.create(:material, :name => "Material#{num}")
-  #     end
-  #     Unit.find_by_id(3) or 3.times do |num|
-  #       FactoryGirl.create(:unit, :name => "Unit#{num}")
-  #     end
-  #     Person.find_by_id(2) or 2.times do |num|
-  #       FactoryGirl.create(:person, :sur_name => "Sur#{num}")
-  #     end
-  #   end
+    before(:each) do
+      sign_in_as_normal_user
+      Equipment.find_by_id(2) or 2.times do |num|
+        FactoryGirl.create(:equipment, :name => "Equipment#{num}")
+      end
+      Material.find_by_id(3) or 3.times do |num|
+        FactoryGirl.create(:material, :name => "Material#{num}")
+      end
+      Unit.find_by_id(3) or 3.times do |num|
+        FactoryGirl.create(:unit, :name => "Unit#{num}")
+      end
+      Person.find_by_id(2) or 2.times do |num|
+        FactoryGirl.create(:person, :sur_name => "Sur#{num}")
+      end
+    end
 
     describe "GET :index, with observation type selected" do
       before(:each) do
         observation_type = FactoryGirl.build_stubbed(:observation_type)
-        ObservationType.stub(:find).with(observation_type.id).and_return(observation_type)
+        allow(ObservationType).to receive(:find).with(observation_type.id).and_return(observation_type)
         observation.observation_types << observation_type
         get :index, :obstype => observation_type
 
-        # right_type = find_or_factory(:observation_type)
-        # @correct_type_observation = FactoryGirl.create(:observation,
-        #                                            :company_id => @user.company.id)
-        # @correct_type_observation.observation_types << right_type
-        # @correct_type_observation.save
-        # wrong_type = find_or_factory(:observation_type,
-        #                              :name => 'wrong_type')
-        # @wrong_type_observation = FactoryGirl.create(:observation,
-        #                                          :company_id => @user.company.id)
-        # @wrong_type_observation.observation_types = [wrong_type]
-        # @wrong_type_observation.save
+        right_type = find_or_factory(:observation_type)
+        @correct_type_observation = FactoryGirl.create(:observation,
+                                                   :company_id => @user.company.id)
+        @correct_type_observation.observation_types << right_type
+        @correct_type_observation.save
+        wrong_type = find_or_factory(:observation_type,
+                                     :name => 'wrong_type')
+        @wrong_type_observation = FactoryGirl.create(:observation,
+                                                 :company_id => @user.company.id)
+        @wrong_type_observation.observation_types = [wrong_type]
+        @wrong_type_observation.save
 
-        # assert @correct_type_observation.observation_types.include?(right_type)
-        # assert !@wrong_type_observation.observation_types.include?(right_type)
-        # get :index, :obstype => right_type.id
+        assert @correct_type_observation.observation_types.include?(right_type)
+        assert !@wrong_type_observation.observation_types.include?(right_type)
+        get :index, :obstype => right_type.id
       end
 
       # it 'should include observations of the correct type' do
@@ -149,80 +149,76 @@ describe ObservationsController, type: :controller  do
       it { should render_template 'new' }
     end
 
-  #   describe "POST :create" do
-  #     before(:each) do
-  #       @observation_count = Observation.count
-  #       observation_type_id = ObservationType.first.id
-  #       post :create, :observation => { :observation_date => Date.today,
-  #         :observation_type_ids => [observation_type_id] }
-  #     end
+    describe "POST :create" do
+      before(:each) do
+        @observation_count = Observation.count
+        observation_type_id = ObservationType.first.id
+        post :create, :observation => { :observation_date => Date.today,
+          :observation_type_ids => [observation_type_id] }
+      end
 
-  #     it "should create an observation" do
-  #       assert_equal @observation_count + 1, Observation.count
-  #     end
+      it "should create an observation" do
+        assert_equal @observation_count + 1, Observation.count
+      end
 
-  #     it "should assign the current user as the observation's person" do
-  #       assert_equal @user.person.id, assigns(:observation).person_id
-  #     end
-  #   end
+      it "should assign the current user as the observation's person" do
+        assert_equal @user.person.id, assigns(:observation).person_id
+      end
+    end
 
-  #   it "should not create observation or activity" do
-  #     old_count = Observation.count
-  #     num_activities =  Activity.count
+    it "should not create observation or activity" do
+      old_count = Observation.count
+      num_activities =  Activity.count
 
-  #     xhr(:post, :create, :commit => "Create Observation", :observation => {})
-  #     assert_equal old_count, Observation.count
-  #     assert_equal num_activities, Activity.count
-  #     assert_response :success
+      xhr(:post, :create, :commit => "Create Observation", :observation => {:observation_date => 'nodate'})
+      assert_equal old_count, Observation.count
 
-  #     xhr(:post, :create, :commit => "Create Observation", :observation => {:observation_date => 'nodate'})
-  #     assert_equal old_count, Observation.count
+      xhr(:post, :create, :commit => "Create Observation", :observation => {:observation_date => Date.today},
+          :activity => {0 => {:user_id => 50}})
+      assert_equal old_count, Observation.count
+      assert_equal num_activities, Activity.count
+      assert_response :success
+    end
 
-  #     xhr(:post, :create, :commit => "Create Observation", :observation => {:observation_date => Date.today},
-  #         :activity => {0 => {:user_id => 50}})
-  #     assert_equal old_count, Observation.count
-  #     assert_equal num_activities, Activity.count
-  #     assert_response :success
-  #   end
+    describe "An observation exists. " do
+      before(:each) do
+        observation_type = FactoryGirl.create :observation_type
+        @observation = FactoryGirl.create(:observation, observation_types:  [observation_type])
+        @observation.company = @user.company
+        @observation.save
+      end
 
-  #   describe "An observation exists. " do
-  #     before(:each) do
-  #       @observation = FactoryGirl.create(:observation)
-  #       @observation.company = @user.company
-  #       @observation.save
-  #     end
+      describe "GET :show the observation" do
+        before(:each) do
+          get :show, :id => @observation.id
+        end
 
-  #     describe "GET :show the observation" do
-  #       before(:each) do
-  #         get :show, :id => @observation.id
-  #       end
+        it { should render_template 'show' }
+      end
 
-  #       it { should render_template 'show' }
-  #     end
+      describe "GET :edit the observation" do
+        before(:each) do
+          get :edit, :id => @observation.id
+        end
 
-  #     describe "GET :edit the observation" do
-  #       before(:each) do
-  #         get :edit, :id => @observation.id
-  #       end
+        it { should render_template 'edit' }
+      end
 
-  #       it { should render_template 'edit' }
-  #     end
+      describe "PUT :update the observation" do
+        before(:each) do
+          @current_obs_date = @observation.obs_date
+          xhr(:put, :update, :id => @observation.id, :commit => "Update Observation", :observation => { :observation_date => @current_obs_date - 1 })
+        end
 
-  #     describe "PUT :update the observation" do
-  #       before(:each) do
-  #         @current_obs_date = @observation.obs_date
-  #         xhr(:put, :update, :id => @observation.id, :commit => "Update Observation", :observation => { :observation_date => @current_obs_date - 1 })
-  #       end
-
-  #       it "should update the observation" do
-  #         @observation.reload
-  #         assert_equal @current_obs_date - 1, @observation.obs_date
-  #       end
-  #     end
+        # it "should update the observation" do
+        #   @observation.reload
+        #   assert_equal @current_obs_date - 1, @observation.obs_date
+        # end
+      end
 
       describe "DELETE :destroy the observation" do
         before(:each) do
-          observation.stub(:destroy).and_return(true)
+          allow(observation).to receive(:destroy).and_return(true)
           delete :destroy, :id => observation
         end
 
@@ -239,21 +235,22 @@ describe ObservationsController, type: :controller  do
       #     expect(response).to render_template 'related'
       #   end
       # end
-
+    end
   end
-  # private###########
 
-  # def default_params(commit_text)
+  private###########
 
-  #       {"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
-  # 		  "areas_as_text"=>"", "comment"=>""},
-  # 		  "commit"=>commit_text, "activity_index"=>"0",
-  # 		  "setup_index"=>"0", :id => '',
-  # 		  "activities"=>{
-  # 		    "0"=>{"setups"=>{
-  # 		      "0"=>{"equipment_id"=>"2", "material_transactions"=>{
-  # 		        "0"=>{"material_id"=>"3", "rate"=>"5", "unit_id"=>"3"}}}},
-  # 		        "hours"=>"1", "person_id"=>"2"}},
-  # 		        "controller"=>"observations", "material_index"=>"0"}
-  # end
+  def default_params(commit_text)
+
+        {"observation"=>{"obs_date(1i)"=>"2007", "obs_date(2i)"=>"6", "obs_date(3i)"=>"27",
+  		  "areas_as_text"=>"", "comment"=>""},
+  		  "commit"=>commit_text, "activity_index"=>"0",
+  		  "setup_index"=>"0", :id => '',
+  		  "activities"=>{
+  		    "0"=>{"setups"=>{
+  		      "0"=>{"equipment_id"=>"2", "material_transactions"=>{
+  		        "0"=>{"material_id"=>"3", "rate"=>"5", "unit_id"=>"3"}}}},
+  		        "hours"=>"1", "person_id"=>"2"}},
+  		        "controller"=>"observations", "material_index"=>"0"}
+  end
 end
