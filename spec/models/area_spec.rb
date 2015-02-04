@@ -273,7 +273,7 @@ describe Area do
 
     describe 'areas with the same name from different company' do
       before(:each) do
-        @area = Area.find_by(name: 'T1R1')
+        @area = Area.where(name: 'T1R1').first
         @area.company_id = 1
         @area.save
       end

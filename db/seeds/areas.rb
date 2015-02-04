@@ -18,6 +18,9 @@ main = Area.find_or_create_by(:name => "T", :study_id => 1, :company_id=>company
                                             :company_id=>company.id,
                                             :study_id => 1)
 
+    treatment_area.save
+    next unless treatment_area.valid?
+
     treatment_area.move_to_child_of(main)
 
     area = Area.find_or_create_by(:name => "T#{treat}R#{rep}",
