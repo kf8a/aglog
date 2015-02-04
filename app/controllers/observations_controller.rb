@@ -80,7 +80,7 @@ class ObservationsController < ApplicationController
   def observation_params
 
     params.require(:observation).permit(:observation_date, :comment, {observation_type_ids: []},
-                                        :areas_as_text, :note, :note_cache,
+                                        :areas_as_text, :note, :note_cache, {notes: []}, :notes_cache,
                                         {activities_attributes: [{person: :id}, :person_id, :hours, :id, :_destroy,
                                           {setups_attributes: [{equipment: [:id]}, :equipment_id, :id, :_destroy, 
                                             {material_transactions_attributes: [:id, :material_id, {material: :id}, :rate, 
