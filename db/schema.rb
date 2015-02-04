@@ -16,18 +16,13 @@ ActiveRecord::Schema.define(version: 20150204172434) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "activities", force: true do |t|
     t.integer "person_id"
-    t.integer "observation_id",    null: false
+    t.integer "observation_id"
     t.integer "operation_type_id"
     t.text    "comment"
     t.float   "hours"
   end
-
-  add_index "activities", ["observation_id"], name: "activity_observation_id_idx", using: :btree
 
   create_table "areas", force: true do |t|
     t.string  "name"
@@ -46,8 +41,6 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.integer "area_id"
   end
 
-  add_index "areas_observations", ["observation_id", "area_id"], name: "areas_observation_idx", unique: true, using: :btree
-
   create_table "companies", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -58,9 +51,9 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.string  "name"
     t.boolean "use_material", default: false
     t.boolean "is_tractor",   default: false
-    t.integer "company_id"
     t.text    "description"
     t.boolean "archived"
+    t.integer "company_id"
   end
 
   create_table "equipment_materials", id: false, force: true do |t|
@@ -101,7 +94,7 @@ ActiveRecord::Schema.define(version: 20150204172434) do
   end
 
   create_table "material_transactions", force: true do |t|
-    t.integer  "material_id",                  null: false
+    t.integer  "material_id"
     t.integer  "unit_id"
     t.integer  "setup_id"
     t.float    "rate"
@@ -127,13 +120,6 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.boolean "archived",          default: false
   end
 
-  create_table "observation_attachments", force: true do |t|
-    t.integer  "observation_id"
-    t.string   "attachment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "observation_types", force: true do |t|
     t.string "name"
   end
@@ -154,8 +140,6 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.json    "notes"
   end
 
-  add_index "observations", ["obs_date"], name: "observation_date_idx", using: :btree
-
   create_table "open_id_authentication_associations", force: true do |t|
     t.integer "issued"
     t.integer "lifetime"
@@ -175,18 +159,14 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.string   "given_name"
     t.string   "sur_name"
     t.string   "openid_identifier"
+    t.string   "persistence_token"
     t.string   "password_salt"
     t.datetime "last_request_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "persistence_token"
     t.integer  "company_id"
     t.boolean  "archived",          default: false
     t.integer  "user_id"
-  end
-
-  create_table "schema_info", id: false, force: true do |t|
-    t.integer "version"
   end
 
   create_table "sessions", force: true do |t|
@@ -204,9 +184,6 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.integer "equipment_id"
     t.string  "settings"
   end
-
-  add_index "setups", ["activity_id"], name: "setups_activity_id_idx", using: :btree
-  add_index "setups", ["equipment_id"], name: "setups_equipment_id_idx", using: :btree
 
   create_table "studies", force: true do |t|
     t.string "name"
@@ -238,8 +215,8 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "company_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
