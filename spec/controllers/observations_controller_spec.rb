@@ -227,7 +227,7 @@ describe ObservationsController, type: :controller  do
         end
 
         it 'should remove the observation' do
-          expect(Observation.exists?(observation)).to be_false
+          expect(Observation.exists?(observation)).to eq false
         end
 
         it { should redirect_to observations_path }

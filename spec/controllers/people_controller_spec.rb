@@ -107,7 +107,7 @@ describe PeopleController, type: :controller  do
         end
 
         it 'creates a new person' do
-          expect(Person.exists?(assigns(:person))).to be_true
+          expect(Person.exists?(assigns(:person))).to eq true 
         end
         it 'redirects to the new person' do
           expect(response).to redirect_to Person.last
@@ -156,7 +156,7 @@ describe PeopleController, type: :controller  do
       end
 
       it 'deletes the person' do
-        expect(Person.exists?(person)).to be_false
+        expect(Person.exists?(person)).to eq false 
       end
 
       it 'redirects to index' do

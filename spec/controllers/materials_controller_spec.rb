@@ -6,11 +6,10 @@ describe MaterialsController, type: :controller do
   let(:material) { FactoryGirl.build_stubbed(:material, name: "custom material")}
 
   before :each do
-    material.stub(:save).and_return(true)
-    Material.stub(:persisted?).and_return(true)
-    Material.stub(:find).with(material.id.to_s).and_return(material)
-    Material.stub(:by_company).and_return(Material)
-    # material.stub(:errors).and_return('')
+    allow(material).to receive(:save).and_return(true)
+    allow(Material).to receive(:persisted?).and_return(true)
+    allow(Material).to receive(:find).with(material.id.to_s).and_return(material)
+    allow(Material).to receive(:by_company).and_return(Material)
 
     sign_in_as_normal_user
   end
@@ -34,7 +33,7 @@ describe MaterialsController, type: :controller do
     end
 
     it 'create the material' do
-      expect(Material.exists?(assigns[:material])).to be_true
+      expect(Material.exists?(assigns[:material])).to eq true
     end
 
     it 'redirects to new material' do
@@ -98,7 +97,7 @@ describe MaterialsController, type: :controller do
 
   describe "PUT :update with invalid attributes" do
     before(:each) do
-      material.stub(:update_attributes).and_return(false)
+      allow(material).to receive(:update_attributes).and_return(false)
       put :update, :id => material, :material => { :name => "repeat_name" }
     end
 
@@ -111,12 +110,12 @@ describe MaterialsController, type: :controller do
 
   describe 'DESTROY' do
     before(:each) do
-      material.stub(:destroy).and_return(true)
+      allow(material).to receive(:destroy).and_return(true)
       delete :destroy, :id => material
     end
 
     it "should destroy material" do
-      expect(Material.exists?(material)).to be_false
+      expect(Material.exists?(material)).to eq false
     end
 
     it 'redirects to index' do
