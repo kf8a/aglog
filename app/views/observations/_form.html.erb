@@ -32,14 +32,10 @@
 </div>
 <%= link_to_add_fields "Add Activity", form, :activities, only_current %>
 
-<div class='note form-group row'>
-  <label class="control-label col-sm-2">Note</label>
-  <div class="col-sm-5 btn btn-file">
-    <%= form.file_field :note %>
-    <%= form.hidden_field :note_cache %>
-  </div>
-</div>
 <div class='notes form-group row'>
+  <% notes.each do |note|%>
+    <%= link_to note.identifier, note.url %>
+  <% end %>
   <label class="control-label col-sm-2">Notes</label>
   <div class="col-sm-5 btn btn-file">
     <%= form.file_field :notes, multiple: true %>
