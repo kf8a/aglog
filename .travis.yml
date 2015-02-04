@@ -15,7 +15,7 @@ addons:
 script:
   - bundle exec rake db:test:prepare
   - rake db:seed
-  - bundle exec rake 
+  - bundle exec rake spec
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
