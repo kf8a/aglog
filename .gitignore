@@ -12,3 +12,4 @@ vendor/gems/environment.rb
 nbproject/*
 public/coffeescripts/
 production
+public/uploads
