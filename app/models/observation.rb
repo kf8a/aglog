@@ -13,7 +13,7 @@ class Observation < ActiveRecord::Base
   belongs_to :company
 
   mount_uploader :note, NoteUploader
-  mount_uploaders :notes,, NoteUploader
+  mount_uploaders :notes, NoteUploader
 
   validates :obs_date,          :presence => true
   validates :observation_types, :presence => true
