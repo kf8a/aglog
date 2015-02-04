@@ -8,7 +8,7 @@ gem 'pg'
 
 gem 'devise'
 
-gem 'carrierwave'
+gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 
 gem 'will_paginate-bootstrap'
 gem 'haml'

@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/carrierwaveuploader/carrierwave.git
+  revision: 0033279be9b62bccb330a6d78c8fa9e21a299d5a
+  specs:
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+
+GIT
   remote: https://github.com/collectiveidea/awesome_nested_set.git
   revision: 8b93a96ead33a3d10878be06ca059c4976f20022
   specs:
@@ -61,11 +71,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
     chronic (0.10.2)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -118,7 +123,7 @@ GEM
     haml (4.0.6)
       tilt
     hike (1.2.3)
-    i18n (0.6.11)
+    i18n (0.7.0)
     jbuilder (2.2.5)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -127,7 +132,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
-    json (1.8.1)
+    json (1.8.2)
     json_pure (1.8.1)
     kgio (2.9.2)
     launchy (2.4.3)
@@ -142,7 +147,7 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
     mini_portile (0.6.1)
-    minitest (5.4.3)
+    minitest (5.5.1)
     multi_json (1.10.1)
     multi_test (0.1.1)
     net-scp (1.2.1)
@@ -259,7 +264,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano3-unicorn
   capybara
-  carrierwave
+  carrierwave!
   chronic
   coffee-rails
   cucumber-rails
