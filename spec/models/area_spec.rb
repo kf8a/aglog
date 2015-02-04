@@ -41,7 +41,7 @@ describe Area do
 
       describe "an area with a different name" do
         before(:each) do
-          Area.exists?(:name => 'T1R11').should be_false
+          expect(Area.exists?(:name => 'T1R11')).to eq false
         end
 
         subject { Area.new(:name => 'T1R11') }

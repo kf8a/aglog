@@ -42,7 +42,7 @@ describe MaterialTransactionsController, type: :controller  do
       end
 
       it "should create a material transaction" do
-        expect(MaterialTransaction.exists?(assigns[:transaction])).to be_true
+        expect(MaterialTransaction.exists?(assigns[:transaction])).to eq true
       end
     end
 
@@ -53,7 +53,7 @@ describe MaterialTransactionsController, type: :controller  do
         end
 
         it 'creates a new material_transaction' do
-          expect(MaterialTransaction.exists?(assigns[:transaction])).to be_true
+          expect(MaterialTransaction.exists?(assigns[:transaction])).to eq true
         end
       end
 
@@ -63,7 +63,7 @@ describe MaterialTransactionsController, type: :controller  do
         end
 
         it 'creates a new material_transaction' do
-          expect(MaterialTransaction.exists?(assigns[:transaction])).to be_false
+          expect(MaterialTransaction.exists?(assigns[:transaction])).to eq false
         end
       end
     end
@@ -99,7 +99,7 @@ describe MaterialTransactionsController, type: :controller  do
       end
 
       it "should delete the transaction" do
-        expect(MaterialTransaction.exists?(material_transaction)).to be_false
+        expect(MaterialTransaction.exists?(material_transaction)).to eq false
       end
     end
   end

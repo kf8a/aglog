@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ObservationsHelper do
+describe ObservationsHelper, type: :helper do
   describe "#initialize_arrays" do
     it "should give the right results" do
       js_stuff = "<script>\n//<![CDATA[\narrayActivityIndexes = []; arraySetupIndexes=[];\n//]]>\n</script>"

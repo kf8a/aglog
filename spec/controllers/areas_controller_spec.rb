@@ -6,10 +6,10 @@ describe AreasController, type: :controller do
   let(:area) { FactoryGirl.build_stubbed(:area, name: "custom area")}
 
   before :each do
-    area.stub(:save).and_return(true)
-    Area.stub(:persisted?).and_return(true)
-    Area.stub(:find).with(area.id.to_s).and_return(area)
-    Area.stub(:by_company).and_return(Area)
+    allow(area).to receive(:save).and_return(true)
+    allow(Area).to receive(:persisted?).and_return(true)
+    allow(Area).to receive(:find).with(area.id.to_s).and_return(area)
+    allow(Area).to receive(:by_company).and_return(Area)
   end
 
   describe 'Not signed in. ' do
@@ -42,7 +42,7 @@ describe AreasController, type: :controller do
       end
 
       it 'does not create the area' do
-        expect(Area.exists?(:name => 'T2R22')).to be_false
+        expect(Area.exists?(:name => 'T2R22')).to eq false
       end
     end
 
@@ -133,14 +133,14 @@ describe AreasController, type: :controller do
 
       it { should redirect_to area_path(assigns(:area)) }
       it "should create an area" do
-        expect(Area.exists?(:name => 'T2R22')).to be_true
+        expect(Area.exists?(:name => 'T2R22')).to eq true
       end
       it { should set_the_flash }
     end
 
     describe "POST :create with invalid attributes" do
       before(:each) do
-        Area.any_instance.stub(:valid?).and_return(false)
+        allow_any_instance_of(Area).to receive(:valid?).and_return(false)
         post :create, :area => { :name => 'repeat_name' }
       end
 
@@ -191,7 +191,7 @@ describe AreasController, type: :controller do
 
     describe "PUT :update with invalid attributes" do
       before(:each) do
-        area.stub(:update_attributes).and_return(false)
+        allow(area).to receive(:update_attributes).and_return(false)
         put :update, :id => area, :area => { :name => 'repeat_name' }
       end
 
@@ -208,13 +208,13 @@ describe AreasController, type: :controller do
 
     describe "DELETE :destroy the area" do
       before(:each) do
-        area.stub(:destroy).and_return(true)
+        allow(area).to receive(:destroy).and_return(true)
         delete :destroy, :id => area
       end
 
       it { should redirect_to areas_path }
       it "should destroy the area" do
-        expect(Area.exists?(area)).to be_false
+        expect(Area.exists?(area)).to eq false
       end
     end
   end

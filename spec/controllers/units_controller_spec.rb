@@ -119,7 +119,7 @@ describe UnitsController, type: :controller  do
         end
 
         it 'deletes the unit' do
-          expect(Unit.exists?(unit)).to be_false
+          expect(Unit.exists?(unit)).to eq false
         end
 
         it 'redirects to index' do

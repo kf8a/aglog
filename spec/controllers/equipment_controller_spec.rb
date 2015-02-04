@@ -167,7 +167,7 @@ describe EquipmentController, type: :controller  do
 
         it { should redirect_to equipment_index_path }
         it "should destroy the equipment" do
-          Equipment.exists?(@equipment.id).should be_false
+          expect(Equipment.exists?(@equipment.id)).to eq false
         end
       end
     end
