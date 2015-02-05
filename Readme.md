@@ -1,4 +1,4 @@
-== Aglog
+# Aglog
 
 [![Build Status](https://travis-ci.org/kf8a/aglog.svg)](https://travis-ci.org/kf8a/aglog)
 
