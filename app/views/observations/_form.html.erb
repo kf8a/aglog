@@ -25,7 +25,7 @@
   </div>
 <% end %>
 
-<div class="activities">
+<div class="activities row">
   <%= form.fields_for :activities do |builder| %>
       <%= render 'activity_fields', :f => builder, only_current: only_current %>
   <% end %>
@@ -33,10 +33,12 @@
 <%= link_to_add_fields "Add Activity", form, :activities, only_current %>
 
 <div class='notes form-group row'>
-  <% form.object.notes.each do |note|%>
-    <%= link_to note.identifier, note.url %>
-  <% end %>
-  <label class="control-label col-sm-2">Notes</label>
+  <label>Notes</label>
+  <ul>
+    <% form.object.notes.each_with_index do |note, i|%>
+      <li><%= link_to note.identifier, note.url%></li>
+    <% end %>
+  </ul>
   <div class="col-sm-5 btn btn-file">
     <%= form.file_field :notes, multiple: true %>
     <%= form.hidden_field :notes_cache %>

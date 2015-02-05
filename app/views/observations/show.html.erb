@@ -52,11 +52,12 @@
   </p>
 <% end %>
 
+  <b> Attachments:</b><br/>
+  <ul>
 <% @observation.notes.each do |note| %>
-  <b> Attachment:</b><br/>
-  <%= link_to note.file.try(:filename), note.url %>
-  </p>
+  <li><%= link_to note.file.try(:filename), note.url %></li>
 <% end %>
+</ul>
 
 <%= link_to 'Related Observations', related_observations_path(:id => @observation.id) %>
 <%= link_to 'New observation', new_observation_path %>

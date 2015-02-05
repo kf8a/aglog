@@ -216,6 +216,10 @@ describe ObservationsController, type: :controller  do
         # end
       end
 
+      describe 'PUT :update the observation with new files' do
+        pending "figure how to test addition of files"
+      end
+
       describe "DELETE :destroy the observation" do
         before(:each) do
           allow(observation).to receive(:destroy).and_return(true)
