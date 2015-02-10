@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 def non_existent_study_id
   id = 1

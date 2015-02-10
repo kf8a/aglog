@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Setup do
   it "should allow a setup to be created with valid equipment" do
