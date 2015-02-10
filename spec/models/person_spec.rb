@@ -1,7 +1,7 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Person do
   it {should belong_to :company}

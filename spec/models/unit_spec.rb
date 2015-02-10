@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Unit do
   describe 'name validations' do
@@ -9,17 +9,17 @@ describe Unit do
 
       it 'should not allow the same name' do
         @unit.name  = @test_name
-        @unit.should_not be_valid
+        expect(@unit).to_not be_valid
       end
 
       it 'should be case insensitive' do
         @unit.name = @test_name.upcase
-        @unit.should_not be_valid
+        expect(@unit).to_not be_valid
       end
 
       it 'allows different names' do
         @unit.name = 'a new unit'
-        @unit.should be_valid
+        expect(@unit).to be_valid
       end
   end
 end

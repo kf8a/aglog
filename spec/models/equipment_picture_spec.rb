@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe EquipmentPicture do
   it {should belong_to :equipment}
