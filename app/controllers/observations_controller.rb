@@ -54,9 +54,13 @@ class ObservationsController < ApplicationController
 
   def update
     @observation = Observation.where(:id => params[:id]).includes(:observation_types, {:activities => {:setups => :material_transactions}}).first
-    p observation_params
+    old_notes = @observation.notes
     if @observation.update_attributes(observation_params)
-      flash[:notice] = "Observation was successfully updated."
+      new_notes = @observation.notes
+      @observation.notes = [old_notes, new_notes].flatten.compact
+      if @observation.save
+        flash[:notice] = "Observation was successfully updated."
+      end
     end
     respond_with @observation
   end
