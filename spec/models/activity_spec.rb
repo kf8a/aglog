@@ -4,7 +4,7 @@ describe Activity do
   describe "an activity with a valid user" do
     person = Person.new
     subject { Activity.new(:person => person) }
-    it { should be_valid }
+    it { is_expected.to be_valid }
   end
 
   describe "an activity with an invalid user" do
@@ -17,12 +17,12 @@ describe Activity do
     end
 
     subject { Activity.new(:person_id => @id) }
-    it { should_not be_valid }
+    it { is_expected.to_not be_valid }
   end
 
   describe "an activity with no user" do
     subject { Activity.new(:person_id => nil) }
-    it { should_not be_valid }
+    it { is_expected.to_not be_valid }
   end
 
   describe "a valid activity with hours inputted as '1,000'" do

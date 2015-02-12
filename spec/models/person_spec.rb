@@ -4,8 +4,8 @@
 require 'rails_helper'
 
 describe Person do
-  it {should belong_to :company}
-  it {should validate_presence_of :company}
+  it {is_expected.to belong_to :company}
+  it {is_expected.to validate_presence_of :company}
 
   let(:test_name) {{given_name: 'Joe', sur_name: 'Simmons'}}
 
@@ -22,28 +22,28 @@ describe Person do
       @person.company = company
     end
 
-    it "should require unique name" do
+    it "requires unique name" do
       expect(@person).to_not be_valid
     end
 
-    it 'should be insensitive on the first name' do
+    it 'is insensitive on the first name' do
       @person.given_name = @person.given_name.upcase
       expect(@person).not_to be_valid
     end
 
-    it 'should be insensitive on the last name' do
+    it 'is insensitive on the last name' do
       @person.sur_name.upcase!
       expect(@person).to_not be_valid
     end
 
-    it 'should be insensitive to the first and last name' do
+    it 'is insensitive to the first and last name' do
       @person.sur_name.upcase!
       @person.given_name.upcase!
       expect(@person).not_to be_valid
     end
   end
 
-  it "should allow a new name person to be created" do
+  it "allows a new name person to be created" do
     num_of_persons =  Person.count()
     a = Person.new(:given_name => 'new', :sur_name => 'person') # is new name
     a.company = Company.new
@@ -52,11 +52,11 @@ describe Person do
     assert_equal num_of_persons + 1, Person.count
   end
 
-  it "should not allow a person with no name to be created" do
+  it "does not allow a person with no name to be created" do
     expect(Person.new).to_not be_valid
   end
 
-  it 'should allow the same name in a different company' do
+  it 'allows the same name in a different company' do
     person  = Person.new(:given_name => test_name[:given_name], :sur_name => test_name[:sur_name]) 
     company = FactoryGirl.create(:company)
     person.company = company

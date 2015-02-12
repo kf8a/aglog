@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Company do
-  it {should have_many :people}
-  it {should have_many :equipment}
-  it {should have_many :areas}
-  it {should have_many :materials}
-  it {should have_many :observations}
+  it {is_expected.to have_many :people}
+  it {is_expected.to have_many :equipment}
+  it {is_expected.to have_many :areas}
+  it {is_expected.to have_many :materials}
+  it {is_expected.to have_many :observations}
 end

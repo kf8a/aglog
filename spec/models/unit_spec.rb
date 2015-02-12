@@ -7,12 +7,12 @@ describe Unit do
         @unit = Unit.new
       end
 
-      it 'should not allow the same name' do
+      it 'does not allow the same name' do
         @unit.name  = @test_name
         expect(@unit).to_not be_valid
       end
 
-      it 'should be case insensitive' do
+      it 'is case insensitive' do
         @unit.name = @test_name.upcase
         expect(@unit).to_not be_valid
       end
