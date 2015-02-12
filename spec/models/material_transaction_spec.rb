@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe MaterialTransaction do
-  it "should find fertilizations" do
+  it "finds fertilizations" do
     #TODO Rewrite this test with factory created fertilizations
 #    correct_transactions = MaterialTransaction.find(20, 19, 82, 235, 236, 640, 637, 622, 624, 626, 628, 645, 268, 270, 266, 298, 299, 328)
 #    found_fertilizations = MaterialTransaction.find_fertilizations
@@ -24,7 +24,7 @@ describe MaterialTransaction do
       end
 
       describe "n_content_to_kg_ha" do
-        it "should be the appropriate number" do
+        it "is the appropriate number" do
           assert_equal 0.02, @transaction.n_content_to_kg_ha
         end
       end
@@ -40,7 +40,7 @@ describe MaterialTransaction do
       end
 
       describe "p_content_to_kg_ha" do
-        it "should be the appropriate number" do
+        it "is the appropriate number" do
           assert_equal 0.02, @transaction.p_content_to_kg_ha
         end
       end
@@ -56,7 +56,7 @@ describe MaterialTransaction do
       end
 
       describe "k_content_to_kg_ha" do
-        it "should be the appropriate number" do
+        it "is the appropriate number" do
           assert_equal 2.38, @transaction.k_content_to_kg_ha
         end
       end
@@ -68,7 +68,7 @@ describe MaterialTransaction do
         @transaction.material = find_or_factory(:material, :name => "Beets")
       end
 
-      it 'should give a material and rate on material_with_rate' do
+      it 'returns a material and rate on material_with_rate' do
         @transaction.rate = 4
         assert_equal "Beets: 4.0 barrels per acre", @transaction.material_with_rate
 
@@ -83,7 +83,7 @@ describe MaterialTransaction do
         @transaction.material = find_or_factory(:material, :name => "Carrots")
       end
 
-      it 'should just give material on material_with_rate' do
+      it 'returns just material on material_with_rate' do
         @transaction.rate = 4
         assert_equal "Carrots", @transaction.material_with_rate
       end

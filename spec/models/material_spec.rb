@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Material do
-  it {should have_many(:setups) }
-  it {should have_many(:material_transactions) }
-  it {should validate_presence_of :name }
+  it {is_expected.to have_many(:setups) }
+  it {is_expected.to have_many(:material_transactions) }
+  it {is_expected.to validate_presence_of :name }
 
   describe "requires unique name: " do
     before(:each) do
@@ -11,7 +11,7 @@ describe Material do
       find_or_factory(:material, name: @repeat_name, company_id: 1)
     end
 
-    it {should belong_to :company}
+    it {is_expected.to belong_to :company}
 
     describe 'an archived material' do
       subject { Material.new(name: 'deprecated', archived: true) }
@@ -45,7 +45,7 @@ describe Material do
     end
 
     context "to_mass(amount)" do
-      it "should be the right number" do
+      it "has the right number" do
         expect(@material.to_mass(4)).to eq(4000)
       end
     end

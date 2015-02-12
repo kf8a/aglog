@@ -1,5 +1,5 @@
 require 'rails_helper'
 
 describe MaterialType do
-  it {should have_many(:materials) }
+  it {is_expected.to have_many(:materials) }
 end

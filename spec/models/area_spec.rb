@@ -10,7 +10,7 @@ def non_existent_study_id
 end
 
 describe Area do
-  it {should belong_to :company}
+  it {is_expected.to belong_to :company}
 
   describe "requires a unique name within a company: " do
     context "An area exists with a name. " do
@@ -20,13 +20,13 @@ describe Area do
 
       describe "an area with the same name" do
 
-        it 'should not allow a second area witht the smae name to be created' do
+        it 'does not allow a second area witht the smae name to be created' do
           area = Area.new(:name => 'T1R1')
           area.company_id = 1
           expect(area).to_not be_valid
         end
 
-        it 'should be case insensitive' do
+        it 'is case insensitive' do
           area = Area.new(:name => 't1r1')
           area.company_id = 1
           expect(area).to_not be_valid
@@ -45,7 +45,7 @@ describe Area do
         end
 
         subject { Area.new(:name => 'T1R11') }
-        it { should be_valid }
+        it { is_expected.to be_valid }
       end
 
     end
@@ -65,25 +65,25 @@ describe Area do
         @child2.move_to_child_of(@ancestor)
         @ancestor.save
       end
-      it 'should include child1' do
+      it 'includes child1' do
         expect(@ancestor.descendants).to include @child1
       end
-      it 'should include child2' do
+      it 'includes child2' do
         expect(@ancestor.descendants).to include @child2
       end
-      it 'should not include child3' do
+      it 'does not include child3' do
         expect(@ancestor.descendants).to_not include @child3
       end
 
       context 'coalesing area' do
 
-        it 'should return the ancestor'  do
+        it 'returns the ancestor'  do
           expect(Area.coalese([@child1, @child2])).to eq [@ancestor]
         end
-        it 'should return the child for one child' do
+        it 'returns the child for one child' do
           expect(Area.coalese([@child1])).to eq [@child1]
         end
-        it 'should return the ancestor when given the ancestor' do
+        it 'returns the ancestor when given the ancestor' do
           expect(Area.coalese([@ancestor])).to eq [@ancestor]
         end
       end
@@ -99,17 +99,17 @@ describe Area do
 
     describe "an area with a valid study (and name)" do
       subject { Area.new(:study_id => @existent_study.id, :name => 'valid_study') }
-      it { should be_valid }
+      it { is_expected.to be_valid }
     end
 
     describe "an area with an invalid study id" do
       subject { Area.new(:study_id => @non_existent_study, :name => 'invalid_study') }
-      it { should_not be_valid }
+      it { is_expected.to_not be_valid }
     end
 
     describe "an area with no study id" do
       subject { Area.new(:study_id => nil, :name => 'area_without_study') }
-      it { should be_valid }
+      it { is_expected.to be_valid }
     end
   end
 
@@ -122,37 +122,37 @@ describe Area do
   #
   #  describe "an area with a treatment and a consistent study" do
   #    subject { Area.new(:study_id => @study.id, :treatment_id => @treatment.id, :name => 'consistent_area') }
-  #    it { should be_valid }
+  #    it { is_expected.to be_valid }
   #  end
   #
   #  describe "an area with a treatment and no study" do
   #    subject { Area.new(:study_id => nil, :treatment_id => @treatment.id, :name => 'no_study_area') }
-  #    it { should_not be_valid }
+  #    it { is_expected.to be_valid }
   #  end
   #
   #  describe "an area with a treatment and an inconsistent study" do
   #    subject { Area.new(:study_id => @another_study.id, :treatment_id => @treatment.id, :name => 'inconsistent_area')}
-  #    it { should_not be_valid }
+  #    it { is_expected.to_not be_valid }
   #  end
   #end
 
   describe "self.parse should parse strings into areas: " do
-    it "should highlight non-existent areas and return string" do
+    it "highlights non-existent areas and return string" do
       areas = Area.parse('T1  R11')
-      areas.should be_a String
+      expect(areas).to be_a String
       assert_equal 'T1 *R11*'.split.sort, areas.split.sort
     end
 
-    it 'should return T1R1 when given T1R1 to parse'do
-      Area.parse('T1R1')[0].name.should == 'T1R1'
+    it 'returns T1R1 when given T1R1 to parse'do
+      expect(Area.parse('T1R1')[0].name).to eq 'T1R1'
     end
 
-    it "should return area T1R1 (among others) when given 'T1' to parse" do
+    it "returns area T1R1 (among others) when given 'T1' to parse" do
       areas = Area.parse('T1')
       assert areas.any? {|a| a.name = 'T1R1'}
     end
 
-    it "should correctly parse 'T2 T4'" do
+    it "correctly parses 'T2 T4'" do
       areas = Area.parse("T2 T4")
       assert areas.all? {|x| x.class.name == 'Area'}
       assert areas.any? {|a| a.name == 'T2R1'} # T2R1
@@ -161,44 +161,44 @@ describe Area do
       assert areas.include?(ar)
     end
 
-    it "should correctly parse 'F1'" do
+    it "correctly parses 'F1'" do
       areas = Area.parse('F1')
       assert areas.any? {|a| a.name == "F1R1"}
     end
 
-    it "should correctly parse 'B20'" do
+    it "correctly parses 'B20'" do
       areas = Area.parse('B20')
       assert areas.any? { |a| a.name == "B20R1" }
     end
 
-    it "should correctly parse 'B31' as a String (there is no B31 area)" do
-      Area.parse('B31').should == '*B31*'
+    it "correctly parses 'B31' as a String (there is no B31 area)" do
+      expect(Area.parse('B31')).to eq '*B31*'
     end
 
-    it "should return an empty array when given '' to parse" do
+    it "returns an empty array when given '' to parse" do
       areas = Area.parse('')
-      areas.should be_a Array
-      areas.size.should equal 0
+      expect(areas).to be_a Array
+      expect(areas.size).to eq 0
     end
 
-    it "should get an array with one element when given a whole area name to parse" do
+    it "returns an array with one element when given a whole area name to parse" do
       areas = Area.parse('T1R1')
       assert areas.all? {|x| x.class.name =='Area'}
       assert_equal "T1R1", areas[0].name
       assert_equal 1, areas.size
     end
 
-    it "should correctly parse 'T1R8' as a String (there is no T1R8 area)" do
+    it "correctly parses 'T1R8' as a String (there is no T1R8 area)" do
       areas = Area.parse('T1R8')
-      areas.should be_a String
+      expect(areas).to be_a String
     end
 
-    it "should correctly parse 'iF9'" do
+    it "correctly parses 'iF9'" do
       areas = Area.parse('iF9')
       assert areas.any? {|a| a.name  == 'iF9R1' }
     end
 
-    it "should correctly parse a treatment range ('T1-4')" do
+    it "correctly parses a treatment range ('T1-4')" do
       areas = Area.parse('T1-4')
       real_areas = ['T1','T2','T3','T4'].collect do |name|
         Treatment.find_by(name: name).areas
@@ -206,7 +206,7 @@ describe Area do
       assert_equal [], (areas - real_areas)
     end
 
-    it "should correctly parse Fertility Gradient areas" do
+    it "correctly parses Fertility Gradient areas" do
       areas = Area.parse('F')
       real_areas = Area.where(study_id: 3)
       assert_equal [], (areas - real_areas)
@@ -222,7 +222,7 @@ describe Area do
       assert_equal [], (areas - real_areas)
     end
 
-    it "should correctly parse Irrigated Fertility Gradient areas" do
+    it "correctly parses Irrigated Fertility Gradient areas" do
       areas = Area.parse('iF')
       real_areas = Area.where(study_id: 4)
       assert_equal [], (areas - real_areas)
@@ -238,7 +238,7 @@ describe Area do
       assert_equal [], (areas - real_areas)
     end
 
-    it 'should correctly parse CE areas' do
+    it 'correctly parses CE areas' do
       areas = Area.parse('CE')
       real_areas = Area.where(study_id: 7)
       assert_equal [], (areas - real_areas)
@@ -258,13 +258,13 @@ describe Area do
 
     end
 
-    it 'should correctly parse GLBRC areas' do
+    it 'correctly parses GLBRC areas' do
       areas = Area.parse('G1')
       real_areas = Area.where(study_id: 6)
       assert_equal [], (areas - real_areas)
     end
 
-    it 'should correctly parse LYSIMETER field' do
+    it 'correctly parses LYSIMETER field' do
       areas = Area.parse('LYSIMETER_FIELD')
       real_areas = Area.where(study_id: 9)
       assert_kind_of Array, areas
@@ -278,32 +278,32 @@ describe Area do
         @area.save
       end
 
-      it 'should parse the area associated with the current users company' do
+      it 'parses the area associated with the current users company' do
         assert_equal @area, Area.parse('T1R1', :company => 1)[0]
       end
 
-      it 'should not parse any other areas' do
-        Area.parse('T1R1', :company => 2 ).should == '*T1R1*'
+      it 'does not parse any other areas' do
+        expect(Area.parse('T1R1', :company => 2 )).to eq '*T1R1*'
       end
     end
   end
 
   describe "self.unparse should consolidate a list of areas into a string: " do
-    it "should return 'T1' when given an array of all the T1 areas" do
+    it "returns 'T1' when given an array of all the T1 areas" do
       areas  = Treatment.where(name: 'T1').first.areas.flatten
       area_string = Area.unparse(areas)
       assert_equal 'T1', area_string
     end
 
-    it "should correctly unparse the T1 and T2 areas" do
+    it "correctly unparses the T1 and T2 areas" do
       parse_reverse('T1 T2')
     end
 
-    it "should correctly unparse 'T1R1 T2'" do
+    it "correctly unparses 'T1R1 T2'" do
       parse_reverse('T1R1 T2')
     end
 
-    it "should unparse an array of all of a study's areas, returning the study name" do
+    it "unparses an array of all of a study's areas, returning the study name" do
       study = Study.where(:name => 'T').first
       area_string = Area.unparse(study.areas)
       assert_equal 'T', area_string
@@ -322,12 +322,12 @@ describe Area do
       assert_equal "B", area_string
     end
 
-    it "should unparse treatment areas to the treatment name" do
+    it "unparses treatment areas to the treatment name" do
       parse_reverse('T1')
       parse_reverse('B1')
     end
 
-    it "should correctly unparse various other areas" do
+    it "correctly unparses various other areas" do
       test_strings =
         [ "T1 B1",
           "B1 T1",
@@ -345,15 +345,15 @@ describe Area do
       end
     end
 
-    it "should correctly parse/unparse in the right order" do
+    it "correctly parse/unparses in the right order" do
       parse_reverse("B2R1 B1")
     end
 
-    it "should unparse nothing to ''" do
-      Area.unparse().should match ""
+    it "unparses nothing to ''" do
+      expect(Area.unparse()).to match ""
     end
 
-    it "should correctly parse/unparse an area not in study" do
+    it "correctly parse/unparses an area not in study" do
 #      parse_reverse('ECB')
     end
 
@@ -400,20 +400,20 @@ describe Area do
     end
 
     subject { FactoryGirl.create(:area, :study_id => @study.id) }
-    its(:study_name) { should match 'Name of Study' }
+    its(:study_name) { is_expected.to match 'Name of Study' }
   end
 
   describe 'An area with no study' do
     subject { FactoryGirl.create(:area, :study_id => nil) }
-    its(:study_name) { should be_nil }
+    its(:study_name) { is_expected.to be_nil }
   end
 
   private
 
   def parse_reverse(test_string)
     areas = Area.parse(test_string)
-    areas.should be_a Array
-    areas.should_not be_empty
+    expect(areas).to be_a Array
+    expect(areas).to_not be_empty
     unparsed_area_string = Area.unparse(areas)
     assert_equal test_string.upcase.split.sort.join(' '), unparsed_area_string.upcase.split.sort.join(' ')
   end

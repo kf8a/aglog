@@ -5,7 +5,7 @@ describe Observation do
   it {is_expected.to validate_presence_of :person}
   it {is_expected.to validate_presence_of :observation_types}
 
-  it 'should work normally with a simple observation' do
+  it 'works normally with a simple observation' do
     o = create_simple_observation
     expect(o.activities.size).to eq 1
     activity = o.activities[0]
@@ -14,7 +14,7 @@ describe Observation do
     expect(setup.material_transactions.size).to eq 2
   end
 
-  it 'should delete material' do
+  it 'deletes material' do
     o = create_simple_observation
     activity = o.activities[0]
     setup =  activity.setups[0]
@@ -25,7 +25,7 @@ describe Observation do
     expect(setup.material_transactions.size).to eq 1
   end
 
-  it 'should delete setup' do
+  it 'deletes setup' do
     o = create_simple_observation
     activity = o.activities[0]
     setup =  activity.setups[0]
@@ -35,7 +35,7 @@ describe Observation do
     expect(activity.setups.size).to eq 0
   end
 
-  it 'should delete activity' do
+  it 'deletes activity' do
     o = create_simple_observation
     activity = o.activities[0]
     expect(o.activities.size).to eq 1
@@ -44,7 +44,7 @@ describe Observation do
     expect(o.activities.size).to eq 0
   end
 
-  it 'should not be valid if it has error areas' do
+  it 'is not valid if it has error areas' do
     o = create_simple_observation
     assert o.save
     original_areas = o.areas
@@ -57,7 +57,7 @@ describe Observation do
     assert_equal ["invalid areas"],  o.errors[:base]
   end
 
-  it 'should have the right equipment_names' do
+  it 'has the right equipment_names' do
     o = create_simple_observation
     another_equipment = FactoryGirl.create(:equipment, :name => "Another Equipment")
     evil_equipment = FactoryGirl.create(:equipment, :name => "Evil Equipment")
@@ -66,7 +66,7 @@ describe Observation do
     expect(o.equipment_names).to eq "Equipment2, Another Equipment"
   end
 
-  it 'should get the right materials_with_rates' do
+  it 'gets the right materials_with_rates' do
     o = create_simple_observation
     activity = FactoryGirl.create(:activity, :observation_id => o.id)
     equipment = Equipment.find_by_name("Another Equipment") || FactoryGirl.create(:equipment, :name => "Another Equipment")
@@ -79,13 +79,13 @@ describe Observation do
     assert_equal "Material3: 4.0 Unit3s per acre, Material4: 5.0 Unit4s per acre", o.materials_with_rates
   end
 
-  it "should return the right observation_type" do
+  it "returns the right observation_type" do
     o = create_simple_observation
     assert_equal "Soil Preparation", o.observation_type
   end
 
   #TODO: you should only be allowed to put an observation_type in once
-  it "should give all of the right observation_type_names" do
+  it "gives all of the right observation_type_names" do
     o = create_simple_observation
     another_type = ObservationType.new(:name => "Another Type") #, :observations => [o])
     assert another_type.save
@@ -95,7 +95,7 @@ describe Observation do
     assert_equal "Soil Preparation, Another Type", o.observation_type_names
   end
 
-  it 'should accept token ids in areas_as_text' do
+  it 'accepts token ids in areas_as_text' do
     o = create_simple_observation
     text_areas = '3,415'
     o.areas_as_text = text_areas
@@ -106,7 +106,7 @@ describe Observation do
     assert o.areas.include?(b_leaf)
   end
 
-  it "should give the right material_names" do
+  it "gives the right material_names" do
     o = create_simple_observation
     activity = FactoryGirl.create(:activity, :observation_id => o.id)
     equipment = Equipment.find_by_name("Another Equipment") || FactoryGirl.create(:equipment, :name => "Another Equipment")
@@ -120,7 +120,7 @@ describe Observation do
   end
 
   #TODO This test, material_names, and materials_with_rates should be refactored
-  it "should give the right n_contents" do
+  it "gives the right n_contents" do
     o = create_simple_observation
     activity = FactoryGirl.create(:activity, :observation_id => o.id)
     equipment = Equipment.find_by_name("Another Equipment") || FactoryGirl.create(:equipment, :name => "Another Equipment")
@@ -139,7 +139,7 @@ describe Observation do
     assert_equal [40.0, 30.0], o.n_contents
   end
 
-  it "should give the right rates" do
+  it "returns the right rates" do
     o = create_simple_observation
     activity = FactoryGirl.create(:activity, :observation_id => o.id)
     equipment = Equipment.find_by_name("Another Equipment") || FactoryGirl.create(:equipment, :name => "Another Equipment")
@@ -152,7 +152,7 @@ describe Observation do
     assert_equal [4.0, 5.0], o.rates
   end
 
-  it "should give the right unit_names" do
+  it "returns the right unit_names" do
     o = create_simple_observation
     activity = FactoryGirl.create(:activity, :observation_id => o.id)
     equipment = Equipment.find_by_name("Another Equipment") || FactoryGirl.create(:equipment, :name => "Another Equipment")
@@ -165,7 +165,7 @@ describe Observation do
     assert_equal ['Unit3', 'Unit4'], o.unit_names
   end
 
-  it "should allow observation date to be set easily" do
+  it "allows observation date to be set easily" do
     o = create_simple_observation
     old_date = o.obs_date
     o.observation_date = "yesterday"
