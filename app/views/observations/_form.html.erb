@@ -36,7 +36,10 @@
   <label>Notes</label>
   <ul>
     <% form.object.notes.each_with_index do |note, i|%>
-      <li><%= link_to note.identifier, note.url%></li>
+      <li>
+      <input id=observation_notes_<%=i%> type='checkbox' name='observation[notes][<%=i%>]' value=false>
+      <label id=observation_notes_<%=i%>>delete <%= note.url %> ?</label>
+      </li>
     <% end %>
   </ul>
   <div class="col-sm-5 btn btn-file">

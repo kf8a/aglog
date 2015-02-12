@@ -1,17 +1,17 @@
 require 'rails_helper'
 
 describe Observation do
-  it {should validate_presence_of :obs_date}
-  it {should validate_presence_of :person}
-  it {should validate_presence_of :observation_types}
+  it {is_expected.to validate_presence_of :obs_date}
+  it {is_expected.to validate_presence_of :person}
+  it {is_expected.to validate_presence_of :observation_types}
 
   it 'should work normally with a simple observation' do
     o = create_simple_observation
-    o.activities.size.should == 1
+    expect(o.activities.size).to eq 1
     activity = o.activities[0]
-    activity.setups.size.should == 1
+    expect(activity.setups.size).to eq 1
     setup =  activity.setups[0]
-    setup.material_transactions.size.should == 2
+    expect(setup.material_transactions.size).to eq 2
   end
 
   it 'should delete material' do
@@ -19,29 +19,29 @@ describe Observation do
     activity = o.activities[0]
     setup =  activity.setups[0]
     material_transaction = setup.material_transactions[0]
-    setup.material_transactions.size.should == 2
+    expect(setup.material_transactions.size).to eq 2
 
     setup.material_transactions.delete(material_transaction)
-    setup.material_transactions.size.should == 1
+    expect(setup.material_transactions.size).to eq 1
   end
 
   it 'should delete setup' do
     o = create_simple_observation
     activity = o.activities[0]
     setup =  activity.setups[0]
-    activity.setups.size.should == 1
+    expect(activity.setups.size).to eq 1
 
     activity.setups.delete(setup)
-    activity.setups.size.should == 0
+    expect(activity.setups.size).to eq 0
   end
 
   it 'should delete activity' do
     o = create_simple_observation
     activity = o.activities[0]
-    o.activities.size.should == 1
+    expect(o.activities.size).to eq 1
 
     o.activities.delete(activity)
-    o.activities.size.should == 0
+    expect(o.activities.size).to eq 0
   end
 
   it 'should not be valid if it has error areas' do
@@ -51,8 +51,8 @@ describe Observation do
     fake_areas = "NoArea"
     o.areas_as_text = fake_areas
     o.reload
-    o.areas.should == original_areas
-    o.areas_as_text.should == '*NoArea*'
+    expect(o.areas).to eq original_areas
+    expect(o.areas_as_text).to eq '*NoArea*'
     assert !o.save
     assert_equal ["invalid areas"],  o.errors[:base]
   end
@@ -63,7 +63,7 @@ describe Observation do
     evil_equipment = FactoryGirl.create(:equipment, :name => "Evil Equipment")
     another_setup = o.setups.new(:equipment_id => another_equipment.id)
     another_setup.save
-    o.equipment_names.should == "Equipment2, Another Equipment"
+    expect(o.equipment_names).to eq "Equipment2, Another Equipment"
   end
 
   it 'should get the right materials_with_rates' do
@@ -182,7 +182,7 @@ describe Observation do
     observation = Observation.new(:observation_date => "June 14, 2007", :company_id => company.id)
     observation.person = person1 
     observation.observation_types <<  type
-    observation.should be_valid
+    expect(observation).to be_valid
     assert observation.save
     person2 = Person.find_by_sur_name("Sur2") || FactoryGirl.create(:person, :sur_name => "Sur2")
     activity = observation.activities.new(:hours => 1, :person_id => person2.id)
