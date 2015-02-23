@@ -135,7 +135,7 @@ describe AreasController, type: :controller do
       it "should create an area" do
         expect(Area.exists?(:name => 'T2R22')).to eq true
       end
-      it { should set_the_flash }
+      it { should set_flash }
     end
 
     describe "POST :create with invalid attributes" do
@@ -145,7 +145,7 @@ describe AreasController, type: :controller do
       end
 
       it { should render_template 'new' }
-      it { should_not set_the_flash }
+      it { should_not set_flash }
     end
 
 
@@ -214,7 +214,7 @@ describe AreasController, type: :controller do
 
       it { should redirect_to areas_path }
       it "should destroy the area" do
-        expect(Area.exists?(area)).to eq false
+        expect(Area.exists?(area.id)).to eq false
       end
     end
   end
