@@ -34,18 +34,11 @@ set :linked_files, %w{config/database.yml .env}
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-namespace :deploy do
 
-  desc 'Restart application'
-  task :restart do
-      invoke 'unicorn:restart'
-  end
+ after 'deploy:publishing', 'deploy:restart'
+ namespace :deploy do
+   task :restart do
+     invoke 'unicorn:restart'
+   end
+ end
 
-  after :publishing, :restart
-
-
-  after :restart, :clear_cache do
-      invoke 'unicorn:reload'
-  end
-
-end
