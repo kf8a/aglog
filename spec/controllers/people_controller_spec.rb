@@ -6,15 +6,15 @@ describe PeopleController, type: :controller  do
   let(:person) { FactoryGirl.build_stubbed(:person, sur_name: 'hastings', given_name: 'bill')}
 
   before :each do
-    Person.stub(:persisted?).and_return(true)
-    Person.stub(:find).with(person.id.to_s).and_return(person)
-    person.stub(:save).and_return(true)
+    allow(Person).to receive(:persisted?).and_return(true)
+    allow(Person).to receive(:find).with(person.id.to_s).and_return(person)
+    allow(person).to receive(:save).and_return(true)
   end
 
   describe 'as a guest user' do
     describe 'GET :index' do
       before(:each) do
-        Person.should_receive(:ordered).and_return([person])
+        expect(Person).to receive(:ordered).and_return([person])
         get :index
       end
       it 'renders the index template' do
@@ -58,7 +58,7 @@ describe PeopleController, type: :controller  do
 
     describe 'GET :index' do
       before(:each) do
-        Person.should_receive(:ordered_in_company).with(controller.current_user.company).and_return([person])
+        expect(Person).to receive(:ordered_in_company).with(controller.current_user.company).and_return([person])
         get :index
       end
 
@@ -107,7 +107,7 @@ describe PeopleController, type: :controller  do
         end
 
         it 'creates a new person' do
-          expect(Person.exists?(assigns(:person))).to eq true 
+          expect(Person.exists?(assigns(:person).id)).to eq true 
         end
         it 'redirects to the new person' do
           expect(response).to redirect_to Person.last
@@ -118,7 +118,7 @@ describe PeopleController, type: :controller  do
 
     describe 'GET :edit' do
       before(:each) do
-        Person.should_receive(:find_in_company).with(controller.current_user.company, person.id.to_s).and_return(person)
+        expect(Person).to receive(:find_in_company).with(controller.current_user.company, person.id.to_s).and_return(person)
         get :edit, :id => person
       end
 
@@ -134,8 +134,8 @@ describe PeopleController, type: :controller  do
     describe 'PUT :update' do
       context 'with valid parameters' do
         before(:each) do
-          Person.should_receive(:find_in_company).with(controller.current_user.company, person.id.to_s).and_return(person)
-          person.should_receive(:update_attributes).with({'given_name' => 'Bob'}).and_return(true)
+          expect(Person).to receive(:find_in_company).with(controller.current_user.company, person.id.to_s).and_return(person)
+          expect(person).to receive(:update_attributes).with({'given_name' => 'Bob'}).and_return(true)
           put :update, :id => person, :person => {:given_name => 'Bob'}
         end
 
@@ -151,12 +151,12 @@ describe PeopleController, type: :controller  do
 
     describe 'DELETE :destroy' do
       before(:each) do
-        person.stub(:destroy).and_return(true)
+        allow(person).to receive(:destroy).and_return(true)
         delete :destroy, :id => person
       end
 
       it 'deletes the person' do
-        expect(Person.exists?(person)).to eq false 
+        expect(Person.exists?(person.id)).to eq false 
       end
 
       it 'redirects to index' do
