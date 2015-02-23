@@ -7,37 +7,37 @@ describe EquipmentController, type: :controller  do
 
     it 'renders the index' do
       get :index
-      response.should render_template 'index'
+      expect(response).to render_template 'index'
     end
 
     it 'does not allow new' do
       get :new
-      response.should redirect_to new_user_session_path
+      expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow create' do
       post :create, :equipment => { :name => 'Controller Creation', equipment_pictures: [] }
-      response.should redirect_to new_user_session_path
+      expect(response).to redirect_to new_user_session_path
     end
 
     it 'shows equipment' do
       get :show, :id => 1
-      response.should render_template 'show'
+      expect(response).to render_template 'show'
     end
 
     it 'does now allow edit' do
       get :edit, :id => 1
-      response.should redirect_to new_user_session_path
+      expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow updates' do
       put :update, :id => 1, :area => { :name => 'new_equipment'}
-      response.should redirect_to new_user_session_path
+      expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow deletes' do
       delete :destroy, :id => 1
-      response.should redirect_to new_user_session_path
+      expect(response).to redirect_to new_user_session_path
     end
   end
 
@@ -81,26 +81,26 @@ describe EquipmentController, type: :controller  do
 
     it 'allows new' do
       get :new
-      response.should render_template 'new'
+      expect(response).to render_template 'new'
     end
 
     describe "POST :create" do
       it 'should create an equipment' do
-        Equipment.should_receive(:new).with("name" => "Controller Creation").and_call_original
+        expect(Equipment).to receive(:new).with("name" => "Controller Creation").and_call_original
         post :create, :equipment => { :name => 'Controller Creation' }
       end
 
       it 'redirects to the new equipment' do
         post :create, :equipment => { :name => 'Controller Creation' }
-        response.should redirect_to equipment_path(assigns(:equipment))
+        expect(response).to redirect_to equipment_path(assigns(:equipment))
       end
 
       it 'assigns the current users company id' do
-        Equipment.any_instance.should_receive(:company=).with(controller.current_user.company)
+        allow_any_instance_of(Equipment).to receive(:company=).with(controller.current_user.company)
         post :create, :equipment => { :name => 'Controller Creation' }
       end
 
-      # it { should set_the_flash }
+      # it { should set_flash }
     end
 
     describe "POST :create with invalid attributes" do
@@ -108,8 +108,8 @@ describe EquipmentController, type: :controller  do
         post :create, :equipment => { :name => "lter_tractor" } # Repeated name
       end
 
-      it { should render_template 'new' }
-      it { should_not set_the_flash }
+      it { is_expected.to render_template 'new' }
+      it { is_expected.to_not set_flash }
     end
 
     describe "An equipment exists. " do
@@ -122,7 +122,7 @@ describe EquipmentController, type: :controller  do
           get :show, :id => @equipment
         end
 
-        it { should render_template 'show' }
+        it { is_expected.to render_template 'show' }
       end
 
       describe "GET :edit the equipment" do
@@ -130,7 +130,7 @@ describe EquipmentController, type: :controller  do
           get :edit, :id => @equipment
         end
 
-        it { should render_template 'edit' }
+        it { is_expected.to render_template 'edit' }
       end
 
       describe "PUT :update the equipment with valid attributes" do
@@ -138,10 +138,10 @@ describe EquipmentController, type: :controller  do
           put :update, :id => @equipment, :equipment => { :name => 'New Name'}
         end
 
-        it { should redirect_to equipment_path(@equipment) }
+        it { is_expected.to redirect_to equipment_path(@equipment) }
         it 'should change the equipment' do
           @equipment.reload
-          @equipment.name.should be_eql('New Name')
+          expect(@equipment.name).to eql('New Name')
         end
       end
 
@@ -153,10 +153,10 @@ describe EquipmentController, type: :controller  do
           put :update, :id => @equipment, :equipment => { :name => "Repeat_name"}
         end
 
-        it { should render_template :edit }
+        it { is_expected.to render_template :edit }
         it 'should not change the equipment' do
           @equipment.reload
-          @equipment.name.should_not be_eql('Repeat Name')
+          expect(@equipment.name).to_not eq 'Repeat Name'
         end
       end
 
@@ -165,7 +165,7 @@ describe EquipmentController, type: :controller  do
           delete :destroy, :id => @equipment
         end
 
-        it { should redirect_to equipment_index_path }
+        it { is_expected.to redirect_to equipment_index_path }
         it "should destroy the equipment" do
           expect(Equipment.exists?(@equipment.id)).to eq false
         end

@@ -6,9 +6,9 @@ describe UnitsController, type: :controller  do
   let(:unit) { FactoryGirl.build_stubbed(:unit, name: 'custom unit')}
 
   before :each do
-    Unit.stub(:persisted?).and_return(true)
-    Unit.stub(:find).and_return(unit)
-    unit.stub(:save).and_return(true)
+    allow(Unit).to receive(:persisted?).and_return(true)
+    allow(Unit).to receive(:find).and_return(unit)
+    allow(unit).to receive(:save).and_return(true)
   end
 
   describe "Signed in as a normal user. " do
@@ -21,8 +21,8 @@ describe UnitsController, type: :controller  do
         get :new
       end
 
-      it { should respond_with :success }
-      it { should render_template :new }
+      it { is_expected.to respond_with :success }
+      it { is_expected.to render_template :new }
     end
 
     describe "GET :index" do
@@ -30,8 +30,8 @@ describe UnitsController, type: :controller  do
         get :index
       end
 
-      it { should respond_with :success }
-      it { should render_template :index }
+      it { is_expected.to respond_with :success }
+      it { is_expected.to render_template :index }
     end
 
     describe "POST :create with valid parameters" do
@@ -39,8 +39,8 @@ describe UnitsController, type: :controller  do
         post :create, :unit => {:name => "test_name"}
       end
 
-      it { should redirect_to unit_path(assigns(:unit)) }
-      it { should set_the_flash.to("Unit was successfully created.")}
+      it { is_expected.to redirect_to unit_path(assigns(:unit)) }
+      it { is_expected.to set_flash.to("Unit was successfully created.")}
     end
 
     describe "POST :create in XML format" do
@@ -48,9 +48,9 @@ describe UnitsController, type: :controller  do
         post :create, :unit => { :name => 'xml_name' }, :format => 'xml'
       end
 
-      it { should respond_with(201) }
+      it { is_expected.to respond_with(201) }
 			it 'should respond with content type application/xml' do
-				response.content_type.should == 'application/xml'
+				expect(response.content_type).to eq 'application/xml'
 			end
     end
 
@@ -65,8 +65,8 @@ describe UnitsController, type: :controller  do
           expect(assigns(:unit)).to eq unit 
         end
 
-        it { should respond_with :success }
-        it { should render_template :edit }
+        it { is_expected.to respond_with :success }
+        it { is_expected.to render_template :edit }
       end
 
       describe "GET :show the unit" do
@@ -78,13 +78,13 @@ describe UnitsController, type: :controller  do
           expect(assigns(:unit)).to eq unit
         end
 
-        it { should respond_with :success }
-        it { should render_template :show }
+        it { is_expected.to respond_with :success }
+        it { is_expected.to render_template :show }
       end
 
       describe "PUT :update the unit with valid attributes" do
         before(:each) do
-          unit.stub(:update_attributes).and_return(true)
+          allow(unit).to receive(:update_attributes).and_return(true)
           put :update, :id => unit, :unit => {:name => "different_name"}
         end
 
@@ -99,7 +99,7 @@ describe UnitsController, type: :controller  do
 
       describe "PUT :update the unit with invalid attributes" do
         before(:each) do
-          unit.stub(:update_attributes).and_return(false)
+          allow(unit).to receive(:update_attributes).and_return(false)
           put :update, :id => unit, :unit => {:name => "repeat_name"}
         end
 
@@ -114,12 +114,12 @@ describe UnitsController, type: :controller  do
 
       describe "DELETE :destroy the unit" do
         before(:each) do
-          unit.stub(:destroy).and_return(true)
+          allow(unit).to receive(:destroy).and_return(true)
           delete :destroy, :id => unit
         end
 
         it 'deletes the unit' do
-          expect(Unit.exists?(unit)).to eq false
+          expect(Unit.exists?(unit.id)).to eq false
         end
 
         it 'redirects to index' do

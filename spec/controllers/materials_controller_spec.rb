@@ -33,7 +33,7 @@ describe MaterialsController, type: :controller do
     end
 
     it 'create the material' do
-      expect(Material.exists?(assigns[:material])).to eq true
+      expect(Material.exists?(assigns[:material].id)).to eq true
     end
 
     it 'redirects to new material' do
@@ -48,7 +48,7 @@ describe MaterialsController, type: :controller do
     end
 
     it { should render_template :new }
-    it { should_not set_the_flash }
+    it { should_not set_flash }
   end
 
   describe "POST :create with XML format" do
@@ -58,13 +58,13 @@ describe MaterialsController, type: :controller do
 
     it { should respond_with(201) }
 		it 'should respond with content type application/xml' do
-			response.content_type.should == 'application/xml'
+			expect(response.content_type).to eq 'application/xml'
 		end
   end
 
   describe 'GET show' do
     before(:each) do
-      Material.should_receive(:find_with_children).with(material.id.to_s).and_return(material)
+      expect(Material).to receive(:find_with_children).with(material.id.to_s).and_return(material)
       get :show, :id => material
     end
 
@@ -115,7 +115,7 @@ describe MaterialsController, type: :controller do
     end
 
     it "should destroy material" do
-      expect(Material.exists?(material)).to eq false
+      expect(Material.exists?(material.id)).to eq false
     end
 
     it 'redirects to index' do
