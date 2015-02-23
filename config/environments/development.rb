@@ -29,4 +29,5 @@ Aglog::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   config.eager_load = false
+  config.active_record.raise_in_transactional_callbacks = true
 end
