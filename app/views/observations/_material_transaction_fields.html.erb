@@ -1,12 +1,12 @@
 <fieldset class="form-group inputs row">
-  <div class="col-sm-offset-2 col-sm-5">
+  <div class="col-sm-offset-1 col-sm-5">
     <% if only_current %>
       <%= f.select :material_id, Material.by_company(current_user.company).current.ordered.map {|m| [m.name, m.id]}, {:include_blank=>false}, {class: "form-control"} %>
     <% else %>
       <%= f.select :material_id, Material.by_company(current_user.company).ordered.map {|m| [m.name, m.id]}, {:include_blank=>false}, {class: "form-control"} %>
     <% end %>
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
     <%= f.text_field :rate, class: "form-control" %>
   </div>
   <div class="col-sm-2">
