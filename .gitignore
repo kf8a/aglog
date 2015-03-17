@@ -13,3 +13,4 @@ nbproject/*
 public/coffeescripts/
 production
 public/uploads
+.capistrano
