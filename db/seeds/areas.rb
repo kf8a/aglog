@@ -35,6 +35,7 @@ end
 
 #add biodiversity
 biodiversity = Area.find_or_create_by(:name => 'B', :study_id => 2, :company_id=>company.id)
+biodiversity.save
 1.upto(4) do |rep|
   1.upto(21) do |treat|
     t = Treatment.find_or_create_by(:name=>"B#{treat}",
@@ -45,6 +46,10 @@ biodiversity = Area.find_or_create_by(:name => 'B', :study_id => 2, :company_id=
                                             :treatment_id => t.id,
                                             :company_id=>company.id,
                                             :study_id => 2)
+    unless treatment_area.valid?
+      p treatment_area.errors
+    end
+    treatment_area.save
     treatment_area.move_to_child_of(biodiversity)
 
     area = Area.find_or_create_by(:name => "B#{treat}R#{rep}",
