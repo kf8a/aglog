@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150204172434) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", force: true do |t|
+  create_table "activities", force: :cascade do |t|
     t.integer "person_id"
     t.integer "observation_id"
     t.integer "operation_type_id"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.float   "hours"
   end
 
-  create_table "areas", force: true do |t|
+  create_table "areas", force: :cascade do |t|
     t.string  "name"
     t.integer "replicate"
     t.integer "study_id"
@@ -36,18 +36,18 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.integer "parent_id"
   end
 
-  create_table "areas_observations", id: false, force: true do |t|
+  create_table "areas_observations", id: false, force: :cascade do |t|
     t.integer "observation_id"
     t.integer "area_id"
   end
 
-  create_table "companies", force: true do |t|
+  create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "equipment", force: true do |t|
+  create_table "equipment", force: :cascade do |t|
     t.string  "name"
     t.boolean "use_material", default: false
     t.boolean "is_tractor",   default: false
@@ -56,17 +56,17 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.integer "company_id"
   end
 
-  create_table "equipment_materials", id: false, force: true do |t|
+  create_table "equipment_materials", id: false, force: :cascade do |t|
     t.integer "equipment_id"
     t.integer "material_id"
   end
 
-  create_table "equipment_operation_types", id: false, force: true do |t|
+  create_table "equipment_operation_types", id: false, force: :cascade do |t|
     t.integer "equipment_id"
     t.integer "operation_type_id"
   end
 
-  create_table "equipment_pictures", force: true do |t|
+  create_table "equipment_pictures", force: :cascade do |t|
     t.integer  "equipment_id"
     t.string   "title"
     t.text     "description"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.datetime "updated_at"
   end
 
-  create_table "hazards", force: true do |t|
+  create_table "hazards", force: :cascade do |t|
     t.string "name"
     t.string "hazard_type"
     t.string "chemical_name"
@@ -83,17 +83,17 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.float  "exclusion_time_days"
   end
 
-  create_table "hazards_materials", id: false, force: true do |t|
+  create_table "hazards_materials", id: false, force: :cascade do |t|
     t.integer "hazard_id"
     t.integer "material_id"
   end
 
-  create_table "hazards_people", id: false, force: true do |t|
+  create_table "hazards_people", id: false, force: :cascade do |t|
     t.integer "hazard_id"
     t.integer "person_id"
   end
 
-  create_table "material_transactions", force: true do |t|
+  create_table "material_transactions", force: :cascade do |t|
     t.integer  "material_id"
     t.integer  "unit_id"
     t.integer  "setup_id"
@@ -103,11 +103,11 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.datetime "transaction_datetime"
   end
 
-  create_table "material_types", force: true do |t|
+  create_table "material_types", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "materials", force: true do |t|
+  create_table "materials", force: :cascade do |t|
     t.string  "name"
     t.integer "operation_type_id"
     t.integer "material_type_id"
@@ -120,16 +120,16 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.boolean "archived",          default: false
   end
 
-  create_table "observation_types", force: true do |t|
+  create_table "observation_types", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "observation_types_observations", id: false, force: true do |t|
+  create_table "observation_types_observations", id: false, force: :cascade do |t|
     t.integer "observation_id"
     t.integer "observation_type_id"
   end
 
-  create_table "observations", force: true do |t|
+  create_table "observations", force: :cascade do |t|
     t.integer "person_id"
     t.text    "comment"
     t.date    "obs_date"
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.json    "notes"
   end
 
-  create_table "open_id_authentication_associations", force: true do |t|
+  create_table "open_id_authentication_associations", force: :cascade do |t|
     t.integer "issued"
     t.integer "lifetime"
     t.string  "handle"
@@ -149,13 +149,13 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.binary  "secret"
   end
 
-  create_table "open_id_authentication_nonces", force: true do |t|
+  create_table "open_id_authentication_nonces", force: :cascade do |t|
     t.integer "timestamp",  null: false
     t.string  "server_url"
     t.string  "salt",       null: false
   end
 
-  create_table "people", force: true do |t|
+  create_table "people", force: :cascade do |t|
     t.string   "given_name"
     t.string   "sur_name"
     t.string   "openid_identifier"
@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.integer  "user_id"
   end
 
-  create_table "sessions", force: true do |t|
+  create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false
     t.text     "data"
     t.datetime "created_at"
@@ -179,31 +179,31 @@ ActiveRecord::Schema.define(version: 20150204172434) do
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
-  create_table "setups", force: true do |t|
+  create_table "setups", force: :cascade do |t|
     t.integer "activity_id"
     t.integer "equipment_id"
     t.string  "settings"
   end
 
-  create_table "studies", force: true do |t|
+  create_table "studies", force: :cascade do |t|
     t.string "name"
     t.text   "description"
   end
 
-  create_table "treatments", force: true do |t|
+  create_table "treatments", force: :cascade do |t|
     t.string  "name"
     t.integer "study_id"
     t.integer "treatment_number"
   end
 
-  create_table "units", force: true do |t|
+  create_table "units", force: :cascade do |t|
     t.string  "name"
     t.integer "si_unit_id"
     t.float   "conversion_factor"
     t.boolean "is_si_unit",        default: false
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
