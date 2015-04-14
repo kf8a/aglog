@@ -113,28 +113,28 @@ describe Area do
     end
   end
 
-  #describe "requires the study of the treatment if it has a treatment: " do
-  #  before(:each) do
-  #    @study = find_or_factory(:study)
-  #    @another_study = FactoryGirl.create(:study, :name => 'another_study')
-  #    @treatment = find_or_factory(:treatment, :study_id => @study.id)
-  #  end
-  #
-  #  describe "an area with a treatment and a consistent study" do
-  #    subject { Area.new(:study_id => @study.id, :treatment_id => @treatment.id, :name => 'consistent_area') }
-  #    it { is_expected.to be_valid }
-  #  end
-  #
-  #  describe "an area with a treatment and no study" do
-  #    subject { Area.new(:study_id => nil, :treatment_id => @treatment.id, :name => 'no_study_area') }
-  #    it { is_expected.to be_valid }
-  #  end
-  #
-  #  describe "an area with a treatment and an inconsistent study" do
-  #    subject { Area.new(:study_id => @another_study.id, :treatment_id => @treatment.id, :name => 'inconsistent_area')}
-  #    it { is_expected.to_not be_valid }
-  #  end
-  #end
+  describe "requires the study of the treatment if it has a treatment: " do
+    before(:each) do
+      @study = find_or_factory(:study)
+      @another_study = FactoryGirl.create(:study, :name => 'another_study')
+      @treatment = find_or_factory(:treatment, :study_id => @study.id)
+    end
+
+    describe "an area with a treatment and a consistent study" do
+      subject { Area.new(:study_id => @study.id, :treatment_id => @treatment.id, :name => 'consistent_area') }
+      it { is_expected.to be_valid }
+    end
+
+    describe "an area with a treatment and no study" do
+      subject { Area.new(:study_id => nil, :treatment_id => @treatment.id, :name => 'no_study_area') }
+      it { is_expected.to be_valid }
+    end
+
+    # describe "an area with a treatment and an inconsistent study" do
+    #   subject { Area.new(:study_id => @another_study.id, :treatment_id => @treatment.id, :name => 'inconsistent_area')}
+    #   it { is_expected.to_not be_valid }
+    # end
+  end
 
   describe "self.parse should parse strings into areas: " do
     it "highlights non-existent areas and return string" do
@@ -224,7 +224,8 @@ describe Area do
 
     it "correctly parses Irrigated Fertility Gradient areas" do
       areas = Area.parse('iF')
-      real_areas = Area.where(study_id: 4)
+      study = Study.where(name:"IF").first
+      real_areas = Area.where(study_id: study.id)
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('iF7')
@@ -240,7 +241,8 @@ describe Area do
 
     it 'correctly parses CE areas' do
       areas = Area.parse('CE')
-      real_areas = Area.where(study_id: 7)
+      study = Study.where(name:"CE").first
+      real_areas = Area.where(study_id: study.id)
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('CE1')
@@ -255,7 +257,6 @@ describe Area do
       # assert_not_equal [], real_areas
       # assert_not_equal [], areas
       # assert_equal [], (areas - real_areas)
-
     end
 
     it 'correctly parses GLBRC areas' do
@@ -286,7 +287,7 @@ describe Area do
         expect(Area.parse('T1R1', :company => 2 )).to eq '*T1R1*'
       end
     end
-  end
+   end
 
   describe "self.unparse should consolidate a list of areas into a string: " do
     it "returns 'T1' when given an array of all the T1 areas" do

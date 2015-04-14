@@ -1,3 +1,4 @@
+plant :companies
 plant :studies
 plant :observation_types
 plant :people
