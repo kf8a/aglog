@@ -37,8 +37,8 @@
   <ul>
     <% form.object.notes.each_with_index do |note, i|%>
       <li>
-      <input id=observation_notes_<%=i%> type='checkbox' name='observation[notes][<%=i%>]' value=false>
-      <label id=observation_notes_<%=i%>>delete <%= note.url %> ?</label>
+      <input id=observation_notes_<%=i%> type='checkbox' name='observation[notes]_delete[<%=i%>]' value=false>
+      <label id='observation_notes_<%=i%>_delete'>delete <%= note.url %> ?</label>
       </li>
     <% end %>
   </ul>
