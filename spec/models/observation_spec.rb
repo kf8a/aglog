@@ -136,7 +136,8 @@ describe Observation do
     material = Material.find_by_name("Material4")
     material.n_content = 30
     material.save
-    assert_equal [40.0, 30.0], o.n_contents
+    assert_includes(o.n_contents, 40)
+    assert_includes(o.n_contents, 30)
   end
 
   it "returns the right rates" do
