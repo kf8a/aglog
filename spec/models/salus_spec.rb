@@ -10,6 +10,18 @@ RSpec.describe Salus, :type => :model do
   it 'returns planting components for the year' do
   end
 
+  it 'returns fertilization components for the year' do
+  end
+
+  it 'returns tillage components for the year' do
+    observation_type = ObservationType.where(name: "Soil Preparation").first
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
+    @area.observations << observation
+    result = "<Mgt_Tillage_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' TDep='6' TImpl=''/>"
+    expect(@salus.tillage_records_for(Date.today.year)).to eq [observation]
+
+  end
+
   it 'returns harvest components for the year' do
     observation_type = ObservationType.where(name: "Harvest").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
@@ -35,17 +47,4 @@ RSpec.describe Salus, :type => :model do
     # expect(@salus.planting_records).to eq [observation]
   end
 
-  it "returns a list of harvest dates" do
-    observation_type = ObservationType.where(name: "Harvest").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
-    @area.observations << observation
-    expect(@salus.harvest_records).to eq [observation]
-  end
-
-  it "returns a list of tillage events" do
-    observation_type = ObservationType.where(name: "Soil Preparation").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
-    @area.observations << observation
-    expect(@salus.tillage_records).to eq [observation]
-  end
 end
