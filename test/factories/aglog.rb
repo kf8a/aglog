@@ -71,7 +71,7 @@ FactoryGirl.define do
   end
 
   factory :activity do
-    observation
+    # observation
     person
   end
 
