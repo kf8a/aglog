@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2'
+gem 'rails', '~> 4.2.1'
 
 gem 'rake'
 
@@ -9,6 +9,7 @@ gem 'pg'
 gem 'devise'
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
+gem 'fog'
 
 gem 'will_paginate-bootstrap'
 gem 'haml'
