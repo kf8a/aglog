@@ -25,6 +25,10 @@ RSpec.describe Salus, :type => :model do
     expect(@salus.harvest_components_for(Date.today.year)).to eq result
   end
 
+  it 'does not return any components for an empty year' do
+    expect(@salus.harvest_components_for(1900)).to eq ""
+  end
+
   it 'returns a rotation component for the year' do
     create_fertilizer_observation
     obs = create_harvest_observation
@@ -37,6 +41,12 @@ RSpec.describe Salus, :type => :model do
     # result = "<Mgt_Planting CropMod='S' SpeciesID='WH' CultivarID='IB1003' Year='#{Date.today.year}' DOY='#{Date.today.yday}' EYear='0' EDOY='' Ppop='400' Ppoe='400' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' />"
     result = "<Mgt_Planting CropMod='S' SpeciesID='corn' CultivarID='IB1003' Year='#{Date.today.year}' DOY='#{Date.today.yday}' EYear='0' EDOY='' Ppop='10' Ppoe='10' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' notes='' />"
     expect(@salus.planting_components_for(Date.today.year)).to eq result
+  end
+
+  it 'returns an range of years' do
+    create_harvest_observation(Date.today -  366)
+    create_harvest_observation(Date.today)
+    expect(@salus.years).to eq [Date.today.year .. Date.today.year - 1]
   end
 
 
