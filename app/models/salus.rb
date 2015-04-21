@@ -47,9 +47,8 @@ class Salus
 
   def harvest_components_for(year)
     results = harvest_records_for(year)
-    results.collect do |result|
-      "<Mgt_Harvest_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{result.id}'/>"
-    end.join("\n")
+    result = results.sort {|x,y| x.obs_date <=> y.obs_date}.first
+    "<Mgt_Harvest_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{result.id}'/>"
   end
 
   def fertilizer_records_for(year)
