@@ -49,9 +49,10 @@ RSpec.describe Salus, :type => :model do
   end
 
   it "returns planting components for the year" do
-    # create_planting_observation.first
+    create_planting_observation.first
     # result = "<Mgt_Planting CropMod='S' SpeciesID='WH' CultivarID='IB1003' Year='#{Date.today.year}' DOY='#{Date.today.yday}' EYear='0' EDOY='' Ppop='400' Ppoe='400' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' />"
-    # expect(@salus.planting_components_for(Date.today.year)).to eq result
+    result = "<Mgt_Planting CropMod='S' SpeciesID='corn' CultivarID='IB1003' Year='#{Date.today.year}' DOY='#{Date.today.yday}' EYear='0' EDOY='' Ppop='10' Ppoe='10' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' notes='' />"
+    expect(@salus.planting_components_for(Date.today.year)).to eq result
   end
 
 
@@ -60,7 +61,8 @@ RSpec.describe Salus, :type => :model do
     observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
     material_type = FactoryGirl.create :material_type, name: "seed"
     material = FactoryGirl.create :material, name: "corn", material_type_id: material_type.id
-    setup = FactoryGirl.create(:setup, {materials: [material]})
+    material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10
+    setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
     observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
     @area.observations << observation
   end
