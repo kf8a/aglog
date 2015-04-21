@@ -1,4 +1,6 @@
 Aglog::Application.routes.draw do
+  get 'salus/show'
+
   devise_for :users
 
   post '/areas/:id/move_to/:parent_id' => 'areas#move_to'
@@ -17,6 +19,7 @@ Aglog::Application.routes.draw do
   resources :people
   resources :reports
   resources :materials
+  resources :salus,                 only: :show
 
 #  match '/' => 'observations#index'
   root :to => "observations#index"

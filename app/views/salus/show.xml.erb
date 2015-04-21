@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XDB>
+<Experiment ExpID="@salus.uuid" Title="<%=@salus.area.name%>" NYrs="<%= @salus.years.count %>" SYear="<%= @salus.years.last%>" SDOY="" ISwWat="" ISwNit="" ISwPho="" Frop="" Soilfp="" SoilID="" Weatherfp="" StationID="" Cropfp="crops.cdb.xml" Person="" Address="" Location="" RelPath="Y" NRrepSq="" ISimI="" ISwSym="" ISwPot="" ISwDis="" MeWth="" MeSIC="" MeSLi="" MeEvp="" MeInf="" MePho="" IOX="" IDetO="" IDetS="" IDetG="" IDetC="" IDetN="" IDetP="" IDetD="" IDetL="">
+    <Experiments_Notes Notes="" />
+
+    <%# inital conditions can be the same soybean year %>
+    <%# only time to need cultivar id is for corn and wheat %> 
+     <%# no need to put in a fallow unless the interval between crops is greater than a year %>
+    <Mgt_InitialCond Year="<%= @salus.years.last%>" DOY="0" >
+      <Layer DLayrI="30" SWInit="0.26" INinorg="20" TotP="0" P_ActIno="" P_SloIno="" P_Labile="" />
+      <Layer DLayrI="120" SWInit="0.26" INinorg="10" TotP="0" P_ActIno="" P_SloIno="" P_Labile="" />
+      <Layer DLayrI="200" SWInit="0.25" INinorg="7" TotP="0" P_ActIno="" P_SloIno="" P_Labile="" />
+      <Layer DLayrI="230" SWInit="0.03" INinorg="1" TotP="0" P_ActIno="" P_SloIno="" P_Labile="" />
+    </Mgt_InitialCond>
+    <Rotation_Components>
+    <% @salus.years.each do |year| %>
+      <%# Component is a crop inc no crop. year or a season.  can add a source or note field to each line. %>
+      <Component OrderNum="<%= year %>" Title="<%= @salus.crop_for(year)%>" IPltI="r" IIrrI="r" IferI="r" IResI="r" ITilI="r" IHarI="r" IEnvI="n">
+      <%# Crop model can be C omplex or S imple %>
+      <%= @salus.rotation_components_for(year) %>
+      </Component>
+    <% end %>
+    </Rotation_Components>
+  </Experiment>
+  <Version_Control>
+    <Version Number="X_1.1">
+      <ReleaseDate><%= Date.today%></ReleaseDate>
+      <Notes>Downloaded from https://aglog.kbs.msu.edu.</Notes>
+    </Version>
+  </Version_Control>
+</XDB>
