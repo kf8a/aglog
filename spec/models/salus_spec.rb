@@ -44,9 +44,17 @@ RSpec.describe Salus, :type => :model do
   end
 
   it 'returns an range of years' do
+    year = Date.today.year
     create_harvest_observation(Date.today -  366)
+    create_harvest_observation(Date.today -  766)
     create_harvest_observation(Date.today)
-    expect(@salus.years).to eq [Date.today.year .. Date.today.year - 1]
+
+    expect(@salus.years).to eq (year -2) ... year
+  end
+
+  it 'returns the crop for the year' do
+    create_planting_observation
+    expect(@salus.crop_for(Date.today.year)).to eq 'corn'
   end
 
 

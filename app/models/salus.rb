@@ -3,9 +3,15 @@ class Salus
 
   def years
     observations = area.observations
-    first = observations.order(:obs_date).first.obs_date.year
-    last = observations.order(:obs_date).last.obs_date.year
-    [first..last]
+    first = observations.order(:obs_date).first.obs_date.year.to_i
+    last = observations.order(:obs_date).last.obs_date.year.to_i
+    last...first
+  end
+
+  def crop_for(year)
+    records = planting_records_for(year)
+    #TODO this is not true in general
+    records.first.activities.first.setups.first.materials.first.name
   end
 
   def rotation_components_for(year)
