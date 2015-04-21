@@ -2,10 +2,7 @@ class Salus
   attr_accessor :area
 
   def rotation_components_for(year)
-    planting_components_for(year)
-    fertilizer_components_for(year)
-    tillage_components_for(year)
-    harvest_components_for(year)
+    planting_components_for(year) + fertilizer_components_for(year) + tillage_components_for(year) + harvest_components_for(year)
   end
 
   #TODO where should we keep row spacing seed weight and planting depth
