@@ -1,0 +1,6 @@
+class AddSalusCodes < ActiveRecord::Migration
+  def change
+    add_column :equipment, :salus_code, :text
+    add_column :materials, :salus_code, :text
+  end
+end

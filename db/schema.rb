@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204172434) do
+ActiveRecord::Schema.define(version: 20150421200001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.text    "description"
     t.boolean "archived"
     t.integer "company_id"
+    t.text    "salus_code"
   end
 
   create_table "equipment_materials", id: false, force: :cascade do |t|
@@ -118,6 +119,7 @@ ActiveRecord::Schema.define(version: 20150204172434) do
     t.boolean "liquid"
     t.integer "company_id"
     t.boolean "archived",          default: false
+    t.text    "salus_code"
   end
 
   create_table "observation_types", force: :cascade do |t|
