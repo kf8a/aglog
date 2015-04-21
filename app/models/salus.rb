@@ -23,11 +23,22 @@ class Salus
   end
 
   def fertilizer_components_for(year)
+    results = fertilizer_records_for(year)
+    results.flat_map do |result|
+      result.activities.flat_map do |activity|
+        activity.setups.flat_map do |setup|
+          setup.material_transactions.flat_map do |transaction|
+            #TODO add n p k ca content
+            "<Mgt_Fertilizer_App Year ='#{result.obs_date.year} DOY='#{result.obs_date.yday}' AKFer='' ANFer='#{}' APFer=''/>"
+          end
+        end
+      end
+    end.join("\n")
   end
 
   def tillage_components_for(year)
     results = tillage_records_for(year)
-    results.collect do |result|
+    results.flat_map do |result|
       result.activities.flat_map do |activity|
         activity.setups.flat_map do |setup|
           next if setup.equipment.is_tractor?
@@ -44,9 +55,9 @@ class Salus
     end.join("\n")
   end
 
-  def fertilzier_records_for(year)
-    area.observations.joins(:observation_types, setups: [:materials])
-      .where("materials.name = ?", "fertilizer")
+  def fertilizer_records_for(year)
+    area.observations.joins(:observation_types, setups: [:material_transactions, {materials: :material_type} ])
+      .where("material_types.name = ?", "fertilizer")
       .where("observation_types.name = ?","Fertilizer application")
       .where("date_part('year', obs_date) =?", year)
   end

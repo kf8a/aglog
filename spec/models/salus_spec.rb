@@ -9,6 +9,8 @@ RSpec.describe Salus, :type => :model do
 
   it 'returns fertilization components for the year' do
     create_fertilizer_observation
+    result = "<Mgt_Fertilizer_App Year ='#{Date.today.year} DOY='#{Date.today.yday}' AKFer='' ANFer='' APFer=''/>"
+    expect(@salus.fertilizer_components_for(Date.today.year)).to eq result
   end
 
   it 'returns tillage components for the year' do
@@ -24,7 +26,7 @@ RSpec.describe Salus, :type => :model do
   end
 
   it 'returns a rotation component for the year' do
-   expect(@salus.rotation_components_for(2015)).to_not be_nil
+   expect(@salus.rotation_components_for(Date.today.year)).to_not be_nil
   end
 
   it "returns planting components for the year" do
@@ -67,8 +69,11 @@ RSpec.describe Salus, :type => :model do
   def create_fertilizer_observation
     observation_type = ObservationType.where(name: "Fertilizer application").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
-    equipment = FactoryGirl.create :equipment
-    setup = FactoryGirl.create(:setup, {equipment: equipment})
+
+    material_type = FactoryGirl.create :material_type, name: "fertilizer"
+    material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
+    material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10
+    setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
     observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
 
     @area.observations << observation
