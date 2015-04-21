@@ -29,7 +29,7 @@ class Salus
       result.activities.flat_map do |activity|
         activity.setups.flat_map do |setup|
           setup.material_transactions.flat_map do |transaction|
-            "<Mgt_Planting CropMod='S' SpeciesID='#{transaction.material.name}' CultivarID='IB1003' Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' EYear='0' EDOY='' Ppop='#{transaction.seeds_per_square_meter}' Ppoe='#{transaction.seeds_per_square_meter}' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' src='#{url_for(result)}' notes='#{result.comment}' />"
+            "<Mgt_Planting CropMod='S' SpeciesID='#{transaction.material.salus_code}' CultivarID='IB1003' Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' EYear='0' EDOY='' Ppop='#{transaction.seeds_per_square_meter}' Ppoe='#{transaction.seeds_per_square_meter}' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' src='#{url_for(result)}' notes='#{result.comment}' />"
           end
         end
       end
@@ -56,7 +56,7 @@ class Salus
       result.activities.flat_map do |activity|
         activity.setups.flat_map do |setup|
           next if setup.equipment.is_tractor?
-          "<Mgt_Tillage_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' TDep='6' TImpl='#{setup.equipment.name}' src='#{url_for(result)}' notes='#{result.comment}'/>"
+          "<Mgt_Tillage_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' TDep='6' TImpl='#{setup.equipment.salus_code}' src='#{url_for(result)}' notes='#{result.comment}'/>"
         end
       end
     end.join("\n")
