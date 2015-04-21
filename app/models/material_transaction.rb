@@ -50,6 +50,11 @@ class MaterialTransaction < ActiveRecord::Base
     self.unit.try(:name)
   end
 
+  def seeds_per_square_meter
+    #TODO actually do the conversion
+    self.rate.to_i
+  end
+
   private##############################
 
   def to_kg_ha(content)
@@ -58,6 +63,8 @@ class MaterialTransaction < ActiveRecord::Base
 
     kg_ha.round(2)
   end
+
+
 
   def conversion_rate
     rate = self.rate * self.unit.conversion_factor

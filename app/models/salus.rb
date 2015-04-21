@@ -8,10 +8,17 @@ class Salus
     harvest_components_for(year)
   end
 
+  #TODO where should we keep row spacing seed weight and planting depth
   def planting_components_for(year)
     results = planting_records_for(year)
-    results.collect do |result|
-      "<Mgt_Planting CropMod='S' SpeciesID='#{result.material.name}' CultivarID='IB1003' Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' EYear='0' EDOY='' Ppop='400' Ppoe='400' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' />"
+    results.flat_map do |result|
+      result.activities.flat_map do |activity|
+        activity.setups.flat_map do |setup|
+          setup.material_transactions.flat_map do |transaction|
+            "<Mgt_Planting CropMod='S' SpeciesID='#{transaction.material.name}' CultivarID='IB1003' Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' EYear='0' EDOY='' Ppop='#{transaction.seeds_per_square_meter}' Ppoe='#{transaction.seeds_per_square_meter}' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' notes='#{result.comment}' />"
+          end
+        end
+      end
     end.join("\n")
   end
 
@@ -41,8 +48,8 @@ class Salus
   end
 
   def planting_records_for(year)
-    area.observations.joins(:observation_types, setups: [:materials, :material_transactions])
-      .where("materials.name = ?", "seed")
+    area.observations.joins(:observation_types, setups: [:material_transactions, {materials: :material_type} ])
+      .where("material_types.name = ?", "seed")
       .where("observation_types.name = ?","Planting")
       .where("date_part('year', obs_date) =?", year)
   end
