@@ -7,9 +7,6 @@ RSpec.describe Salus, :type => :model do
     @salus.area = @area
   end
 
-  it 'returns planting components for the year' do
-  end
-
   it 'returns fertilization components for the year' do
     observation_type = ObservationType.where(name: "Fertilizer application").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
@@ -21,15 +18,9 @@ RSpec.describe Salus, :type => :model do
   end
 
   it 'returns tillage components for the year' do
-    observation_type = ObservationType.where(name: "Soil Preparation").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
-    equipment = FactoryGirl.create :equipment
-    setup = FactoryGirl.create(:setup, {equipment: equipment})
-    observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
-
-    @area.observations << observation
+    create_tillage_observation
     result = "<Mgt_Tillage_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' TDep='6' TImpl=''/>"
-    expect(@salus.tillage_records_for(Date.today.year)).to eq [observation]
+    expect(@salus.tillage_components_for(Date.today.year)).to eq result
   end
 
   it 'returns harvest components for the year' do
@@ -66,4 +57,15 @@ RSpec.describe Salus, :type => :model do
     observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
     @area.observations << observation
   end
+
+  def create_tillage_observation
+    observation_type = ObservationType.where(name: "Soil Preparation").first
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
+    equipment = FactoryGirl.create :equipment
+    setup = FactoryGirl.create(:setup, {equipment: equipment})
+    observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
+
+    @area.observations << observation
+  end
+
 end

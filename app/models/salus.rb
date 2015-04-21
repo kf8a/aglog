@@ -28,8 +28,12 @@ class Salus
   def tillage_components_for(year)
     results = tillage_records_for(year)
     results.collect do |result|
-      next if result.setup.equipment.isTraktor?
-      "<Mgt_Tillage_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' TDep='6' TImpl='#{result.setup.equipment}'/>"
+      result.activities.flat_map do |activity|
+        activity.setups.flat_map do |setup|
+          next if setup.equipment.is_tractor?
+          "<Mgt_Tillage_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' TDep='6' TImpl='#{setup.equipment.name}'/>"
+        end
+      end
     end.join("\n")
   end
 
