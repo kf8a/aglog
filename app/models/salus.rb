@@ -1,20 +1,21 @@
 class Salus
   attr_accessor :area
 
-  def for_year(year)
-    where("date_part('year', obs_date) =?", year)
-  end
-
   def rotation_components_for(year)
-    planting_component_for(year)
-    fertilizer_component_for(year)
-    harvest_component_for(year)
+    planting_components_for(year)
+    fertilizer_components_for(year)
+    tillage_components_for(year)
+    harvest_components_for(year)
   end
 
-  def planting_component_for(year)
+  def planting_components_for(year)
+    results = planting_records_for(year)
+    results.collect do |result|
+      "<Mgt_Planting CropMod='S' SpeciesID='#{result.material.name}' CultivarID='IB1003' Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' EYear='0' EDOY='' Ppop='400' Ppoe='400' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' />"
+    end.join("\n")
   end
 
-  def fertilizer_component_for(year)
+  def fertilizer_components_for(year)
   end
 
   def tillage_components_for(year)
@@ -25,17 +26,25 @@ class Salus
     end.join("\n")
   end
 
-  def harvest_component_for(year)
+  def harvest_components_for(year)
     results = harvest_records_for(year)
     results.collect do |result|
       "<Mgt_Harvest_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' />"
     end.join("\n")
   end
 
-  def planting_records
+  def fertilzier_records_for(year)
     area.observations.joins(:observation_types, setups: [:materials])
-      .where("material_type_id = ?", MaterialType.where(name: 'seed').first)
-      .where("observation_type_id = ?", ObservationType.where(name: 'Planting').first)
+      .where("materials.name = ?", "fertilizer")
+      .where("observation_types.name = ?","Fertilizer application")
+      .where("date_part('year', obs_date) =?", year)
+  end
+
+  def planting_records_for(year)
+    area.observations.joins(:observation_types, setups: [:materials, :material_transactions])
+      .where("materials.name = ?", "seed")
+      .where("observation_types.name = ?","Planting")
+      .where("date_part('year', obs_date) =?", year)
   end
 
   def harvest_records_for(year)
