@@ -11,6 +11,13 @@ RSpec.describe Salus, :type => :model do
   end
 
   it 'returns fertilization components for the year' do
+    observation_type = ObservationType.where(name: "Fertilizer application").first
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
+    equipment = FactoryGirl.create :equipment
+    setup = FactoryGirl.create(:setup, {equipment: equipment})
+    observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
+
+    @area.observations << observation
   end
 
   it 'returns tillage components for the year' do
@@ -30,7 +37,7 @@ RSpec.describe Salus, :type => :model do
     observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
     @area.observations << observation
     result = "<Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' />"
-    expect(@salus.harvest_component_for(Date.today.year)).to eq result
+    expect(@salus.harvest_components_for(Date.today.year)).to eq result
   end
 
   it 'returns a rotation component for the year' do
@@ -41,13 +48,20 @@ RSpec.describe Salus, :type => :model do
     # it starts out in an undefined state and then proceeds from tillage to planting to harvest
   end
 
-  it "returns a list of planting dates" do
-    # observation_type = ObservationType.where(name: "Planting").first
-    # material_type = FactoryGirl.create :material_type, name: "seed"
-    # material = FactoryGirl.create :material, name: "corn", material_type_id: material_type.id
-    # observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
-    # @area.observations << observation
-    # expect(@salus.planting_records).to eq [observation]
+  it "returns planting components for the year" do
+    # create_planting_observation.first
+    # result = "<Mgt_Planting CropMod='S' SpeciesID='WH' CultivarID='IB1003' Year='#{Date.today.year}' DOY='#{Date.today.yday}' EYear='0' EDOY='' Ppop='400' Ppoe='400' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' />"
+    # expect(@salus.planting_components_for(Date.today.year)).to eq result
   end
 
+
+  def create_planting_observation
+    observation_type = ObservationType.where(name: "Planting").first
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
+    material_type = FactoryGirl.create :material_type, name: "seed"
+    material = FactoryGirl.create :material, name: "corn", material_type_id: material_type.id
+    setup = FactoryGirl.create(:setup, {materials: [material]})
+    observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
+    @area.observations << observation
+  end
 end
