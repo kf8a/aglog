@@ -20,15 +20,15 @@ RSpec.describe Salus, :type => :model do
   end
 
   it 'returns harvest components for the year' do
-    create_harvest_observation
-    result = "<Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' />"
+    obs = create_harvest_observation
+    result = "<Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{obs.id}'/>"
     expect(@salus.harvest_components_for(Date.today.year)).to eq result
   end
 
   it 'returns a rotation component for the year' do
     create_fertilizer_observation
-    create_harvest_observation
-    result = "<Mgt_Fertilizer_App Year ='#{Date.today.year} DOY='#{Date.today.yday}' AKFer='' ANFer='' APFer=''/><Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' />"
+    obs = create_harvest_observation
+    result = "<Mgt_Fertilizer_App Year ='#{Date.today.year} DOY='#{Date.today.yday}' AKFer='' ANFer='' APFer=''/><Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{obs.id}'/>"
     expect(@salus.rotation_components_for(Date.today.year)).to eq  result
   end
 
@@ -50,6 +50,7 @@ RSpec.describe Salus, :type => :model do
     observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
 
     @area.observations << observation
+    observation
   end
 
   def create_tillage_observation
@@ -60,6 +61,7 @@ RSpec.describe Salus, :type => :model do
     observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
 
     @area.observations << observation
+    observation
   end
 
   def create_harvest_observation
@@ -67,6 +69,7 @@ RSpec.describe Salus, :type => :model do
     observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
 
     @area.observations << observation
+    observation
   end
 
   def create_fertilizer_observation
@@ -80,6 +83,7 @@ RSpec.describe Salus, :type => :model do
     observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
 
     @area.observations << observation
+    observation
   end
 
 end
