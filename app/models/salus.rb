@@ -11,7 +11,8 @@ class Salus
   def crop_for(year)
     records = planting_records_for(year)
     #TODO this is not true in general
-    records.first.activities.first.setups.first.materials.first.name
+    # records.first.activities.first.setups.first.materials.first.name
+    "corn"
   end
 
   def rotation_components_for(year)
