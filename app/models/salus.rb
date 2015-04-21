@@ -1,6 +1,13 @@
 class Salus
   attr_accessor :area
 
+  def years
+    observations = area.observations
+    first = observations.order(:obs_date).first.obs_date.year
+    last = observations.order(:obs_date).last.obs_date.year
+    [first..last]
+  end
+
   def rotation_components_for(year)
     [planting_components_for(year), 
       fertilizer_components_for(year),
