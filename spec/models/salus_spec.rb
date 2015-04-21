@@ -28,7 +28,7 @@ RSpec.describe Salus, :type => :model do
   it 'returns a rotation component for the year' do
     create_fertilizer_observation
     obs = create_harvest_observation
-    result = "<Mgt_Fertilizer_App Year ='#{Date.today.year} DOY='#{Date.today.yday}' AKFer='' ANFer='' APFer=''/><Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{obs.id}'/>"
+    result = "\n<Mgt_Fertilizer_App Year ='#{Date.today.year} DOY='#{Date.today.yday}' AKFer='' ANFer='' APFer=''/>\n\n<Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{obs.id}'/>"
     expect(@salus.rotation_components_for(Date.today.year)).to eq  result
   end
 
