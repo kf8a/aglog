@@ -8,13 +8,7 @@ RSpec.describe Salus, :type => :model do
   end
 
   it 'returns fertilization components for the year' do
-    observation_type = ObservationType.where(name: "Fertilizer application").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
-    equipment = FactoryGirl.create :equipment
-    setup = FactoryGirl.create(:setup, {equipment: equipment})
-    observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
-
-    @area.observations << observation
+    create_fertilizer_observation
   end
 
   it 'returns tillage components for the year' do
@@ -24,19 +18,13 @@ RSpec.describe Salus, :type => :model do
   end
 
   it 'returns harvest components for the year' do
-    observation_type = ObservationType.where(name: "Harvest").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
-    @area.observations << observation
+    create_harvest_observation
     result = "<Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' />"
     expect(@salus.harvest_components_for(Date.today.year)).to eq result
   end
 
   it 'returns a rotation component for the year' do
    expect(@salus.rotation_components_for(2015)).to_not be_nil
-  end
-
-  it 'returns a list of operations on the field in chronological order' do
-    # it starts out in an undefined state and then proceeds from tillage to planting to harvest
   end
 
   it "returns planting components for the year" do
@@ -55,11 +43,29 @@ RSpec.describe Salus, :type => :model do
     material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10
     setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
     observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
+
     @area.observations << observation
   end
 
   def create_tillage_observation
     observation_type = ObservationType.where(name: "Soil Preparation").first
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
+    equipment = FactoryGirl.create :equipment
+    setup = FactoryGirl.create(:setup, {equipment: equipment})
+    observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
+
+    @area.observations << observation
+  end
+
+  def create_harvest_observation
+    observation_type = ObservationType.where(name: "Harvest").first
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
+
+    @area.observations << observation
+  end
+
+  def create_fertilizer_observation
+    observation_type = ObservationType.where(name: "Fertilizer application").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
     equipment = FactoryGirl.create :equipment
     setup = FactoryGirl.create(:setup, {equipment: equipment})
