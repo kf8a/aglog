@@ -29,7 +29,7 @@ class Salus
       result.activities.flat_map do |activity|
         activity.setups.flat_map do |setup|
           setup.material_transactions.flat_map do |transaction|
-            "<Mgt_Planting CropMod='S' SpeciesID='#{transaction.material.name}' CultivarID='IB1003' Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' EYear='0' EDOY='' Ppop='#{transaction.seeds_per_square_meter}' Ppoe='#{transaction.seeds_per_square_meter}' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' notes='#{result.comment}' />"
+            "<Mgt_Planting CropMod='S' SpeciesID='#{transaction.material.name}' CultivarID='IB1003' Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' EYear='0' EDOY='' Ppop='#{transaction.seeds_per_square_meter}' Ppoe='#{transaction.seeds_per_square_meter}' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' src='#{url_for(result)}' notes='#{result.comment}' />"
           end
         end
       end
@@ -43,7 +43,7 @@ class Salus
         activity.setups.flat_map do |setup|
           setup.material_transactions.flat_map do |transaction|
             #TODO add n p k ca content
-            "<Mgt_Fertilizer_App Year ='#{result.obs_date.year} DOY='#{result.obs_date.yday}' AKFer='' ANFer='#{}' APFer=''/>"
+            "<Mgt_Fertilizer_App Year ='#{result.obs_date.year} DOY='#{result.obs_date.yday}' AKFer='' ANFer='#{}' APFer='' src='#{url_for(result)}' notes='#{result.comment}'/>"
           end
         end
       end
@@ -56,7 +56,7 @@ class Salus
       result.activities.flat_map do |activity|
         activity.setups.flat_map do |setup|
           next if setup.equipment.is_tractor?
-          "<Mgt_Tillage_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' TDep='6' TImpl='#{setup.equipment.name}'/>"
+          "<Mgt_Tillage_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' TDep='6' TImpl='#{setup.equipment.name}' src='#{url_for(result)}' notes='#{result.comment}'/>"
         end
       end
     end.join("\n")
@@ -65,7 +65,7 @@ class Salus
   def harvest_components_for(year)
     results = harvest_records_for(year)
     results.flat_map do |result|
-    "<Mgt_Harvest_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{result.id}'/>"
+    "<Mgt_Harvest_App Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='#{url_for(result)}' notes='#{result.comment}'/>"
     end.join("\n")
   end
 
@@ -93,5 +93,9 @@ class Salus
     area.observations.joins(:observation_types)
       .where("date_part('year', obs_date) =?", year)
       .where("observation_types.name = ?", "Soil Preparation")
+  end
+
+  def url_for(object)
+    "https://aglog.kbs.msu.edu/observations/#{object.id}"
   end
 end

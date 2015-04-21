@@ -8,20 +8,20 @@ RSpec.describe Salus, :type => :model do
   end
 
   it 'returns fertilization components for the year' do
-    create_fertilizer_observation
-    result = "<Mgt_Fertilizer_App Year ='#{Date.today.year} DOY='#{Date.today.yday}' AKFer='' ANFer='' APFer=''/>"
+    obs = create_fertilizer_observation
+    result = "<Mgt_Fertilizer_App Year ='#{Date.today.year} DOY='#{Date.today.yday}' AKFer='' ANFer='' APFer='' src='https://aglog.kbs.msu.edu/observations/#{obs.id}' notes=''/>"
     expect(@salus.fertilizer_components_for(Date.today.year)).to eq result
   end
 
   it 'returns tillage components for the year' do
-    create_tillage_observation
-    result = "<Mgt_Tillage_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' TDep='6' TImpl=''/>"
+    obs = create_tillage_observation
+    result = "<Mgt_Tillage_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' TDep='6' TImpl='' src='https://aglog.kbs.msu.edu/observations/#{obs.id}' notes=''/>"
     expect(@salus.tillage_components_for(Date.today.year)).to eq result
   end
 
   it 'returns harvest components for the year' do
     obs = create_harvest_observation
-    result = "<Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{obs.id}'/>"
+    result = "<Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{obs.id}' notes=''/>"
     expect(@salus.harvest_components_for(Date.today.year)).to eq result
   end
 
@@ -30,16 +30,15 @@ RSpec.describe Salus, :type => :model do
   end
 
   it 'returns a rotation component for the year' do
-    create_fertilizer_observation
-    obs = create_harvest_observation
-    result = "\n<Mgt_Fertilizer_App Year ='#{Date.today.year} DOY='#{Date.today.yday}' AKFer='' ANFer='' APFer=''/>\n\n<Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{obs.id}'/>"
+    obs1 = create_fertilizer_observation
+    obs2 = create_harvest_observation
+    result = "\n<Mgt_Fertilizer_App Year ='#{Date.today.year} DOY='#{Date.today.yday}' AKFer='' ANFer='' APFer='' src='https://aglog.kbs.msu.edu/observations/#{obs1.id}' notes=''/>\n\n<Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{obs2.id}' notes=''/>"
     expect(@salus.rotation_components_for(Date.today.year)).to eq  result
   end
 
   it "returns planting components for the year" do
-    create_planting_observation
-    # result = "<Mgt_Planting CropMod='S' SpeciesID='WH' CultivarID='IB1003' Year='#{Date.today.year}' DOY='#{Date.today.yday}' EYear='0' EDOY='' Ppop='400' Ppoe='400' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' />"
-    result = "<Mgt_Planting CropMod='S' SpeciesID='corn' CultivarID='IB1003' Year='#{Date.today.year}' DOY='#{Date.today.yday}' EYear='0' EDOY='' Ppop='10' Ppoe='10' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' notes='' />"
+    obs = create_planting_observation
+    result = "<Mgt_Planting CropMod='S' SpeciesID='corn' CultivarID='IB1003' Year='#{Date.today.year}' DOY='#{Date.today.yday}' EYear='0' EDOY='' Ppop='10' Ppoe='10' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' src='https://aglog.kbs.msu.edu/observations/#{obs.id}' notes='' />"
     expect(@salus.planting_components_for(Date.today.year)).to eq result
   end
 
