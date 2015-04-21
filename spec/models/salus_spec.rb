@@ -25,13 +25,6 @@ RSpec.describe Salus, :type => :model do
     expect(@salus.harvest_components_for(Date.today.year)).to eq result
   end
 
-  it  'returns only the first harvest component fo the year' do
-    obs = create_harvest_observation
-    create_harvest_observation(Date.today + 1)
-    result = "<Mgt_Harvest_App Year='#{Date.today.year}' DOY='#{Date.today.yday}' HCom='H' HSiz='A' HPc='100' HBmin='0' HBPc='0' HKnDnPc='0' src='https://aglog.kbs.msu.edu/observations/#{obs.id}'/>"
-    expect(@salus.harvest_components_for(Date.today.year)).to eq result
-  end
-
   it 'returns a rotation component for the year' do
     create_fertilizer_observation
     obs = create_harvest_observation
