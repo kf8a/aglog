@@ -18,6 +18,10 @@ class Salus
   def rotation_components
   end
 
+  def records
+    tillage_records + harvest_records + planting_records + fertilizer_records
+  end
+
   def rotation_components_for(year)
     [planting_components_for(year), 
       fertilizer_components_for(year),
@@ -72,11 +76,23 @@ class Salus
     end.join("\n")
   end
 
+  def fertilizer_records
+    area.observations.joins(:observation_types, setups: [:material_transactions, {materials: :material_type} ])
+      .where("material_types.name = ?", "fertilizer")
+      .where("observation_types.name = ?","Fertilizer application")
+  end
+
   def fertilizer_records_for(year)
     area.observations.joins(:observation_types, setups: [:material_transactions, {materials: :material_type} ])
       .where("material_types.name = ?", "fertilizer")
       .where("observation_types.name = ?","Fertilizer application")
       .where("date_part('year', obs_date) =?", year)
+  end
+
+  def planting_records
+    area.observations.joins(:observation_types, setups: [:material_transactions, {materials: :material_type} ])
+      .where("material_types.name = ?", "seed")
+      .where("observation_types.name = ?","Planting")
   end
 
   def planting_records_for(year)
@@ -86,10 +102,20 @@ class Salus
       .where("date_part('year', obs_date) =?", year)
   end
 
+  def harvest_records
+    area.observations.joins(:observation_types)
+      .where("observation_types.name = ?", 'Harvest')
+  end
+
   def harvest_records_for(year)
     area.observations.joins(:observation_types)
       .where("date_part('year', obs_date) =?", year)
       .where("observation_types.name = ?", 'Harvest')
+  end
+
+  def tillage_records
+    area.observations.joins(:observation_types)
+      .where("observation_types.name = ?", "Soil Preparation")
   end
 
   def tillage_records_for(year)
@@ -97,6 +123,7 @@ class Salus
       .where("date_part('year', obs_date) =?", year)
       .where("observation_types.name = ?", "Soil Preparation")
   end
+
 
   def url_for(object)
     "https://aglog.kbs.msu.edu/observations/#{object.id}"
