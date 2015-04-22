@@ -7,6 +7,23 @@ RSpec.describe Salus, :type => :model do
     @salus.area = @area
   end
 
+  describe 'a continous sequence of rotation components' do
+    before(:each) do
+      create_tillage_observation(Date.today - 20)
+      create_fertilizer_observation(Date.today - 10)
+      create_planting_observation(Date.today - 5)
+      create_harvest_observation
+      create_tillage_observation(Date.today + 10)
+      create_planting_observation(Date.today + 20)
+      create_fertilizer_observation(Date.today + 30)
+      create_harvest_observation(Date.today + 40)
+    end
+
+    it 'has two rotation components' do
+      expect(@salus.rotation_components.size).to eq 2
+    end
+  end
+
   it 'returns fertilization components for the year' do
     obs = create_fertilizer_observation
     result = "<Mgt_Fertilizer_App Year ='#{Date.today.year} DOY='#{Date.today.yday}' AKFer='' ANFer='' APFer='' src='https://aglog.kbs.msu.edu/observations/#{obs.id}' notes=''/>"
@@ -38,7 +55,7 @@ RSpec.describe Salus, :type => :model do
 
   it "returns planting components for the year" do
     obs = create_planting_observation
-    result = "<Mgt_Planting CropMod='S' SpeciesID='corn' CultivarID='IB1003' Year='#{Date.today.year}' DOY='#{Date.today.yday}' EYear='0' EDOY='' Ppop='10' Ppoe='10' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' src='https://aglog.kbs.msu.edu/observations/#{obs.id}' notes='' />"
+    result = "<Mgt_Planting CropMod='S' SpeciesID='' CultivarID='IB1003' Year='#{Date.today.year}' DOY='#{Date.today.yday}' EYear='0' EDOY='' Ppop='10' Ppoe='10' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' src='https://aglog.kbs.msu.edu/observations/#{obs.id}' notes='' />"
     expect(@salus.planting_components_for(Date.today.year)).to eq result
   end
 
@@ -56,10 +73,9 @@ RSpec.describe Salus, :type => :model do
     expect(@salus.crop_for(Date.today.year)).to eq 'corn'
   end
 
-
-  def create_planting_observation
+  def create_planting_observation(date=Date.today)
     observation_type = ObservationType.where(name: "Planting").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
     material_type = FactoryGirl.create :material_type, name: "seed"
     material = FactoryGirl.create :material, name: "corn", material_type_id: material_type.id
     material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10
@@ -70,9 +86,9 @@ RSpec.describe Salus, :type => :model do
     observation
   end
 
-  def create_tillage_observation
+  def create_tillage_observation(date=Date.today)
     observation_type = ObservationType.where(name: "Soil Preparation").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
     equipment = FactoryGirl.create :equipment
     setup = FactoryGirl.create(:setup, {equipment: equipment})
     observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
@@ -89,9 +105,9 @@ RSpec.describe Salus, :type => :model do
     observation
   end
 
-  def create_fertilizer_observation
+  def create_fertilizer_observation(date=Date.today)
     observation_type = ObservationType.where(name: "Fertilizer application").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type]}
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
 
     material_type = FactoryGirl.create :material_type, name: "fertilizer"
     material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
