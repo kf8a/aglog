@@ -15,6 +15,9 @@ class Salus
     "corn"
   end
 
+  def rotation_components
+  end
+
   def rotation_components_for(year)
     [planting_components_for(year), 
       fertilizer_components_for(year),
