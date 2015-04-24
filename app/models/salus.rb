@@ -16,6 +16,47 @@ class Salus
   end
 
   def rotation_components
+    rot = []
+    result = [rot]
+    current_type = nil
+    area_records = records.sort {|x,y| x.obs_date <=> y.obs_date}
+    area_records.each do |obs|
+      p obs.observation_type
+      p result
+      case obs.observation_type
+      when 'Planting'
+        if current_type == 'Harvest'
+          rot = []
+          result.push(rot)
+        end
+        current_type = obs.observation_type
+        rot.push('planting')
+      when 'Soil Preparation'
+        if current_type == 'Harvest'
+          rot = []
+          result.push(rot)
+        end
+        current_type = obs.observation_type
+        rot.push('tillage')
+      when 'Fertilizer application'
+        if current_type == 'Harvest'
+          rot = []
+          result.push(rot)
+        end
+        current_type = obs.observation_type
+        rot.push('fertilizer')
+      when 'Harvest'
+        current_type = obs.observation_type
+        rot.push('harvest')
+      end
+    end
+    result
+  end
+
+  def need_new_rotation(current_type)
+    if current_type == 'harvest'
+      new_rotation_component
+    end
   end
 
   def records
@@ -29,6 +70,10 @@ class Salus
       harvest_components_for(year)].compact.join("\n")
   end
 
+  def planting_component(obs, activity, setup, transaction)
+            "<Mgt_Planting CropMod='S' SpeciesID='#{transaction.material.salus_code}' CultivarID='IB1003' Year='#{obs.obs_date.year}' DOY='#{obs.obs_date.yday}' EYear='0' EDOY='' Ppop='#{transaction.seeds_per_square_meter}' Ppoe='#{transaction.seeds_per_square_meter}' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' src='#{url_for(obs)}' notes='#{obs.comment}' />"
+  end
+
   #TODO where should we keep row spacing seed weight and planting depth
   def planting_components_for(year)
     results = planting_records_for(year)
@@ -36,7 +81,7 @@ class Salus
       result.activities.flat_map do |activity|
         activity.setups.flat_map do |setup|
           setup.material_transactions.flat_map do |transaction|
-            "<Mgt_Planting CropMod='S' SpeciesID='#{transaction.material.salus_code}' CultivarID='IB1003' Year='#{result.obs_date.year}' DOY='#{result.obs_date.yday}' EYear='0' EDOY='' Ppop='#{transaction.seeds_per_square_meter}' Ppoe='#{transaction.seeds_per_square_meter}' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' src='#{url_for(result)}' notes='#{result.comment}' />"
+            planting_component(result, activity, setup, transaction)
           end
         end
       end

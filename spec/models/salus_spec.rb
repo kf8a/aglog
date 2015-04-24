@@ -24,7 +24,7 @@ RSpec.describe Salus, :type => :model do
     end
 
     it 'has two rotation components' do
-      # expect(@salus.rotation_components.size).to eq 2
+      expect(@salus.rotation_components.size).to eq 2
     end
   end
 
