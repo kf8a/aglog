@@ -19,35 +19,57 @@ class Salus
     rot = []
     result = [rot]
     current_type = nil
-    area_records = records.sort {|x,y| x.obs_date <=> y.obs_date}
-    area_records.each do |obs|
+    observations = records.sort {|x,y| x.obs_date <=> y.obs_date}
+    observations.each do |obs|
       case obs.observation_type
       when 'Planting'
         rot = new_rotation(current_type, result,rot)
-        current_type = obs.observation_type
-        rot.push('planting')
+        rot.push planting_component(obs)
       when 'Soil Preparation'
         rot = new_rotation(current_type, result, rot)
-        current_type = obs.observation_type
-        rot.push('tillage')
+        rot.push tillage_component(obs)
       when 'Fertilizer application'
         rot = new_rotation(current_type, result, rot)
-        current_type = obs.observation_type
-        rot.push('fertilizer')
+        rot.push fertilizer_component(obs)
       when 'Harvest'
-        current_type = obs.observation_type
-        rot.push('harvest')
+        rot.push harvest_component(obs)
       end
+      current_type = obs.observation_type
     end
+    p result
     result
   end
 
   def new_rotation(current_type, result, rot)
     if current_type == 'Harvest'
       rot = []
-      result.push(rot)
+      result.push rot
     end
     rot
+  end
+
+  #TODO are there actually more than one?
+  def planting_component(obs)
+    obs.activities.flat_map do |activity|
+      activity.setups.flat_map do |setup|
+        setup.material_transactions.flat_map do |transaction|
+          {type: 'planting', species: transaction.material.salus_code, year: obs.obs_date.year, doy: obs.obs_date.yday,
+          ppop: transaction.seeds_per_square_meter, url: url_for(obs), notes: obs.comment}
+        end
+      end
+    end
+  end
+
+  def tillage_component(obs)
+    {type: 'tillage'}
+  end
+
+  def fertilizer_component(obs)
+    {type: 'fertilizer'}
+  end
+
+  def harvest_component(obs)
+    {type: 'harvest', year: obs.obs_date.year, doy: obs.obs_date.yday, url:url_for(obs), notes: obs.comment}
   end
 
   def records
@@ -61,7 +83,7 @@ class Salus
       harvest_components_for(year)].compact.join("\n")
   end
 
-  def planting_component(obs, activity, setup, transaction)
+  def planting_component_xml(obs, activity, setup, transaction)
             "<Mgt_Planting CropMod='S' SpeciesID='#{transaction.material.salus_code}' CultivarID='IB1003' Year='#{obs.obs_date.year}' DOY='#{obs.obs_date.yday}' EYear='0' EDOY='' Ppop='#{transaction.seeds_per_square_meter}' Ppoe='#{transaction.seeds_per_square_meter}' PlMe='S' PlDs='R' RowSpc='10' AziR='' SDepth='4' SdWtPl='20' SdAge='' ATemp='' PlPH='' src='#{url_for(obs)}' notes='#{obs.comment}' />"
   end
 
@@ -72,7 +94,7 @@ class Salus
       result.activities.flat_map do |activity|
         activity.setups.flat_map do |setup|
           setup.material_transactions.flat_map do |transaction|
-            planting_component(result, activity, setup, transaction)
+            planting_component_xml(result, activity, setup, transaction)
           end
         end
       end
