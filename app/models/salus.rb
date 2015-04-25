@@ -61,11 +61,11 @@ class Salus
   end
 
   def tillage_component(obs)
-    {type: 'tillage'}
+    {type: 'tillage', year: obs.obs_date.year, doy: obs.obs_date.yday, url: url_for(obs), notes: obs.comment}
   end
 
   def fertilizer_component(obs)
-    {type: 'fertilizer'}
+    {type: 'fertilizer', year: obs.obs_date.year, doy: obs.obs_date.yday, url: url_for(obs), notes: obs.comment}
   end
 
   def harvest_component(obs)
