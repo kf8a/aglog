@@ -41,6 +41,7 @@ class Salus
 
   def new_rotation(current_type, result, rot)
     if current_type == 'Harvest'
+      rot.flatten!
       rot = []
       result.push rot
     end
