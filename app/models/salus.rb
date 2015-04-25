@@ -21,28 +21,17 @@ class Salus
     current_type = nil
     area_records = records.sort {|x,y| x.obs_date <=> y.obs_date}
     area_records.each do |obs|
-      p obs.observation_type
-      p result
       case obs.observation_type
       when 'Planting'
-        if current_type == 'Harvest'
-          rot = []
-          result.push(rot)
-        end
+        rot = new_rotation(current_type, result,rot)
         current_type = obs.observation_type
         rot.push('planting')
       when 'Soil Preparation'
-        if current_type == 'Harvest'
-          rot = []
-          result.push(rot)
-        end
+        rot = new_rotation(current_type, result, rot)
         current_type = obs.observation_type
         rot.push('tillage')
       when 'Fertilizer application'
-        if current_type == 'Harvest'
-          rot = []
-          result.push(rot)
-        end
+        rot = new_rotation(current_type, result, rot)
         current_type = obs.observation_type
         rot.push('fertilizer')
       when 'Harvest'
@@ -53,10 +42,12 @@ class Salus
     result
   end
 
-  def need_new_rotation(current_type)
-    if current_type == 'harvest'
-      new_rotation_component
+  def new_rotation(current_type, result, rot)
+    if current_type == 'Harvest'
+      rot = []
+      result.push(rot)
     end
+    rot
   end
 
   def records

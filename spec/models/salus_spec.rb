@@ -13,6 +13,7 @@ RSpec.describe Salus, :type => :model do
       create_fertilizer_observation(Date.today - 10)
       create_planting_observation(Date.today - 5)
       create_harvest_observation
+      create_fertilizer_observation(Date.today + 5)
       create_tillage_observation(Date.today + 10)
       create_planting_observation(Date.today + 20)
       create_fertilizer_observation(Date.today + 30)
@@ -20,11 +21,19 @@ RSpec.describe Salus, :type => :model do
     end
 
     it 'has 8 observations' do
-      expect(@salus.records.size).to eq 8
+      expect(@salus.records.size).to eq 9
     end
 
     it 'has two rotation components' do
       expect(@salus.rotation_components.size).to eq 2
+    end
+
+    it 'has 4 observations in the first rotation component' do
+      expect(@salus.rotation_components.first.size).to eq 4
+    end
+
+    it 'has 5 observations in the second rotation component' do
+      expect(@salus.rotation_components.second.size).to eq 5
     end
   end
 
