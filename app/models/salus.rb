@@ -57,9 +57,10 @@ class Salus
     obs.activities.flat_map do |activity|
       activity.setups.flat_map do |setup|
         setup.material_transactions.flat_map do |transaction|
+          next unless transaction.material.material_type_name == 'seed'
           {type: 'planting', species: transaction.material.salus_code, year: obs.obs_date.year, doy: obs.obs_date.yday,
           ppop: transaction.seeds_per_square_meter, url: url_for(obs), notes: obs.comment, raw: [transaction, setup]}
-        end
+        end.compact
       end
     end.first
   end
