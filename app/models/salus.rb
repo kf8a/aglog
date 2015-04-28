@@ -1,6 +1,10 @@
 class Salus
   attr_accessor :area
 
+  def uuid
+    "experiment 1"
+  end
+
   def years
     observations = area.observations
     first = observations.order(:obs_date).first.obs_date.year.to_i
