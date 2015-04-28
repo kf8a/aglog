@@ -6,7 +6,7 @@
     <%# inital conditions can be the same soybean year %>
     <%# only time to need cultivar id is for corn and wheat %> 
      <%# no need to put in a fallow unless the interval between crops is greater than a year %>
-    <Mgt_InitialCond Year="<%= @salus.years.last%>" DOY="0" >
+    <Mgt_InitialCond Year="<%= @salus.years.first%>" DOY="0" >
       <Layer DLayrI="30" SWInit="0.26" INinorg="20" TotP="0" P_ActIno="" P_SloIno="" P_Labile="" />
       <Layer DLayrI="120" SWInit="0.26" INinorg="10" TotP="0" P_ActIno="" P_SloIno="" P_Labile="" />
       <Layer DLayrI="200" SWInit="0.25" INinorg="7" TotP="0" P_ActIno="" P_SloIno="" P_Labile="" />
