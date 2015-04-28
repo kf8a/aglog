@@ -13,19 +13,19 @@
       <Layer DLayrI="230" SWInit="0.03" INinorg="1" TotP="0" P_ActIno="" P_SloIno="" P_Labile="" />
     </Mgt_InitialCond>
     <Rotation_Components>
-    <% @salus.years.each do |year| %>
-      <%# Component is a crop inc no crop. year or a season.  can add a source or note field to each line. %>
-      <Component OrderNum="<%= year %>" Title="<%= @salus.crop_for(year)%>" IPltI="r" IIrrI="r" IferI="r" IResI="r" ITilI="r" IHarI="r" IEnvI="n">
-      <%# Crop model can be C omplex or S imple %>
-      <%= @salus.rotation_components_for(year) %>
-      </Component>
-    <% end %>
+      <% @salus.rotation_components.each_with_index do |rotation_component, i| %>
+        <Component OrderNum="<%= i%>" Title="year <%=i %>" IPltI="r" IIrrI="r" IferI="r" IResI="r" ITilI="n" IHarI="r" IEnvI="n">
+          <% rotation_component.each do |component| %>
+            <%= rotation_xml_for(component) %>
+          <% end %>
+        </Component>
+      <% end %>
     </Rotation_Components>
   </Experiment>
   <Version_Control>
     <Version Number="X_1.1">
       <ReleaseDate><%= Date.today%></ReleaseDate>
-      <Notes>Downloaded from https://aglog.kbs.msu.edu.</Notes>
+      <Notes>Downloaded from https://aglog.kbs.msu.edu on <%= Date.today %>.</Notes>
     </Version>
   </Version_Control>
 </XDB>

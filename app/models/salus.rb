@@ -57,7 +57,7 @@ class Salus
           ppop: transaction.seeds_per_square_meter, url: url_for(obs), notes: obs.comment}
         end
       end
-    end
+    end.first
   end
 
   def tillage_component(obs)
