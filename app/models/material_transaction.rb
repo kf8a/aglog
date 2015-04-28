@@ -61,7 +61,11 @@ class MaterialTransaction < ActiveRecord::Base
     return unless convertible?(content)
     kg_ha = conversion_rate * content / 100.0
 
-    kg_ha.round(2)
+    if self.material.liquid?
+      (kg_ha/1000).round(2)
+    else
+      kg_ha.round(2)
+    end
   end
 
 
