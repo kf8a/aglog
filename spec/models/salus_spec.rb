@@ -87,9 +87,10 @@ RSpec.describe Salus, :type => :model do
     observation_type = ObservationType.where(name: "Fertilizer application").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
 
+    unit = FactoryGirl.create :unit, conversion_factor: 2
     material_type = FactoryGirl.create :material_type, name: "fertilizer"
     material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
-    material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10
+    material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
     setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
     observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
 
