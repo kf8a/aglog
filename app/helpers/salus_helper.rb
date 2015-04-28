@@ -17,7 +17,7 @@ module SalusHelper
       result << component[:notes]
       result << "'/>".html_safe
     when 'fertilizer'
-        result = "<Mgt_Fertilizer_App DSoilN='10' SoilNC='95' SoilNX='50' NCode='#{component[:fertilizer]}' NEnd='4' url='#{component[:url]}' notes='".html_safe
+        result = "<Mgt_Fertilizer_App Year='#{component[:year]}' DOY='#{component[:doy]}' DSoilN='10' SoilNC='95' SoilNX='50' NCode='#{component[:fertilizer]}' NEnd='4' url='#{component[:url]}' notes='".html_safe
         result << component[:notes]
         result << "'/>".html_safe
     when 'irrigation'
