@@ -20,27 +20,27 @@ class Salus
     current_type = nil
     observations = records.sort {|x,y| x.obs_date <=> y.obs_date}
     observations.each do |obs|
-      case obs.observation_type
-      when 'Planting'
+      case obs.type
+      when 'planting'
         rot = new_rotation(current_type, result,rot)
         rot.push planting_component(obs)
-      when 'Soil Preparation'
+      when 'tillage'
         rot = new_rotation(current_type, result, rot)
         rot.push tillage_component(obs)
-      when 'Fertilizer application'
+      when 'fertilizer'
         rot = new_rotation(current_type, result, rot)
         rot.push fertilizer_component(obs)
-      when 'Harvest'
+      when 'harvest'
         rot.push harvest_component(obs)
       end
-      current_type = obs.observation_type
+      current_type = obs.type
     end
     # p result
     result
   end
 
   def new_rotation(current_type, result, rot)
-    if current_type == 'Harvest'
+    if current_type == 'harvest'
       rot.flatten!
       rot = []
       result.push rot
@@ -53,9 +53,10 @@ class Salus
     obs.activities.flat_map do |activity|
       activity.setups.flat_map do |setup|
         setup.material_transactions.flat_map do |transaction|
+          # next unless transaction.material.material_type_name == 'seed'
           {type: 'planting', species: transaction.material.salus_code, year: obs.obs_date.year, doy: obs.obs_date.yday,
-          ppop: transaction.seeds_per_square_meter, url: url_for(obs), notes: obs.comment}
-        end
+          ppop: transaction.seeds_per_square_meter, url: url_for(obs), notes: obs.comment, raw: [transaction, setup]}
+        end.compact
       end
     end.first
   end
@@ -77,25 +78,25 @@ class Salus
   end
 
   def fertilizer_records
-    area.observations.joins(:observation_types, setups: [:material_transactions, {materials: :material_type} ])
+    area.observations.select("'fertilizer' as type, observations.id, obs_date, observations.comment").joins(:observation_types, setups: [:material_transactions, {materials: :material_type} ])
       .where("material_types.name = ?", "fertilizer")
-      .where("observation_types.name = ?","Fertilizer application")
+      .where("observation_types.name = ?","Fertilizer application").distinct
   end
 
   def planting_records
-    area.observations.joins(:observation_types, setups: [:material_transactions, {materials: :material_type} ])
+    area.observations.select("'planting' as type, observations.id, obs_date, observations.comment").joins(:observation_types, setups: [:material_transactions, {materials: :material_type} ])
       .where("material_types.name = ?", "seed")
-      .where("observation_types.name = ?","Planting")
+      .where("observation_types.name = ?","Planting").distinct
   end
 
   def harvest_records
-    area.observations.joins(:observation_types)
-      .where("observation_types.name = ?", 'Harvest')
+    area.observations.select("'harvest' as type, observations.id, obs_date, observations.comment").joins(:observation_types)
+      .where("observation_types.name = ?", 'Harvest').distinct
   end
 
   def tillage_records
-    area.observations.joins(:observation_types)
-      .where("observation_types.name = ?", "Soil Preparation")
+    area.observations.select("'tillage' as type, observations.id, obs_date, observations.comment").joins(:observation_types)
+      .where("observation_types.name = ?", "Soil Preparation").distinct
   end
 
   def url_for(object)
