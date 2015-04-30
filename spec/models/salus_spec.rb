@@ -7,6 +7,16 @@ RSpec.describe Salus, :type => :model do
     @salus.area = @area
   end
 
+  describe 'a fertilizer and planting observation' do
+    before(:each) do
+      @obs = create_fertilizer_and_planting_observation
+    end
+
+    it 'has the right planting population' do
+      expect(@salus.planting_component(@obs)).to include ppop: 50000
+    end
+  end
+
   describe 'a continous sequence of rotation components' do
     before(:each) do
       create_tillage_observation(Date.today - 20)
@@ -94,6 +104,31 @@ RSpec.describe Salus, :type => :model do
     material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
     material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
     setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
+    activity = FactoryGirl.create(:activity, {setups: [setup]})
+    observation.activities =[activity]
+
+    @area.observations << observation
+    observation
+  end
+
+  def create_fertilizer_and_planting_observation(date=Date.today)
+    observation_type = ObservationType.where(name: "Fertilizer application").first
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
+
+    unit = FactoryGirl.create :unit, conversion_factor: 2
+    material_type = FactoryGirl.create :material_type, name: "fertilizer"
+    material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
+    fertilizer_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
+
+    material_type = FactoryGirl.create :material_type, name: "seed"
+    seed = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id
+    seeds = FactoryGirl.create :unit, conversion_factor: 1
+    planting_transaction = FactoryGirl.create :material_transaction, material: seed, rate: 50000, unit: seeds
+
+    setup = FactoryGirl.create :setup
+    setup.material_transactions << fertilizer_transaction
+    setup.material_transactions << planting_transaction
+
     activity = FactoryGirl.create(:activity, {setups: [setup]})
     observation.activities =[activity]
 
