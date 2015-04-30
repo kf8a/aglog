@@ -8,7 +8,7 @@ module SalusHelper
         result << "'/>".html_safe
         result
     when 'planting'
-        result = "<Mgt_Planting CropMod='S' SpeciesID='#{component[:species]}' CultivarID='' Year='#{component[:year]}' DOY='#{component[:doy]}' EYear='0' EDOY='' Ppop='#{component[:ppop]}' Ppoe='' PlMe='S' PlDs='' RowSpc='' AziR='' SDepth='' SdWtPl='' SdAge='' ATemp='' PlPH='' url='#{component[:url]}' notes='".html_safe
+        result = "<Mgt_Planting CropMod='S' SpeciesID='#{component[:species]}' CultivarID='' Year='#{component[:year]}' DOY='#{component[:doy]}' EYear='0' EDOY='' Ppop='#{component[:ppop]}' Ppoe='' PlMe='S' PlDs='' RowSpc='' AziR='' SDepth='#{component[:depth]}' SdWtPl='' SdAge='' ATemp='' PlPH='' url='#{component[:url]}' notes='".html_safe
        result <<  component[:notes] 
        result <<  "' />".html_safe
        result
