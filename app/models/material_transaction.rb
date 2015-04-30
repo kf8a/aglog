@@ -60,21 +60,14 @@ class MaterialTransaction < ActiveRecord::Base
   def to_kg_ha(content)
     return unless convertible?(content)
     kg_ha = conversion_rate * content / 100.0
-
-    if self.material.liquid?
-      (kg_ha/1000).round(2)
-    else
-      kg_ha.round(2)
-    end
+    kg_ha.round(2)
   end
-
-
 
   def conversion_rate
     rate = self.rate * self.unit.conversion_factor
     rate = self.material.to_mass(rate)  #liters to grams
     rate = rate/1000.0                  #grams to kilograms
-    rate = rate / 0.404                 #acres to hectares
+    rate = rate * 0.404                 #acres to hectares
   end
 
   def rate_and_unit

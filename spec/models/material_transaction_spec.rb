@@ -16,48 +16,48 @@ describe MaterialTransaction do
 
     context "The transaction has rate and n_content and conversion_factor. " do
       before(:each) do
-        @transaction.rate = 4.0
-        @material = find_or_factory(:material, :name => 'n_content_material', :n_content => 60)
-        @unit = find_or_factory(:unit, :conversion_factor => 4.0)
+        @transaction.rate = 180.0
+        @material = find_or_factory(:material, :name => 'n_content_material', :n_content => 46)
+        @unit = find_or_factory(:unit, :conversion_factor => 453.592)
         @transaction.material = @material
         @transaction.unit = @unit
       end
 
       describe "n_content_to_kg_ha" do
         it "is the appropriate number" do
-          assert_equal 0.02, @transaction.n_content_to_kg_ha
+          assert_equal 15.17, @transaction.n_content_to_kg_ha
         end
       end
     end
 
     context "The transaction has rate and p_content and conversion_factor. " do
       before(:each) do
-        @transaction.rate = 4.0
-        @material = find_or_factory(:material, :name => 'p_content_material', :p_content => 60)
-        @unit = find_or_factory(:unit, :conversion_factor => 4.0)
+        @transaction.rate = 14.0
+        @material = find_or_factory(:material, :name => 'p_content_material', :p_content => 43.64)
+        @unit = find_or_factory(:unit, :conversion_factor => 453.592)
         @transaction.material = @material
         @transaction.unit = @unit
       end
 
       describe "p_content_to_kg_ha" do
         it "is the appropriate number" do
-          assert_equal 0.02, @transaction.p_content_to_kg_ha
+          assert_equal 1.12, @transaction.p_content_to_kg_ha
         end
       end
     end
 
-    context "The transaction has rate and k_content and conversion_factor. " do
+    context "The transaction has rate and k_content and conversion_factor. K2O" do
       before(:each) do
-        @transaction.rate = 400
-        @material = find_or_factory(:material, :name => 'k_content_material', :k_content => 60)
-        @unit = find_or_factory(:unit, :conversion_factor => 4.0)
+        @transaction.rate = 120
+        @material = find_or_factory(:material, :name => 'k_content_material', :k_content => 49.8)
+        @unit = find_or_factory(:unit, :conversion_factor => 453.592)
         @transaction.material = @material
         @transaction.unit = @unit
       end
 
       describe "k_content_to_kg_ha" do
         it "is the appropriate number" do
-          assert_equal 2.38, @transaction.k_content_to_kg_ha
+          assert_equal 10.95, @transaction.k_content_to_kg_ha
         end
       end
     end
