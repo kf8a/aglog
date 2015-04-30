@@ -1,5 +1,5 @@
 
-app_root  "/var/u/apps/aglog"
+app_root = "/var/u/apps/aglog"
 
 worker_processes 5
 working_directory "#{app_root}/current"
