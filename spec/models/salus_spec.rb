@@ -58,7 +58,8 @@ RSpec.describe Salus, :type => :model do
     material = FactoryGirl.create :material, name: "corn", material_type_id: material_type.id
     material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10
     setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
-    observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
+    activity = FactoryGirl.create(:activity, {setups: [setup]})
+    observation.activities =[activity]
 
     @area.observations << observation
     observation
@@ -69,7 +70,8 @@ RSpec.describe Salus, :type => :model do
     observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
     equipment = FactoryGirl.create :equipment
     setup = FactoryGirl.create(:setup, {equipment: equipment})
-    observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
+    activity = FactoryGirl.create(:activity, {setups: [setup]})
+    observation.activities =[activity]
 
     @area.observations << observation
     observation
@@ -92,7 +94,8 @@ RSpec.describe Salus, :type => :model do
     material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
     material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
     setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
-    observation.activities =[FactoryGirl.create(:activity, {setups: [setup]})]
+    activity = FactoryGirl.create(:activity, {setups: [setup]})
+    observation.activities =[activity]
 
     @area.observations << observation
     observation
