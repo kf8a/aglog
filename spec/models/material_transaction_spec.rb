@@ -30,6 +30,22 @@ describe MaterialTransaction do
       end
     end
 
+    context "The transaction has rate and liquid n_content and conversion_factor. " do
+      before(:each) do
+        @transaction.rate = 15
+        @material = find_or_factory(:material, name: 'n_content_material', n_content: 28, liquid: true, specific_weight: 1.28)
+        @unit = find_or_factory(:unit, :conversion_factor => 3785.41)
+        @transaction.material = @material
+        @transaction.unit = @unit
+      end
+
+      describe "n_content_to_kg_ha" do
+        it "is the appropriate number" do
+          assert_equal 8.22, @transaction.n_content_to_kg_ha
+        end
+      end
+    end
+
     context "The transaction has rate and p_content and conversion_factor. " do
       before(:each) do
         @transaction.rate = 14.0
