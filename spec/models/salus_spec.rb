@@ -18,10 +18,10 @@ RSpec.describe Salus, :type => :model do
   end
 
   describe 'a liquid fertilizer observation' do
-    # it 'should return the right n amount' do
-    #   obs = create_liquid_fertilizer_observation
-    #   expect(@salus.fertilizer_component(obs)).to include n_rate: 20.3 #50.12
-    # end
+    it 'should return the right n amount' do
+      obs = create_liquid_fertilizer_observation
+      expect(@salus.fertilizer_component(obs)).to include n_rate: 8.21
+    end
   end
 
   describe 'a continous sequence of rotation components' do
@@ -123,7 +123,7 @@ RSpec.describe Salus, :type => :model do
     observation_type = ObservationType.where(name: "Fertilizer application").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
 
-    unit = FactoryGirl.create :unit, conversion_factor: 3.78
+    unit = FactoryGirl.create :unit, conversion_factor: 3780
     material_type = FactoryGirl.create :material_type, name: "fertilizer"
     material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 28, liquid: true, specific_weight: 1.28
     material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 15, unit: unit
