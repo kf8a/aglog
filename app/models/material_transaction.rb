@@ -59,7 +59,7 @@ class MaterialTransaction < ActiveRecord::Base
 
   def to_kg_ha(content)
     return unless convertible?(content)
-    kg_ha = conversion_rate * content / 100.0
+    kg_ha = conversion_rate * (content / 100.0) # convert from percent 
     kg_ha.round(2)
   end
 
