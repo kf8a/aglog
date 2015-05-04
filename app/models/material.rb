@@ -21,7 +21,7 @@ class Material < ActiveRecord::Base
   # Converts liquids from liters to grams.
   def to_mass(amount)
     if liquid
-      (amount * specific_weight) # * 1000.0
+      (amount * specific_weight) * 1000.0
     else
       amount
     end

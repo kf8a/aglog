@@ -34,7 +34,7 @@ describe MaterialTransaction do
       before(:each) do
         @transaction.rate = 15
         @material = find_or_factory(:material, name: 'n_content_material', n_content: 28, liquid: true, specific_weight: 1.28)
-        @unit = find_or_factory(:unit, :conversion_factor => 3785.41)
+        @unit = find_or_factory(:unit, :conversion_factor => 3.78541)
         @transaction.material = @material
         @transaction.unit = @unit
       end
