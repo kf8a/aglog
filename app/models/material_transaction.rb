@@ -51,8 +51,15 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def seeds_per_square_meter
-    #TODO actually do the conversion
-    self.rate.to_i
+    if "seeds" == self.unit.name
+      (self.rate.to_i *  2.47 / 10000).round(2)
+    end
+  end
+
+  def seeds_kg_ha
+    if "seeds" != self.unit.name
+      (self.rate.to_i * self.unit.conversion_factor * 2.47).round(2)
+    end
   end
 
   private##############################
