@@ -46,7 +46,11 @@ describe Material do
 
     context "to_mass(amount)" do
       it "has the right number" do
-        expect(@material.to_mass(4)).to eq(4000)
+        expect(@material.to_mass(4)).to eq(4)
+      end
+      it 'uses the specific weight' do
+        @material.specific_weight = 2
+        expect(@material.to_mass(4)).to eq(8)
       end
     end
   end
