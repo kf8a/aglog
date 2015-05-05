@@ -75,11 +75,8 @@ RSpec.describe Salus, :type => :model do
   def create_planting_observation(date=Date.today)
     observation_type = ObservationType.where(name: "Planting").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
-    material_type = FactoryGirl.create :material_type, name: "seed"
-    unit = find_or_factory(:unit, name: "seeds")
-    material = FactoryGirl.create :material, name: "corn", material_type_id: material_type.id
-    material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
-    setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
+
+    setup = FactoryGirl.create(:setup, {material_transactions: [planting_transaction]})
     activity = FactoryGirl.create(:activity, {setups: [setup]})
     observation.activities =[activity]
 
@@ -111,11 +108,7 @@ RSpec.describe Salus, :type => :model do
     observation_type = ObservationType.where(name: "Fertilizer application").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
 
-    unit = FactoryGirl.create :unit, conversion_factor: 2
-    material_type = FactoryGirl.create :material_type, name: "fertilizer"
-    material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
-    material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
-    setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
+    setup = FactoryGirl.create(:setup, {material_transactions: [fertilizer_transaction]})
     activity = FactoryGirl.create(:activity, {setups: [setup]})
     observation.activities =[activity]
 
@@ -165,7 +158,7 @@ RSpec.describe Salus, :type => :model do
   def planting_transaction
     material_type = FactoryGirl.create :material_type, name: "seed"
     seed = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id
-    seeds = FactoryGirl.create :unit, name: "seeds"
+    seeds = find_or_factory(:unit, name: "seeds")
     FactoryGirl.create :material_transaction, material: seed, rate: 50000, unit: seeds
   end
 
