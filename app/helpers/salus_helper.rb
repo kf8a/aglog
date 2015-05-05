@@ -14,7 +14,7 @@ module SalusHelper
              when 'irrigation'
   
     end
-    result <<  component[:notes]
+    result <<  component[:notes].delete("\r")
     result << "'/>".html_safe
     result
   end
