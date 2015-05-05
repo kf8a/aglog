@@ -6,7 +6,7 @@ module SalusHelper
              when 'harvest'
                "<Mgt_Harvest_App Year='#{component[:year]}' DOY='#{component[:doy]}' DAP='' HStg='' HCom='H' HSiz='A' HPc='100' HBmin='0' HKnDnPc='0' url='#{component[:url]}' notes='".html_safe 
              when 'planting'
-               "<Mgt_Planting CropMod='S' SpeciesID='#{component[:species]}' CultivarID='' Year='#{component[:year]}' DOY='#{component[:doy]}' EYear='0' EDOY='' Ppop='#{component[:ppop]}' Ppoe='' PlMe='S' PlDs='' RowSpc='' AziR='' SDepth='#{component[:depth]}' SdWtPl='#{component[:seed_weight]}' SdAge='' ATemp='' PlPH='' url='#{component[:url]}' notes='".html_safe
+               "<Mgt_Planting CropMod='S' SpeciesID='#{component[:species]}' CultivarID='' Year='#{component[:year]}' DOY='#{component[:doy]}' EYear='0' EDOY='' Ppop='#{component[:ppop]}' Ppoe='' PlMe='S' PlDs='' RowSpc='#{component[:row_spacing]}' AziR='' SDepth='#{component[:depth]}' SdWtPl='#{component[:seed_weight]}' SdAge='' ATemp='' PlPH='' url='#{component[:url]}' notes='".html_safe
              when 'tillage'
                "<Mgt_Tillage_App Year='#{component[:year]}' DOY='#{component[:doy]}' url='#{component[:url]}' notes='".html_safe 
              when 'fertilizer'
