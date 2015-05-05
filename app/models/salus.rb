@@ -76,7 +76,7 @@ class Salus
 
   def tillage_component(obs)
     {type: 'tillage', year: obs.obs_date.year, doy: obs.obs_date.yday, 
-      equipment: 'TI000',
+      equipment: 'TI000', depth: 6,
       url: url_for(obs), notes: obs.comment}
   end
 
