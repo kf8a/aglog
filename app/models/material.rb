@@ -18,10 +18,10 @@ class Material < ActiveRecord::Base
     where(:id => id).includes(:material_transactions, :setups => {:observation => :observation_types}).first
   end
 
-  # Converts liquids from liters to grams.
+  # Converts liquids from millileter to grams.
   def to_mass(amount)
     if liquid
-      (amount * specific_weight) * 1000.0
+      (amount * specific_weight)
     else
       amount
     end
