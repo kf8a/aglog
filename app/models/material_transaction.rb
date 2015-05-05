@@ -51,13 +51,13 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def seeds_per_square_meter
-    if "seeds" == self.unit.name
+    if ("seeds" == self.unit.try(:name) || "plants" == self.unit.try(:name))
       (self.rate.to_i *  2.47 / 10000).round(2)
     end
   end
 
   def seeds_kg_ha
-    if "seeds" != self.unit.name
+    if ("seeds" != self.unit.try(:name) && "plants" != self.unit.try(:name)) && self.unit.try(:conversion_factor)
       (self.rate.to_i * self.unit.conversion_factor * 2.47).round(2)
     end
   end
