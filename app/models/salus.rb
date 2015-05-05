@@ -75,7 +75,9 @@ class Salus
   end
 
   def tillage_component(obs)
-    {type: 'tillage', year: obs.obs_date.year, doy: obs.obs_date.yday, url: url_for(obs), notes: obs.comment}
+    {type: 'tillage', year: obs.obs_date.year, doy: obs.obs_date.yday, 
+      equipment: 'TI000',
+      url: url_for(obs), notes: obs.comment}
   end
 
   def fertilizer_component(obs)
