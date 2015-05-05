@@ -8,12 +8,16 @@ RSpec.describe Salus, :type => :model do
   end
 
   describe 'a fertilizer and planting observation' do
-    before(:each) do
-      @obs = create_fertilizer_and_planting_observation
-    end
-
     it 'has the right planting population' do
-      expect(@salus.planting_component(@obs)).to include ppop: 12.35
+      obs = create_fertilizer_and_planting_observation
+      expect(@salus.planting_component(obs)).to include ppop: 12.35
+    end
+  end
+
+  describe 'a planting and fertilizer observation' do
+    it 'has the right fertilizer record' do
+      obs = create_planting_and_fertilizer_observation
+      expect(@salus.fertilizer_component(obs)).to include n_rate: 0
     end
   end
 
@@ -153,6 +157,31 @@ RSpec.describe Salus, :type => :model do
     setup = FactoryGirl.create :setup
     setup.material_transactions << fertilizer_transaction
     setup.material_transactions << planting_transaction
+
+    activity = FactoryGirl.create(:activity, {setups: [setup]})
+    observation.activities =[activity]
+
+    @area.observations << observation
+    observation
+  end
+
+  def create_planting_and_fertilizer_observation(date=Date.today)
+    observation_type = ObservationType.where(name: "Fertilizer application").first
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
+
+    unit = FactoryGirl.create :unit, conversion_factor: 2
+    material_type = FactoryGirl.create :material_type, name: "fertilizer"
+    material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
+    fertilizer_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
+
+    material_type = FactoryGirl.create :material_type, name: "seed"
+    seed = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id
+    seeds = FactoryGirl.create :unit, name: "seeds"
+    planting_transaction = FactoryGirl.create :material_transaction, material: seed, rate: 50000, unit: seeds
+
+    setup = FactoryGirl.create :setup
+    setup.material_transactions << planting_transaction
+    setup.material_transactions << fertilizer_transaction
 
     activity = FactoryGirl.create(:activity, {setups: [setup]})
     observation.activities =[activity]

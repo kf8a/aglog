@@ -74,10 +74,11 @@ class Salus
     obs.activities.flat_map do |activity|
       activity.setups.flat_map do |setup|
         setup.material_transactions.flat_map do |transaction|
+          next unless transaction.material.material_type_name == 'fertilizer'
           {type: 'fertilizer', year: obs.obs_date.year, doy: obs.obs_date.yday, n_rate: transaction.n_content_to_kg_ha, 
             p_rate: transaction.p_content_to_kg_ha, k_rate: transaction.k_content_to_kg_ha,
             url: url_for(obs), notes: obs.comment}
-        end
+        end.compact
       end
     end.first
   end
