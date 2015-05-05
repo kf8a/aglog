@@ -8,7 +8,7 @@ module SalusHelper
              when 'planting'
                "<Mgt_Planting CropMod='S' SpeciesID='#{component[:species]}' CultivarID='' Year='#{component[:year]}' DOY='#{component[:doy]}' EYear='0' EDOY='' Ppop='#{component[:ppop]}' Ppoe='' PlMe='S' PlDs='' RowSpc='#{component[:row_spacing]}' AziR='' SDepth='#{component[:depth]}' SdWtPl='#{component[:seed_weight]}' SdAge='' ATemp='' PlPH='' url='#{component[:url]}' notes='".html_safe
              when 'tillage'
-               "<Mgt_Tillage_App Year='#{component[:year]}' DOY='#{component[:doy]}' TImpl='#{component[:equipment]}' url='#{component[:url]}' notes='".html_safe 
+               "<Mgt_Tillage_App Year='#{component[:year]}' DOY='#{component[:doy]}' TImpl='#{component[:equipment]}' TDep='#{component[:depth]}' url='#{component[:url]}' notes='".html_safe 
              when 'fertilizer'
                "<Mgt_Fertilizer_App Year='#{component[:year]}' DOY='#{component[:doy]}' ANFer='#{component[:n_rate]}' AKFer='#{component[:k_rate]}' APFer='#{component[:p_rate]}' NCode='#{component[:fertilizer]}' url='#{component[:url]}' notes='".html_safe
              when 'irrigation'
