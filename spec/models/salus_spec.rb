@@ -17,14 +17,14 @@ RSpec.describe Salus, :type => :model do
   describe 'a planting and fertilizer observation' do
     it 'has the right fertilizer record' do
       obs = create_planting_and_fertilizer_observation
-      expect(@salus.fertilizer_component(obs)).to include n_rate: 0
+      expect(@salus.fertilizer_component(obs)).to include n_rate: 40.28
     end
   end
 
   describe 'a liquid fertilizer observation' do
     it 'should return the right n amount' do
       obs = create_liquid_fertilizer_observation
-      expect(@salus.fertilizer_component(obs)).to include n_rate: 8.21
+      expect(@salus.fertilizer_component(obs)).to include n_rate: 50.19
     end
   end
 
@@ -149,10 +149,10 @@ RSpec.describe Salus, :type => :model do
   end
 
   def fertilizer_transaction
-    unit = FactoryGirl.create :unit, conversion_factor: 2
+    unit = FactoryGirl.create :unit, conversion_factor: 453
     material_type = FactoryGirl.create :material_type, name: "fertilizer"
     material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
-    FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
+    FactoryGirl.create :material_transaction, material: material, rate: 120, unit: unit
   end
 
   def planting_transaction

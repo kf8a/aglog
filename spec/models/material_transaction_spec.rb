@@ -1,20 +1,13 @@
 require 'rails_helper'
 
 describe MaterialTransaction do
-  it "finds fertilizations" do
-    #TODO Rewrite this test with factory created fertilizations
-#    correct_transactions = MaterialTransaction.find(20, 19, 82, 235, 236, 640, 637, 622, 624, 626, 628, 645, 268, 270, 266, 298, 299, 328)
-#    found_fertilizations = MaterialTransaction.find_fertilizations
-#    assert_equal [], correct_transactions - found_fertilizations
-#    assert_equal [], found_fertilizations - correct_transactions
-  end
 
-  context "A material transaction exists. " do
+  context "A material transaction " do
     before(:each) do
       @transaction = MaterialTransaction.new
     end
 
-    context "The transaction has rate and n_content and conversion_factor. " do
+    context "180 lb of 46-0-0 " do
       before(:each) do
         @transaction.rate = 180.0
         @material = find_or_factory(:material, :name => 'n_content_material', :n_content => 46)
@@ -23,30 +16,25 @@ describe MaterialTransaction do
         @transaction.unit = @unit
       end
 
-      describe "n_content_to_kg_ha" do
-        it "is the appropriate number" do
-          assert_equal 15.17, @transaction.n_content_to_kg_ha
-        end
+      it "provides 92.7 kg N/ha " do
+        assert_equal 92.77, @transaction.n_content_to_kg_ha
       end
     end
 
-    context "The transaction has rate and liquid n_content and conversion_factor. " do
-      before(:each) do
-        @transaction.rate = 15
+    describe '16 gal of 28-0-0 ' do
+      before do
+        @transaction.rate = 16
         @material = find_or_factory(:material, name: 'n_content_material', n_content: 28, liquid: true, specific_weight: 1.28)
         @unit = find_or_factory(:unit, :conversion_factor => 3785.41)
         @transaction.material = @material
         @transaction.unit = @unit
       end
-
-      describe "n_content_to_kg_ha" do
-        it "is the appropriate number" do
-          assert_equal 8.22, @transaction.n_content_to_kg_ha
-        end
+      it 'provides 53.6 kg N/ha' do
+        assert_equal 53.62, @transaction.n_content_to_kg_ha
       end
     end
 
-    context "The transaction has rate and p_content and conversion_factor. " do
+    context "14 lb/A of P2O5 " do
       before(:each) do
         @transaction.rate = 14.0
         @material = find_or_factory(:material, :name => 'p_content_material', :p_content => 43.64)
@@ -55,14 +43,12 @@ describe MaterialTransaction do
         @transaction.unit = @unit
       end
 
-      describe "p_content_to_kg_ha" do
-        it "is the appropriate number" do
-          assert_equal 1.12, @transaction.p_content_to_kg_ha
-        end
+      it "provides 6.85 kg P/ha" do
+        assert_equal 6.85, @transaction.p_content_to_kg_ha
       end
     end
 
-    context "The transaction has rate and k_content and conversion_factor. K2O" do
+    context "120 lb of K2O/A " do
       before(:each) do
         @transaction.rate = 120
         @material = find_or_factory(:material, :name => 'k_content_material', :k_content => 49.8)
@@ -71,10 +57,8 @@ describe MaterialTransaction do
         @transaction.unit = @unit
       end
 
-      describe "k_content_to_kg_ha" do
-        it "is the appropriate number" do
-          assert_equal 10.95, @transaction.k_content_to_kg_ha
-        end
+      it "provides 66.95 kg K/ha" do
+        assert_equal 66.95, @transaction.k_content_to_kg_ha
       end
     end
 
