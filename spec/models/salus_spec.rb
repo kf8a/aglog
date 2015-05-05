@@ -13,7 +13,7 @@ RSpec.describe Salus, :type => :model do
     end
 
     it 'has the right planting population' do
-      expect(@salus.planting_component(@obs)).to include ppop: 50000
+      expect(@salus.planting_component(@obs)).to include ppop: 12.35
     end
   end
 
@@ -72,8 +72,9 @@ RSpec.describe Salus, :type => :model do
     observation_type = ObservationType.where(name: "Planting").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
     material_type = FactoryGirl.create :material_type, name: "seed"
+    unit = find_or_factory(:unit, name: "seeds")
     material = FactoryGirl.create :material, name: "corn", material_type_id: material_type.id
-    material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10
+    material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
     setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
     activity = FactoryGirl.create(:activity, {setups: [setup]})
     observation.activities =[activity]
@@ -146,7 +147,7 @@ RSpec.describe Salus, :type => :model do
 
     material_type = FactoryGirl.create :material_type, name: "seed"
     seed = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id
-    seeds = FactoryGirl.create :unit, conversion_factor: 1
+    seeds = FactoryGirl.create :unit, name: "seeds"
     planting_transaction = FactoryGirl.create :material_transaction, material: seed, rate: 50000, unit: seeds
 
     setup = FactoryGirl.create :setup

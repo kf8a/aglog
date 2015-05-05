@@ -78,6 +78,25 @@ describe MaterialTransaction do
       end
     end
 
+    context 'the transaction involves seeds ' do
+      it 'gets the right rate when provided with seeds per acre' do
+        @transaction.rate = 30000
+        material = find_or_factory(:material, name: 'seed')
+        unit = find_or_factory(:unit, name: "seeds")
+        @transaction.material = material
+        @transaction.unit = unit
+        expect(@transaction.seeds_per_square_meter).to eq 7.41
+      end
+      it 'gets the right rate when provided with seeds in kg/ha' do
+        @transaction.rate = 150
+        material = find_or_factory(:material, name: 'seed')
+        unit = find_or_factory(:unit, conversion_factor: 0.453, name: "pounds")
+        @transaction.material = material
+        @transaction.unit = unit
+        expect(@transaction.seeds_kg_ha).to be_within(0.1).of(167.8)
+      end
+    end
+
     context "The transaction has a unit. " do
       before(:each) do
         @transaction.unit = find_or_factory(:unit, :name => 'barrel')
