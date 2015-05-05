@@ -144,16 +144,6 @@ RSpec.describe Salus, :type => :model do
     observation_type = ObservationType.where(name: "Fertilizer application").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
 
-    unit = FactoryGirl.create :unit, conversion_factor: 2
-    material_type = FactoryGirl.create :material_type, name: "fertilizer"
-    material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
-    fertilizer_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
-
-    material_type = FactoryGirl.create :material_type, name: "seed"
-    seed = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id
-    seeds = FactoryGirl.create :unit, name: "seeds"
-    planting_transaction = FactoryGirl.create :material_transaction, material: seed, rate: 50000, unit: seeds
-
     setup = FactoryGirl.create :setup
     setup.material_transactions << fertilizer_transaction
     setup.material_transactions << planting_transaction
@@ -165,19 +155,23 @@ RSpec.describe Salus, :type => :model do
     observation
   end
 
-  def create_planting_and_fertilizer_observation(date=Date.today)
-    observation_type = ObservationType.where(name: "Fertilizer application").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
-
+  def fertilizer_transaction
     unit = FactoryGirl.create :unit, conversion_factor: 2
     material_type = FactoryGirl.create :material_type, name: "fertilizer"
     material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
-    fertilizer_transaction = FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
+    FactoryGirl.create :material_transaction, material: material, rate: 10, unit: unit
+  end
 
+  def planting_transaction
     material_type = FactoryGirl.create :material_type, name: "seed"
     seed = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id
     seeds = FactoryGirl.create :unit, name: "seeds"
-    planting_transaction = FactoryGirl.create :material_transaction, material: seed, rate: 50000, unit: seeds
+    FactoryGirl.create :material_transaction, material: seed, rate: 50000, unit: seeds
+  end
+
+  def create_planting_and_fertilizer_observation(date=Date.today)
+    observation_type = ObservationType.where(name: "Fertilizer application").first
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
 
     setup = FactoryGirl.create :setup
     setup.material_transactions << planting_transaction
