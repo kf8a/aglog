@@ -59,11 +59,19 @@ class Salus
         setup.material_transactions.flat_map do |transaction|
           next unless transaction.material.material_type_name == 'seed'
           {type: 'planting', species: transaction.material.salus_code, year: obs.obs_date.year, doy: obs.obs_date.yday,
-            depth: 2, seed_weight: transaction.seeds_kg_ha,
+            depth: 2, seed_weight: transaction.seeds_kg_ha, row_spacing: row_spacing(transaction.material.salus_code),
           ppop: transaction.seeds_per_square_meter, url: url_for(obs), notes: obs.comment, raw: [transaction, setup]}
         end.compact
       end
     end.first
+  end
+
+  def row_spacing(code)
+  case code
+  when "MZ" then 30
+  when "SB" then 20
+  when "WH" then 19
+  end
   end
 
   def tillage_component(obs)
