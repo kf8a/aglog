@@ -10,7 +10,7 @@ module SalusHelper
              when 'tillage'
                "<Mgt_Tillage_App Year='#{component[:year]}' DOY='#{component[:doy]}' TImpl='#{component[:equipment]}' TDep='#{component[:depth]}' url='#{component[:url]}' notes='".html_safe 
              when 'fertilizer'
-               "<Mgt_Fertilizer_App Year='#{component[:year]}' DOY='#{component[:doy]}' ANFer='#{component[:n_rate]}' AKFer='#{component[:k_rate]}' APFer='#{component[:p_rate]}' NCode='#{component[:fertilizer]}' url='#{component[:url]}' notes='".html_safe
+               "<Mgt_Fertilizer_App Year='#{component[:year]}' DOY='#{component[:doy]}' ANFer='#{component[:n_rate]}' AKFer='#{component[:k_rate]}' APFer='#{component[:p_rate]}' IFType='#{component[:fertilizer]}' url='#{component[:url]}' notes='".html_safe
              when 'irrigation'
   
     end
