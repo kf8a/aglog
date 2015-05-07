@@ -77,7 +77,7 @@ class Salus
   def tillage_component(obs)
     obs.activities.flat_map do |activity|
       activity.setups.flat_map do |setup|
-          next unless setup.equipment.equipment_type.name == 'tillage'
+          next unless setup.equipment.equipment_type.try(:name) == 'tillage'
           {type: 'tillage', year: obs.obs_date.year, doy: obs.obs_date.yday, 
             equipment: setup.equipment.salus_code, depth: 6,
             url: url_for(obs), notes: obs.comment}
