@@ -28,6 +28,9 @@ RSpec.describe Salus, :type => :model do
     end
   end
 
+  describe 'a tillage observation' do
+  end
+
   describe 'a continous sequence of rotation components' do
     before(:each) do
       create_tillage_observation(Date.today - 20)
@@ -87,7 +90,8 @@ RSpec.describe Salus, :type => :model do
   def create_tillage_observation(date=Date.today)
     observation_type = ObservationType.where(name: "Soil Preparation").first
     observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
-    equipment = FactoryGirl.create :equipment
+    equipment_type = find_or_factory(:equipment_type, name: 'tillage')
+    equipment = FactoryGirl.create :equipment, equipment_type: equipment_type
     setup = FactoryGirl.create(:setup, {equipment: equipment})
     activity = FactoryGirl.create(:activity, {setups: [setup]})
     observation.activities =[activity]

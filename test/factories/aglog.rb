@@ -15,6 +15,9 @@ FactoryGirl.define do
   factory :material_type do
   end
 
+  factory :equipment_type do
+  end
+
   factory :observation_type do
     name  "Default"
   end

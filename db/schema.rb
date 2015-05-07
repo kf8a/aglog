@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429211237) do
+ActiveRecord::Schema.define(version: 20150507180459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,12 +49,13 @@ ActiveRecord::Schema.define(version: 20150429211237) do
 
   create_table "equipment", force: :cascade do |t|
     t.string  "name"
-    t.boolean "use_material", default: false
-    t.boolean "is_tractor",   default: false
+    t.boolean "use_material",      default: false
+    t.boolean "is_tractor",        default: false
     t.text    "description"
     t.boolean "archived"
     t.integer "company_id"
     t.text    "salus_code"
+    t.integer "equipment_type_id"
   end
 
   create_table "equipment_materials", id: false, force: :cascade do |t|
@@ -73,6 +74,12 @@ ActiveRecord::Schema.define(version: 20150429211237) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "equipment_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "material_transactions", force: :cascade do |t|
