@@ -4,7 +4,7 @@ module SalusHelper
 
     result = case component[:type]
              when 'harvest'
-               "<Mgt_Harvest_App Year='#{component[:year]}' DOY='#{component[:doy]}' DAP='' HStg='' HCom='H' HSiz='A' HPc='99' HBmin="0" HBpc='1' HKnDnPc='0' url='#{component[:url]}' notes='".html_safe 
+               "<Mgt_Harvest_App Year='#{component[:year]}' DOY='#{component[:doy]}' DAP='' HStg='' HCom='H' HSiz='A' HPc='99' HBmin='0' HBpc='1' HKnDnPc='0' url='#{component[:url]}' notes='".html_safe 
              when 'planting'
                "<Mgt_Planting CropMod='S' SpeciesID='#{component[:species]}' CultivarID='' Year='#{component[:year]}' DOY='#{component[:doy]}' EYear='0' EDOY='' Ppop='#{component[:ppop]}' Ppoe='' PlMe='S' PlDs='' RowSpc='#{component[:row_spacing]}' AziR='' SDepth='#{component[:depth]}' SdWtPl='#{component[:seed_weight]}' SdAge='' ATemp='' PlPH='' url='#{component[:url]}' notes='".html_safe
              when 'tillage'
