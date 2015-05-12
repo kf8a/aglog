@@ -1,5 +1,4 @@
 Aglog::Application.routes.draw do
-  get 'salus/show'
 
   devise_for :users
 
@@ -19,7 +18,7 @@ Aglog::Application.routes.draw do
   resources :people
   resources :reports
   resources :materials
-  resources :salus,                 only: :show
+  resources :salus,                 only: [:index, :show]
 
 #  match '/' => 'observations#index'
   root :to => "observations#index"

@@ -1,0 +1,13 @@
+<li>
+  <span id="<%= area.id %>">
+    <%= link_to area.name, salus_path(area.id, format: 'xml')  %>
+    <%= area.description %>
+  </span>
+  <% if area.children.present? %>
+    <ul>
+      <% area.children.each do |child| %>
+        <%= render 'area', area: child %>
+      <% end %>
+    </ul>
+  <% end %>
+</li>
