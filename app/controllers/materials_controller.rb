@@ -55,7 +55,7 @@ class MaterialsController < ApplicationController
 
   def material_params
     params.require(:material).permit(:name, :operation_type_id, :material_type_id, :n_content, 
-                                     :p_content, :k_content, :specific_weight,
+                                     :p_content, :k_content, :specific_weight, :salus_code,
                                      :liquid, :archived)
   end
 end
