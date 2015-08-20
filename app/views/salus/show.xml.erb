@@ -14,7 +14,7 @@
     </Mgt_InitialCond>
     <Rotation_Components>
       <% @salus.rotation_components.each_with_index do |rotation_component, i| %>
-        <Component OrderNum="<%= i%>" Title="year <%=i %>" IPltI="r" IIrrI="r" IferI="r" IResI="n" ITilI="r" IHarI="r" IEnvI="n">
+        <Component OrderNum="<%= i+1%>" Title="year <%=i %>" IPltI="r" IIrrI="r" IferI="r" IResI="n" ITilI="r" IHarI="r" IEnvI="n">
           <% rotation_component.each do |component| %>
             <%= rotation_xml_for(component) %>
           <% end %>
