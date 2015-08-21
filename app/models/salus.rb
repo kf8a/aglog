@@ -62,7 +62,7 @@ class Salus
           warnings = ""
           if !seeds_per_square_meter
             warnings = "ESTIMATED SEEDING RATE"
-            seed_per_square_meter = estimated_seeds_per_square_meter(transaction, warnings)
+            seeds_per_square_meter = estimated_seeds_per_square_meter(transaction, warnings)
           end
           {type: 'planting', species: transaction.material.salus_code, year: obs.obs_date.year, doy: obs.obs_date.yday,
             depth: 2, row_spacing: row_spacing(transaction.material.salus_code), warnings: warnings,
@@ -144,7 +144,10 @@ class Salus
     if transaction.material.salus_code == 'WH'
       seeds_per_square_meter = 445
       warnings +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
-    elsif transaction.material.salus_code = 'RY'
+    elsif transaction.material.salus_code == 'MZ'
+      seeds_per_square_meter = 30000 * 2.47 / 1000
+      warnings += "\n ASSUMEING 30000 seeds per acre"
+    elsif transaction.material.salus_code == 'RY'
       if "pounds" == transaction.unit.try(:name)
         seeds_per_square_meter = 19900 * transaction.rate.to_f  * 2.47 / 1000
         warnings += "\n ASSUMEING 19900 seeds per pound"
