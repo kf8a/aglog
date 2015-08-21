@@ -59,6 +59,7 @@ class Salus
         setup.material_transactions.flat_map do |transaction|
           next unless transaction.material.material_type_name == 'seed'
           seeds_per_square_meter = transaction.seeds_per_square_meter
+          warnings = ""
           if !seeds_per_square_meter
             warnings = "ESTIMATED SEEDING RATE"
             seed_per_square_meter = estimated_seeds_per_square_meter(transaction, warnings)
@@ -142,7 +143,7 @@ class Salus
   def estimated_seeds_per_square_meter(transaction, warnings)
     if transaction.material.salus_code == 'WH'
       seeds_per_square_meter = 445
-      warning +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
+      warnings +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
     elsif transaction.material.salus_code = 'RY'
       if "pounds" == transaction.unit.try(:name)
         seeds_per_square_meter = 19900 * transaction.rate.to_f  * 2.47 / 1000
