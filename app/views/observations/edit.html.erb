@@ -9,7 +9,7 @@ Created on: <%= @observation.created_on  %>
   <div class="row"
   <%= render :partial => 'form', :locals => {:form => form, :only_current => false } %>
 </div>
-  <%= form.submit "Submit" , class: "btn btn-primary"%>
+<%= form.submit "Submit" , class: "btn btn-primary", disable_with: "Submitting..." %>
 <% end %>
 
 
