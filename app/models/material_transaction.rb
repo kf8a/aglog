@@ -51,10 +51,8 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def seeds_per_square_meter
-    if ("seeds" == self.unit.try(:name) || "plants" == self.unit.try(:name))
+    if ("seeds" == self.unit.try(:name) || "plants" == self.unit.try(:name)) || "trees" == self.unit.try(:name)
       (self.rate.to_i *  2.47 / 10000).round(2)
-    elsif self.material.salus_code == 'WH'
-      445 
     end
   end
 
