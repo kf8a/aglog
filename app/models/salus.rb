@@ -64,9 +64,17 @@ class Salus
               seeds_per_square_meter = 445
               warning +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
             elsif transaction.material.salus_code = 'RY'
-              #TODO look up the actual default rate
-              seeds_per_square_meter = 445
-              warnings +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
+              if "pounds" == transaction.unit.try(:name)
+                seeds_per_square_meter = 19900 * transaction.rate.to_i
+                warnings += "\n ASSUMEING 19900 seeds per pound"
+              elsif "bushels" == transaction.unit.try(:name)
+                seeds_per_square_meter = transaction.rate.to_f * 56 * 19900
+                warnings += "\n ASSUMEING 19900 seeds per pound and 56 lb/bu"
+              else 
+                #TODO look up the actual default rate
+                seeds_per_square_meter = 445
+                warnings +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
+              end
             end
           end
           {type: 'planting', species: transaction.material.salus_code, year: obs.obs_date.year, doy: obs.obs_date.yday,
