@@ -60,22 +60,8 @@ class Salus
           next unless transaction.material.material_type_name == 'seed'
           seeds_per_square_meter = transaction.seeds_per_square_meter
           if !seeds_per_square_meter
-            if transaction.material.salus_code == 'WH'
-              seeds_per_square_meter = 445
-              warning +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
-            elsif transaction.material.salus_code = 'RY'
-              if "pounds" == transaction.unit.try(:name)
-                seeds_per_square_meter = 19900 * transaction.rate.to_i
-                warnings += "\n ASSUMEING 19900 seeds per pound"
-              elsif "bushels" == transaction.unit.try(:name)
-                seeds_per_square_meter = transaction.rate.to_f * 56 * 19900
-                warnings += "\n ASSUMEING 19900 seeds per pound and 56 lb/bu"
-              else 
-                #TODO look up the actual default rate
-                seeds_per_square_meter = 445
-                warnings +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
-              end
-            end
+            warnings = "ESTIMATED SEEDING RATE"
+            seed_per_square_meter = estimated_seeds_per_square_meter(transaction, warnings)
           end
           {type: 'planting', species: transaction.material.salus_code, year: obs.obs_date.year, doy: obs.obs_date.yday,
             depth: 2, row_spacing: row_spacing(transaction.material.salus_code), warnings: warnings,
@@ -151,5 +137,25 @@ class Salus
 
   def url_for(object)
     "https://aglog.kbs.msu.edu/observations/#{object.id}"
+  end
+
+  def estimated_seeds_per_square_meter(transaction, warnings)
+    if transaction.material.salus_code == 'WH'
+      seeds_per_square_meter = 445
+      warning +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
+    elsif transaction.material.salus_code = 'RY'
+      if "pounds" == transaction.unit.try(:name)
+        seeds_per_square_meter = 19900 * transaction.rate.to_f  * 2.47 / 1000
+        warnings += "\n ASSUMEING 19900 seeds per pound"
+      elsif "bushels" == transaction.unit.try(:name)
+        seeds_per_square_meter = transaction.rate.to_f * 56 * 19900 * 2.47 / 1000
+        warnings += "\n ASSUMEING 19900 seeds per pound and 56 lb/bu"
+      else 
+        #TODO look up the actual default rate
+        seeds_per_square_meter = 445
+        warnings +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
+      end
+    end
+    seeds_per_square_meter
   end
 end
