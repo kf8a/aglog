@@ -58,9 +58,20 @@ class Salus
       activity.setups.flat_map do |setup|
         setup.material_transactions.flat_map do |transaction|
           next unless transaction.material.material_type_name == 'seed'
+          seeds_per_square_meter = transaction.seeds_per_square_meter
+          if !seeds_per_square_meter
+            if transaction.material.salus_code == 'WH'
+              seeds_per_square_meter = 445
+              warning +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
+            elsif transaction.material.salus_code = 'RY'
+              #TODO look up the actual default rate
+              seeds_per_square_meter = 445
+              warnings +=  "\n DEFAULT SEEDING RATE of 445 seeds per meter square used"
+            end
+          end
           {type: 'planting', species: transaction.material.salus_code, year: obs.obs_date.year, doy: obs.obs_date.yday,
-            depth: 2, row_spacing: row_spacing(transaction.material.salus_code),
-          ppop: transaction.seeds_per_square_meter, url: url_for(obs), notes: obs.comment, raw: [transaction, setup]}
+            depth: 2, row_spacing: row_spacing(transaction.material.salus_code), warnings: warnings,
+          ppop: seeds_per_square_meter, url: url_for(obs), notes: obs.comment, raw: [transaction, setup]}
         end.compact
       end
     end.first
