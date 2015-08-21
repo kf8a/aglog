@@ -76,8 +76,7 @@ RSpec.describe Salus, :type => :model do
   end
 
   def create_planting_observation(date=Date.today)
-    observation_type = ObservationType.where(name: "Planting").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
+    observation, observation_type = create_observation("Planting", date)
 
     setup = FactoryGirl.create(:setup, {material_transactions: [planting_transaction]})
     activity = FactoryGirl.create(:activity, {setups: [setup]})
@@ -88,8 +87,8 @@ RSpec.describe Salus, :type => :model do
   end
 
   def create_tillage_observation(date=Date.today)
-    observation_type = ObservationType.where(name: "Soil Preparation").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
+    observation, observation_type = create_observation("Soil Preparation", date)
+
     equipment_type = find_or_factory(:equipment_type, name: 'tillage')
     equipment = FactoryGirl.create :equipment, equipment_type: equipment_type
     setup = FactoryGirl.create(:setup, {equipment: equipment})
@@ -101,16 +100,14 @@ RSpec.describe Salus, :type => :model do
   end
 
   def create_harvest_observation(date=Date.today)
-    observation_type = ObservationType.where(name: "Harvest").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
+    observation, observation_type = create_observation("Harvest", date)
 
     @area.observations << observation
     observation
   end
 
   def create_fertilizer_observation(date=Date.today)
-    observation_type = ObservationType.where(name: "Fertilizer application").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
+    observation, observation_type = create_observation("Fertilizer application", date)
 
     setup = FactoryGirl.create(:setup, {material_transactions: [fertilizer_transaction]})
     activity = FactoryGirl.create(:activity, {setups: [setup]})
@@ -122,8 +119,7 @@ RSpec.describe Salus, :type => :model do
 
 
   def create_liquid_fertilizer_observation(date=Date.today)
-    observation_type = ObservationType.where(name: "Fertilizer application").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
+    observation, observation_type = create_observation("Fertilizer application", date)
 
     unit = FactoryGirl.create :unit, conversion_factor: 3780
     material_type = FactoryGirl.create :material_type, name: "fertilizer"
@@ -138,8 +134,7 @@ RSpec.describe Salus, :type => :model do
   end
 
   def create_fertilizer_and_planting_observation(date=Date.today)
-    observation_type = ObservationType.where(name: "Fertilizer application").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
+    observation, observation_type = create_observation("Fertilizer application", date)
 
     setup = FactoryGirl.create :setup
     setup.material_transactions << fertilizer_transaction
@@ -167,8 +162,7 @@ RSpec.describe Salus, :type => :model do
   end
 
   def create_planting_and_fertilizer_observation(date=Date.today)
-    observation_type = ObservationType.where(name: "Fertilizer application").first
-    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
+    observation, observation_type = create_observation("Fertilizer application", date)
 
     setup = FactoryGirl.create :setup
     setup.material_transactions << planting_transaction
@@ -180,5 +174,12 @@ RSpec.describe Salus, :type => :model do
     @area.observations << observation
     observation
   end
+
+  def create_observation(name, date)
+    observation_type = ObservationType.where(name: name).first_or_create
+    observation = FactoryGirl.create :observation, {observation_types: [observation_type], obs_date: date}
+    [observation, observation_type]
+  end
+
 
 end
