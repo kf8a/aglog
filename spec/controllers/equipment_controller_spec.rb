@@ -4,6 +4,9 @@ describe EquipmentController, type: :controller  do
   render_views
 
   describe 'Not signed in. ' do
+    before do
+      @equipment = FactoryGirl.create(:equipment, :name=>'tractor')
+    end
 
     it 'renders the index' do
       get :index
@@ -21,22 +24,22 @@ describe EquipmentController, type: :controller  do
     end
 
     it 'shows equipment' do
-      get :show, :id => 1
+      get :show, :id => @equipment.id
       expect(response).to render_template 'show'
     end
 
     it 'does now allow edit' do
-      get :edit, :id => 1
+      get :edit, :id => @equipment.id
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow updates' do
-      put :update, :id => 1, :area => { :name => 'new_equipment'}
+      put :update, :id => @equipment.id, :area => { :name => 'new_equipment'}
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow deletes' do
-      delete :destroy, :id => 1
+      delete :destroy, :id => @equipment.id
       expect(response).to redirect_to new_user_session_path
     end
   end
@@ -145,7 +148,6 @@ describe EquipmentController, type: :controller  do
         end
       end
 
-      #TODO is this just testing the validates helper again?
       describe "PUT :update the equipment with invalid attributes" do
         before(:each) do
           find_or_factory(:equipment, :name => "Repeat_name",
@@ -154,10 +156,6 @@ describe EquipmentController, type: :controller  do
         end
 
         it { is_expected.to render_template :edit }
-        it 'should not change the equipment' do
-          @equipment.reload
-          expect(@equipment.name).to_not eq 'Repeat Name'
-        end
       end
 
       describe "DELETE :destroy the equipment" do
