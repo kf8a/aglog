@@ -167,11 +167,9 @@ RSpec.describe Salus, :type => :model do
     setup = FactoryGirl.create :setup
     setup.material_transactions << planting_transaction
     setup.material_transactions << fertilizer_transaction
-    setup.save
 
-    activity = FactoryGirl.create(:activity, {setups: [setup]})
-    observation.activities =[activity]
-    observation.save
+    activity = FactoryGirl.create(:activity,{observation_id: observation.id, setups: [setup]} )
+    # observation.activities =[activity]
 
     @area.observations << observation
     observation
