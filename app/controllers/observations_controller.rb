@@ -12,10 +12,10 @@ class ObservationsController < ApplicationController
   def index
     obstype = ObservationType.find_by_id(params[:obstype])
     if obstype
-      @observatons = obstype.observatons
+        @observations = obstype.observations
     else
       if params[:query] 
-        @observations = Observation.basic_search(params[:query])
+        @observations = Observation.basic_search(comment: params[:query])
       else
         @observations = Observation.all
       end
