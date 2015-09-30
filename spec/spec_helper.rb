@@ -22,7 +22,7 @@ end
 def sign_in_as_normal_user(c=nil)
 	company_name = c || 'lter'
   company = find_or_factory(:company, name: company_name)
-  @user = find_or_factory(:user, company_id: company.id )
+  @user = find_or_factory(:user)
   sign_in @user
 end
 
