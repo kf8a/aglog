@@ -15,7 +15,7 @@ class ObservationsController < ApplicationController
         @observations = obstype.observations
     else
       if params[:query] 
-        @observations = Observation.basic_search(comment: params[:query])
+        @observations = Observation.ordered_by_date.basic_search(comment: params[:query])
       else
         @observations = Observation.all
       end
