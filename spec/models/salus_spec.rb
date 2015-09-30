@@ -79,8 +79,7 @@ RSpec.describe Salus, :type => :model do
     observation, observation_type = create_observation("Planting", date)
 
     setup = FactoryGirl.create(:setup, {material_transactions: [planting_transaction]})
-    activity = FactoryGirl.create(:activity, {setups: [setup]})
-    observation.activities =[activity]
+    activity = FactoryGirl.create(:activity, {observation_id: observation.id setups: [setup]})
 
     @area.observations << observation
     observation
@@ -92,8 +91,7 @@ RSpec.describe Salus, :type => :model do
     equipment_type = find_or_factory(:equipment_type, name: 'tillage')
     equipment = FactoryGirl.create :equipment, equipment_type: equipment_type
     setup = FactoryGirl.create(:setup, {equipment: equipment})
-    activity = FactoryGirl.create(:activity, {setups: [setup]})
-    observation.activities =[activity]
+    activity = FactoryGirl.create(:activity, {observation_id: observation.id, setups: [setup]})
 
     @area.observations << observation
     observation
@@ -110,8 +108,7 @@ RSpec.describe Salus, :type => :model do
     observation, observation_type = create_observation("Fertilizer application", date)
 
     setup = FactoryGirl.create(:setup, {material_transactions: [fertilizer_transaction]})
-    activity = FactoryGirl.create(:activity, {setups: [setup]})
-    observation.activities =[activity]
+    activity = FactoryGirl.create(:activity, {observation_id: observation.id, setups: [setup]})
 
     @area.observations << observation
     observation
@@ -126,8 +123,7 @@ RSpec.describe Salus, :type => :model do
     material = FactoryGirl.create :material, name: "urea", material_type_id: material_type.id, n_content: 28, liquid: true, specific_weight: 1.28
     material_transaction = FactoryGirl.create :material_transaction, material: material, rate: 15, unit: unit
     setup = FactoryGirl.create(:setup, {material_transactions: [material_transaction]})
-    activity = FactoryGirl.create(:activity, {setups: [setup]})
-    observation.activities =[activity]
+    activity = FactoryGirl.create(:activity, {observation_id: observation.id, setups: [setup]})
 
     @area.observations << observation
     observation
@@ -140,8 +136,7 @@ RSpec.describe Salus, :type => :model do
     setup.material_transactions << fertilizer_transaction
     setup.material_transactions << planting_transaction
 
-    activity = FactoryGirl.create(:activity, {setups: [setup]})
-    observation.activities =[activity]
+    activity = FactoryGirl.create(:activity, {observation_id: observation.id, setups: [setup]})
 
     @area.observations << observation
     observation
@@ -169,7 +164,6 @@ RSpec.describe Salus, :type => :model do
     setup.material_transactions << fertilizer_transaction
 
     activity = FactoryGirl.create(:activity,{observation_id: observation.id, setups: [setup]} )
-    # observation.activities =[activity]
 
     @area.observations << observation
     observation
