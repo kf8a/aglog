@@ -11,7 +11,17 @@ class ObservationsController < ApplicationController
   # GET /observations.xml
   def index
     obstype = ObservationType.find_by_id(params[:obstype])
-    @observations = obstype.try(:observations) || Observation.all
+    if obstype
+      @observatons = obstype.observatons
+    else
+      if params[:query] 
+        @observations = Observation.basic_search(params[:query])
+      else
+        @observations = Observation.all
+      end
+    end
+
+    # @observations = @observations.by_obstype(obstype)
     @observations = @observations.by_company(current_user.company) if signed_in?
     @observations = @observations.by_page(params[:page])
 
