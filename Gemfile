@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.1'
+gem 'rails', '~> 4.2.4'
 
 gem 'rake'
 
 gem 'pg'
 
 gem 'devise'
+
+gem 'textacular', '~> 3.0'
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'fog'
