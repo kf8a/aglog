@@ -79,7 +79,7 @@ RSpec.describe Salus, :type => :model do
     observation, observation_type = create_observation("Planting", date)
 
     setup = FactoryGirl.create(:setup, {material_transactions: [planting_transaction]})
-    activity = FactoryGirl.create(:activity, {observation_id: observation.id setups: [setup]})
+    activity = FactoryGirl.create(:activity, {observation_id: observation.id, setups: [setup]})
 
     @area.observations << observation
     observation
