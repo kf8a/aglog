@@ -45,7 +45,7 @@ class Observation < ActiveRecord::Base
   end
 
   def Observation.by_year(year)
-    .where("date_part('year',obs_date) = ?", year)
+    where("date_part('year',obs_date) = ?", year)
   end
 
   def Observation.by_page(page)
