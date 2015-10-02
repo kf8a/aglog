@@ -27,6 +27,7 @@ class Observation < ActiveRecord::Base
 
   accepts_nested_attributes_for :activities, :allow_destroy => true
 
+
   def no_invalid_areas
     errors.add(:base, 'invalid areas') if @error_areas.present?
   end
@@ -41,6 +42,10 @@ class Observation < ActiveRecord::Base
 
   def observation_date
     self.obs_date
+  end
+
+  def Observation.by_year(year)
+    .where("date_part('year',obs_date) = ?", year)
   end
 
   def Observation.by_page(page)
