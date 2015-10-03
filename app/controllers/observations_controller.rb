@@ -20,6 +20,9 @@ class ObservationsController < ApplicationController
         @observations = Observation.all
       end
     end
+    if params[:year]
+      @Observations = @Observations.by_year(params[:year].to_i)
+    end
 
     # @observations = @observations.by_obstype(obstype)
     @observations = @observations.by_company(current_user.company) if signed_in?
