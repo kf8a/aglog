@@ -21,6 +21,11 @@ describe ObservationsController, type: :controller  do
       end
     end
 
+    it 'retrieves by year' do
+      get :index, year: 2015
+      expect(response).to render_template 'index'
+    end
+
     it 'does not allow GET :new' do
       get :new
       expect(response).to redirect_to new_user_session_path
@@ -152,9 +157,9 @@ describe ObservationsController, type: :controller  do
     describe "POST :create" do
       before(:each) do
         @observation_count = Observation.count
-        observation_type_id = ObservationType.first.id
+        observation_type = FactoryGirl.create ObservationType
         post :create, :observation => { :observation_date => Date.today,
-          :observation_type_ids => [observation_type_id] }
+          :observation_type_ids => [observation_type.id] }
       end
 
       it "should create an observation" do
