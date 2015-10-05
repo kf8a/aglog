@@ -21,7 +21,7 @@ class ObservationsController < ApplicationController
       end
     end
     if params[:year]
-      @Observations = @Observations.by_year(params[:year].to_i)
+      @observations = @observations.by_year(params[:year].to_i)
     end
 
     # @observations = @observations.by_obstype(obstype)
