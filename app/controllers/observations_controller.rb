@@ -16,12 +16,14 @@ class ObservationsController < ApplicationController
     else
       if params[:query] 
         @observations = Observation.ordered_by_date.basic_search(comment: params[:query])
+        @query = params[:query]
       else
         @observations = Observation.all
       end
     end
     if params[:year]
       @observations = @observations.by_year(params[:year].to_i)
+      @year = params[:year]
     end
 
     # @observations = @observations.by_obstype(obstype)
