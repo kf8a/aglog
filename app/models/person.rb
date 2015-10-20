@@ -7,8 +7,6 @@ class Person < ActiveRecord::Base
   belongs_to :company
   belongs_to :user
 
-#  has_and_belongs_to_many :hazards
-
   validates :given_name, :presence   => { :unless => :sur_name }
   validates :sur_name, :presence   => { :unless => :given_name }
 
