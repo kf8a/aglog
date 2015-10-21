@@ -10,7 +10,7 @@ class Person < ActiveRecord::Base
   validates :given_name, :presence   => { :unless => :sur_name }
   validates :sur_name, :presence   => { :unless => :given_name }
 
-  validate :name_must_be_unique
+  validates :name, uniqueness: {scope: :company_id}
   validates_presence_of :company
 
   scope :by_company, lambda {|company| where(:company_id => company)}
