@@ -72,7 +72,7 @@ class ObservationsController < ApplicationController
     old_notes = @observation.notes
     if @observation.update_attributes(observation_params)
       new_notes = @observation.notes
-      @observation.notes = [old_notes, new_notes].flatten.compact
+      @observation.notes = [old_notes, new_notes].flatten.compact.uniq
       if @observation.save
         flash[:notice] = "Observation was successfully updated."
       end
