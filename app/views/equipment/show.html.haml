@@ -6,6 +6,7 @@
     = raw("<li>Uses Material</li>") if @equipment.use_material?
     = raw("<li>Is a Tractor</li>") if @equipment.is_tractor?
     = raw("<li>Archived</li>") if @equipment.archived?
+    = raw("<li>Non-MSU</li>") if @equipment.non_msu?
   - if @equipment.description?
     %b Description:
     = @equipment.description

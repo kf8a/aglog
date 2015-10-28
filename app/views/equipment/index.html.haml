@@ -7,6 +7,7 @@
   %tr
     %th(align="left") Name
     %th Use Material
+    %th Non-MSU
 
   - @equipment.each do |equipment|
     %tr
@@ -14,6 +15,8 @@
         = equipment.name
       %td(align="center")
         = 'true' if equipment.use_material?
+      %td(align="center")
+        = 'true' if equipment.non_msu?
       %td
         = link_to 'Show', equipment_path(equipment)
 
