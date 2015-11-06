@@ -61,6 +61,6 @@
 
 <%= link_to 'Related Observations', related_observations_path(:id => @observation.id) %>
 <%= link_to 'New observation', new_observation_path %>
-<%= link_to 'Edit', edit_observation_path(@observation) if  current_user %>
+<%= link_to 'Edit', edit_observation_path(@observation) if  current_user && current_user.company == @observation.company %>
 <%= link_to 'List Observations', observations_path %>
 
