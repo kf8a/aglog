@@ -71,8 +71,8 @@ class ObservationsController < ApplicationController
     @observation = Observation.where(:id => params[:id]).includes(:observation_types, {:activities => {:setups => :material_transactions}}).first
     old_notes = @observation.notes
     if @observation.update_attributes(observation_params)
-      new_notes = @observation.notes
-      @observation.notes = [old_notes, new_notes].flatten.compact
+      # new_notes = @observation.notes
+      # @observation.notes = [old_notes, new_notes].flatten.compact
       if @observation.save
         flash[:notice] = "Observation was successfully updated."
       end
@@ -99,7 +99,7 @@ class ObservationsController < ApplicationController
   def observation_params
 
     params.require(:observation).permit(:observation_date, :comment, {observation_type_ids: []},
-                                        :areas_as_text, :note, :note_cache, {notes: []}, :notes_cache,
+                                        :areas_as_text, {notes: []}, :notes_cache,
                                         {activities_attributes: [{person: :id}, :person_id, :hours, :id, :_destroy,
                                           {setups_attributes: [{equipment: [:id]}, :equipment_id, :id, :_destroy, 
                                             {material_transactions_attributes: [:id, :material_id, {material: :id}, :rate, 
