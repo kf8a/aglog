@@ -63,8 +63,8 @@ RSpec.describe Salus, :type => :model do
 
   it 'returns an range of years' do
     year = Date.today.year
-    create_harvest_observation(Date.today -  366)
-    create_harvest_observation(Date.today -  766)
+    create_harvest_observation(Date.today -  360)
+    create_harvest_observation(Date.today -  500)
     create_harvest_observation(Date.today)
 
     expect(@salus.years).to eq (year -2) ... year
