@@ -12,12 +12,6 @@ class Salus
     last...first
   end
 
-  def crop_for(year)
-    #TODO this is not true in general
-    # records.first.activities.first.setups.first.materials.first.name
-    "corn"
-  end
-
   def rotation_components
     rot = []
     result = [rot]

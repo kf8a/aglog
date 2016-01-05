@@ -70,11 +70,6 @@ RSpec.describe Salus, :type => :model do
     expect(@salus.years).to eq (year -2) ... year
   end
 
-  it 'returns the crop for the year' do
-    create_planting_observation
-    expect(@salus.crop_for(Date.today.year)).to eq 'corn'
-  end
-
   def create_planting_observation(date=Date.today)
     observation, observation_type = create_observation("Planting", date)
 
