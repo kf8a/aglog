@@ -19,6 +19,6 @@ $ ->
     $(this).closest('fieldset').hide()
     event.preventDefault()
 
-  $('form').on 'submit', "#reset_password", (event) -> 
+  $('form').on 'submit', (event) -> 
     $(this).find('input[type="submit"]').attr('disabled', 'disabled')
 
