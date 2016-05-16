@@ -3,19 +3,20 @@ class Material < ActiveRecord::Base
 
   has_and_belongs_to_many :equipment
   has_many :material_transactions
-  has_many :setups, :through => :material_transactions
+  has_many :setups, through: :material_transactions
   belongs_to :material_type
   belongs_to :company
 
-  scope :current, -> { where(archived: false)}
+  scope :current, -> { where(archived: false) }
   scope :ordered, -> { order('name') }
-  scope :by_company, lambda {|company| where(:company_id => company)}
+  scope :by_company, lambda { |company| where(company_id: company) }
 
-  validates_presence_of :name
+  validates :name, presence: true
   validates :name, uniqueness: { case_sensitive: false, scope: :company_id }
 
   def self.find_with_children(id)
-    where(:id => id).includes(:material_transactions, :setups => {:observation => :observation_types}).first
+    where(id: id).includes(:material_transactions,
+                           setups: { observation: :observation_types }).first
   end
 
   # Converts liquids from millileter to grams.
@@ -28,11 +29,10 @@ class Material < ActiveRecord::Base
   end
 
   def observations
-    self.setups.collect {|setup| setup.observation}.compact
+    setups.collect(&:observation).compact
   end
 
   def material_type_name
-    self.material_type.try(:name)
+    material_type.try(:name)
   end
-
 end

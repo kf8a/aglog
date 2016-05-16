@@ -2,7 +2,7 @@
 # SimpleCov.start 'rails'
 # SimpleCov.coverage_dir 'tmp/coverage'
 
-ENV["RAILS_ENV"] = "test"
+ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'factory_girl'

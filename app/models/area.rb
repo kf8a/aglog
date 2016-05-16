@@ -124,5 +124,4 @@ class Area < ActiveRecord::Base
   def name_has_no_spaces
     errors.add(:base, 'names should not contain spaces') if name.to_s.include?(' ')
   end
-
 end
