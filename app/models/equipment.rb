@@ -6,17 +6,17 @@ class Equipment < ActiveRecord::Base
   belongs_to :company
   belongs_to :equipment_type
 
-  accepts_nested_attributes_for  :equipment_pictures
+  accepts_nested_attributes_for :equipment_pictures
 
-  validates_presence_of :company
+  validates :company, presence: true
 
-  validates :name, :uniqueness => { case_sensitive: false, scope: :company_id }
+  validates :name, uniqueness: { case_sensitive: false, scope: :company_id }
 
-  scope :current, -> { where(:archived => false)}
-  scope :ordered, -> { order('name')}
-  scope :by_company, lambda {|company| where(:company_id => company) }
+  scope :current, -> { where(archived: false) }
+  scope :ordered, -> { order('name') }
+  scope :by_company, lambda { |company| where(company_id: company) }
 
   def observations
-    self.setups.collect {|setup| setup.observation}.compact
+    setups.collect(&:observation).compact
   end
 end
