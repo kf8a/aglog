@@ -19,7 +19,7 @@ class Setup < ActiveRecord::Base
   end
 
   def materials_with_rates
-    material_transactions.collect(&:materials_with_rate)
+    material_transactions.collect(&:material_with_rate)
   end
 
   def material_names
@@ -31,7 +31,7 @@ class Setup < ActiveRecord::Base
   end
 
   def rates
-    material_transactions.collect(&rate)
+    material_transactions.collect(&:rate)
   end
 
   def unit_names

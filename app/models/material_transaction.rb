@@ -64,7 +64,7 @@ class MaterialTransaction < ActiveRecord::Base
   end
 
   def conversion_rate
-    rate *= unit.conversion_factor
+    rate = self.rate * unit.conversion_factor
     rate = material.to_mass(rate) # liters to grams
     rate /= 1000.0 # grams to kilograms
     rate *= 2.47 # acres to hectares
