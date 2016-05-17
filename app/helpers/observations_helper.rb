@@ -1,5 +1,4 @@
 module ObservationsHelper
-
   def initialize_arrays
     data = "arrayActivityIndexes = []; arraySetupIndexes=[];"
     javascript_tag(data)
@@ -26,5 +25,4 @@ module ObservationsHelper
     Then you will get both areas G2R3 <br />
     If you just type <b>G2 TAB</b>, you will get all of the G2 areas<br />".html_safe
   end
-
 end
