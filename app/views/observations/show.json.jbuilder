@@ -34,7 +34,7 @@ end
 
 # should I create new templates here?
 
-# TODO scope by company id
+# TODO: scope by company id
 json.people Person.all.each do |person|
   json.id person.id
   json.name person.name

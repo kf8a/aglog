@@ -56,8 +56,8 @@ class Salus
           warnings = ''
           if !seeds_per_square_meter
             warnings = 'ESTIMATED SEEDING RATE'
-            seeds_per_square_meter = estimated_seeds_per_square_meter(transaction,
-                                                                      warnings)
+            seeds_per_square_meter =
+              estimated_seeds_per_square_meter(transaction, warnings)
           end
           { type: 'planting', species: transaction.material.salus_code,
             year: obs.obs_date.year, doy: obs.obs_date.yday,
@@ -121,7 +121,8 @@ class Salus
 
   def fertilizer_records
     area.observations
-        .select("'fertilizer' as type, observations.id, obs_date, observations.comment")
+        .select("'fertilizer' as type, observations.id, obs_date,
+                observations.comment")
         .joins(:observation_types,
                setups: [:material_transactions, { materials: :material_type }])
         .where('material_types.name = ?', 'fertilizer')
@@ -130,7 +131,8 @@ class Salus
 
   def planting_records
     area.observations
-        .select("'planting' as type, observations.id, obs_date, observations.comment")
+        .select("'planting' as type, observations.id, obs_date,
+                observations.comment")
         .joins(:observation_types,
                setups: [:material_transactions, { materials: :material_type }])
         .where('material_types.name = ?', 'seed')
@@ -139,14 +141,16 @@ class Salus
 
   def harvest_records
     area.observations
-        .select("'harvest' as type, observations.id, obs_date, observations.comment")
+        .select("'harvest' as type, observations.id, obs_date,
+                observations.comment")
         .joins(:observation_types)
         .where('observation_types.name = ?', 'Harvest').distinct
   end
 
   def tillage_records
     area.observations
-        .select("'tillage' as type, observations.id, obs_date, observations.comment")
+        .select("'tillage' as type, observations.id, obs_date,
+                observations.comment")
         .joins(:observation_types)
         .where('observation_types.name = ?', 'Soil Preparation').distinct
   end
