@@ -1,6 +1,5 @@
 # Allows modification and viewing of reports
 class ReportsController < ApplicationController
-
   def index
     current = session[:current_order]
     order = case params[:order]

@@ -3,7 +3,6 @@
 class ObservationsController < ApplicationController
   ActionController::Parameters.action_on_unpermitted_parameters = :raise
 
-#  before_filter :require_user, :except => [:index, :show, :related]
   # helper_method :observation
   respond_to :json, :html
 
@@ -14,7 +13,7 @@ class ObservationsController < ApplicationController
     if obstype
         @observations = obstype.observations
     else
-      if params[:query] 
+      if params[:query]
         @observations = Observation.ordered_by_date.basic_search(comment: params[:query])
         @query = params[:query]
       else
@@ -31,18 +30,20 @@ class ObservationsController < ApplicationController
     @observations = @observations.by_page(params[:page])
 
     respond_with @observations do |format|
-      format.salus_xml { render 'index', :formats => [:salus_xml] }
-      format.salus_csv { render 'index', :formats => [:salus_csv] }
+      format.salus_xml { render 'index', formats: [:salus_xml] }
+      format.salus_csv { render 'index', formats: [:salus_csv] }
     end
   end
 
   def show
-    @observation = Observation.where(:id => params[:id]).includes(:person, :observation_types,
-                                                                  {:activities => [:person,
-                                                                    {:setups => [:equipment, 
-                                                                      {:material_transactions => [:material, :unit]}]}]}).first
+    @observation = Observation.where(id: params[:id])
+                              .includes(:person, 
+                                        :observation_types,
+                                        activities: [:person,
+                                        {setups: [:equipment,
+                                        {material_transactions: [:material, :unit]}]}]).first
     @areas_as_text = @observation.areas_as_text
-    respond_with @observation 
+    respond_with @observation
   end
 
   def new
@@ -58,23 +59,28 @@ class ObservationsController < ApplicationController
     @observation = user.observations.new(observation_params)
     @observation.company = user.company
     logger.info user.name
-    flash[:form] = @observation.save ? 'Observation was successfully created.' : "Creation failed"
+    flash[:form] = @observation.save ? 'Observation was successfully created.' : 'Observation creation failed'
     respond_with @observation
   end
 
   def edit
-    @observation = Observation.by_company(current_user.company).where(:id => params[:id]).includes(:observation_types, {:activities => {:setups => :material_transactions}}).first
+    @observation = Observation.by_company(current_user.company)
+                              .where(id: params[:id]).includes(:observation_types,
+                                                               activities: 
+                                                               { setups: :material_transactions }).first
     respond_with @observation
   end
 
   def update
-    @observation = Observation.where(:id => params[:id]).includes(:observation_types, {:activities => {:setups => :material_transactions}}).first
+    @observation = Observation.where(id: params[:id])
+                              .includes(:observation_types,
+                                        { activities: { setups: :material_transactions } }).first
     old_notes = @observation.notes
     if @observation.update_attributes(observation_params)
       # new_notes = @observation.notes
       # @observation.notes = [old_notes, new_notes].flatten.compact
       if @observation.save
-        flash[:notice] = "Observation was successfully updated."
+        flash[:notice] = 'Observation was successfully updated.'
       end
     end
     respond_with @observation
@@ -87,7 +93,8 @@ class ObservationsController < ApplicationController
   end
 
   def related
-    @observation = Observation.where(:id => params[:id]).includes(:areas => :observations).first
+    @observation = Observation.where(id: params[:id])
+                              .includes(areas: :observations).first
   end
 
   # def observation
@@ -97,12 +104,12 @@ class ObservationsController < ApplicationController
   private
 
   def observation_params
-
-    params.require(:observation).permit(:observation_date, :comment, {observation_type_ids: []},
-                                        :areas_as_text, {notes: []}, :notes_cache,
-                                        {activities_attributes: [{person: :id}, :person_id, :hours, :id, :_destroy,
-                                          {setups_attributes: [{equipment: [:id]}, :equipment_id, :id, :_destroy, 
-                                            {material_transactions_attributes: [:id, :material_id, {material: :id}, :rate, 
-                                              {unit: :id}, :unit_id, :_destroy]}] } ]})
+    params.require(:observation)
+          .permit(:observation_date, :comment, { observation_type_ids: [] },
+                  :areas_as_text, { notes: [] }, :notes_cache,
+                  { activities_attributes: [{ person: :id }, :person_id, :hours, :id, :_destroy,
+                  { setups_attributes: [{ equipment: [:id] }, :equipment_id, :id, :_destroy,
+                  { material_transactions_attributes: [:id, :material_id, { material: :id }, :rate, 
+                  { unit: :id }, :unit_id, :_destroy] }] }] })
   end
 end

@@ -1,6 +1,5 @@
 # Allows modification and viewing of units
 class UnitsController < ApplicationController
-
   def index
     @units = Unit.ordered
     respond_with @units
