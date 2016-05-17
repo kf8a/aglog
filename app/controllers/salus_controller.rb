@@ -1,8 +1,9 @@
+# Serve the SALUS formatted aglog data
 class SalusController < ApplicationController
   respond_to :xml, :html
 
   def index
-    @areas= Area.roots
+    @areas = Area.roots
 
     respond_with @areas
   end
