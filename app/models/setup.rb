@@ -35,6 +35,6 @@ class Setup < ActiveRecord::Base
   end
 
   def unit_names
-    units.collecti(&:name)
+    units.collect(&:name)
   end
 end
