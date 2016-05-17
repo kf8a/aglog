@@ -5,7 +5,7 @@ notifications:
     secure: CA6Z8l+HJgXBT/oudM1PpueUFcvFgWNKHWnHdWsroBzUCpIsoxWFixtcq/kNVPesO5oGk4GT7f0l8/t0PN8NrOS9ADMtgDRfyhgv9+tiLZ8ZXToNgx5L4VrO9gc5nspo0tu8v2gCX3k/WwSkJeYYysvgnyZ7ZjBWJzQ1BRFvOd8=
 rvm:
 - 2.2.1
-- 2.3
+- 2.3.1
 bundler_args: "--without production"
 env: DEVISE_SECRET="39bcedf487fe83bd4637dbaf5d738db0ce2a004e4ece7a5896b225e49101cce2fd0b73c8c95629c5d05e6c1f3869597d113bd11ce7f2bc37278923527406a845"
   DEVISE_PEPPER="39bcedf487fe83ba4637dbaf5d338db0ce2a004e4e3e7a5896b265e49101ccc2fd0b73c8c9562fc5d05e6c1f3869547d113bd11ce7f2bce7278923527a091845"
