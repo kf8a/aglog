@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
 
     session[:current_order] = order
 
-    @transactions = MaterialTransaction.includes(:observations, :areas, :material, :unit, setup: { :activity: :observation }).find_fertilizations(order)
+    @transactions = MaterialTransaction.includes(:observations, :areas, :material, :unit, setup: { activity: :observation }).find_fertilizations(order)
 
     respond_to do |format|
       format.html
