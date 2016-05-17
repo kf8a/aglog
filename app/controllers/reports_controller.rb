@@ -3,27 +3,26 @@ class ReportsController < ApplicationController
   def index
     current = session[:current_order]
     order = case params[:order]
-     when 'date'
-       by_date_desc == current ? by_date : by_date_desc
-     when 'plot'
-       by_area_name_desc == current ? by_area_name : by_area_name_desc
-     when 'material'
-       by_material_name_desc == current ? by_material_name : by_material_name_desc
-     else
-       by_date
-     end
+            when 'date'
+              by_date_desc == current ? by_date : by_date_desc
+            when 'plot'
+              by_area_name_desc == current ? by_area_name : by_area_name_desc
+            when 'material'
+              by_material_name_desc == current ? by_material_name : by_material_name_desc
+            else
+              by_date
+            end
 
-     session[:current_order] = order
+    session[:current_order] = order
 
-     @transactions = MaterialTransaction.includes(:observations, :areas, :material, :unit, :setup => {:activity => :observation}).find_fertilizations(order)
+    @transactions = MaterialTransaction.includes(:observations, :areas, :material, :unit, setup: { :activity: :observation }).find_fertilizations(order)
 
-     respond_to do |format|
-       format.html
-     end
+    respond_to do |format|
+      format.html
+    end
   end
 
-
-  private #############
+  private
 
   def by_date
     'obs_date, areas.name, materials.name'

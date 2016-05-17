@@ -1,6 +1,5 @@
 # Allows modification and viewing of people
 class PeopleController < ApplicationController
-
   # GET /people
   # GET /people.xml
   def index
@@ -8,7 +7,7 @@ class PeopleController < ApplicationController
       @people = Person.ordered_in_company(current_user.company)
     else
       @people = Person.ordered
-    end 
+    end
     respond_with @people
   end
 
