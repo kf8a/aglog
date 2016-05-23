@@ -3,41 +3,41 @@ require 'set'
 
 # Represents a location where observations are done.
 class Area < ActiveRecord::Base
-  has_and_belongs_to_many :observations, -> {order('obs_date desc')}
+  has_and_belongs_to_many :observations, -> { order('obs_date desc') }
   belongs_to :study
   belongs_to :treatment
   belongs_to :company
 
-  scope :by_company, lambda {|company| where(:company_id => company)}
+  scope :by_company, ->(company) { where(company_id: company) }
 
-  validates :name, :uniqueness => { :case_sensitive => false,
-                                    :scope => :company_id }
-  validates :study, :presence => { :if => :study_id }
+  validates :name, uniqueness: { case_sensitive: false,
+                                 scope: :company_id }
+  validates :study, presence: { if: :study_id }
 
-  #validate :treatment_is_part_of_study
+  # validate :treatment_is_part_of_study
   validate :name_has_no_spaces
 
   acts_as_nested_set
 
-  def Area.find_with_name_like(query)
+  def self.find_with_name_like(query)
     query = query.downcase + '%'
     Area.where('lower(name) like ?', query)
   end
 
-  def Area.to_jquery_tokens
-    all.sort.collect {|area| {:id=>area.id, :name=>area.name}}
+  def self.to_jquery_tokens
+    all.sort.collect { |area| { id: area.id, name: area.name } }
   end
 
   def expand
-    leaf? ? self : leaves.to_a.keep_if {|area| area.company_id == self.company_id}
+    leaf? ? self : leaves.to_a.keep_if { |area| area.company_id == company_id }
   end
 
-
-  def Area.coalese(areas = [])
+  def self.coalese(areas = [])
     areas_to_check = areas.to_a # make sure we have an array to work with
-    areas = areas.collect{ |area| area.expand }.flatten.to_set
+    areas = areas.collect(&:expand).flatten.to_set
     while areas_to_check.present?
-      areas_to_check, areas = replace_full_family_with_parent(areas_to_check, areas)
+      areas_to_check, areas = replace_full_family_with_parent(areas_to_check,
+                                                              areas)
     end
 
     areas.to_a
@@ -51,52 +51,55 @@ class Area < ActiveRecord::Base
   #   Area.parse('T1R1 T2') #=> [#<Area id: 1, name: "T1R1" ... >, ... ]
   # @example Parse a string which has no area with that name
   #   Area.parse('T1R1 R11') #=> "T1R1 *R11*"
-  def Area.parse(areas_as_text, options={})
+  def self.parse(areas_as_text, options = {})
     tokens = areas_as_text.split(/[ |,]+/)
     return [] unless tokens.present?
     areas, invalid_tokens = AreaToken.tokens_to_areas(tokens, options[:company])
 
-    invalid_tokens.compact.present? ? mark_tokens(invalid_tokens, tokens) : areas.flatten
+    if invalid_tokens.compact.present?
+      mark_tokens(invalid_tokens, tokens)
+    else
+      areas.flatten
+    end
   end
 
-  # Transforms an array of areas into a list of area names, contracted if possible.
+  # Transforms an array of areas into a list of area names,
+  # contracted if possible.
   # @param [Array] areas an array of areas
   # @return [String] a list of area names, as close as possible to roots.
-  def Area.unparse(areas = [])
+  def self.unparse(areas = [])
     areas = coalese(areas)
-    names = areas.collect { |area| area.name }.uniq
+    names = areas.collect(&:name).uniq
 
     names.sort.join(' ')
   end
 
   def study_name
-    self.study.try(:name)
+    study.try(:name)
   end
 
-  def <=>(other_area)
-    comp = self.level <=> other_area.level
+  def <=>(other)
+    comp = level <=> other.level
     if comp == 0
-      comp = self.name <=> other_area.name
+      comp = name <=> other.name
     end
 
     comp
   end
 
   def leaf_observations
-    leaf? ? observations : leaves.collect{ |leaf| leaf.observations }.flatten.compact.uniq
+    leaf? ? observations : leaves.collect(&:observations)
+                                 .flatten.compact.uniq
   end
 
-
-  private##########################################
-
-  def Area.mark_tokens(invalid_tokens, tokens)
+  def self.mark_tokens(invalid_tokens, tokens)
     invalid_tokens.compact.each do |index|
       tokens[index] = '*' + tokens[index] + '*'
     end
     tokens.join(' ')
   end
 
-  def Area.replace_full_family_with_parent(areas_to_check, areas)
+  def self.replace_full_family_with_parent(areas_to_check, areas)
     area = areas_to_check.pop
     if areas.superset?(area.siblings.to_set)
       areas          = adjust_collection(areas, area)
@@ -108,11 +111,13 @@ class Area < ActiveRecord::Base
     [areas_to_check, areas]
   end
 
-  def Area.adjust_collection(collection, area)
+  def self.adjust_collection(collection, area)
     father = area.parent
     kids = father.descendants
-    collection = collection + [father] - kids
+    collection + [father] - kids
   end
+
+  private
 
   def treatment_is_part_of_study
     # if treatment exists then it must belong to correct study

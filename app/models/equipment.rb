@@ -14,7 +14,7 @@ class Equipment < ActiveRecord::Base
 
   scope :current, -> { where(archived: false) }
   scope :ordered, -> { order('name') }
-  scope :by_company, lambda { |company| where(company_id: company) }
+  scope :by_company, ->(company) { where(company_id: company) }
 
   def observations
     setups.collect(&:observation).compact

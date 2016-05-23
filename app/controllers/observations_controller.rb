@@ -11,10 +11,11 @@ class ObservationsController < ApplicationController
   def index
     obstype = ObservationType.find_by_id(params[:obstype])
     if obstype
-        @observations = obstype.observations
+      @observations = obstype.observations
     else
       if params[:query]
-        @observations = Observation.ordered_by_date.basic_search(comment: params[:query])
+        @observations = Observation.ordered_by_date
+                                   .basic_search(comment: params[:query])
         @query = params[:query]
       else
         @observations = Observation.all
@@ -37,11 +38,11 @@ class ObservationsController < ApplicationController
 
   def show
     @observation = Observation.where(id: params[:id])
-                              .includes(:person, 
-                                        :observation_types,
-                                        activities: [:person,
-                                        {setups: [:equipment,
-                                        {material_transactions: [:material, :unit]}]}]).first
+                              .includes(:person, :observation_types, activities:
+                                        [:person, { setups:
+                                          [:equipment,
+                                           { material_transactions:
+                                             [:material, :unit] }] }]).first
     @areas_as_text = @observation.areas_as_text
     respond_with @observation
   end
@@ -66,7 +67,7 @@ class ObservationsController < ApplicationController
   def edit
     @observation = Observation.by_company(current_user.company)
                               .where(id: params[:id]).includes(:observation_types,
-                                                               activities: 
+                                                               activities:
                                                                { setups: :material_transactions }).first
     respond_with @observation
   end
@@ -74,7 +75,9 @@ class ObservationsController < ApplicationController
   def update
     @observation = Observation.where(id: params[:id])
                               .includes(:observation_types,
-                                        { activities: { setups: :material_transactions } }).first
+                                        activities:
+                                        { setups: :material_transactions })
+                              .first
     old_notes = @observation.notes
     if @observation.update_attributes(observation_params)
       # new_notes = @observation.notes
@@ -107,9 +110,13 @@ class ObservationsController < ApplicationController
     params.require(:observation)
           .permit(:observation_date, :comment, { observation_type_ids: [] },
                   :areas_as_text, { notes: [] }, :notes_cache,
-                  { activities_attributes: [{ person: :id }, :person_id, :hours, :id, :_destroy,
-                  { setups_attributes: [{ equipment: [:id] }, :equipment_id, :id, :_destroy,
-                  { material_transactions_attributes: [:id, :material_id, { material: :id }, :rate, 
-                  { unit: :id }, :unit_id, :_destroy] }] }] })
+                  activities_attributes:
+                  [{ person: :id }, :person_id, :hours,
+                   :id, :_destroy,
+                   { setups_attributes:
+                     [{ equipment: [:id] }, :equipment_id, :id, :_destroy,
+                      { material_transactions_attributes:
+                       [:id, :material_id, { material: :id }, :rate,
+                        { unit: :id }, :unit_id, :_destroy] }] }])
   end
 end
