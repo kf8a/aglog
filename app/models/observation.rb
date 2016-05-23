@@ -3,7 +3,7 @@ require 'csv'
 
 # The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
-  attr :observation_date
+  attr_reader :observation_date
 
   has_many :activities, dependent: :destroy
   has_many :setups, through: :activities
@@ -21,9 +21,9 @@ class Observation < ActiveRecord::Base
   validates :company,           presence: true
   validate :no_invalid_areas
 
-  scope :by_company, lambda { |company| where(company_id: company) }
-  scope :by_state, lambda { |state| where(state: state) }
-  # scope :by_obstype, lambda {|type| where(observaton_type_id: type)}
+  scope :by_company, ->(company) { where(company_id: company) }
+  scope :by_state, ->(state) { where(state: state) }
+  # scope :by_obstype, ->(type) { where(observaton_type_id: type) }
 
   accepts_nested_attributes_for :activities, allow_destroy: true
 
@@ -51,9 +51,9 @@ class Observation < ActiveRecord::Base
     ordered_by_date.includes_everything.paginate page: page
   end
 
-  def Observation.includes_everything
+  def self.includes_everything
     includes({ areas: [:study, :treatment] }, :observation_types,
-             { activities: { setups: { material_transactions: :material } } })
+             activities: { setups: { material_transactions: :material } })
   end
 
   def self.ordered_by_date

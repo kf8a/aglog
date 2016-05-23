@@ -12,7 +12,7 @@ class Person < ActiveRecord::Base
   validate :name_must_be_unique
   validates :company, presence: true
 
-  scope :by_company, lambda { |company| where(company_id: company) }
+  scope :by_company, ->(company) { where(company_id: company) }
 
   def self.current
     where(archived: false)

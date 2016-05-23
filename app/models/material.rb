@@ -1,6 +1,5 @@
 # Represents what is being worked on and measured: alfalfa, wheat, corn, etc.
 class Material < ActiveRecord::Base
-
   has_and_belongs_to_many :equipment
   has_many :material_transactions
   has_many :setups, through: :material_transactions
@@ -9,7 +8,7 @@ class Material < ActiveRecord::Base
 
   scope :current, -> { where(archived: false) }
   scope :ordered, -> { order('name') }
-  scope :by_company, lambda { |company| where(company_id: company) }
+  scope :by_company, ->(company) { where(company_id: company) }
 
   validates :name, presence: true
   validates :name, uniqueness: { case_sensitive: false, scope: :company_id }
