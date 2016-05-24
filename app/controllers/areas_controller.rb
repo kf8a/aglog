@@ -1,33 +1,33 @@
 # Allows modification and viewing of areas
 class AreasController < ApplicationController
-
   respond_to :html, :json
 
   def index
     query = params[:q]
     @areas = company.try(:areas) || Area.all
 
-    if query
-      @areas = @areas.find_with_name_like(query).to_jquery_tokens
-    else
-      @areas = @areas.roots
-    end
+    @areas = if query
+               @areas.find_with_name_like(query).to_jquery_tokens
+             else
+               @areas.roots
+             end
 
     respond_with @areas
   end
 
   def show
     @area = Area.find(params[:id])
-    @observations = @area.leaf_observations.sort {|a,b| b.obs_date <=> a.obs_date }
+    @observations = @area.leaf_observations
+                         .sort { |a, b| b.obs_date <=> a.obs_date }
 
     respond_with @area
   end
 
   def move_to
-    area= Area.find(params[:parent_id])
+    area = Area.find(params[:parent_id])
     child = Area.find(params[:id])
     child.move_to_child_of(area) unless child == area
-    render :partial =>'area', :locals => {:area => area}
+    render partial: 'area', locals: { area: area }
   end
 
   def move_before
@@ -35,11 +35,12 @@ class AreasController < ApplicationController
     child = Area.find(params[:id])
     father = area.parent
     child.move_to_left_of(area) unless child == area
+
     if area.root?
       areas = company.try(:areas) || Area.scoped
-      render :partial => 'area_list', :locals => {:area_roots => areas.roots}
+      render partial: 'area_list', locals: { area_roots: areas.roots }
     else
-      render :partial => 'area', :locals => {:area => father}
+      render partial: 'area', locals: { area: father }
     end
   end
 
@@ -79,14 +80,14 @@ class AreasController < ApplicationController
     redirect_to areas_url
   end
 
-  private###################################
+  private
 
   def company
     current_user.try(:company)
   end
 
   def area_params
-    params.require(:area).permit(:name, :replicate, :study_id, :treatment_id, :description)
-
+    params.require(:area).permit(:name, :replicate, :study_id,
+                                 :treatment_id, :description)
   end
 end
