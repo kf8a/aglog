@@ -12,14 +12,12 @@ class ObservationsController < ApplicationController
     obstype = ObservationType.find_by_id(params[:obstype])
     if obstype
       @observations = obstype.observations
+    elsif params[:query]
+      @observations = Observation.ordered_by_date
+                                 .basic_search(comment: params[:query])
+      @query = params[:query]
     else
-      if params[:query]
-        @observations = Observation.ordered_by_date
-                                   .basic_search(comment: params[:query])
-        @query = params[:query]
-      else
-        @observations = Observation.all
-      end
+      @observations = Observation.all
     end
     if params[:year]
       @observations = @observations.by_year(params[:year].to_i)
@@ -66,9 +64,11 @@ class ObservationsController < ApplicationController
 
   def edit
     @observation = Observation.by_company(current_user.company)
-                              .where(id: params[:id]).includes(:observation_types,
-                                                               activities:
-                                                               { setups: :material_transactions }).first
+                              .where(id: params[:id])
+                              .includes(:observation_types,
+                                        activities:
+                                        { setups: :material_transactions })
+                              .first
     respond_with @observation
   end
 
@@ -78,13 +78,8 @@ class ObservationsController < ApplicationController
                                         activities:
                                         { setups: :material_transactions })
                               .first
-    old_notes = @observation.notes
-    if @observation.update_attributes(observation_params)
-      # new_notes = @observation.notes
-      # @observation.notes = [old_notes, new_notes].flatten.compact
-      if @observation.save
-        flash[:notice] = 'Observation was successfully updated.'
-      end
+    if @observation.update_attributes(observation_params) && @observation.save
+      flash[:notice] = 'Observation was successfully updated.'
     end
     respond_with @observation
   end
