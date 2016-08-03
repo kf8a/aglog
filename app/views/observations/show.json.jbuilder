@@ -5,9 +5,7 @@ json.obs_date @observation.obs_date
 json.observation_types ObservationType.all.each do |type|
   json.id type.id
   json.name type.name
-  if @observation.observation_types.include?(type)
-    json.checked true
-  end
+  json.checked true if @observation.observation_types.include?(type)
 end
 json.areas_as_text @areas_as_text
 json.areas @observation.areas do |area|

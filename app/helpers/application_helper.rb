@@ -11,7 +11,7 @@ module ApplicationHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(association.to_s.singularize + "_fields", f: builder, only_current: only_current)
     end
-    link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+    link_to(name, '#', class: "add_fields", data: { id: id, fields: fields.gsub("\n", "") })
   end
 
   # def link_to_add_fields(name, f, association, only_current = nil)

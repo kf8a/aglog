@@ -13,7 +13,7 @@ module SalusHelper
                "<Mgt_Fertilizer_App Year='#{component[:year]}' DOY='#{component[:doy]}' ANFer='#{component[:n_rate]}' AKFer='#{component[:k_rate]}' APFer='#{component[:p_rate]}' IFType='#{component[:fertilizer]}' url='#{component[:url]}' notes='".html_safe
              when 'irrigation'
 
-    end
+             end
     result << component[:notes].delete("\r")
     result << "'/>".html_safe
     result
