@@ -293,6 +293,9 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
     pg (0.18.4)
+    prometheus-client (0.6.0)
+      quantile (~> 0.2.0)
+    quantile (0.2.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -431,6 +434,7 @@ DEPENDENCIES
   launchy
   less-rails
   pg
+  prometheus-client (~> 0.6.0)
   rails (~> 4.2.6)
   rake (< 11.0)
   rspec-its
@@ -446,4 +450,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.11.2
+   1.12.4
