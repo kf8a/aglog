@@ -43,6 +43,8 @@ gem 'uglifier'
 
 gem 'less-rails'
 
+gem 'prometheus-client', '~> 0.6.0'
+
 group :production do
   gem 'unicorn'
 end
