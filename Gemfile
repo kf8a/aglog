@@ -41,7 +41,7 @@ gem 'therubyracer', :require => 'v8'
 gem 'coffee-rails'
 gem 'uglifier'
 
-gem 'less-rails'
+#gem 'less-rails'
 
 gem 'prometheus-client', '~> 0.6.0'
 
