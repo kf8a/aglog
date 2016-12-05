@@ -66,7 +66,7 @@ class EquipmentController < ApplicationController
     return unless pictures
     pictures['equipment_picture'].each do |picture|
       @equipment_picture = @equipment.equipment_pictures
-                                     .create(equipment_picture: picture,
+                                     .create(picture: picture,
                                              equipment_id: @equipment.id)
     end
   end

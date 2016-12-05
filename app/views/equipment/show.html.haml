@@ -14,7 +14,7 @@
   %ul
   - @equipment.equipment_pictures.each do |picture|
     %li
-      = image_tag(picture_url)
+      = image_tag(picture.picture)
 
 - @equipment.observations.each do |observation|
   %p
