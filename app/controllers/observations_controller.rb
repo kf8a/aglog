@@ -47,7 +47,7 @@ class ObservationsController < ApplicationController
 
   def new
     @observation = Observation.new
-    @observation.obs_date = Date.today
+    @observation.obs_date = Time.zone.today
     respond_with @observation
   end
 
