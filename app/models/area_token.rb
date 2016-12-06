@@ -38,8 +38,7 @@ class AreaToken < String
     if number_token?
       Area.find(self)
     elsif include?('-')
-      Area.where(name: to_range).where(company_id: @company).first
-      # Area.find_by_name_and_company_id(self.to_range, @company)
+      Area.find_by(name: to_range).where(company_id: @company)
     else
       # Area.where(name: self).where(company_id: @company.id).all
       Area.find_by(name: self, company: @company)

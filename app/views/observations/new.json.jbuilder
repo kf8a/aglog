@@ -1,4 +1,4 @@
-json.obs_date Date.today
+json.obs_date Time.zone.today
 
 json.observation_types ObservationType.all.each do |type|
   json.id type.id
