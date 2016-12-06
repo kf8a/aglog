@@ -42,7 +42,7 @@ class AreaToken < String
       # Area.find_by_name_and_company_id(self.to_range, @company)
     else
       # Area.where(name: self).where(company_id: @company.id).all
-      Area.find_by_name_and_company_id(self, @company)
+      Area.find_by(name: self, company: @company)
     end
   end
 end
