@@ -37,7 +37,6 @@ gem 'barista'
 gem 'jbuilder'
 
 gem 'therubyracer', :require => 'v8'
-#gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
 
