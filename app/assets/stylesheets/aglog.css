@@ -13,7 +13,7 @@ a img { border: none;
   cursor: move;
 }
 
-div.droppable {
+.droppable {
   height: 4px;
 }
 
@@ -54,9 +54,9 @@ error {
 	margin-bottom: 1em;}
   .flickr_pagination a, .flickr_pagination span {
     padding: .2em .5em; }
-  .flickr_pagination span.disabled {
+  .flickr_pagination .disabled {
     color: #AAA; }
-  .flickr_pagination span.current {
+  .flickr_pagination .current {
     font-weight: bold;
     color: #FF0084; }
   .flickr_pagination a {
