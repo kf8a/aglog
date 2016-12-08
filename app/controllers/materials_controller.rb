@@ -1,6 +1,5 @@
 # Allows modification and viewing of materials
 class MaterialsController < ApplicationController
-
   # GET /materials
   # GET /materials.xml
   def index
@@ -54,7 +53,7 @@ class MaterialsController < ApplicationController
   private
 
   def material_params
-    params.require(:material).permit(:name, :operation_type_id, :material_type_id, :n_content, 
+    params.require(:material).permit(:name, :operation_type_id, :material_type_id, :n_content,
                                      :p_content, :k_content, :specific_weight, :salus_code,
                                      :liquid, :archived)
   end
