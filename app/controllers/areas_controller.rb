@@ -6,19 +6,20 @@ class AreasController < ApplicationController
     query = params[:q]
     @areas = company.try(:areas) || Area.all
 
-    @areas = if query
-               @areas.find_with_name_like(query).to_jquery_tokens
-             else
-               @areas.roots
-             end
+    @areas = 
+      if query
+        @areas.find_with_name_like(query).to_jquery_tokens
+      else
+        @areas.roots
+      end
 
     respond_with @areas
   end
 
   def show
     @area = Area.find(params[:id])
-    @observations = @area.leaf_observations
-                         .sort { |a, b| b.obs_date <=> a.obs_date }
+    @observations = 
+      @area.leaf_observations.sort { |a, b| b.obs_date <=> a.obs_date }
 
     respond_with @area
   end
