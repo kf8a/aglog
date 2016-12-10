@@ -79,12 +79,12 @@ class Observation < ActiveRecord::Base
   end
 
   def collect_from_setups(method_to_collect)
-    setups.collect { |setup| setup.send(method_to_collect) }
+    setups.map { |setup| setup.send(method_to_collect) }
           .flatten.compact.uniq
   end
 
   def equipment_names
-    setups.collect(&:equipment_name).flatten.join(', ')
+    setups.map(&:equipment_name).flatten.join(', ')
   end
 
   def in_review
@@ -118,12 +118,13 @@ class Observation < ActiveRecord::Base
   end
 
   def observation_type_names
-    observation_types.collect(&:name).join(', ')
+    observation_types.map(&:name).join(', ')
   end
 
-  def person_name
-    person.name
-  end
+  delegate :name, to: :person, prefix: true
+  # def person_name
+  #   person.name
+  # end
 
   def rates
     collect_from_setups('rates')
