@@ -25,7 +25,7 @@ class Area < ActiveRecord::Base
   end
 
   def self.to_jquery_tokens
-    all.sort.collect { |area| { id: area.id, name: area.name } }
+    all.sort.map { |area| { id: area.id, name: area.name } }
   end
 
   def expand
@@ -34,10 +34,9 @@ class Area < ActiveRecord::Base
 
   def self.coalese(areas = [])
     areas_to_check = areas.to_a # make sure we have an array to work with
-    areas = areas.collect(&:expand).flatten.to_set
+    areas = areas.map(&:expand).flatten.to_set
     while areas_to_check.present?
-      areas_to_check, areas = replace_full_family_with_parent(areas_to_check,
-                                                              areas)
+      areas_to_check, areas = replace_full_family_with_parent(areas_to_check, areas)
     end
 
     areas.to_a
@@ -69,7 +68,7 @@ class Area < ActiveRecord::Base
   # @return [String] a list of area names, as close as possible to roots.
   def self.unparse(areas = [])
     areas = coalese(areas)
-    names = areas.collect(&:name).uniq
+    names = areas.map(&:name).uniq
 
     names.sort.join(' ')
   end
@@ -88,7 +87,7 @@ class Area < ActiveRecord::Base
   end
 
   def leaf_observations
-    leaf? ? observations : leaves.collect(&:observations)
+    leaf? ? observations : leaves.map(&:observations)
                                  .flatten.compact.uniq
   end
 
