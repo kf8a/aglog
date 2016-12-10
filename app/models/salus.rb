@@ -17,7 +17,7 @@ class Salus
     rot = []
     result = [rot]
     current_type = nil
-    observations = records.sort { |x, y| x.obs_date <=> y.obs_date }
+    observations = records.sort_by(&:obs_date)
     observations.each do |obs|
       case obs.type
       when 'planting'
