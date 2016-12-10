@@ -9,13 +9,7 @@ class User < ActiveRecord::Base
   # belongs_to :company
   has_one :person
 
-  # redirect the company to the person so we don't
-  # have two places where we keep this info
-  def company
-    person.company
-  end
+  delegate :company, to: :person
 
-  def company=(company)
-    person.company = company
-  end
+  delegate :company=, to: :person
 end
