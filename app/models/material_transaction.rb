@@ -9,8 +9,8 @@ class MaterialTransaction < ActiveRecord::Base
 
   # find fertilizers  on the main site
   def self.find_fertilizations(order = 'obs_date desc')
-    study = Study.find_by_name('MAIN')
-    material_type = MaterialType.find_by_name('K fertilizer')
+    study = Study.find_by(name: 'MAIN')
+    material_type = MaterialType.find_by(name: 'K fertilizer')
     areas = Area.where(study_id: study).to_a
     transactions = MaterialTransaction.where(['materials.material_type_id = ? and area_id in (?)', material_type, areas]).order(order).joins('join materials on materials.id  = material_transactions.material_id join setups on setups.id = material_transactions.setup_id join activities on setups.activity_id = activities.id  join observations on activities.observation_id = observations.id join areas_observations on areas_observations.observation_id = observations.id join areas on areas_observations.area_id = areas.id join observation_types_observations on observation_types_observations.observation_id  =  observations.id')
     # transactions.uniq

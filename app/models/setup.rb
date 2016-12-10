@@ -19,22 +19,22 @@ class Setup < ActiveRecord::Base
   end
 
   def materials_with_rates
-    material_transactions.collect(&:material_with_rate)
+    material_transactions.map(&:material_with_rate)
   end
 
   def material_names
-    materials.collect(&:name)
+    materials.map(&:name)
   end
 
   def n_contents
-    material_transactions.collect(&:n_content)
+    material_transactions.map(&:n_content)
   end
 
   def rates
-    material_transactions.collect(&:rate)
+    material_transactions.map(&:rate)
   end
 
   def unit_names
-    units.collect(&:name)
+    units.map(&:name)
   end
 end

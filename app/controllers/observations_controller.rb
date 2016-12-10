@@ -64,21 +64,21 @@ class ObservationsController < ApplicationController
   end
 
   def edit
-    @observation = Observation.by_company(current_user.company)
-                              .where(id: params[:id])
-                              .includes(:observation_types,
-                                        activities:
-                                        { setups: :material_transactions })
-                              .first
+    @observation =
+      Observation.by_company(current_user.company)
+                 .where(id: params[:id])
+                 .includes(:observation_types,
+                           activities: { setups: :material_transactions })
+                 .first
     respond_with @observation
   end
 
   def update
-    @observation = Observation.where(id: params[:id])
-                              .includes(:observation_types,
-                                        activities:
-                                        { setups: :material_transactions })
-                              .first
+    @observation =
+      Observation.where(id: params[:id])
+                 .includes(:observation_types,
+                           activities: { setups: :material_transactions })
+                 .first
     if @observation.update_attributes(observation_params) && @observation.save
       flash[:notice] = 'Observation was successfully updated.'
     end
