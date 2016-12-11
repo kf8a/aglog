@@ -87,8 +87,12 @@ class Area < ActiveRecord::Base
   end
 
   def leaf_observations
-    leaf? ? observations : leaves.map(&:observations)
-                                 .flatten.compact.uniq
+    if leaf?
+      observations
+    else
+      leaves.map(&:observations)
+            .flatten.compact.uniq
+    end
   end
 
   def self.mark_tokens(invalid_tokens, tokens)
