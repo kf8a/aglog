@@ -10,7 +10,5 @@ class Activity < ActiveRecord::Base
 
   accepts_nested_attributes_for :setups, allow_destroy: true
 
-  def person_name
-    person.name
-  end
+  delegate :name, to: :person, prefix: true
 end
