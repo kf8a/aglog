@@ -10,19 +10,22 @@ class ObservationsController < ApplicationController
   # GET /observations.xml
   def index
     obstype = ObservationType.find(params[:obstype])
+    query = params[:query]
     if obstype
       @observations = obstype.observations
-    elsif params[:query]
+    elsif query
       @observations =
         Observation.ordered_by_date
-                   .basic_search(comment: params[:query])
-      @query = params[:query]
+                   .basic_search(comment: query)
+      @query = query
     else
       @observations = Observation.all
     end
-    if params[:year]
-      @observations = @observations.by_year(params[:year].to_i)
-      @year = params[:year]
+
+    year = params[:year]
+    if year
+      @observations = @observations.by_year(year.to_i)
+      @year = year
     end
 
     # @observations = @observations.by_obstype(obstype)
