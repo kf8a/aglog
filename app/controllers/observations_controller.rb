@@ -9,7 +9,9 @@ class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.xml
   def index
-    obstype = ObservationType.find(params[:obstype])
+    if params[:obstype]
+      obstype = ObservationType.find(params[:obstype])
+    end
     query = params[:query]
     if obstype
       @observations = obstype.observations
