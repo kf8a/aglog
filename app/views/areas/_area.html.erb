@@ -1,10 +1,7 @@
-<li class="draggable">
-  <div class='droppable'></div>
-  <span id="<%= area.id %>">
+<li class="tree-toggle">
+  <span>
     <%= area.name %>
     <%= area.description %>
-  </span>
-  <span>
     <%= link_to 'Show', area %>
     <%- if signed_in? %>
       <%= link_to 'Edit', edit_area_path(area) %>
@@ -12,8 +9,7 @@
     <% end %>
   </span>
   <% if area.children.present? %>
-    <%# <span class='hider'>Collapse?</span> %>
-    <ul>
+    <ul class="tree">
       <%= render area.children %>
     </ul>
   <% end %>

@@ -3,4 +3,5 @@
 //= require jquery-ui
 //= require jquery.tokeninput
 //= require form_functions
+//= require tree
 //= require_tree .
