@@ -13,7 +13,6 @@ class AreasController < ApplicationController
         @areas.roots
       end
 
-    @areas.order('weight')
     respond_with @areas
   end
 
