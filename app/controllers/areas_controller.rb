@@ -5,6 +5,7 @@ class AreasController < ApplicationController
   def index
     query = params[:q]
     @areas = company.try(:areas) || Area.all
+    @areas.order('weight')
 
     @areas =
       if query
