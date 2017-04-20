@@ -5,7 +5,6 @@ class AreasController < ApplicationController
   def index
     query = params[:q]
     @areas = company.try(:areas) || Area.all
-    @areas.order('weight')
 
     @areas =
       if query
@@ -14,6 +13,7 @@ class AreasController < ApplicationController
         @areas.roots
       end
 
+    @areas.order('weight')
     respond_with @areas
   end
 
