@@ -29,7 +29,7 @@ class Area < ActiveRecord::Base
   end
 
   def expand
-    leaf? ? self : leaves.to_a.keep_if { |area| area.company_id == company_id }
+    leaf? ? [self] : leaves.to_a.keep_if { |area| area.company_id == company_id }
   end
 
   def self.coalese(areas = [])
@@ -42,7 +42,7 @@ class Area < ActiveRecord::Base
     areas.to_a
   end
 
-  # Tries to find areas by their names.
+  # Tries to find areas by their names
   # @param [String] areas_as_text a string containing area names and tokens
   # @return [String or Array] the original string with errors highlighted or
   #   an array of areas
@@ -55,10 +55,11 @@ class Area < ActiveRecord::Base
     return [] unless tokens.present?
     areas, invalid_tokens = AreaToken.tokens_to_areas(tokens, options[:company])
 
-    if invalid_tokens.compact.present?
-      mark_tokens(invalid_tokens, tokens)
+    if invalid_tokens.present?
+      areas = unparse(areas)
+      [areas, mark_tokens(invalid_tokens)].join(' ').strip
     else
-      areas.flatten
+      areas
     end
   end
 
@@ -95,11 +96,15 @@ class Area < ActiveRecord::Base
     end
   end
 
-  def self.mark_tokens(invalid_tokens, tokens)
-    invalid_tokens.compact.each do |index|
-      tokens[index] = '*' + tokens[index] + '*'
+  def self.mark_tokens(invalid_tokens)
+    return mark_token(invalid_tokens) unless invalid_tokens.respond_to?(:compact)
+    invalid_tokens.compact.collect do |token|
+      mark_token(token)
     end
-    tokens.join(' ')
+  end
+
+  def self.mark_token(invalid_token)
+    '*' + invalid_token+ '*'
   end
 
   def self.replace_full_family_with_parent(areas_to_check, areas)

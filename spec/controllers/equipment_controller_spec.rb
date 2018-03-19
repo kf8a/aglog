@@ -5,7 +5,7 @@ describe EquipmentController, type: :controller  do
 
   describe 'Not signed in. ' do
     before do
-      @equipment = FactoryGirl.create(:equipment, :name=>'tractor')
+      @equipment = FactoryBot.create(:equipment, :name=>'tractor')
     end
 
     it 'renders the index' do
@@ -46,9 +46,9 @@ describe EquipmentController, type: :controller  do
 
   describe "Signed in as a normal user. " do
     before(:all) do
-      company_2 = FactoryGirl.create(:company, :name => 'glbrc')
+      company_2 = FactoryBot.create(:company, :name => 'glbrc')
 
-      @equipment_2 = FactoryGirl.create(:equipment, :name=>'glbrc_tractor',
+      @equipment_2 = FactoryBot.create(:equipment, :name=>'glbrc_tractor',
                                     :company => company_2)
     end
 

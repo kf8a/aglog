@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.8'
-# gem 'rake', '< 11.0'
 
-gem 'pg'
+gem 'pg', '~> 0.2'
 
-gem 'devise'
+gem 'devise', '~> 4.1.0'
 
 gem 'textacular', '~> 3.0'
 
@@ -52,6 +51,9 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano3-unicorn'
   gem 'capistrano-rails'
+  gem 'rbnacl', '< 5.0'
+  gem 'rbnacl-libsodium'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development, :test do
@@ -60,7 +62,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'shoulda'
   gem 'single_test'
   gem 'cucumber-rails', :require => false

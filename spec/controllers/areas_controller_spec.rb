@@ -3,7 +3,7 @@ require 'rails_helper'
 describe AreasController, type: :controller do
   render_views
 
-  let(:area) { FactoryGirl.build_stubbed(:area, name: "custom area")}
+  let(:area) { FactoryBot.build_stubbed(:area, name: "custom area")}
 
   before :each do
     allow(area).to receive(:save).and_return(true)
@@ -75,8 +75,8 @@ describe AreasController, type: :controller do
 
     # describe 'The area is a branch with leaves that have observations. ' do
     #   before(:each) do
-    #     @area1 = FactoryGirl.create(:area, company_id: 1)
-    #     @area1.observations << FactoryGirl.create(:observation)
+    #     @area1 = FactoryBot.create(:area, company_id: 1)
+    #     @area1.observations << FactoryBot.create(:observation)
     #     @area1.move_to_child_of(@area)
     #     assert @area.leaves.include?(@area1)
     #   end

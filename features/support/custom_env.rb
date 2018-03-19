@@ -1,4 +1,4 @@
-require 'factory_girl/step_definitions'
+require 'factory_bot/step_definitions'
 require "#{Rails.root}/db/seeds.rb"
 
 class PersonSessionsController

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe PeopleController, type: :controller  do
   render_views
 
-  let(:person) { FactoryGirl.build_stubbed(:person, sur_name: 'hastings', given_name: 'bill')}
+  let(:person) { FactoryBot.build_stubbed(:person, sur_name: 'hastings', given_name: 'bill')}
 
   before :each do
     allow(Person).to receive(:persisted?).and_return(true)

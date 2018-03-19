@@ -14,7 +14,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 def find_or_factory(model, attributes = Hash.new)
   model_as_constant = model.to_s.titleize.gsub(' ', '').constantize
   object = model_as_constant.where(attributes).first
-  object ||= FactoryGirl.create(model.to_sym, attributes)
+  object ||= FactoryBot.create(model.to_sym, attributes)
 
   object
 end
@@ -53,7 +53,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  # config.include FactoryGirl::Syntax::Methods
+  # config.include FactoryBot::Syntax::Methods
 end
 
 class PersonSessionsController

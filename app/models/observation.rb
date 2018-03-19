@@ -22,8 +22,6 @@ class Observation < ActiveRecord::Base
   validate :no_invalid_areas
 
   scope :by_company, ->(company) { where(company_id: company) }
-  scope :by_state, ->(state) { where(state: state) }
-  # scope :by_obstype, ->(type) { where(observaton_type_id: type) }
 
   accepts_nested_attributes_for :activities, allow_destroy: true
 
@@ -37,10 +35,6 @@ class Observation < ActiveRecord::Base
 
   def observation_date=(date_string)
     self.obs_date = Chronic.parse(date_string)
-  end
-
-  def observation_date
-    obs_date
   end
 
   def self.by_year(year)
@@ -85,10 +79,6 @@ class Observation < ActiveRecord::Base
 
   def equipment_names
     setups.map(&:equipment_name).flatten.join(', ')
-  end
-
-  def in_review
-    'in_review' == state
   end
 
   def in_review=(state)

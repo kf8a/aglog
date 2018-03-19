@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UnitsController, type: :controller  do
   render_views
 
-  let(:unit) { FactoryGirl.build_stubbed(:unit, name: 'custom unit')}
+  let(:unit) { FactoryBot.build_stubbed(:unit, name: 'custom unit')}
 
   before :each do
     allow(Unit).to receive(:persisted?).and_return(true)

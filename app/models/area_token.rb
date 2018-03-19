@@ -1,47 +1,68 @@
 # Deals with parsing Areas from a string or token_id
-class AreaToken < String
-  def self.tokens_to_areas(tokens, company = 1)
-    tokens.collect.with_index do |token, index|
-      area = new(token, company).to_area
-      area.present? ? [area.expand, nil] : [nil, index]
-    end.transpose
+class AreaToken
+  attr_reader :token
+
+  # Takes a list of strings and returns
+  # a tuple with a list of valid areas and a list of invalid tokens
+  def self.tokens_to_areas(tokens, company)
+    # tokens.collect.with_index do |token, index|
+    #   area = new(company).to_area(token)
+    #   area.present? ? area.expand : tokens[index]
+    # end
+
+    valids = tokens.collect.each do |token|
+      area = find_area(token, company)
+      area.present?
+    end
+
+    areas = valids.collect.each_with_index do |valid, index|
+      next unless valid
+      find_area(tokens[index], company).expand
+    end.compact.flatten
+
+    invalid_strings = valids.collect.each_with_index do |valid, index|
+      next if valid
+      tokens[index]
+    end.compact
+    [areas, invalid_strings]
+  end
+
+  def self.find_area(token, company)
+      new(company).to_area(token)
   end
 
   # NOTE that we are assuming a company id of 1
-  def initialize(contents = '', company = 1)
-    @company = company.presence || 1
-    super(contents)
+  def initialize(company)
+    @company = company ||= 1
   end
 
-  def to_range
-    first_part, _dash_part, second_part = partition('-')
-    base_part, first_number_part = first_part.dissect
-    second_number_part = second_part.dissect.last
+  def to_area(token)
+    if number_token?(token)
+      Area.find(token.to_i)
+    elsif token.include?('-')
+      names = to_range(token).to_s
+      Area.find_by(name: names, company: @company)
+    else
+      Area.find_by(name: token, company: @company)
+    end
+  end
+
+  # TODO range does not work at this time
+  def to_range(token)
+    first_part, _dash_part, second_part = token.partition('-')
+    return '' if second_part.empty?
+
+    base_part, first_number_part = range_base(first_part)
+    second_number_part = range_base(second_part).last
 
     (base_part + first_number_part)..(base_part + second_number_part)
   end
 
-  def dissect
-    number_part = ''
-    until self[-1].to_i == 0
-      number_part = slice!(-1) + number_part
-    end
-
-    [self, number_part]
+  def range_base(input)
+    /(\w+)?(\d+)+/.match(input).captures
   end
 
-  def number_token?
-    respond_to?(:to_i) && to_i != 0
-  end
-
-  def to_area
-    if number_token?
-      Area.find(self)
-    elsif include?('-')
-      Area.find_by(name: to_range).where(company_id: @company)
-    else
-      # Area.where(name: self).where(company_id: @company.id).all
-      Area.find_by(name: self, company: @company)
-    end
+  def number_token?(token)
+    token.respond_to?(:to_i) && token.to_i != 0
   end
 end
