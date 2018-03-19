@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ObservationsController, type: :controller  do
   render_views
 
-  let(:observation) { FactoryGirl.build_stubbed(:observation)}
+  let(:observation) { FactoryBot.build_stubbed(:observation)}
 
   before :each do
     allow(observation).to receive(:save).and_return(true)
@@ -76,34 +76,34 @@ describe ObservationsController, type: :controller  do
     before(:each) do
       sign_in_as_normal_user
       Equipment.find_by_id(2) or 2.times do |num|
-        FactoryGirl.create(:equipment, :name => "Equipment#{num}")
+        FactoryBot.create(:equipment, :name => "Equipment#{num}")
       end
       Material.find_by_id(3) or 3.times do |num|
-        FactoryGirl.create(:material, :name => "Material#{num}")
+        FactoryBot.create(:material, :name => "Material#{num}")
       end
       Unit.find_by_id(3) or 3.times do |num|
-        FactoryGirl.create(:unit, :name => "Unit#{num}")
+        FactoryBot.create(:unit, :name => "Unit#{num}")
       end
       Person.find_by_id(2) or 2.times do |num|
-        FactoryGirl.create(:person, :sur_name => "Sur#{num}")
+        FactoryBot.create(:person, :sur_name => "Sur#{num}")
       end
     end
 
     describe "GET :index, with observation type selected" do
       before(:each) do
-        observation_type = FactoryGirl.build_stubbed(:observation_type)
+        observation_type = FactoryBot.build_stubbed(:observation_type)
         allow(ObservationType).to receive(:find).with(observation_type.id).and_return(observation_type)
         observation.observation_types << observation_type
         get :index, :obstype => observation_type
 
         right_type = find_or_factory(:observation_type)
-        @correct_type_observation = FactoryGirl.create(:observation,
+        @correct_type_observation = FactoryBot.create(:observation,
                                                    :company_id => @user.company.id)
         @correct_type_observation.observation_types << right_type
         @correct_type_observation.save
         wrong_type = find_or_factory(:observation_type,
                                      :name => 'wrong_type')
-        @wrong_type_observation = FactoryGirl.create(:observation,
+        @wrong_type_observation = FactoryBot.create(:observation,
                                                  :company_id => @user.company.id)
         @wrong_type_observation.observation_types = [wrong_type]
         @wrong_type_observation.save
@@ -157,7 +157,7 @@ describe ObservationsController, type: :controller  do
     describe "POST :create" do
       before(:each) do
         @observation_count = Observation.count
-        observation_type = FactoryGirl.create ObservationType
+        observation_type = FactoryBot.create :observation_type
         post :create, :observation => { :observation_date => Date.today,
           :observation_type_ids => [observation_type.id] }
       end
@@ -187,8 +187,8 @@ describe ObservationsController, type: :controller  do
 
     describe "An observation exists. " do
       before(:each) do
-        observation_type = FactoryGirl.create :observation_type
-        @observation = FactoryGirl.create(:observation, observation_types:  [observation_type])
+        observation_type = FactoryBot.create :observation_type
+        @observation = FactoryBot.create(:observation, observation_types:  [observation_type])
         @observation.company = @user.company
         @observation.save
       end

@@ -6,7 +6,7 @@ describe AreaCopier do
     let(:company_2) { find_or_factory(:company, name: 'glbrc')}
     context 'a single area' do
       before(:each) do
-        @area = FactoryGirl.build_stubbed(:area, name: 'test', company: company_1)
+        @area = FactoryBot.build_stubbed(:area, name: 'test', company: company_1)
         @other_area = AreaCopier.copy_area_to_company(@area,company_2)
       end
       it 'should be valid' do

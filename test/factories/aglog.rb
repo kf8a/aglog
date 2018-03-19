@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
 
   sequence :sur_name do |n|
     "Doboline#{n}"

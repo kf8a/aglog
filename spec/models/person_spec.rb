@@ -13,7 +13,7 @@ describe Person do
     before(:each) do
 
       company = find_or_factory(:company)
-      @duplicate_person = FactoryGirl.create(:person, :given_name=>test_name[:given_name],
+      @duplicate_person = FactoryBot.create(:person, :given_name=>test_name[:given_name],
                                          :sur_name => test_name[:sur_name], :company_id => company.id)
       @duplicate_person.company = company
       assert @duplicate_person.save
@@ -58,7 +58,7 @@ describe Person do
 
   it 'allows the same name in a different company' do
     person  = Person.new(:given_name => test_name[:given_name], :sur_name => test_name[:sur_name]) 
-    company = FactoryGirl.create(:company)
+    company = FactoryBot.create(:company)
     person.company = company
     expect(person).to be_valid
   end

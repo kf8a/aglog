@@ -3,8 +3,8 @@ require 'spec_helper'
 describe MaterialTransactionsController, type: :controller  do
   render_views
 
-  let(:material_transaction) { FactoryGirl.build_stubbed(:material_transaction) }
-  let(:material)             { FactoryGirl.build_stubbed(:material) }
+  let(:material_transaction) { FactoryBot.build_stubbed(:material_transaction) }
+  let(:material)             { FactoryBot.build_stubbed(:material) }
 
   before :each do
     allow(material_transaction).to receive(:save).and_return(true)

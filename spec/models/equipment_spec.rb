@@ -15,7 +15,7 @@ describe Equipment do
 
     equipment_with_same_name_and_company = company.equipment.new(:name=>name.upcase)
     equipment_with_same_name_different_company = Equipment.new(:name=>name)
-    equipment_with_same_name_different_company.company = FactoryGirl.create(:company)
+    equipment_with_same_name_different_company.company = FactoryBot.create(:company)
 
     equipment_with_same_name_different_company.save
     equipment_with_same_name_and_company.save

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe MaterialsController, type: :controller do
   render_views
 
-  let(:material) { FactoryGirl.build_stubbed(:material, name: "custom material")}
+  let(:material) { FactoryBot.build_stubbed(:material, name: "custom material")}
 
   before :each do
     allow(material).to receive(:save).and_return(true)
