@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Allows modification and viewing of units
 class UnitsController < ApplicationController
   def index
@@ -22,9 +24,7 @@ class UnitsController < ApplicationController
 
   def create
     @unit = Unit.new(unit_params)
-    if @unit.save
-      flash[:notice] = 'Unit was successfully created.'
-    end
+    flash[:notice] = 'Unit was successfully created.' if @unit.save
     respond_with @unit
   end
 
@@ -48,6 +48,7 @@ class UnitsController < ApplicationController
   private
 
   def unit_params
-    params.require(:unit).permit(:name, :si_unit_id, :conversion_factor, :is_si_unit)
+    params.require(:unit).permit(:name, :si_unit_id, :conversion_factor,
+                                 :is_si_unit)
   end
 end
