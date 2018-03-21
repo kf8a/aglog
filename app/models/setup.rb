@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A setup is the equipment and material used for an activity.
 class Setup < ActiveRecord::Base
   belongs_to :activity

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Groups of areas belong to different studies.
 class Study < ActiveRecord::Base
   has_many :areas
