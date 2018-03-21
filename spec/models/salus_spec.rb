@@ -145,20 +145,23 @@ RSpec.describe Salus, :type => :model do
   end
 
   def planting_transaction
-    material_type = FactoryBot.create :material_type, name: "seed"
-    seed = FactoryBot.create :material, name: "urea", material_type_id: material_type.id
-    seeds = find_or_factory(:unit, name: "seeds")
-    FactoryBot.create :material_transaction, material: seed, rate: 50000, unit: seeds
+    material_type = FactoryBot.create :material_type, name: 'seed'
+    seed = FactoryBot.create(:material, name: 'urea',
+                                        material_type_id: material_type.id)
+    seeds = find_or_factory(:unit, name: 'seeds')
+    FactoryBot.create(:material_transaction, material: seed,
+                                             rate: 50_000, unit: seeds)
   end
 
-  def create_planting_and_fertilizer_observation(date=Date.today)
-    observation, observation_type = create_observation("Fertilizer application", date)
+  def create_planting_and_fertilizer_observation(date = Date.today)
+    observation, _observation_type =
+      create_observation('Fertilizer application', date)
 
     setup = FactoryBot.create :setup
     setup.material_transactions << planting_transaction
     setup.material_transactions << fertilizer_transaction
 
-    activity = FactoryBot.create(:activity,{observation_id: observation.id, setups: [setup]} )
+    FactoryBot.create(:activity,{observation_id: observation.id, setups: [setup]} )
 
     @area.observations << observation
     observation
@@ -166,7 +169,9 @@ RSpec.describe Salus, :type => :model do
 
   def create_observation(name, date)
     observation_type = ObservationType.where(name: name).first_or_create
-    observation = FactoryBot.create :observation, {observation_types: [observation_type], obs_date: date}
+    observation = FactoryBot.create(:observation,
+                                    observation_types: [observation_type],
+                                    obs_date: date)
     [observation, observation_type]
   end
 
