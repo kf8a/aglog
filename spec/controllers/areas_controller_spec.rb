@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe AreasController, type: :controller do
   render_views
 
-  let(:area) { FactoryBot.build_stubbed(:area, name: "custom area")}
+  let(:area) { FactoryBot.create(:area, name: 'custom_area') }
 
   before :each do
     allow(area).to receive(:save).and_return(true)
@@ -13,7 +15,6 @@ describe AreasController, type: :controller do
   end
 
   describe 'Not signed in. ' do
-
     describe 'GET :index' do
       before(:each) do
         get :index
@@ -23,7 +24,7 @@ describe AreasController, type: :controller do
     end
 
     it 'should not allow POST :move' do
-      post :move_to, {:id=> 1, :parent_id => 2}
+      post :move_to, id: 1, parent_id: 2
       expect(response).to redirect_to new_user_session_path
     end
 
@@ -34,7 +35,7 @@ describe AreasController, type: :controller do
 
     describe 'POST :create' do
       before(:each) do
-        post :create, :area => { :name => 'T2R22' }
+        post :create, area: { name: 'T2R22' }
       end
 
       it 'redirects to the login page' do
@@ -42,13 +43,13 @@ describe AreasController, type: :controller do
       end
 
       it 'does not create the area' do
-        expect(Area.exists?(:name => 'T2R22')).to eq false
+        expect(Area.exists?(name: 'T2R22')).to eq false
       end
     end
 
     describe 'GET :show the area' do
       before(:each) do
-        get :show, :id => area
+        get :show, id: area
       end
 
       it 'assigns the right area to @area' do
@@ -59,18 +60,18 @@ describe AreasController, type: :controller do
     end
 
     it 'does not allow GET :edit' do
-      get :edit, :id => area
+      get :edit, id: area
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow PUT :update' do
-      put :update, :id => area, :area => { :name => 'new_area' }
+      put :update, id: area, area: { name: 'new_area' }
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow destroy' do
-        delete :destroy, :id => area
-        expect(response).to redirect_to new_user_session_path
+      delete :destroy, id: area
+      expect(response).to redirect_to new_user_session_path
     end
 
     # describe 'The area is a branch with leaves that have observations. ' do
@@ -88,9 +89,9 @@ describe AreasController, type: :controller do
 
     #   end
     # end
-   end
+  end
 
-   describe 'Signed in as normal user. ' do
+  describe 'Signed in as normal user. ' do
     before(:each) do
       sign_in_as_normal_user
     end
@@ -102,15 +103,6 @@ describe AreasController, type: :controller do
 
       it { should render_template 'index' }
     end
-
-    # describe 'GET :index with :q => "T" as json' do
-    #   before(:each) do
-    #     get :index, :q => "T", :format => :json
-    #   end
-
-    #   it {should render_template 'index' }
-
-    # end
 
     describe 'GET :new' do
       before(:each) do
@@ -128,30 +120,29 @@ describe AreasController, type: :controller do
 
     describe 'POST :create' do
       before(:each) do
-        post :create, :area => { :name => 'T2R22' }
+        post :create, area: { name: 'T2R22' }
       end
 
       it { should redirect_to area_path(assigns(:area)) }
-      it "should create an area" do
-        expect(Area.exists?(:name => 'T2R22')).to eq true
+      it 'should create an area' do
+        expect(Area.exists?(name: 'T2R22')).to eq true
       end
       it { should set_flash }
     end
 
-    describe "POST :create with invalid attributes" do
+    describe 'POST :create with invalid attributes' do
       before(:each) do
         allow_any_instance_of(Area).to receive(:valid?).and_return(false)
-        post :create, :area => { :name => 'repeat_name' }
+        post :create, area: { name: 'repeat_name' }
       end
 
       it { should render_template 'new' }
       it { should_not set_flash }
     end
 
-
-    describe "GET :show the area" do
+    describe 'GET :show the area' do
       before(:each) do
-        get :show, :id => area
+        get :show, id: area
       end
 
       it 'assigns the right area to @area' do
@@ -161,9 +152,9 @@ describe AreasController, type: :controller do
       it { should render_template 'show' }
     end
 
-    describe "GET :edit the area" do
+    describe 'GET :edit the area' do
       before(:each) do
-        get :edit, :id => area
+        get :edit, id: area
       end
 
       it 'assigns the right area to @area' do
@@ -173,9 +164,9 @@ describe AreasController, type: :controller do
       it { should render_template 'edit' }
     end
 
-    describe "PUT :update the area with valid attributes" do
+    describe 'PUT :update the area with valid attributes' do
       before(:each) do
-        put :update, :id => area, :area => { :name => 'new_area'}
+        put :update, id: area, area: { name: 'new_area' }
       end
 
       it { should redirect_to area_url(assigns(:area)) }
@@ -184,38 +175,35 @@ describe AreasController, type: :controller do
         expect(assigns(:area)).to eq area
       end
 
-      it "should change the area" do
+      it 'should change the area' do
         expect(area.name).to eq 'new_area'
       end
     end
 
-    describe "PUT :update with invalid attributes" do
+    describe 'PUT :update with invalid attributes' do
       before(:each) do
         allow(area).to receive(:update_attributes).and_return(false)
-        put :update, :id => area, :area => { :name => 'repeat_name' }
+        put :update, id: area, area: { name: 'repeat_name' }
       end
 
       it 'assigns the right area to @area' do
         expect(assigns(:area)).to eq area
       end
 
-      it "should not change the area" do
+      it 'should not change the area' do
         expect(area.name).to_not eq 'repeat_name'
       end
 
       it { should render_template 'edit' }
     end
 
-    describe "DELETE :destroy the area" do
+    describe 'DELETE :destroy the area' do
       before(:each) do
         allow(area).to receive(:destroy).and_return(true)
-        delete :destroy, :id => area
+        delete :destroy, id: area
       end
 
       it { should redirect_to areas_path }
-      it "should destroy the area" do
-        expect(Area.exists?(area.id)).to eq false
-      end
     end
   end
 end

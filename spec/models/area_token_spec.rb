@@ -20,14 +20,4 @@ describe AreaToken do
     _area, invalid = AreaToken.tokens_to_areas(['B31'], 1)
     expect(invalid[0]).to eq 'B31'
   end
-
-  # it "correctly parses ['T2', 'T4']" do
-  #   areas, _invalid_tokens  = AreaToken.tokens_to_areas(['T2', 'T4'],1)
-  #   p areas
-  #   assert areas.all? {|x| x.class.name == 'Area'}
-  #   assert areas.any? {|a| a.name == 'T2R1'}
-  #   assert areas.any? {|a| a.name == 'T4R2'}
-  #   ar = Area.where(:name => 'T4R1').first
-  #   assert areas.include?(ar)
-  # end
 end

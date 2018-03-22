@@ -3,7 +3,7 @@ FactoryBot.define do
   sequence :sur_name do |n|
     "Doboline#{n}"
   end
-  
+
   sequence :unit_name do |n|
     "Unit#{n}"
   end
@@ -36,12 +36,23 @@ FactoryBot.define do
     name  {generate(:unit_name)}
   end
 
+
   #Dependent Factories
+
+  factory :membership do
+    person
+    company
+  end
 
   factory :person do
     given_name  "Bob"
     sur_name
-    company
+    transient do
+      company_count 1
+    end
+    after :create do |person, evaluator|
+      create_list :membership, evaluator.company_count, person: person
+    end
   end
 
   factory :user do

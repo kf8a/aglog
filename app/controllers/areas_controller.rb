@@ -4,7 +4,7 @@ class AreasController < ApplicationController
 
   def index
     query = params[:q]
-    @areas = company.try(:areas) || Area.all
+    @areas = company_areas || Area.all
 
     @areas =
       if query
@@ -38,7 +38,7 @@ class AreasController < ApplicationController
     child.move_to_left_of(area) unless child == area
 
     if area.root?
-      areas = company.try(:areas) || Area.scoped
+      areas = company_areas || Area.scoped
       render partial: 'area_list', locals: { area_roots: areas.roots }
     else
       render partial: 'area', locals: { area: father }
@@ -52,7 +52,7 @@ class AreasController < ApplicationController
 
   def create
     @area = Area.new(area_params)
-    @area.company = company
+    # TOOD the company needs to be passed in since it came be one of several
     if @area.save
       flash[:notice] = 'Area was successfully created.'
       respond_with @area
@@ -62,12 +62,12 @@ class AreasController < ApplicationController
   end
 
   def edit
-    @area = Area.by_company(company).find(params[:id])
+    @area = Area.by_company(companies).find(params[:id])
     respond_with @area
   end
 
   def update
-    @area = Area.by_company(company).find(params[:id])
+    @area = Area.by_company(companies).find(params[:id])
     if @area.update_attributes(area_params)
       respond_with @area
     else
@@ -76,19 +76,24 @@ class AreasController < ApplicationController
   end
 
   def destroy
-    @area = Area.find(params[:id])
-    @area.destroy
+    area = Area.find(params[:id])
+    area.destroy
     redirect_to areas_url
   end
 
   private
 
-  def company
-    current_user.try(:company)
+  def companies
+    current_user.companies
   end
 
   def area_params
     params.require(:area).permit(:name, :replicate, :study_id,
-                                 :treatment_id, :description)
+                                 :treatment_id, :company_ids, :description)
+  end
+
+  def company_areas
+    return unless current_user
+    Area.by_company(companies)
   end
 end

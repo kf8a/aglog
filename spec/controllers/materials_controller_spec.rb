@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe MaterialsController, type: :controller do
   render_views
 
-  let(:material) { FactoryBot.build_stubbed(:material, name: "custom material")}
+  let(:material) { FactoryBot.create(:material, name: 'custom material')}
 
   before :each do
     allow(material).to receive(:save).and_return(true)
@@ -14,7 +16,7 @@ describe MaterialsController, type: :controller do
     sign_in_as_normal_user
   end
 
-  it "should get index" do
+  it 'should get index' do
     get :index
     assert_response :success
     assert assigns(:materials)
@@ -86,7 +88,7 @@ describe MaterialsController, type: :controller do
     it 'renders template edit' do
       get :edit, :id => material
       expect(response).to render_template :edit
-    end 
+    end
   end
 
   it "should update material" do
@@ -110,11 +112,11 @@ describe MaterialsController, type: :controller do
 
   describe 'DESTROY' do
     before(:each) do
-      allow(material).to receive(:destroy).and_return(true)
-      delete :destroy, :id => material
+      # allow(material).to receive(:destroy).and_return(true)
+      delete :destroy, id: material
     end
 
-    it "should destroy material" do
+    it 'should destroy material' do
       expect(Material.exists?(material.id)).to eq false
     end
 

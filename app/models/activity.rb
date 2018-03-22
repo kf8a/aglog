@@ -6,7 +6,6 @@ class Activity < ActiveRecord::Base
   has_many :material_transactions, through: :setups
 
   validates :person, presence: true
-  # validates_associated :person
 
   accepts_nested_attributes_for :setups, allow_destroy: true
 

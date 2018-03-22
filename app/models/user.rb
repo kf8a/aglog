@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # belongs_to :company
   has_one :person
 
-  delegate :company, to: :person
+  delegate :companies, to: :person
 
-  delegate :company=, to: :person
+  delegate :companies=, to: :person
 end

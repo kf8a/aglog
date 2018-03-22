@@ -10,7 +10,6 @@ describe ObservationsController, type: :controller  do
     allow(Observation).to receive(:persisted?).and_return(true)
     allow(Observation).to receive(:find).and_return([observation])
     allow(Observation).to receive(:find).with(observation.id.to_s).and_return(observation)
-    allow(Observation).to receive(:by_company).and_return(Observation)
   end
 
   describe 'an unauthenticated user' do
@@ -97,14 +96,12 @@ describe ObservationsController, type: :controller  do
         get :index, :obstype => observation_type
 
         right_type = find_or_factory(:observation_type)
-        @correct_type_observation = FactoryBot.create(:observation,
-                                                   :company_id => @user.company.id)
+        @correct_type_observation = FactoryBot.create(:observation),
         @correct_type_observation.observation_types << right_type
         @correct_type_observation.save
         wrong_type = find_or_factory(:observation_type,
                                      :name => 'wrong_type')
-        @wrong_type_observation = FactoryBot.create(:observation,
-                                                 :company_id => @user.company.id)
+        @wrong_type_observation = FactoryBot.create(:observation)
         @wrong_type_observation.observation_types = [wrong_type]
         @wrong_type_observation.save
 
@@ -185,37 +182,39 @@ describe ObservationsController, type: :controller  do
       assert_response :success
     end
 
-    describe "An observation exists. " do
+    describe 'An observation exists. ' do
       before(:each) do
         observation_type = FactoryBot.create :observation_type
-        @observation = FactoryBot.create(:observation, observation_types:  [observation_type])
-        @observation.company = @user.company
-        @observation.save
+        @observation = FactoryBot.create(:observation,
+                                         observation_types: [observation_type],
+                                         company: @user.companies.first)
+        expect(@observation.save)
       end
 
-      describe "GET :show the observation" do
+      describe 'GET :show the observation' do
         before(:each) do
-          get :show, :id => @observation.id
+          get :show, id: @observation.id
         end
 
         it { should render_template 'show' }
       end
 
-      describe "GET :edit the observation" do
+      describe 'GET :edit the observation' do
         before(:each) do
-          get :edit, :id => @observation.id
+          get :edit, id: @observation.id
         end
 
         it { should render_template 'edit' }
       end
 
-      describe "PUT :update the observation" do
+      describe 'PUT :update the observation' do
         before(:each) do
           @current_obs_date = @observation.obs_date
-          xhr(:put, :update, :id => @observation.id, :commit => "Update Observation", :observation => { :observation_date => @current_obs_date - 1 })
+          xhr(:put, :update, id: @observation.id,
+                             commit: 'Update Observation', observation: { observation_date: @current_obs_date - 1 })
         end
 
-        # it "should update the observation" do
+        # it 'should update the observation' do
         #   @observation.reload
         #   assert_equal @current_obs_date - 1, @observation.obs_date
         # end

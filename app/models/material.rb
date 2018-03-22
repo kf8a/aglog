@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Represents what is being worked on and measured: alfalfa, wheat, corn, etc.
 class Material < ActiveRecord::Base
   has_and_belongs_to_many :equipment
