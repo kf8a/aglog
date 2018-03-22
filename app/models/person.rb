@@ -9,13 +9,16 @@ class Person < ActiveRecord::Base
   has_many :companies, through: :memberships
   belongs_to :user
 
+  has_many :collaborations
+  has_many :projects, through: :collaborations
+
   validates :given_name, presence: { unless: :sur_name }
   validates :sur_name, presence: { unless: :given_name }
 
   validate :name_must_be_unique
   # validates :memberships, presence: true
 
-  scope :by_company, ->(company) { joins(:memberships).where(memberships: { company_id: company}) }
+  scope :by_company, ->(company) { joins(:memberships).where(memberships: { company_id: company }) }
 
   def self.current
     where(archived: false)
