@@ -49,7 +49,6 @@ RSpec.configure do |config|
                                  :transaction
                                end
     DatabaseCleaner.start
-    Rails.cache.clear
   end
 
   config.after(:each) do
