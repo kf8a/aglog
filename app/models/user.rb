@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # An account in the system
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -12,4 +14,8 @@ class User < ActiveRecord::Base
   delegate :companies, to: :person
 
   delegate :companies=, to: :person
+
+  delegate :projects, to: :person
+
+  delegate :projects=, to: :person
 end

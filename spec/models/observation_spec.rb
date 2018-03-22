@@ -75,33 +75,36 @@ describe Observation do
 
   it 'gets the right materials_with_rates' do
     o = create_simple_observation
-    activity = FactoryBot.create(:activity, observation_id: o.id)
-    equipment = Equipment.find_by_name("Another Equipment") || FactoryBot.create(:equipment, :name => "Another Equipment")
-    setup = activity.setups.new(:equipment_id => equipment.id)
+    activity = Activity.find_by(observation_id: o.id) ||
+               FactoryBot.create(:activity, observation_id: o.id)
+    equipment = Equipment.find_by_name('Another Equipment') ||
+                FactoryBot.create(:equipment, name: 'Another Equipment')
+    setup = activity.setups.new(equipment_id: equipment.id)
     assert setup.save
-    material = Material.find_by_name("Material4") || FactoryBot.create(:material, :name => "Material4")
-    unit = Unit.find_by_name("Unit4") || FactoryBot.create(:unit, :name => "Unit4")
-    trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
-    assert trans_0.save
-    assert_equal "Material3: 4.0 Unit3s per acre, Material4: 5.0 Unit4s per acre", o.materials_with_rates
+    material = Material.find_by_name('Material4') || FactoryBot.create(:material, name: 'Material4')
+    unit = Unit.find_by_name('Unit4') || FactoryBot.create(:unit, name: 'Unit4')
+    trans0 = setup.material_transactions.new(material_id: material.id, rate: 5, unit_id: unit.id)
+    assert trans0.save
+    assert_equal 'Material3: 4.0 Unit3s per acre, Material4: 5.0 Unit4s per acre',
+                 o.materials_with_rates
     o.delete
   end
 
-  it "returns the right observation_type" do
+  it 'returns the right observation_type' do
     o = create_simple_observation
-    assert_equal "Soil Preparation", o.observation_type
+    assert_equal 'Soil Preparation', o.observation_type
     o.delete
   end
 
-  #TODO: you should only be allowed to put an observation_type in once
-  it "gives all of the right observation_type_names" do
+  # TODO: you should only be allowed to put an observation_type in once
+  it 'gives all of the right observation_type_names' do
     o = create_simple_observation
-    another_type = ObservationType.new(:name => "Another Type") #, :observations => [o])
+    another_type = ObservationType.new(name: 'Another Type')
     assert another_type.save
     o.observation_types << another_type
     assert o.save
     o.reload
-    assert_equal "Soil Preparation, Another Type", o.observation_type_names
+    assert_equal 'Soil Preparation, Another Type', o.observation_type_names
     o.delete
   end
 
@@ -117,35 +120,35 @@ describe Observation do
     o.delete
   end
 
-  it "gives the right material_names" do
+  it 'gives the right material_names' do
     o = create_simple_observation
-    activity = FactoryBot.create(:activity, observation_id: o.id)
+    activity = find_or_factory(:activity, observation_id: o.id)
     equipment = find_or_factory(:equipment, name: 'Another Equipment')
-    setup = activity.setups.new(:equipment_id => equipment.id)
+    setup = activity.setups.new(equipment_id: equipment.id)
     assert setup.save
-    material = Material.find_by(name: "Material4") || FactoryBot.create(:material, name: "Material4")
-    unit = Unit.find_by(name: "Unit4") || FactoryBot.create(:unit, name: "Unit4")
-    trans_0 = setup.material_transactions.new(material_id: material.id, rate: 5, unit_id: unit.id)
-    assert trans_0.save
-    assert_equal ["Material3", "Material4"], o.material_names
+    material = find_or_factory(:material, name: 'Material4')
+    unit = find_or_factory(:unit, name: 'Unit4')
+    trans0 = setup.material_transactions.new(material_id: material.id, rate: 5, unit_id: unit.id)
+    assert trans0.save
+    assert_equal %w[Material3 Material4], o.material_names
     o.delete
   end
 
-  #TODO This test, material_names, and materials_with_rates should be refactored
-  it "gives the right n_contents" do
+  # TODO: This test, material_names, and materials_with_rates should be refactored
+  it 'gives the right n_contents' do
     o = create_simple_observation
-    activity = FactoryBot.create(:activity, :observation_id => o.id)
-    equipment = Equipment.find_by_name("Another Equipment") || FactoryBot.create(:equipment, :name => "Another Equipment")
-    setup = activity.setups.new(:equipment_id => equipment.id)
+    activity = find_or_factory(:activity, observation_id: o.id)
+    equipment = find_or_factory(:equipment, name: 'Another Equipment')
+    setup = activity.setups.new(equipment_id: equipment.id)
     assert setup.save
-    material = Material.find_by_name("Material4") || FactoryBot.create(:material, :name => "Material4")
-    unit = Unit.find_by_name("Unit4") || FactoryBot.create(:unit, :name => "Unit4")
-    trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
-    assert trans_0.save
-    material = Material.find_by_name("Material3")
+    material = find_or_factory(:material, name: 'Material4')
+    unit = find_or_factory(:unit, name: 'Unit4')
+    trans0 = setup.material_transactions.new(material_id: material.id, rate: 5, unit_id: unit.id)
+    assert trans0.save
+    material = Material.find_by_name('Material3')
     material.n_content = 40
     material.save
-    material = Material.find_by_name("Material4")
+    material = Material.find_by_name('Material4')
     material.n_content = 30
     material.save
     assert_includes(o.n_contents, 40)
@@ -153,23 +156,27 @@ describe Observation do
     o.delete
   end
 
-  it "returns the right rates" do
+  it 'returns the right rates' do
     o = create_simple_observation
-    activity = FactoryBot.create(:activity, :observation_id => o.id)
-    equipment = Equipment.find_by_name("Another Equipment") || FactoryBot.create(:equipment, :name => "Another Equipment")
-    setup = activity.setups.new(:equipment_id => equipment.id)
+    activity = Activity.find_by(observation_id: o.id) ||
+               FactoryBot.create(:activity, observation_id: o.id)
+    # equipment = Equipment.find_by_name('Another Equipment') ||
+    #             FactoryBot.create(:equipment, name: 'Another Equipment')
+    equipment = find_or_factory(:equipment, name: 'Another Equipment')
+    setup = activity.setups.new(equipment_id: equipment.id)
     assert setup.save
-    material = Material.find_by_name("Material4") || FactoryBot.create(:material, :name => "Material4")
-    unit = Unit.find_by_name("Unit4") || FactoryBot.create(:unit, :name => "Unit4")
-    trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 5, :unit_id => unit.id)
-    assert trans_0.save
+    material = Material.find_by_name('Material4') || FactoryBot.create(:material, name: 'Material4')
+    unit = Unit.find_by_name('Unit4') || FactoryBot.create(:unit, name: 'Unit4')
+    trans0 = setup.material_transactions.new(material_id: material.id, rate: 5, unit_id: unit.id)
+    assert trans0.save
     assert_equal [4.0, 5.0], o.rates
     o.delete
   end
 
-  it "returns the right unit_names" do
+  it 'returns the right unit_names' do
     o = create_simple_observation
-    activity = FactoryBot.create(:activity, :observation_id => o.id)
+    # activity = FactoryBot.create(:activity, :observation_id => o.id)
+    activity = find_or_factory(:activity, observation_id: o.id)
     equipment = Equipment.find_by(name: "Another Equipment") || FactoryBot.create(:equipment, name: "Another Equipment")
     setup = activity.setups.new(:equipment_id => equipment.id)
     assert setup.save
@@ -191,14 +198,14 @@ describe Observation do
   private
 
   def create_simple_observation
-    type = find_or_factory(:observation_type, {name: 'Soil Preparation'})
+    type = find_or_factory(:observation_type, name: 'Soil Preparation')
     assert type
-    person1 = Person.find_by_sur_name("Sur1") || FactoryBot.create(:person, :sur_name => "Sur1")
+    person1 = Person.find_by_sur_name('Sur1') || FactoryBot.create(:person, sur_name: 'Sur1')
     company = find_or_factory(:company)
 
     observation = Observation.new(observation_date: 'June 14, 2007', company_id: company.id)
     observation.person = person1
-    observation.observation_types <<  type
+    observation.observation_types << type
     expect(observation).to be_valid
     assert observation.save
     person2 = Person.find_by_sur_name('Sur2') || FactoryBot.create(:person, sur_name: 'Sur2')
@@ -208,14 +215,14 @@ describe Observation do
     setup = activity.setups.new
     setup.equipment = equipment
     assert setup.save
-    material = Material.find_by_name("Material3") || FactoryBot.create(:material, :name => "Material3")
-    unit = Unit.find_by_name("Unit3") || FactoryBot.create(:unit, :name => "Unit3")
+    material = Material.find_by_name('Material3') || FactoryBot.create(:material, name: 'Material3')
+    unit = Unit.find_by_name('Unit3') || FactoryBot.create(:unit, name: 'Unit3')
     trans_0 = setup.material_transactions.new(:material_id => material.id, :rate => 4, :unit_id => unit.id)
     assert trans_0.save
     trans_1 = setup.material_transactions.new(:material_id => material.id, :rate => 4, :unit_id => unit.id)
     assert trans_1.save
     observation.reload
 
-    return observation
+    observation
   end
 end

@@ -34,7 +34,7 @@ class Observation < ActiveRecord::Base
   end
 
   def editable?(user)
-    user.companies.include?(company)
+    Set.new(user.projects).intersect?(Set.new(person.projects))
   end
 
   def observation_date=(date_string)
@@ -116,9 +116,6 @@ class Observation < ActiveRecord::Base
   end
 
   delegate :name, to: :person, prefix: true
-  # def person_name
-  #   person.name
-  # end
 
   def rates
     collect_from_setups('rates')
