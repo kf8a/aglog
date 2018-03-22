@@ -17,9 +17,11 @@ describe PeopleController, type: :controller  do
         expect(Person).to receive(:ordered).and_return([person])
         get :index
       end
+
       it 'renders the index template' do
         expect(response).to render_template 'index'
       end
+
       it 'assigns people to @people' do
         expect(assigns(:people)).to match_array [person]
       end
@@ -31,34 +33,34 @@ describe PeopleController, type: :controller  do
     end
 
     it 'does not allow GET :edit' do
-      get :edit, :id => person
+      get :edit, id: person
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow POST :create' do
-      post :create, :person => {:sur_name => 'Smith', :given_name => 'Barb'}
+      post :create, person: {sur_name: 'Smith', given_name: 'Barb'}
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow PUT :update' do
-      put :update, :id => person, :person => {:sur_name => 'Brown'}
+      put :update, id: person, person: {sur_name: 'Brown'}
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow DELETE :destroy' do
-      delete :destroy, :id => person
+      delete :destroy, id: person
       expect(response).to redirect_to new_user_session_path
     end
   end
 
   describe 'as an authenticated user' do
-    before(:each) do 
+    before(:each) do
       sign_in_as_normal_user
     end
 
     describe 'GET :index' do
       before(:each) do
-        expect(Person).to receive(:ordered_in_company).with(controller.current_user.company).and_return([person])
+        expect(Person).to receive(:ordered_in_company).with(controller.current_user.companies).and_return([person])
         get :index
       end
 
@@ -107,7 +109,7 @@ describe PeopleController, type: :controller  do
         end
 
         it 'creates a new person' do
-          expect(Person.exists?(assigns(:person).id)).to eq true 
+          expect(Person.exists?(assigns(:person).id)).to eq true
         end
         it 'redirects to the new person' do
           expect(response).to redirect_to Person.last
@@ -118,7 +120,7 @@ describe PeopleController, type: :controller  do
 
     describe 'GET :edit' do
       before(:each) do
-        expect(Person).to receive(:find_in_company).with(controller.current_user.company, person.id.to_s).and_return(person)
+        expect(Person).to receive(:find_in_company).with(controller.current_user.companies, person.id.to_s).and_return(person)
         get :edit, :id => person
       end
 
@@ -134,9 +136,9 @@ describe PeopleController, type: :controller  do
     describe 'PUT :update' do
       context 'with valid parameters' do
         before(:each) do
-          expect(Person).to receive(:find_in_company).with(controller.current_user.company, person.id.to_s).and_return(person)
+          expect(Person).to receive(:find_in_company).with(controller.current_user.companies, person.id.to_s).and_return(person)
           expect(person).to receive(:update_attributes).with({'given_name' => 'Bob'}).and_return(true)
-          put :update, :id => person, :person => {:given_name => 'Bob'}
+          put :update, id: person, person: {given_name: 'Bob'}
         end
 
         it 'redirects to the person' do
@@ -156,7 +158,7 @@ describe PeopleController, type: :controller  do
       end
 
       it 'deletes the person' do
-        expect(Person.exists?(person.id)).to eq false 
+        expect(Person.exists?(person.id)).to eq false
       end
 
       it 'redirects to index' do

@@ -1,4 +1,5 @@
-# encoding: UTF-8
+# frozen_string_literal: true
+
 require 'csv'
 
 # The main model, an observation is a collection of activities.
@@ -18,7 +19,6 @@ class Observation < ActiveRecord::Base
   validates :obs_date,          presence: true
   validates :observation_types, presence: true
   validates :person,            presence: true
-  validates :company,           presence: true
   validate :no_invalid_areas
 
   scope :by_company, ->(company) { where(company_id: company) }
@@ -31,6 +31,10 @@ class Observation < ActiveRecord::Base
 
   def company_name
     company.try(:name)
+  end
+
+  def editable?(user)
+    user.companies.include?(company)
   end
 
   def observation_date=(date_string)
@@ -46,7 +50,7 @@ class Observation < ActiveRecord::Base
   end
 
   def self.includes_everything
-    includes({ areas: [:study, :treatment] }, :observation_types,
+    includes({ areas: %i[study treatment] }, :observation_types,
              activities: { setups: { material_transactions: :material } })
   end
 

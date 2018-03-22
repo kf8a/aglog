@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Company do
-  it {is_expected.to have_many :people}
   it {is_expected.to have_many :equipment}
   it {is_expected.to have_many :areas}
   it {is_expected.to have_many :materials}

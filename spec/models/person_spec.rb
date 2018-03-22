@@ -4,8 +4,6 @@
 require 'rails_helper'
 
 describe Person do
-  it {is_expected.to belong_to :company}
-  it {is_expected.to validate_presence_of :company}
 
   let(:test_name) {{given_name: 'Joe', sur_name: 'Simmons'}}
 
@@ -13,13 +11,13 @@ describe Person do
     before(:each) do
 
       company = find_or_factory(:company)
-      @duplicate_person = FactoryBot.create(:person, :given_name=>test_name[:given_name],
-                                         :sur_name => test_name[:sur_name], :company_id => company.id)
-      @duplicate_person.company = company
+      @duplicate_person = FactoryBot.build(:person, given_name: test_name[:given_name],
+                                           sur_name: test_name[:sur_name])
+      @duplicate_person.companies = [company]
       assert @duplicate_person.save
 
-      @person  = Person.new(:given_name => test_name[:given_name], :sur_name => test_name[:sur_name]) 
-      @person.company = company
+      @person  = Person.new(given_name: test_name[:given_name], sur_name: test_name[:sur_name])
+      @person.companies = [company]
     end
 
     it "requires unique name" do
@@ -44,12 +42,9 @@ describe Person do
   end
 
   it "allows a new name person to be created" do
-    num_of_persons =  Person.count()
-    a = Person.new(:given_name => 'new', :sur_name => 'person') # is new name
-    a.company = Company.new
+    a = Person.new(given_name: 'new', sur_name: 'person') # is new name
+    a.companies = [Company.new]
     expect(a).to be_valid
-    assert a.save
-    assert_equal num_of_persons + 1, Person.count
   end
 
   it "does not allow a person with no name to be created" do
@@ -57,10 +52,20 @@ describe Person do
   end
 
   it 'allows the same name in a different company' do
-    person  = Person.new(:given_name => test_name[:given_name], :sur_name => test_name[:sur_name]) 
+    person  = Person.new(given_name: test_name[:given_name], sur_name: test_name[:sur_name])
     company = FactoryBot.create(:company)
-    person.company = company
+    person.companies = [company]
     expect(person).to be_valid
   end
+
+  it 'returns a list of companies' do
+    person  = Person.new(given_name: test_name[:given_name], sur_name: test_name[:sur_name])
+    company = FactoryBot.build(:company)
+    person.companies << company
+    expect(person.companies).to eq [company]
+  end
+
+  it 'does not allow a person with no company'
+
 end
 

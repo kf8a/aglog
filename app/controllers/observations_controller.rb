@@ -30,8 +30,7 @@ class ObservationsController < ApplicationController
       @year = year
     end
 
-    # @observations = @observations.by_obstype(obstype)
-    @observations = @observations.by_company(current_user.company) if signed_in?
+    # @observations = @observations.by_company(current_user.companies) if signed_in?
     @observations = @observations.by_page(params[:page])
 
     respond_with @observations do |format|
@@ -62,7 +61,7 @@ class ObservationsController < ApplicationController
   def create
     user = current_user.person
     @observation = user.observations.new(observation_params)
-    @observation.company = user.company
+    # TODO how do we know which company the use is acting as?
     logger.info user.name
     flash[:form] = @observation.save ? 'Observation was successfully created.' : 'Observation creation failed'
     respond_with @observation
@@ -70,7 +69,7 @@ class ObservationsController < ApplicationController
 
   def edit
     @observation =
-      Observation.by_company(current_user.company)
+      Observation.by_company(current_user.companies)
                  .where(id: params[:id])
                  .includes(:observation_types,
                            activities: { setups: :material_transactions })

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 
-ENV["RAILS_ENV"] ||= 'test'
+ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'database_cleaner'
@@ -9,19 +11,19 @@ require 'database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
-def find_or_factory(model, attributes = Hash.new)
-  model_as_constant = model.to_s.titleize.gsub(' ', '').constantize
+def find_or_factory(model, attributes = {})
+  model_as_constant = model.to_s.titleize.delete(' ').constantize
   object = model_as_constant.where(attributes).first
   object ||= FactoryBot.create(model.to_sym, attributes)
 
   object
 end
 
-def sign_in_as_normal_user(c=nil)
-	company_name = c || 'lter'
-  company = find_or_factory(:company, name: company_name)
+def sign_in_as_normal_user(c = nil)
+  # company_name = c || 'lter'
+  # company = find_or_factory(:company, name: company_name)
   @user = find_or_factory(:user)
   sign_in @user
 end
@@ -38,15 +40,16 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     # mocks.verify_partial_doubles = true
   end
-  config.order = "random"
+  config.order = 'random'
 
   config.before :each do
-    if Capybara.current_driver == :selenium
-      DatabaseCleaner.strategy = :truncation
-    else
-      DatabaseCleaner.strategy = :transaction
-    end
+    DatabaseCleaner.strategy = if Capybara.current_driver == :selenium
+                                 :truncation
+                               else
+                                 :transaction
+                               end
     DatabaseCleaner.start
+    Rails.cache.clear
   end
 
   config.after(:each) do
@@ -57,8 +60,7 @@ RSpec.configure do |config|
 end
 
 class PersonSessionsController
-
-  #override new in PersonSessionsController for easier testing
+  # override new in PersonSessionsController for easier testing
   def new
     person = Person.first
     self.current_user = person

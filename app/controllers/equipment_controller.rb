@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # Allows modification and viewing of equipment
 class EquipmentController < ApplicationController
   def index
-    if current_user
-      @equipment = Equipment.by_company(current_user.company).ordered
-    else
-      @equipment = Equipment.ordered
-    end
+    @equipment = if current_user
+                   equipment.ordered
+                 else
+                   Equipment.ordered
+                 end
 
     respond_with @equipment
   end
@@ -25,7 +27,7 @@ class EquipmentController < ApplicationController
 
   def create
     @equipment = Equipment.new(equipment_params)
-    @equipment.company = current_user.company
+    # TODO: pass in the company selected
     if @equipment.save
       update_pictures
       flash[:notice] = 'Equipment was successfully created.'
@@ -34,7 +36,7 @@ class EquipmentController < ApplicationController
   end
 
   def edit
-    @equipment = Equipment.by_company(current_user.company).find(params[:id])
+    @equipment = equipment
     if @equipment.equipment_pictures.empty?
       @equipment_pictures = @equipment.equipment_pictures.build
     end
@@ -42,14 +44,17 @@ class EquipmentController < ApplicationController
   end
 
   def update
-    @equipment = Equipment.by_company(current_user.company).find(params[:id])
-    update_pictures if @equipment.update(equipment_params)
-
-    respond_with @equipment
+    @equipment = equipment
+    if @equipment.update(equipment_params)
+      update_pictures
+      respond_with @equipment
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @equipment = Equipment.find(params[:id])
+    @equipment = equipment
     @equipment.destroy
     respond_with @equipment
   end
@@ -58,7 +63,8 @@ class EquipmentController < ApplicationController
 
   def equipment_params
     params.require(:equipment).permit(:name, :use_material, :is_tractor,
-                                      :description, :non_msu, :archived)
+                                      :description, :non_msu, :archived,
+                                      :company_id)
   end
 
   def update_pictures
@@ -68,6 +74,14 @@ class EquipmentController < ApplicationController
       @equipment_picture = @equipment.equipment_pictures
                                      .create(picture: picture,
                                              equipment_id: @equipment.id)
+    end
+  end
+
+  def equipment
+    if params[:id]
+      Equipment.by_company(current_user.companies).find(params[:id])
+    else
+      Equipment.by_company(current_user.companies)
     end
   end
 end

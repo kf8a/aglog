@@ -7,7 +7,7 @@ module ApplicationHelper
     fields =
       form.fields_for(association, new_object, child_index: id) do |builder|
         render(association.to_s.singularize + '_fields',
-               form: builder, only_current: only_current)
+               f: builder, only_current: only_current)
       end
     link_to(name, '#', class: 'add_fields',
                        data: { id: id, fields: fields.delete("\n") })

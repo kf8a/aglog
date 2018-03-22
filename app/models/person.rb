@@ -1,18 +1,21 @@
+# frozen_string_literal: true
+
 # A person is both someone who performs activities, and (with an open id) a
 # user of the web application.
 class Person < ActiveRecord::Base
   has_many :observations, inverse_of: :person
   has_many :activities
-  belongs_to :company
+  has_many :memberships
+  has_many :companies, through: :memberships
   belongs_to :user
 
   validates :given_name, presence: { unless: :sur_name }
   validates :sur_name, presence: { unless: :given_name }
 
   validate :name_must_be_unique
-  validates :company, presence: true
+  # validates :memberships, presence: true
 
-  scope :by_company, ->(company) { where(company_id: company) }
+  scope :by_company, ->(company) { joins(:memberships).where(memberships: { company_id: company}) }
 
   def self.current
     where(archived: false)

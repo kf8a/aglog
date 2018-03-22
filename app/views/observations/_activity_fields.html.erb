@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-sm-4">
       <% if only_current %>
-        <%= f.select :person_id, Person.by_company(current_user.company).current.ordered.map {|person| [person.name, person.id]}, {include_blank: false}, {class: "form-control"} %>
+        <%= f.select :person_id, Person.by_company(current_user.companies).current.ordered.map {|person| [person.name, person.id]}, {include_blank: false}, {class: "form-control"} %>
       <% else %>
-        <%= f.select :person_id, Person.by_company(current_user.company).ordered.map {|person| [person.name, person.id]}, { include_blank: false}, { class: "form-control"} %>
+        <%= f.select :person_id, Person.by_company(current_user.companies).ordered.map {|person| [person.name, person.id]}, { include_blank: false}, { class: "form-control"} %>
       <% end %>
     </div>
     <div class="col-sm-8">
