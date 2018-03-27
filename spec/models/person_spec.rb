@@ -41,13 +41,13 @@ describe Person do
     end
   end
 
-  it "allows a new name person to be created" do
+  it 'allows a new name person to be created' do
     a = Person.new(given_name: 'new', sur_name: 'person') # is new name
     a.companies = [Company.new]
     expect(a).to be_valid
   end
 
-  it "does not allow a person with no name to be created" do
+  it 'does not allow a person with no name to be created' do
     expect(Person.new).to_not be_valid
   end
 
@@ -66,6 +66,4 @@ describe Person do
   end
 
   it 'does not allow a person with no company'
-
 end
-
