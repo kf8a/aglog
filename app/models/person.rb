@@ -41,7 +41,8 @@ class Person < ActiveRecord::Base
   end
 
   def name_must_be_unique
-    person = Person.where(['lower(given_name) = ?', given_name.try(:downcase)])
+    person = Person.by_company(companies)
+                   .where(['lower(given_name) = ?', given_name.try(:downcase)])
                    .where(['lower(sur_name) = ?', sur_name.try(:downcase)])
                    .to_a - [self]
     errors.add(:base, 'Name must be unique') if person.present?
