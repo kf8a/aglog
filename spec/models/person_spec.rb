@@ -9,18 +9,17 @@ describe Person do
 
   describe 'naming restrictions' do
     before(:each) do
-
       company = find_or_factory(:company)
-      @duplicate_person = FactoryBot.build(:person, given_name: test_name[:given_name],
-                                           sur_name: test_name[:sur_name])
+      @duplicate_person = find_or_factory(:person, given_name: test_name[:given_name],
+                                                   sur_name: test_name[:sur_name])
       @duplicate_person.companies = [company]
       assert @duplicate_person.save
 
-      @person  = Person.new(given_name: test_name[:given_name], sur_name: test_name[:sur_name])
+      @person = Person.new(given_name: test_name[:given_name], sur_name: test_name[:sur_name])
       @person.companies = [company]
     end
 
-    it "requires unique name" do
+    it 'requires unique name' do
       expect(@person).to_not be_valid
     end
 
