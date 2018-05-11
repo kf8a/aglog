@@ -4,9 +4,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.2.0'
 
-gem 'pg' # , '~> 0.2'
+gem 'pg'
 
-gem 'devise' # , '~> 4.1.0'
+gem 'devise'
 
 gem 'haml'
 
@@ -19,14 +19,11 @@ gem 'will_paginate-bootstrap'
 
 gem 'chronic'
 
-# Uses jquery instead of prototype in rails
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'dotenv-rails'
 gem 'simple_form'
-
-# gem 'delocalize'
 
 gem 'awesome_nested_set', git: 'https://github.com/collectiveidea/awesome_nested_set.git'
 
@@ -58,16 +55,11 @@ group :development do
 end
 
 group :development, :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'rspec-its'
   gem 'rspec-rails'
-end
-
-group :test do
-  gem 'capybara'
-  gem 'cucumber-rails', require: false
-  gem 'database_cleaner'
-  gem 'evergreen', require: 'evergreen/rails'
-  gem 'factory_bot_rails'
   gem 'shoulda'
   gem 'single_test'
 end
