@@ -14,7 +14,6 @@ Aglog::Application.configure do
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
-#  config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(mangle: false)}
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
@@ -24,9 +23,9 @@ Aglog::Application.configure do
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
-  
+
   # url options for devise
-  config.action_mailer.default_url_options = { :host => 'aglog.kbs.msu.edu' }
+  config.action_mailer.default_url_options = { host: 'aglog.kbs.msu.edu' }
   config.action_mailer.delivery_method = :sendmail
 
   # Specifies the header that your server uses for sending files
@@ -69,5 +68,4 @@ Aglog::Application.configure do
   config.active_support.deprecation = :notify
 
   config.eager_load = true
-  config.active_record.raise_in_transactional_callbacks = true
 end
