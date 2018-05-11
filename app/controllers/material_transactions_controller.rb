@@ -4,7 +4,7 @@ class MaterialTransactionsController < ApplicationController
   def create
     @transaction = MaterialTransaction.new(material_transaction_params)
     @transaction.save
-    render nothing: true
+    head :ok
   end
 
   def update
@@ -12,13 +12,13 @@ class MaterialTransactionsController < ApplicationController
     if @transaction.update_attributes(material_transaction_params)
       flash[:activity] = 'Material Transaction was successfully updated.'
     end
-    render nothing: true
+    head :ok
   end
 
   def destroy
     @transaction = MaterialTransaction.find(params[:id])
     @transaction.destroy
-    render nothing: true
+    head :ok
   end
 
   private
