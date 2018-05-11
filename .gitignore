@@ -14,3 +14,4 @@ public/coffeescripts/
 production
 public/uploads
 .capistrano
+.idea
