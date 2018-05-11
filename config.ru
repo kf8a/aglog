@@ -3,11 +3,10 @@
 require ::File.expand_path('../config/environment', __FILE__)
 
 require 'rack'
-# require 'prometheus/client/rack/collector'
-# require 'prometheus/client/rack/exporter'
+require 'prometheus/middleware/collector'
+require 'prometheus/middleware/exporter'
 
-# use Rack::Deflater, if: ->(_env, _status, _headers, body) { body.any? && body[0].length > 512 }
-# use Prometheus::Client::Rack::Collector
-# use Prometheus::Client::Rack::Exporter
+use Prometheus::Middleware::Collector
+use Prometheus::Middleware::Exporter
 
 run Aglog::Application
