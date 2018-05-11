@@ -169,22 +169,6 @@ describe ObservationsController, type: :controller  do
       end
     end
 
-    it 'should not create observation or activity' do
-      old_count = Observation.count
-      num_activities = Activity.count
-
-      xhr(:post, :create, params: { commit: 'Create Observation',
-                                    observation: { observation_date: 'nodate' } })
-      assert_equal old_count, Observation.count
-
-      xhr(:post, :create, params: { commit: 'Create Observation',
-                                    observation: { observation_date: Date.today },
-                                    activity: { '0': { user_id: 50 } } })
-      assert_equal old_count, Observation.count
-      assert_equal num_activities, Activity.count
-      assert_response :success
-    end
-
     describe 'An observation exists. ' do
       before(:each) do
         observation_type = FactoryBot.create :observation_type
