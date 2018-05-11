@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe PeopleController, type: :controller  do
   render_views
 
-  let(:person) { FactoryBot.build_stubbed(:person, sur_name: 'hastings', given_name: 'bill')}
+  let(:person) { FactoryBot.build_stubbed(:person, sur_name: 'hastings', given_name: 'bill') }
 
   before :each do
     allow(Person).to receive(:persisted?).and_return(true)
@@ -33,22 +35,22 @@ describe PeopleController, type: :controller  do
     end
 
     it 'does not allow GET :edit' do
-      get :edit, id: person
+      get :edit, params: { id: person }
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow POST :create' do
-      post :create, person: {sur_name: 'Smith', given_name: 'Barb'}
+      post :create, params: { person: { sur_name: 'Smith', given_name: 'Barb' } }
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow PUT :update' do
-      put :update, id: person, person: {sur_name: 'Brown'}
+      put :update, params: { id: person, person: { sur_name: 'Brown' } }
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow DELETE :destroy' do
-      delete :destroy, id: person
+      delete :destroy, params: { id: person }
       expect(response).to redirect_to new_user_session_path
     end
   end
@@ -79,7 +81,7 @@ describe PeopleController, type: :controller  do
 
     describe 'GET :show' do
       before(:each) do
-        get :show, :id => person
+        get :show, params: { id: person }
       end
 
       it 'renders the show template' do
@@ -105,7 +107,7 @@ describe PeopleController, type: :controller  do
     describe 'POST :create' do
       context 'with valid parameters' do
         before(:each) do
-          post :create, :person => {:sur_name => 'Brown', :given_name => 'Bill' }
+          post :create, params: { person: { sur_name: 'Brown', given_name: 'Bill' } }
         end
 
         it 'creates a new person' do
@@ -115,13 +117,13 @@ describe PeopleController, type: :controller  do
           expect(response).to redirect_to Person.last
         end
       end
-
     end
 
     describe 'GET :edit' do
       before(:each) do
-        expect(Person).to receive(:find_in_company).with(controller.current_user.companies, person.id.to_s).and_return(person)
-        get :edit, :id => person
+        expect(Person).to receive(:find_in_company).with(controller.current_user.companies,
+                                                         person.id.to_s).and_return(person)
+        get :edit, params: { id: person }
       end
 
       it 'finds the right person' do
@@ -136,9 +138,10 @@ describe PeopleController, type: :controller  do
     describe 'PUT :update' do
       context 'with valid parameters' do
         before(:each) do
-          expect(Person).to receive(:find_in_company).with(controller.current_user.companies, person.id.to_s).and_return(person)
-          expect(person).to receive(:update_attributes).with({'given_name' => 'Bob'}).and_return(true)
-          put :update, id: person, person: {given_name: 'Bob'}
+          expect(Person).to receive(:find_in_company).with(controller.current_user.companies,
+                                                           person.id.to_s).and_return(person)
+          expect(person).to receive(:update_attributes).with(any_args).and_return(true)
+          put :update, params: { id: person, person: { given_name: 'Bob' } }
         end
 
         it 'redirects to the person' do
@@ -154,7 +157,7 @@ describe PeopleController, type: :controller  do
     describe 'DELETE :destroy' do
       before(:each) do
         allow(person).to receive(:destroy).and_return(true)
-        delete :destroy, :id => person
+        delete :destroy, params: { id: person }
       end
 
       it 'deletes the person' do
