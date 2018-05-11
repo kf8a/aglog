@@ -43,11 +43,7 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.before :each do
-    DatabaseCleaner.strategy = if Capybara.current_driver == :selenium
-                                 :truncation
-                               else
-                                 :transaction
-                               end
+    DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
   end
 

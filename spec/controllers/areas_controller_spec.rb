@@ -24,7 +24,7 @@ describe AreasController, type: :controller do
     end
 
     it 'should not allow POST :move' do
-      post :move_to, id: 1, parent_id: 2
+      post :move_to, params: { id: 1, parent_id: 2 }
       expect(response).to redirect_to new_user_session_path
     end
 
@@ -35,7 +35,7 @@ describe AreasController, type: :controller do
 
     describe 'POST :create' do
       before(:each) do
-        post :create, area: { name: 'T2R22' }
+        post :create, params: { area: { name: 'T2R22' } }
       end
 
       it 'redirects to the login page' do
@@ -49,7 +49,7 @@ describe AreasController, type: :controller do
 
     describe 'GET :show the area' do
       before(:each) do
-        get :show, id: area
+        get :show, params: { id: area }
       end
 
       it 'assigns the right area to @area' do
@@ -60,17 +60,17 @@ describe AreasController, type: :controller do
     end
 
     it 'does not allow GET :edit' do
-      get :edit, id: area
+      get :edit, params: { id: area }
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow PUT :update' do
-      put :update, id: area, area: { name: 'new_area' }
+      put :update, params: { id: area, area: { name: 'new_area' } }
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow destroy' do
-      delete :destroy, id: area
+      delete :destroy, params: { id: area }
       expect(response).to redirect_to new_user_session_path
     end
 
@@ -120,7 +120,7 @@ describe AreasController, type: :controller do
 
     describe 'POST :create' do
       before(:each) do
-        post :create, area: { name: 'T2R22' }
+        post :create, params: { area: { name: 'T2R22' } }
       end
 
       it { should redirect_to area_path(assigns(:area)) }
@@ -133,7 +133,7 @@ describe AreasController, type: :controller do
     describe 'POST :create with invalid attributes' do
       before(:each) do
         allow_any_instance_of(Area).to receive(:valid?).and_return(false)
-        post :create, area: { name: 'repeat_name' }
+        post :create, params: { area: { name: 'repeat_name' } }
       end
 
       it { should render_template 'new' }
@@ -142,7 +142,7 @@ describe AreasController, type: :controller do
 
     describe 'GET :show the area' do
       before(:each) do
-        get :show, id: area
+        get :show, params: { id: area }
       end
 
       it 'assigns the right area to @area' do
@@ -154,7 +154,7 @@ describe AreasController, type: :controller do
 
     describe 'GET :edit the area' do
       before(:each) do
-        get :edit, id: area
+        get :edit, params: { id: area }
       end
 
       it 'assigns the right area to @area' do
@@ -166,7 +166,7 @@ describe AreasController, type: :controller do
 
     describe 'PUT :update the area with valid attributes' do
       before(:each) do
-        put :update, id: area, area: { name: 'new_area' }
+        put :update, params: { id: area, area: { name: 'new_area' } }
       end
 
       it { should redirect_to area_url(assigns(:area)) }
@@ -183,7 +183,7 @@ describe AreasController, type: :controller do
     describe 'PUT :update with invalid attributes' do
       before(:each) do
         allow(area).to receive(:update_attributes).and_return(false)
-        put :update, id: area, area: { name: 'repeat_name' }
+        put :update, params: { id: area, area: { name: 'repeat_name' } }
       end
 
       it 'assigns the right area to @area' do
@@ -200,7 +200,7 @@ describe AreasController, type: :controller do
     describe 'DELETE :destroy the area' do
       before(:each) do
         allow(area).to receive(:destroy).and_return(true)
-        delete :destroy, id: area
+        delete :destroy, params: { id: area }
       end
 
       it { should redirect_to areas_path }

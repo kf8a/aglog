@@ -11,12 +11,12 @@ describe UnitsController, type: :controller  do
     allow(unit).to receive(:save).and_return(true)
   end
 
-  describe "Signed in as a normal user. " do
+  describe 'Signed in as a normal user. ' do
     before(:each) do
       sign_in_as_normal_user
     end
 
-    describe "GET :new" do
+    describe 'GET :new' do
       before(:each) do
         get :new
       end
@@ -25,7 +25,7 @@ describe UnitsController, type: :controller  do
       it { is_expected.to render_template :new }
     end
 
-    describe "GET :index" do
+    describe 'GET :index' do
       before(:each) do
         get :index
       end
@@ -34,44 +34,43 @@ describe UnitsController, type: :controller  do
       it { is_expected.to render_template :index }
     end
 
-    describe "POST :create with valid parameters" do
+    describe 'POST :create with valid parameters' do
       before(:each) do
-        post :create, :unit => {:name => "test_name"}
+        post :create, params: { unit: {name: 'test_name'} }
       end
 
       it { is_expected.to redirect_to unit_path(assigns(:unit)) }
-      it { is_expected.to set_flash.to("Unit was successfully created.")}
+      it { is_expected.to set_flash.to('Unit was successfully created.')}
     end
 
-    describe "POST :create in XML format" do
+    describe 'POST :create in XML format' do
       before(:each) do
-        post :create, :unit => { :name => 'xml_name' }, :format => 'xml'
+        post :create, params: { unit: { name: 'xml_name' }, format: 'xml' }
       end
 
       it { is_expected.to respond_with(201) }
-			it 'should respond with content type application/xml' do
-				expect(response.content_type).to eq 'application/xml'
-			end
+      it 'should respond with content type application/xml' do
+        expect(response.content_type).to eq 'application/xml'
+      end
     end
 
-    describe "A unit exists. " do
-
-      describe "GET :edit the unit" do
+    describe 'A unit exists. ' do
+      describe 'GET :edit the unit' do
         before(:each) do
-          get :edit, :id => unit
+          get :edit, params: { id: unit }
         end
 
-        it  'should assign the requested unit to @unit' do
-          expect(assigns(:unit)).to eq unit 
+        it 'should assign the requested unit to @unit' do
+          expect(assigns(:unit)).to eq unit
         end
 
         it { is_expected.to respond_with :success }
         it { is_expected.to render_template :edit }
       end
 
-      describe "GET :show the unit" do
+      describe 'GET :show the unit' do
         before(:each) do
-          get :show, :id => unit
+          get :show, params: { id: unit }
         end
 
         it 'should assign the requested unit to @unit' do
@@ -82,10 +81,10 @@ describe UnitsController, type: :controller  do
         it { is_expected.to render_template :show }
       end
 
-      describe "PUT :update the unit with valid attributes" do
+      describe 'PUT :update the unit with valid attributes' do
         before(:each) do
           allow(unit).to receive(:update_attributes).and_return(true)
-          put :update, :id => unit, :unit => {:name => "different_name"}
+          put :update, params: { id: unit, unit: { name: 'different_name' } }
         end
 
         it 'assings the unit to @unit' do
@@ -97,10 +96,10 @@ describe UnitsController, type: :controller  do
         end
       end
 
-      describe "PUT :update the unit with invalid attributes" do
+      describe 'PUT :update the unit with invalid attributes' do
         before(:each) do
           allow(unit).to receive(:update_attributes).and_return(false)
-          put :update, :id => unit, :unit => {:name => "repeat_name"}
+          put :update, params: { id: unit, unit: { name: 'repeat_name' } }
         end
 
         it 'locates the requested @unit' do
@@ -112,10 +111,10 @@ describe UnitsController, type: :controller  do
         end
       end
 
-      describe "DELETE :destroy the unit" do
+      describe 'DELETE :destroy the unit' do
         before(:each) do
           allow(unit).to receive(:destroy).and_return(true)
-          delete :destroy, :id => unit
+          delete :destroy, params: { id: unit }
         end
 
         it 'deletes the unit' do
@@ -126,7 +125,6 @@ describe UnitsController, type: :controller  do
           expect(response).to redirect_to units_url
         end
       end
-
     end
   end
 end

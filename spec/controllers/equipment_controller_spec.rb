@@ -23,28 +23,28 @@ describe EquipmentController, type: :controller  do
     end
 
     it 'does not allow create' do
-      post :create, equipment: { name: 'Controller Creation',
-                                 equipment_pictures: [] }
+      post :create, params: { equipment: { name: 'Controller Creation',
+                                           equipment_pictures: [] } }
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'shows equipment' do
-      get :show, id: @equipment.id
+      get :show, params: { id: @equipment.id }
       expect(response).to render_template 'show'
     end
 
     it 'does now allow edit' do
-      get :edit, id: @equipment.id
+      get :edit, params: { id: @equipment.id }
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow updates' do
-      put :update, id: @equipment.id, area: { name: 'new_equipment' }
+      put :update, params: { id: @equipment.id, area: { name: 'new_equipment' } }
       expect(response).to redirect_to new_user_session_path
     end
 
     it 'does not allow deletes' do
-      delete :destroy, id: @equipment.id
+      delete :destroy, params: { id: @equipment.id }
       expect(response).to redirect_to new_user_session_path
     end
   end
@@ -61,7 +61,7 @@ describe EquipmentController, type: :controller  do
       sign_in_as_normal_user
 
       @equipment1 = FactoryBot.create(:equipment, name: 'lter_tractor',
-                                       company_id: @user.companies.first.id)
+                                                  company_id: @user.companies.first.id)
     end
 
     after(:all) do
@@ -92,20 +92,20 @@ describe EquipmentController, type: :controller  do
 
     describe 'POST :create' do
       it 'should create an equipment' do
-        expect(Equipment).to receive(:new).with(name: 'Controller Creation').and_call_original
-        post :create, equipment: { name: 'Controller Creation' }
+        expect(Equipment).to receive(:new).with(any_args).and_call_original
+        post :create, params: { equipment: { name: 'Controller Creation' } }
       end
 
       it 'redirects to the new equipment' do
-        post :create, equipment: { name: 'Controller Creation',
-                                   company_id: @user.companies.first }
+        post :create, params: { equipment: { name: 'Controller Creation',
+                                             company_id: @user.companies.first } }
         expect(response).to redirect_to equipment_path(assigns(:equipment))
       end
     end
 
     describe 'POST :create with invalid attributes' do
       before(:each) do
-        post :create, equipment: { name: 'lter_tractor' } # Repeated name
+        post :create, params: { equipment: { name: 'lter_tractor' } } # Repeated name
       end
 
       it { is_expected.to render_template 'new' }
@@ -120,7 +120,7 @@ describe EquipmentController, type: :controller  do
 
       describe 'GET :show the equipment' do
         before(:each) do
-          get :show, id: @equipment
+          get :show, params: { id: @equipment }
         end
 
         it { is_expected.to render_template 'show' }
@@ -128,7 +128,7 @@ describe EquipmentController, type: :controller  do
 
       describe 'GET :edit the equipment' do
         before(:each) do
-          get :edit, id: @equipment
+          get :edit, params: { id: @equipment }
         end
 
         it { is_expected.to render_template 'edit' }
@@ -136,7 +136,7 @@ describe EquipmentController, type: :controller  do
 
       describe 'PUT :update the equipment with valid attributes' do
         before(:each) do
-          put :update, id: @equipment, equipment: { name: 'New Name' }
+          put :update, params: { id: @equipment, equipment: { name: 'New Name' } }
         end
 
         it { is_expected.to redirect_to equipment_path(@equipment) }
@@ -151,8 +151,8 @@ describe EquipmentController, type: :controller  do
           @equipment =
             find_or_factory(:equipment, name: 'Repeat_name',
                                         company: @user.companies.first)
-          put :update, id: @equipment,
-                       equipment: { name: 'new name', company_id: nil }
+          put :update, params: { id: @equipment,
+                                 equipment: { name: 'new name', company_id: nil } }
         end
 
         it { is_expected.to render_template :edit }
@@ -160,7 +160,7 @@ describe EquipmentController, type: :controller  do
 
       describe 'DELETE :destroy the equipment' do
         before(:each) do
-          delete :destroy, id: @equipment
+          delete :destroy, params: { id: @equipment }
         end
 
         it { is_expected.to redirect_to equipment_index_path }

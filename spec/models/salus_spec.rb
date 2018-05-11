@@ -1,10 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Salus, :type => :model do
+RSpec.describe Salus, type: :model do
   before(:each) do
     @area = find_or_factory(:area)
     @salus = Salus.new
     @salus.area = @area
+  end
+
+  after(:each) do
   end
 
   describe 'a fertilizer and planting observation' do
@@ -67,71 +72,72 @@ RSpec.describe Salus, :type => :model do
     create_harvest_observation(Date.today -  600)
     create_harvest_observation(Date.today)
 
-    expect(@salus.years).to eq (year -2) ... year
+    expect(@salus.years).to eq((year - 2)...year)
   end
 
-  def create_planting_observation(date=Date.today)
-    observation, observation_type = create_observation("Planting", date)
+  def create_planting_observation(date = Date.today)
+    observation, _observation_type = create_observation('Planting', date)
 
-    setup = FactoryBot.create(:setup, {material_transactions: [planting_transaction]})
-    activity = FactoryBot.create(:activity, {observation_id: observation.id, setups: [setup]})
+    setup = FactoryBot.create(:setup, material_transactions: [planting_transaction])
+    _activity = FactoryBot.create(:activity, observation_id: observation.id, setups: [setup])
 
     @area.observations << observation
     observation
   end
 
-  def create_tillage_observation(date=Date.today)
-    observation, observation_type = create_observation("Soil Preparation", date)
+  def create_tillage_observation(date = Date.today)
+    observation, _observation_type = create_observation('Soil Preparation', date)
 
     equipment_type = find_or_factory(:equipment_type, name: 'tillage')
     equipment = FactoryBot.create :equipment, equipment_type: equipment_type
-    setup = FactoryBot.create(:setup, {equipment: equipment})
-    activity = FactoryBot.create(:activity, {observation_id: observation.id, setups: [setup]})
+    setup = FactoryBot.create(:setup, equipment: equipment)
+    _activity = FactoryBot.create(:activity, observation_id: observation.id, setups: [setup])
 
     @area.observations << observation
     observation
   end
 
-  def create_harvest_observation(date=Date.today)
-    observation, observation_type = create_observation("Harvest", date)
+  def create_harvest_observation(date = Date.today)
+    observation, _observation_type = create_observation('Harvest', date)
 
     @area.observations << observation
     observation
   end
 
-  def create_fertilizer_observation(date=Date.today)
-    observation, observation_type = create_observation("Fertilizer application", date)
+  def create_fertilizer_observation(date = Date.today)
+    observation, _observation_type = create_observation('Fertilizer application', date)
 
-    setup = FactoryBot.create(:setup, {material_transactions: [fertilizer_transaction]})
-    activity = FactoryBot.create(:activity, {observation_id: observation.id, setups: [setup]})
+    setup = FactoryBot.create(:setup, material_transactions: [fertilizer_transaction])
+    _activity = FactoryBot.create(:activity, observation_id: observation.id, setups: [setup])
 
     @area.observations << observation
     observation
   end
 
-
-  def create_liquid_fertilizer_observation(date=Date.today)
-    observation, observation_type = create_observation("Fertilizer application", date)
+  def create_liquid_fertilizer_observation(date = Date.today)
+    observation, _observation_type = create_observation('Fertilizer application', date)
 
     unit = FactoryBot.create :unit, conversion_factor: 3780
-    material_type = FactoryBot.create :material_type, name: "fertilizer"
-    material = FactoryBot.create :material, name: "urea", material_type_id: material_type.id, n_content: 28, liquid: true, specific_weight: 1.28
-    material_transaction = FactoryBot.create :material_transaction, material: material, rate: 15, unit: unit
-    setup = FactoryBot.create(:setup, {material_transactions: [material_transaction]})
-    activity = FactoryBot.create(:activity, {observation_id: observation.id, setups: [setup]})
+    material_type = FactoryBot.create :material_type, name: 'fertilizer'
+    material = FactoryBot.create :material, name: 'urea', material_type_id: material_type.id,
+                                            n_content: 28, liquid: true, specific_weight: 1.28
+    material_transaction = FactoryBot.create :material_transaction, material: material,
+                                                                    rate: 15, unit: unit
+    setup = FactoryBot.create(:setup, material_transactions: [material_transaction])
+    _activity = FactoryBot.create(:activity, observation_id: observation.id, setups: [setup])
 
     @area.observations << observation
     observation
   end
 
-  def create_fertilizer_and_planting_observation(date=Date.today)
-    observation, observation_type = create_observation("Fertilizer application", date)
+  def create_fertilizer_and_planting_observation(date = Date.today)
+    observation, _observation_type = create_observation('Fertilizer application', date)
 
     setup = FactoryBot.create :setup
     setup.material_transactions << fertilizer_transaction
     setup.material_transactions << planting_transaction
 
-    activity = FactoryBot.create(:activity, {observation_id: observation.id, setups: [setup]})
+    _activity = FactoryBot.create(:activity, observation_id: observation.id, setups: [setup])
 
     @area.observations << observation
     observation
@@ -139,8 +145,9 @@ RSpec.describe Salus, :type => :model do
 
   def fertilizer_transaction
     unit = FactoryBot.create :unit, conversion_factor: 453
-    material_type = FactoryBot.create :material_type, name: "fertilizer"
-    material = FactoryBot.create :material, name: "urea", material_type_id: material_type.id, n_content: 30
+    material_type = FactoryBot.create :material_type, name: 'fertilizer'
+    material = FactoryBot.create :material, name: 'urea', material_type_id: material_type.id,
+                                            n_content: 30
     FactoryBot.create :material_transaction, material: material, rate: 120, unit: unit
   end
 
@@ -161,7 +168,7 @@ RSpec.describe Salus, :type => :model do
     setup.material_transactions << planting_transaction
     setup.material_transactions << fertilizer_transaction
 
-    FactoryBot.create(:activity,{observation_id: observation.id, setups: [setup]} )
+    FactoryBot.create(:activity, observation_id: observation.id, setups: [setup])
 
     @area.observations << observation
     observation
@@ -169,11 +176,8 @@ RSpec.describe Salus, :type => :model do
 
   def create_observation(name, date)
     observation_type = ObservationType.where(name: name).first_or_create
-    observation = FactoryBot.create(:observation,
-                                    observation_types: [observation_type],
-                                    obs_date: date)
+    observation = FactoryBot.create(:observation, observation_types: [observation_type],
+                                                  obs_date: date)
     [observation, observation_type]
   end
-
-
 end

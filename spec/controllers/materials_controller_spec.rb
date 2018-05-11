@@ -5,7 +5,7 @@ require 'spec_helper'
 describe MaterialsController, type: :controller do
   render_views
 
-  let(:material) { FactoryBot.create(:material, name: 'custom material')}
+  let(:material) { FactoryBot.create(:material, name: 'custom material') }
 
   before :each do
     allow(material).to receive(:save).and_return(true)
@@ -23,15 +23,15 @@ describe MaterialsController, type: :controller do
   end
 
   describe 'GET new' do
-    it "should render new" do
+    it 'should render new' do
       get :new
       expect(response).to render_template :new
     end
   end
 
-  describe "POST: create with valid attributes" do
+  describe 'POST: create with valid attributes' do
     before(:each) do
-      post :create, :material => { :name => 'NewName' }
+      post :create, params: { material: { name: 'NewName' } }
     end
 
     it 'create the material' do
@@ -41,66 +41,64 @@ describe MaterialsController, type: :controller do
     it 'redirects to new material' do
       expect(response).to redirect_to material_url(assigns(:material))
     end
-
   end
 
-  describe "POST :create with invalid attributes" do
+  describe 'POST :create with invalid attributes' do
     before(:each) do
-      post :create, :material => { :name => ''}
+      post :create, params: { material: { name: '' } }
     end
 
     it { should render_template :new }
     it { should_not set_flash }
   end
 
-  describe "POST :create with XML format" do
+  describe 'POST :create with XML format' do
     before(:each) do
-      post :create, :material => { :name => 'xml_name' }, :format => 'xml'
+      post :create, params: { material: { name: 'xml_name' }, format: 'xml' }
     end
 
     it { should respond_with(201) }
-		it 'should respond with content type application/xml' do
-			expect(response.content_type).to eq 'application/xml'
-		end
+    it 'should respond with content type application/xml' do
+      expect(response.content_type).to eq 'application/xml'
+    end
   end
 
   describe 'GET show' do
     before(:each) do
       expect(Material).to receive(:find_with_children).with(material.id.to_s).and_return(material)
-      get :show, :id => material
+      get :show, params: { id: material }
     end
 
     it 'renders the show template' do
       expect(response).to render_template :show
     end
 
-    it "should assign the right material to @material" do
+    it 'should assign the right material to @material' do
       expect(assigns(:material)).to eq material
     end
   end
 
   describe 'GET #edit' do
     it 'assigns the right material to @material' do
-      get :edit, :id => material
+      get :edit, params: { id: material }
       expect(assigns(:material)).to eq material
     end
 
     it 'renders template edit' do
-      get :edit, :id => material
+      get :edit, params: { id: material }
       expect(response).to render_template :edit
     end
   end
 
-  it "should update material" do
-    put :update, :id => material, :material => { :name => 'updated_name' }
+  it 'should update material' do
+    put :update, params: { id: material, material: { name: 'updated_name' } }
     assert_redirected_to material_path(assigns(:material))
   end
 
-
-  describe "PUT :update with invalid attributes" do
+  describe 'PUT :update with invalid attributes' do
     before(:each) do
       allow(material).to receive(:update_attributes).and_return(false)
-      put :update, :id => material, :material => { :name => "repeat_name" }
+      put :update, params: { id: material, material: { name: 'repeat_name' } }
     end
 
     it 'assigns to the right material' do
@@ -113,7 +111,7 @@ describe MaterialsController, type: :controller do
   describe 'DESTROY' do
     before(:each) do
       # allow(material).to receive(:destroy).and_return(true)
-      delete :destroy, id: material
+      delete :destroy, params: { id: material }
     end
 
     it 'should destroy material' do
