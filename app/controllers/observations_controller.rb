@@ -9,9 +9,8 @@ class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.xml
   def index
-    if params[:obstype]
-      obstype = ObservationType.find(params[:obstype])
-    end
+    obstype = ObservationType.find(params[:obstype]) if params[:obstype]
+
     query = params[:query]
     if obstype
       @observations = obstype.observations
@@ -61,7 +60,7 @@ class ObservationsController < ApplicationController
   def create
     user = current_user.person
     @observation = user.observations.new(observation_params)
-    # TODO how do we know which company the use is acting as?
+    # TODO: how do we know which company the use is acting as?
     logger.info user.name
     flash[:form] = @observation.save ? 'Observation was successfully created.' : 'Observation creation failed'
     respond_with @observation
