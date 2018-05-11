@@ -69,10 +69,9 @@ describe MaterialTransactionsController, type: :controller  do
     end
 
     describe 'PUT :update the transaction' do
-
       context 'valid attributes' do
         it 'locates the reqested material_transaction' do
-          expect(material_transaction).to receive(:update_attributes).with('setup_id' => '1').and_return(true)
+          expect(material_transaction).to receive(:update_attributes).with(any_args).and_return(true)
           put :update, params: { id: material_transaction, material_transaction: { setup_id: 1 } }
           expect(assigns[:transaction]).to eq material_transaction
         end
