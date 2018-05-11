@@ -2,15 +2,15 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.8'
+gem 'rails', '~> 5.2.0'
 
-gem 'pg', '~> 0.2'
+gem 'pg' # , '~> 0.2'
 
-gem 'devise', '~> 4.1.0'
+gem 'devise' # , '~> 4.1.0'
 
 gem 'haml'
 
-gem 'textacular', '~> 3.0'
+gem 'textacular', git: 'https://github.com/textacular/textacular.git'
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'fog'
@@ -42,7 +42,7 @@ gem 'coffee-rails'
 gem 'therubyracer', require: 'v8'
 gem 'uglifier'
 
-gem 'prometheus-client', '~> 0.6.0'
+gem 'prometheus-client' # , '~> 0.6.0'
 
 group :production do
   gem 'unicorn'
@@ -53,7 +53,7 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
-  gem 'rbnacl', '< 5.0'
+  gem 'rbnacl' # , '< 5.0'
   gem 'rbnacl-libsodium'
 end
 
