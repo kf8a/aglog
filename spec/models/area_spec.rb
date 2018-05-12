@@ -116,28 +116,29 @@ describe Area do
   describe "requires the study of the treatment if it has a treatment: " do
     before(:each) do
       @study = find_or_factory(:study)
-      @another_study = FactoryBot.create(:study, :name => 'another_study')
-      @treatment = find_or_factory(:treatment, :study_id => @study.id)
+      @another_study = FactoryBot.create(:study, name: 'another_study')
+      @treatment = find_or_factory(:treatment, study_id: @study.id)
     end
 
-    describe "an area with a treatment and a consistent study" do
-      subject { Area.new(:study_id => @study.id, :treatment_id => @treatment.id, :name => 'consistent_area') }
+    describe 'an area with a treatment and a consistent study' do
+      subject { Area.new(study_id: @study.id, treatment_id: @treatment.id,
+                         name: 'consistent_area') }
       it { is_expected.to be_valid }
     end
 
-    describe "an area with a treatment and no study" do
-      subject { Area.new(:study_id => nil, :treatment_id => @treatment.id, :name => 'no_study_area') }
+    describe 'an area with a treatment and no study' do
+      subject { Area.new(study_id: nil, treatment_id: @treatment.id, name: 'no_study_area') }
       it { is_expected.to be_valid }
     end
 
     # describe "an area with a treatment and an inconsistent study" do
-    #   subject { Area.new(:study_id => @another_study.id, :treatment_id => @treatment.id, :name => 'inconsistent_area')}
+    #   subject { Area.new(study_id: @another_study.id, treatment_id: @treatment.id, name: 'inconsistent_area')}
     #   it { is_expected.to_not be_valid }
     # end
   end
 
-  describe "self.parse should parse strings into areas: " do
-    it "highlights non-existent areas and return string" do
+  describe 'self.parse should parse strings into areas: ' do
+    it 'highlights non-existent areas and return string' do
       areas = Area.parse('T1  R11')
       expect(areas).to be_a String
       assert_equal 'T1 *R11*'.split.sort, areas.split.sort
@@ -145,7 +146,7 @@ describe Area do
 
     it "returns area T1R1 (among others) when given 'T1' to parse" do
       areas = Area.parse('T1')
-      assert areas.any? {|a| a.name = 'T1R1'}
+      assert(areas.any? { |a| a.name == 'T1R1' })
     end
 
     # it "correctly parses 'T2 T4'" do
@@ -212,7 +213,7 @@ describe Area do
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('iF7')
-      real_areas = Treatment.find_by(name: 'iF7').areas.all.flatten
+      real_areas = Treatment.find_by(name: 'iF7').areas.to_a.flatten
       assert_equal [], (areas - real_areas)
     end
 
@@ -248,18 +249,18 @@ describe Area do
       end
 
       it 'parses the area associated with the current users company' do
-        assert_equal @area, Area.parse('T1R1', :company => 1)[0]
+        assert_equal @area, Area.parse('T1R1', company: 1)[0]
       end
 
       it 'does not parse any other areas' do
-        expect(Area.parse('T1R1', :company => 2 )).to eq '*T1R1*'
+        expect(Area.parse('T1R1', company: 2)).to eq '*T1R1*'
       end
     end
-   end
+  end
 
   describe 'self.unparse should consolidate a list of areas into a string: ' do
     it "returns 'T1' when given an array of all the T1 areas" do
-      areas = Treatment.where(name: 'T1').first.areas.all.flatten
+      areas = Treatment.where(name: 'T1').first.areas.to_a.flatten
       area_string = Area.unparse(areas)
       assert_equal 'T1', area_string
     end
