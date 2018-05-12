@@ -178,10 +178,10 @@ describe Area do
       expect(areas.size).to eq 0
     end
 
-    it "returns an array with one element when given a whole area name to parse" do
+    it 'returns an array with one element when given a whole area name to parse' do
       areas = Area.parse('T1R1')
       assert areas.all? {|x| x.class.name =='Area'}
-      assert_equal "T1R1", areas[0].name
+      assert_equal 'T1R1', areas[0].name
       assert_equal 1, areas.size
     end
 
@@ -195,7 +195,7 @@ describe Area do
       assert areas.any? {|a| a.name  == 'iF9R1' }
     end
 
-    it "correctly parses Fertility Gradient areas" do
+    it 'correctly parses Fertility Gradient areas' do
       areas = Area.parse('F')
       real_areas = Area.where(study_id: 3)
       assert_equal [], (areas - real_areas)
@@ -205,20 +205,20 @@ describe Area do
       assert_equal [], (areas - real_areas)
     end
 
-    it "correctly parses Irrigated Fertility Gradient areas" do
+    it 'correctly parses Irrigated Fertility Gradient areas' do
       areas = Area.parse('iF')
-      study = Study.where(name:"IF").first
+      study = Study.where(name: 'IF').first
       real_areas = Area.where(study_id: study.id)
       assert_equal [], (areas - real_areas)
 
       areas = Area.parse('iF7')
-      real_areas = Treatment.find_by(name: 'iF7').areas.flatten
+      real_areas = Treatment.find_by(name: 'iF7').areas.all.flatten
       assert_equal [], (areas - real_areas)
     end
 
     it 'correctly parses CE areas' do
       areas = Area.parse('CE')
-      study = Study.where(name:"CE").first
+      study = Study.where(name: 'CE').first
       real_areas = Area.where(study_id: study.id)
       assert_equal [], (areas - real_areas)
 
@@ -257,14 +257,14 @@ describe Area do
     end
    end
 
-  describe "self.unparse should consolidate a list of areas into a string: " do
+  describe 'self.unparse should consolidate a list of areas into a string: ' do
     it "returns 'T1' when given an array of all the T1 areas" do
-      areas  = Treatment.where(name: 'T1').first.areas.flatten
+      areas = Treatment.where(name: 'T1').first.areas.all.flatten
       area_string = Area.unparse(areas)
       assert_equal 'T1', area_string
     end
 
-    it "correctly unparses the T1 and T2 areas" do
+    it 'correctly unparses the T1 and T2 areas' do
       parse_reverse('T1 T2')
     end
 
@@ -273,77 +273,77 @@ describe Area do
     end
 
     it "unparses an array of all of a study's areas, returning the study name" do
-      study = Study.where(:name => 'T').first
+      study = Study.where(name: 'T').first
       area_string = Area.unparse(study.areas)
       assert_equal 'T', area_string
 
-      study = Study.where(:name => 'B').first
+      study = Study.where(name: 'B').first
       areas = study.areas
       area_string = Area.unparse(areas)
-      assert_equal "B", area_string
+      assert_equal 'B', area_string
 
-      areas = Area.parse("T1 T2 T3 T4 T5 T6 T7 T8")
+      areas = Area.parse('T1 T2 T3 T4 T5 T6 T7 T8')
       area_string = Area.unparse(areas)
-      assert_equal "T", area_string
+      assert_equal 'T', area_string
 
-      areas = Area.parse("B1 B2 B3 B4 B5 B6 B7 B8 B9 B10 B11 B12 B13 B14 B15 B16 B17 B18 B19 B20 B21")
+      areas = Area.parse('B1 B2 B3 B4 B5 B6 B7 B8 B9 B10 B11 B12 B13 B14 B15 B16 B17 B18 B19 B20 B21')
       area_string = Area.unparse(areas)
-      assert_equal "B", area_string
+      assert_equal 'B', area_string
     end
 
-    it "unparses treatment areas to the treatment name" do
+    it 'unparses treatment areas to the treatment name' do
       parse_reverse('T1')
       parse_reverse('B1')
     end
 
-    it "correctly unparses various other areas" do
+    it 'correctly unparses various other areas' do
       test_strings =
-        [ "T1 B1",
-          "B1 T1",
-          "T1 T2R1",
-          "B1 B2R1",
-          "T1R1 T1R2 T1R3",
-          "B1R1 B1R2 B1R3",
-          "F1",
-          "iF1",
-          #"REPT1",
-          "T1" # tidy end for comma list
-        ]
+        ['T1 B1',
+         'B1 T1',
+         'T1 T2R1',
+         'B1 B2R1',
+         'T1R1 T1R2 T1R3',
+         'B1R1 B1R2 B1R3',
+         'F1',
+         'iF1',
+         # 'REPT1',
+         'T1']
+
       test_strings.each do |s|
         parse_reverse(s)
       end
     end
 
-    it "correctly parse/unparses in the right order" do
-      parse_reverse("B2R1 B1")
+    it 'correctly parse/unparses in the right order' do
+      parse_reverse('B2R1 B1')
     end
 
     it "unparses nothing to ''" do
-      expect(Area.unparse()).to match ""
+      expect(Area.unparse).to match ''
     end
 
-    it "correctly parse/unparses an area not in study" do
-#      parse_reverse('ECB')
+    it 'correctly parse/unparses an area not in study' do
+      # parse_reverse('ECB')
     end
 
     it "should correctly parse/unparse 'T'" do
       parse_reverse('T')
     end
 
-    it "should correctly parse/unparse GLBRC areas" do
+    it 'should correctly parse/unparse GLBRC areas' do
       parse_reverse('G1R4')
       parse_reverse('G2')
       parse_reverse('G10')
       parse_reverse('G')
     end
 
-    it "should correctly parse/unparse CES areas" do
+    it 'should correctly parse/unparse CES areas' do
       parse_reverse('CE')
       parse_reverse('CE1')
       parse_reverse('CE101')
     end
 
-    it "should correctly parse/unparse WICST areas" do
+    it 'should correctly parse/unparse WICST areas' do
       parse_reverse('ldpR1')
       parse_reverse('ldpR2')
       parse_reverse('ldpR3')
@@ -355,7 +355,7 @@ describe Area do
       parse_reverse('sgR3')
     end
 
-    it "should return and correctly mark problematic areas" do
+    it 'should return and correctly mark problematic areas' do
       assert_equal '*G34*', Area.parse('G34')
       assert_equal 'G2R1 *G34*', Area.parse('G2R1, G34')
       assert_equal 'G2R1 *G34-*', Area.parse('G2R1, G34-')
@@ -374,7 +374,8 @@ describe Area do
   end
 
   def find_by_study_and_treatment_number(study, treatment_number)
-    treatments = Treatment.where(:study_id => study, :treatment_number => treatment_number)
-    treatments.collect{ |t| t.areas}.flatten
+    treatments = Treatment.where(study_id: study,
+                                 treatment_number: treatment_number)
+    treatments.collect(&:areas).flatten
   end
 end
