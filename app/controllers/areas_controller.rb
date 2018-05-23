@@ -52,7 +52,7 @@ class AreasController < ApplicationController
 
   def create
     @area = Area.new(area_params)
-    # TOOD the company needs to be passed in since it came be one of several
+    @area.company = current_user.default_company
     if @area.save
       flash[:notice] = 'Area was successfully created.'
       respond_with @area
