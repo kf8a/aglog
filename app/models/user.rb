@@ -18,4 +18,6 @@ class User < ActiveRecord::Base
   delegate :projects, to: :person
 
   delegate :projects=, to: :person
+
+  delegate :company, to: :person
 end
