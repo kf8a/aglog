@@ -19,5 +19,5 @@ class User < ActiveRecord::Base
 
   delegate :projects=, to: :person
 
-  delegate :company, to: :person
+  delegate :default_company, to: :person
 end
