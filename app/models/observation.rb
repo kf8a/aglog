@@ -34,7 +34,7 @@ class Observation < ActiveRecord::Base
   end
 
   def editable?(user)
-    return false unless user
+    return false if user.nil?
     Set.new(user.projects).intersect?(Set.new(person.projects))
   end
 
