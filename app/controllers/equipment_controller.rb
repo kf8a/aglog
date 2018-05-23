@@ -27,7 +27,6 @@ class EquipmentController < ApplicationController
 
   def create
     @equipment = Equipment.new(equipment_params)
-    # TODO: pass in the company selected
     @equipment.company = current_user.default_company
     if @equipment.save
       update_pictures

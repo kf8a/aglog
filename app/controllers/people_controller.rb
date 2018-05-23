@@ -29,6 +29,8 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.new(person_params)
+    # TODO: how does it work when I create a person. Which company do they go
+    # into? The current user default one?
     if @person.save
       flash[:notice] = 'Person was successfully created.'
       respond_with @person

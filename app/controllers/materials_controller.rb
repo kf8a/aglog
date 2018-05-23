@@ -30,6 +30,7 @@ class MaterialsController < ApplicationController
 
   def create
     @material = Material.new(material_params)
+    @material.company = current_user.default_company
     flash[:notice] = 'Material was successfully created.' if @material.save
     respond_with @material
   end
