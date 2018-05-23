@@ -36,8 +36,8 @@ class Person < ActiveRecord::Base
     by_company(company).find(id)
   end
 
-  def company
-    memberships.where('default_company is true').company
+  def default_company
+    memberships.where('default_company is true').company.first
   end
 
   def to_label
