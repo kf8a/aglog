@@ -1,0 +1,14 @@
+<h1>Fields closed to untrained personnel</h1>
+   <table class='table'>
+    <tr>
+      <th>Re-entry date</th>
+      <th>Field</th>
+    </tr>
+
+<% @closed_fields.each do |field| %>
+  <tr>
+    <td><%= field[:date] %></td>
+    <td><%= field[:areas]%></td>
+  </tr>
+<% end %>
+</table>
