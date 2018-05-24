@@ -1,5 +1,6 @@
 Aglog::Application.routes.draw do
 
+  get '/pet', to: 'pesticides#index'
   devise_for :users
 
   post '/areas/:id/move_to/:parent_id' => 'areas#move_to'
@@ -10,16 +11,15 @@ Aglog::Application.routes.draw do
       get :related
     end
   end
-  resources :activities,            :only => [:create, :update, :destroy]
-  resources :setups,                :only => [:create, :update, :destroy]
-  resources :material_transactions, :only => [:create, :update, :destroy]
+  resources :activities,            only: %i[create update destroy]
+  resources :setups,                only: %i[create update destroy]
+  resources :material_transactions, only: %i[create update destroy]
   resources :equipment
   resources :units
   resources :people
   resources :reports
   resources :materials
-  resources :salus,                 only: [:index, :show]
+  resources :salus, only: %i[index show]
 
-#  match '/' => 'observations#index'
-  root :to => "observations#index"
+  root to: 'observations#index'
 end
