@@ -1,6 +1,6 @@
 Aglog::Application.routes.draw do
 
-  get '/pet', to: 'pesticides#index'
+  get '/wps', to: 'wps#index'
   devise_for :users
 
   post '/areas/:id/move_to/:parent_id' => 'areas#move_to'
