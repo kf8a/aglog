@@ -60,10 +60,7 @@ class ObservationsController < ApplicationController
   def create
     user = current_user.person
     @observation = user.observations.new(observation_params)
-    # TODO: how do we know which company the use is acting as?
     @observation.company = user.default_company
-    logger.info user.name
-    logger.info @observation
     flash[:form] = @observation.save ? 'Observation was successfully created.' : 'Observation creation failed'
     respond_with @observation
   end
