@@ -1,8 +1,8 @@
 <h1>Fields closed to those without WPS certification</h1>
-<h2>You may not enter listed plots until the re-entry date unless you have a Worker Pesticide Safety training certificate; contact Neville Millar (millarn@msu.edu) for further information.  For experiment maps see <a href="https://lter.kbs.msu.edu/research/long-term-experiments/">https://lter.kbs.msu.edu/research/long-term-experiments/</a></h2>
+<p>You may not enter listed plots until the re-entry date unless you have a Worker Pesticide Safety training certificate; contact <a href="mailto:millarn@msu.edu">Neville Millar</a> for further information.  For experiment maps see <a href="https://lter.kbs.msu.edu/research/long-term-experiments/">https://lter.kbs.msu.edu/research/long-term-experiments/</a></p>
    <table class='table'>
     <tr>
-      <td>Experiment</td>
+      <th>Experiment</th>
       <th>Treatment Plots</th>
       <th>Re-entry date</th>
     </tr>
@@ -10,7 +10,7 @@
 <% @closed_fields.each do |field| %>
   <tr>
     <td></td>
-    <td><%= field[:areas]%></td>
+    <td><%= field[:area]%></td>
     <td><%= field[:date] %></td>
   </tr>
 <% end %>
