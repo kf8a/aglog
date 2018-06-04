@@ -98,10 +98,6 @@ class ObservationsController < ApplicationController
                               .includes(areas: :observations).first
   end
 
-  # def observation
-  #   Observation.find(params[:id])
-  # end
-
   private
 
   def observation_params
