@@ -4,8 +4,6 @@ require 'csv'
 
 # The main model, an observation is a collection of activities.
 class Observation < ActiveRecord::Base
-  attr_reader :observation_date
-
   has_many :activities, dependent: :destroy
   has_many :setups, through: :activities
   has_and_belongs_to_many :areas
@@ -36,6 +34,10 @@ class Observation < ActiveRecord::Base
   def editable?(user)
     return false if user.nil?
     Set.new(user.projects).intersect?(Set.new(person.projects))
+  end
+
+  def observation_date
+    obs_date
   end
 
   def observation_date=(date_string)
