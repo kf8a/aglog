@@ -1,6 +1,6 @@
 module SalusHelper
   def rotation_xml_for(component)
-    logger.info "current #{component}"
+#    logger.info "current #{component}"
 
     result = case component[:type]
              when 'harvest'
