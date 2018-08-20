@@ -6,7 +6,7 @@ class Unit < ActiveRecord::Base
   validates :name, uniqueness: { case_sensitive: false }
 
   def si_unit_name
-    return unless si_unit_id
+    return if si_unit_id.nil?
     Unit.find(si_unit_id).name
   end
 
