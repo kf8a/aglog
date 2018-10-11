@@ -9,7 +9,7 @@
 
 <% @closed_fields.each do |field| %>
   <tr>
-    <td></td>
+    <td><%= link_to field[:study], field[:url] %></td>
     <td><%= field[:area]%></td>
     <td><%= field[:date] %></td>
   </tr>

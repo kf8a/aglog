@@ -3,7 +3,7 @@
 # Worker Protection Standard helpers
 class Wps
   def self.closed_fields
-    ObservationType.find(5)
+    ObservationType.find(5) # 5 is the pesticide observation type
                    .observations.where(company_id: 1)
                    .where('obs_date > ?', Date.today - 30.days)
                    .order('obs_date')
@@ -15,7 +15,11 @@ class Wps
   def self.records(record)
     reentry_date = record.obs_date + 30.days
     Area.unparse(record.areas).split(/ /).map do |area|
-      { date: reentry_date, area: area }
+      study = Area.parse(area).first.study
+      { date: reentry_date,
+        area: area,
+        study: study.description,
+        url: study.url }
     end
   end
 end
