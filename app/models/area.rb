@@ -106,7 +106,7 @@ class Area < ActiveRecord::Base
   end
 
   def self.mark_token(invalid_token)
-    '*' + invalid_token+ '*'
+    '*' + invalid_token + '*'
   end
 
   def self.replace_full_family_with_parent(areas_to_check, areas)
@@ -129,12 +129,12 @@ class Area < ActiveRecord::Base
 
   private
 
-  def treatment_is_part_of_study
-    # if treatment exists then it must belong to correct study
-    if treatment_id && (treatment.try(:study_id) != study_id)
-      errors.add(:base, 'inconsistent study and treatment combination')
-    end
-  end
+  # def treatment_is_part_of_study
+  #   # if treatment exists then it must belong to correct study
+  #   if treatment_id && (treatment.try(:study_id) != study_id)
+  #     errors.add(:base, 'inconsistent study and treatment combination')
+  #   end
+  # end
 
   def name_has_no_spaces
     errors.add(:base, 'names should not contain spaces') if name.to_s.include?(' ')
