@@ -21,10 +21,14 @@ def find_or_factory(model, attributes = {})
   object
 end
 
-def sign_in_as_normal_user(c = nil)
-  # company_name = c || 'lter'
-  # company = find_or_factory(:company, name: company_name)
+def sign_in_as_normal_user(company_name = 'lter')
+  company = find_or_factory(:company, name: company_name)
   @user = find_or_factory(:user)
+  member = Membership.new
+  member.person = @user.person
+  member.company = company
+  member.default_company = true
+  member.save!
   sign_in @user
 end
 
@@ -52,6 +56,14 @@ RSpec.configure do |config|
   end
 
   # config.include FactoryBot::Syntax::Methods
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    # Choose a test framework:
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
 
 class PersonSessionsController

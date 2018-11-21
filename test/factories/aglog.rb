@@ -1,5 +1,4 @@
 FactoryBot.define do
-
   sequence :sur_name do |n|
     "Doboline#{n}"
   end
@@ -7,7 +6,7 @@ FactoryBot.define do
   sequence :unit_name do |n|
     "Unit#{n}"
   end
-  #Independent Factories
+  # Independent Factories
 
   factory :hazard do
   end
@@ -19,11 +18,11 @@ FactoryBot.define do
   end
 
   factory :observation_type do
-    name  "Default"
+    name  'Default'
   end
 
   factory :company do
-    name  "lter"
+    name  'lter'
   end
 
   factory :study do
@@ -36,8 +35,7 @@ FactoryBot.define do
     name  {generate(:unit_name)}
   end
 
-
-  #Dependent Factories
+  # Dependent Factories
 
   factory :membership do
     person
@@ -45,7 +43,7 @@ FactoryBot.define do
   end
 
   factory :person do
-    given_name  "Bob"
+    given_name 'Bob'
     sur_name
     transient do
       company_count 1
@@ -78,7 +76,7 @@ FactoryBot.define do
   end
 
   factory :observation do
-    obs_date    Date.today
+    obs_date Date.today
     # observation_types
     person
     company
