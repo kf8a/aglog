@@ -8,8 +8,6 @@ gem 'pg'
 
 gem 'devise'
 
-gem 'haml'
-
 gem 'textacular', git: 'https://github.com/textacular/textacular.git'
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
@@ -52,7 +50,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'ed25519'
-  gem 'rbnacl' , '< 5.0'
+  gem 'rbnacl', '< 5.0'
   gem 'rbnacl-libsodium'
 end
 
