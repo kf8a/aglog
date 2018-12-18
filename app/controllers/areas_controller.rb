@@ -6,13 +6,13 @@ class AreasController < ApplicationController
 
   def index
     query = params[:q]
-    @areas = company_areas || Area.all
+    areas = company_areas || Area.all
 
     @areas =
       if query
-        @areas.find_with_name_like(query).to_jquery_tokens
+        areas.find_with_name_like(query).to_jquery_tokens
       else
-        @areas.roots
+        areas.roots
       end
 
     respond_with @areas
