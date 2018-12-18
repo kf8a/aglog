@@ -1,0 +1,28 @@
+<% if signed_in? %>
+  <%= link_to 'Edit', edit_area_path(@area) %>
+<% end %>
+
+<%= link_to 'Back', areas_path %>
+
+<p>
+  <b>Name:</b>
+  <%= @area.name %>
+</p>
+
+<table>
+  <tr>
+    <th> Observation Date</th>
+    <th> Observation Types</th>
+    <th> Observation Comment</th>
+    <th> Equipment</th>
+    <th> Material</th>
+  </tr>
+  <%= render @observations %>
+</table>
+
+<% if signed_in? %>
+  <%= link_to 'Edit', edit_area_path(@area) %>
+<% end %>
+
+
+<%= link_to 'Back', areas_path %>
