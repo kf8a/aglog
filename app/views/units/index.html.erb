@@ -1,0 +1,41 @@
+<h1>Available Units</h1>
+
+<% if signed_in? %>
+  <div class="row">
+    <%= link_to 'New Unit', new_unit_path %>
+  </div>
+<% end %>
+
+<div class="row col-sm-8">
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th> Conversion Factor to</th>
+      <th> S.I. Unit</th>
+      <% if signed_in? %>
+        <th></th>
+        <th></th>
+        <th></th>
+      <% end %>
+    </tr>
+
+    <% @units.each do |unit| %>
+      <tr>
+        <td><%=h unit.name %></td>
+        <td> <%=h unit.conversion_factor %></td>
+        <td> <%= unit.si_unit_name %></td>
+        <% if signed_in? %>
+          <td> <%= link_to 'Show', unit_path(unit) %></td>
+          <td> <%= link_to 'Edit', edit_unit_path(unit) %></td>
+          <td> <%= link_to 'Destroy', unit_path(unit), data: {confirm: "Are you sure you want to delete #{unit.name}?"},
+            method: :delete %> </td>
+        <% end %>
+      </tr>
+    <% end %>
+</div>
+
+<div class = "row col-sm-8">
+  <% if signed_in? %>
+    <%= link_to 'New Unit', new_unit_path %>
+  <% end %>
+</div>
