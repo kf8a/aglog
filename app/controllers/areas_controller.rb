@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Allows modification and viewing of areas
 class AreasController < ApplicationController
   respond_to :html, :json
@@ -22,27 +24,6 @@ class AreasController < ApplicationController
       @area.leaf_observations.sort { |a, b| b.obs_date <=> a.obs_date }
 
     respond_with @area
-  end
-
-  def move_to
-    area = Area.find(params[:parent_id])
-    child = Area.find(params[:id])
-    child.move_to_child_of(area) unless child == area
-    render partial: 'area', locals: { area: area }
-  end
-
-  def move_before
-    area = Area.find(params[:parent_id])
-    child = Area.find(params[:id])
-    father = area.parent
-    child.move_to_left_of(area) unless child == area
-
-    if area.root?
-      areas = company_areas || Area.scoped
-      render partial: 'area_list', locals: { area_roots: areas.roots }
-    else
-      render partial: 'area', locals: { area: father }
-    end
   end
 
   def new
@@ -88,12 +69,13 @@ class AreasController < ApplicationController
   end
 
   def area_params
-    params.require(:area).permit(:name, :replicate, :study_id,
+    params.require(:area).permit(:name, :replicate, :study_id, :retired,
                                  :treatment_id, :company_ids, :description)
   end
 
   def company_areas
     return unless current_user
+
     Area.by_company(companies)
   end
 end
