@@ -18,6 +18,10 @@
       <label for="area_treatment" class="control-label">Treatment</label>
       <%= form.select :treatment_id, Treatment.all.map {|trt| [trt.name, trt.id]}, { include_blank: true }, class: "form-control" %>
     </div>
+    <div class="form-group">
+      <label for="area_retired" class="control-label">Retired</label>
+      <%= form.check_box :retired %>
+    </div>
     <%= form.submit :submit, class: "btn btn-primary" %>
   </div>
 <% end %>
