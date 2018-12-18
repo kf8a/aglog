@@ -1,0 +1,41 @@
+<h2>Show Material</h2>
+<%= render "shared/error_messages", target: @material %>
+<p>
+  <h4>Name: <%= @material.name %></h4>
+  <%= "(Liquid)" if @material.liquid? %>
+
+  <h4>Material Type</h4>
+
+  <% if @material.material_type %>
+    <%= @material.material_type_name %>
+    <br/>
+    <% if @material.material_type_id == 3 %>
+      <b> N:M</b>
+      <%= @material.n_content %>
+      <b> P:</b>
+      <%= @material.p_content %>
+      <b> K:</b>
+      <%= @material.k_content %>
+    <% end %>
+  <% end %>
+
+  <% unless @material.material_transactions.empty? %>
+    <br>
+    <h4> Transactions:</h4>
+    <table class='table'>
+    <% @material.observations.each do |observation| %>
+      <tr>
+        <td><%= link_to observation.obs_date, observation_path(observation) %></td>
+        <td><%= observation.observation_type %></td>
+        <td><%= observation.comment %></td>
+
+      </tr>
+    <% end %>
+    </table>
+  <% end %>
+</p>
+<p>
+  <%= link_to 'Edit Material', edit_material_path(@material) %>
+  |
+  <%= link_to 'List Materials', materials_path %>
+</p>
