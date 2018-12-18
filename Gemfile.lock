@@ -137,9 +137,6 @@ GEM
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    haml (5.0.4)
-      temple (>= 0.8.0)
-      tilt
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     ipaddress (0.8.3)
@@ -264,13 +261,11 @@ GEM
     sshkit (1.18.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    temple (0.8.0)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
     thor (0.20.3)
     thread_safe (0.3.6)
-    tilt (2.0.8)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.20)
@@ -307,7 +302,6 @@ DEPENDENCIES
   ed25519
   factory_bot_rails
   fog-aws
-  haml
   jbuilder
   jquery-rails
   jquery-ui-rails
