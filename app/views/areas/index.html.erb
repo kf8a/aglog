@@ -1,7 +1,12 @@
-<h1>Listing areas</h1>
+<h1>areas</h1>
 
-<%= link_to 'New are', new_area_path %>
+<%= link_to 'New area', new_area_path %>
 
 <div>
-  <%= render 'area_list', area_roots: @areas %>
+  <h3>Current Areas</h3>
+  <%= render 'area_list', area_roots: @areas.where(retired: false) %>
+</div>
+<div>
+  <h3>Retired Areas</h3>
+  <%= render 'area_list', area_roots: @areas.where(retired: true) %>
 </div>
