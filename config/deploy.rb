@@ -1,9 +1,9 @@
-# config valid only for Capistrano 3.1
-lock '3.10.2'
+# frozen_string_literal: true
+
+lock '3.11.0'
 
 set :application, 'aglog'
 set :repo_url, 'https://github.com/kf8a/aglog.git'
-
 
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, '/var/u/apps/aglog'
@@ -18,10 +18,10 @@ set :deploy_to, '/var/u/apps/aglog'
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml .env}
+set :linked_files, %w[config/database.yml .env]
 
 # Default value for linked_dirs is []
- set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
+set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads]
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -29,11 +29,9 @@ set :linked_files, %w{config/database.yml .env}
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-
- after 'deploy:publishing', 'deploy:restart'
- namespace :deploy do
-   task :restart do
-     invoke 'unicorn:restart'
-   end
- end
-
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:restart'
+  end
+end
