@@ -48,13 +48,6 @@ describe Person do
     expect(Person.new).to_not be_valid
   end
 
-  it 'allows the same name in a different company' do
-    person  = Person.new(given_name: test_name[:given_name], sur_name: test_name[:sur_name])
-    company = FactoryBot.create(:company)
-    person.companies = [company]
-    expect(person).to be_valid
-  end
-
   it 'returns a list of companies' do
     person  = Person.new(given_name: test_name[:given_name], sur_name: test_name[:sur_name])
     company = FactoryBot.build(:company)
