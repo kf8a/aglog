@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe Salus, type: :model do
   before(:each) do
     @area = find_or_factory(:area)

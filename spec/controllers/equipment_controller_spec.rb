@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 describe EquipmentController, type: :controller  do
   render_views
 

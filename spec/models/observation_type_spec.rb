@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe ObservationType do
   context 'require unique name' do
     before do

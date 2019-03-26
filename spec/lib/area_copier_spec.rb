@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe AreaCopier do
   describe 'Copying areas to new companies' do
     let(:company_1) { find_or_factory(:company, name: 'lter')}

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe SalusController, type: :controller do
   describe 'GET #show' do
     it 'returns http success' do

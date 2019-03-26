@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe MaterialTransaction do
 
   context "A material transaction " do
