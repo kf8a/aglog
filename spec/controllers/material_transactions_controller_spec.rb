@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe MaterialTransactionsController, type: :controller  do
   render_views
 

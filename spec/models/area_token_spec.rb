@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe AreaToken do
   it 'puts non-existent areas into invalid_tokesn' do
     _areas, invalid_tokens = AreaToken.tokens_to_areas(['T1','T11'], 1)

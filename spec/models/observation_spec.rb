@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Observation do
   it {is_expected.to validate_presence_of :obs_date}
   it {is_expected.to validate_presence_of :person}

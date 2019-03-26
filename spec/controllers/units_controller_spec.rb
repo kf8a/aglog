@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe UnitsController, type: :controller  do
   render_views
 

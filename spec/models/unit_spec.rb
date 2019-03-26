@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Unit do
   describe 'name validations' do
       before(:each) do

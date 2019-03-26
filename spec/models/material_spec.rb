@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Material do
   it {is_expected.to have_many(:setups) }
   it {is_expected.to have_many(:material_transactions) }

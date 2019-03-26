@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Treatment do
   describe 'validate unique names' do
     it "should require unique name within a study" do

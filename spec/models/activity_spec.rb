@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Activity do
   describe "an activity with a valid user" do
     person = Person.new

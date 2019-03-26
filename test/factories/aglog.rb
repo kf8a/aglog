@@ -18,11 +18,11 @@ FactoryBot.define do
   end
 
   factory :observation_type do
-    name  'Default'
+    name  { 'Default' }
   end
 
   factory :company do
-    name  'lter'
+    name  { 'lter' }
   end
 
   factory :study do
@@ -43,10 +43,10 @@ FactoryBot.define do
   end
 
   factory :person do
-    given_name 'Bob'
+    given_name { 'Bob'}
     sur_name
     transient do
-      company_count 1
+      company_count { 1 }
     end
     after :create do |person, evaluator|
       create_list :membership, evaluator.company_count, person: person
@@ -54,8 +54,8 @@ FactoryBot.define do
   end
 
   factory :user do
-    email    'bob@nospam.com'
-    password 'testing'
+    email    { 'bob@nospam.com' }
+    password { 'testing' }
     person
   end
 
@@ -76,7 +76,7 @@ FactoryBot.define do
   end
 
   factory :observation do
-    obs_date Date.today
+    obs_date { Date.today }
     # observation_types
     person
     company

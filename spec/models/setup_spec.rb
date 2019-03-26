@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Setup do
   it "allows a setup to be created with valid equipment" do
     equipment = find_or_factory(:equipment)
