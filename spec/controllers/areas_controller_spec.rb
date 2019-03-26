@@ -21,11 +21,6 @@ describe AreasController, type: :controller do
       it { should render_template 'index' }
     end
 
-    it 'should not allow POST :move' do
-      post :move_to, params: { id: 1, parent_id: 2 }
-      expect(response).to redirect_to new_user_session_path
-    end
-
     it 'does not allow GET :new' do
       get :new
       expect(response).to redirect_to new_user_session_path
