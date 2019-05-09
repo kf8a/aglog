@@ -11,11 +11,13 @@ class AreaToken
 
     areas = valids.collect.each_with_index do |valid, index|
       next unless valid
+
       find_area(tokens[index], company).expand
     end.compact.flatten
 
     invalid_strings = valids.collect.each_with_index do |valid, index|
       next if valid
+
       tokens[index]
     end.compact
     [areas, invalid_strings]
