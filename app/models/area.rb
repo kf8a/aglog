@@ -55,6 +55,7 @@ class Area < ActiveRecord::Base
   def self.parse(areas_as_text, options = {})
     tokens = areas_as_text.split(/[ |,]+/)
     return [] unless tokens.present?
+
     areas, invalid_tokens = AreaToken.tokens_to_areas(tokens, options[:company])
 
     if invalid_tokens.present?
