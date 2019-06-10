@@ -3,11 +3,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
-    if current_user
-      @people = Person.ordered_in_company(current_user.companies)
-    else
-      @people = Person.ordered
-    end
+    @people = Person.ordered
     respond_with @people
   end
 
