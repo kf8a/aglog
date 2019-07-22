@@ -28,20 +28,12 @@ class Person < ActiveRecord::Base
     order('sur_name, given_name')
   end
 
-  def self.ordered_in_company(company)
-    by_company(company).ordered
-  end
-
   def self.find_in_company(company, id)
     by_company(company).find(id)
   end
 
   def default_company
     memberships.where('default_company is true').first.company
-  end
-
-  def to_label
-    name
   end
 
   def name_must_be_unique
