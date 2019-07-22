@@ -1,5 +1,8 @@
-<p>
-	<%=h @person.name  %>
-</p>
+<h1> <%=h @person.name  %> </h1>
+<ul>
+<% @person.observations.each do | observation | %>
+  <li><%=observation.obs_date %> <%= observation.comment %> <%= link_to "Show", observation %></li>
+<% end %>
+</ul>
 <%= link_to 'Edit', edit_person_path(@person) if current_user  %>
 <%= link_to 'Back', people_path %>
