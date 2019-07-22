@@ -1,7 +1,7 @@
 <h1> <%=h @person.name  %> </h1>
 <ul>
-<% @person.observations.each do | observation | %>
-  <li><%=observation.obs_date %> <%= observation.comment %> <%= link_to "Show", observation %></li>
+<% @person.activities.each do | activity | %>
+  <li><%=activity.observation.obs_date %> <%= activity.observation.comment %> <%= link_to "Show", activity.observation %></li>
 <% end %>
 </ul>
 <%= link_to 'Edit', edit_person_path(@person) if current_user  %>
