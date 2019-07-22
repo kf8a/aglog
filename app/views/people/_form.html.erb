@@ -2,11 +2,11 @@
 <%= form_for @person , html: {class: "form", role: "form" } do |form| %>
   <div class="col-sm-6">
     <div class="form-group">
-      <label for='person_given_name' class="control-label">Given Name</label>
+      <label for='person_given_name' class="control-label">First Name</label>
       <%= form.text_field :given_name, class: "form-control" %>
     </div>
     <div class="form-group">
-      <label for="person_sur_name" class="control-label">Sur Name</label>
+      <label for="person_sur_name" class="control-label">Last Name</label>
       <%= form.text_field :sur_name, class: "form-control" %>
     </div>
     <div  class="form-group">
