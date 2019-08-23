@@ -4,7 +4,6 @@ notifications:
   slack:
     secure: AVbx4TU9eKQp0b7TFcdZVqMsbI9HVoGohyqdAlVLJ+FDnMHxrQxR3LfEJdhhkiXY3lrP5lW6V/+ln6AiC9urXsDk0d7+sqibtz3c9oSFh2jjjdL2whvREcoR5OX+z2tjM8NvUF3jHu/OpKFYEAFX4lct5EChZzI6D/AAXA4iDeY=
 rvm:
-- 2.4
 - 2.6
 bundler_args: "--without production"
 env: DEVISE_SECRET="39bcedf487fe83bd4637dbaf5d738db0ce2a004e4ece7a5896b225e49101cce2fd0b73c8c95629c5d05e6c1f3869597d113bd11ce7f2bc37278923527406a845"
