@@ -32,8 +32,9 @@ class Person < ActiveRecord::Base
     by_company(company).find(id)
   end
 
+  # Default is always KBS now
   def default_company
-    memberships.where('default_company is true').first.company
+    Company.find(1)
   end
 
   def name_must_be_unique
