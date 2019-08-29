@@ -5,7 +5,6 @@
     <%= link_to 'Show', area %>
     <%- if signed_in? %>
       <%= link_to 'Edit', edit_area_path(area) %>
-      <%= link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete %>
     <% end %>
   </span>
   <% if area.children.present? %>
