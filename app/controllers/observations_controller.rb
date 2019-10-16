@@ -62,6 +62,7 @@ class ObservationsController < ApplicationController
     @observation = user.observations.new(observation_params)
     @observation.company = user.default_company
     flash[:form] = @observation.save ? 'Observation was successfully created.' : 'Observation creation failed'
+    flash[:error] = @observation.errors.full_messages.to_sentence
     respond_with @observation
   end
 
