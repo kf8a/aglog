@@ -68,8 +68,7 @@ class ObservationsController < ApplicationController
 
   def edit
     @observation =
-      Observation.by_company(current_user.companies)
-                 .where(id: params[:id])
+      Observation.where(id: params[:id])
                  .includes(:observation_types,
                            activities: { setups: :material_transactions })
                  .first
