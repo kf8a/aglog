@@ -8,7 +8,6 @@ class AreasController < ApplicationController
     query = params[:q]
     areas = Area.all
 
-    Logger.info query
     @areas =
       if query
         areas.find_with_name_like(query).to_jquery_tokens
@@ -16,7 +15,6 @@ class AreasController < ApplicationController
         areas.roots
       end
 
-    Logger.info @areas
     respond_with @areas
   end
 
