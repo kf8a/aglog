@@ -6,7 +6,7 @@ class AreasController < ApplicationController
 
   def index
     query = params[:q]
-    areas = company_areas || Area.all
+    areas = Area.all
 
     @areas =
       if query
@@ -33,7 +33,7 @@ class AreasController < ApplicationController
 
   def create
     @area = Area.new(area_params)
-    @area.company = current_user.default_company
+    # @area.company = current_user.default_company
     if @area.save
       flash[:notice] = 'Area was successfully created.'
       respond_with @area
@@ -43,13 +43,13 @@ class AreasController < ApplicationController
   end
 
   def edit
-    @area = Area.by_company(companies).find(params[:id])
+    @area = Area.find(params[:id])
     respond_with @area
   end
 
   def update
-    @area = Area.by_company(companies).find(params[:id])
-    if @area.update_attributes(area_params)
+    @area = Area.find(params[:id])
+    if @area.update(area_params)
       respond_with @area
     else
       render :edit
@@ -71,11 +71,5 @@ class AreasController < ApplicationController
   def area_params
     params.require(:area).permit(:name, :replicate, :study_id, :retired,
                                  :treatment_id, :company_ids, :description)
-  end
-
-  def company_areas
-    return unless current_user
-
-    Area.by_company(companies)
   end
 end
