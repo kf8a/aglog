@@ -4,7 +4,7 @@
   <%= render partial: 'flash_notice' %>
 
   <%= form_for @observation, html: {multipart: true, class: "form", role: "form"}  do |form| %>
-    <div class="row">
+    <div>
       <%= render :partial => 'form', :locals => {:form => form, :only_current => true } %>
     </div>
     <%= form.submit "Create", class: "btn btn-primary" %>
