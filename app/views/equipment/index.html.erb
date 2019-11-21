@@ -4,28 +4,37 @@
   <%= link_to 'New equipment', new_equipment_path %>
 <% end %>
 
-<table class="table">
-  <tr>
-    <th class="left">Name</th>
-    <th> Use Material</th>
-    <th> Non-MSU</th>
-  </tr>
-
-  <% @equipment.each do |equipment| %>
+<table class="table sortable_table">
+  <thead>
     <tr>
-      <td> <%= equipment.name %></td>
-      <td class="center"> <%= 'true' if equipment.use_material? %></td>
-      <td class="center"> <%= 'true' if equipment.non_msu? %></td>
-      <td> <%= link_to 'Show', equipment_path(equipment) %></td>
-
-      <% if signed_in? %>
-        <td> <%= link_to 'Edit', edit_equipment_path(equipment) %></td>
-        <td> <%= link_to 'Destroy', equipment_path(equipment),
-          data: {confirm: "Are you sure you want to delete #{equipment.name}?"},
-          method: :delete %></td>
-      <% end %>
+      <th class="left">Name</th>
+      <th class="lef">Company</th>
+      <th> Use Material</th>
+      <th> Non-MSU</th>
+      <th data-column-ordering='false'></th>
+      <th></th>
+      <th></th>
     </tr>
-  <% end %>
+
+  </thead>
+  <tbody>
+    <% @equipment.each do |equipment| %>
+      <tr>
+        <td> <%= equipment.name %></td>
+        <td> <%= equipment.company.try(:name) %></td>
+        <td class="center"> <%= 'true' if equipment.use_material? %></td>
+        <td class="center"> <%= 'true' if equipment.non_msu? %></td>
+        <td> <%= link_to 'Show', equipment_path(equipment) %></td>
+
+        <% if signed_in? %>
+          <td> <%= link_to 'Edit', edit_equipment_path(equipment) %></td>
+          <td> <%= link_to 'Destroy', equipment_path(equipment),
+            data: {confirm: "Are you sure you want to delete #{equipment.name}?"},
+            method: :delete %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <% if signed_in? %>
