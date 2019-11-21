@@ -22,7 +22,7 @@
 </head>
 <body data-no-turbolink="true">
 
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
       <span class="sr-only">Toggle navigation</span>
@@ -33,32 +33,32 @@
     <a class="navbar-brand" href="#">Aglog</a>
   </div>
   <div class="collapse navbar-collapse">
-    <ul class="nav navbar-nav">
-      <li <%= "class=active" if controller.controller_name == 'observations' %>><%= link_to 'Observations', observations_path %></li>
-      <li <%= "class=active" if controller.controller_name == 'areas' %>><%= link_to 'Areas', areas_path, :accesskey => 'A' %></li>
+    <ul class="navbar-nav mr-auto">
+      <li class='nav-item <%= "active" if controller.controller_name == 'observations' %>'><%= link_to 'Observations', observations_path, class: 'nav-link' %></li>
+      <li class='nav-item <%= "active" if controller.controller_name == 'areas' %>'><%= link_to 'Areas', areas_path, :accesskey => 'A', class: 'nav-link' %></li>
       <% if user_signed_in? %>
-        <li <%= "class=active" if controller.controller_name == 'people' %>><%= link_to 'People', people_path, :accesskey => 'P' %></li>
+        <li class='nav-item <%= "active" if controller.controller_name == 'people' %>'><%= link_to 'People', people_path, :accesskey => 'P', class: 'nav-link' %></li>
       <% end %>
-      <li <%= "class=active" if controller.controller_name == 'materials'%>><%= link_to 'Material', materials_path, :accesskey =>'M' %></li>
-      <li <%= "class=active" if controller.controller_name == 'equipment' %>><%= link_to 'Equipment', equipment_index_path, :accesskey => 'E' %></li>
-      <li <%= "class=active" if controller.controller_name == 'units' %>><%= link_to 'Units', units_path, :accesskey => 'U' %></li>
+      <li class='nav-item <%= "active" if controller.controller_name == 'materials'%>'><%= link_to 'Material', materials_path, :accesskey =>'M',class: 'nav-link' %></li>
+      <li class='nav-item <%= "active" if controller.controller_name == 'equipment' %>'><%= link_to 'Equipment', equipment_index_path, :accesskey => 'E' , class: 'nav-link'%></li>
+      <li class='nav-item <%= "active" if controller.controller_name == 'units' %>'><%= link_to 'Units', units_path, :accesskey => 'U', class: 'nav-link' %></li>
       <% if user_signed_in? %>
-        <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete, class: 'nav-link' %></li>
       <% else %>
-        <li><%= link_to 'Sign In', new_user_session_path  %></li>
+        <li><%= link_to 'Sign In', new_user_session_path, class: 'nav-link'  %></li>
       <% end %>
     </ul>
-    <form class="navbar-form navbar-right" action="/observations" role="search">
-      <div class="form-group">
-        <input type="text" name="year" class="form-control" placeholder="Year" value=<%= @year %>>
-      </div>
-      <button type="submit" class="btn btn-default">Get</button>
-    </form>
-    <form class="navbar-form navbar-right" action="/observations" role="search">
+    <form class="form-inline navbar-right" action="/observations" role="search">
       <div class="form-group">
         <input type="text" name="query" class="form-control" placeholder="Search" value=<%= @query %>>
       </div>
       <button type="submit" class="btn btn-default">Search</button>
+    </form>
+    <form class="form-inline navbar-right" action="/observations" role="search">
+      <div class="form-group">
+        <input type="text" name="year" class="form-control" placeholder="Year" value=<%= @year %>>
+      </div>
+      <button type="submit" class="btn btn-default">Get</button>
     </form>
   </div>
   </nav>
