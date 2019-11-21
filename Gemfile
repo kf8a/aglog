@@ -8,9 +8,9 @@ gem 'pg'
 
 gem 'devise'
 
-gem 'textacular', git: 'https://github.com/textacular/textacular.git'
+gem 'textacular' # , git: 'https://github.com/textacular/textacular.git'
 
-gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
+gem 'carrierwave' # , git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 # gem 'fog'
 gem 'fog-aws'
 
@@ -24,7 +24,7 @@ gem 'jquery-ui-rails'
 gem 'dotenv-rails'
 gem 'simple_form'
 
-gem 'awesome_nested_set', git: 'https://github.com/collectiveidea/awesome_nested_set.git'
+gem 'awesome_nested_set' # , git: 'https://github.com/collectiveidea/awesome_nested_set.git'
 
 gem 'cancan'
 
@@ -50,7 +50,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'ed25519'
-  gem 'rbnacl', '< 5.0'
+  gem 'rbnacl' #, '< 5.0'
   gem 'rbnacl-libsodium'
 end
 
@@ -58,8 +58,13 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
-  gem 'rspec-its'
-  gem 'rspec-rails'
+  gem 'rspec-its', git: 'https://github.com/rspec/rspec-its'
+  gem 'rspec-expectations', git: 'https://github.com/rspec/rspec-expectations'
+  gem 'rspec-mocks', git: 'https://github.com/rspec/rspec-mocks'
+  gem 'rspec-support', git: 'https://github.com/rspec/rspec-support'
+  # gem 'rspec-rails'
+  gem 'rspec-core', git: 'https://github.com/rspec/rspec-core'
+  gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails'
   gem 'shoulda'
   gem 'single_test'
 end
