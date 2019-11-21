@@ -11,9 +11,11 @@
       <th class="lef">Company</th>
       <th> Use Material</th>
       <th> Non-MSU</th>
-      <th data-column-ordering='false'></th>
-      <th></th>
-      <th></th>
+      <th data-orderable="false"></th>
+      <% if signed_in? %>
+        <th data-orderable="false"></th>
+        <th data-orderable="false"></th>
+      <% end %>
     </tr>
 
   </thead>
