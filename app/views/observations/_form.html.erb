@@ -18,19 +18,21 @@
 <% ObservationType.all.each do |obs_type| %>
   <div class="checkbox">
     <label>
-      <%= check_box_tag "observation_observation_type_ids_#{obs_type.id}", obs_type.id, 
+      <%= check_box_tag "observation_observation_type_ids_#{obs_type.id}", obs_type.id,
         @observation.observation_types.include?(obs_type), name: "observation[observation_type_ids][]" %>
       <%= obs_type.name %>
     </label>
   </div>
 <% end %>
 
+<div class='container'>
 <div class="activities row">
   <%= form.fields_for :activities do |builder| %>
       <%= render 'activity_fields', :f => builder, only_current: only_current %>
   <% end %>
 </div>
 <%= link_to_add_fields "Add Activity", form, :activities, only_current %>
+</div>
 
 <div class='notes form-group row'>
   <label>Notes</label>

@@ -1,18 +1,18 @@
-<fieldset class="form-group inputs row">
-  <div class="col-sm-offset-1 col-sm-5">
+<div class="form-group inputs row ">
+  <div class="col-5">
     <% if only_current %>
       <%= f.select :material_id, Material.by_company(current_user.companies).current.ordered.map {|m| [m.name, m.id]}, {:include_blank=>false}, {class: "form-control"} %>
     <% else %>
       <%= f.select :material_id, Material.by_company(current_user.companies).ordered.map {|m| [m.name, m.id]}, {:include_blank=>false}, {class: "form-control"} %>
     <% end %>
   </div>
-  <div class="col-sm-2">
+  <div class="col-2">
     <%= f.text_field :rate, class: "form-control" %>
   </div>
-  <div class="col-sm-2">
+  <div class="col-2">
     <%= f.select :unit_id, Unit.all.map {|u| [u.name, u.id]}, {}, {class: "form-control"}  %>
   </div>
-  <div class="col-sm-2">
+  <div class="col-2">
     per acre
   </div>
   <%= f.hidden_field :_destroy %>
