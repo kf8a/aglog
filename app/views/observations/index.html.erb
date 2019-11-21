@@ -1,15 +1,29 @@
-<div class='flickr_pagination'>
-  <%= link_to "Soil Preparation", {:obstype=> 1} %>&nbsp;&nbsp;
-  <%= link_to "Planting", {:obstype => 3} %>&nbsp;&nbsp;
-  <%= link_to "Fertilizer application", {:obstype=>4} %>&nbsp;&nbsp;
-  <%= link_to "Pesticide application", {:obstype => 5} %>&nbsp;&nbsp;
-  <%= link_to "Weed control", {:obstype => 6} %>&nbsp;&nbsp;
-  <%= link_to "Harvest", {:obstype => 2} %>&nbsp;&nbsp;
-  <%= link_to "Irrigation", {:obstype => 7} %>&nbsp;&nbsp;
-  <%= link_to "Burning", {:obstype => 9} %>
+<div>
+  <form>
+   <div class="form-row">
+    <div class="col">
+      <% site_array = options_from_collection_for_select(Company.all, :id, :name) %>
+      <%= select_tag(:company, options_for_select(site_array), include_blank: true, class: 'form-control') %>
+    </div>
+    <div class="col">
+      <input type="text" name='areas_as_text' id='token-input' class="token-input form-control" placeholder="Area">
+    </div>
+    <div class="col">
+      <input type="text" name='year' class="form-control" placeholder="Year">
+    </div>
+    <div class="col">
+      <% obstype_array = options_from_collection_for_select(ObservationType.all, :id, :name) %>
+      <%= select_tag(:obstype, options_for_select(obstype_array), include_blank: true, class: 'form-control') %>
+    </div>
+    <div class='col'>
+      <button type="submit" class="btn btn-default">Get</button>
+    </div>
+  </form>
 </div>
 
+<div>
 <%= link_to 'New observation', new_observation_path, class: "btn btn-primary" %>
+</div>
 
 <div class='flickr_pagination'>
   <div class="page_info">
