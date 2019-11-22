@@ -45,12 +45,12 @@ FactoryBot.define do
   factory :person do
     given_name { 'Bob'}
     sur_name
-    transient do
-      company_count { 1 }
-    end
-    after :create do |person, evaluator|
-      create_list :membership, evaluator.company_count, person: person
-    end
+    # transient do
+    #   company_count { 1 }
+    # end
+    # after :create do |person, evaluator|
+    #   create_list :membership, evaluator.company_count, person: person
+    # end
   end
 
   factory :user do
