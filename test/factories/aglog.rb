@@ -64,6 +64,7 @@ FactoryBot.define do
   end
 
   factory :material do
+    material_type
     company
   end
 
