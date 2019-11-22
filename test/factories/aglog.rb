@@ -89,6 +89,7 @@ FactoryBot.define do
   end
 
   factory :setup do
+    activity
     equipment
   end
 end
