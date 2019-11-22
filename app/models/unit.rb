@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Measurements have different units: kilograms, quarts, bushels, etc.
 class Unit < ActiveRecord::Base
   has_many :material_transactions
@@ -7,6 +9,7 @@ class Unit < ActiveRecord::Base
 
   def si_unit_name
     return if si_unit_id.nil?
+
     Unit.find(si_unit_id).name
   end
 
