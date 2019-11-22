@@ -1,4 +1,4 @@
-class DelUnitsFromMaterials < ActiveRecord::Migration
+class DelUnitsFromMaterials < ActiveRecord::Migration[5.0]
   def self.up
     remove_column "materials", "unit_id"
   end

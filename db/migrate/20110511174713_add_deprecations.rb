@@ -1,4 +1,4 @@
-class AddDeprecations < ActiveRecord::Migration
+class AddDeprecations < ActiveRecord::Migration[5.0]
   def self.up
     add_column :people,    :archived, :boolean, :default=>false
     add_column :materials, :archived, :boolean, :default=>false

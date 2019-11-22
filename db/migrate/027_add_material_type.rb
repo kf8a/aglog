@@ -1,4 +1,4 @@
-class AddMaterialType < ActiveRecord::Migration
+class AddMaterialType < ActiveRecord::Migration[5.0]
   def self.up
     add_column "materials", "material_type_id", :integer
     add_column "materials", "n_content", :float

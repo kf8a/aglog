@@ -1,4 +1,4 @@
-class UpgradePersonToAuthlogic < ActiveRecord::Migration
+class UpgradePersonToAuthlogic < ActiveRecord::Migration[5.0]
   def self.up
     add_column :people, :persistence_token, :string
     add_column :people, :password_salt, :string

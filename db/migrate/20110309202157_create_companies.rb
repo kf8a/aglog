@@ -1,7 +1,7 @@
-class CreateCompanies < ActiveRecord::Migration
+class CreateCompanies < ActiveRecord::Migration[5.0]
   def self.up
      create_table :companies do |t|
-       t.string :name 
+       t.string :name
 
        t.timestamps
      end
@@ -14,7 +14,7 @@ class CreateCompanies < ActiveRecord::Migration
 
     # reset_column_information
     # upgrade old records
-    # company = Company.create(:name => 'LTER') 
+    # company = Company.create(:name => 'LTER')
 
      # Observations.all.each do |observation|
      #   observation.company = company
@@ -41,7 +41,7 @@ class CreateCompanies < ActiveRecord::Migration
 #       a.save
 #     end
 
-     
+
   end
 
   def self.down

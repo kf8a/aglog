@@ -1,4 +1,4 @@
-class CreateUnits < ActiveRecord::Migration
+class CreateUnits < ActiveRecord::Migration[5.0]
   def self.up
     create_table :units do |t|
       t.column :name, :string

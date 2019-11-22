@@ -1,4 +1,4 @@
-class AddDescriptionAndArchiveToEquipment < ActiveRecord::Migration
+class AddDescriptionAndArchiveToEquipment < ActiveRecord::Migration[5.0]
   def self.up
     add_column :equipment, :description, :string
     add_column :equipment, :archived, :boolean

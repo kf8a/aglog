@@ -1,4 +1,4 @@
-class AddNestedSetToAreas < ActiveRecord::Migration
+class AddNestedSetToAreas < ActiveRecord::Migration[5.0]
   def self.up
     add_column :areas,    :lft,       :integer
     add_column :areas,    :rgt,       :integer

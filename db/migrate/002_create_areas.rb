@@ -1,4 +1,4 @@
-class CreateAreas < ActiveRecord::Migration
+class CreateAreas < ActiveRecord::Migration[5.0]
   def self.up
     create_table :areas do |t|
       t.column :name, :string

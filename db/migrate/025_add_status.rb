@@ -1,4 +1,4 @@
-class AddStatus < ActiveRecord::Migration
+class AddStatus < ActiveRecord::Migration[5.0]
   def self.up
     add_column :observations, :state, :string
   end

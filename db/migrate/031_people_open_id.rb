@@ -1,4 +1,4 @@
-class PeopleOpenId < ActiveRecord::Migration
+class PeopleOpenId < ActiveRecord::Migration[5.0]
   def self.up
     add_column "people", "open_id", :string
   end

@@ -1,4 +1,4 @@
-class CreateSetups < ActiveRecord::Migration
+class CreateSetups < ActiveRecord::Migration[5.0]
   def self.up
     create_table :setups do |t|
       t.column :activity_id, :integer

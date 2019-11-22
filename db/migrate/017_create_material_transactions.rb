@@ -1,13 +1,13 @@
-class CreateMaterialTransactions < ActiveRecord::Migration
+class CreateMaterialTransactions < ActiveRecord::Migration[5.0]
   def self.up
     create_table :material_transactions do |t|
       t.column :material_id, :integer
       t.column :unit_id, :integer
-      t.column :setup_id,  :integer
+      t.column :setup_id, :integer
       t.column :rate, :float
       t.column :cents, :integer
-      t.column :material_transaction_type_id,  :integer
-      t.column :transaction_datetime,  :datetime
+      t.column :material_transaction_type_id, :integer
+      t.column :transaction_datetime, :datetime
     end
   end
 
