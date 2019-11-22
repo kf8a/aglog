@@ -1,4 +1,4 @@
-class CreateEquipment < ActiveRecord::Migration
+class CreateEquipment < ActiveRecord::Migration[5.0]
   def self.up
     create_table :equipment do |t|
       t.column :name, :string

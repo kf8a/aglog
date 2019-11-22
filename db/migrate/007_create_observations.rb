@@ -1,4 +1,4 @@
-class CreateObservations < ActiveRecord::Migration
+class CreateObservations < ActiveRecord::Migration[5.0]
   def self.up
     create_table :observations do |t|
       t.column :person_id, :integer   #this is the user  that made the observation ie. currently logged in

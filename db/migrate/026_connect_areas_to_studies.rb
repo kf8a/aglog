@@ -1,4 +1,4 @@
-class ConnectAreasToStudies < ActiveRecord::Migration
+class ConnectAreasToStudies < ActiveRecord::Migration[5.0]
   def self.up
     add_column "areas", "study_id", :integer
     remove_column "areas", "study"

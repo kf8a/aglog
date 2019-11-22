@@ -1,4 +1,4 @@
-class CreateStudies < ActiveRecord::Migration
+class CreateStudies < ActiveRecord::Migration[5.0]
   def self.up
     create_table :studies do |t|
     	# t.timestamps

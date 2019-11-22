@@ -1,4 +1,4 @@
-class CreateObservationTypes < ActiveRecord::Migration
+class CreateObservationTypes < ActiveRecord::Migration[5.0]
   def self.up
     create_table :observation_types_observations, :id => false do |t|
       t.column :observation_id, :integer
