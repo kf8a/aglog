@@ -7,7 +7,7 @@ class Person < ActiveRecord::Base
   has_many :activities
   has_many :memberships
   has_many :companies, through: :memberships
-  belongs_to :user
+  belongs_to :user, optional: true
 
   has_many :collaborations
   has_many :projects, through: :collaborations

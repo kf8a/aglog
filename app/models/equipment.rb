@@ -4,7 +4,7 @@ class Equipment < ActiveRecord::Base
   has_many                :equipment_pictures
   has_and_belongs_to_many :materials
   belongs_to :company
-  belongs_to :equipment_type
+  belongs_to :equipment_type, optional: true
 
   accepts_nested_attributes_for :equipment_pictures
 
