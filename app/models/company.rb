@@ -7,4 +7,6 @@ class Company < ActiveRecord::Base
   has_many :materials
   has_many :observations
   has_many :areas
+
+  validates_uniqueness_of :name
 end
