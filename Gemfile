@@ -50,21 +50,19 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'ed25519'
-  gem 'sqlite3'
   gem 'rbnacl'
   gem 'rbnacl-libsodium'
+  gem 'sqlite3'
 end
 
 group :development, :test do
-  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'listen'
   gem 'rails-controller-testing'
-  gem 'rspec-its', git: 'https://github.com/rspec/rspec-its'
   gem 'rspec-expectations', git: 'https://github.com/rspec/rspec-expectations'
+  gem 'rspec-its', git: 'https://github.com/rspec/rspec-its'
   gem 'rspec-mocks', git: 'https://github.com/rspec/rspec-mocks'
   gem 'rspec-support', git: 'https://github.com/rspec/rspec-support'
-  # gem 'rspec-rails'
   gem 'rspec-core', git: 'https://github.com/rspec/rspec-core'
   gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails'
   gem 'shoulda'
