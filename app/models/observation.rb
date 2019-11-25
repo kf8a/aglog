@@ -50,11 +50,12 @@ class Observation < ActiveRecord::Base
   end
 
   def self.by_area(areas)
-    areas = [areas] unless areas.is_a?(Array)
+    areas = areas.split(',')
     plots = areas.collect do |area|
       Area.find(area).expand
     end.flatten
-    joins(:areas).where('areas.id in (?)', plots)
+    p plots
+    joins(:areas).where('areas.id in (?)', plots).group(:id)
   end
 
   def self.by_page(page)
