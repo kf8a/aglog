@@ -10,24 +10,24 @@ def non_existent_study_id
 end
 
 describe Area do
-  it {is_expected.to belong_to :company}
+  it { is_expected.to belong_to :company }
 
-  describe "requires a unique name within a company: " do
-    context "An area exists with a name. " do
-      before(:each) do
-        find_or_factory(:area, :name => 'T1R1', :company_id => 1)
+  describe 'requires a unique name within a company: ' do
+    context 'An area exists with a name. ' do
+      before(:example) do
+        company = Company.find_or_create_by(name: 'lter')
+        Area.find_or_create_by(name: 'T1R1', company_id: company.id)
       end
 
-      describe "an area with the same name" do
-
+      describe 'an area with the same name' do
         it 'does not allow a second area witht the smae name to be created' do
-          area = Area.new(:name => 'T1R1')
+          area = Area.new(name: 'T1R1')
           area.company_id = 1
           expect(area).to_not be_valid
         end
 
         it 'is case insensitive' do
-          area = Area.new(:name => 't1r1')
+          area = Area.new(name: 't1r1')
           area.company_id = 1
           expect(area).to_not be_valid
         end
@@ -38,13 +38,12 @@ describe Area do
         end
       end
 
-
-      describe "an area with a different name" do
-        before(:each) do
-          expect(Area.exists?(:name => 'T1R11')).to eq false
+      describe 'an area with a different name' do
+        before(:example) do
+          expect(Area.exists?(name: 'T1R11')).to eq false
         end
 
-        subject { Area.new(:name => 'T1R11') }
+        subject { Area.new(name: 'T1R11') }
         it { is_expected.to be_valid }
       end
 
@@ -56,11 +55,11 @@ describe Area do
 
   describe 'expanding and coalesing Areas' do
     context 'a plot with children' do
-      before(:each) do
-        @ancestor = find_or_factory(:area, :name=>'Test1')
-        @child1 = find_or_factory(:area, :name=>'Test1R1')
-        @child2 = find_or_factory(:area, :name=>'Test1R2')
-        @child3 = find_or_factory(:area, :name=>'Test2R1')
+      before(:example) do
+        @ancestor = Area.find_or_create_by(name: 'Test1')
+        @child1 = Area.find_or_create_by(name: 'Test1R1')
+        @child2 = Area.find_or_create_by( name: 'Test1R2')
+        @child3 = Area.find_or_create_by( name: 'Test2R1')
         @child1.move_to_child_of(@ancestor)
         @child2.move_to_child_of(@ancestor)
         @ancestor.save
@@ -77,7 +76,7 @@ describe Area do
 
       context 'coalesing area' do
 
-        it 'returns the ancestor'  do
+        it 'returns the ancestor' do
           expect(Area.coalese([@child1, @child2])).to eq [@ancestor]
         end
         it 'returns the child for one child' do
@@ -90,31 +89,31 @@ describe Area do
     end
   end
 
-  describe "requires valid study if any: " do
-    before(:each) do
+  describe 'requires valid study if any: ' do
+    before(:example) do
       @existent_study = find_or_factory(:study)
       @non_existent_study = non_existent_study_id
       assert !Study.exists?(@non_existent_study)
     end
 
-    describe "an area with a valid study (and name)" do
-      subject { Area.new(:study_id => @existent_study.id, :name => 'valid_study') }
+    describe 'an area with a valid study (and name)' do
+      subject { Area.new(study_id: @existent_study.id, name: 'valid_study') }
       it { is_expected.to be_valid }
     end
 
-    describe "an area with an invalid study id" do
-      subject { Area.new(:study_id => @non_existent_study, :name => 'invalid_study') }
+    describe 'an area with an invalid study id' do
+      subject { Area.new(study_id: @non_existent_study, name: 'invalid_study') }
       it { is_expected.to_not be_valid }
     end
 
-    describe "an area with no study id" do
+    describe 'an area with no study id' do
       subject { Area.new(:study_id => nil, :name => 'area_without_study') }
       it { is_expected.to be_valid }
     end
   end
 
-  describe "requires the study of the treatment if it has a treatment: " do
-    before(:each) do
+  describe 'requires the study of the treatment if it has a treatment: ' do
+    before(:example) do
       @study = find_or_factory(:study)
       @another_study = FactoryBot.create(:study, name: 'another_study')
       @treatment = find_or_factory(:treatment, study_id: @study.id)
@@ -165,7 +164,7 @@ describe Area do
 
     it "correctly parses 'B20'" do
       areas = Area.parse('B20')
-      assert areas.any? { |a| a.name == "B20R1" }
+      assert areas.any? { |a| a.name == 'B20R1' }
     end
 
     it "correctly parses 'B31' as a String (there is no B31 area)" do
@@ -242,7 +241,7 @@ describe Area do
     end
 
     describe 'areas with the same name from different company' do
-      before(:each) do
+      before(:example) do
         @area = Area.where(name: 'T1R1').first
         @area.company_id = 1
         @area.save

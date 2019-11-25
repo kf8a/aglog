@@ -1,15 +1,16 @@
-describe Observation do
-  it {is_expected.to validate_presence_of :obs_date}
-  it {is_expected.to validate_presence_of :person}
-  it {is_expected.to validate_presence_of :observation_types}
+require 'rails_helper'
 
+describe Observation do
+  it { is_expected.to validate_presence_of :obs_date }
+  it { is_expected.to validate_presence_of :person }
+  it { is_expected.to validate_presence_of :observation_types }
 
   it 'works normally with a simple observation' do
     o = create_simple_observation
     expect(o.activities.size).to eq 1
     activity = o.activities[0]
     expect(activity.setups.size).to eq 1
-    setup =  activity.setups[0]
+    setup = activity.setups[0]
     expect(setup.material_transactions.size).to eq 2
     o.delete
   end
@@ -51,23 +52,23 @@ describe Observation do
     o = create_simple_observation
     assert o.save
     original_areas = o.areas
-    fake_areas = "NoArea"
+    fake_areas = 'NoArea'
     o.areas_as_text = fake_areas
     o.reload
     expect(o.areas).to eq original_areas
     expect(o.areas_as_text).to eq '*NoArea*'
     assert !o.save
-    assert_equal ["invalid areas"],  o.errors[:base]
+    assert_equal ['invalid areas'], o.errors[:base]
     o.delete
   end
 
   it 'has the right equipment_names' do
     o = create_simple_observation
-    another_equipment = FactoryBot.create(:equipment, :name => "Another Equipment")
-    FactoryBot.create(:equipment, :name => "Evil Equipment")
-    another_setup = o.setups.new(:equipment_id => another_equipment.id)
+    another_equipment = FactoryBot.create(:equipment, name: 'Another Equipment')
+    FactoryBot.create(:equipment, name: 'Evil Equipment')
+    another_setup = o.setups.new(equipment_id: another_equipment.id)
     another_setup.save
-    expect(o.equipment_names).to eq "Equipment2, Another Equipment"
+    expect(o.equipment_names).to eq 'Equipment2, Another Equipment'
     o.delete
   end
 

@@ -177,7 +177,7 @@ wicst = Area.find_or_create_by(name: 'WICST', study_id: study.id,
   1.upto(3) do |rep|
     area = Area.find_or_create_by(name: "#{treatment_name}R#{rep}",
                                   treatment_id: t.id,
-                                  replicate:  rep,
+                                  replicate: rep,
                                   company_id: company.id,
                                   study_id: study.id)
     area.move_to_child_of(treatment_area)
