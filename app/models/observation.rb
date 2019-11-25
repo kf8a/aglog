@@ -33,6 +33,7 @@ class Observation < ActiveRecord::Base
 
   def editable?(user)
     return false if user.nil?
+
     Set.new(user.projects).intersect?(Set.new(person.projects))
   end
 
@@ -46,6 +47,14 @@ class Observation < ActiveRecord::Base
 
   def self.by_year(year)
     where("date_part('year',obs_date) = ?", year)
+  end
+
+  def self.by_area(areas)
+    areas = [areas] unless areas.is_a?(Array)
+    plots = areas.collect do |area|
+      Area.find(area).expand
+    end.flatten
+    joins(:areas).where('areas.id in (?)', plots)
   end
 
   def self.by_page(page)
@@ -90,6 +99,7 @@ class Observation < ActiveRecord::Base
 
   def in_review=(state)
     return if new_record?
+
     case state
     when '0'
       publish!
