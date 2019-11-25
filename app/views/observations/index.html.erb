@@ -1,12 +1,12 @@
 <div>
-  <form>
+<%= link_to 'New observation', new_observation_path, class: "btn btn-primary" %>
+</div>
+
+<div>
+  <form class='float-right'>
    <div class="form-row">
     <div class="col">
-      <% site_array = options_from_collection_for_select(Company.all, :id, :name) %>
-      <%= select_tag(:company, options_for_select(site_array), include_blank: true, class: 'form-control') %>
-    </div>
-    <div class="col">
-      <input type="text" name='areas_as_text' id='token-input' class="token-input form-control" placeholder="Area">
+      <input type="text" id='observation_areas_as_text' name='areas_as_text' class="token-input form-control" placeholder="Area" %>
     </div>
     <div class="col">
       <input type="text" name='year' class="form-control" placeholder="Year">
@@ -21,11 +21,7 @@
   </form>
 </div>
 
-<div>
-<%= link_to 'New observation', new_observation_path, class: "btn btn-primary" %>
-</div>
-
-<div class='flickr_pagination'>
+<div class='flickr_pagination clearfix'>
   <div class="page_info">
     <%= page_entries_info @observations %>
   </div>
@@ -69,7 +65,7 @@
         <td><%= link_to 'Show', observation_path(observation) %></td>
 	<% if signed_in? %>
 	  <td><%= link_to 'Edit', edit_observation_path(observation)%></td>
-	  <td><%= link_to 'Destroy', observation_path(observation), :confirm => 'Are you sure?', :method => :delete %></td>
+	  <td><%= link_to 'Destroy', observation_path(observation), confirm: 'Are you sure?', method: :delete %></td>
 	<% end %>
       </tr>
     <% end %>

@@ -9,7 +9,7 @@ class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.xml
   def index
-    obstype = ObservationType.find(params[:obstype]) if params[:obstype]
+    obstype = ObservationType.find(params[:obstype]) if params[:obstype].present?
 
     query = params[:query]
     if obstype
@@ -28,6 +28,10 @@ class ObservationsController < ApplicationController
       @observations = @observations.by_year(year.to_i)
       @year = year
     end
+
+    areas = params[:areas_as_text]
+    # TODO: what happens when you add multiple areas
+    @observations = @observations.by_area(areas) if areas
 
     # @observations = @observations.by_company(current_user.companies) if signed_in?
     @observations = @observations.by_page(params[:page])
