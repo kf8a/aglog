@@ -1,19 +1,21 @@
-describe Material do
-  it {is_expected.to have_many(:setups) }
-  it {is_expected.to have_many(:material_transactions) }
-  it {is_expected.to validate_presence_of :name }
+# frozen_string_literal: true
 
-  describe "requires unique name: " do
+describe Material do
+  it { is_expected.to have_many(:setups) }
+  it { is_expected.to have_many(:material_transactions) }
+  it { is_expected.to validate_presence_of :name }
+
+  describe 'requires unique name: ' do
     before(:each) do
       @repeat_name = 'seed corn'
       find_or_factory(:material, name: @repeat_name, company_id: 1)
     end
 
-    it {is_expected.to belong_to :company}
+    it { is_expected.to belong_to :company }
 
     describe 'an archived material' do
       subject { Material.new(name: 'deprecated', archived: true) }
-        it { expect(subject).to be_valid}
+      it { expect(subject).to be_valid }
     end
 
     describe 'a material with the same name as another' do
@@ -28,22 +30,22 @@ describe Material do
 
     describe 'a material with a different name' do
       subject { Material.new(name: 'A New Material') }
-      it { expect(subject).to be_valid() }
+      it { expect(subject).to be_valid }
     end
 
-    describe "a material in a different company" do
-      subject {Material.new(name: @repeat_name, company_id: 2) }
-      it {expect(subject).to be_valid }
+    describe 'a material in a different company' do
+      subject { Material.new(name: @repeat_name, company_id: 2) }
+      it { expect(subject).to be_valid }
     end
   end
 
-  describe "A material exists that is liquid. " do
+  describe 'A material exists that is liquid. ' do
     before(:each) do
       @material = Material.new(name: 'liquid_material', liquid: true)
     end
 
-    context "to_mass(amount)" do
-      it "has the right number" do
+    context 'to_mass(amount)' do
+      it 'has the right number' do
         expect(@material.to_mass(4)).to eq(4)
       end
       it 'uses the specific weight' do
@@ -52,5 +54,4 @@ describe Material do
       end
     end
   end
-
 end

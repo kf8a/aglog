@@ -3,7 +3,7 @@
 describe AreasController, type: :controller do
   render_views
 
-  let(:area) { FactoryBot.create(:area, name: 'custom_area') }
+  let(:area) { find_or_factory(:area, name: 'custom_area') }
 
   before :each do
     allow(area).to receive(:save).and_return(true)
@@ -176,7 +176,7 @@ describe AreasController, type: :controller do
     describe 'PUT :update with invalid attributes' do
       before(:each) do
         allow(area).to receive(:update_attributes).and_return(false)
-        put :update, params: { id: area, area: { name: 'repeat_name' } }
+        subject { put :update, params: { id: area, area: { name: 'repeat_name' } } }
       end
 
       it 'assigns the right area to @area' do
@@ -187,7 +187,9 @@ describe AreasController, type: :controller do
         expect(area.name).to_not eq 'repeat_name'
       end
 
-      it { should render_template 'edit' }
+      it 'should render_template :edit' do
+        expect(subject).to render_template 'edit'
+      end
     end
 
     describe 'DELETE :destroy the area' do
