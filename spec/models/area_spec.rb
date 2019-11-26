@@ -10,56 +10,14 @@ def non_existent_study_id
 end
 
 describe Area do
-  it { is_expected.to belong_to :company }
-
-  describe 'requires a unique name within a company: ' do
-    context 'An area exists with a name. ' do
-      before(:example) do
-        company = Company.find_or_create_by(name: 'lter')
-        Area.find_or_create_by(name: 'T1R1', company_id: company.id)
-      end
-
-      describe 'an area with the same name' do
-        it 'does not allow a second area witht the smae name to be created' do
-          area = Area.new(name: 'T1R1')
-          area.company_id = 1
-          expect(area).to_not be_valid
-        end
-
-        it 'is case insensitive' do
-          area = Area.new(name: 't1r1')
-          area.company_id = 1
-          expect(area).to_not be_valid
-        end
-
-        it 'allows it in a different company' do
-          area = Area.new(name: 'T1R1', company_id: 3000)
-          expect(area).to be_valid
-        end
-      end
-
-      describe 'an area with a different name' do
-        before(:example) do
-          expect(Area.exists?(name: 'T1R11')).to eq false
-        end
-
-        subject { Area.new(name: 'T1R11') }
-        it { is_expected.to be_valid }
-      end
-
-    end
-  end
-
-  describe 'finding Areas within a company' do
-  end
 
   describe 'expanding and coalesing Areas' do
     context 'a plot with children' do
       before(:example) do
         @ancestor = Area.find_or_create_by(name: 'Test1')
         @child1 = Area.find_or_create_by(name: 'Test1R1')
-        @child2 = Area.find_or_create_by( name: 'Test1R2')
-        @child3 = Area.find_or_create_by( name: 'Test2R1')
+        @child2 = Area.find_or_create_by(name: 'Test1R2')
+        @child3 = Area.find_or_create_by(name: 'Test2R1')
         @child1.move_to_child_of(@ancestor)
         @child2.move_to_child_of(@ancestor)
         @ancestor.save
@@ -75,7 +33,6 @@ describe Area do
       end
 
       context 'coalesing area' do
-
         it 'returns the ancestor' do
           expect(Area.coalese([@child1, @child2])).to eq [@ancestor]
         end
@@ -107,7 +64,7 @@ describe Area do
     end
 
     describe 'an area with no study id' do
-      subject { Area.new(:study_id => nil, :name => 'area_without_study') }
+      subject { Area.new(study_id: nil, name: 'area_without_study') }
       it { is_expected.to be_valid }
     end
   end

@@ -101,6 +101,7 @@ class Area < ActiveRecord::Base
 
   def self.mark_tokens(invalid_tokens)
     return mark_token(invalid_tokens) unless invalid_tokens.respond_to?(:compact)
+
     invalid_tokens.compact.collect do |token|
       mark_token(token)
     end
