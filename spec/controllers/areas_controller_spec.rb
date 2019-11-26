@@ -3,7 +3,8 @@
 describe AreasController, type: :controller do
   render_views
 
-  let(:area) { find_or_factory(:area, name: 'custom_area') }
+  let(:company) { find_or_factory(:company, name: 'lter') }
+  let(:area) { find_or_factory(:area, name: 'custom_area', company: company) }
 
   before :each do
     allow(area).to receive(:save).and_return(true)
