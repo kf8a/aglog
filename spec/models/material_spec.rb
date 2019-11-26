@@ -8,7 +8,7 @@ describe Material do
   describe 'requires unique name: ' do
     before(:each) do
       @repeat_name = 'seed corn'
-      company = find_or_factory(name: 'lter')
+      company = find_or_factory(:company, name: 'lter')
       find_or_factory(:material, name: @repeat_name, company: company)
     end
 
