@@ -53,5 +53,6 @@ group :development, :test do
   gem 'rspec-mocks', git: 'https://github.com/rspec/rspec-mocks'
   gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails'
   gem 'rspec-support', git: 'https://github.com/rspec/rspec-support'
+  gem 'seedbed'
   gem 'shoulda'
 end
