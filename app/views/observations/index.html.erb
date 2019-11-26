@@ -6,13 +6,13 @@
   <form class='float-right'>
    <div class="form-row">
     <div class="col">
-      <input type="text" id='observation_areas_as_text' name='areas_as_text' class="token-input form-control" placeholder="Area" %>
+    <input type="text" id='observation_areas_as_text' name='areas_as_text' class="token-input form-control" value=<%=@area%>, placeholder="Area" %>
     </div>
     <div class="col">
-      <input type="text" name='year' class="form-control" placeholder="Year">
+      <input type="text" name='year' class="form-control" placeholder="Year" value=<%=@year%> >
     </div>
     <div class="col">
-      <% obstype_array = options_from_collection_for_select(ObservationType.all, :id, :name) %>
+      <% obstype_array = options_from_collection_for_select(ObservationType.all, :id, :name, @obstype.try(:id)) %>
       <%= select_tag(:obstype, options_for_select(obstype_array), include_blank: true, class: 'form-control') %>
     </div>
     <div class='col'>
