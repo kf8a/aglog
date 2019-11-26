@@ -8,7 +8,8 @@ describe Material do
   describe 'requires unique name: ' do
     before(:each) do
       @repeat_name = 'seed corn'
-      find_or_factory(:material, name: @repeat_name, company_id: 1)
+      company = find_or_factory(name: 'lter')
+      find_or_factory(:material, name: @repeat_name, company: company)
     end
 
     it { is_expected.to belong_to :company }
@@ -30,11 +31,6 @@ describe Material do
 
     describe 'a material with a different name' do
       subject { Material.new(name: 'A New Material') }
-      it { expect(subject).to be_valid }
-    end
-
-    describe 'a material in a different company' do
-      subject { Material.new(name: @repeat_name, company_id: 2) }
       it { expect(subject).to be_valid }
     end
   end
