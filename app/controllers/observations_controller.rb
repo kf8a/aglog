@@ -14,6 +14,7 @@ class ObservationsController < ApplicationController
     query = params[:query]
     if obstype
       @observations = obstype.observations
+      @obstype = obstype
     elsif query
       @observations =
         Observation.ordered_by_date
@@ -24,16 +25,18 @@ class ObservationsController < ApplicationController
     end
 
     year = params[:year]
-    if year
+    if year.present?
       @observations = @observations.by_year(year.to_i)
       @year = year
     end
 
     areas = params[:areas_as_text]
     # TODO: what happens when you add multiple areas
-    @observations = @observations.by_area(areas) if areas
+    if areas.present?
+      @observations = @observations.by_area(areas)
+      @areas = areas
+    end
 
-    # @observations = @observations.by_company(current_user.companies) if signed_in?
     @observations = @observations.by_page(params[:page])
 
     respond_with @observations do |format|
