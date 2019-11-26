@@ -9,7 +9,7 @@ class Observation < ActiveRecord::Base
   has_and_belongs_to_many :areas
   has_and_belongs_to_many :observation_types
   belongs_to :person, inverse_of: :observations
-  belongs_to :company
+  belongs_to :company, optional: true
 
   mount_uploader :note, NoteUploader
   mount_uploaders :notes, NoteUploader
