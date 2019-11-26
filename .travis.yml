@@ -13,6 +13,7 @@ services:
   - postgresql
 script:
 - bundle exec rake db:test:prepare
+- bundle exec rails webpacker:compile
 - rake db:seed
 - bundle exec rake spec
 before_script:
