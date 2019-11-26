@@ -3,11 +3,12 @@
 describe EquipmentController, type: :controller  do
   render_views
 
-  let(:equipment) { FactoryBot.create(:equipment) }
+  let(:company) { find_or_factory(:company, name: 'lter') }
+  let(:equipment) { find_or_factory(:equipment, company: company) }
 
   describe 'Not signed in. ' do
     before do
-      @equipment = FactoryBot.create(:equipment)
+      @equipment = FactoryBot.create(:equipment, company: company)
     end
 
     it 'renders the index' do
