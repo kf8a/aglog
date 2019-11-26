@@ -30,7 +30,7 @@ def sign_in_as_normal_user(company_name = 'lter')
 end
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
