@@ -71,22 +71,6 @@ describe ObservationsController, type: :controller  do
       # end
     end
 
-    before(:each) do
-      sign_in_as_normal_user
-      Equipment.find_by_id(2) || 2.times do |num|
-        FactoryBot.create(:equipment, name: "Equipment#{num}")
-      end
-      Material.find_by_id(3) || 3.times do |num|
-        FactoryBot.create(:material, name: "Material#{num}")
-      end
-      Unit.find_by_id(3) || 3.times do |num|
-        FactoryBot.create(:unit, name: "Unit#{num}")
-      end
-      Person.find_by_id(2) || 2.times do |num|
-        FactoryBot.create(:person, sur_name: "Sur#{num}")
-      end
-    end
-
     describe 'GET :index, with observation type selected' do
       before(:each) do
         observation_type = FactoryBot.build_stubbed(:observation_type)
