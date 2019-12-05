@@ -2,6 +2,7 @@
 
 # Allows modification and viewing of materials
 class MaterialsController < ApplicationController
+  respond_to :json, :html
   # GET /materials
   # GET /materials.xml
   def index
