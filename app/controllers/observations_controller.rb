@@ -1,4 +1,5 @@
-# encoding: UTF-8
+# frozen_string_literal: true
+
 # Allows modification and viewing of observations
 class ObservationsController < ApplicationController
   ActionController::Parameters.action_on_unpermitted_parameters = :raise
