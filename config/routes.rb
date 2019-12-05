@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   get '/wps', to: 'wps#index'
   devise_for :users
 
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   resources :reports
   resources :materials
   resources :salus, only: %i[index show]
+  resources :observation_types, only: %i[index]
 
   root to: 'observations#index'
 end
