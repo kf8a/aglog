@@ -2,6 +2,9 @@
 
 # Allows modification and viewing of equipment
 class EquipmentController < ApplicationController
+
+  respond_to :json, :html
+
   def index
     @equipment = if current_user
                    equipment.ordered
