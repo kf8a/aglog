@@ -49,7 +49,7 @@ describe EquipmentController, type: :controller  do
   end
 
   describe 'Signed in as a normal user. ' do
-    before(:all) do
+    before(:each) do
       company2 = find_or_factory(:company, name: 'glbrc')
 
       @equipment2 = find_or_factory(:equipment, name: 'glbrc_tractor',
@@ -59,8 +59,7 @@ describe EquipmentController, type: :controller  do
     before(:each) do
       sign_in_as_normal_user
 
-      @equipment1 = find_or_factory(:equipment, name: 'lter_tractor',
-                                                company_id: @user.companies.first.id)
+      @equipment1 = find_or_factory(:equipment, name: 'lter_tractor')
     end
 
     after(:all) do
@@ -75,13 +74,6 @@ describe EquipmentController, type: :controller  do
 
       it { should render_template 'index' }
 
-      it 'should only show equipment for the company of the current user' do
-        assert assigns(:equipment).include?(@equipment1)
-      end
-
-      it 'should not show the other companies equipment' do
-        assert !assigns(:equipment).include?(@equipment2)
-      end
     end
 
     it 'allows new' do
