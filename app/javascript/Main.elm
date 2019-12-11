@@ -20,9 +20,8 @@ import Menu
 
 
 -- TODO:
--- people dropdown
 -- load old data for edit
--- file upload
+-- file deletion
 
 
 type alias Area =
