@@ -27,7 +27,7 @@ class Area < ActiveRecord::Base
   end
 
   def self.to_jquery_tokens
-    all.sort.map { |area| { id: area.id, name: area.name } }
+    all.map { |area| { id: area.id, name: area.name } }
   end
 
   def expand
