@@ -29,10 +29,12 @@ type alias Area =
     , name : String
     }
 
+
 type alias Person =
-  { id : Int
-  , name : String
-  }
+    { id : Int
+    , name : String
+    }
+
 
 type alias ObservationType =
     { id : Int
@@ -112,6 +114,7 @@ type alias Model =
     , query : String
     , selectedArea : Maybe Area
     , showMenu : Bool
+    , files : List String
     , csrfToken : String
     }
 
@@ -173,13 +176,14 @@ initialModel =
     , query = ""
     , selectedArea = Nothing
     , showMenu = False
+    , files = []
     , csrfToken = ""
     }
 
 
 init : String -> ( Model, Cmd Msg )
 init token =
-    ( { initialModel | csrfToken =  token}
+    ( { initialModel | csrfToken = token }
     , Cmd.batch
         [ getObservationTypes
         , getAllAreas
@@ -194,18 +198,20 @@ init token =
 
 ---- LOADERS and DECODERS
 
+
 personDecoder : Decoder Person
 personDecoder =
-  Json.succeed Person
-  |> required "id" Json.int
-  |> required "name" Json.string
+    Json.succeed Person
+        |> required "id" Json.int
+        |> required "name" Json.string
+
 
 getPeople : Cmd Msg
 getPeople =
-  Http.get
-  { url = "/people.json"
-  , expect = Http.expectJson LoadedPeople (Json.list personDecoder)
-  }
+    Http.get
+        { url = "/people.json"
+        , expect = Http.expectJson LoadedPeople (Json.list personDecoder)
+        }
 
 
 materialDecoder : Decoder Material
@@ -274,8 +280,6 @@ areaDecoder =
     Json.map2 Area
         (Json.field "id" Json.int)
         (Json.field "name" Json.string)
-
-
 
 
 getAllAreas : Cmd Msg
@@ -461,9 +465,11 @@ viewMaterial equipmentList unitList materialList activity setup transaction =
             ]
         ]
 
+
 personSelectItem : Person -> Person -> Html msg
 personSelectItem selectedPerson person =
-  option [Html.Attributes.selected (person.id == selectedPerson.id), value (String.fromInt person.id) ] [ text person.name ]
+    option [ Html.Attributes.selected (person.id == selectedPerson.id), value (String.fromInt person.id) ] [ text person.name ]
+
 
 materialSelectItem : MaterialTransaction -> Material -> Html msg
 materialSelectItem transaction material =
@@ -505,14 +511,22 @@ view model =
     in
     Grid.container []
         [ CDN.fontAwesome
-        , Html.form [ action "/observations", method "post", Html.Attributes.enctype "multipart/form-data"
-  ]
+        , Html.form
+            [ action "/observations"
+            , method "post"
+            , Html.Attributes.enctype "multipart/form-data"
+            ]
             [ Grid.row []
                 [ Grid.col []
                     [ label []
                         [ text "Observation Date"
-                        , Html.input  [type_ "text", name "authenticity_token",
-                        value model.csrfToken, Html.Attributes.hidden True][]
+                        , Html.input
+                            [ type_ "text"
+                            , name "authenticity_token"
+                            , value model.csrfToken
+                            , Html.Attributes.hidden True
+                            ]
+                            []
                         , Html.input
                             [ type_ "date"
                             , name "observation[observation_date]"
@@ -543,7 +557,7 @@ view model =
                 [ Grid.col []
                     [ label []
                         [ text "Areas"
-                        , ul [class "token-input-list-facebook"]
+                        , ul [ class "token-input-list-facebook" ]
                             (List.reverse (List.map viewSelectedArea model.areas))
                         , Html.input
                             [ type_ "text"
@@ -601,6 +615,11 @@ view model =
                         ]
                     ]
                 ]
+            , Grid.row []
+             [ Grid.col [] [
+               ul [] (List.map viewFiles model.files)
+               ]
+               ]
             , Grid.row []
                 [ Grid.col [ Col.xs2, Col.offsetXs8 ]
                     [ button
@@ -671,6 +690,10 @@ obsTypeCheckbox myObsTypes obstype =
             ]
         ]
 
+
+viewFiles : String -> Html Msg
+viewFiles file =
+  li [] [text file]
 
 viewConfig : Menu.ViewConfig ObservationType
 viewConfig =
@@ -891,8 +914,11 @@ update msg model =
                 newActivity =
                     case Dict.get activity.id model.activities of
                         Just current ->
-                            { current | person = getPersonAtId model.personList
-                            value}
+                            { current
+                                | person =
+                                    getPersonAtId model.personList
+                                        value
+                            }
 
                         Nothing ->
                             activity
@@ -1054,12 +1080,12 @@ update msg model =
                     ( model, Cmd.none )
 
         LoadedPeople result ->
-          case result of
-            Ok data ->
-              ( {model | personList = data }, Cmd.none)
+            case result of
+                Ok data ->
+                    ( { model | personList = data }, Cmd.none )
 
-            Err error ->
-              (model, Cmd.none)
+                Err error ->
+                    ( model, Cmd.none )
 
         GetEquipment ->
             ( model, getEquipment )
@@ -1202,12 +1228,21 @@ update msg model =
         RemoveSelectedArea area ->
             let
                 newModel =
-                    { model | areas = List.filter (\x -> x.id /= area.id)
-                    model.areas }
-
+                    { model
+                        | areas =
+                            List.filter (\x -> x.id /= area.id)
+                                model.areas
+                    }
             in
-            ( {newModel | areas_as_text = String.concat (List.map (\x -> x.name)
-            newModel.areas)}, Cmd.none )
+            ( { newModel
+                | areas_as_text =
+                    String.concat
+                        (List.map (\x -> x.name)
+                            newModel.areas
+                        )
+              }
+            , Cmd.none
+            )
 
 
 updateConfig : Menu.UpdateConfig Msg ObservationType
@@ -1235,24 +1270,28 @@ updateConfig =
 
 setQuery : Model -> String -> Model
 setQuery model id =
-  let
-      area = getAreaAtId model.areasList id
-  in
-      case List.member area model.areas of
+    let
+        area =
+            getAreaAtId model.areasList id
+    in
+    case List.member area model.areas of
         False ->
-          { model
-              | areas_as_text =
-                  String.trimLeft (String.concat
-                      [ model.areas_as_text
-                      , " "
-                      , .name area
-                      ])
-              , areas = area :: model.areas
-              , query = ""
-              , selectedArea = Just area
-          }
+            { model
+                | areas_as_text =
+                    String.trimLeft
+                        (String.concat
+                            [ model.areas_as_text
+                            , " "
+                            , .name area
+                            ]
+                        )
+                , areas = area :: model.areas
+                , query = ""
+                , selectedArea = Just area
+            }
+
         True ->
-          { model | query = ""}
+            { model | query = "" }
 
 
 getAreaAtId : List Area -> String -> Area
@@ -1261,11 +1300,13 @@ getAreaAtId areas id =
         |> List.head
         |> Maybe.withDefault (Area 0 "")
 
+
 getPersonAtId : List Person -> String -> Person
 getPersonAtId people id =
-  List.filter (\person -> person.name == id) people
-  |> List.head
-  |> Maybe.withDefault (Person 0 "")
+    List.filter (\person -> person.name == id) people
+        |> List.head
+        |> Maybe.withDefault (Person 0 "")
+
 
 acceptableAreas : String -> List Area -> List Area
 acceptableAreas query areas =
