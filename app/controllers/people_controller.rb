@@ -1,5 +1,7 @@
 # Allows modification and viewing of people
 class PeopleController < ApplicationController
+  respond_to :json, :html
+
   # GET /people
   # GET /people.xml
   def index
