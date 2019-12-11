@@ -16,7 +16,7 @@
 // const imagePath = (name) => images(name, true)
 
 require("@rails/ujs").start()
-require("turbolinks").start()
+//require("turbolinks").start()
 require("@rails/activestorage").start()
 
 require('webpack-jquery-ui')
@@ -29,7 +29,3 @@ import '../src/sortable_table.js'
 import '../src/jquery.tokeninput.js'
 import '../src/tree.js'
 import '../src/form_functions.js'
-
-$(function () {
-  console.log('Hello World from Webpacker');
-});
