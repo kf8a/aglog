@@ -10,7 +10,7 @@ class AreasController < ApplicationController
 
     @areas =
       if query
-        areas.find_with_name_like(query).to_jquery_tokens
+        areas.where(retired: false).order(:name).find_with_name_like(query).to_jquery_tokens
       else
         areas.roots
       end

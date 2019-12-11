@@ -1,4 +1,5 @@
 const { environment } = require('@rails/webpacker')
+const elm =  require('./loaders/elm')
 
 const webpack = require('webpack');
 environment.plugins.append('Provide', new webpack.ProvidePlugin({
@@ -8,4 +9,5 @@ environment.plugins.append('Provide', new webpack.ProvidePlugin({
 }));
 
 
+environment.loaders.prepend('elm', elm)
 module.exports = environment
