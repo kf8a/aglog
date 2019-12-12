@@ -5,14 +5,16 @@
 
 Created on: <%= @observation.created_on  %>
 
-<%= form_for @observation, html: {multipart: true, class: "form", role: "form"}  do |form| %>
-  <div class="row"
-  <%= render :partial => 'form', :locals => {:form => form, :only_current => false } %>
-</div>
-<%= form.submit "Submit" , class: "btn btn-primary", disable_with: "Submitting..." %>
-<% end %>
+<%# <%= form_for @observation, html: {multipart: true, class: "form", role: "form"}  do |form| %>
+<%#   <div class="row"
+<%#   <%= render :partial => 'form', :locals => {:form => form, :only_current => false } %>
+<%# </div>
+<%# <%= form.submit "Submit" , class: "btn btn-primary", disable_with: "Submitting..." %>
+<%# <% end %>
 
+  <div id="obsform" data-obsid="<%= @observation.id %>"></div>
 
 <%= link_to "Show", observation_path(@observation), class: "btn btn-default" %>
 <%= link_to "List Observations", observations_path, class: "btn btn-default" %>
 </div>
+<%= javascript_pack_tag "hello_elm" %>
