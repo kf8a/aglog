@@ -36,3 +36,6 @@ json.activities @observation.activities do |activity|
     end
   end
 end
+json.files @observation.notes.each do |note|
+  json.name note.identifier
+end

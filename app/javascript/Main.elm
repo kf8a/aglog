@@ -7,7 +7,6 @@ import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row as Row
 import Browser
 import Date exposing (Date)
-import Debug
 import Dict exposing (Dict)
 import Html exposing (..)
 import Html.Attributes exposing (action, class, cols, method, name, placeholder, rows, selected, type_, value)
@@ -22,6 +21,12 @@ import Menu
 -- TODO:
 -- load old data for edit
 -- file deletion
+
+
+type alias Flags =
+    { csrf : String
+    , id : Int
+    }
 
 
 type alias Area =
@@ -83,6 +88,11 @@ type alias Activity =
     }
 
 
+type alias File =
+    { name : String
+    }
+
+
 
 -- keep all of the list together so that they can be passed around?
 
@@ -95,14 +105,21 @@ type alias Data =
     }
 
 
-type alias Model =
+type alias Observation =
     { obs_date : String
     , comment : String
     , areas_as_text : String
     , areas : List Area
-    , areasList : List Area
     , obsType : List ObservationType
     , activities : Dict Int Activity
+    , files : List File
+    , id : Int -- Maybe?
+    }
+
+
+type alias Model =
+    { areasList : List Area
+    , observation : Observation
     , nextId : Int
     , observationTypeList : List ObservationType
     , equipmentList : List Equipment
@@ -114,7 +131,6 @@ type alias Model =
     , query : String
     , selectedArea : Maybe Area
     , showMenu : Bool
-    , files : List String
     , csrfToken : String
     }
 
@@ -127,8 +143,6 @@ type Msg
     | UpdateActivity Activity String
     | AddMaterial Activity Setup
     | RemoveMaterial Activity Setup MaterialTransaction
-    | Loading
-    | SearchArea String
     | FoundArea (Result Http.Error (List Area))
     | UpdateComment String
     | UpdateDate String
@@ -139,6 +153,7 @@ type Msg
     | LoadedEquipment (Result Http.Error (List Equipment))
     | GetUnits
     | LoadedUnits (Result Http.Error (List Unit))
+    | LoadedObservation (Result Http.Error Observation)
     | GetMaterial
     | LoadedMaterial (Result Http.Error (List Material))
     | LoadedPeople (Result Http.Error (List Person))
@@ -154,17 +169,26 @@ type Msg
     | NoOp
     | SetQuery String
     | RemoveSelectedArea Area
+    | DeleteFile File
 
 
-initialModel : Model
-initialModel =
+initialObservation : Observation
+initialObservation =
     { obs_date = ""
     , comment = ""
     , areas_as_text = ""
     , areas = []
-    , areasList = []
     , obsType = []
     , activities = Dict.empty
+    , files = []
+    , id = 0
+    }
+
+
+initialModel : Model
+initialModel =
+    { areasList = []
+    , observation = initialObservation
     , nextId = 0
     , observationTypeList = []
     , equipmentList = []
@@ -176,27 +200,123 @@ initialModel =
     , query = ""
     , selectedArea = Nothing
     , showMenu = False
-    , files = []
     , csrfToken = ""
     }
 
 
-init : String -> ( Model, Cmd Msg )
-init token =
-    ( { initialModel | csrfToken = token }
-    , Cmd.batch
-        [ getObservationTypes
-        , getAllAreas
-        , getPeople
-        , getEquipment
-        , getUnits
-        , getMaterial
-        ]
+init : Flags -> ( Model, Cmd Msg )
+init flag =
+    ( { initialModel | csrfToken = flag.csrf }
+    , case flag.id of
+        0 ->
+            Cmd.batch
+                [ getObservationTypes
+                , getAllAreas
+                , getPeople
+                , getEquipment
+                , getUnits
+                , getMaterial
+                ]
+
+        id ->
+            Cmd.batch
+                [ getObservation id
+                , getObservationTypes
+                , getAllAreas
+                , getPeople
+                , getEquipment
+                , getUnits
+                , getMaterial
+                ]
     )
 
 
 
 ---- LOADERS and DECODERS
+
+
+observationDecoder : Decoder Observation
+observationDecoder =
+    Json.succeed Observation
+        |> required "obs_date" Json.string
+        |> required "comment" Json.string
+        |> required "areas_as_text" Json.string
+        |> required "areas" (Json.list areaDecoder)
+        |> required "observation_types" (Json.list observationTypeDecoder)
+        |> required "activities" (Json.list activityDecoder |> Json.map activityToKeyValue |> Json.map Dict.fromList)
+        |> required "files" (Json.list fileDecoder)
+        |> required "id" Json.int
+
+
+activityToKeyValue : List Activity -> List ( Int, Activity )
+activityToKeyValue activities =
+    List.map (\x -> ( x.id, x )) activities
+
+
+activityDecoder : Decoder Activity
+activityDecoder =
+    Json.succeed Activity
+        |> required "person" personDecoder
+        |> required "setups"
+            (Json.list setupDecoder
+                |> Json.map setupToKeyValue
+                |> Json.map Dict.fromList
+            )
+        |> required "id" Json.int
+
+
+fileDecoder : Decoder File
+fileDecoder =
+    Json.succeed File
+        |> required "name" Json.string
+
+
+setupToKeyValue : List Setup -> List ( Int, Setup )
+setupToKeyValue setups =
+    List.map (\x -> ( x.id, x )) setups
+
+
+setupDecoder : Decoder Setup
+setupDecoder =
+    Json.succeed Setup
+        |> required "id" Json.int
+        |> required "equipment" equipmentDecoder
+        |> required "material_transactions"
+            (Json.list materialTransactionDecoder
+                |> Json.map transactionToKeyValue
+                |> Json.map Dict.fromList
+            )
+
+
+transactionToKeyValue : List MaterialTransaction -> List ( Int, MaterialTransaction )
+transactionToKeyValue transactionList =
+    List.map (\x -> ( x.id, x )) transactionList
+
+
+
+-- infoDecoder : Decoder (Dict Int MaterialTransaction)
+-- infoDecoder =
+--     map (Dict.map infoToTransaction) (Json.dict materialTransactionDecoder)
+--
+-- infoToTransaction :  Int ->  MaterialTransaction ->  MaterialTransaction
+-- infoToTransaction id transaction =
+
+
+materialTransactionDecoder : Decoder MaterialTransaction
+materialTransactionDecoder =
+    Json.succeed MaterialTransaction
+        |> required "id" Json.int
+        |> required "material" materialDecoder
+        |> optional "rate" Json.float 0
+        |> required "unit" unitDecoder
+
+
+getObservation : Int -> Cmd Msg
+getObservation id =
+    Http.get
+        { url = String.concat [ "/observations/", String.fromInt id, ".json" ]
+        , expect = Http.expectJson LoadedObservation observationDecoder
+        }
 
 
 personDecoder : Decoder Person
@@ -533,6 +653,7 @@ view model =
                             , class
                                 "form-control"
                             , onInput UpdateDate
+                            , value model.observation.obs_date
                             ]
                             []
                         ]
@@ -548,6 +669,7 @@ view model =
                             , cols 100
                             , rows 5
                             , onInput UpdateComment
+                            , value model.observation.comment
                             ]
                             []
                         ]
@@ -558,7 +680,11 @@ view model =
                     [ label []
                         [ text "Areas"
                         , ul [ class "token-input-list-facebook" ]
-                            (List.reverse (List.map viewSelectedArea model.areas))
+                            (List.reverse
+                                (List.map viewSelectedArea
+                                    model.observation.areas
+                                )
+                            )
                         , Html.input
                             [ type_ "text"
                             , name "area_query"
@@ -579,13 +705,13 @@ view model =
                             [ type_ "text"
                             , name "observation[areas_as_text]"
                             , Html.Attributes.hidden True
-                            , value model.areas_as_text
+                            , value model.observation.areas_as_text
                             ]
                             []
                         ]
                     ]
                 ]
-            , obsTypeCheckboxes model.obsType model.observationTypeList
+            , obsTypeCheckboxes model.observation.obsType model.observationTypeList
             , Grid.row []
                 [ Grid.col []
                     (List.map
@@ -594,7 +720,7 @@ view model =
                             model.unitList
                             model.materialList
                         )
-                        (Dict.values model.activities)
+                        (Dict.values model.observation.activities)
                     )
                 ]
             , Grid.row []
@@ -616,15 +742,15 @@ view model =
                     ]
                 ]
             , Grid.row []
-             [ Grid.col [] [
-               ul [] (List.map viewFiles model.files)
-               ]
-               ]
+                [ Grid.col [ Col.xs10 ]
+                    [ ul [] (List.map viewFiles model.observation.files)
+                    ]
+                ]
             , Grid.row []
                 [ Grid.col [ Col.xs2, Col.offsetXs8 ]
                     [ button
                         [ class "btn btn-primary btn-lg"
-                        , Html.Attributes.disabled (modelValid model)
+                        , Html.Attributes.disabled (modelValid model.observation)
                         ]
                         [ text "Submit" ]
                     ]
@@ -691,9 +817,19 @@ obsTypeCheckbox myObsTypes obstype =
         ]
 
 
-viewFiles : String -> Html Msg
+viewFiles : File -> Html Msg
 viewFiles file =
-  li [] [text file]
+    li []
+            [ input
+                [ type_ "hidden"
+                , value file.name
+                , Html.Attributes.multiple True
+                ]
+                []
+            , text file.name
+            , span  [class "fa fa-times", onClick (DeleteFile file)] []
+            ]
+
 
 viewConfig : Menu.ViewConfig ObservationType
 viewConfig =
@@ -730,11 +866,11 @@ alwaysPreventDefault msg =
     ( msg, True )
 
 
-modelValid : Model -> Bool
-modelValid model =
-    String.isEmpty model.obs_date
-        || String.isEmpty model.comment
-        || List.length model.obsType
+modelValid : Observation -> Bool
+modelValid observation =
+    String.isEmpty observation.obs_date
+        || String.isEmpty observation.comment
+        || List.length observation.obsType
         == 0
 
 
@@ -881,6 +1017,20 @@ updateMaterial activities activity_id setup_id transaction_id material =
             activities
 
 
+removeEquipment : Observation -> Activity -> Setup -> Observation
+removeEquipment observation activity setup =
+    let
+        newActivity =
+            removeSetup activity setup
+    in
+    { observation
+        | activities =
+            Dict.insert newActivity.id
+                newActivity
+                observation.activities
+    }
+
+
 
 --- UPDATE
 
@@ -894,25 +1044,41 @@ update msg model =
                     { person = Person 0 "", setup = Dict.empty, id = model.nextId }
 
                 newActivities =
-                    Dict.insert newActivity.id newActivity model.activities
+                    Dict.insert newActivity.id newActivity model.observation.activities
+
+                obs =
+                    model.observation
+
+                newObservation =
+                    { obs
+                        | activities =
+                            Dict.insert newActivity.id newActivity obs.activities
+                    }
             in
             ( { model
-                | activities =
-                    Dict.insert newActivity.id
-                        newActivity
-                        model.activities
+                | observation = newObservation
                 , nextId = nextId model.nextId
               }
             , Cmd.none
             )
 
         RemoveActivity activity ->
-            ( { model | activities = Dict.remove activity.id model.activities }, Cmd.none )
+            let
+                obs =
+                    model.observation
+
+                newObservation =
+                    { obs | activities = Dict.remove activity.id obs.activities }
+            in
+            ( { model | observation = newObservation }, Cmd.none )
 
         UpdateActivity activity value ->
             let
+                obs =
+                    model.observation
+
                 newActivity =
-                    case Dict.get activity.id model.activities of
+                    case Dict.get activity.id model.observation.activities of
                         Just current ->
                             { current
                                 | person =
@@ -922,22 +1088,33 @@ update msg model =
 
                         Nothing ->
                             activity
+
+                newObservation =
+                    { obs | activities = Dict.insert newActivity.id newActivity obs.activities }
             in
-            ( { model | activities = Dict.insert newActivity.id newActivity model.activities }, Cmd.none )
+            ( { model | observation = newObservation }, Cmd.none )
 
         AddEquipment activity ->
             let
+                obs =
+                    model.observation
+
                 equipment =
                     Maybe.withDefault (Equipment 0 "" True) (List.head model.equipmentList)
 
                 newActivity =
                     addSetup equipment model.nextId activity
+
+                newObservation =
+                    { obs
+                        | activities =
+                            Dict.insert newActivity.id
+                                newActivity
+                                obs.activities
+                    }
             in
             ( { model
-                | activities =
-                    Dict.insert newActivity.id
-                        newActivity
-                        model.activities
+                | observation = newObservation
                 , nextId = nextId model.nextId
               }
             , Cmd.none
@@ -945,48 +1122,61 @@ update msg model =
 
         RemoveEquipment activity setup ->
             let
-                newActivity =
-                    removeSetup activity setup
+                newObservation =
+                    removeEquipment model.observation activity setup
             in
-            ( { model
-                | activities =
-                    Dict.insert newActivity.id
-                        newActivity
-                        model.activities
-              }
-            , Cmd.none
-            )
+            ( { model | observation = newObservation }, Cmd.none )
 
         AddMaterial activity setup ->
             let
+                obs =
+                    model.observation
+
                 material =
                     Maybe.withDefault (Material 0 "dummy") (List.head model.materialList)
 
                 unit =
                     Maybe.withDefault (Unit 0 "dummy") (List.head model.unitList)
-            in
-            ( { model
-                | activities =
-                    addMaterial model.activities
+
+                newActivities =
+                    addMaterial obs.activities
                         activity.id
                         setup.id
                         material
                         unit
                         model.nextId
+
+                newObservation =
+                    { obs | activities = newActivities }
+            in
+            ( { model
+                | observation = newObservation
                 , nextId = nextId model.nextId
               }
             , Cmd.none
             )
 
         RemoveMaterial activity equipment material ->
-            ( { model
-                | activities = removeMaterial model.activities activity.id equipment.id material.id
-              }
-            , Cmd.none
-            )
+            let
+                obs =
+                    model.observation
+
+                newObservation =
+                    { obs
+                        | activities =
+                            removeMaterial obs.activities
+                                activity.id
+                                equipment.id
+                                material.id
+                    }
+            in
+            ( { model | observation = newObservation }, Cmd.none )
 
         UpdateMaterial activity setup transaction value ->
             let
+                obs =
+                    model.observation
+
                 myMaterial =
                     List.filter
                         (\x ->
@@ -994,32 +1184,33 @@ update msg model =
                         )
                         model.materialList
                         |> List.head
-            in
-            case myMaterial of
-                Just material ->
-                    ( { model
-                        | activities =
-                            updateMaterial model.activities
+
+                newActivities =
+                    case myMaterial of
+                        Just material ->
+                            updateMaterial obs.activities
                                 activity.id
                                 setup.id
                                 transaction.id
                                 material
-                      }
-                    , Cmd.none
-                    )
 
-                Nothing ->
-                    ( model, Cmd.none )
+                        Nothing ->
+                            obs.activities
+
+                newObservation =
+                    { obs | activities = newActivities }
+            in
+            ( { model | observation = newObservation }, Cmd.none )
 
         SelectObservationType obstype ->
             let
-                _ =
-                    Debug.log "obstype" obstype
+                obs =
+                    model.observation
 
-                newModel =
-                    { model | obsType = obstype :: model.obsType }
+                newObservation =
+                    { obs | obsType = obstype :: obs.obsType }
             in
-            ( newModel, Cmd.none )
+            ( { model | observation = newObservation }, Cmd.none )
 
         SelectEquipmentName activity equipment value ->
             let
@@ -1033,19 +1224,19 @@ update msg model =
             case newEquipment of
                 Just equip ->
                     let
+                        obs =
+                            model.observation
+
                         activities =
-                            updateEquipment model.activities activity.id equipment.id equip
+                            updateEquipment obs.activities activity.id equipment.id equip
+
+                        newObservation =
+                            { obs | activities = activities }
                     in
-                    ( { model | activities = activities }, Cmd.none )
+                    ( { model | observation = newObservation }, Cmd.none )
 
                 Nothing ->
                     ( model, Cmd.none )
-
-        Loading ->
-            ( model, Cmd.none )
-
-        SearchArea area ->
-            ( model, Cmd.none )
 
         FoundArea result ->
             case result of
@@ -1056,13 +1247,34 @@ update msg model =
                     ( model, Cmd.none )
 
         UpdateComment comment ->
-            ( { model | comment = comment }, Cmd.none )
+            let
+                obs =
+                    model.observation
+
+                newObservation =
+                    { obs | comment = comment }
+            in
+            ( { model | observation = newObservation }, Cmd.none )
 
         UpdateDate date ->
-            ( { model | obs_date = date }, Cmd.none )
+            let
+                obs =
+                    model.observation
+
+                newObservation =
+                    { obs | obs_date = date }
+            in
+            ( { model | observation = newObservation }, Cmd.none )
 
         RecieveDate date ->
-            ( { model | obs_date = Date.toIsoString date }, Cmd.none )
+            let
+                obs =
+                    model.observation
+
+                newObservation =
+                    { obs | obs_date = Date.toIsoString date }
+            in
+            ( { model | observation = newObservation }, Cmd.none )
 
         GetObservationTypes ->
             ( model, getObservationTypes )
@@ -1073,10 +1285,6 @@ update msg model =
                     ( { model | observationTypeList = data }, Cmd.none )
 
                 Err error ->
-                    let
-                        _ =
-                            Debug.log (Debug.toString error)
-                    in
                     ( model, Cmd.none )
 
         LoadedPeople result ->
@@ -1085,6 +1293,15 @@ update msg model =
                     ( { model | personList = data }, Cmd.none )
 
                 Err error ->
+                    ( model, Cmd.none )
+
+        LoadedObservation result ->
+            case result of
+                Ok data ->
+                    -- merge the new data with potentially old data?
+                    ( { model | observation = data }, Cmd.none )
+
+                Err _ ->
                     ( model, Cmd.none )
 
         GetEquipment ->
@@ -1118,10 +1335,6 @@ update msg model =
                     ( { model | materialList = data }, Cmd.none )
 
                 Err error ->
-                    let
-                        _ =
-                            Debug.log (Debug.toString error)
-                    in
                     ( model, Cmd.none )
 
         SetAutoState autoMsg ->
@@ -1227,23 +1440,35 @@ update msg model =
 
         RemoveSelectedArea area ->
             let
-                newModel =
-                    { model
+                obs =
+                    model.observation
+
+                intermediateObservation =
+                    { obs
                         | areas =
                             List.filter (\x -> x.id /= area.id)
-                                model.areas
+                                obs.areas
                     }
-            in
-            ( { newModel
-                | areas_as_text =
-                    String.concat
-                        (List.map (\x -> x.name)
-                            newModel.areas
-                        )
-              }
-            , Cmd.none
-            )
 
+                newObservation =
+                    { intermediateObservation
+                        | areas_as_text =
+                            String.concat
+                                (List.map (\x -> x.name) intermediateObservation.areas)
+                    }
+
+                newModel =
+                    { model | observation = newObservation }
+            in
+            ( newModel, Cmd.none )
+
+        DeleteFile file ->
+          let
+              obs = model.observation
+              newObservation = { obs | files = List.filter (\x -> x.name /=
+                file.name) obs.files }
+          in
+            ({ model | observation = newObservation }, Cmd.none)
 
 updateConfig : Menu.UpdateConfig Msg ObservationType
 updateConfig =
@@ -1274,18 +1499,27 @@ setQuery model id =
         area =
             getAreaAtId model.areasList id
     in
-    case List.member area model.areas of
+    case List.member area model.observation.areas of
         False ->
+            let
+                obs =
+                    model.observation
+
+                newObservation =
+                    { obs
+                        | areas_as_text =
+                            String.trimLeft
+                                (String.concat
+                                    [ obs.areas_as_text
+                                    , " "
+                                    , .name area
+                                    ]
+                                )
+                        , areas = area :: obs.areas
+                    }
+            in
             { model
-                | areas_as_text =
-                    String.trimLeft
-                        (String.concat
-                            [ model.areas_as_text
-                            , " "
-                            , .name area
-                            ]
-                        )
-                , areas = area :: model.areas
+                | observation = newObservation
                 , query = ""
                 , selectedArea = Just area
             }
@@ -1303,7 +1537,7 @@ getAreaAtId areas id =
 
 getPersonAtId : List Person -> String -> Person
 getPersonAtId people id =
-    List.filter (\person -> person.name == id) people
+    List.filter (\person -> String.fromInt person.id == id) people
         |> List.head
         |> Maybe.withDefault (Person 0 "")
 
