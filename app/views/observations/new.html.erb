@@ -3,15 +3,7 @@
 <div class="content">
   <%= render partial: 'flash_notice' %>
 
-
-  <%# <%= form_for @observation, html: {multipart: true, class: "form", role: "form"}  do |form| %>
-    <%#   <div>
-      <%#     <%= render :partial => 'form', :locals => {:form => form, :only_current => true } %>
-      <%#   </div>
-    <%#   <%= form.submit "Create", class: "btn btn-primary" %>
-    <%# <% end %>
-
-  <div id="obsform" data-csrf=<%= csrf_meta_tags %></div>
-  <%= javascript_pack_tag "hello_elm" %>
+  <div id="obsform" data-obsid=0></div>
   <%= link_to 'List Observations', observations_path %>
 </div>
+<%= javascript_pack_tag "hello_elm" %>

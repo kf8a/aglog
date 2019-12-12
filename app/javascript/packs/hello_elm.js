@@ -17,11 +17,14 @@ function loadMetaTagData(name) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const target = document.createElement('div')
+  const containerId = "obsform";
   const name = loadMetaTagData("csrf-token");
+  const target = document.getElementById(containerId);
+  const obsid = target.getAttribute("data-obsid");
+
   document.body.appendChild(target)
   Elm.Main.init({
     node: target,
-    flags: name
+    flags: {id: parseInt(obsid), csrf: name}
   })
 })
