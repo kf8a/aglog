@@ -293,15 +293,6 @@ transactionToKeyValue transactionList =
     List.map (\x -> ( x.id, x )) transactionList
 
 
-
--- infoDecoder : Decoder (Dict Int MaterialTransaction)
--- infoDecoder =
---     map (Dict.map infoToTransaction) (Json.dict materialTransactionDecoder)
---
--- infoToTransaction :  Int ->  MaterialTransaction ->  MaterialTransaction
--- infoToTransaction id transaction =
-
-
 materialTransactionDecoder : Decoder MaterialTransaction
 materialTransactionDecoder =
     Json.succeed MaterialTransaction
@@ -614,6 +605,40 @@ viewSelectedArea area =
         ]
 
 
+
+--- If we have 0 id it's a new entry -> use post
+
+
+restfullVerb : Int -> Html Msg
+restfullVerb id =
+    case id of
+        0 ->
+            div [] []
+
+        _ ->
+            Html.input
+                [ type_ "hidden"
+                , name "_method"
+                , value "patch"
+                ]
+                []
+
+
+authToken : Model -> Html Msg
+authToken model =
+    Html.input
+        [ type_ "hidden"
+        , name "authenticity_token"
+        , value model.csrfToken
+        ]
+        []
+
+actionUrl : Int -> String
+actionUrl id =
+  case id of
+    0 -> "/observations"
+    myId -> String.concat ["/observations/", String.fromInt myId]
+
 view : Model -> Html Msg
 view model =
     let
@@ -632,21 +657,16 @@ view model =
     Grid.container []
         [ CDN.fontAwesome
         , Html.form
-            [ action "/observations"
+            [ action (actionUrl model.observation.id)
             , method "post"
             , Html.Attributes.enctype "multipart/form-data"
             ]
-            [ Grid.row []
+            [ restfullVerb model.observation.id
+            , authToken model
+            , Grid.row []
                 [ Grid.col []
                     [ label []
                         [ text "Observation Date"
-                        , Html.input
-                            [ type_ "text"
-                            , name "authenticity_token"
-                            , value model.csrfToken
-                            , Html.Attributes.hidden True
-                            ]
-                            []
                         , Html.input
                             [ type_ "date"
                             , name "observation[observation_date]"
@@ -820,15 +840,16 @@ obsTypeCheckbox myObsTypes obstype =
 viewFiles : File -> Html Msg
 viewFiles file =
     li []
-            [ input
-                [ type_ "hidden"
-                , value file.name
-                , Html.Attributes.multiple True
-                ]
-                []
-            , text file.name
-            , span  [class "fa fa-times", onClick (DeleteFile file)] []
+        [ input
+            [ type_ "hidden"
+            , value file.name
+            , name "observation[notes][]"
+            , Html.Attributes.multiple True
             ]
+            []
+        , text file.name
+        , span [ class "fa fa-times", onClick (DeleteFile file) ] []
+        ]
 
 
 viewConfig : Menu.ViewConfig ObservationType
@@ -1463,12 +1484,23 @@ update msg model =
             ( newModel, Cmd.none )
 
         DeleteFile file ->
-          let
-              obs = model.observation
-              newObservation = { obs | files = List.filter (\x -> x.name /=
-                file.name) obs.files }
-          in
-            ({ model | observation = newObservation }, Cmd.none)
+            let
+                obs =
+                    model.observation
+
+                newObservation =
+                    { obs
+                        | files =
+                            List.filter
+                                (\x ->
+                                    x.name
+                                        /= file.name
+                                )
+                                obs.files
+                    }
+            in
+            ( { model | observation = newObservation }, Cmd.none )
+
 
 updateConfig : Menu.UpdateConfig Msg ObservationType
 updateConfig =
