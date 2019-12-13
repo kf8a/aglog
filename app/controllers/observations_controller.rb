@@ -89,7 +89,7 @@ class ObservationsController < ApplicationController
                  .includes(:observation_types,
                            activities: { setups: :material_transactions })
                  .first
-    if @observation.update_attributes(observation_params) && @observation.save
+    if @observation.update(observation_params) && @observation.save
       flash[:notice] = 'Observation was successfully updated.'
     end
     respond_with @observation
