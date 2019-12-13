@@ -1303,6 +1303,20 @@ removeActivity activities activity =
             Dict.update activity.id markActivityAsDeleted activities
 
 
+switchObsTypes : ObservationType -> List ObservationType -> List ObservationType
+switchObsTypes obstype obstypes =
+    let
+        present =
+            List.any (\x -> x.id == obstype.id) obstypes
+    in
+    case present of
+        False ->
+            obstype :: obstypes
+
+        True ->
+            List.filter (\x -> x.id /= obstype.id) obstypes
+
+
 
 --- UPDATE
 
@@ -1499,7 +1513,7 @@ update msg model =
                     model.observation
 
                 newObservation =
-                    { obs | obsType = obstype :: obs.obsType }
+                    { obs | obsType = switchObsTypes obstype obs.obsType }
             in
             ( { model | observation = newObservation }, Cmd.none )
 
