@@ -463,95 +463,129 @@ boolToString value =
 
 viewActivity : List Person -> List Equipment -> List Unit -> List Material -> Activity -> Html Msg
 viewActivity people equipmentList unitList materialList activity =
-    Grid.row []
-        [ Grid.col [ Col.xs2 ]
-            [ railsHelper activity.id
-                (String.concat
-                    [ "observation[activities_attributes]["
-                    , String.fromInt activity.id
-                    , "]"
+    case activity.status of
+        Deleted ->
+            Grid.row []
+                [ Grid.col []
+                    [ railsHelper activity.id
+                        (String.concat
+                            [ "observation[activities_attributes]["
+                            , String.fromInt activity.id
+                            , "]"
+                            ]
+                        )
+                        activity.status
                     ]
-                )
-                activity.status
-            , select
-                [ class "form-control"
-                , name
-                    (String.concat
-                        [ "observation[activities_attributes][", String.fromInt activity.id, "][person_id]" ]
-                    )
-                , onInput (UpdateActivity activity)
                 ]
-                (List.map (personSelectItem activity.person) people)
-            ]
-        , Grid.col [ Col.xs8 ]
-            (List.map
-                (viewSetup activity
-                    equipmentList
-                    unitList
-                    materialList
-                )
-                (Dict.values activity.setup)
-            )
-        , Grid.col [ Col.xs1 ]
-            [ Html.button [ customOnClick (AddEquipment activity) ] [ text " Add Equipment" ]
-            ]
-        , Grid.col [ Col.xs1 ]
-            [ Html.button [ customOnClick (RemoveActivity activity) ] [ text "Delete Activity" ]
-            ]
-        ]
+
+        _ ->
+            Grid.row []
+                [ Grid.col [ Col.xs2 ]
+                    [ railsHelper activity.id
+                        (String.concat
+                            [ "observation[activities_attributes]["
+                            , String.fromInt activity.id
+                            , "]"
+                            ]
+                        )
+                        activity.status
+                    , select
+                        [ class "form-control"
+                        , name
+                            (String.concat
+                                [ "observation[activities_attributes][", String.fromInt activity.id, "][person_id]" ]
+                            )
+                        , onInput (UpdateActivity activity)
+                        ]
+                        (List.map (personSelectItem activity.person) people)
+                    ]
+                , Grid.col [ Col.xs8 ]
+                    (List.map
+                        (viewSetup activity
+                            equipmentList
+                            unitList
+                            materialList
+                        )
+                        (Dict.values activity.setup)
+                    )
+                , Grid.col [ Col.xs1 ]
+                    [ Html.button [ customOnClick (AddEquipment activity) ] [ text " Add Equipment" ]
+                    ]
+                , Grid.col [ Col.xs1 ]
+                    [ Html.button [ customOnClick (RemoveActivity activity) ] [ text "Delete Activity" ]
+                    ]
+                ]
 
 
 viewSetup : Activity -> List Equipment -> List Unit -> List Material -> Setup -> Html Msg
 viewSetup activity equipmentList unitList materialList setup =
-    Grid.row []
-        [ Grid.col [ Col.xs4 ]
-            [ railsHelper setup.id
-                (String.concat
-                    [ "observation[activities_attributes]["
-                    , String.fromInt activity.id
-                    , "][setups_attributes]["
-                    , String.fromInt setup.id
-                    , "]"
+    case setup.status of
+        Deleted ->
+            Grid.row []
+                [ Grid.col []
+                    [ railsHelper setup.id
+                        (String.concat
+                            [ "observation[activities_attributes]["
+                            , String.fromInt activity.id
+                            , "][setups_attributes]["
+                            , String.fromInt setup.id
+                            , "]"
+                            ]
+                        )
+                        setup.status
                     ]
-                )
-                setup.status
-            , select
-                [ class "form-control"
-                , name
-                    (String.concat
-                        [ "observation[activities_attributes]["
-                        , String.fromInt activity.id
-                        , "][setups_attributes]["
-                        , String.fromInt setup.id
-                        , "][equipment_id]"
+                ]
+
+        _ ->
+            Grid.row []
+                [ Grid.col [ Col.xs4 ]
+                    [ railsHelper setup.id
+                        (String.concat
+                            [ "observation[activities_attributes]["
+                            , String.fromInt activity.id
+                            , "][setups_attributes]["
+                            , String.fromInt setup.id
+                            , "]"
+                            ]
+                        )
+                        setup.status
+                    , select
+                        [ class "form-control"
+                        , name
+                            (String.concat
+                                [ "observation[activities_attributes]["
+                                , String.fromInt activity.id
+                                , "][setups_attributes]["
+                                , String.fromInt setup.id
+                                , "][equipment_id]"
+                                ]
+                            )
+                        , onInput
+                            (SelectEquipmentName activity
+                                setup
+                            )
                         ]
-                    )
-                , onInput
-                    (SelectEquipmentName activity
-                        setup
-                    )
-                ]
-                (List.map (equipmentSelectItem setup) equipmentList)
-            ]
-        , Grid.col [ Col.xs8 ]
-            [ div []
-                (viewMaterials equipmentList
-                    unitList
-                    materialList
-                    activity
-                    setup
-                )
-            , Grid.row []
-                [ Grid.col [ Col.xs2 ]
-                    [ Html.button [ customOnClick (RemoveEquipment activity setup) ] [ text "Delete Equipment" ]
+                        (List.map (equipmentSelectItem setup) equipmentList)
                     ]
-                , Grid.col [ Col.xs1 ] []
-                , Grid.col [ Col.xs2 ]
-                    [ Html.button [ customOnClick (AddMaterial activity setup) ] [ text " Add Material" ]
+                , Grid.col [ Col.xs8 ]
+                    [ div []
+                        (viewMaterials equipmentList
+                            unitList
+                            materialList
+                            activity
+                            setup
+                        )
+                    , Grid.row []
+                        [ Grid.col [ Col.xs2 ]
+                            [ Html.button [ customOnClick (RemoveEquipment activity setup) ] [ text "Delete Equipment" ]
+                            ]
+                        , Grid.col [ Col.xs1 ] []
+                        , Grid.col [ Col.xs2 ]
+                            [ Html.button [ customOnClick (AddMaterial activity setup) ] [ text " Add Material" ]
+                            ]
+                        ]
                     ]
                 ]
-            ]
-        ]
 
 
 viewMaterials :
@@ -575,96 +609,118 @@ viewMaterial :
     -> MaterialTransaction
     -> Html Msg
 viewMaterial equipmentList unitList materialList activity setup transaction =
-    Grid.row []
-        [ Grid.col [ Col.xs4 ]
-            [ railsHelper transaction.id
-                (String.concat
-                    [ "observation[activities_attributes]["
-                    , String.fromInt
-                        activity.id
-                    , "][setups_attributes]["
-                    , String.fromInt setup.id
-                    , "][material_transactions_attributes]["
-                    , String.fromInt
-                        transaction.id
-                    , "]"
+    case transaction.status of
+        Deleted ->
+            Grid.row []
+                [ Grid.col []
+                    [ railsHelper transaction.id
+                        (String.concat
+                            [ "observation[activities_attributes]["
+                            , String.fromInt
+                                activity.id
+                            , "][setups_attributes]["
+                            , String.fromInt setup.id
+                            , "][material_transactions_attributes]["
+                            , String.fromInt
+                                transaction.id
+                            , "]"
+                            ]
+                        )
+                        transaction.status
                     ]
-                )
-                transaction.status
-            , select
-                [ class "form-control"
-                , name
-                    (String.concat
-                        [ "observation[activities_attributes]["
-                        , String.fromInt
-                            activity.id
-                        , "][setups_attributes]["
-                        , String.fromInt setup.id
-                        , "][material_transactions_attributes]["
-                        , String.fromInt
-                            transaction.id
-                        , "][material_id]"
+                ]
+
+        _ ->
+            Grid.row []
+                [ Grid.col [ Col.xs4 ]
+                    [ railsHelper transaction.id
+                        (String.concat
+                            [ "observation[activities_attributes]["
+                            , String.fromInt
+                                activity.id
+                            , "][setups_attributes]["
+                            , String.fromInt setup.id
+                            , "][material_transactions_attributes]["
+                            , String.fromInt
+                                transaction.id
+                            , "]"
+                            ]
+                        )
+                        transaction.status
+                    , select
+                        [ class "form-control"
+                        , name
+                            (String.concat
+                                [ "observation[activities_attributes]["
+                                , String.fromInt
+                                    activity.id
+                                , "][setups_attributes]["
+                                , String.fromInt setup.id
+                                , "][material_transactions_attributes]["
+                                , String.fromInt
+                                    transaction.id
+                                , "][material_id]"
+                                ]
+                            )
+                        , onInput
+                            (UpdateMaterial activity
+                                setup
+                                transaction
+                            )
                         ]
-                    )
-                , onInput
-                    (UpdateMaterial activity
-                        setup
-                        transaction
-                    )
-                ]
-                (List.map (materialSelectItem transaction) materialList)
-            ]
-        , Grid.col [ Col.xs4 ]
-            [ Html.input
-                [ type_ "number"
-                , class "form-control"
-                , name
-                    (String.concat
-                        [ "observation[activities_attributes]["
-                        , String.fromInt
-                            activity.id
-                        , "][setups_attributes]["
-                        , String.fromInt setup.id
-                        , "][material_transactions_attributes]["
-                        , String.fromInt
-                            transaction.id
-                        , "][rate]"
+                        (List.map (materialSelectItem transaction) materialList)
+                    ]
+                , Grid.col [ Col.xs4 ]
+                    [ Html.input
+                        [ type_ "number"
+                        , class "form-control"
+                        , name
+                            (String.concat
+                                [ "observation[activities_attributes]["
+                                , String.fromInt
+                                    activity.id
+                                , "][setups_attributes]["
+                                , String.fromInt setup.id
+                                , "][material_transactions_attributes]["
+                                , String.fromInt
+                                    transaction.id
+                                , "][rate]"
+                                ]
+                            )
+                        , value (String.fromFloat transaction.amount)
+                        , onInput (UpdateRate activity setup transaction)
                         ]
-                    )
-                , value (String.fromFloat transaction.amount)
-                , onInput (UpdateRate activity setup transaction)
-                ]
-                []
-            ]
-        , Grid.col [ Col.xs3 ]
-            [ select
-                [ class "form-control"
-                , name
-                    (String.concat
-                        [ "observation[activities_attributes]["
-                        , String.fromInt
-                            activity.id
-                        , "][setups_attributes]["
-                        , String.fromInt setup.id
-                        , "][material_transactions_attributes]["
-                        , String.fromInt
-                            transaction.id
-                        , "][unit_id]"
+                        []
+                    ]
+                , Grid.col [ Col.xs3 ]
+                    [ select
+                        [ class "form-control"
+                        , name
+                            (String.concat
+                                [ "observation[activities_attributes]["
+                                , String.fromInt
+                                    activity.id
+                                , "][setups_attributes]["
+                                , String.fromInt setup.id
+                                , "][material_transactions_attributes]["
+                                , String.fromInt
+                                    transaction.id
+                                , "][unit_id]"
+                                ]
+                            )
                         ]
-                    )
+                        (List.map (unitSelectItem transaction.unit) unitList)
+                    , Html.text "per acre"
+                    ]
+                , Grid.col [ Col.xs1 ]
+                    [ Html.i
+                        [ customOnClick
+                            (RemoveMaterial activity setup transaction)
+                        , class "fa fa-times"
+                        ]
+                        []
+                    ]
                 ]
-                (List.map (unitSelectItem transaction.unit) unitList)
-            , Html.text "per acre"
-            ]
-        , Grid.col [ Col.xs1 ]
-            [ Html.i
-                [ customOnClick
-                    (RemoveMaterial activity setup transaction)
-                , class "fa fa-times"
-                ]
-                []
-            ]
-        ]
 
 
 personSelectItem : Person -> Person -> Html msg
@@ -1219,17 +1275,12 @@ updateRate activities activity_id setup_id transaction_id rate =
 
 removeEquipment : Observation -> Activity -> Setup -> Observation
 removeEquipment observation activity setup =
-    case setup.status of
-        New ->
-            { observation
-                | activities =
-                    Dict.insert activity.id
-                        (removeSetup activity setup)
-                        observation.activities
-            }
-
-        _ ->
-            { observation | activities = Dict.remove setup.id observation.activities }
+    { observation
+        | activities =
+            Dict.insert activity.id
+                (removeSetup activity setup)
+                observation.activities
+    }
 
 
 markActivityAsDeleted : Maybe Activity -> Maybe Activity
