@@ -19,8 +19,14 @@ import Menu
 
 
 -- TODO:
--- load old data for edit
 -- file deletion
+--- material delete
+
+
+type Status
+    = New
+    | Current
+    | Deleted
 
 
 type alias Flags =
@@ -64,6 +70,7 @@ type alias Setup =
     { id : Int
     , equipment : Equipment
     , materials : Dict Int MaterialTransaction
+    , status : Status
     }
 
 
@@ -72,6 +79,7 @@ type alias MaterialTransaction =
     , material : Material
     , amount : Float
     , unit : Unit
+    , status : Status
     }
 
 
@@ -85,6 +93,7 @@ type alias Activity =
     { person : Person
     , setup : Dict Int Setup
     , id : Int
+    , status : Status
     }
 
 
@@ -113,7 +122,7 @@ type alias Observation =
     , obsType : List ObservationType
     , activities : Dict Int Activity
     , files : List File
-    , id : Int -- Maybe?
+    , id : Int
     }
 
 
@@ -170,6 +179,7 @@ type Msg
     | SetQuery String
     | RemoveSelectedArea Area
     | DeleteFile File
+    | UpdateRate Activity Setup MaterialTransaction String
 
 
 initialObservation : Observation
@@ -263,6 +273,7 @@ activityDecoder =
                 |> Json.map Dict.fromList
             )
         |> required "id" Json.int
+        |> hardcoded Current
 
 
 fileDecoder : Decoder File
@@ -286,11 +297,12 @@ setupDecoder =
                 |> Json.map transactionToKeyValue
                 |> Json.map Dict.fromList
             )
+        |> hardcoded Current
 
 
 transactionToKeyValue : List MaterialTransaction -> List ( Int, MaterialTransaction )
-transactionToKeyValue transactionList =
-    List.map (\x -> ( x.id, x )) transactionList
+transactionToKeyValue transactions =
+    List.map (\x -> ( x.id, x )) transactions
 
 
 materialTransactionDecoder : Decoder MaterialTransaction
@@ -300,6 +312,7 @@ materialTransactionDecoder =
         |> required "material" materialDecoder
         |> optional "rate" Json.float 0
         |> required "unit" unitDecoder
+        |> hardcoded Current
 
 
 getObservation : Int -> Cmd Msg
@@ -405,11 +418,62 @@ getAllAreas =
 ---- VIEWS
 
 
+railsHelper : Int -> String -> Status -> Html Msg
+railsHelper id myName status =
+    case status of
+        New ->
+            span [] []
+
+        _ ->
+            span []
+                [ idInput id myName
+                , destroyInput id myName status
+                ]
+
+
+idInput : Int -> String -> Html Msg
+idInput id myName =
+    Html.input
+        [ type_ "hidden"
+        , name (String.append myName "[id]")
+        , value (String.fromInt id)
+        ]
+        []
+
+
+destroyInput : Int -> String -> Status -> Html Msg
+destroyInput id myName status =
+    Html.input
+        [ type_ "hidden"
+        , name (String.append myName "[_destroy]")
+        , value (boolToString status)
+        ]
+        []
+
+
+boolToString : Status -> String
+boolToString value =
+    case value of
+        Deleted ->
+            "true"
+
+        _ ->
+            "false"
+
+
 viewActivity : List Person -> List Equipment -> List Unit -> List Material -> Activity -> Html Msg
 viewActivity people equipmentList unitList materialList activity =
     Grid.row []
         [ Grid.col [ Col.xs2 ]
-            [ select
+            [ railsHelper activity.id
+                (String.concat
+                    [ "observation[activities_attributes]["
+                    , String.fromInt activity.id
+                    , "]"
+                    ]
+                )
+                activity.status
+            , select
                 [ class "form-control"
                 , name
                     (String.concat
@@ -441,7 +505,17 @@ viewSetup : Activity -> List Equipment -> List Unit -> List Material -> Setup ->
 viewSetup activity equipmentList unitList materialList setup =
     Grid.row []
         [ Grid.col [ Col.xs4 ]
-            [ select
+            [ railsHelper setup.id
+                (String.concat
+                    [ "observation[activities_attributes]["
+                    , String.fromInt activity.id
+                    , "][setups_attributes]["
+                    , String.fromInt setup.id
+                    , "]"
+                    ]
+                )
+                setup.status
+            , select
                 [ class "form-control"
                 , name
                     (String.concat
@@ -503,7 +577,21 @@ viewMaterial :
 viewMaterial equipmentList unitList materialList activity setup transaction =
     Grid.row []
         [ Grid.col [ Col.xs4 ]
-            [ select
+            [ railsHelper transaction.id
+                (String.concat
+                    [ "observation[activities_attributes]["
+                    , String.fromInt
+                        activity.id
+                    , "][setups_attributes]["
+                    , String.fromInt setup.id
+                    , "][material_transactions_attributes]["
+                    , String.fromInt
+                        transaction.id
+                    , "]"
+                    ]
+                )
+                transaction.status
+            , select
                 [ class "form-control"
                 , name
                     (String.concat
@@ -543,6 +631,8 @@ viewMaterial equipmentList unitList materialList activity setup transaction =
                         , "][rate]"
                         ]
                     )
+                , value (String.fromFloat transaction.amount)
+                , onInput (UpdateRate activity setup transaction)
                 ]
                 []
             ]
@@ -633,11 +723,16 @@ authToken model =
         ]
         []
 
+
 actionUrl : Int -> String
 actionUrl id =
-  case id of
-    0 -> "/observations"
-    myId -> String.concat ["/observations/", String.fromInt myId]
+    case id of
+        0 ->
+            "/observations"
+
+        myId ->
+            String.concat [ "/observations/", String.fromInt myId ]
+
 
 view : Model -> Html Msg
 view model =
@@ -908,7 +1003,7 @@ addSetup : Equipment -> Int -> Activity -> Activity
 addSetup equipment id activity =
     let
         setup =
-            Setup id equipment Dict.empty
+            Setup id equipment Dict.empty New
     in
     { activity | setup = Dict.insert setup.id setup activity.setup }
 
@@ -928,9 +1023,29 @@ removeSetupWithId id activity =
     { activity | setup = Dict.remove id activity.setup }
 
 
+markSetupAsDeleted : Maybe Setup -> Maybe Setup
+markSetupAsDeleted setup =
+    case setup of
+        Just aSetup ->
+            Just { aSetup | status = Deleted }
+
+        _ ->
+            Nothing
+
+
 removeSetup : Activity -> Setup -> Activity
 removeSetup activity setup =
-    { activity | setup = Dict.remove setup.id activity.setup }
+    case setup.status of
+        New ->
+            { activity | setup = Dict.remove setup.id activity.setup }
+
+        _ ->
+            { activity | setup = Dict.update setup.id markSetupAsDeleted activity.setup }
+
+
+
+--TODO: see if the update equipment does the right thing.
+-- remove and re-addd setup
 
 
 updateEquipment : Dict Int Activity -> Int -> Int -> Equipment -> Dict Int Activity
@@ -953,7 +1068,7 @@ addMaterial : Dict Int Activity -> Int -> Int -> Material -> Unit -> Int -> Dict
 addMaterial activities activity_id setup_id material unit id =
     let
         transaction =
-            MaterialTransaction id material 0 unit
+            MaterialTransaction id material 0 unit New
     in
     case Dict.get activity_id activities of
         Just activity ->
@@ -978,26 +1093,55 @@ addMaterial activities activity_id setup_id material unit id =
             activities
 
 
-removeMaterialFromSetup : Setup -> Int -> Setup
-removeMaterialFromSetup setup transaction_id =
-    { setup | materials = Dict.remove transaction_id setup.materials }
+markMaterialAsDeleted : Maybe MaterialTransaction -> Maybe MaterialTransaction
+markMaterialAsDeleted transaction =
+    case transaction of
+        Just tr ->
+            Just { tr | status = Deleted }
+
+        Nothing ->
+            Nothing
 
 
-removeMaterial : Dict Int Activity -> Int -> Int -> Int -> Dict Int Activity
-removeMaterial activities activity_id setup_id transaction_id =
+removeMaterialFromSetup : Setup -> MaterialTransaction -> Setup
+removeMaterialFromSetup setup transaction =
+    case transaction.status of
+        New ->
+            { setup | materials = Dict.remove transaction.id setup.materials }
+
+        _ ->
+            { setup | materials = Dict.update transaction.id markMaterialAsDeleted setup.materials }
+
+
+removeMaterial : Dict Int Activity -> Int -> Int -> MaterialTransaction -> Dict Int Activity
+removeMaterial activities activity_id setup_id transaction =
     case Dict.get activity_id activities of
         Just activity ->
             case Dict.get setup_id activity.setup of
                 Just setup ->
                     let
                         newActivity =
-                            removeMaterialFromSetup setup transaction_id
+                            removeMaterialFromSetup setup transaction
                                 |> updateSetup activity
                     in
                     Dict.insert newActivity.id newActivity activities
 
                 Nothing ->
                     activities
+
+        Nothing ->
+            activities
+
+
+withActivity : (Activity -> Activity) -> Int -> Dict Int Activity -> Dict Int Activity
+withActivity function activity_id activities =
+    case Dict.get activity_id activities of
+        Just activity ->
+            let
+                newActivity =
+                    function activity
+            in
+            Dict.insert newActivity.id newActivity activities
 
         Nothing ->
             activities
@@ -1038,18 +1182,74 @@ updateMaterial activities activity_id setup_id transaction_id material =
             activities
 
 
+updateRate : Dict Int Activity -> Int -> Int -> Int -> Float -> Dict Int Activity
+updateRate activities activity_id setup_id transaction_id rate =
+    case Dict.get activity_id activities of
+        Just activity ->
+            case Dict.get setup_id activity.setup of
+                Just setup ->
+                    case Dict.get transaction_id setup.materials of
+                        Just transaction ->
+                            let
+                                newTransaction =
+                                    { transaction | amount = rate }
+
+                                newSetup =
+                                    { setup
+                                        | materials =
+                                            Dict.insert transaction.id
+                                                newTransaction
+                                                setup.materials
+                                    }
+
+                                newActivity =
+                                    updateSetup activity newSetup
+                            in
+                            Dict.insert newActivity.id newActivity activities
+
+                        Nothing ->
+                            activities
+
+                Nothing ->
+                    activities
+
+        Nothing ->
+            activities
+
+
 removeEquipment : Observation -> Activity -> Setup -> Observation
 removeEquipment observation activity setup =
-    let
-        newActivity =
-            removeSetup activity setup
-    in
-    { observation
-        | activities =
-            Dict.insert newActivity.id
-                newActivity
-                observation.activities
-    }
+    case setup.status of
+        New ->
+            { observation
+                | activities =
+                    Dict.insert activity.id
+                        (removeSetup activity setup)
+                        observation.activities
+            }
+
+        _ ->
+            { observation | activities = Dict.remove setup.id observation.activities }
+
+
+markActivityAsDeleted : Maybe Activity -> Maybe Activity
+markActivityAsDeleted activity =
+    case activity of
+        Just myActivity ->
+            Just { myActivity | status = Deleted }
+
+        Nothing ->
+            Nothing
+
+
+removeActivity : Dict Int Activity -> Activity -> Dict Int Activity
+removeActivity activities activity =
+    case activity.status of
+        New ->
+            Dict.remove activity.id activities
+
+        _ ->
+            Dict.update activity.id markActivityAsDeleted activities
 
 
 
@@ -1061,8 +1261,11 @@ update msg model =
     case msg of
         AddActivity ->
             let
+                person =
+                    Person 0 ""
+
                 newActivity =
-                    { person = Person 0 "", setup = Dict.empty, id = model.nextId }
+                    Activity person Dict.empty model.nextId New
 
                 newActivities =
                     Dict.insert newActivity.id newActivity model.observation.activities
@@ -1088,8 +1291,11 @@ update msg model =
                 obs =
                     model.observation
 
+                newActivities =
+                    removeActivity obs.activities activity
+
                 newObservation =
-                    { obs | activities = Dict.remove activity.id obs.activities }
+                    { obs | activities = newActivities }
             in
             ( { model | observation = newObservation }, Cmd.none )
 
@@ -1188,7 +1394,7 @@ update msg model =
                             removeMaterial obs.activities
                                 activity.id
                                 equipment.id
-                                material.id
+                                material
                     }
             in
             ( { model | observation = newObservation }, Cmd.none )
@@ -1217,6 +1423,19 @@ update msg model =
 
                         Nothing ->
                             obs.activities
+
+                newObservation =
+                    { obs | activities = newActivities }
+            in
+            ( { model | observation = newObservation }, Cmd.none )
+
+        UpdateRate activity setup transaction value ->
+            let
+                obs =
+                    model.observation
+
+                newActivities =
+                    updateRate obs.activities activity.id setup.id transaction.id (Maybe.withDefault 0 (String.toFloat value))
 
                 newObservation =
                     { obs | activities = newActivities }
