@@ -59,8 +59,8 @@
 <% end %>
 </ul>
 
-<%= link_to 'Related Observations', related_observations_path(:id => @observation.id) %>
-<%= link_to 'New observation', new_observation_path %>
-<%= link_to 'Edit', edit_observation_path(@observation) %>
-<%= link_to 'List Observations', observations_path %>
+<%= link_to 'Related Observations', related_observations_path(id: @observation.id), class: 'btn btn-light'%>
+<%= link_to 'New observation', new_observation_path, class: 'btn btn-light' %>
+<%= link_to 'Edit', edit_observation_path(@observation), class: 'btn btn-light' %>
+<%= link_to 'List Observations', observations_path, class: 'btn btn-light' %>
 
