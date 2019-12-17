@@ -6,37 +6,52 @@
     <%= form.text_field :name , class: "col-sm-6"%>
   </div>
   <div class="form-group row">
+    <div class="col".
     <%= form.check_box :use_material %>
     <label>Use Material</label>
     <%= form.check_box :is_tractor %>
     <label>Tractor</label>
     <%= form.check_box :non_msu %>
     <label>Not MSU owned</label>
-  </div>
-
-  <div class="form-group row">
-    <%= form.check_box:archived %>
-    <label>Archived?</label>
-  <div class="form-group row">
-    <label class="control-label col-sm-2">Description</label>
-    <%= form.text_area :description,class: "col-sm-9", rows: 10 %>
-  </div>
-
-  <div class="form-group row">
-  <%= form.fields_for :equipment_pictures do |p| %>
-    <div class="field">
-      <%= p.label :equipment_picture%><br>
-      <%= p.file_field :equipment_picture, :multiple => true, name: "equipment_pictures[equipment_picture][]" %>
     </div>
-  <% end %>
+  </div>
 
-  <% if params[:controller] == "post" && params[:action] == "edit" %> 
-    <% @equipment.equipment_pictures.each do |p| %>
-      <%= image_tag p.equipment_picture, :size => "150x150" %>
-    <% end %>
-  <% end %>
-</div>
+  <div class="form-group row">
+    <div class='col'>
+      <%= form.check_box:archived %>
+      <label>Archived?</label>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Description</label>
+        <%= form.text_area :description,class: "col-sm-9", rows: 10 %>
+      </div>
+    </div>
+  </div>
 
+  <div class="form-group row">
+    <div class='col'>
+      <%= form.fields_for :equipment_pictures do |p| %>
+        <div class="field">
+          <%= p.label :equipment_picture%><br>
+          <%= p.file_field :equipment_picture, :multiple => true, name: "equipment_pictures[equipment_picture][]" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-  <%= form.button :submit, class: "btn btn-primary" %> 
+  <div class="form-group row">
+    <div class="col".
+      <% if params[:controller] == "post" && params[:action] == "edit" %>
+        <% @equipment.equipment_pictures.each do |p| %>
+          <%= image_tag p.equipment_picture, :size => "150x150" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col">
+
+      <%= form.button :submit, class: "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>
