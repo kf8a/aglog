@@ -5,7 +5,11 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
-    @people = Person.ordered
+    @people = if params[:current]
+                Person.current.ordered
+              else
+                Person.ordered
+              end
     respond_with @people
   end
 

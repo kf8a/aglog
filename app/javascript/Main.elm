@@ -333,7 +333,7 @@ personDecoder =
 getPeople : Cmd Msg
 getPeople =
     Http.get
-        { url = "/people.json"
+        { url = "/people.json?current=true"
         , expect = Http.expectJson LoadedPeople (Json.list personDecoder)
         }
 
