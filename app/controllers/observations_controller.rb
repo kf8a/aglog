@@ -35,7 +35,8 @@ class ObservationsController < ApplicationController
     # TODO: what happens when you add multiple areas
     if areas.present?
       @observations = @observations.by_area(areas)
-      @areas = areas
+      myareas = Area.find(areas)
+      @areas_as_text = [myareas].map(&:attributes).to_json
     end
 
     @observations = @observations.by_page(params[:page])

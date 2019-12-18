@@ -1,78 +1,90 @@
 <div>
-<%= link_to 'New observation', new_observation_path, class: "btn btn-primary" %>
+  <%= link_to 'New observation', new_observation_path, class: "btn btn-primary" %>
 </div>
 
-<div>
-  <form class='float-right'>
-   <div class="form-row">
-    <div class="col">
-    <input type="text" id='observation_areas_as_text' name='areas_as_text' class="token-input form-control" value=<%=@areas %>, placeholder="Area" %>
-    </div>
-    <div class="col">
-      <input type="text" name='year' class="form-control" placeholder="Year" value=<%=@year%> >
-    </div>
-    <div class="col">
-      <% obstype_array = options_from_collection_for_select(ObservationType.all, :id, :name, @obstype.try(:id)) %>
-      <%= select_tag(:obstype, options_for_select(obstype_array), include_blank: true, class: 'form-control') %>
-    </div>
-    <div class='col'>
-      <button type="submit" class="btn btn-default">Get</button>
-    </div>
-  </form>
-</div>
-
-<div class='flickr_pagination clearfix'>
-  <div class="page_info">
-    <%= page_entries_info @observations %>
-  </div>
-  <div class='d-flex justify-content-center'>
-  <%= will_paginate @observations, :renderer => BootstrapPagination::Rails %>
-  </div>
-   <table class='table'>
-    <tr>
-      <th>Date</th>
-      <th>Site</th>
-      <th>Observation Type</th>
-      <th>Comment</th>
-      <th><%= link_to 'Areas', areas_path %></th>
-      <th><%= link_to 'Material', materials_path %></th>
-    </tr>
-
-    <% @observations.each do |observation| %>
-      <tr valign='top'>
-	<td><%= observation.obs_date %> </td>
-        <td><%= observation.company_name %></td>
-	<td>
-	  <% observation.observation_types.each do |type| %>
-	    <%= type.name %>
-	  <% end %>
-	</td>
-	<td><%= truncate(observation.comment.to_s) %></td>
-	<td><%= observation.areas_as_text %></td>
-	<td>
-	  <% observation.activities.each do |activity| %>
-	    <% activity.setups.each do |setup| %>
-	      <table>
-		<% setup.material_transactions.each do |m| %>
-		  <tr>
-		    <td><%= m.material.name if m %></td>
-		  </tr>
-		<% end %>
-	      </table>
-	    <% end %>
-	  <% end %>
-        </td>
-        <td><%= link_to 'Show', observation_path(observation) %></td>
-	<% if signed_in? %>
-	  <td><%= link_to 'Edit', edit_observation_path(observation)%></td>
-	  <td><%= link_to 'Destroy', observation_path(observation), data: {confirm: "Are you sure?"},  method: :delete %></td>
-	<% end %>
-      </tr>
-    <% end %>
-  </table>
-  <br />
-  <div class='d-flex justify-content-center'>
-  <%= will_paginate @observations, :renderer => BootstrapPagination::Rails %>
+<div class="row">
+  <div class="col offset-md-2">
+    <form>
+      <div class="form-row row align-items-end">
+        <div class="col">
+          <input type="text" id='observation_areas_as_text' name='areas_as_text' class="token-input form-control" data-pre=<%=@areas_as_text%> >
+        </div>
+        <!-- <div class="col" id="area_input" data&#45;areas=<%=@areas %>></div> -->
+        <div class="col">
+          <input type="text" name='year' class="form-control" placeholder="Year" value=<%=@year%> >
+        </div>
+        <div class="col">
+          <% obstype_array = options_from_collection_for_select(ObservationType.all, :id, :name, @obstype.try(:id)) %>
+          <%= select_tag(:obstype, options_for_select(obstype_array), include_blank: true, class: 'form-control') %>
+        </div>
+        <div class='col'>
+          <button type="submit" class="btn btn-default">Get</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
-<%= link_to 'New observation', new_observation_path, class: "btn btn-primary" %>
+
+<div class="row">
+  <div class="col">
+    <div class='flickr_pagination clearfix'>
+      <div class="page_info">
+        <%= page_entries_info @observations %>
+      </div>
+      <div class='d-flex justify-content-center'>
+        <%= will_paginate @observations, :renderer => BootstrapPagination::Rails %>
+      </div>
+      <table class='table'>
+        <tr>
+          <th>Date</th>
+          <th>Site</th>
+          <th>Observation Type</th>
+          <th>Comment</th>
+          <th><%= link_to 'Areas', areas_path %></th>
+          <th><%= link_to 'Material', materials_path %></th>
+        </tr>
+
+        <% @observations.each do |observation| %>
+          <tr valign='top'>
+            <td><%= observation.obs_date %> </td>
+            <td><%= observation.company_name %></td>
+            <td>
+              <% observation.observation_types.each do |type| %>
+                <%= type.name %>
+              <% end %>
+            </td>
+            <td><%= truncate(observation.comment.to_s) %></td>
+            <td><%= observation.areas_as_text %></td>
+            <td>
+              <% observation.activities.each do |activity| %>
+                <% activity.setups.each do |setup| %>
+                  <table>
+                    <% setup.material_transactions.each do |m| %>
+                      <tr>
+                        <td><%= m.material.name if m %></td>
+                      </tr>
+                    <% end %>
+                  </table>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Show', observation_path(observation) %></td>
+            <% if signed_in? %>
+              <td><%= link_to 'Edit', edit_observation_path(observation)%></td>
+              <td><%= link_to 'Destroy', observation_path(observation), data: {confirm: "Are you sure?"},  method: :delete %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+      <br />
+      <div class='d-flex justify-content-center'>
+        <%= will_paginate @observations, :renderer => BootstrapPagination::Rails %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row clearfix">
+  <div class="col">
+    <%= link_to 'New observation', new_observation_path, class: "btn btn-primary" %>
+  </div>
+</div>
