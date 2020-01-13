@@ -2,7 +2,6 @@
 
 # Allows modification and viewing of equipment
 class EquipmentController < ApplicationController
-
   respond_to :json, :html
 
   def index
@@ -73,6 +72,7 @@ class EquipmentController < ApplicationController
   def update_pictures
     pictures = params[:equipment_pictures]
     return unless pictures
+
     pictures['equipment_picture'].each do |picture|
       @equipment_picture = @equipment.equipment_pictures
                                      .create(picture: picture,
