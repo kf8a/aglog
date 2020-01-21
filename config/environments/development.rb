@@ -61,4 +61,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.log_level = :debug
+  config.active_record.whitelist_attributes = true
 end
