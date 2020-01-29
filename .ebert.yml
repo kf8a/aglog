@@ -44,7 +44,3 @@ exclude_paths:
 - spec
 - test
 - vendor
-- app/assets/javascripts/jquery.tokeninput.js
-- app/assets/stylesheets/jquery-ui-1.8.13.custom.css
-- app/assets/stylesheets/token-input-facebook.css
- - app/assets/stylesheets/token-input-mac.css
