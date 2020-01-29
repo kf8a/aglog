@@ -1,13 +1,13 @@
 GIT
   remote: https://github.com/rspec/rspec-core
-  revision: 7a264e98d255708a766dc77e63a328f18c19dd9b
+  revision: 12caa2907b7eb67d65e19353c15613586858546c
   specs:
     rspec-core (3.10.0.pre)
       rspec-support (= 3.10.0.pre)
 
 GIT
   remote: https://github.com/rspec/rspec-expectations
-  revision: c085c5a6f0678ae7f88a489996e391e6b661d8a9
+  revision: 13fab582d6a2e857af66d1e4923fad6c94d627cc
   specs:
     rspec-expectations (3.10.0.pre)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-mocks
-  revision: e6057a61d8a15c4638dec116f68579d83fdd5ad5
+  revision: ae6e11d7f5100146c4b58b165975a29e2ccc60db
   specs:
     rspec-mocks (3.10.0.pre)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails
-  revision: 335afc6d78c18702250141da58212cf265a79f90
+  revision: bd54ec4f9c63d9e36dbb3196a59b0908561e287d
   specs:
     rspec-rails (4.0.0.pre)
       actionpack (>= 4.2)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-support
-  revision: b83b4cecb3bb56300addae89cb0c437f1af906fb
+  revision: 9cec8e858228ee1d1395e4e6186ac39c2a83d705
   specs:
     rspec-support (3.10.0.pre)
 
@@ -150,13 +150,13 @@ GEM
       railties (>= 3.2, < 6.1)
     ed25519 (1.2.4)
     erubi (1.9.0)
-    excon (0.71.1)
+    excon (0.72.0)
     factory_bot (5.1.1)
       activesupport (>= 4.2.0)
     factory_bot_rails (5.1.1)
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
-    ffi (1.11.3)
+    ffi (1.12.1)
     fog-aws (3.5.2)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
@@ -199,7 +199,7 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
-    mimemagic (0.3.3)
+    mimemagic (0.3.4)
     mini_magick (4.10.1)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
@@ -213,9 +213,9 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.2.2)
-    prometheus-client (1.0.0)
+    prometheus-client (2.0.0)
     public_suffix (4.0.3)
-    rack (2.1.1)
+    rack (2.1.2)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -255,7 +255,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    rbnacl (7.1.0)
+    rbnacl (7.1.1)
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
