@@ -15,7 +15,7 @@
 
   <ul>
     <% @equipment.equipment_pictures.each do |picture| %>
-      <li> <%= image_tag(picture.picture) %> </li>
+      <li> <%= image_tag(picture.picture.url) %> </li>
     <% end %>
   </ul>
 
