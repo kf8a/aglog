@@ -66,7 +66,8 @@ class EquipmentController < ApplicationController
   def equipment_params
     params.require(:equipment).permit(:name, :use_material, :is_tractor,
                                       :description, :non_msu, :archived,
-                                      :company_id)
+                                      :company_id,
+                                      equipment_pictures_attributes: {})
   end
 
   def update_pictures
