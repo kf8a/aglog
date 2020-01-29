@@ -17,7 +17,7 @@ gem 'will_paginate-bootstrap'
 
 gem 'chronic'
 
-gem "webpacker"
+gem 'webpacker'
 
 gem 'dotenv-rails'
 gem 'simple_form'
