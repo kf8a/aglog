@@ -14,8 +14,10 @@
   </ul>
 
   <ul>
-    <% @equipment.equipment_pictures.each do |picture| %>
-      <li> <%= image_tag(picture.picture.url) %> </li>
+    <% @equipment.equipment_pictures.each_with_index do |picture, index| %>
+      <li>
+      <%= link_to picture.picture.identifier, picture.picture.url %>
+      </li>
     <% end %>
   </ul>
 
