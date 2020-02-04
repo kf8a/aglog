@@ -24,6 +24,7 @@ engines:
     enabled: true
   brakeman:
     enabled: true
+    channel: latest
   coffeelint:
     enabled: true
   duplication:
