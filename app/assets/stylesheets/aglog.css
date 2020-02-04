@@ -7,10 +7,6 @@ a img { border: none;
 		text-decoration: none;
 }
 
-.droppable {
-  height: 4px;
-}
-
 error {
 	background-color:yellow
 }
