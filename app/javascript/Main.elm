@@ -18,11 +18,6 @@ import Menu
 
 
 
--- TODO:
--- file deletion
---- material delete
-
-
 type Status
     = New
     | Current
