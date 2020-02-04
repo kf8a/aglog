@@ -15,8 +15,8 @@ fieldset.token-input-mac.token-input-dropdown-mac {
   border-radius: 10px 10px 0 0;
   box-shadow: 0 5px 20px 0 rgba(0,0,0,0.25);
   -moz-border-radius: 10px 10px 0 0;
-  -webkit-border-radius: 10px 10px 0 0;
   -moz-box-shadow: 0 5px 20px 0 rgba(0,0,0,0.25);
+  -webkit-border-radius: 10px 10px 0 0;
   -webkit-box-shadow: 0 5px 20px 0 rgba(0,0,0,0.25);
 }
 
@@ -62,6 +62,8 @@ li.token-input-token-mac {
     background-color: #dee7f8;
     border: 1px solid #a4bdec;
     border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
     color: #000;
     cursor: default;
     float: left;
@@ -72,8 +74,6 @@ li.token-input-token-mac {
     margin: 3px;
     overflow: hidden;
     padding: 0 10px;
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
 }
 
 li.token-input-highlighted-token-mac {

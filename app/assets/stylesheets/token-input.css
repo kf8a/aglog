@@ -37,8 +37,8 @@ li.token-input-token {
     height: auto !important;
     height: 1%;
     margin: 3px;
-    padding: 3px 5px;
     overflow: hidden;
+    padding: 3px 5px;
 }
 
 li.token-input-token p {
