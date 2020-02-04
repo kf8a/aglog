@@ -57,8 +57,11 @@ class EquipmentController < ApplicationController
 
   def destroy
     @equipment = equipment
+    @equipment.equipment_pictures.each do |picture|
+      picture.destroy
+    end
     @equipment.destroy
-    respond_with @equipment
+    redirect_to equipment_index_path
   end
 
   private
