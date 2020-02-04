@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "elm-hot-webpack-loader": "^1.1.6",
+    "prettier": "1.19.1",
     "webpack-dev-server": "^3.9.0"
   }
 }
