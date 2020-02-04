@@ -1,7 +1,9 @@
-xml = Builder::XmlMarkup.new(:indent => 2)
+# frozen_string_literal: true
+
+xml = Builder::XmlMarkup.new(indent: 2)
 xml.instruct!
 
-observations = Observation.find(:all, :include=>[:areas,:activities], :order=>'obs_date desc')
+observations = Observation.find(:all, include: %i[areas activities], order: 'obs_date desc')
 xml.observations do
   observations.each do |observation|
     xml.observation do
