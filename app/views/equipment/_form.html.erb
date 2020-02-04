@@ -27,6 +27,11 @@
     </div>
   </div>
 
+
+  <% equipment.equipment_pictures.each do |picture| %>
+    <%= link_to picture.picture.identifier, picture.picture.url %>
+    <%= hidden_field :equipment_picture, :pictures, multiple: true, value: picture.picture.identifier %>
+  <% end %>
   <div class="form-group row">
     <div class='col'>
       <%= form.fields_for :equipment_pictures do |p| %>
