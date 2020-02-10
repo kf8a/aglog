@@ -17,7 +17,7 @@ engines:
     enabled: true
   brakeman:
     enabled: true
-    channel: :latest
+    channel: 'latest'
   coffeelint:
     enabled: true
   duplication:
