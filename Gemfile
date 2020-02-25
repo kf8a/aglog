@@ -11,7 +11,7 @@ gem 'devise'
 gem 'textacular' # , git: 'https://github.com/textacular/textacular.git'
 
 gem 'carrierwave' # , git: 'https://github.com/carrierwaveuploader/carrierwave.git'
-gem 'fog-aws'
+# gem 'fog-aws'
 
 gem 'will_paginate-bootstrap'
 
