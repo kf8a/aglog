@@ -2,7 +2,7 @@
 
 # A setup is the equipment and material used for an activity.
 class Setup < ActiveRecord::Base
-  belongs_to :activity
+  belongs_to :activity, optional: true
   belongs_to :equipment
   has_one :observation, through: :activity
   has_many :material_transactions, dependent: :destroy
