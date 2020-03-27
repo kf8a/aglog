@@ -668,6 +668,8 @@ viewMaterial equipmentList unitList materialList activity setup transaction =
                 , Grid.col [ Col.xs4 ]
                     [ Html.input
                         [ type_ "number"
+                        , Html.Attributes.step "any"
+                        , Html.Attributes.min "0"
                         , class "form-control"
                         , name
                             (String.concat
