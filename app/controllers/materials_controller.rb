@@ -7,7 +7,7 @@ class MaterialsController < ApplicationController
   # GET /materials.xml
   def index
     company = current_user.try(:company)
-    broad_scope = company ? Material.by_company(company) : Material
+    broad_scope = company ? Material.by_company(company) : Material.current
     @materials = broad_scope.order('material_type_id, name')
                             .includes(:material_type)
 
