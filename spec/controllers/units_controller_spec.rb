@@ -1,7 +1,7 @@
-describe UnitsController, type: :controller  do
+describe UnitsController, type: :controller do
   render_views
 
-  let(:unit) { FactoryBot.build_stubbed(:unit, name: 'custom unit')}
+  let(:unit) { FactoryBot.build_stubbed(:unit, name: 'custom unit') }
 
   before :each do
     allow(Unit).to receive(:persisted?).and_return(true)
@@ -10,41 +10,31 @@ describe UnitsController, type: :controller  do
   end
 
   describe 'Signed in as a normal user. ' do
-    before(:each) do
-      sign_in_as_normal_user
-    end
+    before(:each) { sign_in_as_normal_user }
 
     describe 'GET :new' do
-      before(:each) do
-        get :new
-      end
+      before(:each) { get :new }
 
       it { is_expected.to respond_with :success }
       it { is_expected.to render_template :new }
     end
 
     describe 'GET :index' do
-      before(:each) do
-        get :index
-      end
+      before(:each) { get :index }
 
       it { is_expected.to respond_with :success }
       it { is_expected.to render_template :index }
     end
 
     describe 'POST :create with valid parameters' do
-      before(:each) do
-        post :create, params: { unit: {name: 'test_name'} }
-      end
+      before(:each) { post :create, params: { unit: { name: 'test_name' } } }
 
       it { is_expected.to redirect_to unit_path(assigns(:unit)) }
-      it { is_expected.to set_flash.to('Unit was successfully created.')}
+      it { is_expected.to set_flash.to('Unit was successfully created.') }
     end
 
     describe 'POST :create in XML format' do
-      before(:each) do
-        post :create, params: { unit: { name: 'xml_name' }, format: 'xml' }
-      end
+      before(:each) { post :create, params: { unit: { name: 'xml_name' }, format: 'xml' } }
 
       it { is_expected.to respond_with(201) }
       it 'should respond with content type application/xml' do
@@ -54,9 +44,7 @@ describe UnitsController, type: :controller  do
 
     describe 'A unit exists. ' do
       describe 'GET :edit the unit' do
-        before(:each) do
-          get :edit, params: { id: unit }
-        end
+        before(:each) { get :edit, params: { id: unit } }
 
         it 'should assign the requested unit to @unit' do
           expect(assigns(:unit)).to eq unit
@@ -67,9 +55,7 @@ describe UnitsController, type: :controller  do
       end
 
       describe 'GET :show the unit' do
-        before(:each) do
-          get :show, params: { id: unit }
-        end
+        before(:each) { get :show, params: { id: unit } }
 
         it 'should assign the requested unit to @unit' do
           expect(assigns(:unit)).to eq unit

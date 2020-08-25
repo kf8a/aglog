@@ -1,15 +1,9 @@
 class AddStudyToArea < ActiveRecord::Migration[5.0]
   def self.up
-    add_column "areas", "study", :string
-    # Area.reset_column_information
-    # areas = Area.find(:all)
-    # areas.each do |area|
-    #   area.study = 'MAIN'
-    #   area.save
-    # end
+    add_column 'areas', 'study', :string # end
   end
 
   def self.down
-    remove_column "areas", "study"
+    remove_column 'areas', 'study'
   end
 end

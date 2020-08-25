@@ -14,9 +14,9 @@ class Observation < ActiveRecord::Base
   mount_uploader :note, NoteUploader
   mount_uploaders :notes, NoteUploader
 
-  validates :obs_date,          presence: true
+  validates :obs_date, presence: true
   validates :observation_types, presence: true
-  validates :person,            presence: true
+  validates :person, presence: true
   validate :no_invalid_areas
 
   scope :by_company, ->(company) { where(company_id: company) }
@@ -51,9 +51,7 @@ class Observation < ActiveRecord::Base
 
   def self.by_area(areas)
     areas = areas.split(',')
-    plots = areas.collect do |area|
-      Area.find(area).expand
-    end.flatten
+    plots = areas.collect { |area| Area.find(area).expand }.flatten
     p plots
     joins(:areas).where('areas.id in (?)', plots).group(:id)
   end
@@ -63,8 +61,11 @@ class Observation < ActiveRecord::Base
   end
 
   def self.includes_everything
-    includes({ areas: %i[study treatment] }, :observation_types,
-             activities: { setups: { material_transactions: :material } })
+    includes(
+      { areas: %i[study treatment] },
+      :observation_types,
+      activities: { setups: { material_transactions: :material } }
+    )
   end
 
   def self.ordered_by_date
@@ -90,8 +91,7 @@ class Observation < ActiveRecord::Base
   end
 
   def collect_from_setups(method_to_collect)
-    setups.map { |setup| setup.send(method_to_collect) }
-          .flatten.compact.uniq
+    setups.map { |setup| setup.send(method_to_collect) }.flatten.compact.uniq
   end
 
   def equipment_names

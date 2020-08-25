@@ -43,14 +43,12 @@ class UnitsController < ApplicationController
   def destroy
     @unit = Unit.find(params[:id])
     @unit.destroy
-    redirect_to units_url
-    # respond_with @unit
+    redirect_to units_url # respond_with @unit
   end
 
   private
 
   def unit_params
-    params.require(:unit).permit(:name, :si_unit_id, :conversion_factor,
-                                 :is_si_unit)
+    params.require(:unit).permit(:name, :si_unit_id, :conversion_factor, :is_si_unit)
   end
 end

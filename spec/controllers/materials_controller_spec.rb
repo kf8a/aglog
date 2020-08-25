@@ -30,9 +30,7 @@ describe MaterialsController, type: :controller do
     end
 
     describe 'POST: create with valid attributes' do
-      before(:each) do
-        post :create, params: { material: { name: 'NewName' } }
-      end
+      before(:each) { post :create, params: { material: { name: 'NewName' } } }
 
       it 'create the material' do
         expect(Material.exists?(assigns[:material].id)).to eq true
@@ -44,18 +42,14 @@ describe MaterialsController, type: :controller do
     end
 
     describe 'POST :create with invalid attributes' do
-      before(:each) do
-        post :create, params: { material: { name: '' } }
-      end
+      before(:each) { post :create, params: { material: { name: '' } } }
 
       it { should render_template :new }
       it { should_not set_flash }
     end
 
     describe 'POST :create with XML format' do
-      before(:each) do
-        post :create, params: { material: { name: 'xml_name' }, format: 'xml' }
-      end
+      before(:each) { post :create, params: { material: { name: 'xml_name' }, format: 'xml' } }
 
       it { should respond_with(201) }
       it 'should respond with content type application/xml' do

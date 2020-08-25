@@ -1,7 +1,7 @@
 # Represents work done during an observation
 class Activity < ActiveRecord::Base
   belongs_to :person
-  belongs_to :observation
+  belongs_to :observation, optional: true
   has_many :setups, dependent: :destroy
   has_many :material_transactions, through: :setups
 

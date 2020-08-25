@@ -17,9 +17,7 @@ class ObservationsController < ApplicationController
       @observations = obstype.observations
       @obstype = obstype
     elsif query
-      @observations =
-        Observation.ordered_by_date
-                   .basic_search(comment: query)
+      @observations = Observation.ordered_by_date.basic_search(comment: query)
       @query = query
     else
       @observations = Observation.all
@@ -31,8 +29,7 @@ class ObservationsController < ApplicationController
       @year = year
     end
 
-    areas = params[:areas_as_text]
-    # TODO: what happens when you add multiple areas
+    areas = params[:areas_as_text] # TODO: what happens when you add multiple areas
     if areas.present?
       @observations = @observations.by_area(areas)
       myareas = Area.find(areas)
@@ -42,18 +39,18 @@ class ObservationsController < ApplicationController
     @observations = @observations.by_page(params[:page])
 
     respond_with @observations do |format|
-      format.salus_xml { render 'index', formats: [:salus_xml] }
-      format.salus_csv { render 'index', formats: [:salus_csv] }
+      format.salus_xml { render 'index', formats: %i[salus_xml] }
+      format.salus_csv { render 'index', formats: %i[salus_csv] }
     end
   end
 
   def show
-    @observation = Observation.where(id: params[:id])
-                              .includes(:person, :observation_types, activities:
-                                        [:person, { setups:
-                                          [:equipment,
-                                           { material_transactions:
-                                             %i[material unit] }] }]).first
+    @observation =
+      Observation.where(id: params[:id]).includes(
+        :person,
+        :observation_types,
+        activities: [:person, { setups: [:equipment, { material_transactions: %i[material unit] }] }]
+      ).first
     @areas_as_text = @observation.areas_as_text
     respond_with @observation
   end
@@ -77,19 +74,15 @@ class ObservationsController < ApplicationController
 
   def edit
     @observation =
-      Observation.where(id: params[:id])
-                 .includes(:observation_types,
-                           activities: { setups: :material_transactions })
-                 .first
+      Observation.where(id: params[:id]).includes(:observation_types, activities: { setups: :material_transactions })
+        .first
     respond_with @observation
   end
 
   def update
     @observation =
-      Observation.where(id: params[:id])
-                 .includes(:observation_types,
-                           activities: { setups: :material_transactions })
-                 .first
+      Observation.where(id: params[:id]).includes(:observation_types, activities: { setups: :material_transactions })
+        .first
     if @observation.update(observation_params) && @observation.save
       flash[:notice] = 'Observation was successfully updated.'
     end
@@ -103,23 +96,45 @@ class ObservationsController < ApplicationController
   end
 
   def related
-    @observation = Observation.where(id: params[:id])
-                              .includes(areas: :observations).first
+    @observation = Observation.where(id: params[:id]).includes(areas: :observations).first
   end
 
   private
 
   def observation_params
-    params.require(:observation)
-          .permit(:observation_date, :comment, { observation_type_ids: [] },
-                  :areas_as_text, { notes: [] }, :notes_cache,
-                  activities_attributes:
-                  [{ person: :id }, :person_id, :hours,
-                   :id, :_destroy,
-                   { setups_attributes:
-                     [{ equipment: [:id] }, :equipment_id, :id, :_destroy,
-                      { material_transactions_attributes:
-                       [:id, :material_id, { material: :id }, :rate,
-                        { unit: :id }, :unit_id, :_destroy] }] }])
+    params.require(:observation).permit(
+      :observation_date,
+      :comment,
+      { observation_type_ids: [] },
+      :areas_as_text,
+      { notes: [] },
+      :notes_cache,
+      activities_attributes: [
+        { person: :id },
+        :person_id,
+        :hours,
+        :id,
+        :_destroy,
+        {
+          setups_attributes: [
+            { equipment: %i[id] },
+            :equipment_id,
+            :id,
+            :_destroy,
+            {
+              material_transactions_attributes: [
+                :id,
+                :material_id,
+                { material: :id },
+                :rate,
+                { unit: :id },
+                :unit_id,
+                :_destroy
+              ]
+            }
+          ]
+        }
+      ]
+    )
   end
 end

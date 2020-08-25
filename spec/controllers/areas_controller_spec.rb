@@ -15,9 +15,7 @@ describe AreasController, type: :controller do
 
   describe 'Not signed in. ' do
     describe 'GET :index' do
-      before(:each) do
-        get :index
-      end
+      before(:each) { get :index }
 
       it { should render_template 'index' }
     end
@@ -28,9 +26,7 @@ describe AreasController, type: :controller do
     end
 
     describe 'POST :create' do
-      before(:each) do
-        post :create, params: { area: { name: 'T2R22' } }
-      end
+      before(:each) { post :create, params: { area: { name: 'T2R22' } } }
 
       it 'redirects to the login page' do
         expect(response).to redirect_to new_user_session_path
@@ -42,9 +38,7 @@ describe AreasController, type: :controller do
     end
 
     describe 'GET :show the area' do
-      before(:each) do
-        get :show, params: { id: area }
-      end
+      before(:each) { get :show, params: { id: area } }
 
       it 'assigns the right area to @area' do
         expect(assigns(:area)).to eq area
@@ -86,22 +80,16 @@ describe AreasController, type: :controller do
   end
 
   describe 'Signed in as normal user. ' do
-    before(:each) do
-      sign_in_as_normal_user
-    end
+    before(:each) { sign_in_as_normal_user }
 
     describe 'GET :index' do
-      before(:each) do
-        get :index
-      end
+      before(:each) { get :index }
 
       it { should render_template 'index' }
     end
 
     describe 'GET :new' do
-      before(:each) do
-        get :new
-      end
+      before(:each) { get :new }
 
       it 'renders the template new' do
         expect(response).to render_template 'new'
@@ -113,9 +101,7 @@ describe AreasController, type: :controller do
     end
 
     describe 'POST :create' do
-      before(:each) do
-        post :create, params: { area: { name: 'T2R22' } }
-      end
+      before(:each) { post :create, params: { area: { name: 'T2R22' } } }
 
       it { should redirect_to area_path(assigns(:area)) }
       it 'should create an area' do
@@ -135,9 +121,7 @@ describe AreasController, type: :controller do
     end
 
     describe 'GET :show the area' do
-      before(:each) do
-        get :show, params: { id: area }
-      end
+      before(:each) { get :show, params: { id: area } }
 
       it 'assigns the right area to @area' do
         expect(assigns(:area)).to eq area
@@ -147,9 +131,7 @@ describe AreasController, type: :controller do
     end
 
     describe 'GET :edit the area' do
-      before(:each) do
-        get :edit, params: { id: area }
-      end
+      before(:each) { get :edit, params: { id: area } }
 
       it 'assigns the right area to @area' do
         expect(assigns(:area)).to eq area
@@ -159,9 +141,7 @@ describe AreasController, type: :controller do
     end
 
     describe 'PUT :update the area with valid attributes' do
-      before(:each) do
-        put :update, params: { id: area, area: { name: 'new_area' } }
-      end
+      before(:each) { put :update, params: { id: area, area: { name: 'new_area' } } }
 
       it { should redirect_to area_url(assigns(:area)) }
 

@@ -54,15 +54,21 @@ class Salus
           warnings = ''
           unless seeds_per_square_meter
             warnings = 'ESTIMATED SEEDING RATE'
-            seeds_per_square_meter =
-              estimated_seeds_per_square_meter(transaction, warnings)
+            seeds_per_square_meter = estimated_seeds_per_square_meter(transaction, warnings)
           end
-          { type: 'planting', species: transaction.material.salus_code,
-            year: obs.obs_date.year, doy: obs.obs_date.yday,
-            depth: 2, row_spacing: row_spacing(transaction.material.salus_code),
+          {
+            type: 'planting',
+            species: transaction.material.salus_code,
+            year: obs.obs_date.year,
+            doy: obs.obs_date.yday,
+            depth: 2,
+            row_spacing: row_spacing(transaction.material.salus_code),
             warnings: warnings,
-            ppop: seeds_per_square_meter, url: url_for(obs),
-            notes: obs.comment, raw: [transaction, setup] }
+            ppop: seeds_per_square_meter,
+            url: url_for(obs),
+            notes: obs.comment,
+            raw: [transaction, setup]
+          }
         end.compact
       end
     end.first
@@ -70,9 +76,12 @@ class Salus
 
   def row_spacing(code)
     case code
-    when 'MZ' then 30
-    when 'SB' then 20
-    when 'WH' then 19
+    when 'MZ'
+      30
+    when 'SB'
+      20
+    when 'WH'
+      19
     end
   end
 
@@ -80,10 +89,17 @@ class Salus
     obs.activities.flat_map do |activity|
       activity.setups.flat_map do |setup|
         # next unless setup.equipment.equipment_type.try(:name) == 'tillage'
-        salus_code = setup.equipment.salus_code || 'TI000'
-        { type: 'tillage', year: obs.obs_date.year, doy: obs.obs_date.yday,
-          equipment: salus_code, depth: 6,
-          url: url_for(obs), notes: obs.comment }
+        salus_code =
+          setup.equipment.salus_code || 'TI000'
+        {
+          type: 'tillage',
+          year: obs.obs_date.year,
+          doy: obs.obs_date.yday,
+          equipment: salus_code,
+          depth: 6,
+          url: url_for(obs),
+          notes: obs.comment
+        }
       end.compact
     end.first
   end
@@ -94,23 +110,24 @@ class Salus
         setup.material_transactions.flat_map do |transaction|
           next unless transaction.material.material_type_name == 'fertilizer'
           code = transaction.material.salus_code || 'NOCOD'
-          { type: 'fertilizer', year: obs.obs_date.year, doy: obs.obs_date.yday,
+          {
+            type: 'fertilizer',
+            year: obs.obs_date.year,
+            doy: obs.obs_date.yday,
             n_rate: transaction.n_content_to_kg_ha,
             p_rate: transaction.p_content_to_kg_ha,
             k_rate: transaction.k_content_to_kg_ha,
             fertilizer: code,
-            url: url_for(obs), notes: obs.comment }
+            url: url_for(obs),
+            notes: obs.comment
+          }
         end.compact
       end
     end.first
   end
 
   def harvest_component(obs)
-    { type: 'harvest',
-      year: obs.obs_date.year,
-      doy: obs.obs_date.yday,
-      url: url_for(obs),
-      notes: obs.comment }
+    { type: 'harvest', year: obs.obs_date.year, doy: obs.obs_date.yday, url: url_for(obs), notes: obs.comment }
   end
 
   def records
@@ -118,39 +135,37 @@ class Salus
   end
 
   def fertilizer_records
-    area.observations
-        .select("'fertilizer' as type, observations.id, obs_date,
-                observations.comment")
-        .joins(:observation_types,
-               setups: [:material_transactions, { materials: :material_type }])
-        .where('material_types.name = ?', 'fertilizer')
-        .where('observation_types.name = ?', 'Fertilizer application').distinct
+    area.observations.select(
+      "'fertilizer' as type, observations.id, obs_date,
+                observations.comment"
+    ).joins(:observation_types, setups: [:material_transactions, { materials: :material_type }]).where(
+      'material_types.name = ?',
+      'fertilizer'
+    ).where('observation_types.name = ?', 'Fertilizer application').distinct
   end
 
   def planting_records
-    area.observations
-        .select("'planting' as type, observations.id, obs_date,
-                observations.comment")
-        .joins(:observation_types,
-               setups: [:material_transactions, { materials: :material_type }])
-        .where('material_types.name = ?', 'seed')
-        .where('observation_types.name = ?', 'Planting').distinct
+    area.observations.select(
+      "'planting' as type, observations.id, obs_date,
+                observations.comment"
+    ).joins(:observation_types, setups: [:material_transactions, { materials: :material_type }]).where(
+      'material_types.name = ?',
+      'seed'
+    ).where('observation_types.name = ?', 'Planting').distinct
   end
 
   def harvest_records
-    area.observations
-        .select("'harvest' as type, observations.id, obs_date,
-                observations.comment")
-        .joins(:observation_types)
-        .where('observation_types.name = ?', 'Harvest').distinct
+    area.observations.select(
+      "'harvest' as type, observations.id, obs_date,
+                observations.comment"
+    ).joins(:observation_types).where('observation_types.name = ?', 'Harvest').distinct
   end
 
   def tillage_records
-    area.observations
-        .select("'tillage' as type, observations.id, obs_date,
-                observations.comment")
-        .joins(:observation_types)
-        .where('observation_types.name = ?', 'Soil Preparation').distinct
+    area.observations.select(
+      "'tillage' as type, observations.id, obs_date,
+                observations.comment"
+    ).joins(:observation_types).where('observation_types.name = ?', 'Soil Preparation').distinct
   end
 
   def url_for(object)
@@ -165,8 +180,7 @@ class Salus
       seeds_per_square_meter = 30_000 * 2.47 / 1000
       warning += "\n ASSUMING 30,000 seeds per acre"
     elsif transaction.material.salus_code == 'RY'
-      seeds_per_square_meter, warning =
-        default_rye_seeds_per_square_meter(transaction, warning)
+      seeds_per_square_meter, warning = default_rye_seeds_per_square_meter(transaction, warning)
     end
     [seeds_per_square_meter, warning]
   end

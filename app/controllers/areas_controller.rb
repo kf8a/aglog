@@ -8,20 +8,14 @@ class AreasController < ApplicationController
     query = params[:q]
     areas = Area.all
 
-    @areas =
-      if query
-        areas.where(retired: false).order(:name).find_with_name_like(query).to_jquery_tokens
-      else
-        areas.roots
-      end
+    @areas = query ? areas.where(retired: false).order(:name).find_with_name_like(query).to_jquery_tokens : areas.roots
 
     respond_with @areas
   end
 
   def show
     @area = Area.find(params[:id])
-    @observations =
-      @area.leaf_observations.sort { |a, b| b.obs_date <=> a.obs_date }
+    @observations = @area.leaf_observations.sort { |a, b| b.obs_date <=> a.obs_date }
 
     respond_with @area
   end
@@ -32,8 +26,7 @@ class AreasController < ApplicationController
   end
 
   def create
-    @area = Area.new(area_params)
-    # @area.company = current_user.default_company
+    @area = Area.new(area_params) # @area.company = current_user.default_company
     if @area.save
       flash[:notice] = 'Area was successfully created.'
       respond_with @area
@@ -69,7 +62,6 @@ class AreasController < ApplicationController
   end
 
   def area_params
-    params.require(:area).permit(:name, :replicate, :study_id, :retired,
-                                 :treatment_id, :company_ids, :description)
+    params.require(:area).permit(:name, :replicate, :study_id, :retired, :treatment_id, :company_ids, :description)
   end
 end

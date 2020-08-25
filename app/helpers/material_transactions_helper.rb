@@ -1,10 +1,7 @@
 # helpers for material view
 module MaterialTransactionsHelper
   def materials
-    @materials ||= Material.order('material_type_id, name')
-                           .map do |material|
-      [material.name, material.id]
-    end
+    @materials ||= Material.order('material_type_id, name').map { |material| [material.name, material.id] }
   end
 
   def units

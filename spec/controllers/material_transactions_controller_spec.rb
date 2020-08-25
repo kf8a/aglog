@@ -1,8 +1,8 @@
-describe MaterialTransactionsController, type: :controller  do
+describe MaterialTransactionsController, type: :controller do
   render_views
 
   let(:material_transaction) { FactoryBot.build_stubbed(:material_transaction) }
-  let(:material)             { FactoryBot.build_stubbed(:material) }
+  let(:material) { FactoryBot.build_stubbed(:material) }
 
   before :each do
     allow(material_transaction).to receive(:save).and_return(true)
@@ -18,8 +18,7 @@ describe MaterialTransactionsController, type: :controller  do
     end
 
     it 'does not allow PUT :update' do
-      put :update, params: { id: material_transaction,
-                             material_transaction: { material_id: material } }
+      put :update, params: { id: material_transaction, material_transaction: { material_id: material } }
       expect(response).to redirect_to new_user_session_path
     end
 
@@ -30,14 +29,10 @@ describe MaterialTransactionsController, type: :controller  do
   end
 
   describe 'Signed in as a normal user. ' do
-    before(:each) do
-      sign_in_as_normal_user
-    end
+    before(:each) { sign_in_as_normal_user }
 
     describe 'POST :create' do
-      before(:each) do
-        post :create, params: { material_transaction: { material_id: material } }
-      end
+      before(:each) { post :create, params: { material_transaction: { material_id: material } } }
 
       it 'should create a material transaction' do
         expect(MaterialTransaction.exists?(assigns[:transaction].id)).to eq true
@@ -46,9 +41,7 @@ describe MaterialTransactionsController, type: :controller  do
 
     describe 'POST :create with a setup' do
       context 'with valid attributes' do
-        before(:each) do
-          post :create, params: { material_transaction: { setup_id: 1, material_id: material } }
-        end
+        before(:each) { post :create, params: { material_transaction: { setup_id: 1, material_id: material } } }
 
         it 'creates a new material_transaction' do
           expect(MaterialTransaction.exists?(assigns[:transaction].id)).to eq true
@@ -56,9 +49,7 @@ describe MaterialTransactionsController, type: :controller  do
       end
 
       context 'with invalid attributes' do
-        before(:each) do
-          post :create, params: { material_transaction: { setup_id: 1 } }
-        end
+        before(:each) { post :create, params: { material_transaction: { setup_id: 1 } } }
 
         it 'creates a new material_transaction' do
           expect(MaterialTransaction.exists?(assigns[:transaction].id)).to eq false

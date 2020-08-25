@@ -24,9 +24,14 @@ class MaterialTransactionsController < ApplicationController
   private
 
   def material_transaction_params
-    params.require(:material_transaction).permit(:material_id, :unit_id,
-                                                 :setup_id, :rate, :cents,
-                                                 :material_transaction_type_id,
-                                                 :transaction_datetime)
+    params.require(:material_transaction).permit(
+      :material_id,
+      :unit_id,
+      :setup_id,
+      :rate,
+      :cents,
+      :material_transaction_type_id,
+      :transaction_datetime
+    )
   end
 end

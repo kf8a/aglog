@@ -3,7 +3,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -14,19 +14,14 @@ def find_or_factory(model, attributes = {})
   model_as_constant = model.to_s.titleize.delete(' ').constantize
   object = model_as_constant.where(attributes).first
   object ||= FactoryBot.create(model.to_sym, attributes)
-
   object
 end
 
 def sign_in_as_normal_user(company_name = 'lter')
-  company = find_or_factory(:company, name: company_name)
-  @user = find_or_factory(:user)
-  member = Membership.new
-  member.person = @user.person
-  member.company = company
-  member.default_company = true
-  member.save!
-  sign_in @user
+  # company = find_or_factory(:company, name: company_name)
+  # person = Person.first_or_create
+  user = FactoryBot.create(:user) # member.save!
+  sign_in user
 end
 
 RSpec.configure do |config|
@@ -46,8 +41,7 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-class PersonSessionsController
-  # override new in PersonSessionsController for easier testing
+class PersonSessionsController # override new in PersonSessionsController for easier testing
   def new
     person = Person.first
     self.current_user = person

@@ -4,11 +4,11 @@ class CreateTreatments < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :study_id
     end
-    add_column "areas", "treatment_id", :integer
+    add_column 'areas', 'treatment_id', :integer
   end
 
   def self.down
     drop_table :treatments
-    remove_column "areas", "treatment_id"
+    remove_column 'areas', 'treatment_id'
   end
 end

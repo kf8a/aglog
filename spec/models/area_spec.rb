@@ -2,15 +2,12 @@ require 'rails_helper'
 
 def non_existent_study_id
   id = 1
-  while Study.exists?(id)
-    id += 1
-  end
+  id += 1 while Study.exists?(id)
 
   id
 end
 
 describe Area do
-
   describe 'expanding and coalesing Areas' do
     context 'a plot with children' do
       before(:example) do
@@ -77,8 +74,7 @@ describe Area do
     end
 
     describe 'an area with a treatment and a consistent study' do
-      subject { Area.new(study_id: @study.id, treatment_id: @treatment.id,
-                         name: 'consistent_area') }
+      subject { Area.new(study_id: @study.id, treatment_id: @treatment.id, name: 'consistent_area') }
       it { is_expected.to be_valid }
     end
 
@@ -116,7 +112,7 @@ describe Area do
 
     it "correctly parses 'F1'" do
       areas = Area.parse('F1')
-      assert areas.any? {|a| a.name == "F1R1"}
+      assert areas.any? { |a| a.name == 'F1R1' }
     end
 
     it "correctly parses 'B20'" do
@@ -137,7 +133,7 @@ describe Area do
 
     it 'returns an array with one element when given a whole area name to parse' do
       areas = Area.parse('T1R1')
-      assert areas.all? {|x| x.class.name =='Area'}
+      assert areas.all? { |x| x.class.name == 'Area' }
       assert_equal 'T1R1', areas[0].name
       assert_equal 1, areas.size
     end
@@ -149,7 +145,7 @@ describe Area do
 
     it "correctly parses 'iF9'" do
       areas = Area.parse('iF9')
-      assert areas.any? {|a| a.name  == 'iF9R1' }
+      assert areas.any? { |a| a.name == 'iF9R1' }
     end
 
     it 'correctly parses Fertility Gradient areas' do
@@ -254,21 +250,20 @@ describe Area do
     end
 
     it 'correctly unparses various other areas' do
-      test_strings =
-        ['T1 B1',
-         'B1 T1',
-         'T1 T2R1',
-         'B1 B2R1',
-         'T1R1 T1R2 T1R3',
-         'B1R1 B1R2 B1R3',
-         'F1',
-         'iF1',
-         # 'REPT1',
-         'T1']
+      test_strings = [
+        'T1 B1',
+        'B1 T1',
+        'T1 T2R1',
+        'B1 B2R1',
+        'T1R1 T1R2 T1R3',
+        'B1R1 B1R2 B1R3',
+        'F1',
+        'iF1',
+        # 'REPT1',
+        'T1'
+      ]
 
-      test_strings.each do |s|
-        parse_reverse(s)
-      end
+      test_strings.each { |s| parse_reverse(s) }
     end
 
     it 'correctly parse/unparses in the right order' do
@@ -331,8 +326,7 @@ describe Area do
   end
 
   def find_by_study_and_treatment_number(study, treatment_number)
-    treatments = Treatment.where(study_id: study,
-                                 treatment_number: treatment_number)
+    treatments = Treatment.where(study_id: study, treatment_number: treatment_number)
     treatments.collect(&:areas).flatten
   end
 end
