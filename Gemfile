@@ -34,12 +34,15 @@ end
 
 group :development do
   gem 'bcrypt_pbkdf'
+  gem 'capistrano3-unicorn'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'capistrano3-unicorn'
   gem 'ed25519'
+  gem 'prettier'
   gem 'rbnacl'
   gem 'rbnacl-libsodium'
+  gem 'rubocop-thread_safety'
+  gem 'rubocop-rails'
   gem 'sqlite3'
 end
 

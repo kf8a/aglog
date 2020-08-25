@@ -1,13 +1,13 @@
 GIT
   remote: https://github.com/rspec/rspec-core
-  revision: 24e5b7b0059bc35bdeb0e0c985ffa7ff4e2362aa
+  revision: e7c5d030966a7e8dad3e0a67c61920c4f2437c15
   specs:
     rspec-core (3.10.0.pre)
       rspec-support (= 3.10.0.pre)
 
 GIT
   remote: https://github.com/rspec/rspec-expectations
-  revision: c87ab72748d4467fe8f9d84fe0ab87f314b18f6c
+  revision: e63ff4765e1cd2798b02ddddad259f1104ef87a5
   specs:
     rspec-expectations (3.10.0.pre)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-its
-  revision: ca88d66caa3e3ec512db09e2c0ca521241a4969c
+  revision: aca1c95014578cfc43b27dc0ff259909e4c4cd87
   specs:
     rspec-its (1.3.0)
       rspec-core (>= 3.0.0)
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-mocks
-  revision: 1728885f65b25a9676c5ce54133ef8a1283e2e0d
+  revision: 0a52e0a86b126b4bab94d277b2ad99a7492dc37d
   specs:
     rspec-mocks (3.10.0.pre)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails
-  revision: 56aed229410a8e7a30743d82b8770596fd8c125c
+  revision: 01704c50c146f720db914724c25681781ecefb23
   specs:
     rspec-rails (4.1.0.pre)
       actionpack (>= 4.2)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-support
-  revision: 47c9ea9479e65c9f719a3bbdb20f516b773cad97
+  revision: 6447b0c2c9d1cd3e1504784fb85675ca9ae7b7c3
   specs:
     rspec-support (3.10.0.pre)
 
@@ -110,9 +110,10 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    awesome_nested_set (3.2.0)
+    ast (2.4.1)
+    awesome_nested_set (3.2.1)
       activerecord (>= 4.0.0, < 7.0)
-    bcrypt (3.1.13)
+    bcrypt (3.1.15)
     bcrypt_pbkdf (1.0.1)
     builder (3.2.4)
     capistrano (3.14.1)
@@ -120,11 +121,11 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
-    capistrano-bundler (1.6.0)
+    capistrano-bundler (2.0.1)
       capistrano (~> 3.1)
-    capistrano-rails (1.5.0)
+    capistrano-rails (1.6.1)
       capistrano (~> 3.1)
-      capistrano-bundler (~> 1.1)
+      capistrano-bundler (>= 1.1, < 3)
     capistrano3-unicorn (0.2.1)
       capistrano (~> 3.1, >= 3.1.0)
     carrierwave (2.1.0)
@@ -135,7 +136,7 @@ GEM
       mimemagic (>= 0.3.0)
       mini_mime (>= 0.1.3)
     chronic (0.10.2)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     crass (1.0.6)
     devise (4.7.2)
       bcrypt (~> 3.0)
@@ -143,22 +144,22 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    diff-lcs (1.3)
-    dotenv (2.7.5)
-    dotenv-rails (2.7.5)
-      dotenv (= 2.7.5)
-      railties (>= 3.2, < 6.1)
+    diff-lcs (1.4.4)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     ed25519 (1.2.4)
     erubi (1.9.0)
-    factory_bot (6.0.1)
+    factory_bot (6.1.0)
       activesupport (>= 5.0.0)
-    factory_bot_rails (6.0.0)
-      factory_bot (~> 6.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    i18n (1.8.3)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     image_processing (1.11.0)
       mini_magick (>= 4.9.5, < 5)
@@ -186,11 +187,15 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     nio4r (2.5.2)
-    nokogiri (1.10.9)
+    nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    parallel (1.19.2)
+    parser (2.7.1.4)
+      ast (~> 2.4.1)
     pg (1.2.3)
-    prometheus-client (2.0.0)
+    prettier (0.19.1)
+    prometheus-client (2.1.0)
     public_suffix (4.0.5)
     rack (2.2.3)
     rack-proxy (0.6.5)
@@ -212,10 +217,10 @@ GEM
       bundler (>= 1.3.0)
       railties (= 6.0.3.2)
       sprockets-rails (>= 2.0.0)
-    rails-controller-testing (1.0.4)
-      actionpack (>= 5.0.1.x)
-      actionview (>= 5.0.1.x)
-      activesupport (>= 5.0.1.x)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -227,6 +232,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
+    rainbow (3.0.0)
     raindrops (0.19.1)
     rake (13.0.1)
     rb-fsevent (0.10.4)
@@ -236,9 +242,29 @@ GEM
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
+    regexp_parser (1.7.1)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.4)
+    rubocop (0.89.1)
+      parallel (~> 1.10)
+      parser (>= 2.7.1.1)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.7)
+      rexml
+      rubocop-ast (>= 0.3.0, < 1.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-ast (0.3.0)
+      parser (>= 2.7.1.4)
+    rubocop-rails (2.7.1)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 0.87.0)
+    rubocop-thread_safety (0.4.1)
+      rubocop (>= 0.51.0)
+    ruby-progressbar (1.10.1)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     seedbed (1.1.1)
@@ -269,23 +295,24 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
-    unicorn (5.5.5)
+    unicode-display_width (1.7.0)
+    unicorn (5.6.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webpacker (5.1.1)
+    webpacker (5.2.1)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    websocket-driver (0.7.2)
+    websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.0)
     will_paginate-bootstrap (1.0.2)
       will_paginate (>= 3.0.3)
-    zeitwerk (2.3.0)
+    zeitwerk (2.4.0)
 
 PLATFORMS
   ruby
@@ -305,6 +332,7 @@ DEPENDENCIES
   jbuilder
   listen
   pg
+  prettier
   prometheus-client
   rails (~> 6.0)
   rails-controller-testing
@@ -316,6 +344,8 @@ DEPENDENCIES
   rspec-mocks!
   rspec-rails!
   rspec-support!
+  rubocop-rails
+  rubocop-thread_safety
   seedbed
   shoulda
   simple_form
