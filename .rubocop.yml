@@ -1,0 +1,18 @@
+require:
+  - rubocop-thread_safety
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+Layout/LineLength:
+  Max: 100
+Rails:
+  Enabled: true
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Style/CommentedKeyword:
+  Enabled: false
