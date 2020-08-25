@@ -16,17 +16,12 @@ class Material < ActiveRecord::Base
   validates :name, uniqueness: { case_sensitive: false }
 
   def self.find_with_children(id)
-    where(id: id).includes(:material_transactions,
-                           setups: { observation: :observation_types }).first
+    where(id: id).includes(:material_transactions, setups: { observation: :observation_types }).first
   end
 
   # Converts liquids from millileter to grams.
   def to_mass(amount)
-    if liquid
-      (amount * specific_weight)
-    else
-      amount
-    end
+    liquid ? (amount * specific_weight) : amount
   end
 
   def observations

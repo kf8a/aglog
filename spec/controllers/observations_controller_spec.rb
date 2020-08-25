@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe ObservationsController, type: :controller  do
+describe ObservationsController, type: :controller do
   render_views
 
   let(:observation) { FactoryBot.build_stubbed(:observation) }
@@ -52,14 +52,10 @@ describe ObservationsController, type: :controller  do
   end
 
   describe 'as an an authenticated user' do
-    before(:each) do
-      sign_in_as_normal_user
-    end
+    before(:each) { sign_in_as_normal_user }
 
     describe 'GET :index' do
-      before(:each) do
-        get :index
-      end
+      before(:each) { get :index }
 
       it 'renders the index template' do
         expect(response).to render_template 'index'
@@ -79,11 +75,10 @@ describe ObservationsController, type: :controller  do
         get :index, params: { obstype: observation_type }
 
         right_type = find_or_factory(:observation_type)
-        @correct_type_observation = FactoryBot.create(:observation),
-          @correct_type_observation.observation_types << right_type
+        @correct_type_observation =
+          FactoryBot.create(:observation), @correct_type_observation.observation_types << right_type
         @correct_type_observation.save
-        wrong_type = find_or_factory(:observation_type,
-                                     name: 'wrong_type')
+        wrong_type = find_or_factory(:observation_type, name: 'wrong_type')
         @wrong_type_observation = FactoryBot.create(:observation)
         @wrong_type_observation.observation_types = [wrong_type]
         @wrong_type_observation.save
@@ -104,9 +99,7 @@ describe ObservationsController, type: :controller  do
     end
 
     describe 'GET :index in salus_xml format' do
-      before(:each) do
-        get :index, params: { format: 'salus_xml' }
-      end
+      before(:each) { get :index, params: { format: 'salus_xml' } }
 
       it 'should respond with content type text/xml' do
         expect(response.content_type).to eq 'text/xml'
@@ -114,19 +107,15 @@ describe ObservationsController, type: :controller  do
     end
 
     describe 'GET :index in salus_csv format' do
-      before(:each) do
-        get :index, params: { format: 'salus_csv' }
-      end
+      before(:each) { get :index, params: { format: 'salus_csv' } }
 
       it 'should respond with content type test/text' do
-        expect(response.content_type). to eq 'text/text'
+        expect(response.content_type).to eq 'text/text'
       end
     end
 
     describe 'GET :new' do
-      before(:each) do
-        get :new
-      end
+      before(:each) { get :new }
 
       it 'should assign a new observation to @observation' do
         expect(assigns(:observation)).to be_a_new(Observation)
@@ -138,8 +127,8 @@ describe ObservationsController, type: :controller  do
       before(:each) do
         @observation_count = Observation.count
         observation_type = FactoryBot.create :observation_type
-        post :create, params: { observation: { observation_date: Date.today,
-                                               observation_type_ids: [observation_type.id] } }
+        post :create,
+             params: { observation: { observation_date: Date.today, observation_type_ids: [observation_type.id] } }
       end
 
       it 'should create an observation' do
@@ -154,24 +143,19 @@ describe ObservationsController, type: :controller  do
     describe 'An observation exists. ' do
       before(:each) do
         observation_type = FactoryBot.create :observation_type
-        @observation = FactoryBot.create(:observation,
-                                         observation_types: [observation_type],
-                                         company: @user.companies.first)
+        person = Person.first_or_create
+        @observation = FactoryBot.create(:observation, person: person, observation_types: [observation_type])
         expect(@observation.save)
       end
 
       describe 'GET :show the observation' do
-        before(:each) do
-          get :show, params: { id: @observation.id }
-        end
+        before(:each) { get :show, params: { id: @observation.id } }
 
         it { should render_template 'show' }
       end
 
       describe 'GET :edit the observation' do
-        before(:each) do
-          get :edit, params: { id: @observation.id }
-        end
+        before(:each) { get :edit, params: { id: @observation.id } }
 
         it { should render_template 'edit' }
       end
@@ -179,9 +163,15 @@ describe ObservationsController, type: :controller  do
       describe 'PUT :update the observation' do
         before(:each) do
           @current_obs_date = @observation.obs_date
-          xhr(:put, :update, params: { id: @observation.id,
-                                       commit: 'Update Observation',
-                                       observation: { observation_date: @current_obs_date - 1 } })
+          xhr(
+            :put,
+            :update,
+            params: {
+              id: @observation.id,
+              commit: 'Update Observation',
+              observation: { observation_date: @current_obs_date - 1 }
+            }
+          )
         end
 
         # it 'should update the observation' do
@@ -219,15 +209,27 @@ describe ObservationsController, type: :controller  do
   private
 
   def default_params(commit_text)
-    { 'observation': { 'obs_date(1i)': '2007', 'obs_date(2i)': '6', 'obs_date(3i)': '27',
-                       'areas_as_text': '', 'comment': '' },
-                       'commit': commit_text, 'activity_index': '0',
-                       'setup_index': '0', id:  '',
-                       'activities'=>{
-                         '0': { 'setups': {
-                           '0': { 'equipment_id': '2', 'material_transactions': {
-                             '0': { 'material_id': '3', 'rate': '5', 'unit_id': '3'}}}},
-                         'hours': '1', 'person_id': '2'}},
-                         'controller': 'observations', 'material_index': '0'}
+    {
+      'observation': {
+        'obs_date(1i)': '2007', 'obs_date(2i)': '6', 'obs_date(3i)': '27', 'areas_as_text': '', 'comment': ''
+      },
+      'commit': commit_text,
+      'activity_index': '0',
+      'setup_index': '0',
+      id: '',
+      'activities' => {
+        '0': {
+          'setups': {
+            '0': {
+              'equipment_id': '2', 'material_transactions': { '0': { 'material_id': '3', 'rate': '5', 'unit_id': '3' } }
+            }
+          },
+          'hours': '1',
+          'person_id': '2'
+        }
+      },
+      'controller': 'observations',
+      'material_index': '0'
+    }
   end
 end

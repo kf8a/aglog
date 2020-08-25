@@ -12,8 +12,7 @@ class Area < ActiveRecord::Base
 
   scope :by_company, ->(company) { where(company_id: company) }
 
-  validates :name, uniqueness: { case_sensitive: false,
-                                 scope: :company_id }
+  validates :name, uniqueness: { case_sensitive: false, scope: :company_id }
   validates :study, presence: { if: :study_id }
 
   # validate :treatment_is_part_of_study
@@ -37,9 +36,7 @@ class Area < ActiveRecord::Base
   def self.coalese(areas = [])
     areas_to_check = areas.to_a # make sure we have an array to work with
     areas = areas.map(&:expand).flatten.to_set
-    while areas_to_check.present?
-      areas_to_check, areas = replace_full_family_with_parent(areas_to_check, areas)
-    end
+    areas_to_check, areas = replace_full_family_with_parent(areas_to_check, areas) while areas_to_check.present?
 
     areas.to_a
   end
@@ -83,28 +80,19 @@ class Area < ActiveRecord::Base
 
   def <=>(other)
     comp = level <=> other.level
-    if comp == 0
-      comp = name <=> other.name
-    end
+    comp = name <=> other.name if comp == 0
 
     comp
   end
 
   def leaf_observations
-    if leaf?
-      observations
-    else
-      leaves.map(&:observations)
-            .flatten.compact.uniq
-    end
+    leaf? ? observations : leaves.map(&:observations).flatten.compact.uniq
   end
 
   def self.mark_tokens(invalid_tokens)
     return mark_token(invalid_tokens) unless invalid_tokens.respond_to?(:compact)
 
-    invalid_tokens.compact.collect do |token|
-      mark_token(token)
-    end
+    invalid_tokens.compact.collect { |token| mark_token(token) }
   end
 
   def self.mark_token(invalid_token)
@@ -114,7 +102,7 @@ class Area < ActiveRecord::Base
   def self.replace_full_family_with_parent(areas_to_check, areas)
     area = areas_to_check.pop
     if areas.superset?(area.siblings.to_set)
-      areas          = adjust_collection(areas, area)
+      areas = adjust_collection(areas, area)
       areas_to_check = adjust_collection(areas_to_check, area)
     elsif area.root?
       areas << area

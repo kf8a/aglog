@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe PeopleController, type: :controller  do
+describe PeopleController, type: :controller do
   render_views
 
   let(:person) { FactoryBot.build_stubbed(:person, sur_name: 'hastings', given_name: 'bill') }
@@ -54,9 +54,7 @@ describe PeopleController, type: :controller  do
   end
 
   describe 'as an authenticated user' do
-    before(:each) do
-      sign_in_as_normal_user
-    end
+    before(:each) { sign_in_as_normal_user }
 
     describe 'GET :index' do
       before(:each) do
@@ -78,9 +76,7 @@ describe PeopleController, type: :controller  do
     end
 
     describe 'GET :show' do
-      before(:each) do
-        get :show, params: { id: person }
-      end
+      before(:each) { get :show, params: { id: person } }
 
       it 'renders the show template' do
         expect(response).to render_template 'show'
@@ -91,9 +87,7 @@ describe PeopleController, type: :controller  do
     end
 
     describe 'GET :new' do
-      before(:each) do
-        get :new
-      end
+      before(:each) { get :new }
       it 'renders template new' do
         expect(response).to render_template 'new'
       end
@@ -104,9 +98,7 @@ describe PeopleController, type: :controller  do
 
     describe 'POST :create' do
       context 'with valid parameters' do
-        before(:each) do
-          post :create, params: { person: { sur_name: 'Brown', given_name: 'Bill' } }
-        end
+        before(:each) { post :create, params: { person: { sur_name: 'Brown', given_name: 'Bill' } } }
 
         it 'creates a new person' do
           expect(Person.exists?(assigns(:person).id)).to eq true
@@ -119,8 +111,9 @@ describe PeopleController, type: :controller  do
 
     describe 'GET :edit' do
       before(:each) do
-        expect(Person).to receive(:find_in_company).with(controller.current_user.companies,
-                                                         person.id.to_s).and_return(person)
+        expect(Person).to receive(:find_in_company).with(controller.current_user.companies, person.id.to_s).and_return(
+          person
+        )
         get :edit, params: { id: person }
       end
 
@@ -136,16 +129,15 @@ describe PeopleController, type: :controller  do
     describe 'PUT :update' do
       context 'with valid parameters' do
         before(:each) do
-          expect(Person).to receive(:find_in_company).with(controller.current_user.companies,
-                                                           person.id.to_s).and_return(person)
+          expect(Person).to receive(:find_in_company).with(controller.current_user.companies, person.id.to_s)
+            .and_return(person)
           expect(person).to receive(:update_attributes).with(any_args).and_return(true)
           put :update, params: { id: person, person: { given_name: 'Bob' } }
         end
 
         it 'redirects to the person' do
           expect(response).to redirect_to person
-        end
-        # it {should set_the_flash}
+        end # it {should set_the_flash}
       end
 
       context 'with invalid parametes' do

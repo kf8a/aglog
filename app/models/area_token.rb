@@ -9,17 +9,19 @@ class AreaToken
   def self.tokens_to_areas(tokens, company)
     valids = valid_areas(tokens, company)
 
-    areas = valids.collect.each_with_index do |valid, index|
-      next unless valid
+    areas =
+      valids.collect.each_with_index do |valid, index|
+        next unless valid
 
-      find_area(tokens[index], company).expand
-    end.compact.flatten
+        find_area(tokens[index], company).expand
+      end.compact.flatten
 
-    invalid_strings = valids.collect.each_with_index do |valid, index|
-      next if valid
+    invalid_strings =
+      valids.collect.each_with_index do |valid, index|
+        next if valid
 
-      tokens[index]
-    end.compact
+        tokens[index]
+      end.compact
     [areas, invalid_strings]
   end
 
@@ -40,11 +42,7 @@ class AreaToken
   end
 
   def to_area(token)
-    if number_token?(token)
-      Area.find(token.to_i)
-    else
-      Area.find_by(name: token, company: @company)
-    end
+    number_token?(token) ? Area.find(token.to_i) : Area.find_by(name: token, company: @company)
   end
 
   def number_token?(token)

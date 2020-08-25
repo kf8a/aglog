@@ -1,9 +1,6 @@
 describe MaterialTransaction do
-
-  context "A material transaction " do
-    before(:each) do
-      @transaction = MaterialTransaction.new
-    end
+  context 'A material transaction ' do
+    before(:each) { @transaction = MaterialTransaction.new }
 
     context '180 lb of 46-0-0 ' do
       before(:each) do
@@ -22,8 +19,8 @@ describe MaterialTransaction do
     describe '16 gal of 28-0-0 ' do
       before do
         @transaction.rate = 16
-        @material = FactoryBot.build(:material, name: 'n_content_material', n_content: 28,
-                                                liquid: true, specific_weight: 1.28)
+        @material =
+          FactoryBot.build(:material, name: 'n_content_material', n_content: 28, liquid: true, specific_weight: 1.28)
         @unit = FactoryBot.build(:unit, conversion_factor: 3785.41)
         @transaction.material = @material
         @transaction.unit = @unit

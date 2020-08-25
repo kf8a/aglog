@@ -8,22 +8,14 @@ require 'rails/test_help'
 require 'factory_bot'
 require 'shoulda'
 
-class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-  #fixtures :all
-
+class ActiveSupport::TestCase #fixtures :all
   # Add more helper methods to be used by all tests here...
   setup :load_data_if_necessary
 
   protected
 
   def load_data_if_necessary
-    if Area.find_by_name("iF9R4").blank?
-      load "#{Rails.root}/db/seeds.rb"
-    end
+    load "#{Rails.root}/db/seeds.rb" if Area.find_by_name('iF9R4').blank?
   end
 
   def sign_in_as_normal_user
@@ -34,11 +26,9 @@ class ActiveSupport::TestCase
   def sign_out
     session[:user_id] = nil
   end
-
 end
 
 #Shoulda currently has a bug where they use Test::Unit instead of ActiveSupport
 unless defined?(Test::Unit::AssertionFailedError)
-  class Test::Unit::AssertionFailedError < ActiveSupport::TestCase::Assertion
-  end
+  class Test::Unit::AssertionFailedError < ActiveSupport::TestCase::Assertion; end
 end

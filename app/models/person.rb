@@ -15,8 +15,7 @@ class Person < ActiveRecord::Base
   validates :given_name, presence: { unless: :sur_name }
   validates :sur_name, presence: { unless: :given_name }
 
-  validate :name_must_be_unique
-  # validates :memberships, presence: true
+  validate :name_must_be_unique # validates :memberships, presence: true
 
   scope :by_company, ->(company) { joins(:memberships).where(memberships: { company_id: company }) }
 
@@ -38,9 +37,10 @@ class Person < ActiveRecord::Base
   end
 
   def name_must_be_unique
-    person = Person.where(['lower(given_name) = ?', given_name.try(:downcase)])
-                   .where(['lower(sur_name) = ?', sur_name.try(:downcase)])
-                   .to_a - [self]
+    person =
+      Person.where(['lower(given_name) = ?', given_name.try(:downcase)]).where(
+        ['lower(sur_name) = ?', sur_name.try(:downcase)]
+      ).to_a - [self]
     errors.add(:base, 'Name must be unique') if person.present?
   end
 

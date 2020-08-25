@@ -5,19 +5,13 @@ class EquipmentController < ApplicationController
   respond_to :json, :html
 
   def index
-    @equipment = if current_user
-                   equipment.ordered
-                 else
-                   Equipment.ordered
-                 end
+    @equipment = current_user ? equipment.ordered : Equipment.ordered
 
     respond_with @equipment
   end
 
   def show
-    @equipment = Equipment.where(id: params[:id])
-                          .includes(setups: { observation: :observation_types })
-                          .first
+    @equipment = Equipment.where(id: params[:id]).includes(setups: { observation: :observation_types }).first
     @equipment_pictures = @equipment.equipment_pictures.load
     respond_with @equipment
   end
@@ -39,9 +33,7 @@ class EquipmentController < ApplicationController
 
   def edit
     @equipment = equipment
-    if @equipment.equipment_pictures.empty?
-      @equipment_pictures = @equipment.equipment_pictures.build
-    end
+    @equipment_pictures = @equipment.equipment_pictures.build if @equipment.equipment_pictures.empty?
     respond_with @equipment
   end
 
@@ -65,10 +57,16 @@ class EquipmentController < ApplicationController
   private
 
   def equipment_params
-    params.require(:equipment).permit(:name, :use_material, :is_tractor,
-                                      :description, :non_msu, :archived,
-                                      :company_id,
-                                      equipment_pictures_attributes: {})
+    params.require(:equipment).permit(
+      :name,
+      :use_material,
+      :is_tractor,
+      :description,
+      :non_msu,
+      :archived,
+      :company_id,
+      equipment_pictures_attributes: {}
+    )
   end
 
   def update_pictures
@@ -76,9 +74,7 @@ class EquipmentController < ApplicationController
     return unless pictures
 
     pictures['equipment_picture'].each do |picture|
-      @equipment_picture = @equipment.equipment_pictures
-                                     .create(picture: picture,
-                                             equipment_id: @equipment.id)
+      @equipment_picture = @equipment.equipment_pictures.create(picture: picture, equipment_id: @equipment.id)
     end
   end
 

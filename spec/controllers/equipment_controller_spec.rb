@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-describe EquipmentController, type: :controller  do
+describe EquipmentController, type: :controller do
   render_views
 
   let(:company) { find_or_factory(:company, name: 'lter') }
   let(:equipment) { find_or_factory(:equipment, company: company) }
 
   describe 'Not signed in. ' do
-    before do
-      @equipment = FactoryBot.create(:equipment, company: company)
-    end
+    before { @equipment = FactoryBot.create(:equipment, company: company) }
 
     it 'renders the index' do
       get :index
@@ -22,8 +20,7 @@ describe EquipmentController, type: :controller  do
     end
 
     it 'does not allow create' do
-      post :create, params: { equipment: { name: 'Controller Creation',
-                                           equipment_pictures: [] } }
+      post :create, params: { equipment: { name: 'Controller Creation', equipment_pictures: [] } }
       expect(response).to redirect_to new_user_session_path
     end
 
@@ -52,14 +49,14 @@ describe EquipmentController, type: :controller  do
     before(:each) do
       company2 = find_or_factory(:company, name: 'glbrc')
 
-      @equipment2 = find_or_factory(:equipment, name: 'glbrc_tractor',
-                                                company: company2)
+      @equipment2 = find_or_factory(:equipment, name: 'glbrc_tractor', company: company2)
     end
 
     before(:each) do
       sign_in_as_normal_user
 
-      @equipment1 = find_or_factory(:equipment, name: 'lter_tractor')
+      company = find_or_factory(:company)
+      @equipment1 = find_or_factory(:equipment, name: 'lter_tractor', company: company)
     end
 
     after(:all) do
@@ -68,12 +65,9 @@ describe EquipmentController, type: :controller  do
     end
 
     describe 'GET :index' do
-      before(:each) do
-        get :index
-      end
+      before(:each) { get :index }
 
       it { should render_template 'index' }
-
     end
 
     it 'allows new' do
@@ -88,16 +82,13 @@ describe EquipmentController, type: :controller  do
       end
 
       it 'redirects to the new equipment' do
-        post :create, params: { equipment: { name: 'Controller Creation',
-                                             company_id: @user.companies.first } }
+        post :create, params: { equipment: { name: 'Controller Creation', company_id: @user.companies.first } }
         expect(response).to redirect_to equipment_path(assigns(:equipment))
       end
     end
 
     describe 'POST :create with invalid attributes' do
-      before(:each) do
-        post :create, params: { equipment: { name: 'lter_tractor' } } # Repeated name
-      end
+      before(:each) { post :create, params: { equipment: { name: 'lter_tractor' } } } # Repeated name
 
       it { is_expected.to render_template 'new' }
       it { is_expected.to_not set_flash }
@@ -105,30 +96,24 @@ describe EquipmentController, type: :controller  do
 
     describe 'An equipment exists. ' do
       before(:each) do
-        @equipment = find_or_factory(:equipment,
-                                     company_id: @user.companies.first)
+        company = find_or_factory(:company, name: 'lter')
+        @equipment = find_or_factory(:equipment, company: company)
       end
 
       describe 'GET :show the equipment' do
-        before(:each) do
-          get :show, params: { id: @equipment }
-        end
+        before(:each) { get :show, params: { id: @equipment } }
 
         it { is_expected.to render_template 'show' }
       end
 
       describe 'GET :edit the equipment' do
-        before(:each) do
-          get :edit, params: { id: @equipment }
-        end
+        before(:each) { get :edit, params: { id: @equipment } }
 
         it { is_expected.to render_template 'edit' }
       end
 
       describe 'PUT :update the equipment with valid attributes' do
-        before(:each) do
-          put :update, params: { id: @equipment, equipment: { name: 'New Name' } }
-        end
+        before(:each) { put :update, params: { id: @equipment, equipment: { name: 'New Name' } } }
 
         it { is_expected.to redirect_to equipment_path(@equipment) }
         it 'should change the equipment' do
@@ -139,20 +124,15 @@ describe EquipmentController, type: :controller  do
 
       describe 'PUT :update the equipment with invalid attributes' do
         before(:each) do
-          @equipment =
-            find_or_factory(:equipment, name: 'Repeat_name',
-                                        company: @user.companies.first)
-          put :update, params: { id: @equipment,
-                                 equipment: { name: 'new name', company_id: nil } }
+          @equipment = find_or_factory(:equipment, name: 'Repeat_name', company: @user.companies.first)
+          put :update, params: { id: @equipment, equipment: { name: 'new name', company_id: nil } }
         end
 
         it { is_expected.to render_template :edit }
       end
 
       describe 'DELETE :destroy the equipment' do
-        before(:each) do
-          delete :destroy, params: { id: @equipment }
-        end
+        before(:each) { delete :destroy, params: { id: @equipment } }
 
         it { is_expected.to redirect_to equipment_index_path }
 

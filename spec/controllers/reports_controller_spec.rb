@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-describe ReportsController, type: :controller  do
+describe ReportsController, type: :controller do
   render_views
 
-  before(:each) do
-    sign_in_as_normal_user
-  end
+  before(:each) { sign_in_as_normal_user }
 
   it 'GET :index, ordered by plot' do
     get :index, params: { order: 'plot' }

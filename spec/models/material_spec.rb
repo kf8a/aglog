@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 describe Material do
-
   describe 'a valid material' do
-
     describe 'an archived material' do
       subject { Material.new(name: 'deprecated', archived: true) }
       it { expect(subject).to be_valid }
@@ -33,9 +31,7 @@ describe Material do
     end
 
     describe 'A material exists that is liquid. ' do
-      before(:each) do
-        @material = Material.new(name: 'liquid_material', liquid: true)
-      end
+      before(:each) { @material = Material.new(name: 'liquid_material', liquid: true) }
 
       context 'to_mass(amount)' do
         it 'has the right number' do

@@ -8,12 +8,10 @@ Rails.application.routes.draw do
   post '/areas/:id/move_before/:parent_id' => 'areas#move_before'
   resources :areas
   resources :observations do
-    collection do
-      get :related
-    end
+    collection { get :related }
   end
-  resources :activities,            only: %i[create update destroy]
-  resources :setups,                only: %i[create update destroy]
+  resources :activities, only: %i[create update destroy]
+  resources :setups, only: %i[create update destroy]
   resources :material_transactions, only: %i[create update destroy]
   resources :equipment
   resources :units

@@ -1,11 +1,11 @@
 describe Treatment do
   describe 'validate unique names' do
-    it "should require unique name within a study" do
-      t = Treatment.new(:study_id => 1, :name => 'T11')
+    it 'should require unique name within a study' do
+      t = Treatment.new(study_id: 1, name: 'T11')
       expect(t).to be_valid
       assert t.save
 
-      t = Treatment.new(:study_id => 1, :name => 'T11')
+      t = Treatment.new(study_id: 1, name: 'T11')
       expect(t).to_not be_valid
     end
   end

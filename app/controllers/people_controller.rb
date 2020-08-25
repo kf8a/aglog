@@ -5,11 +5,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
-    @people = if params[:current]
-                Person.current.ordered
-              else
-                Person.ordered
-              end
+    @people = params[:current] ? Person.current.ordered : Person.ordered
     respond_with @people
   end
 
@@ -24,15 +20,12 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    # @person = Person.by_company(current_user.company).find(params[:id])
     @person = Person.find_in_company(current_user.companies, params[:id])
     respond_with @person
   end
 
   def create
-    @person = Person.new(person_params)
-    # TODO: how does it work when I create a person. Which company do they go
-    # into? The current user default one?
+    @person = Person.new(person_params) # into? The current user default one?
     if @person.save
       flash[:notice] = 'Person was successfully created.'
       respond_with @person
@@ -43,9 +36,7 @@ class PeopleController < ApplicationController
 
   def update
     @person = Person.find_in_company(current_user.companies, params[:id])
-    if @person.update_attributes(person_params)
-      flash[:notice] = 'Person was successfully updated.'
-    end
+    flash[:notice] = 'Person was successfully updated.' if @person.update_attributes(person_params)
     respond_with @person
   end
 
@@ -59,5 +50,5 @@ class PeopleController < ApplicationController
 
   def person_params
     params.require(:person).permit(:given_name, :sur_name, :companies, :archived)
-  end
+  end # @person = Person.by_company(current_user.company).find(params[:id])
 end

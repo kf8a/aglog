@@ -2,14 +2,12 @@
 # and open the template in the editor.
 
 describe Person do
-
-  let(:test_name) {{given_name: 'Joe', sur_name: 'Simmons'}}
+  let(:test_name) { { given_name: 'Joe', sur_name: 'Simmons' } }
 
   describe 'naming restrictions' do
     before(:each) do
       company = find_or_factory(:company)
-      @duplicate_person = find_or_factory(:person, given_name: test_name[:given_name],
-                                                   sur_name: test_name[:sur_name])
+      @duplicate_person = find_or_factory(:person, given_name: test_name[:given_name], sur_name: test_name[:sur_name])
       @duplicate_person.companies = [company]
       assert @duplicate_person.save
 
@@ -49,7 +47,7 @@ describe Person do
   end
 
   it 'returns a list of companies' do
-    person  = Person.new(given_name: test_name[:given_name], sur_name: test_name[:sur_name])
+    person = Person.new(given_name: test_name[:given_name], sur_name: test_name[:sur_name])
     company = FactoryBot.build(:company)
     person.companies << company
     expect(person.companies).to eq [company]
