@@ -21,7 +21,7 @@ class Area < ActiveRecord::Base
   acts_as_nested_set
 
   def self.find_with_name_like(query)
-    query = query.downcase + '%'
+    query = "#{query.downcase}%"
     Area.where('lower(name) like ?', query)
   end
 
