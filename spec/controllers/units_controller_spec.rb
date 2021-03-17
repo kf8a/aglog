@@ -33,15 +33,6 @@ describe UnitsController, type: :controller do
       it { is_expected.to set_flash.to('Unit was successfully created.') }
     end
 
-    describe 'POST :create in XML format' do
-      before(:each) { post :create, params: { unit: { name: 'xml_name' }, format: 'xml' } }
-
-      it { is_expected.to respond_with(201) }
-      it 'should respond with content type application/xml' do
-        expect(response.content_type).to eq 'application/xml'
-      end
-    end
-
     describe 'A unit exists. ' do
       describe 'GET :edit the unit' do
         before(:each) { get :edit, params: { id: unit } }
