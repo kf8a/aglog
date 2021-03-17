@@ -3,6 +3,9 @@ h1 {
 	font: small-caps bold large "Lucida Grande", Lucida, Verdana, sans-serif;
 }
 
+.p_16 {
+  padding: 16px;
+}
 a img { border: none;
 		text-decoration: none;
 }
