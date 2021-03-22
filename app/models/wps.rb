@@ -6,7 +6,7 @@ class Wps
     # 5 is the pesticide observation type 'obs_date'
     ObservationType.find(5).observations.where(company_id: 1)
       .where('obs_date > ?', Time.zone.today - 30.days)
-      .order
+      .order('obs_date')
       .collect { |record| records(record) }.flatten
   end
 
