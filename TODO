@@ -1,3 +1,13 @@
+salus
+code tillage equipment
+code fertilizer material
+
+TODO: remove the destroy link from equipment, areas, etc. and replace it with an
+archive button
+
+TODO: add field number to area
+
+
 TODO: add versioning
 TODO: two classes of users one who can only edit their own records and some who can edit all records
 TODO: irregular areas like the LYSIMETER field which does not have a treatment

@@ -2,7 +2,7 @@
 
 # Represents what is being worked on and measured: alfalfa, wheat, corn, etc.
 class Material < ActiveRecord::Base
-  has_and_belongs_to_many :equipment
+  # has_and_belongs_to_many :equipment
   has_many :material_transactions
   has_many :setups, through: :material_transactions
   belongs_to :material_type, optional: true
