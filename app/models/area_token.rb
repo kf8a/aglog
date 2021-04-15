@@ -42,7 +42,8 @@ class AreaToken
   end
 
   def to_area(token)
-    number_token?(token) ? Area.find(token.to_i) : Area.find_by(name: token, company: @company)
+    # number_token?(token) ? Area.find(token.to_i) : Area.find_by(name: token, company: @company)
+    Area.find_by(name: token, company: @company)
   end
 
   def number_token?(token)
