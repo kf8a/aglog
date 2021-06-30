@@ -5,7 +5,6 @@ class EquipmentController < ApplicationController
   respond_to :json, :html
 
   def index
-    puts current_user
     @equipment = current_user ? equipment.ordered : Equipment.ordered
 
     respond_with @equipment
@@ -80,11 +79,11 @@ class EquipmentController < ApplicationController
   end
 
   def equipment
-    Equipment.by_company(1)
-    # if params[:id]
-    #   Equipment.by_company(current_user.companies).find(params[:id])
-    # else
-    #   Equipment.by_company(current_user.companies)
-    # end
+    if params[:id]
+      # Equipment.by_company(current_user.companies).find(params[:id])
+      Equipment.by_company(1).find(params[:id])
+    else
+      Equipment.by_company(1)
+    end
   end
 end
