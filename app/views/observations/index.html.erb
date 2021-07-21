@@ -15,7 +15,7 @@
         </div>
         <div class="col">
           <% obstype_array = options_from_collection_for_select(ObservationType.all, :id, :name, @obstype.try(:id)) %>
-          <%= select_tag(:obstype, options_for_select(obstype_array), include_blank: true, class: 'form-control') %>
+          <%= select_tag(:obstype, options_for_select(obstype_array), prompt: "select an event", include_blank: true, class: 'form-control') %>
         </div>
         <div class='col'>
           <button type="submit" class="btn btn-primary">Search</button>

@@ -15,3 +15,6 @@ TODO: irregular areas like the LYSIMETER field which does not have a treatment
       treatment and areas table. I think they should just have an area entry
       and the Area.parse should search on area.name, but I don't know how to
       distinguish study names from irregular area names.
+
+TODO: need to have a way to delete or edit a material.
+todo outline button "get"
