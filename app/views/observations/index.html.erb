@@ -7,7 +7,7 @@
     <form>
       <div class="form-row row align-items-end">
         <div class="col">
-          <input type="text" id='observation_areas_as_text' name='areas_as_text' class="token-input form-control" data-pre=<%=@areas_as_text%> >
+          <input type="text" placeholder="Area" id='observation_areas_as_text' name='areas_as_text' class="token-input form-control" data-pre=<%=@areas_as_text%> >
         </div>
         <!-- <div class="col" id="area_input" data&#45;areas=<%=@areas %>></div> -->
         <div class="col">
@@ -18,7 +18,7 @@
           <%= select_tag(:obstype, options_for_select(obstype_array), include_blank: true, class: 'form-control') %>
         </div>
         <div class='col'>
-          <button type="submit" class="btn btn-primary">Get</button>
+          <button type="submit" class="btn btn-primary">Search</button>
         </div>
       </div>
     </form>
