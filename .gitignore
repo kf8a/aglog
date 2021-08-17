@@ -24,3 +24,10 @@ public/uploads
 yarn-debug.log*
 .yarn-integrity
 .env
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
