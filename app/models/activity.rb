@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Represents work done during an observation
-class Activity < ActiveRecord::Base
+class Activity < ActiveRecord
   belongs_to :person
   belongs_to :observation, optional: true
   has_many :setups, dependent: :destroy
