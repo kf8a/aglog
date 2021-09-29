@@ -6,7 +6,7 @@
     "@rails/webpacker": "5.4.0",
     "bootstrap": "^4.6.0",
     "datatables": "^1.10.18",
-    "datatables.net": "^1.10.23",
+    "datatables.net": "^1.11.3",
     "datatables.net-dt": "^1.10.23",
     "elm": "^0.19.1-5",
     "elm-webpack-loader": "^8.0",
