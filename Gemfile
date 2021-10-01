@@ -20,7 +20,6 @@ gem 'chronic'
 gem 'webpacker'
 
 gem 'dotenv-rails'
-gem 'simple_form'
 
 gem 'awesome_nested_set'
 
