@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Allows modification and viewing of people
 class PeopleController < ApplicationController
   respond_to :json, :html
@@ -36,7 +38,7 @@ class PeopleController < ApplicationController
 
   def update
     @person = Person.find_in_company(current_user.companies, params[:id])
-    flash[:notice] = 'Person was successfully updated.' if @person.update_attributes(person_params)
+    flash[:notice] = 'Person was successfully updated.' if @person.update(person_params)
     respond_with @person
   end
 

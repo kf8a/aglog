@@ -91,7 +91,7 @@ describe MaterialsController, type: :controller do
 
     describe 'PUT :update with invalid attributes' do
       before(:each) do
-        allow(material).to receive(:update_attributes).and_return(false)
+        allow(material).to receive(:update).and_return(false)
         put :update, params: { id: material, material: { name: 'repeat_name' } }
       end
 

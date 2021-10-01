@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # These methods are most commonly called from the Edit Observation page to
 # modify material transactions of an observation
 class MaterialTransactionsController < ApplicationController
@@ -9,7 +11,7 @@ class MaterialTransactionsController < ApplicationController
 
   def update
     @transaction = MaterialTransaction.find(params[:id])
-    if @transaction.update_attributes(material_transaction_params)
+    if @transaction.update(material_transaction_params)
       flash[:activity] = 'Material Transaction was successfully updated.'
     end
     head :ok

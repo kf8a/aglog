@@ -4,7 +4,7 @@ require 'date'
 require 'set'
 
 # Represents a location where observations are done.
-class Area < ActiveRecord::Base
+class Area < ApplicationRecord
   has_and_belongs_to_many :observations, -> { order('obs_date desc') }
   belongs_to :study, optional: true
   belongs_to :treatment, optional: true

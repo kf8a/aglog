@@ -32,7 +32,7 @@ class UnitsController < ApplicationController
 
   def update
     @unit = Unit.find(params[:id])
-    if @unit.update_attributes(unit_params)
+    if @unit.update(unit_params)
       flash[:notice] = 'Unit was successfully updated.'
       respond_with @unit
     else

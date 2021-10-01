@@ -131,7 +131,7 @@ describe PeopleController, type: :controller do
         before(:each) do
           expect(Person).to receive(:find_in_company).with(controller.current_user.companies, person.id.to_s)
             .and_return(person)
-          expect(person).to receive(:update_attributes).with(any_args).and_return(true)
+          expect(person).to receive(:update).with(any_args).and_return(true)
           put :update, params: { id: person, person: { given_name: 'Bob' } }
         end
 

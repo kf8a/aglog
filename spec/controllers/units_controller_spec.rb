@@ -58,7 +58,7 @@ describe UnitsController, type: :controller do
 
       describe 'PUT :update the unit with valid attributes' do
         before(:each) do
-          allow(unit).to receive(:update_attributes).and_return(true)
+          allow(unit).to receive(:update).and_return(true)
           put :update, params: { id: unit, unit: { name: 'different_name' } }
         end
 
@@ -73,7 +73,7 @@ describe UnitsController, type: :controller do
 
       describe 'PUT :update the unit with invalid attributes' do
         before(:each) do
-          allow(unit).to receive(:update_attributes).and_return(false)
+          allow(unit).to receive(:update).and_return(false)
           put :update, params: { id: unit, unit: { name: 'repeat_name' } }
         end
 

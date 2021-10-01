@@ -35,7 +35,7 @@ class MaterialsController < ApplicationController
 
   def update
     @material = Material.find(params[:id])
-    if @material.update_attributes(material_params)
+    if @material.update(material_params)
       flash[:notice] = 'Material was successfully updated.'
       respond_with @material
     else
@@ -52,17 +52,10 @@ class MaterialsController < ApplicationController
   private
 
   def material_params
-    params.require(:material).permit(
-      :name,
-      :operation_type_id,
-      :material_type_id,
-      :n_content,
-      :p_content,
-      :k_content,
-      :specific_weight,
-      :salus_code,
-      :liquid,
-      :archived
-    )
+    params.require(:material).permit(:name,
+                                     :operation_type_id, :material_type_id,
+                                     :n_content, :p_content, :k_content,
+                                     :specific_weight, :salus_code,
+                                     :liquid, :archived)
   end
 end

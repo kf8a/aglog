@@ -156,7 +156,7 @@ describe AreasController, type: :controller do
 
     describe 'PUT :update with invalid attributes' do
       before(:each) do
-        allow(area).to receive(:update_attributes).and_return(false)
+        allow(area).to receive(:update).and_return(false)
         subject { put :update, params: { id: area, area: { name: 'repeat_name' } } }
       end
 
