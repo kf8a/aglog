@@ -21,7 +21,7 @@
     jsonContainer: null,
 
     // Display settings
-    hintText: "Type in a search term",
+    hintText: "Type in an area to search for",
     noResultsText: "No results",
     searchingText: "Searching...",
     deleteText: "&times;",
