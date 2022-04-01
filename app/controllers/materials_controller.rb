@@ -56,6 +56,7 @@ class MaterialsController < ApplicationController
                                      :operation_type_id, :material_type_id,
                                      :n_content, :p_content, :k_content,
                                      :specific_weight, :salus_code,
-                                     :liquid, :archived)
+                                     :liquid, :archived,
+                                     files: [])
   end
 end

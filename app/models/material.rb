@@ -8,6 +8,8 @@ class Material < ActiveRecord::Base
   belongs_to :material_type, optional: true
   belongs_to :company, optional: true
 
+  has_many_attached :files
+
   scope :current, -> { where(archived: false) }
   scope :ordered, -> { order('name') }
   scope :by_company, ->(company) { where(company_id: company) }
