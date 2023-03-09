@@ -14,7 +14,19 @@ class Wps
       .where('obs_date > ?', Time.zone.today - 30.days)
       .order('obs_date')
       .collect { |record| records(record) }.flatten
-    [pesticde, herbicde].flatten.uniq
+
+    insecticide = ObservationType.find(14).observations.where(company_id: 1)
+      .where('obs_date > ?', Time.zone.today - 30.days)
+      .order('obs_date')
+      .collect { |record| records(record) }.flatten
+
+    fungicide = ObservationType.find(15).observations.where(company_id: 1)
+      .where('obs_date > ?', Time.zone.today - 30.days)
+      .order('obs_date')
+      .collect { |record| records(record) }.flatten
+
+
+    [pesticde, herbicde, insecticide, fungicide].flatten.uniq
   end
 
   def self.records(record)
