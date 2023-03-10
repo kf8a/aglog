@@ -7,7 +7,7 @@ class ObservationTypesController < ApplicationController
   respond_to :json
 
   def index
-    @observation_types = ObservationType.where(deprecated: false).all
+    @observation_types = ObservationType.where(deprecated: false).order(:order).all
     respond_with @observation_types
   end
 end
