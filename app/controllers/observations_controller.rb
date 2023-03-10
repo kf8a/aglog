@@ -61,6 +61,13 @@ class ObservationsController < ApplicationController
     respond_with @observation
   end
 
+  def edit
+    @observation =
+      Observation.where(id: params[:id]).includes(:observation_types, activities: { setups: :material_transactions })
+        .first
+    respond_with @observation
+  end
+
   # POST /observations
   # POST /observations.xml
   def create
@@ -69,13 +76,6 @@ class ObservationsController < ApplicationController
     @observation.company = user.default_company
     flash[:form] = @observation.save ? 'Observation was successfully created.' : 'Observation creation failed'
     flash[:error] = @observation.errors.full_messages.to_sentence
-    respond_with @observation
-  end
-
-  def edit
-    @observation =
-      Observation.where(id: params[:id]).includes(:observation_types, activities: { setups: :material_transactions })
-        .first
     respond_with @observation
   end
 
