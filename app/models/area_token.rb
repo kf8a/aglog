@@ -32,18 +32,18 @@ class AreaToken
     end
   end
 
-  def self.find_area(token, company)
-    new(company).to_area(token)
+  def self.find_area(token, _company)
+    to_area(token)
   end
 
-  # NOTE that we are assuming a company id of 1
+  # NOTE: that we are assuming a company id of 1
   def initialize(company)
     @company = company || 1
   end
 
-  def to_area(token)
+  def self.to_area(token)
     # number_token?(token) ? Area.find(token.to_i) : Area.find_by(name: token, company: @company)
-    Area.find_by(name: token, company: @company)
+    Area.find_by(name: token)
   end
 
   def number_token?(token)
