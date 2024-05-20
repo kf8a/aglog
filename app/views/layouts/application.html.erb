@@ -27,7 +27,7 @@
       <li class='nav-item <%= "active" if controller.controller_name == 'units' %>'><%= link_to 'Units', units_path, :accesskey => 'U', class: 'nav-link' %></li>
       <% if user_signed_in? %>
         <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete, class: 'nav-link' %></li>
-        <li><a href="/public/pesticde_application_record.pdf" target="_blank">Pesticide Application Record</a></li>
+        <li><a href="/public/pesticde_application_record.pdf" class: 'nav-link' target="_blank">Pesticide Application Record</a></li>
       <% else %>
         <li><%= link_to 'Sign In', new_user_session_path, class: 'nav-link'  %></li>
       <% end %>
