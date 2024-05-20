@@ -30,9 +30,7 @@
       <% else %>
         <li><%= link_to 'Sign In', new_user_session_path, class: 'nav-link'  %></li>
       <% end %>
-      <% if user_signed_in? %>
         <li><a href="/public/pesticde_application_record.pdf" target="_blank">Pesticide Application Record</a></li>
-      <% end %>
     </ul>
     <form class="form-inline navbar-right" action="/observations" role="search">
       <div class="form-group">
