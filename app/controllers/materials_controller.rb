@@ -16,13 +16,13 @@ class MaterialsController < ApplicationController
     respond_with @material
   end
 
-  def edit
-    @material = Material.by_company(current_user.companies).find(params[:id])
+  def new
+    @material = Material.new
     respond_with @material
   end
 
-  def new
-    @material = Material.new
+  def edit
+    @material = Material.find(params[:id])
     respond_with @material
   end
 
